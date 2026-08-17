@@ -1,0 +1,60 @@
+{
+  "snapshot_id": "base-leyndell-sewers-frenzied-flame-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Avenue Balcony, Underground Roadside, Forsaken Depths, Mohg the Omen, Cathedral of the Forsaken, Leyndell Catacombs, Frenzied Flame Proscription and the hidden Deeproot route",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "capital-to-sewers",
+      "from": "Avenue Balcony",
+      "to": "Underground Roadside",
+      "transition_type": "capital_to_underground_drop",
+      "direction": "forward",
+      "claim": "The Royal Capital street level has a sewer entrance leading to the Underground Roadside grace and the Subterranean Shunning-Grounds upper hall.",
+      "sources": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "game8-shunning-grounds-cross-check"]
+    },
+    {
+      "id": "sewer-to-mohg",
+      "from": "Underground Roadside",
+      "to": "Mohg, the Omen",
+      "transition_type": "sewer_vertical_boss_route",
+      "direction": "forward",
+      "claim": "The sewer pipes and cage lift descend from Underground Roadside to Forsaken Depths, immediately before the Mohg, the Omen chapel.",
+      "sources": ["eldenpedia-leyndell-sewers", "eldenpedia-mohg-omen", "game8-shunning-grounds-cross-check"]
+    },
+    {
+      "id": "mohg-to-cathedral",
+      "from": "Mohg, the Omen",
+      "to": "Cathedral of the Forsaken",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Cathedral of the Forsaken grace appears in the Mohg post-boss arena state.",
+      "sources": ["eldenpedia-mohg-omen", "eldenpedia-leyndell-sewers", "game8-shunning-grounds-cross-check"]
+    },
+    {
+      "id": "cathedral-to-frenzied-flame",
+      "from": "Cathedral of the Forsaken",
+      "to": "Frenzied Flame Proscription",
+      "transition_type": "hidden_altar_beam_parkour",
+      "direction": "forward",
+      "claim": "The hidden altar path and beam descent lead to Frenzied Flame Proscription; the route is sealed until the relevant Morgott and Mohg states are complete.",
+      "sources": ["eldenpedia-leyndell-sewers", "game8-shunning-grounds-cross-check", "neoseeker-shunning-cross-check"]
+    },
+    {
+      "id": "frenzied-to-deeproot",
+      "from": "Frenzied Flame Proscription",
+      "to": "Deeproot Depths",
+      "transition_type": "hidden_wall_coffin_route",
+      "direction": "forward",
+      "claim": "Frenzied Flame Proscription provides a hidden alternate route into Deeproot Depths, separate from the Siofra Aqueduct Gargoyle/coffin path.",
+      "sources": ["eldenpedia-leyndell-sewers", "game8-shunning-grounds-cross-check", "neoseeker-shunning-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-leyndell-sewers", "url": "https://eldenring.wiki.gg/wiki/Leyndell_Sewers" },
+    { "id": "eldenpedia-mohg-omen", "url": "https://eldenring.wiki.gg/wiki/Mohg,_the_Omen" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-shunning-grounds-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/380540" },
+    { "id": "neoseeker-shunning-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Subterranean_Shunning-Grounds" }
+  ]
+}

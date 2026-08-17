@@ -631,6 +631,12 @@ async function init() {
       ["Godskin Apostle (Divine Tower of Caelid)", "godskin_apostle_caelid_gate"],
       ["Limgrave Tower Bridge", "grace_limgrave_stormhill_limgrave_tower_bridge"],
       ["Divine Tower of Limgrave", "grace_limgrave_stormhill_divine_tower_of_limgrave"],
+      ["Underground Roadside", "grace_leyndell_royal_capital_subterranean_shunning_grounds_underground_roadside"],
+      ["Forsaken Depths", "grace_leyndell_royal_capital_subterranean_shunning_grounds_forsaken_depths"],
+      ["Mohg, the Omen", "mohg_omen_gate"],
+      ["Cathedral of the Forsaken", "grace_leyndell_royal_capital_subterranean_shunning_grounds_cathedral_of_the_forsaken"],
+      ["Leyndell Catacombs", "grace_leyndell_royal_capital_subterranean_shunning_grounds_leyndell_catacombs"],
+      ["Frenzied Flame Proscription", "grace_leyndell_royal_capital_subterranean_shunning_grounds_frenzied_flame_proscription"],
       ["Bridge of Iniquity", "grace_altus_plateau_mt_gelmir_bridge_of_iniquity"],
       ["First Mt.Gelmir Campsite", "grace_altus_plateau_mt_gelmir_first_mt_gelmir_campsite"],
       ["Road of Iniquity", "grace_altus_plateau_mt_gelmir_road_of_iniquity"],
@@ -736,6 +742,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;
       if (["Aeonia Swamp Shore", "Heart of Aeonia", "Inner Aeonia", "Sellia Under-Stair", "Sellia Backstreets", "Chair-Crypt of Sellia"].includes(record.name)) return;
