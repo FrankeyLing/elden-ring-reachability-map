@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.40-online-multiplane",
+    "version": "1.0.41-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -52,7 +52,8 @@
       "base-ainsel-well-surface-entry-evidence-20260817",
       "base-deeproot-ainsel-coffin-evidence-20260817",
       "base-west-altus-tower-sealed-tunnel-evidence-20260817",
-      "base-dragonbarrow-lenne-merchant-evidence-20260817"
+      "base-dragonbarrow-lenne-merchant-evidence-20260817",
+      "base-caelid-main-road-branches-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -765,6 +766,9 @@
     ,{ "id": "eldenpedia-isolated-merchant-shack-dragonbarrow", "label": "Eldenpedia · Isolated Merchant's Shack (Dragonbarrow)", "url": "https://eldenring.wiki.gg/wiki/Isolated_Merchant%27s_Shack_%28Dragonbarrow%29", "grade": "A" }
     ,{ "id": "gamefaqs-dragonbarrow-cross-check", "label": "GameFAQs · Dragonbarrow route", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/1-quick-start", "grade": "C" }
     ,{ "id": "redmaw-dragonbarrow-cross-check", "label": "Redmaw · Dragonbarrow walkthrough", "url": "https://eldenring.redmaw.dev/sheets/walkthrough", "grade": "C" }
+    ,{ "id": "game8-caelid-walkthrough-cross-check", "label": "Game8 · Caelid walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379537", "grade": "B" }
+    ,{ "id": "game8-cathedral-dragon-communion-cross-check", "label": "Game8 · Cathedral of Dragon Communion", "url": "https://game8.co/games/Elden-Ring/archives/369947", "grade": "B" }
+    ,{ "id": "vgkami-caelid-grace-cross-check", "label": "VGKAMI · Caelid Sites of Grace", "url": "https://vgkami.com/elden-ring-every-site-of-grace-location/", "grade": "C" }
   ],
   "nodes": [
     {
@@ -6033,6 +6037,66 @@
       "description": "Northwestern Dragonbarrow shack grace; the road from Dragonbarrow West reaches it without merging it into the Divine Tower route."
     },
     {
+      "id": "grace_smoldering_wall",
+      "label": "Smoldering Wall",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Caelid",
+      "floor": "Western Caelid wall road",
+      "worldEpoch": "caelid_surface",
+      "x": 1110,
+      "y": 440,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-caelid-walkthrough-cross-check", "powerpyx-caelid-cross-check"],
+      "description": "Caelid main-road grace beside the long smoldering wall south of Caelem Ruins."
+    },
+    {
+      "id": "grace_astray_from_caelid_highway_north",
+      "label": "Astray from Caelid Highway North",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Swamp of Aeonia",
+      "floor": "Northern Aeonia side road",
+      "worldEpoch": "caelid_surface",
+      "x": 1170,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-caelid-walkthrough-cross-check", "vgkami-caelid-grace-cross-check"],
+      "description": "Side-road grace south of the Smoldering Wall, separated from the main Caelid Highway route."
+    },
+    {
+      "id": "grace_fort_gael_north",
+      "label": "Fort Gael North",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Caelid",
+      "floor": "Fort Gael northern approach",
+      "worldEpoch": "caelid_surface",
+      "x": 1010,
+      "y": 560,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "vgkami-caelid-grace-cross-check", "game8-caelid-walkthrough-cross-check"],
+      "description": "Branch grace north of Fort Gael, reached from the Caelem Ruins area by a southwest deviation."
+    },
+    {
+      "id": "grace_cathedral_dragon_communion",
+      "label": "Cathedral of Dragon Communion",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Caelid",
+      "floor": "Southern Caelid peninsula",
+      "worldEpoch": "caelid_surface",
+      "x": 820,
+      "y": 560,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-cathedral-dragon-communion-cross-check", "game8-caelid-walkthrough-cross-check"],
+      "description": "Southern branch off Caelid Highway South, at the peninsula used for Dragon Communion."
+    },
+    {
       "id": "grace_caelid_greyoll_s_dragonbarrow_farum_greatbridge",
       "label": "Farum Greatbridge",
       "kind": "grace",
@@ -11023,6 +11087,96 @@
       "tags": ["walk", "surface", "cross_checked"]
     },
     {
+      "id": "rotview-to-caelem",
+      "from": "grace_rotview_balcony",
+      "to": "grace_caelem_ruins",
+      "mode": "Rotview Balcony to Caelem Ruins",
+      "cost": 8,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "caelid_main_road",
+      "requires": [],
+      "sourceEvidence": ["game8-caelid-walkthrough-cross-check", "powerpyx-caelid-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "verificationState": "online_cross_checked",
+      "note": "Continue along the main Caelid road from Rotview Balcony to the Caelem Ruins grace.",
+      "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "caelem-to-smoldering-wall",
+      "from": "grace_caelem_ruins",
+      "to": "grace_smoldering_wall",
+      "mode": "Caelem Ruins to Smoldering Wall",
+      "cost": 7,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "caelid_main_road",
+      "requires": [],
+      "sourceEvidence": ["game8-caelid-walkthrough-cross-check", "powerpyx-caelid-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "verificationState": "online_cross_checked",
+      "note": "The road passes south of Caelem Ruins to the Smoldering Wall grace and its Finger Reader Crone landmark.",
+      "tags": ["walk", "surface", "hazard", "cross_checked"]
+    },
+    {
+      "id": "smoldering-wall-to-highway-south",
+      "from": "grace_smoldering_wall",
+      "to": "grace_caelid_highway_south",
+      "mode": "Smoldering Wall to Caelid Highway South",
+      "cost": 9,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "caelid_main_road_rot_route",
+      "requires": [],
+      "sourceEvidence": ["game8-caelid-walkthrough-cross-check", "powerpyx-caelid-cross-check", "vgkami-caelid-grace-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Continue south along the road beyond the wall to Caelid Highway South; Scarlet Rot exposure is represented as route risk.",
+      "tags": ["walk", "surface", "hazard", "cross_checked"]
+    },
+    {
+      "id": "smoldering-wall-to-astray-highway",
+      "from": "grace_smoldering_wall",
+      "to": "grace_astray_from_caelid_highway_north",
+      "mode": "Smoldering Wall to Astray from Caelid Highway North",
+      "cost": 5,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "aeonia_side_road",
+      "requires": [],
+      "sourceEvidence": ["game8-caelid-walkthrough-cross-check", "vgkami-caelid-grace-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The side grace lies a little south of the Smoldering Wall and is not merged with the main highway grace.",
+      "tags": ["walk", "surface", "hazard", "branch", "cross_checked"]
+    },
+    {
+      "id": "caelem-to-fort-gael-north",
+      "from": "grace_caelem_ruins",
+      "to": "grace_fort_gael_north",
+      "mode": "Caelem Ruins to Fort Gael North",
+      "cost": 8,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "fort_gael_branch",
+      "requires": [],
+      "sourceEvidence": ["vgkami-caelid-grace-cross-check", "game8-caelid-walkthrough-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "verificationState": "online_cross_checked",
+      "note": "Southwest deviation from the Caelem road reaches the Fort Gael North grace under the cliff branch.",
+      "tags": ["walk", "surface", "branch", "hazard", "cross_checked"]
+    },
+    {
+      "id": "highway-south-to-cathedral-dragon-communion",
+      "from": "grace_caelid_highway_south",
+      "to": "grace_cathedral_dragon_communion",
+      "mode": "Caelid Highway South to Cathedral of Dragon Communion",
+      "cost": 6,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "southern_caelid_branch",
+      "requires": [],
+      "sourceEvidence": ["game8-cathedral-dragon-communion-cross-check", "game8-caelid-walkthrough-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "verificationState": "online_cross_checked",
+      "note": "Veer south from the southern end of Caelid Highway to the Cathedral peninsula.",
+      "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
       "id": "caelid-highway-to-caelem",
       "from": "grace_caelid_highway_south",
       "to": "grace_caelem_ruins",
@@ -12348,8 +12502,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 376,
-    "formalRouteEdgeCount": 395,
+    "formalNodeCount": 380,
+    "formalRouteEdgeCount": 401,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

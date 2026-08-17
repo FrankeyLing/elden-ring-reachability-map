@@ -1,0 +1,32 @@
+{
+  "snapshot_id": "base-caelid-main-road-branches-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "caelid-main-road-sequence",
+      "claim": "The western Caelid road sequence runs from Rotview Balcony through Caelem Ruins and Smoldering Wall toward Caelid Highway South; the sites are distinct route nodes rather than one flat marker.",
+      "sources": [
+        { "source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537" },
+        { "source_id": "powerpyx-caelid-cross-check", "url": "https://www.powerpyx.com/elden-ring-caelid-walkthrough/" },
+        { "source_id": "vgkami-caelid-grace-cross-check", "url": "https://vgkami.com/elden-ring-every-site-of-grace-location/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "caelid-side-graces",
+      "claim": "Fort Gael North is a southwest branch from Caelem Ruins, Astray from Caelid Highway North is south of the Smoldering Wall, and Cathedral of Dragon Communion is a southern branch from Caelid Highway South.",
+      "sources": [
+        { "source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537" },
+        { "source_id": "game8-cathedral-dragon-communion-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369947" },
+        { "source_id": "vgkami-caelid-grace-cross-check", "url": "https://vgkami.com/elden-ring-every-site-of-grace-location/" },
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "revision_id": 83774 }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "Scarlet Rot and field enemies are represented as route risk, not fabricated hard locks.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}
