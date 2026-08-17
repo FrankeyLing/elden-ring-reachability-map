@@ -72,6 +72,18 @@
       "freshness": "current README describes active extractor and v2.6.2 data"
     },
     {
+      "id": "jw_ofs_elden_ring_map",
+      "name": "jw-ofs/elden-ring-map",
+      "url": "https://github.com/jw-ofs/elden-ring-map",
+      "access": "fixed Git commit; public README and generated marker files",
+      "license": "repository-level reuse license not found during audit; game-derived tiles and mixed-origin markers require separate rights review",
+      "v1_role": ["coverage_gap_detection", "marker_category_reference", "questline_ux_reference"],
+      "import_status": "reference_only",
+      "revision": "6b7c3da11de11e53cb84bbb40f7c3fed5377549a",
+      "exclude": ["map tiles", "icons", "generated markers until file-level provenance and license are confirmed", "automatic promotion to formal transitions"],
+      "freshness": "recheck upstream revision and rights before any data import"
+    },
+    {
       "id": "elden_ring_fan_api",
       "name": "Elden Ring Fan API",
       "url": "https://github.com/deliton/eldenring-api",
