@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.62-online-multiplane",
+    "version": "1.0.63-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -75,7 +75,8 @@
       "base-limgrave-starting-tutorial-evidence-20260818",
       "base-limgrave-chapel-four-belfries-evidence-20260818",
       "base-roundtable-hold-invitation-evidence-20260818",
-      "base-limgrave-early-surface-nodes-evidence-20260818"
+      "base-limgrave-early-surface-nodes-evidence-20260818",
+      "base-weeping-peninsula-surface-nodes-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1343,6 +1344,8 @@
     ,{ "id": "gamerguides-warmaster-shack-cross-check", "label": "Gamer Guides - Warmaster's Shack route", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-warmasters-shack-in-limgrave", "grade": "B" }
     ,{ "id": "gamerguides-saintsbridge-cross-check", "label": "Gamer Guides - Saintsbridge route", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-saintsbridge-in-limgrave", "grade": "B" }
     ,{ "id": "neoseeker-stormhill-cross-check", "label": "Neoseeker - Stormhill / Warmaster's Shack route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Stormhill", "grade": "B" }
+    ,{ "id": "game8-isolated-merchant-weeping-cross-check", "label": "Game8 - Isolated Merchant's Shack (Weeping Peninsula)", "url": "https://game8.co/games/Elden-Ring/archives/369371", "grade": "B" }
+    ,{ "id": "neoseeker-weeping-cross-check", "label": "Neoseeker - Weeping Peninsula route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Weeping_Peninsula", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8695,6 +8698,22 @@
     {
       "id": "grace_limgrave_stormhill_warmasters_shack", "label": "Warmaster's Shack", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Central Stormhill woods", "worldEpoch": "limgrave_surface", "x": 380, "y": 940, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-warmaster-shack", "eldenpedia-sites-of-grace-r83774", "game8-warmaster-shack-cross-check"], "description": "Stormhill shack grace on the road between Stormhill Shack and Saintsbridge; night state can replace Bernahl with the Bell Bearing Hunter."
+    },
+    {
+      "id": "grace_limgrave_weeping_peninsula_ailing_village_outskirts", "label": "Ailing Village Outskirts", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Ailing Village northern plateau", "worldEpoch": "weeping_peninsula", "x": 430, "y": 1080, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "description": "Northern grace above Ailing Village and Callu Baptismal Church; reached by an uphill branch from Castle Morne Rampart."
+    },
+    {
+      "id": "grace_limgrave_weeping_peninsula_beside_the_crater_pocked_glade", "label": "Beside the Crater-Pocked Glade", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Central peninsula crater glade", "worldEpoch": "weeping_peninsula", "x": 540, "y": 1160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "description": "Central peninsula surface grace near the crater-pocked glade; it is kept separate from the Tombsward cave and catacombs layers."
+    },
+    {
+      "id": "grace_limgrave_weeping_peninsula_isolated_merchants_shack", "label": "Isolated Merchant's Shack", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Southwestern peninsula field", "worldEpoch": "weeping_peninsula", "x": 300, "y": 1220, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check", "neoseeker-weeping-cross-check"], "description": "Western-coast merchant shack grace reached south from Fourth Church of Marika; the merchant and coastal field are an optional surface branch."
+    },
+    {
+      "id": "grace_limgrave_weeping_peninsula_tombsward", "label": "Tombsward", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Western tombsward plateau", "worldEpoch": "weeping_peninsula", "x": 420, "y": 1130, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "description": "Surface grace on the Tombsward route, distinct from Tombsward Cave and Tombsward Catacombs below the peninsula."
     }
   ],
   "edges": [
@@ -16191,6 +16210,14 @@
     ,{ "id": "summonwater-to-tibia-mariner", "from": "grace_limgrave_main_summonwater_village_outskirts", "to": "tibia_mariner_summonwater_gate", "mode": "Summonwater Village east approach", "cost": 6, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Enter the flooded village to the east; Tibia Mariner is an optional field-boss encounter, not a map-wide traversal gate.", "tags": ["walk", "surface", "boss", "cross_checked"] }
     ,{ "id": "tibia-mariner-to-summonwater-state", "from": "tibia_mariner_summonwater_gate", "to": "summonwater_village_post_boss_state", "mode": "Summonwater Village Tibia Mariner completion", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["tibia_mariner_summonwater_defeated"], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Records the optional boss clear and Deathroot reward state.", "tags": ["boss", "conditional", "state_change", "surface", "cross_checked"] }
     ,{ "id": "summonwater-state-to-outskirts", "from": "summonwater_village_post_boss_state", "to": "grace_limgrave_main_summonwater_village_outskirts", "mode": "Summonwater cleared return", "cost": 4, "risk": 5, "direction": "backtrack", "transitionType": "field_boss_return", "requires": [], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Return to the west-side staging grace after clearing the village boss.", "tags": ["backtrack", "surface", "cross_checked"] }
+    ,{ "id": "castle-morne-rampart-to-ailing-village", "from": "grace_limgrave_weeping_peninsula_castle_morne_rampart", "to": "grace_limgrave_weeping_peninsula_ailing_village_outskirts", "mode": "Castle Morne Rampart uphill route to Ailing Village", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "weeping_peninsula_plateau_ascent", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the uphill trail west/northwest from Castle Morne Rampart, then continue north past Callu Baptismal Church to the Ailing Village Outskirts grace.", "tags": ["walk", "surface", "vertical", "branch", "cross_checked"] }
+    ,{ "id": "ailing-village-to-castle-morne-rampart", "from": "grace_limgrave_weeping_peninsula_ailing_village_outskirts", "to": "grace_limgrave_weeping_peninsula_castle_morne_rampart", "mode": "Ailing Village return to Castle Morne Rampart", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "weeping_peninsula_plateau_descent", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "powerpyx-weeping-cross-check", "neoseeker-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the same plateau trail back to the castle rampart grace.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
+    ,{ "id": "church-pilgrimage-to-tombsward", "from": "grace_limgrave_weeping_peninsula_church_of_pilgrimage", "to": "grace_limgrave_weeping_peninsula_tombsward", "mode": "Church of Pilgrimage to Tombsward", "cost": 6, "risk": 6, "direction": "forward", "transitionType": "tombsward_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the western church slope toward the Tombsward plateau; the catacombs and cave are separate lower branches.", "tags": ["walk", "surface", "vertical", "cross_checked"] }
+    ,{ "id": "tombsward-to-church-pilgrimage", "from": "grace_limgrave_weeping_peninsula_tombsward", "to": "grace_limgrave_weeping_peninsula_church_of_pilgrimage", "mode": "Tombsward return to Church of Pilgrimage", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "tombsward_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "powerpyx-weeping-cross-check", "neoseeker-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Climb back to the Church of Pilgrimage grace.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
+    ,{ "id": "tombsward-to-crater-glade", "from": "grace_limgrave_weeping_peninsula_tombsward", "to": "grace_limgrave_weeping_peninsula_beside_the_crater_pocked_glade", "mode": "Tombsward to crater-pocked glade", "cost": 6, "risk": 5, "direction": "forward", "transitionType": "weeping_peninsula_central_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the central plateau from Tombsward toward the crater-pocked glade grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "crater-glade-to-tombsward", "from": "grace_limgrave_weeping_peninsula_beside_the_crater_pocked_glade", "to": "grace_limgrave_weeping_peninsula_tombsward", "mode": "Crater-pocked glade return to Tombsward", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "weeping_peninsula_central_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "powerpyx-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Return west across the same open plateau.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "fourth-church-to-isolated-merchant", "from": "grace_limgrave_weeping_peninsula_fourth_church_of_marika", "to": "grace_limgrave_weeping_peninsula_isolated_merchants_shack", "mode": "Fourth Church of Marika south to Isolated Merchant's Shack", "cost": 7, "risk": 5, "direction": "forward", "transitionType": "weeping_peninsula_west_coast_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check", "neoseeker-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Travel south/southwest from Fourth Church toward the far-western coastal shack.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "isolated-merchant-to-fourth-church", "from": "grace_limgrave_weeping_peninsula_isolated_merchants_shack", "to": "grace_limgrave_weeping_peninsula_fourth_church_of_marika", "mode": "Isolated Merchant's Shack return to Fourth Church", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "weeping_peninsula_west_coast_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Return north/northeast from the isolated coastal field to Fourth Church of Marika.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -16212,8 +16239,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 647,
-    "formalRouteEdgeCount": 692,
+    "formalNodeCount": 651,
+    "formalRouteEdgeCount": 700,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "base-weeping-peninsula-surface-nodes-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "weeping-ailing-village-branch",
+      "claim": "Ailing Village Outskirts is north of Ailing Village and is reached by the uphill route from Castle Morne Rampart; the village and Callu Baptismal Church are a surface plateau branch.",
+      "sources": [
+        { "source_id": "eldenpedia-weeping-peninsula", "url": "https://eldenring.wiki.gg/wiki/Weeping_Peninsula" },
+        { "source_id": "game8-limgrave-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" },
+        { "source_id": "powerpyx-weeping-cross-check", "url": "https://www.powerpyx.com/elden-ring-weeping-peninsula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "weeping-tombsward-merchant-branches",
+      "claim": "Tombsward is a distinct surface grace on the western peninsula route, while the Isolated Merchant's Shack is reached south from Fourth Church of Marika; both are separate from the lower Tombsward Cave and Tombsward Catacombs graces.",
+      "sources": [
+        { "source_id": "eldenpedia-weeping-peninsula", "url": "https://eldenring.wiki.gg/wiki/Weeping_Peninsula" },
+        { "source_id": "game8-limgrave-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" },
+        { "source_id": "game8-isolated-merchant-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369371" },
+        { "source_id": "neoseeker-weeping-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Weeping_Peninsula" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
