@@ -1,0 +1,37 @@
+{
+  "snapshot_id": "base-liurnia-academy-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "academy-crystal-cave-two-keys-belfry",
+      "claim": "Academy Crystal Cave is beneath the northwestern side of Raya Lucaria Academy, requires two Stonesword Keys, contains a spear/staff Crystalian pair, and has a rear elevator to the Academy belfry.",
+      "sources": [
+        { "source_id": "eldenpedia-academy-crystal-cave", "url": "https://eldenring.wiki.gg/wiki/Academy_Crystal_Cave" },
+        { "source_id": "game8-academy-crystal-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369653" },
+        { "source_id": "gamerguides-academy-crystal-cave-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/academy-crystal-cave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "raya-crystal-tunnel-crystalian",
+      "claim": "Raya Lucaria Crystal Tunnel is a separate mine near the East Raya Lucaria Gate, entered from the lake shore and ending at a solo Crystalian.",
+      "sources": [
+        { "source_id": "eldenpedia-raya-lucaria-crystal-tunnel", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria_Crystal_Tunnel" },
+        { "source_id": "game8-raya-lucaria-crystal-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370436" },
+        { "source_id": "pushsquare-raya-lucaria-crystal-tunnel-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-raya-lucaria-crystal-tunnel" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "black-knife-two-boss-branches",
+      "claim": "Black Knife Catacombs is reached northeast from the Ruined Labyrinth area; the main guillotine/lever route opens the Cemetery Shade room, while riding a guillotine blade and striking an illusory wall reveals the Black Knife Assassin branch.",
+      "sources": [
+        { "source_id": "eldenpedia-black-knife-catacombs", "url": "https://eldenring.wiki.gg/wiki/Black_Knife_Catacombs" },
+        { "source_id": "game8-black-knife-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369659" },
+        { "source_id": "gamerguides-black-knife-catacombs-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/black-knife-catacombs" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

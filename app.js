@@ -754,6 +754,11 @@ async function init() {
       ["Converted Tower", "grace_liurnia_of_the_lakes_main_converted_tower"],
       ["Road's End Catacombs", "grace_liurnia_of_the_lakes_main_road_s_end_catacombs"],
       ["Cliffbottom Catacombs", "grace_liurnia_of_the_lakes_main_cliffbottom_catacombs"],
+      ["Academy Crystal Cave", "grace_liurnia_of_the_lakes_main_academy_crystal_cave"],
+      ["Raya Lucaria Crystal Tunnel", "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel"],
+      ["Church of Vows", "grace_liurnia_of_the_lakes_main_church_of_vows"],
+      ["Ruined Labyrinth", "grace_liurnia_of_the_lakes_main_ruined_labyrinth"],
+      ["Black Knife Catacombs", "grace_liurnia_of_the_lakes_main_black_knife_catacombs"],
       ["Stormhill Shack", "grace_stormhill_shack"],
       ["Stormveil Main Gate", "grace_stormveil_main_gate"],
       ["Stormveil Cliffside", "grace_stormveil_cliffside"],
@@ -881,6 +886,7 @@ async function init() {
       if (["Murkwater Coast", "Saintsbridge", "Murkwater Catacombs", "Murkwater Cave", "Deathtouched Catacombs", "Highroad Cave"].includes(record.name)) return;
       if (["South of the Lookout Tower", "Fourth Church of Marika", "Church of Pilgrimage", "Earthbore Cave", "Tombsward Cave", "Tombsward Catacombs", "Impaler's Catacombs"].includes(record.name)) return;
       if (["Stillwater Cave", "Scenic Isle", "Lakeside Crystal Cave", "Converted Tower", "Road's End Catacombs", "Cliffbottom Catacombs"].includes(record.name)) return;
+      if (["Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Church of Vows", "Ruined Labyrinth", "Black Knife Catacombs"].includes(record.name)) return;
       if (["Sealed Tunnel", "Divine Tower of West Altus: Gate", "Divine Tower of West Altus"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Below the Well", "Deep Siofra Well", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;

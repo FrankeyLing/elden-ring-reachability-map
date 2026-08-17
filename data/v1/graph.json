@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.46-online-multiplane",
+    "version": "1.0.47-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -58,7 +58,8 @@
       "base-limgrave-west-optional-dungeons-evidence-20260818",
       "base-limgrave-east-optional-dungeons-evidence-20260818",
       "base-weeping-peninsula-optional-dungeons-evidence-20260818",
-      "base-liurnia-optional-dungeons-evidence-20260818"
+      "base-liurnia-optional-dungeons-evidence-20260818",
+      "base-liurnia-academy-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -629,6 +630,31 @@
       "id": "erdtree_burial_watchdog_cliffbottom_defeated",
       "label": "Cliffbottom Catacombs Erdtree Burial Watchdog defeated",
       "hint": "The Erdtree Burial Watchdog at the end of Cliffbottom Catacombs has been cleared."
+    },
+    {
+      "id": "academy_crystal_cave_two_stonesword_keys",
+      "label": "Academy Crystal Cave two Stonesword Keys available",
+      "hint": "Two Stonesword Keys have been consumed to open the Academy Crystal Cave seal."
+    },
+    {
+      "id": "crystalian_academy_cave_defeated",
+      "label": "Academy Crystal Cave Crystalians defeated",
+      "hint": "The spear and staff Crystalian pair in Academy Crystal Cave has been cleared."
+    },
+    {
+      "id": "crystalian_raya_lucaria_tunnel_defeated",
+      "label": "Raya Lucaria Crystal Tunnel Crystalian defeated",
+      "hint": "The Crystalian at the bottom of Raya Lucaria Crystal Tunnel has been cleared."
+    },
+    {
+      "id": "cemetery_shade_black_knife_defeated",
+      "label": "Black Knife Catacombs Cemetery Shade defeated",
+      "hint": "The main-route Cemetery Shade in Black Knife Catacombs has been cleared."
+    },
+    {
+      "id": "black_knife_assassin_black_catacombs_defeated",
+      "label": "Black Knife Catacombs Black Knife Assassin defeated",
+      "hint": "The hidden Black Knife Assassin behind the illusory wall in Black Knife Catacombs has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -920,6 +946,15 @@
     ,{ "id": "eldenpedia-cliffbottom-catacombs", "label": "Eldenpedia · Cliffbottom Catacombs", "url": "https://eldenring.wiki.gg/wiki/Cliffbottom_Catacombs", "grade": "A" }
     ,{ "id": "game8-cliffbottom-catacombs-cross-check", "label": "Game8 · Cliffbottom Catacombs Watchdog", "url": "https://game8.co/games/Elden-Ring/archives/353632", "grade": "B" }
     ,{ "id": "gamerguides-cliffbottom-catacombs-cross-check", "label": "Gamer Guides · Cliffbottom Catacombs database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/cliffbottom-catacombs", "grade": "B" }
+    ,{ "id": "eldenpedia-academy-crystal-cave", "label": "Eldenpedia · Academy Crystal Cave", "url": "https://eldenring.wiki.gg/wiki/Academy_Crystal_Cave", "grade": "A" }
+    ,{ "id": "game8-academy-crystal-cave-cross-check", "label": "Game8 · Academy Crystal Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369653", "grade": "B" }
+    ,{ "id": "gamerguides-academy-crystal-cave-cross-check", "label": "Gamer Guides · Academy Crystal Cave database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/academy-crystal-cave", "grade": "B" }
+    ,{ "id": "eldenpedia-raya-lucaria-crystal-tunnel", "label": "Eldenpedia · Raya Lucaria Crystal Tunnel", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria_Crystal_Tunnel", "grade": "A" }
+    ,{ "id": "game8-raya-lucaria-crystal-tunnel-cross-check", "label": "Game8 · Raya Lucaria Crystal Tunnel Crystalian", "url": "https://game8.co/games/Elden-Ring/archives/370436", "grade": "B" }
+    ,{ "id": "pushsquare-raya-lucaria-crystal-tunnel-cross-check", "label": "Push Square · Raya Lucaria Crystal Tunnel", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-raya-lucaria-crystal-tunnel", "grade": "B" }
+    ,{ "id": "eldenpedia-black-knife-catacombs", "label": "Eldenpedia · Black Knife Catacombs", "url": "https://eldenring.wiki.gg/wiki/Black_Knife_Catacombs", "grade": "A" }
+    ,{ "id": "game8-black-knife-catacombs-cross-check", "label": "Game8 · Black Knife Catacombs walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369659", "grade": "B" }
+    ,{ "id": "gamerguides-black-knife-catacombs-cross-check", "label": "Gamer Guides · Black Knife Catacombs database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/black-knife-catacombs", "grade": "B" }
   ],
   "nodes": [
     {
@@ -7484,6 +7519,70 @@
     {
       "id": "cliffbottom_catacombs_post_boss_state", "label": "Cliffbottom Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Watchdog chamber return state", "worldEpoch": "liurnia_surface", "x": 1300, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Cleared-state node for the Cliffbottom Watchdog."
+    },
+    {
+      "id": "academy_crystal_cave_surface_entrance", "label": "Academy Crystal Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northwestern academy island shore", "worldEpoch": "liurnia_surface", "x": 870, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "description": "Sealed cave mouth beneath the western side of Raya Lucaria Academy; two Stonesword Keys are required."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "label": "Academy Crystal Cave", "kind": "grace", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Cave entrance", "worldEpoch": "liurnia_surface", "x": 930, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "description": "Grace just inside the two-key Academy Crystal Cave."
+    },
+    {
+      "id": "crystalian_academy_cave_gate", "label": "Crystalian pair (Academy Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Crystalian boss chamber", "worldEpoch": "liurnia_surface", "x": 990, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "description": "Spear and staff Crystalian boss gate."
+    },
+    {
+      "id": "academy_crystal_cave_post_boss_state", "label": "Academy Crystal Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Crystalian chamber return state", "worldEpoch": "liurnia_surface", "x": 1050, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check"], "description": "Cleared-state node before the rear belfry lift."
+    },
+    {
+      "id": "academy_crystal_cave_belfry_exit", "label": "Academy Crystal Cave belfry lift exit", "kind": "exit", "layer": "legacy", "region": "Raya Lucaria Academy", "floor": "Academy belfry", "worldEpoch": "liurnia_surface", "x": 1110, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "gamerguides-academy-crystal-cave-cross-check"], "description": "Rear lift route to the top of the Academy belfry, kept separate from the main Academy gate."
+    },
+    {
+      "id": "raya_lucaria_crystal_tunnel_surface_entrance", "label": "Raya Lucaria Crystal Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "East Raya Lucaria lake shore", "worldEpoch": "liurnia_surface", "x": 1250, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "description": "Mine mouth near the East Raya Lucaria Gate, accessed from the lake shore."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "label": "Raya Lucaria Crystal Tunnel", "kind": "grace", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Mine entrance", "worldEpoch": "liurnia_surface", "x": 1310, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "description": "Grace inside the crystal mine."
+    },
+    {
+      "id": "crystalian_raya_lucaria_tunnel_gate", "label": "Crystalian (Raya Lucaria Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Crystalian chamber", "worldEpoch": "liurnia_surface", "x": 1370, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "description": "Ringblade Crystalian boss gate at the bottom of the tunnel."
+    },
+    {
+      "id": "raya_lucaria_crystal_tunnel_post_boss_state", "label": "Raya Lucaria Crystal Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Crystalian chamber return state", "worldEpoch": "liurnia_surface", "x": 1430, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check"], "description": "Cleared-state node for the tunnel Crystalian and miner bell reward."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_church_of_vows", "label": "Church of Vows", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia church road", "worldEpoch": "liurnia_surface", "x": 1440, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "description": "Surface church landmark on the eastern road toward the northeastern catacombs."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_ruined_labyrinth", "label": "Ruined Labyrinth", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northeastern Liurnia ruins", "worldEpoch": "liurnia_surface", "x": 1500, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-black-knife-catacombs-cross-check"], "description": "Surface route landmark northeast of the Church of Vows before Black Knife Catacombs."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_black_knife_catacombs", "label": "Black Knife Catacombs", "kind": "grace", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 1560, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "description": "Grace at the entrance to the northeastern catacombs."
+    },
+    {
+      "id": "cemetery_shade_black_knife_gate", "label": "Cemetery Shade (Black Knife Catacombs)", "kind": "boss", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Cemetery Shade chamber", "worldEpoch": "liurnia_surface", "x": 1620, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "description": "Main-route Cemetery Shade boss gate opened by the catacomb lever."
+    },
+    {
+      "id": "black_knife_catacombs_cemetery_post_boss_state", "label": "Black Knife Catacombs (Cemetery Shade cleared)", "kind": "state", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Cemetery Shade chamber return state", "worldEpoch": "liurnia_surface", "x": 1680, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check"], "description": "Cleared-state node for the main Cemetery Shade route."
+    },
+    {
+      "id": "black_knife_assassin_black_catacombs_gate", "label": "Black Knife Assassin (Black Knife Catacombs)", "kind": "boss", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Hidden Assassin chapel", "worldEpoch": "liurnia_surface", "x": 1620, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "description": "Secondary boss gate revealed by riding a guillotine blade and striking the illusory wall."
+    },
+    {
+      "id": "black_knife_catacombs_assassin_post_boss_state", "label": "Black Knife Catacombs (Assassin cleared)", "kind": "state", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Hidden Assassin chapel return state", "worldEpoch": "liurnia_surface", "x": 1680, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check"], "description": "Cleared-state node for the hidden Black Knife Assassin branch."
     }
   ],
   "edges": [
@@ -14355,6 +14454,54 @@
     },
     {
       "id": "watchdog-to-cliffbottom-state", "from": "erdtree_burial_watchdog_cliffbottom_gate", "to": "cliffbottom_catacombs_post_boss_state", "mode": "Cliffbottom Watchdog completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["erdtree_burial_watchdog_cliffbottom_defeated"], "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "gamerguides-cliffbottom-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Cliffbottom Watchdog.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "academy-gate-to-crystal-cave-mouth", "from": "grace_main_academy_gate", "to": "academy_crystal_cave_surface_entrance", "mode": "Academy island to Academy Crystal Cave seal", "cost": 8, "risk": 6, "direction": "forward", "transitionType": "stonesword_key_cave_seal", "requires": ["academy_crystal_cave_two_stonesword_keys"], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The cave seal consumes two Stonesword Keys before the physical cave entrance is available.", "tags": ["key_gate", "surface", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "academy-crystal-mouth-to-grace", "from": "academy_crystal_cave_surface_entrance", "to": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "mode": "Academy Crystal Cave entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The opened seal leads to the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "academy-crystal-to-crystalian-pair", "from": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "to": "crystalian_academy_cave_gate", "mode": "Academy Crystal Cave internal route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "scholar_crystal_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Scholars, rats and crystal chambers lead to the spear/staff Crystalian pair.", "tags": ["walk", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "academy-crystalian-to-state", "from": "crystalian_academy_cave_gate", "to": "academy_crystal_cave_post_boss_state", "mode": "Academy Crystal Cave Crystalian completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["crystalian_academy_cave_defeated"], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state before the belfry lift.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "academy-state-to-belfry", "from": "academy_crystal_cave_post_boss_state", "to": "academy_crystal_cave_belfry_exit", "mode": "Academy Crystal Cave rear belfry lift", "cost": 4, "risk": 6, "direction": "forward", "transitionType": "boss_room_elevator_exit", "requires": ["crystalian_academy_cave_defeated"], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The lift behind the Crystalian room rises to the Academy's highest belfry.", "tags": ["lift", "vertical", "exit", "conditional", "cross_checked"]
+    },
+    {
+      "id": "east-raya-gate-to-crystal-tunnel-mouth", "from": "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate", "to": "raya_lucaria_crystal_tunnel_surface_entrance", "mode": "East Raya Lucaria Gate to Crystal Tunnel mouth", "cost": 6, "risk": 6, "direction": "forward", "transitionType": "east_lake_mine_entrance", "requires": [], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the east gate for the separate lake-shore crystal mine entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "crystal-tunnel-mouth-to-grace", "from": "raya_lucaria_crystal_tunnel_surface_entrance", "to": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "mode": "Raya Lucaria Crystal Tunnel entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "mine_entry", "requires": [], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "The lake-shore mouth leads to the internal mine grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "crystal-tunnel-to-crystalian", "from": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "to": "crystalian_raya_lucaria_tunnel_gate", "mode": "Raya Lucaria Crystal Tunnel internal route", "cost": 11, "risk": 8, "direction": "forward", "transitionType": "crystal_mine_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Descend through the glintstone mine to the ringblade Crystalian.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "raya-crystalian-to-state", "from": "crystalian_raya_lucaria_tunnel_gate", "to": "raya_lucaria_crystal_tunnel_post_boss_state", "mode": "Raya Lucaria Crystal Tunnel Crystalian completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["crystalian_raya_lucaria_tunnel_defeated"], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the tunnel Crystalian and miner bell reward.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "eastern-shore-to-church-of-vows", "from": "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore", "to": "grace_liurnia_of_the_lakes_main_church_of_vows", "mode": "Eastern Liurnia Lake Shore to Church of Vows", "cost": 8, "risk": 4, "direction": "forward", "transitionType": "eastern_liurnia_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Eastern road reaches the Church of Vows before the northeastern catacomb branch.", "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "church-of-vows-to-ruined-labyrinth", "from": "grace_liurnia_of_the_lakes_main_church_of_vows", "to": "grace_liurnia_of_the_lakes_main_ruined_labyrinth", "mode": "Church of Vows to Ruined Labyrinth", "cost": 8, "risk": 5, "direction": "forward", "transitionType": "northeastern_liurnia_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "game8-liurnia-cross-check", "game8-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the northeastern road toward the Ruined Labyrinth landmark.", "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "ruined-labyrinth-to-black-knife", "from": "grace_liurnia_of_the_lakes_main_ruined_labyrinth", "to": "grace_liurnia_of_the_lakes_main_black_knife_catacombs", "mode": "Ruined Labyrinth to Black Knife Catacombs", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "northeastern_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The road northeast from Ruined Labyrinth reaches the catacomb entrance guarded by a Mausoleum Knight.", "tags": ["walk", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "black-knife-to-cemetery-shade", "from": "grace_liurnia_of_the_lakes_main_black_knife_catacombs", "to": "cemetery_shade_black_knife_gate", "mode": "Black Knife Catacombs main route", "cost": 12, "risk": 9, "direction": "forward", "transitionType": "guillotine_lever_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Use the guillotine room, descend to the lever and return through the opened boss door to Cemetery Shade.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cemetery-shade-black-knife-to-state", "from": "cemetery_shade_black_knife_gate", "to": "black_knife_catacombs_cemetery_post_boss_state", "mode": "Black Knife Catacombs Cemetery Shade completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["cemetery_shade_black_knife_defeated"], "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the main catacomb boss route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "black-knife-to-assassin", "from": "grace_liurnia_of_the_lakes_main_black_knife_catacombs", "to": "black_knife_assassin_black_catacombs_gate", "mode": "Black Knife Catacombs hidden Assassin route", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "guillotine_illusory_wall_boss_branch", "requires": [], "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the guillotine blade to the upper ledge and strike the illusory wall to reveal the Assassin fog gate.", "tags": ["hidden", "vertical", "boss", "branch", "legacy", "cross_checked"]
+    },
+    {
+      "id": "assassin-black-knife-to-state", "from": "black_knife_assassin_black_catacombs_gate", "to": "black_knife_catacombs_assassin_post_boss_state", "mode": "Black Knife Catacombs Assassin completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knife_assassin_black_catacombs_defeated"], "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the hidden Black Knife Assassin branch and Black Knifeprint route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -14377,8 +14524,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 450,
-    "formalRouteEdgeCount": 472,
+    "formalNodeCount": 466,
+    "formalRouteEdgeCount": 488,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
