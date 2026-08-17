@@ -12,7 +12,8 @@
       "eldenpedia-bolt-of-gransax-r84084",
       "leyndell-bolt-route-evidence-20260817",
       "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa",
-      "multi-plane-route-evidence-20260817"
+      "multi-plane-route-evidence-20260817",
+      "vertical-region-route-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -63,6 +64,36 @@
       "id": "rellana_defeated",
       "label": "已击败双月骑士蕾拉娜",
       "hint": "击败 Castle Ensis 主 Boss 后才能激活 Ensis Moongazing Grounds。"
+    },
+    {
+      "id": "ranni_waygate_unlocked",
+      "label": "已解锁蕾娜魔法塔传送门",
+      "hint": "Ranni 任务推进到可以使用 Renna's Rise 传送门。"
+    },
+    {
+      "id": "radahn_defeated",
+      "label": "已击败碎星拉塔恩",
+      "hint": "拉塔恩战后，宁姆格福才出现通往诺克隆的陨石坑入口。"
+    },
+    {
+      "id": "ordina_portal_unlocked",
+      "label": "已完成仪典镇解谜",
+      "hint": "点亮仪典镇四座雕像后，通往圣树树冠的传送门开放。"
+    },
+    {
+      "id": "volcano_manor_access",
+      "label": "已进入火山官邸",
+      "hint": "已通过官邸入口或其他合法入口进入火山官邸内部。"
+    },
+    {
+      "id": "godskin_noble_defeated",
+      "label": "已击败神皮贵族",
+      "hint": "击败火山官邸神皮贵族后，Temple of Eiglay 赐福可激活。"
+    },
+    {
+      "id": "loretta_haligtree_defeated",
+      "label": "已击败圣树骑士罗蕾塔",
+      "hint": "击败圣树城入口 Boss 后，继续向圣树城区域推进。"
     }
   ],
   "sourceEvidence": [
@@ -79,6 +110,18 @@
     { "id": "powerpyx-farum-cross-check", "label": "PowerPyx · Farum Azula walkthrough", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/", "grade": "B" },
     { "id": "eldenpedia-castle-ensis-r73643", "label": "Eldenpedia · Castle Ensis · r73643", "url": "https://eldenring.wiki.gg/wiki/Castle_Ensis", "grade": "A" },
     { "id": "game8-dlc-cross-check", "label": "Game8 · Shadow of the Erdtree walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/458515", "grade": "B" }
+    ,{ "id": "eldenpedia-ainsel-r71938", "label": "Eldenpedia · Ainsel River · r71938", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River", "grade": "A" }
+    ,{ "id": "gamespot-ainsel-cross-check", "label": "GameSpot · Ainsel/Ranni route", "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/", "grade": "B" }
+    ,{ "id": "game8-ranni-cross-check", "label": "Game8 · Ranni quest route", "url": "https://game8.co/games/Elden-Ring/archives/353051", "grade": "B" }
+    ,{ "id": "eldenpedia-nokron-r66900", "label": "Eldenpedia · Nokron · r66900", "url": "https://eldenring.wiki.gg/wiki/Nokron,_Eternal_City", "grade": "A" }
+    ,{ "id": "game8-nokron-cross-check", "label": "Game8 · Nokron route", "url": "https://game8.co/games/Elden-Ring/archives/370740", "grade": "B" }
+    ,{ "id": "pcgamer-ranni-cross-check", "label": "PC Gamer · Ranni/Nokron route", "url": "https://www.pcgamer.com/elden-ring-ranni-quest-nokron/", "grade": "B" }
+    ,{ "id": "eldenpedia-ordina-r95013", "label": "Eldenpedia · Ordina · r95013", "url": "https://eldenring.wiki.gg/wiki/Ordina,_Liturgical_Town", "grade": "A" }
+    ,{ "id": "game8-ordina-cross-check", "label": "Game8 · Ordina puzzle", "url": "https://game8.co/games/Elden-Ring/archives/370663", "grade": "B" }
+    ,{ "id": "eip-haligtree-cross-check", "label": "EIP Gaming · Haligtree route", "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-volcano-r97173", "label": "Eldenpedia · Volcano Manor · r97173", "url": "https://eldenring.wiki.gg/wiki/Volcano_Manor", "grade": "A" }
+    ,{ "id": "powerpyx-volcano-cross-check", "label": "PowerPyx · Volcano Manor route", "url": "https://www.powerpyx.com/elden-ring-volcano-manor-walkthrough/", "grade": "B" }
+    ,{ "id": "game8-volcano-cross-check", "label": "Game8 · Volcano Manor quest route", "url": "https://game8.co/games/Elden-Ring/archives/370280", "grade": "B" }
   ],
   "nodes": [
     {
@@ -412,6 +455,201 @@
       "description": "击败蕾拉娜后开放的 Castle Ensis 后方赐福。"
     },
     {
+      "id": "renna_rise_waygate",
+      "label": "蕾娜魔法塔传送门",
+      "kind": "teleport",
+      "layer": "legacy",
+      "region": "卡利亚城寨",
+      "floor": "蕾娜魔法塔塔顶",
+      "worldEpoch": "base_surface",
+      "x": 80,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "game8-ranni-cross-check"],
+      "description": "Ranni 任务推进后开放的单向传送门。"
+    },
+    {
+      "id": "grace_ainsel_river_main",
+      "label": "安瑟尔河主流",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "安瑟尔河",
+      "floor": "安瑟尔河主流",
+      "worldEpoch": "ainsel_underground",
+      "x": 180,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "game8-ranni-cross-check"],
+      "description": "蕾娜魔法塔传送门的目标赐福。"
+    },
+    {
+      "id": "starfall_crater_entrance",
+      "label": "星陨坑入口",
+      "kind": "entrance",
+      "layer": "surface",
+      "region": "宁姆格福",
+      "floor": "陨石坑",
+      "worldEpoch": "base_surface",
+      "x": 300,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "game8-nokron-cross-check", "pcgamer-ranni-cross-check"],
+      "description": "碎星拉塔恩战后出现的诺克隆入口；没有该状态时不能从此处进入。"
+    },
+    {
+      "id": "grace_nokron_eternal_city",
+      "label": "诺克隆，永恒之城",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "诺克隆，永恒之城",
+      "floor": "城市入口",
+      "worldEpoch": "nokron_underground",
+      "x": 400,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "game8-nokron-cross-check", "pcgamer-ranni-cross-check"],
+      "description": "星陨坑下降后的诺克隆入口赐福。"
+    },
+    {
+      "id": "grace_ordina_liturgical_town",
+      "label": "仪典镇",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "化圣雪原",
+      "floor": "仪典镇",
+      "worldEpoch": "base_surface",
+      "x": 540,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ordina-r95013", "game8-ordina-cross-check", "eip-haligtree-cross-check"],
+      "description": "完成仪典镇 Evergaol 解谜后，通往圣树的传送门位于此处。"
+    },
+    {
+      "id": "ordina_haligtree_waygate",
+      "label": "圣树传送门",
+      "kind": "teleport",
+      "layer": "surface",
+      "region": "化圣雪原",
+      "floor": "仪典镇后方",
+      "worldEpoch": "base_surface",
+      "x": 620,
+      "y": 340,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ordina-r95013", "game8-ordina-cross-check", "eip-haligtree-cross-check"],
+      "description": "仪典镇解谜完成后开启的单向传送门。"
+    },
+    {
+      "id": "grace_haligtree_canopy",
+      "label": "圣树树冠",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "米凯拉的圣树",
+      "floor": "树冠",
+      "worldEpoch": "haligtree_legacy",
+      "x": 710,
+      "y": 320,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ordina-r95013", "game8-ordina-cross-check", "eip-haligtree-cross-check"],
+      "description": "从仪典镇圣树传送门抵达的树冠起点。"
+    },
+    {
+      "id": "loretta_haligtree_gate",
+      "label": "圣树骑士罗蕾塔 Boss 门",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "米凯拉的圣树",
+      "floor": "圣树城入口",
+      "worldEpoch": "haligtree_legacy",
+      "x": 790,
+      "y": 300,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eip-haligtree-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "description": "圣树树冠向圣树城推进时的 Boss 门节点。"
+    },
+    {
+      "id": "grace_haligtree_promenade",
+      "label": "圣树城大舞台",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "米凯拉的圣树",
+      "floor": "圣树城",
+      "worldEpoch": "haligtree_legacy",
+      "x": 870,
+      "y": 285,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ordina-r95013", "eip-haligtree-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "description": "击败圣树骑士罗蕾塔后继续进入圣树城的赐福状态。"
+    },
+    {
+      "id": "grace_volcano_manor_entrance",
+      "label": "火山官邸",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "格密尔火山",
+      "floor": "官邸内部",
+      "worldEpoch": "base_surface",
+      "x": 80,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
+      "description": "火山官邸内部入口赐福；从这里进入 Prison Town 路线。"
+    },
+    {
+      "id": "grace_prison_town_church",
+      "label": "囚犯教堂",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "格密尔火山",
+      "floor": "监牢城镇",
+      "worldEpoch": "base_surface",
+      "x": 180,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
+      "description": "火山官邸下方监牢城镇的关键路线赐福。"
+    },
+    {
+      "id": "godskin_noble_volcano_gate",
+      "label": "神皮贵族 Boss 门",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "格密尔火山",
+      "floor": "Temple of Eiglay 前",
+      "worldEpoch": "base_surface",
+      "x": 280,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
+      "description": "从囚犯教堂穿过监牢城镇后到达的神皮贵族 Boss 门。"
+    },
+    {
+      "id": "grace_temple_of_eiglay",
+      "label": "艾格雷教堂",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "格密尔火山",
+      "floor": "Temple of Eiglay",
+      "worldEpoch": "base_surface",
+      "x": 380,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
+      "description": "击败神皮贵族后激活的 Temple of Eiglay 赐福。"
+    },
+    {
       "id": "epoch_ashen_capital",
       "label": "灰烬王城状态",
       "kind": "world_state",
@@ -690,6 +928,141 @@
       "verificationState": "online_cross_checked",
       "note": "击败 Castle Ensis 主 Boss 后才能激活恩希斯赏月地赐福。",
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
+    },
+    {
+      "id": "renna-waygate-to-ainsel-main",
+      "from": "renna_rise_waygate",
+      "to": "grace_ainsel_river_main",
+      "mode": "蕾娜魔法塔单向传送",
+      "cost": 1,
+      "risk": 0,
+      "direction": "forward",
+      "transitionType": "waygate",
+      "requires": ["ranni_waygate_unlocked"],
+      "sourceEvidence": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "game8-ranni-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Ranni 线解锁传送门后，单向抵达安瑟尔河主流；不生成反向步行边。",
+      "tags": ["teleport", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "starfall-crater-to-nokron",
+      "from": "starfall_crater_entrance",
+      "to": "grace_nokron_eternal_city",
+      "mode": "陨石坑下降",
+      "cost": 6,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "world_state_entrance",
+      "requires": ["radahn_defeated"],
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "game8-nokron-cross-check", "pcgamer-ranni-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "击败碎星拉塔恩后星陨形成入口；未满足状态时不把诺克隆连入地表。",
+      "tags": ["entrance", "state_change", "conditional", "cross_checked"]
+    },
+    {
+      "id": "ordina-to-haligtree-gate",
+      "from": "grace_ordina_liturgical_town",
+      "to": "ordina_haligtree_waygate",
+      "mode": "仪典镇解谜",
+      "cost": 5,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "puzzle_unlock",
+      "requires": ["ordina_portal_unlocked"],
+      "sourceEvidence": ["eldenpedia-ordina-r95013", "game8-ordina-cross-check", "eip-haligtree-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "点亮四座雕像后开放圣树传送门。",
+      "tags": ["puzzle", "conditional", "cross_checked"]
+    },
+    {
+      "id": "haligtree-waygate-to-canopy",
+      "from": "ordina_haligtree_waygate",
+      "to": "grace_haligtree_canopy",
+      "mode": "圣树单向传送",
+      "cost": 1,
+      "risk": 0,
+      "direction": "forward",
+      "transitionType": "waygate",
+      "requires": ["ordina_portal_unlocked"],
+      "sourceEvidence": ["eldenpedia-ordina-r95013", "game8-ordina-cross-check", "eip-haligtree-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "传送到圣树树冠；不生成从树冠返回仪典镇的普通通行边。",
+      "tags": ["teleport", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "haligtree-canopy-to-loretta-gate",
+      "from": "grace_haligtree_canopy",
+      "to": "loretta_haligtree_gate",
+      "mode": "树冠下降 / 圣树城入口",
+      "cost": 10,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "vertical_legacy_route",
+      "requires": [],
+      "sourceEvidence": ["eip-haligtree-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "verificationState": "online_cross_checked",
+      "note": "从树冠沿枝干和建筑路线下降到圣树骑士罗蕾塔 Boss 门。",
+      "tags": ["vertical", "boss_gate", "cross_checked"]
+    },
+    {
+      "id": "loretta-gate-to-haligtree-promenade",
+      "from": "loretta_haligtree_gate",
+      "to": "grace_haligtree_promenade",
+      "mode": "击败圣树骑士罗蕾塔后开放",
+      "cost": 4,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["loretta_haligtree_defeated"],
+      "sourceEvidence": ["eip-haligtree-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "verificationState": "online_cross_checked",
+      "note": "Boss 前门与 Boss 后赐福分离。",
+      "tags": ["boss", "state_change", "conditional", "cross_checked"]
+    },
+    {
+      "id": "volcano-entrance-to-prison-church",
+      "from": "grace_volcano_manor_entrance",
+      "to": "grace_prison_town_church",
+      "mode": "官邸隐藏路线 / 监牢城镇",
+      "cost": 8,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "legacy_hidden_route",
+      "requires": ["volcano_manor_access"],
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "从火山官邸内部进入监牢城镇；这是独立地图内部路线，不是地表直线边。",
+      "tags": ["hidden", "vertical", "conditional", "cross_checked"]
+    },
+    {
+      "id": "prison-church-to-godskin-gate",
+      "from": "grace_prison_town_church",
+      "to": "godskin_noble_volcano_gate",
+      "mode": "监牢城镇屋顶 / 桥",
+      "cost": 8,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "vertical_legacy_route",
+      "requires": ["volcano_manor_access"],
+      "sourceEvidence": ["powerpyx-volcano-cross-check", "game8-volcano-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "verificationState": "online_cross_checked",
+      "note": "沿监牢城镇和屋顶路线抵达神皮贵族 Boss 门。",
+      "tags": ["walk", "vertical", "boss_gate", "cross_checked"]
+    },
+    {
+      "id": "godskin-gate-to-temple-eiglay",
+      "from": "godskin_noble_volcano_gate",
+      "to": "grace_temple_of_eiglay",
+      "mode": "击败神皮贵族后开放",
+      "cost": 3,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["volcano_manor_access", "godskin_noble_defeated"],
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "击败神皮贵族后激活 Temple of Eiglay 赐福。",
+      "tags": ["boss", "state_change", "conditional", "cross_checked"]
     }
   ],
   "relations": [
@@ -703,9 +1076,9 @@
     }
   ],
   "coverage": {
-    "scope": "P0 plus underground/Farum/DLC representative slices",
-    "formalNodeCount": 23,
-    "formalRouteEdgeCount": 18,
+    "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
+    "formalNodeCount": 36,
+    "formalRouteEdgeCount": 27,
     "semanticRelationCount": 1,
     "originalGameCoordinates": false,
     "localGameVerified": false,

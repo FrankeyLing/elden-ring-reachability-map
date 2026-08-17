@@ -455,10 +455,20 @@ async function init() {
       ["Castle Ensis Checkpoint", "grace_castle_ensis_checkpoint"],
       ["Castle-Lord's Chamber", "grace_castle_lord_chamber"],
       ["Ensis Moongazing Grounds", "grace_ensis_moongazing_grounds"],
+      ["Renna's Rise (sending gate)", "renna_rise_waygate"],
+      ["Ainsel River Main", "grace_ainsel_river_main"],
+      ["Starfall Crater (Mistwood, Limgrave)", "starfall_crater_entrance"],
+      ["Nokron, Eternal City", "grace_nokron_eternal_city"],
+      ["Ordina, Liturgical Town (Consecrated Snowfield)", "grace_ordina_liturgical_town"],
+      ["Volcano Manor (entrance)", "grace_volcano_manor_entrance"],
+      ["Prison Town Church", "grace_prison_town_church"],
+      ["Temple of Eiglay", "grace_temple_of_eiglay"],
+      ["Haligtree Canopy", "grace_haligtree_canopy"],
+      ["Haligtree Promenade (Loretta)", "grace_haligtree_promenade"],
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds"].includes(record.name) && !record.subgroup) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokron, Eternal City", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name) && !record.subgroup) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);
