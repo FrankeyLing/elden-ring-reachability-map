@@ -1,0 +1,184 @@
+{
+  "snapshot_id": "dlc-jagged-abyssal-branches-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Shadow Realm Jagged Peak/Bayle and Shadow Keep hidden coffin/Recluses' River/Darklight Catacombs/Abyssal Woods/Midra's Manse branches",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "pillar-path-to-dragons-pit",
+      "from": "Pillar Path Cross",
+      "to": "Dragon's Pit",
+      "transition_type": "shadow_realm_surface_walk",
+      "direction": "forward",
+      "claim": "Dragon's Pit is the cave at the end of Pillar Path and is reached by bearing south-southwest from the Pillar Path grace.",
+      "sources": ["eldenpedia-dragons-pit", "game8-jagged-peak-cross-check", "neoseeker-jagged-peak-cross-check"]
+    },
+    {
+      "id": "dragons-pit-ancient-dragon-man",
+      "from": "Dragon's Pit",
+      "to": "Ancient Dragon-Man",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Ancient Dragon-Man waits at the lower end of Dragon's Pit; the Dragon's Pit Terminus grace becomes available after the boss.",
+      "sources": ["eldenpedia-dragons-pit", "game8-jagged-peak-cross-check", "neoseeker-jagged-peak-cross-check"]
+    },
+    {
+      "id": "terminus-to-foot-jagged-peak",
+      "from": "Dragon's Pit Terminus",
+      "to": "Foot of the Jagged Peak",
+      "transition_type": "cave_exit_surface_route",
+      "direction": "forward",
+      "claim": "The east exit from Dragon's Pit Terminus leads to the Foot of the Jagged Peak and the Jagged Peak approach.",
+      "sources": ["eldenpedia-dragons-pit", "game8-bayle-cross-check", "game8-jagged-peak-cross-check"]
+    },
+    {
+      "id": "foot-to-grand-altar",
+      "from": "Foot of the Jagged Peak",
+      "to": "Grand Altar of Dragon Communion",
+      "transition_type": "optional_surface_branch",
+      "direction": "forward",
+      "claim": "The Grand Altar of Dragon Communion is an optional southern branch near the Foot of the Jagged Peak.",
+      "sources": ["eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "foot-to-senessax",
+      "from": "Foot of the Jagged Peak",
+      "to": "Ancient Dragon Senessax",
+      "transition_type": "field_boss_approach",
+      "direction": "forward",
+      "claim": "The northward Jagged Peak route reaches the optional Ancient Dragon Senessax encounter before the Mountainside grace.",
+      "sources": ["game8-jagged-peak-cross-check", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check"]
+    },
+    {
+      "id": "senessax-to-mountainside",
+      "from": "Ancient Dragon Senessax",
+      "to": "Jagged Peak Mountainside",
+      "transition_type": "bypassable_field_boss_route",
+      "direction": "forward",
+      "claim": "The Jagged Peak Mountainside grace is beyond the Senessax hazard; the route is modeled as passable without requiring a boss kill, with a lower-risk alternate after defeat.",
+      "sources": ["game8-jagged-peak-cross-check", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check"]
+    },
+    {
+      "id": "mountainside-to-summit",
+      "from": "Jagged Peak Mountainside",
+      "to": "Jagged Peak Summit",
+      "transition_type": "vertical_spiritspring_route",
+      "direction": "forward",
+      "claim": "The Jagged Peak ascent continues through the mountain and Spiritsprings to Jagged Peak Summit.",
+      "sources": ["eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "game8-bayle-cross-check"]
+    },
+    {
+      "id": "summit-to-bayle",
+      "from": "Jagged Peak Summit",
+      "to": "Bayle the Dread",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Bayle's arena is at the summit and end of the Jagged Peak route.",
+      "sources": ["game8-bayle-cross-check", "game8-jagged-peak-cross-check", "neoseeker-jagged-peak-cross-check"]
+    },
+    {
+      "id": "bayle-to-rest",
+      "from": "Bayle the Dread",
+      "to": "Rest of the Dread Dragon",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "Rest of the Dread Dragon is revealed only after defeating Bayle.",
+      "sources": ["eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "game8-bayle-cross-check"]
+    },
+    {
+      "id": "shadow-keep-to-castle-watering-hole",
+      "from": "Shadow Keep",
+      "to": "Castle Watering Hole",
+      "transition_type": "hidden_coffin_teleport",
+      "direction": "forward",
+      "claim": "The hidden coffin in Shadow Keep transports the player to the Castle Watering Hole below the keep.",
+      "sources": ["eldenpedia-darklight", "bo3gg-darklight-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "watering-hole-to-recluses-river",
+      "from": "Castle Watering Hole",
+      "to": "Recluses' River Upstream",
+      "transition_type": "underground_waterfall_route",
+      "direction": "forward",
+      "claim": "From the Castle Watering Hole, the hidden lower route reaches the Recluses' River and proceeds through the Ruins of Unte area.",
+      "sources": ["eldenpedia-darklight", "bo3gg-darklight-cross-check", "vulkk-abyssal-cross-check"]
+    },
+    {
+      "id": "recluses-river-descent",
+      "from": "Recluses' River Upstream",
+      "to": "Recluses' River Downstream",
+      "transition_type": "one_way_river_descent",
+      "direction": "forward",
+      "claim": "The route follows the Recluses' River downstream through a vertical descent toward Darklight Catacombs.",
+      "sources": ["eldenpedia-darklight", "eldenpedia-sites-of-grace-r83774", "bo3gg-darklight-cross-check"]
+    },
+    {
+      "id": "downstream-to-darklight",
+      "from": "Recluses' River Downstream",
+      "to": "Darklight Catacombs",
+      "transition_type": "catacomb_entrance",
+      "direction": "forward",
+      "claim": "Darklight Catacombs is directly south/southeast of the Recluses' River Downstream grace.",
+      "sources": ["eldenpedia-darklight", "eldenpedia-sites-of-grace-r83774", "bo3gg-darklight-cross-check"]
+    },
+    {
+      "id": "darklight-to-jori",
+      "from": "Darklight Catacombs",
+      "to": "Jori, Elder Inquisitor",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Jori guards the Forsaken Graveyard at the end of Darklight Catacombs.",
+      "sources": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"]
+    },
+    {
+      "id": "jori-to-abyssal",
+      "from": "Jori, Elder Inquisitor",
+      "to": "Abyssal Woods",
+      "transition_type": "boss_completion_region_unlock",
+      "direction": "forward",
+      "claim": "Abyssal Woods can only be accessed through Darklight Catacombs and the Jori gatekeeper encounter.",
+      "sources": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"]
+    },
+    {
+      "id": "abyssal-forest-graces",
+      "from": "Abyssal Woods",
+      "to": "Divided Falls",
+      "transition_type": "underground_stealth_route",
+      "direction": "forward",
+      "claim": "The Abyssal Woods route exposes the Woodland Trail, Church Ruins and Divided Falls graces while passing through the madness-infested forest.",
+      "sources": ["eldenpedia-abyssal", "eldenpedia-sites-of-grace-r83774", "vulkk-abyssal-cross-check"]
+    },
+    {
+      "id": "divided-falls-to-manse",
+      "from": "Divided Falls",
+      "to": "Manse Hall",
+      "transition_type": "legacy_entrance_from_underground",
+      "direction": "forward",
+      "claim": "Midra's Manse is reached by traversing the Abyssal Woods; there is no assumed direct surface shortcut.",
+      "sources": ["eldenpedia-abyssal", "eldenpedia-midra-manse", "game8-midra-manse-cross-check"]
+    },
+    {
+      "id": "manse-interior-to-midra",
+      "from": "Manse Hall",
+      "to": "Midra, Lord of Frenzied Flame",
+      "transition_type": "legacy_internal_route",
+      "direction": "forward",
+      "claim": "The Manse interior contains Manse Hall, Midra's Library and Second Floor Chamber before the Midra boss arena; Discussion Chamber is the post-boss grace.",
+      "sources": ["eldenpedia-midra-manse", "eldenpedia-sites-of-grace-r83774", "game8-midra-manse-cross-check", "vulkk-abyssal-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-dragons-pit", "url": "https://eldenring.wiki.gg/wiki/Dragon%27s_Pit" },
+    { "id": "eldenpedia-darklight", "url": "https://eldenring.wiki.gg/wiki/Darklight_Catacombs" },
+    { "id": "eldenpedia-abyssal", "url": "https://eldenring.wiki.gg/wiki/Abyssal_Woods" },
+    { "id": "eldenpedia-midra-manse", "url": "https://eldenring.wiki.gg/wiki/Midra%27s_Manse" },
+    { "id": "game8-jagged-peak-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458835" },
+    { "id": "game8-bayle-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458839" },
+    { "id": "game8-midra-manse-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459949" },
+    { "id": "neoseeker-jagged-peak-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Jagged_Peak" },
+    { "id": "bo3gg-darklight-cross-check", "url": "https://bo3.gg/games/articles/darklight-catacombs-dungeon-guide" },
+    { "id": "vulkk-abyssal-cross-check", "url": "https://vulkk.com/2024/08/14/shadow-of-the-erdtree-abyssal-woods-and-midras-manse-guide-all-unique-item-locations/" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+  ]
+}
