@@ -1,0 +1,37 @@
+{
+  "snapshot_id": "base-limgrave-weeping-return-coverage-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "murkwater-to-gatefront-return",
+      "claim": "Murkwater Coast and Gatefront are connected by the eastern Limgrave road and river branch; the route can be retraced from Murkwater Coast back to Gatefront.",
+      "sources": [
+        { "source_id": "eldenpedia-limgrave-r97518", "url": "https://eldenring.wiki.gg/wiki/Limgrave" },
+        { "source_id": "game8-limgrave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" },
+        { "source_id": "powerpyx-limgrave-cross-check", "url": "https://www.powerpyx.com/elden-ring-limgrave-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "fort-haight-west-to-mistwood-return",
+      "claim": "Fort Haight West is reached from the Mistwood/Third Church side by the eastern Limgrave road, so the same surface route supports a return from Fort Haight West to Mistwood Outskirts.",
+      "sources": [
+        { "source_id": "eldenpedia-fort-haight", "url": "https://eldenring.wiki.gg/wiki/Fort_Haight" },
+        { "source_id": "game8-fort-haight-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369235" },
+        { "source_id": "ludo-fort-haight-cross-check", "url": "https://www.ludo.guide/guide/elden-ring/limgrave/locations/how-to-find-and-complete-fort-haight-in-limgrave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "church-pilgrimage-to-fourth-church-return",
+      "claim": "Church of Pilgrimage and Fourth Church of Marika are connected by the western Weeping Peninsula church road; the surface route can be retraced from Church of Pilgrimage to Fourth Church.",
+      "sources": [
+        { "source_id": "eldenpedia-weeping-peninsula", "url": "https://eldenring.wiki.gg/wiki/Weeping_Peninsula" },
+        { "source_id": "game8-limgrave-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" },
+        { "source_id": "powerpyx-weeping-cross-check", "url": "https://www.powerpyx.com/elden-ring-weeping-peninsula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
