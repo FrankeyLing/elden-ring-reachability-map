@@ -1,0 +1,39 @@
+{
+  "snapshot_id": "base-altus-capital-outskirts-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "altus-main-road-roundtrips",
+      "claim": "Altus Plateau's Abandoned Coffin, Erdtree-Gazing Hill, Altus Highway Junction, Forest-Spanning Greatbridge, Windmill Village, Bower of Bounty, Rampartside Path and Shaded Castle approach form connected surface branches. V1 adds their documented return edges while keeping separate Waygate branches distinct.",
+      "sources": [
+        { "source_id": "eldenpedia-altus-r65232", "url": "https://eldenring.wiki.gg/wiki/Altus_Plateau" },
+        { "source_id": "eip-altus-cross-check", "url": "https://eip.gg/elden-ring/guides/altus-plateau-walkthrough/" },
+        { "source_id": "powerpyx-altus-cross-check", "url": "https://www.powerpyx.com/elden-ring-altus-plateau-walkthrough/" },
+        { "source_id": "game8-altus-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370195" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "capital-outskirts-entrance-roundtrips",
+      "claim": "The Capital Outskirts outer wall, battleground, Hermit Merchant branch, Minor Erdtree Church and Sealed Tunnel mouth are separate surface/entrance nodes. V1 adds return routes to the outer-wall grace without opening the sealed tunnel's Onyx Lord boss transition.",
+      "sources": [
+        { "source_id": "eldenpedia-outer-wall-r100441", "url": "https://eldenring.wiki.gg/wiki/Capital_Outskirts" },
+        { "source_id": "eldenpedia-sealed-tunnel", "url": "https://eldenring.wiki.gg/wiki/Sealed_Tunnel" },
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" },
+        { "source_id": "game8-sealed-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369215" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "leyndell-inner-rampart-roundtrips",
+      "claim": "East Capital Rampart and Avenue Balcony are connected by the inner capital route. V1 exposes the Avenue return while preserving the deeper Leyndell internal lifts and Morgott/Boss-state transitions for a separate batch.",
+      "sources": [
+        { "source_id": "eldenpedia-leyndell-r97244", "url": "https://eldenring.wiki.gg/wiki/Leyndell,_Royal_Capital" },
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" },
+        { "source_id": "game8-leyndell-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370152" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
