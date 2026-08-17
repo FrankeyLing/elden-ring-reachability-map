@@ -1,0 +1,43 @@
+{
+  "snapshot_id": "base-gelmir-optional-branches-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Ninth Mt. Gelmir Campsite, Full-Grown Fallingstar Beast, Seethewater River, Seethewater Terminus, Craftsman's Shack and Primeval Sorcerer Azur",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "first-to-ninth-campsite",
+      "from": "First Mt.Gelmir Campsite",
+      "to": "Ninth Mt. Gelmir Campsite",
+      "transition_type": "vertical_surface_route",
+      "direction": "forward",
+      "claim": "The Gelmir ascent continues through ladders and a wooden bridge to the Ninth Mt. Gelmir Campsite; a Spiritspring or ladder reaches the optional beast arena above.",
+      "sources": ["eldenpedia-mt-gelmir", "gamespot-fallingstar-cross-check", "powerpyx-mt-gelmir-cross-check"]
+    },
+    {
+      "id": "seethewater-azur-route",
+      "from": "Seethewater River",
+      "to": "Primeval Sorcerer Azur",
+      "transition_type": "hazardous_surface_branch",
+      "direction": "forward",
+      "claim": "The western Gelmir branch follows Seethewater River to Seethewater Terminus, continues past Fort Laiedd and a bypassable lava-pool Magma Wyrm to Craftsman's Shack, then crosses Hermit Village to Primeval Sorcerer Azur.",
+      "sources": ["eldenpedia-mt-gelmir", "pcgamer-comet-azur-cross-check", "gamespot-gelmir-cross-check"]
+    },
+    {
+      "id": "optional-fallingstar-beast",
+      "from": "Ninth Mt. Gelmir Campsite",
+      "to": "Full-Grown Fallingstar Beast",
+      "transition_type": "optional_boss_spiritspring",
+      "direction": "forward",
+      "claim": "The Full-Grown Fallingstar Beast is an optional boss above the Ninth campsite and does not block continuing to Volcano Manor.",
+      "sources": ["gamespot-fallingstar-cross-check", "powerpyx-mt-gelmir-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-mt-gelmir", "url": "https://eldenring.wiki.gg/wiki/Mt._Gelmir" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "powerpyx-mt-gelmir-cross-check", "url": "https://www.powerpyx.com/elden-ring-mt-gelmir-walkthrough/" },
+    { "id": "pcgamer-comet-azur-cross-check", "url": "https://www.pcgamer.com/elden-ring-comet-azur-location/" },
+    { "id": "gamespot-gelmir-cross-check", "url": "https://www.gamespot.com/articles/elden-ring-mt-gelmir-guide-where-to-go-items-to-get-and-enemies-to-watch-out-for/1100-6501392/" },
+    { "id": "gamespot-fallingstar-cross-check", "url": "https://www.gamespot.com/articles/how-to-beat-the-full-grown-fallingstar-beast/1100-6503176/" }
+  ]
+}

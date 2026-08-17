@@ -611,6 +611,12 @@ async function init() {
       ["Ruin-Strewn Precipice Overlook", "grace_liurnia_of_the_lakes_ruin_strewn_precipice_ruin_strewn_precipice_overlook"],
       ["Magma Wyrm Makar", "magma_wyrm_makar_gate"],
       ["Magma Wyrm Makar Grace", "grace_liurnia_of_the_lakes_ruin_strewn_precipice_magma_wyrm_makar"],
+      ["Ninth Mt. Gelmir Campsite", "grace_altus_plateau_mt_gelmir_ninth_mt_gelmir_campsite"],
+      ["Full-Grown Fallingstar Beast", "full_grown_fallingstar_beast_gate"],
+      ["Seethewater River", "grace_altus_plateau_mt_gelmir_seethewater_river"],
+      ["Seethewater Terminus", "grace_altus_plateau_mt_gelmir_seethewater_terminus"],
+      ["Craftsman's Shack", "grace_altus_plateau_mt_gelmir_craftsman_s_shack"],
+      ["Primeval Sorcerer Azur", "grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur"],
       ["Bridge of Iniquity", "grace_altus_plateau_mt_gelmir_bridge_of_iniquity"],
       ["First Mt.Gelmir Campsite", "grace_altus_plateau_mt_gelmir_first_mt_gelmir_campsite"],
       ["Road of Iniquity", "grace_altus_plateau_mt_gelmir_road_of_iniquity"],
@@ -716,6 +722,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Ninth Mt. Gelmir Campsite", "Seethewater River", "Seethewater Terminus", "Craftsman's Shack", "Primeval Sorcerer Azur"].includes(record.name)) return;
       if (["The Ravine", "Ravine-Veiled Village", "Ruin-Strewn Precipice", "Ruin-Strewn Precipice Overlook", "Magma Wyrm Makar"].includes(record.name)) return;
       if (["Gate Town North", "Eastern Liurnia Lake Shore", "Study Hall Entrance", "Liurnia Tower Bridge", "Divine Tower of Liurnia", "East Raya Lucaria Gate", "Bellum Church"].includes(record.name)) return;
       if (["Northern Liurnia Lake Shore", "Road to the Manor", "Main Caria Manor Gate", "Manor Lower Level", "Manor Upper Level", "Royal Moongazing Grounds", "Behind Caria Manor", "Ranni's Rise", "Ranni's Chamber"].includes(record.name)) return;
