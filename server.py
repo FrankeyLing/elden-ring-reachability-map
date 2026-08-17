@@ -175,7 +175,10 @@ class AppHandler(SimpleHTTPRequestHandler):
                     continue
                 if category and str(row[5] or "").casefold() != category:
                     continue
-                if map_id and str(row[0] or "") != map_id:
+                if map_id and not (
+                    str(row[0] or "") == map_id
+                    or str(row[0] or "").startswith(map_id + "_")
+                ):
                     continue
                 if source and str(row[6] or "").casefold() != source:
                     continue

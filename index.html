@@ -82,6 +82,11 @@
                 <button class="layer-tab" data-layer="underground">地下</button>
                 <button class="layer-tab" data-layer="legacy">独立地图 / 建筑层</button>
               </div>
+              <div class="map-mode-tabs" role="tablist" aria-label="地图视图">
+                <button class="map-mode active" data-map-mode="topology">拓扑路线</button>
+                <button class="map-mode" data-map-mode="coordinates">真实坐标</button>
+              </div>
+              <select id="coordinate-map-select" class="coordinate-map-select" aria-label="选择真实地图层" hidden></select>
               <div class="zoom-controls">
                 <button id="zoom-out" aria-label="缩小">−</button>
                 <button id="zoom-reset" aria-label="重置缩放">1:1</button>
@@ -174,6 +179,7 @@
         <span>DIRECTED EDGES · CONDITIONAL ACCESS · LAYER-AWARE ROUTING</span>
       </footer>
     </div>
+    <script src="coordinate-map.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

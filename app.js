@@ -3,10 +3,16 @@ const DEFAULT_CONDITIONS = [];
 const DEFAULT_ROUTE_PROFILE = "physical_no_fast_travel";
 
 const state = {
-  data: null,
+ data: null,
+  mapMode: "topology",
+  coordinateMapId: "m10_00_00",
+  coordinateBounds: null,
  onlineIndex: null,
  onlineBossByNodeId: new Map(),
-  onlineMapPointByNodeId: new Map(),
+ onlineMapPointByNodeId: new Map(),
+  onlineMapPointRecords: [],
+  onlineTileRecords: [],
+  onlineItemRecords: [],
  nodes: new Map(),
   layer: "all",
   origin: "grace_avenue_balcony",
@@ -47,7 +53,9 @@ const els = {
   mapToast: document.getElementById("map-toast"),
   mapTransform: document.getElementById("map-transform"),
  copyRoute: document.getElementById("copy-route"),
-  onlinePoiKind: document.getElementById("online-poi-kind"),
+  coordinateMapSelect: document.getElementById("coordinate-map-select"),
+  mapModes: document.querySelectorAll(".map-mode"),
+ onlinePoiKind: document.getElementById("online-poi-kind"),
   onlinePoiQuery: document.getElementById("online-poi-query"),
   onlinePoiSearch: document.getElementById("online-poi-search"),
   onlinePoiResults: document.getElementById("online-poi-results"),
@@ -368,6 +376,10 @@ function renderNodes() {
 }
 
 function renderGraph() {
+  if (state.mapMode === "coordinates") {
+    renderCoordinateMap();
+    return;
+  }
   renderRegions();
   renderEdges();
   renderNodes();
@@ -466,6 +478,13 @@ function planAndRender() {
 
 function setZoom(nextZoom) {
   state.zoom = Math.max(0.7, Math.min(1.7, nextZoom));
+  if (state.mapMode === "coordinates" && state.coordinateBounds) {
+    const bounds = state.coordinateBounds;
+    const centerX = bounds.minX + bounds.width / 2;
+    const centerY = bounds.minY + bounds.height / 2;
+    els.mapTransform.setAttribute("transform", "translate(" + centerX + " " + centerY + ") scale(" + state.zoom + ") translate(" + (-centerX) + " " + (-centerY) + ")");
+    return;
+  }
   const width = state.data?.meta?.coordinateSpace?.width || 1000;
   const height = state.data?.meta?.coordinateSpace?.height || 600;
   els.mapTransform.setAttribute("transform", `translate(${width / 2} ${height / 2}) scale(${state.zoom}) translate(${-width / 2} ${-height / 2})`);
@@ -484,7 +503,7 @@ function applyMapCoordinateSpace() {
   setZoom(state.zoom);
 }
 
-+function renderOnlinePoiResults(payload, kind) {
+function renderOnlinePoiResults(payload, kind) {
   els.onlinePoiResults.innerHTML = "";
   if (!payload.records?.length) {
     els.onlinePoiResults.textContent = "没有匹配的在线记录。";
@@ -529,7 +548,25 @@ async function searchOnlinePoi() {
 }
 
 function wireEvents() {
-  els.origin.addEventListener("change", () => { state.origin = els.origin.value; state.selectedNode = state.origin; planAndRender(); });
+  els.mapModes.forEach((button) => button.addEventListener("click", () => {
+    state.mapMode = button.dataset.mapMode;
+    els.mapModes.forEach((item) => item.classList.toggle("active", item === button));
+    els.coordinateMapSelect.hidden = state.mapMode !== "coordinates";
+    if (state.mapMode === "coordinates") {
+      populateCoordinateMapSelect();
+      renderCoordinateMap();
+      loadCoordinateItems();
+    } else {
+      state.coordinateBounds = null;
+      applyMapCoordinateSpace();
+      renderGraph();
+    }
+  }));
+  els.coordinateMapSelect.addEventListener("change", () => {
+    state.coordinateMapId = els.coordinateMapSelect.value;
+    loadCoordinateItems();
+  });
+ els.origin.addEventListener("change", () => { state.origin = els.origin.value; state.selectedNode = state.origin; planAndRender(); });
   els.destination.addEventListener("change", () => { state.destination = els.destination.value; state.selectedNode = state.destination; planAndRender(); });
   els.routeProfile.addEventListener("change", () => {
     state.routeProfile = els.routeProfile.value;
@@ -588,7 +625,7 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response] = await Promise.all([
+    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
@@ -598,6 +635,8 @@ async function init() {
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part1-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part2-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part3-20260818.json", { cache: "no-store" }),
+      fetch("/data/v1/source-snapshots/mapforgoblins-tile-regions-part1-20260818.json", { cache: "no-store" }),
+      fetch("/data/v1/source-snapshots/mapforgoblins-tile-regions-part2-20260818.json", { cache: "no-store" }),
    ]);
     if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
@@ -608,10 +647,12 @@ async function init() {
     if (!onlineIndexResponse.ok) throw new Error(`online index HTTP ${onlineIndexResponse.status}`);
     if (!onlineBossResponse.ok) throw new Error(`online boss coordinates HTTP ${onlineBossResponse.status}`);
     if (!onlineMapPoint1Response.ok || !onlineMapPoint2Response.ok || !onlineMapPoint3Response.ok) throw new Error("online map point coordinates unavailable");
+    if (!onlineTile1Response.ok || !onlineTile2Response.ok) throw new Error("online tile region index unavailable");
     state.onlineIndex = {
       manifest: await onlineIndexResponse.json(),
       bosses: await onlineBossResponse.json(),
       mapPoints: await Promise.all([onlineMapPoint1Response.json(), onlineMapPoint2Response.json(), onlineMapPoint3Response.json()]),
+      tiles: await Promise.all([onlineTile1Response.json(), onlineTile2Response.json()]),
     };
     state.onlineBossByNodeId = new Map();
     state.onlineIndex.bosses.records.forEach((record) => {
@@ -639,6 +680,26 @@ async function init() {
         }
       });
     });
+    state.onlineMapPointRecords = [];
+    state.onlineIndex.mapPoints.forEach((payload) => {
+      payload.records.forEach((record) => {
+        state.onlineMapPointRecords.push({
+          sourceIndex: record[0],
+          id: record[1],
+          mapKey: mapKeyFromParts(record[3], record[4], record[5]),
+          position: [record[6], record[7], record[8]],
+          names: record[9] || [],
+          formalCandidates: record[10] || [],
+        });
+      });
+    });
+    state.onlineTileRecords = state.onlineIndex.tiles.flatMap((payload) => payload.records.map((record) => ({
+      mapKey: record[0],
+      subRegion: record[3],
+      majorRegion: record[4],
+      graceCount: record[5],
+    })));
+    populateCoordinateMapSelect();
     const fastTravelRule = state.routeProfiles.fastTravelRule;
     if (fastTravelRule && !state.data.conditions.some((condition) => condition.id === fastTravelRule.id)) {
       state.data.conditions.push(fastTravelRule);

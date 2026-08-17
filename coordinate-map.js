@@ -1,0 +1,95 @@
+function mapKeyFromParts(area, gridX, gridZ) {
+  const pad = (value) => String(value ?? 0).padStart(2, "0");
+  return "m" + pad(area) + "_" + pad(gridX) + "_" + pad(gridZ);
+}
+
+function populateCoordinateMapSelect() {
+  const options = new Map();
+  state.onlineTileRecords.forEach((record) => options.set(record.mapKey, record));
+  state.onlineMapPointRecords.forEach((record) => {
+    if (!options.has(record.mapKey)) options.set(record.mapKey, { mapKey: record.mapKey });
+  });
+  els.coordinateMapSelect.innerHTML = "";
+  [...options.values()].sort((a, b) => a.mapKey.localeCompare(b.mapKey)).forEach((record) => {
+    const option = document.createElement("option");
+    option.value = record.mapKey;
+    option.textContent = record.mapKey + (record.subRegion || record.majorRegion ? " · " + (record.subRegion || record.majorRegion) : "");
+    els.coordinateMapSelect.appendChild(option);
+  });
+  if (!options.has(state.coordinateMapId)) state.coordinateMapId = options.keys().next().value || "m10_00_00";
+  els.coordinateMapSelect.value = state.coordinateMapId;
+}
+
+async function loadCoordinateItems() {
+  state.onlineItemRecords = [];
+  try {
+    const response = await fetch("/api/catalog/online-items?map=" + encodeURIComponent(state.coordinateMapId) + "&limit=500", { cache: "no-store" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const payload = await response.json();
+    state.onlineItemRecords = payload.records || [];
+    state.coordinateItemTotal = payload.total_matches || state.onlineItemRecords.length;
+  } catch (error) {
+    state.coordinateItemTotal = 0;
+    els.mapToast.textContent = "物品坐标加载失败：" + error.message;
+  }
+  renderCoordinateMap();
+}
+
+function renderCoordinateMap() {
+  els.edgeLayer.innerHTML = "";
+  els.regionLabels.innerHTML = "";
+  els.nodeLayer.innerHTML = "";
+  const points = state.onlineMapPointRecords.filter((record) => record.mapKey === state.coordinateMapId);
+  const items = state.onlineItemRecords;
+  const plotRecords = points.map((record) => ({ position: record.position, label: (record.names || []).join(" / "), kind: "point" }))
+    .concat(items.map((record) => ({ position: record.position, label: (record.items || []).map((item) => item.name || item.id).join(" / "), kind: "item" })));
+  const xs = plotRecords.map((record) => Number(record.position[0])).filter(Number.isFinite);
+  const ys = plotRecords.map((record) => Number(record.position[2])).filter(Number.isFinite);
+  const rawMinX = xs.length ? Math.min(...xs) : -500;
+  const rawMaxX = xs.length ? Math.max(...xs) : 500;
+  const rawMinY = ys.length ? Math.min(...ys) : -500;
+  const rawMaxY = ys.length ? Math.max(...ys) : 500;
+  const rawWidth = Math.max(100, rawMaxX - rawMinX);
+  const rawHeight = Math.max(100, rawMaxY - rawMinY);
+  const margin = Math.max(30, Math.max(rawWidth, rawHeight) * 0.08);
+  const minX = rawMinX - margin;
+  const minY = rawMinY - margin;
+  const width = rawWidth + margin * 2;
+  const height = rawHeight + margin * 2;
+  state.coordinateBounds = { minX, minY, width, height };
+  const map = document.getElementById("topology-map");
+  map.setAttribute("viewBox", [minX, minY, width, height].join(" "));
+  const grid = document.querySelector(".map-grid");
+  if (grid) {
+    grid.setAttribute("x", String(minX));
+    grid.setAttribute("y", String(minY));
+    grid.setAttribute("width", String(width));
+    grid.setAttribute("height", String(height));
+  }
+  setZoom(state.zoom);
+  const axis = svg("text", { x: minX + 10, y: minY + 16, class: "coordinate-axis" });
+  axis.textContent = state.coordinateMapId + " · X/Z 游戏坐标 · Y 为高度";
+  els.regionLabels.appendChild(axis);
+  plotRecords.forEach((record, index) => {
+    const x = Number(record.position[0]);
+    const y = Number(record.position[2]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+    const group = svg("g", { class: "coordinate-poi " + record.kind, transform: "translate(" + x + " " + y + ")" });
+    const circle = svg("circle", { r: record.kind === "point" ? 7 : 3, class: "node-hit" });
+    const core = svg("circle", { r: record.kind === "point" ? 4 : 2, class: "node-core " + record.kind });
+    const title = svg("title");
+    title.textContent = record.label + " · X " + record.position[0] + " / Y " + record.position[1] + " / Z " + record.position[2];
+    group.append(circle, core, title);
+    if (record.kind === "point" && (points.length <= 90 || index < 60)) {
+      const label = svg("text", { x: 10, y: 3, class: "coordinate-poi-label" });
+      label.textContent = record.label || "地图点";
+      group.appendChild(label);
+    }
+    group.addEventListener("click", () => {
+      els.mapToast.textContent = record.label + " · X " + record.position[0] + " / Y " + record.position[1] + " / Z " + record.position[2];
+    });
+    els.nodeLayer.appendChild(group);
+  });
+  const coverage = state.onlineIndex?.manifest?.coverage || {};
+  els.graphStats.textContent = state.coordinateMapId + " · " + points.length + " 命名地图点 · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " 物品记录 · " + (coverage.tileRegionRecords || 0) + " 地图层";
+}
