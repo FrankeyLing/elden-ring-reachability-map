@@ -1,0 +1,35 @@
+{
+  "snapshot_id": "base-capital-ranni-scadu-return-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "lower-capital-church-to-avenue-return",
+      "claim": "The Lower Capital Church and Avenue Balcony are connected by the Leyndell street/roof and canal route. The hazardous Avenue-to-Church drop is kept directional, while a separately sourced return route leads from the church back to Avenue Balcony.",
+      "sources": [
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" },
+        { "source_id": "gamefaqs-leyndell-lower-church", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/7-leyndell-royal-capital-part-1" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "ranni-chamber-to-rise-return",
+      "claim": "Ranni's Chamber is the upper room grace inside Ranni's Rise. The return is the reverse local room route, and remains behind the same Ranni quest-start state used to expose the chamber grace.",
+      "sources": [
+        { "source_id": "eldenpedia-three-sisters", "url": "https://eldenring.wiki.gg/wiki/Three_Sisters" },
+        { "source_id": "game8-ranni-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353051" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "scaduview-cross-to-moorth-return",
+      "claim": "After the Scaduview sealed Spiritspring is unblocked, guides document using the spring to return down toward Moorth Ruins. The return is modeled as a conditional vertical edge rather than an unconditional reverse of the ascent.",
+      "sources": [
+        { "source_id": "eldenpedia-scadu-altus", "url": "https://eldenring.wiki.gg/wiki/Scadu_Altus" },
+        { "source_id": "eip-scadu-altus-cross-check", "url": "https://eip.gg/elden-ring/guides/scadu-altus/" },
+        { "source_id": "powerpyx-dlc-all-graces-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-all-sites-of-grace-locations/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
