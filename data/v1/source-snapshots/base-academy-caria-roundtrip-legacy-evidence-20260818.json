@@ -1,0 +1,29 @@
+{
+  "snapshot_id": "base-academy-caria-roundtrip-legacy-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "academy-entrance-waterwheel-roundtrips",
+      "claim": "Academy of Raya Lucaria's Main Academy Gate, Church of the Cuckoo and Schoolhouse Classroom are connected by the entrance elevator and waterwheel route. V1 adds return edges for those physical routes while leaving the Academy Glinstone Key seals, Iron Maiden death teleport and Rennala boss transition separate.",
+      "sources": [
+        { "source_id": "eldenpedia-raya-r97405", "url": "https://eldenring.wiki.gg/wiki/Academy_of_Raya_Lucaria" },
+        { "source_id": "eip-academy-cross-check", "url": "https://eip.gg/elden-ring/guides/academy-of-raya-lucaria-walkthrough/" },
+        { "source_id": "powerpyx-raya-cross-check", "url": "https://www.powerpyx.com/elden-ring-academy-of-raya-lucaria-walkthrough/" },
+        { "source_id": "game8-raya-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370041" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "caria-manor-roundtrip-layers",
+      "claim": "Caria Manor's Road entrance, Main Gate, Lower Level, Upper Level and post-Loretta Royal Moongazing/Behind Manor exit form distinct layers. V1 adds the ordinary entrance, lift and post-boss exit returns with the Loretta condition preserved.",
+      "sources": [
+        { "source_id": "eldenpedia-caria-manor", "url": "https://eldenring.wiki.gg/wiki/Caria_Manor" },
+        { "source_id": "eip-caria-manor-cross-check", "url": "https://eip.gg/elden-ring/guides/caria-manor-walkthrough/" },
+        { "source_id": "powerpyx-caria-manor-cross-check", "url": "https://www.powerpyx.com/elden-ring-caria-manor-walkthrough/" },
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
