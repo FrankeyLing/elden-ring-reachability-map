@@ -685,11 +685,17 @@ async function init() {
       ["Ensis Moongazing Grounds", "grace_ensis_moongazing_grounds"],
       ["Renna's Rise (sending gate)", "renna_rise_waygate"],
       ["Ainsel River Main", "grace_ainsel_river_main"],
+      ["Ainsel River Well Depths", "grace_ainsel_river_main_ainsel_river_well_depths"],
+      ["Ainsel River Sluice Gate", "grace_ainsel_river_main_ainsel_river_sluice_gate"],
+      ["Ainsel River Downstream", "grace_ainsel_river_main_ainsel_river_downstream"],
+      ["Dragonkin Soldier of Nokstella", "dragonkin_soldier_nokstella_gate"],
+      ["Dragonkin Soldier of Nokstella (post-boss grace)", "grace_ainsel_river_main_dragonkin_soldier_of_nokstella"],
       ["Nokstella, Eternal City", "grace_nokstella_eternal_city"],
       ["Nokstella Waterfall Basin", "grace_nokstella_waterfall_basin"],
       ["Lake of Rot Shoreside", "grace_lake_of_rot_shoreside"],
       ["Grand Cloister", "grace_grand_cloister"],
       ["Astel, Naturalborn of the Void", "astel_naturalborn_gate"],
+      ["Baleful Shadow", "baleful_shadow_gate"],
       ["Moonlight Altar", "grace_moonlight_altar"],
       ["Mohgwyn sending gate", "mohgwyn_sending_gate"],
       ["Pureblood Knight's Medal", "pureblood_knight_medal_gate"],
@@ -792,6 +798,7 @@ async function init() {
       if (["Guest Hall", "Subterranean Inquisition Chamber", "Abductor Virgin"].includes(record.name)) return;
       if (["Haligtree Town", "Haligtree Town Plaza", "Haligtree Promenade", "Prayer Room", "Elphael Inner Wall", "Drainage Channel", "Haligtree Roots", "Malenia, Goddess of Rot"].includes(record.name)) return;
       if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
+      if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;

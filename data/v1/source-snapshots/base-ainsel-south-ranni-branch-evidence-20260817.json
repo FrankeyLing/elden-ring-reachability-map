@@ -1,0 +1,31 @@
+{
+  "snapshot_id": "base-ainsel-south-ranni-branch-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "ainsel-well-south-chain",
+      "claim": "The southern Ainsel entrance follows Ainsel River Well Depths, Ainsel River Sluice Gate, Ainsel River Downstream and the Dragonkin Soldier of Nokstella; this branch cannot continue through the waterfall into the northern Ainsel/Ranni route.",
+      "sources": [
+        { "source_id": "powerpyx-ainsel-cross-check", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/" },
+        { "source_id": "eldenpedia-ainsel-r71938", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River", "revision_id": 71938 },
+        { "source_id": "gamespot-ainsel-cross-check", "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "waterfall-to-baleful-shadow",
+      "claim": "The northern Ranni branch reaches Nokstella Waterfall Basin, then the Baleful Shadow encounter, and only after that does the lift route open toward Lake of Rot.",
+      "sources": [
+        { "source_id": "powerpyx-ainsel-cross-check", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/" },
+        { "source_id": "game8-ranni-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353051" },
+        { "source_id": "eldenpedia-nokstella-r83146", "url": "https://eldenring.wiki.gg/wiki/Nokstella,_Eternal_City", "revision_id": 83146 }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "Southern Ainsel and northern Ainsel/Ranni are modeled as separate connected components with explicit endpoint and quest-state behavior.",
+    "No game process, save, archive, memory or original XYZ coordinate was accessed."
+  ]
+}
