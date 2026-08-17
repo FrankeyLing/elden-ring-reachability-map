@@ -1,0 +1,31 @@
+{
+  "snapshot_id": "base-ainsel-well-surface-entry-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "ainsel-well-surface-entry",
+      "claim": "Ainsel River Well is a structure in eastern Liurnia with a lift leading to the subterranean Ainsel River; the route begins from the Eastern Tableland area.",
+      "sources": [
+        { "source_id": "eldenpedia-ainsel-well", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River_Well" },
+        { "source_id": "game8-ainsel-well-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/382717" },
+        { "source_id": "gamerguides-ainsel-well-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/ainsel-river-well" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "ainsel-well-to-depths",
+      "claim": "The well lift reaches the Ainsel River Well Depths grace, and this southern Ainsel branch is separate from the Renna's Rise sending-gate route to Ainsel River Main.",
+      "sources": [
+        { "source_id": "eldenpedia-ainsel-r71938", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River" },
+        { "source_id": "game8-ainsel-well-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/382717" },
+        { "source_id": "powerpyx-ainsel-cross-check", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The lift is modeled bidirectionally because it is a physical elevator; no original game XYZ is inferred.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}

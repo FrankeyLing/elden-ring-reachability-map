@@ -694,6 +694,8 @@ async function init() {
       ["Ensis Moongazing Grounds", "grace_ensis_moongazing_grounds"],
       ["Renna's Rise (sending gate)", "renna_rise_waygate"],
       ["Ainsel River Main", "grace_ainsel_river_main"],
+      ["Ainsel River Well", "ainsel_well_surface_entrance"],
+      ["Ainsel River Well lift", "ainsel_well_lift"],
       ["Ainsel River Well Depths", "grace_ainsel_river_main_ainsel_river_well_depths"],
       ["Ainsel River Sluice Gate", "grace_ainsel_river_main_ainsel_river_sluice_gate"],
       ["Ainsel River Downstream", "grace_ainsel_river_main_ainsel_river_downstream"],

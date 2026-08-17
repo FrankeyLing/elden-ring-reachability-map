@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.36-online-multiplane",
+    "version": "1.0.37-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -48,7 +48,8 @@
       "base-nokron-aqueduct-deeproot-evidence-20260817",
       "base-deeproot-fia-fortissax-evidence-20260817",
       "base-siofra-ancestor-deep-well-evidence-20260817",
-      "base-siofra-waygate-dragonkin-evidence-20260817"
+      "base-siofra-waygate-dragonkin-evidence-20260817",
+      "base-ainsel-well-surface-entry-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -745,6 +746,9 @@
     ,{ "id": "game8-deep-siofra-well-cross-check", "label": "Game8 · Deep Siofra Well route", "url": "https://game8.co/games/Elden-Ring/archives/370641", "grade": "B" }
     ,{ "id": "eldenpedia-dragonkin-cross-check", "label": "Eldenpedia · Dragonkin Soldier", "url": "https://eldenring.wiki.gg/wiki/Dragonkin_Soldier", "grade": "A" }
     ,{ "id": "eldenpedia-sending-gate-cross-check", "label": "Eldenpedia · Sending Gate", "url": "https://eldenring.wiki.gg/wiki/Sending_Gate", "grade": "A" }
+    ,{ "id": "eldenpedia-ainsel-well", "label": "Eldenpedia · Ainsel River Well", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River_Well", "grade": "A" }
+    ,{ "id": "game8-ainsel-well-cross-check", "label": "Game8 · Ainsel River Well route", "url": "https://game8.co/games/Elden-Ring/archives/382717", "grade": "B" }
+    ,{ "id": "gamerguides-ainsel-well-cross-check", "label": "Gamer Guides · Ainsel River Well", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/ainsel-river-well", "grade": "C" }
   ],
   "nodes": [
     {
@@ -1736,6 +1740,36 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check"],
       "description": "Southern Ainsel entrance grace reached by the Liurnia well; this branch cannot continue to Nokstella or Lake of Rot."
+    },
+    {
+      "id": "ainsel_well_surface_entrance",
+      "label": "Ainsel River Well",
+      "kind": "entrance",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Eastern Liurnia well building",
+      "worldEpoch": "liurnia_surface",
+      "x": 1000,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "description": "Eastern Liurnia's Ainsel River Well surface building; its lift descends to the separate southern Ainsel branch."
+    },
+    {
+      "id": "ainsel_well_lift",
+      "label": "Ainsel River Well lift",
+      "kind": "lift",
+      "layer": "underground",
+      "region": "Ainsel River",
+      "floor": "Southern Ainsel well shaft",
+      "worldEpoch": "ainsel_underground",
+      "x": 1070,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "description": "The vertical lift between eastern Liurnia and Ainsel River Well Depths; separate from Renna's Rise's quest waygate."
     },
     {
       "id": "grace_ainsel_river_main_ainsel_river_sluice_gate",
@@ -8183,6 +8217,96 @@
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
     },
     {
+      "id": "eastern-liurnia-to-ainsel-well",
+      "from": "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore",
+      "to": "ainsel_well_surface_entrance",
+      "mode": "Eastern Liurnia Lake Shore to Ainsel River Well",
+      "cost": 7,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "surface_well_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "From Eastern Tableland/Eastern Liurnia, the eastern road reaches the Ainsel River Well building; no original XYZ is inferred.",
+      "tags": ["walk", "surface", "entrance", "cross_checked"]
+    },
+    {
+      "id": "ainsel-well-to-descent-lift",
+      "from": "ainsel_well_surface_entrance",
+      "to": "ainsel_well_lift",
+      "mode": "Ainsel River Well platform",
+      "cost": 1,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "well_elevator",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Separates the surface well building from the vertical lift transition.",
+      "tags": ["elevator", "surface", "cross_checked"]
+    },
+    {
+      "id": "ainsel-well-to-eastern-liurnia",
+      "from": "ainsel_well_surface_entrance",
+      "to": "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore",
+      "mode": "Ainsel River Well return to Eastern Liurnia",
+      "cost": 7,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "surface_well_approach_return",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Return along the same eastern Liurnia road from the well building to the Eastern Liurnia Lake Shore area.",
+      "tags": ["walk", "surface", "return", "cross_checked"]
+    },
+    {
+      "id": "ainsel-descent-lift-to-depths",
+      "from": "ainsel_well_lift",
+      "to": "grace_ainsel_river_main_ainsel_river_well_depths",
+      "mode": "Ainsel River Well descent",
+      "cost": 5,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "elevator",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "eldenpedia-ainsel-r71938", "game8-ainsel-well-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The well elevator reaches the Ainsel River Well Depths grace at the start of the southern branch.",
+      "tags": ["elevator", "vertical", "underground", "cross_checked"]
+    },
+    {
+      "id": "ainsel-depths-to-well-lift",
+      "from": "grace_ainsel_river_main_ainsel_river_well_depths",
+      "to": "ainsel_well_lift",
+      "mode": "Ainsel River return lift",
+      "cost": 5,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "elevator_return",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The same well elevator is modeled as bidirectional for return travel to Liurnia.",
+      "tags": ["elevator", "vertical", "underground", "cross_checked"]
+    },
+    {
+      "id": "ainsel-lift-to-surface-well",
+      "from": "ainsel_well_lift",
+      "to": "ainsel_well_surface_entrance",
+      "mode": "Ainsel River Well ascent",
+      "cost": 5,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "elevator_return",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Return from the underground well shaft to the eastern Liurnia surface building.",
+      "tags": ["elevator", "vertical", "surface", "cross_checked"]
+    },
+    {
       "id": "ainsel-well-to-sluice-gate",
       "from": "grace_ainsel_river_main_ainsel_river_well_depths",
       "to": "grace_ainsel_river_main_ainsel_river_sluice_gate",
@@ -11953,8 +12077,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 367,
-    "formalRouteEdgeCount": 379,
+    "formalNodeCount": 369,
+    "formalRouteEdgeCount": 385,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
