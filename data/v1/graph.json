@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.58-online-multiplane",
+    "version": "1.0.59-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -71,7 +71,8 @@
       "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818",
       "base-weeping-peninsula-morne-tunnel-evidence-20260818",
       "base-limgrave-fort-haight-evidence-20260818",
-      "dlc-darklight-forsaken-graveyard-refinement-20260818"
+      "dlc-darklight-forsaken-graveyard-refinement-20260818",
+      "base-limgrave-starting-tutorial-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -872,6 +873,11 @@
       "id": "godrick_knight_fort_haight_defeated",
       "label": "Fort Haight Godrick Knight defeated",
       "hint": "The blood-obsessed Godrick Knight on Fort Haight's upper level has been cleared."
+    },
+    {
+      "id": "soldier_of_godrick_cave_knowledge_defeated",
+      "label": "Soldier of Godrick defeated",
+      "hint": "The optional Cave of Knowledge tutorial boss has been cleared and the return ledge is available."
     }
   ],
   "sourceEvidence": [
@@ -1277,6 +1283,10 @@
     ,{ "id": "eldenpedia-fort-haight", "label": "Eldenpedia - Fort Haight", "url": "https://eldenring.wiki.gg/wiki/Fort_Haight", "grade": "A" }
     ,{ "id": "game8-fort-haight-cross-check", "label": "Game8 - Fort Haight location and checklist", "url": "https://game8.co/games/Elden-Ring/archives/369235", "grade": "B" }
     ,{ "id": "ludo-fort-haight-cross-check", "label": "Ludo - Fort Haight walkthrough", "url": "https://www.ludo.guide/guide/elden-ring/limgrave/locations/how-to-find-and-complete-fort-haight-in-limgrave", "grade": "B" }
+    ,{ "id": "eldenpedia-game-start-cave-knowledge", "label": "Eldenpedia - Walkthrough/Game Start", "url": "https://eldenring.wiki.gg/wiki/Walkthrough/Game_Start", "grade": "A" }
+    ,{ "id": "bandai-cave-of-knowledge-cross-check", "label": "Bandai Namco - Cave of Knowledge early-game tips", "url": "https://en.bandainamcoent.eu/elden-ring/news/elden-ring-early-game-tips", "grade": "A" }
+    ,{ "id": "neoseeker-stranded-graveyard-cross-check", "label": "Neoseeker - Stranded Graveyard walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Stranded_Graveyard", "grade": "B" }
+    ,{ "id": "game8-stranded-graveyard-cross-check", "label": "Game8 - Stranded Graveyard walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369403", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8529,6 +8539,26 @@
     {
       "id": "grace_scadu_altus_abyssal_woods_forsaken_graveyard", "label": "Forsaken Graveyard", "kind": "junction", "layer": "underground", "region": "Scadu Altus", "floor": "Darklight Catacombs exit / Abyssal Woods threshold", "worldEpoch": "shadow_realm", "x": 760, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"], "description": "The graveyard immediately beyond Jori's arena and before the forbidden forest entrance."
+    },
+    {
+      "id": "grace_limgrave_stranded_graveyard_stranded_graveyard", "label": "Stranded Graveyard", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Tutorial exit / stranded graveyard", "worldEpoch": "limgrave_surface", "x": 80, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "description": "Starting grace above the Cave of Knowledge pit; the western lift exits to The First Step."
+    },
+    {
+      "id": "grace_limgrave_stranded_graveyard_cave_of_knowledge", "label": "Cave of Knowledge", "kind": "grace", "layer": "legacy", "region": "Cave of Knowledge", "floor": "Tutorial cave entrance", "worldEpoch": "limgrave_surface", "x": 140, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "bandai-cave-of-knowledge-cross-check", "neoseeker-stranded-graveyard-cross-check"], "description": "Optional tutorial branch below Stranded Graveyard, entered by the hole beside the seated spirit."
+    },
+    {
+      "id": "soldier_of_godrick_cave_knowledge_gate", "label": "Soldier of Godrick (Cave of Knowledge)", "kind": "boss", "layer": "legacy", "region": "Cave of Knowledge", "floor": "Tutorial boss chamber", "worldEpoch": "limgrave_surface", "x": 200, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "description": "Tutorial boss at the end of Cave of Knowledge; the encounter is optional because the player can use the outer lift instead."
+    },
+    {
+      "id": "cave_of_knowledge_post_boss_state", "label": "Cave of Knowledge (post-boss return state)", "kind": "state", "layer": "legacy", "region": "Cave of Knowledge", "floor": "Tutorial return ledge", "worldEpoch": "limgrave_surface", "x": 260, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check"], "description": "Return ledge after Soldier of Godrick; the Strength! gesture is obtained before returning to the graveyard."
+    },
+    {
+      "id": "stranded_graveyard_surface_lift", "label": "Stranded Graveyard surface lift", "kind": "lift", "layer": "surface", "region": "Limgrave", "floor": "Tutorial exit lift shaft", "worldEpoch": "limgrave_surface", "x": 320, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "description": "Lift beyond the Stranded Graveyard doors; it bypasses the optional tutorial and reaches the overworld starting grace."
     }
   ],
   "edges": [
@@ -15943,6 +15973,24 @@
     },
     {
       "id": "fort-haight-knight-to-state", "from": "godrick_knight_fort_haight_gate", "to": "fort_haight_post_boss_state", "mode": "Fort Haight Godrick Knight completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "elite_completion_state", "requires": ["godrick_knight_fort_haight_defeated"], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Records Bloody Slash and the cleared-fort state used by Kenneth Haight's liberation request.", "tags": ["conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "stranded-graveyard-to-cave-of-knowledge", "from": "grace_limgrave_stranded_graveyard_stranded_graveyard", "to": "grace_limgrave_stranded_graveyard_cave_of_knowledge", "mode": "Stranded Graveyard tutorial pit descent", "cost": 3, "risk": 5, "direction": "forward", "transitionType": "optional_tutorial_drop", "requires": [], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "bandai-cave-of-knowledge-cross-check", "neoseeker-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Drop through the hole beside the seated spirit into the optional Cave of Knowledge tutorial; this is a distinct lower layer.", "tags": ["vertical", "optional", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cave-of-knowledge-to-soldier", "from": "grace_limgrave_stranded_graveyard_cave_of_knowledge", "to": "soldier_of_godrick_cave_knowledge_gate", "mode": "Cave of Knowledge tutorial route", "cost": 9, "risk": 7, "direction": "forward", "transitionType": "tutorial_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "bandai-cave-of-knowledge-cross-check", "game8-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the tutorial chambers to the Soldier of Godrick boss gate.", "tags": ["optional", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "soldier-of-godrick-to-cave-return", "from": "soldier_of_godrick_cave_knowledge_gate", "to": "cave_of_knowledge_post_boss_state", "mode": "Soldier of Godrick completion", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["soldier_of_godrick_cave_knowledge_defeated"], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Clears the tutorial boss and exposes the return ledge with the Strength! gesture.", "tags": ["optional", "boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cave-return-to-stranded-graveyard", "from": "cave_of_knowledge_post_boss_state", "to": "grace_limgrave_stranded_graveyard_stranded_graveyard", "mode": "Cave of Knowledge return ledge", "cost": 4, "risk": 5, "direction": "backtrack", "transitionType": "tutorial_return_route", "requires": [], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Return to the upper Stranded Graveyard ledge after the tutorial boss; the Strength! gesture is collected on this transition.", "tags": ["backtrack", "optional", "vertical", "cross_checked"]
+    },
+    {
+      "id": "stranded-graveyard-to-surface-lift", "from": "grace_limgrave_stranded_graveyard_stranded_graveyard", "to": "stranded_graveyard_surface_lift", "mode": "Stranded Graveyard exit lift approach", "cost": 4, "risk": 3, "direction": "forward", "transitionType": "tutorial_exit_lift", "requires": [], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Pass the tutorial pit and sealed side door to the western lift; the tutorial can be skipped.", "tags": ["lift", "optional_bypass", "surface", "cross_checked"]
+    },
+    {
+      "id": "stranded-surface-lift-to-first-step", "from": "stranded_graveyard_surface_lift", "to": "grace_first_step", "mode": "Stranded Graveyard lift to The First Step", "cost": 5, "risk": 4, "direction": "forward", "transitionType": "tutorial_surface_exit", "requires": [], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the lift out of the starting graveyard to the first overworld grace at The First Step.", "tags": ["lift", "surface", "cross_checked"]
     }
   ],
   "relations": [
@@ -15965,8 +16013,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 622,
-    "formalRouteEdgeCount": 649,
+    "formalNodeCount": 627,
+    "formalRouteEdgeCount": 655,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

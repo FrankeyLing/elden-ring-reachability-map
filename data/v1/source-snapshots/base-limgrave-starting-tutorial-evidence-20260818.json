@@ -1,0 +1,27 @@
+{
+  "snapshot_id": "base-limgrave-starting-tutorial-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "starting-graveyard-tutorial-branch",
+      "claim": "The player wakes at Stranded Graveyard; the Cave of Knowledge is an optional lower tutorial reached through the hole beside the seated spirit, while the outer lift can bypass it.",
+      "sources": [
+        { "source_id": "eldenpedia-game-start-cave-knowledge", "url": "https://eldenring.wiki.gg/wiki/Walkthrough/Game_Start" },
+        { "source_id": "bandai-cave-of-knowledge-cross-check", "url": "https://en.bandainamcoent.eu/elden-ring/news/elden-ring-early-game-tips" },
+        { "source_id": "game8-stranded-graveyard-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369403" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "tutorial-boss-return-and-exit",
+      "claim": "Soldier of Godrick is at the end of Cave of Knowledge; after the encounter the player returns to the Stranded Graveyard ledge, then the lift exits to The First Step.",
+      "sources": [
+        { "source_id": "eldenpedia-game-start-cave-knowledge", "url": "https://eldenring.wiki.gg/wiki/Walkthrough/Game_Start" },
+        { "source_id": "neoseeker-stranded-graveyard-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Stranded_Graveyard" },
+        { "source_id": "game8-stranded-graveyard-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369403" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
