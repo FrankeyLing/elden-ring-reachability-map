@@ -1,0 +1,43 @@
+{
+  "snapshot_id": "base-siofra-sellia-gael-branch-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "siofra-nokron-postboss-returns",
+      "claim": "The Siofra Ancestor Spirit and Nokron Regal Ancestor post-boss states return to their nearby Hallowhorn/Ancestral Woods routes rather than creating new world-plane destinations. V1 keeps the two Hallowhorn areas separate and preserves each boss completion condition.",
+      "sources": [
+        { "source_id": "eldenpedia-ancestor-spirit", "url": "https://eldenring.wiki.gg/wiki/Ancestor_Spirit" },
+        { "source_id": "game8-siofra-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379579" },
+        { "source_id": "neoseeker-siofra-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River" },
+        { "source_id": "eldenpedia-nokron-r66900", "url": "https://eldenring.wiki.gg/wiki/Nokron,_Eternal_City" },
+        { "source_id": "powerpyx-nokron-cross-check", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/" },
+        { "source_id": "game8-nokron-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369665" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "sellia-chair-crypt-exit",
+      "claim": "Sellia's Chair-Crypt is opened by the three-brazier state and has an upper doorway back to Sellia Backstreets. V1 models this as a conditional return rather than leaving the crypt as a terminal node.",
+      "sources": [
+        { "source_id": "eldenpedia-sellia-town", "url": "https://eldenring.wiki.gg/wiki/Sellia%2C_Town_of_Sorcery" },
+        { "source_id": "gamefaqs-sellia-route-cross-check", "url": "https://gamefaqs.gamespot.com/ps5/323053-elden-ring/faqs/80116/chapter-5-morgott-the-omen-king" },
+        { "source_id": "pcgamer-millicent-cross-check", "url": "https://www.pcgamer.com/elden-ring-millicent-quest/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "gael-and-altus-branch-returns",
+      "claim": "The Limgrave-side Rear Gael Tunnel grace is an exterior dead-end because its inner door is locked from that side, so its valid return is the exterior cliff route toward Third Church. The Road of Iniquity Side Path is a separate underbridge branch that can return to Bower of Bounty without becoming a new surface shortcut.",
+      "sources": [
+        { "source_id": "eldenpedia-gael-tunnel", "url": "https://eldenring.wiki.gg/wiki/Gael_Tunnel" },
+        { "source_id": "gamerguides-gael-tunnel-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/caelid/bosses/how-to-beat-the-magma-wyrm-in-gael-tunnel" },
+        { "source_id": "powerpyx-caelid-cross-check", "url": "https://www.powerpyx.com/elden-ring-caelid-walkthrough/" },
+        { "source_id": "eldenpedia-altus-r65232", "url": "https://eldenring.wiki.gg/wiki/Altus_Plateau" },
+        { "source_id": "game8-altus-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379636" },
+        { "source_id": "powerpyx-altus-cross-check", "url": "https://www.powerpyx.com/elden-ring-altus-plateau-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

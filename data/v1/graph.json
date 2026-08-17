@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.92-online-multiplane",
+  "version": "1.0.93-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -105,7 +105,8 @@
       "base-haligtree-farum-roundtrip-evidence-20260818",
       "base-snowfield-mohgwyn-roundtrip-evidence-20260818",
       "base-postboss-deeproot-roundtrip-evidence-20260818",
-      "base-dlc-postboss-roundtrip-evidence-20260818"
+      "base-dlc-postboss-roundtrip-evidence-20260818",
+      "base-siofra-sellia-gael-branch-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17231,6 +17232,11 @@
     ,{ "id": "discussion-chamber-to-second-floor", "from": "grace_scadu_altus_midra_s_manse_discussion_chamber", "to": "grace_scadu_altus_midra_s_manse_second_floor_chamber", "mode": "Discussion Chamber return to Second Floor Chamber", "cost": 5, "risk": 7, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["midra_defeated"], "sourceEvidence": ["eldenpedia-midra-manse", "game8-midra-manse-cross-check", "vulkk-abyssal-cross-check"], "verificationState": "online_cross_checked", "note": "Exit Midra's cleared chamber and return to the upper manse route.", "tags": ["walk", "boss", "legacy", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "garden-of-deep-purple-to-fissure-cross", "from": "grace_gravesite_plain_stone_coffin_fissure_garden_of_deep_purple", "to": "grace_gravesite_plain_stone_coffin_fissure_fissure_cross", "mode": "Garden of Deep Purple return to Fissure Cross", "cost": 12, "risk": 10, "direction": "backtrack", "transitionType": "fissure_boss_route_return", "requires": ["putrescent_knight_defeated"], "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "game8-stone-coffin-cross-check", "game8-thiollier-cross-check"], "verificationState": "online_cross_checked", "note": "Climb back through the Fissure after Putrescent Knight is defeated; the hazardous descent remains represented by separate layer nodes.", "tags": ["parkour", "vertical", "underground", "boss", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "finger-birthing-grounds-to-ymir-throne", "from": "grace_scadu_altus_main_finger_birthing_grounds", "to": "ymir_throne_gate", "mode": "Finger Birthing Grounds return to Count Ymir's Throne", "cost": 8, "risk": 8, "direction": "backtrack", "transitionType": "finger_ruins_boss_route_return", "requires": ["metyr_defeated"], "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-metyr", "game8-ymir-cross-check"], "verificationState": "online_cross_checked", "note": "Return from Metyr's cleared hidden arena to the Manus Metyr throne route.", "tags": ["walk", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "ancestor-post-to-hallowhorn", "from": "grace_siofra_ancestor_spirit_post_boss", "to": "hallowhorn_grounds_siofra", "mode": "Ancestor Spirit post-boss return to Hallowhorn Grounds", "cost": 4, "risk": 7, "direction": "backtrack", "transitionType": "hallowhorn_boss_route_return", "requires": ["siofra_ancestor_spirit_defeated"], "sourceEvidence": ["eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared southern Hallowhorn boss area and return to the Siofra Hallowhorn Grounds landmark.", "tags": ["walk", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "regal-post-to-ancestral-woods", "from": "grace_nokron_regal_ancestor_post_boss", "to": "grace_ancestral_woods", "mode": "Regal Ancestor post-boss return to Ancestral Woods", "cost": 4, "risk": 6, "direction": "backtrack", "transitionType": "boss_completion_teleport_return", "requires": ["regal_ancestor_spirit_defeated"], "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"], "verificationState": "online_cross_checked", "note": "The post-boss return state leads back to Nokron's upper woods before the Aqueduct branch.", "tags": ["teleport", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "chair-crypt-to-sellia-backstreets", "from": "grace_caelid_main_chair_crypt_of_sellia", "to": "grace_caelid_main_sellia_backstreets", "mode": "Chair-Crypt of Sellia return to Sellia Backstreets", "cost": 5, "risk": 6, "direction": "backtrack", "transitionType": "sellia_three_braziers_gate_return", "requires": ["sellia_all_braziers_lit"], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Use the opened upper doorway to leave the chair-crypt and return to Sellia Backstreets.", "tags": ["walk", "surface", "branch", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "rear-gael-to-third-church", "from": "grace_limgrave_rear_gael_tunnel_entrance", "to": "grace_third_church_of_marika", "mode": "Rear Gael Tunnel return to Third Church", "cost": 8, "risk": 6, "direction": "backtrack", "transitionType": "limgrave_cliff_route_return", "requires": [], "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Limgrave-side rear entrance by the exterior cliff route; the inner tunnel door remains locked from this side.", "tags": ["walk", "surface", "legacy_entrance", "backtrack", "cross_checked"] }
+    ,{ "id": "road-iniquity-side-to-bower", "from": "grace_altus_plateau_main_road_of_iniquity_side_path", "to": "grace_altus_plateau_main_bower_of_bounty", "mode": "Road of Iniquity Side Path return to Bower of Bounty", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "underbridge_waygate_branch_return", "requires": [], "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "powerpyx-altus-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the underbridge branch to the Bower of Bounty grace; this does not open a new waygate or surface shortcut.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17253,7 +17259,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 1006,
+    "formalRouteEdgeCount": 1011,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
