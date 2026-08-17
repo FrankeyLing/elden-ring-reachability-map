@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.45-online-multiplane",
+    "version": "1.0.46-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -57,7 +57,8 @@
       "base-caelid-optional-dungeons-evidence-20260817",
       "base-limgrave-west-optional-dungeons-evidence-20260818",
       "base-limgrave-east-optional-dungeons-evidence-20260818",
-      "base-weeping-peninsula-optional-dungeons-evidence-20260818"
+      "base-weeping-peninsula-optional-dungeons-evidence-20260818",
+      "base-liurnia-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -608,6 +609,26 @@
       "id": "erdtree_burial_watchdog_impalers_defeated",
       "label": "Impaler's Catacombs Erdtree Burial Watchdog defeated",
       "hint": "The Erdtree Burial Watchdog at the end of Impaler's Catacombs has been cleared."
+    },
+    {
+      "id": "cleanrot_knight_stillwater_defeated",
+      "label": "Stillwater Cave Cleanrot Knight defeated",
+      "hint": "The Cleanrot Knight at the end of Stillwater Cave has been cleared."
+    },
+    {
+      "id": "bloodhound_knight_lakeside_defeated",
+      "label": "Lakeside Crystal Cave Bloodhound Knight defeated",
+      "hint": "The Bloodhound Knight at the end of Lakeside Crystal Cave has been cleared."
+    },
+    {
+      "id": "spiritcaller_snail_roads_end_defeated",
+      "label": "Road's End Catacombs Spiritcaller Snail defeated",
+      "hint": "The Spiritcaller Snail at the end of Road's End Catacombs has been cleared."
+    },
+    {
+      "id": "erdtree_burial_watchdog_cliffbottom_defeated",
+      "label": "Cliffbottom Catacombs Erdtree Burial Watchdog defeated",
+      "hint": "The Erdtree Burial Watchdog at the end of Cliffbottom Catacombs has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -888,6 +909,17 @@
     ,{ "id": "eldenpedia-impalers-catacombs", "label": "Eldenpedia · Impaler's Catacombs", "url": "https://eldenring.wiki.gg/wiki/Impaler%27s_Catacombs", "grade": "A" }
     ,{ "id": "gamerguides-impalers-catacombs-cross-check", "label": "Gamer Guides · Impaler's Catacombs Watchdog", "url": "https://www.gamerguides.com/elden-ring/guide/weeping-peninsula/bosses/how-to-beat-erdtree-burial-watchdog-in-the-impalers-catacombs", "grade": "C" }
     ,{ "id": "ludo-impalers-catacombs-cross-check", "label": "Ludo · Impaler's Catacombs walkthrough", "url": "https://www.ludo.guide/guide/elden-ring/limgrave/locations/how-to-find-and-complete-the-impalers-catacombs-in-t-4du93q", "grade": "C" }
+    ,{ "id": "eldenpedia-stillwater-cave", "label": "Eldenpedia · Stillwater Cave", "url": "https://eldenring.wiki.gg/wiki/Stillwater_Cave", "grade": "A" }
+    ,{ "id": "gamerguides-stillwater-cave-cross-check", "label": "Gamer Guides · Stillwater Cave Cleanrot Knight", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/stillwater-cave", "grade": "B" }
+    ,{ "id": "eldenpedia-lakeside-crystal-cave", "label": "Eldenpedia · Lakeside Crystal Cave", "url": "https://eldenring.wiki.gg/wiki/Lakeside_Crystal_Cave", "grade": "A" }
+    ,{ "id": "game8-lakeside-crystal-cave-cross-check", "label": "Game8 · Lakeside Crystal Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369668", "grade": "B" }
+    ,{ "id": "gamerguides-lakeside-crystal-cave-cross-check", "label": "Gamer Guides · Lakeside Crystal Cave database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/lakeside-crystal-cave", "grade": "B" }
+    ,{ "id": "eldenpedia-roads-end-catacombs", "label": "Eldenpedia · Road's End Catacombs", "url": "https://eldenring.wiki.gg/wiki/Road%27s_End_Catacombs", "grade": "A" }
+    ,{ "id": "gamerguides-roads-end-catacombs-cross-check", "label": "Gamer Guides · Road's End Catacombs database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/roads-end-catacombs", "grade": "B" }
+    ,{ "id": "neoseeker-roads-end-catacombs-cross-check", "label": "Neoseeker · Spirit-Caller Snail", "url": "https://www.neoseeker.com/elden-ring/Bosses/Spirit-Caller_Snails", "grade": "B" }
+    ,{ "id": "eldenpedia-cliffbottom-catacombs", "label": "Eldenpedia · Cliffbottom Catacombs", "url": "https://eldenring.wiki.gg/wiki/Cliffbottom_Catacombs", "grade": "A" }
+    ,{ "id": "game8-cliffbottom-catacombs-cross-check", "label": "Game8 · Cliffbottom Catacombs Watchdog", "url": "https://game8.co/games/Elden-Ring/archives/353632", "grade": "B" }
+    ,{ "id": "gamerguides-cliffbottom-catacombs-cross-check", "label": "Gamer Guides · Cliffbottom Catacombs database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/cliffbottom-catacombs", "grade": "B" }
   ],
   "nodes": [
     {
@@ -7384,6 +7416,74 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-impalers-catacombs", "gamerguides-impalers-catacombs-cross-check"],
       "description": "Cleared-state node for the Impaler's Watchdog; Demi-Human Ashes are treated as the boss reward, not a route edge."
+    },
+    {
+      "id": "stillwater_cave_surface_entrance", "label": "Stillwater Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Southern Liurnia cliff base", "worldEpoch": "liurnia_surface", "x": 650, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check", "eldenpedia-liurnia-r49924"], "description": "Cliffside entrance below the southern Liurnia lake route."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_stillwater_cave", "label": "Stillwater Cave", "kind": "grace", "layer": "legacy", "region": "Stillwater Cave", "floor": "Cave entrance", "worldEpoch": "liurnia_surface", "x": 710, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "description": "Grace near the poisonous cave mouth."
+    },
+    {
+      "id": "cleanrot_knight_stillwater_gate", "label": "Cleanrot Knight (Stillwater Cave)", "kind": "boss", "layer": "legacy", "region": "Stillwater Cave", "floor": "Poison pool boss chamber", "worldEpoch": "liurnia_surface", "x": 770, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "description": "Cleanrot Knight boss gate at the far end of the poison pool."
+    },
+    {
+      "id": "stillwater_cave_post_boss_state", "label": "Stillwater Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Stillwater Cave", "floor": "Cleanrot Knight chamber return state", "worldEpoch": "liurnia_surface", "x": 830, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "description": "Cleared-state node for the Stillwater Cleanrot Knight."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_scenic_isle", "label": "Scenic Isle", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Southern lake island", "worldEpoch": "liurnia_surface", "x": 760, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "description": "Island grace directly north of Lakeside Crystal Cave."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_lakeside_crystal_cave", "label": "Lakeside Crystal Cave", "kind": "grace", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Crystal cave entrance", "worldEpoch": "liurnia_surface", "x": 820, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check"], "description": "Grace at the cave entrance south of Scenic Isle."
+    },
+    {
+      "id": "bloodhound_knight_lakeside_gate", "label": "Bloodhound Knight (Lakeside Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Bloodhound Knight chamber", "worldEpoch": "liurnia_surface", "x": 880, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check"], "description": "Bloodhound Knight boss gate in the lower cave network."
+    },
+    {
+      "id": "lakeside_crystal_cave_post_boss_state", "label": "Lakeside Crystal Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Bloodhound Knight chamber return state", "worldEpoch": "liurnia_surface", "x": 940, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check"], "description": "Cleared-state node before the rear route to Slumbering Wolf's Shack."
+    },
+    {
+      "id": "lakeside_crystal_cave_slumbering_wolf_exit", "label": "Slumbering Wolf's Shack exit", "kind": "exit", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Slumbering Wolf's Shack rear exit", "worldEpoch": "liurnia_surface", "x": 1000, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "gamerguides-lakeside-crystal-cave-cross-check"], "description": "Rear surface exit at Slumbering Wolf's Shack."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_converted_tower", "label": "Converted Tower", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Western Liurnia tower plateau", "worldEpoch": "liurnia_surface", "x": 520, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "description": "Surface landmark near the western Liurnia cliffs and Road's End Catacombs."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_road_s_end_catacombs", "label": "Road's End Catacombs", "kind": "grace", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 580, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check"], "description": "Grace near the start of the western Liurnia catacombs."
+    },
+    {
+      "id": "spiritcaller_snail_roads_end_gate", "label": "Spiritcaller Snail (Road's End Catacombs)", "kind": "boss", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Spiritcaller Snail chamber", "worldEpoch": "liurnia_surface", "x": 640, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check"], "description": "Invisible Spiritcaller Snail boss gate behind illusory walls."
+    },
+    {
+      "id": "roads_end_catacombs_post_boss_state", "label": "Road's End Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Spiritcaller Snail chamber return state", "worldEpoch": "liurnia_surface", "x": 700, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "neoseeker-roads-end-catacombs-cross-check"], "description": "Cleared-state node for the Road's End Spiritcaller Snail."
+    },
+    {
+      "id": "cliffbottom_catacombs_surface_entrance", "label": "Cliffbottom Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia lower cliff", "worldEpoch": "liurnia_surface", "x": 1120, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Lower eastern cliff entrance east of the Purified Ruins approach."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_cliffbottom_catacombs", "label": "Cliffbottom Catacombs", "kind": "grace", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 1180, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Grace at the start of the lower eastern Liurnia catacombs."
+    },
+    {
+      "id": "erdtree_burial_watchdog_cliffbottom_gate", "label": "Erdtree Burial Watchdog (Cliffbottom Catacombs)", "kind": "boss", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Watchdog boss chamber", "worldEpoch": "liurnia_surface", "x": 1240, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Three-headed staff-wielding Erdtree Burial Watchdog boss gate."
+    },
+    {
+      "id": "cliffbottom_catacombs_post_boss_state", "label": "Cliffbottom Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Watchdog chamber return state", "worldEpoch": "liurnia_surface", "x": 1300, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Cleared-state node for the Cliffbottom Watchdog."
     }
   ],
   "edges": [
@@ -14204,6 +14304,57 @@
       "verificationState": "online_cross_checked",
       "note": "Explicit cleared state for the Impaler's Watchdog; Demi-Human Ashes remain the boss reward rather than a route edge.",
       "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "liurnia-shore-to-stillwater-mouth", "from": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore", "to": "stillwater_cave_surface_entrance", "mode": "Liurnia Lake Shore to Stillwater Cave mouth", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "southern_cliff_cave_entrance", "requires": [], "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check", "eldenpedia-liurnia-r49924"], "verificationState": "online_cross_checked", "note": "Descend from the southern lake route to the cave mouth; poison water begins after the plane transition.", "tags": ["walk", "vertical", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "stillwater-mouth-to-grace", "from": "stillwater_cave_surface_entrance", "to": "grace_liurnia_of_the_lakes_main_stillwater_cave", "mode": "Stillwater Cave entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The cliff mouth leads to the internal Stillwater grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "stillwater-to-cleanrot", "from": "grace_liurnia_of_the_lakes_main_stillwater_cave", "to": "cleanrot_knight_stillwater_gate", "mode": "Stillwater Cave internal route", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "poison_cave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the poisoned water and flower chambers to the Cleanrot Knight alcove.", "tags": ["walk", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cleanrot-to-stillwater-state", "from": "cleanrot_knight_stillwater_gate", "to": "stillwater_cave_post_boss_state", "mode": "Stillwater Cave Cleanrot Knight completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["cleanrot_knight_stillwater_defeated"], "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Stillwater Cleanrot Knight.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "liurnia-shore-to-scenic-isle", "from": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore", "to": "grace_liurnia_of_the_lakes_main_scenic_isle", "mode": "Liurnia Lake Shore to Scenic Isle", "cost": 6, "risk": 4, "direction": "forward", "transitionType": "lake_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Surface lake route to the Scenic Isle grace.", "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "scenic-isle-to-lakeside-cave", "from": "grace_liurnia_of_the_lakes_main_scenic_isle", "to": "grace_liurnia_of_the_lakes_main_lakeside_crystal_cave", "mode": "Scenic Isle to Lakeside Crystal Cave", "cost": 5, "risk": 6, "direction": "forward", "transitionType": "south_lake_cliff_entrance", "requires": [], "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Head directly south from Scenic Isle to the unmarked cave in the rock wall.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "lakeside-cave-to-bloodhound", "from": "grace_liurnia_of_the_lakes_main_lakeside_crystal_cave", "to": "bloodhound_knight_lakeside_gate", "mode": "Lakeside Crystal Cave internal route", "cost": 10, "risk": 8, "direction": "forward", "transitionType": "crystal_cave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the demi-human and crystal-snail cave network to the Bloodhound Knight.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "bloodhound-to-lakeside-state", "from": "bloodhound_knight_lakeside_gate", "to": "lakeside_crystal_cave_post_boss_state", "mode": "Lakeside Crystal Cave Bloodhound completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["bloodhound_knight_lakeside_defeated"], "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state before the rear cave exit.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "lakeside-state-to-slumbering-wolf", "from": "lakeside_crystal_cave_post_boss_state", "to": "lakeside_crystal_cave_slumbering_wolf_exit", "mode": "Lakeside Crystal Cave to Slumbering Wolf's Shack", "cost": 4, "risk": 5, "direction": "forward", "transitionType": "legacy_to_surface_exit", "requires": ["bloodhound_knight_lakeside_defeated"], "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "gamerguides-lakeside-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The cave's rear route emerges at Slumbering Wolf's Shack after the Bloodhound Knight state.", "tags": ["walk", "exit", "surface", "conditional", "cross_checked"]
+    },
+    {
+      "id": "northern-liurnia-to-converted-tower", "from": "grace_liurnia_of_the_lakes_main_northern_liurnia_lake_shore", "to": "grace_liurnia_of_the_lakes_main_converted_tower", "mode": "Northern Liurnia to Converted Tower", "cost": 7, "risk": 5, "direction": "forward", "transitionType": "western_cliff_surface_branch", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Take the western plateau branch toward the Converted Tower and Road's End Catacombs.", "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "converted-tower-to-roads-end", "from": "grace_liurnia_of_the_lakes_main_converted_tower", "to": "grace_liurnia_of_the_lakes_main_road_s_end_catacombs", "mode": "Converted Tower to Road's End Catacombs", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "cliff_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the western Liurnia cliff route southwest of the Minor Erdtree to the catacomb grace.", "tags": ["walk", "vertical", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "roads-end-to-spiritcaller", "from": "grace_liurnia_of_the_lakes_main_road_s_end_catacombs", "to": "spiritcaller_snail_roads_end_gate", "mode": "Road's End Catacombs internal route", "cost": 10, "risk": 8, "direction": "forward", "transitionType": "illusory_wall_catacomb_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Illusory walls and imp corridors lead to the invisible Spiritcaller Snail chamber.", "tags": ["walk", "hidden", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "spiritcaller-to-roads-end-state", "from": "spiritcaller_snail_roads_end_gate", "to": "roads_end_catacombs_post_boss_state", "mode": "Road's End Spiritcaller Snail completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["spiritcaller_snail_roads_end_defeated"], "sourceEvidence": ["eldenpedia-roads-end-catacombs", "neoseeker-roads-end-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Road's End Spiritcaller Snail.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "eastern-liurnia-to-cliffbottom-mouth", "from": "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore", "to": "cliffbottom_catacombs_surface_entrance", "mode": "Eastern Liurnia to Cliffbottom Catacombs entrance", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "lower_cliff_descent", "requires": [], "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the eastern lower cliff beyond the Purified Ruins/Highway South area; this is a separate vertical entrance node.", "tags": ["walk", "vertical", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "cliffbottom-mouth-to-grace", "from": "cliffbottom_catacombs_surface_entrance", "to": "grace_liurnia_of_the_lakes_main_cliffbottom_catacombs", "mode": "Cliffbottom Catacombs entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "gamerguides-cliffbottom-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The lower cliff mouth leads to the internal catacomb grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cliffbottom-to-watchdog", "from": "grace_liurnia_of_the_lakes_main_cliffbottom_catacombs", "to": "erdtree_burial_watchdog_cliffbottom_gate", "mode": "Cliffbottom Catacombs internal route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "imp_omen_catacomb_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Pass imps, Omen and the catacomb descent to the staff-wielding Watchdog chamber.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "watchdog-to-cliffbottom-state", "from": "erdtree_burial_watchdog_cliffbottom_gate", "to": "cliffbottom_catacombs_post_boss_state", "mode": "Cliffbottom Watchdog completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["erdtree_burial_watchdog_cliffbottom_defeated"], "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "gamerguides-cliffbottom-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Cliffbottom Watchdog.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -14226,8 +14377,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 433,
-    "formalRouteEdgeCount": 455,
+    "formalNodeCount": 450,
+    "formalRouteEdgeCount": 472,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

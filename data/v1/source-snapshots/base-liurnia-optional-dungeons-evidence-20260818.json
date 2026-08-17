@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "base-liurnia-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "stillwater-cave-cleanrot",
+      "claim": "Stillwater Cave is a poisonous cave in southern Liurnia with a grace near the entrance and a Cleanrot Knight in the far poison pool.",
+      "sources": [
+        { "source_id": "eldenpedia-stillwater-cave", "url": "https://eldenring.wiki.gg/wiki/Stillwater_Cave" },
+        { "source_id": "gamerguides-stillwater-cave-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/stillwater-cave" },
+        { "source_id": "eldenpedia-liurnia-r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_of_the_Lakes" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "lakeside-crystal-cave-scene-wolf-exit",
+      "claim": "Lakeside Crystal Cave is directly south of Scenic Isle, contains the Bloodhound Knight, and its cave network leads to Slumbering Wolf's Shack.",
+      "sources": [
+        { "source_id": "eldenpedia-lakeside-crystal-cave", "url": "https://eldenring.wiki.gg/wiki/Lakeside_Crystal_Cave" },
+        { "source_id": "game8-lakeside-crystal-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369668" },
+        { "source_id": "gamerguides-lakeside-crystal-cave-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/lakeside-crystal-cave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "roads-end-illusory-snail",
+      "claim": "Road's End Catacombs is in western Liurnia near the western Minor Erdtree; illusory walls hide the route and the Spiritcaller Snail is the boss.",
+      "sources": [
+        { "source_id": "eldenpedia-roads-end-catacombs", "url": "https://eldenring.wiki.gg/wiki/Road%27s_End_Catacombs" },
+        { "source_id": "gamerguides-roads-end-catacombs-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/roads-end-catacombs" },
+        { "source_id": "neoseeker-roads-end-catacombs-cross-check", "url": "https://www.neoseeker.com/elden-ring/Bosses/Spirit-Caller_Snails" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "cliffbottom-lower-east-watchdog",
+      "claim": "Cliffbottom Catacombs is built into eastern Liurnia's lower cliffs; its starting grace leads through imps and Omen to a staff-wielding Erdtree Burial Watchdog.",
+      "sources": [
+        { "source_id": "eldenpedia-cliffbottom-catacombs", "url": "https://eldenring.wiki.gg/wiki/Cliffbottom_Catacombs" },
+        { "source_id": "game8-cliffbottom-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353632" },
+        { "source_id": "gamerguides-cliffbottom-catacombs-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/cliffbottom-catacombs" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
