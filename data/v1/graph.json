@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.39-online-multiplane",
+    "version": "1.0.40-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -51,7 +51,8 @@
       "base-siofra-waygate-dragonkin-evidence-20260817",
       "base-ainsel-well-surface-entry-evidence-20260817",
       "base-deeproot-ainsel-coffin-evidence-20260817",
-      "base-west-altus-tower-sealed-tunnel-evidence-20260817"
+      "base-west-altus-tower-sealed-tunnel-evidence-20260817",
+      "base-dragonbarrow-lenne-merchant-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -760,6 +761,10 @@
     ,{ "id": "game8-sealed-tunnel-cross-check", "label": "Game8 · Sealed Tunnel walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370259", "grade": "B" }
     ,{ "id": "eldenpedia-divine-tower-west-altus", "label": "Eldenpedia · Divine Tower of West Altus", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_West_Altus", "grade": "A" }
     ,{ "id": "pcgamer-west-altus-tower-cross-check", "label": "PC Gamer · West Altus Divine Tower route", "url": "https://www.pcgamer.com/elden-ring-west-altus-divine-tower/", "grade": "B" }
+    ,{ "id": "eldenpedia-lennes-rise", "label": "Eldenpedia · Lenne's Rise", "url": "https://eldenring.wiki.gg/wiki/Lenne%27s_Rise", "grade": "A" }
+    ,{ "id": "eldenpedia-isolated-merchant-shack-dragonbarrow", "label": "Eldenpedia · Isolated Merchant's Shack (Dragonbarrow)", "url": "https://eldenring.wiki.gg/wiki/Isolated_Merchant%27s_Shack_%28Dragonbarrow%29", "grade": "A" }
+    ,{ "id": "gamefaqs-dragonbarrow-cross-check", "label": "GameFAQs · Dragonbarrow route", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/1-quick-start", "grade": "C" }
+    ,{ "id": "redmaw-dragonbarrow-cross-check", "label": "Redmaw · Dragonbarrow walkthrough", "url": "https://eldenring.redmaw.dev/sheets/walkthrough", "grade": "C" }
   ],
   "nodes": [
     {
@@ -5996,6 +6001,36 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-dragonbarrow", "eldenpedia-sites-of-grace-r83774", "game8-caelid-cross-check"],
       "description": "High-risk western Dragonbarrow ridge used to approach the Divine Tower."
+    },
+    {
+      "id": "grace_caelid_greyoll_s_dragonbarrow_lennes_rise",
+      "label": "Lenne's Rise",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Greyoll's Dragonbarrow",
+      "floor": "Eastern Dragonbarrow peninsula",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 520,
+      "y": 650,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lennes-rise", "eldenpedia-dragonbarrow", "gamefaqs-dragonbarrow-cross-check"],
+      "description": "Eastern Dragonbarrow grace beside the rise and spirit-spring route; it is connected to Dragonbarrow Fork by the lower road and bridges."
+    },
+    {
+      "id": "grace_caelid_greyoll_s_dragonbarrow_isolated_merchant_shack",
+      "label": "Isolated Merchant's Shack (Dragonbarrow)",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Greyoll's Dragonbarrow",
+      "floor": "Northwestern Dragonbarrow ridge",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 790,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-isolated-merchant-shack-dragonbarrow", "eldenpedia-dragonbarrow", "redmaw-dragonbarrow-cross-check", "gamefaqs-dragonbarrow-cross-check"],
+      "description": "Northwestern Dragonbarrow shack grace; the road from Dragonbarrow West reaches it without merging it into the Divine Tower route."
     },
     {
       "id": "grace_caelid_greyoll_s_dragonbarrow_farum_greatbridge",
@@ -11693,6 +11728,66 @@
       "tags": ["walk", "surface", "hazard", "cross_checked"]
     },
     {
+      "id": "dragonbarrow-fork-to-lennes-rise",
+      "from": "grace_dragonbarrow_fork",
+      "to": "grace_caelid_greyoll_s_dragonbarrow_lennes_rise",
+      "mode": "Dragonbarrow Fork to Lenne's Rise",
+      "cost": 7,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "dragonbarrow_lower_bridge_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-lennes-rise", "gamefaqs-dragonbarrow-cross-check", "redmaw-dragonbarrow-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The lower bridge and eastern road branch from Dragonbarrow Fork to Lenne's Rise; the Nights Cavalry encounter remains a risk, not a gate.",
+      "tags": ["walk", "bridge", "surface", "hazard", "cross_checked"]
+    },
+    {
+      "id": "lennes-rise-to-dragonbarrow-fork",
+      "from": "grace_caelid_greyoll_s_dragonbarrow_lennes_rise",
+      "to": "grace_dragonbarrow_fork",
+      "mode": "Lenne's Rise to Dragonbarrow Fork",
+      "cost": 7,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "dragonbarrow_lower_bridge_route_return",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-lennes-rise", "gamefaqs-dragonbarrow-cross-check", "redmaw-dragonbarrow-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Return along the same lower Dragonbarrow road; this preserves the real bidirectional traversal instead of treating the rise as a dead end.",
+      "tags": ["walk", "bridge", "surface", "hazard", "return", "cross_checked"]
+    },
+    {
+      "id": "dragonbarrow-west-to-isolated-merchant",
+      "from": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
+      "to": "grace_caelid_greyoll_s_dragonbarrow_isolated_merchant_shack",
+      "mode": "Dragonbarrow West to Isolated Merchant's Shack",
+      "cost": 8,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "dragonbarrow_northwest_road",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-isolated-merchant-shack-dragonbarrow", "gamefaqs-dragonbarrow-cross-check", "redmaw-dragonbarrow-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Follow the northwestern road from Dragonbarrow West to the merchant shack; it is separate from the tower parkour branch.",
+      "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "isolated-merchant-to-dragonbarrow-west",
+      "from": "grace_caelid_greyoll_s_dragonbarrow_isolated_merchant_shack",
+      "to": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
+      "mode": "Isolated Merchant's Shack return to Dragonbarrow West",
+      "cost": 8,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "dragonbarrow_northwest_road_return",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-isolated-merchant-shack-dragonbarrow", "gamefaqs-dragonbarrow-cross-check", "redmaw-dragonbarrow-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Return along the same northwestern road to Dragonbarrow West.",
+      "tags": ["walk", "surface", "return", "cross_checked"]
+    },
+    {
       "id": "dragonbarrow-west-to-divine-center",
       "from": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
       "to": "grace_caelid_greyoll_s_dragonbarrow_divine_tower_of_caelid_center",
@@ -12253,8 +12348,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 374,
-    "formalRouteEdgeCount": 391,
+    "formalNodeCount": 376,
+    "formalRouteEdgeCount": 395,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

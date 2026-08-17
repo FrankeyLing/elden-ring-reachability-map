@@ -1,0 +1,31 @@
+{
+  "snapshot_id": "base-dragonbarrow-lenne-merchant-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "dragonbarrow-fork-lennes-rise",
+      "claim": "Lenne's Rise is an eastern Dragonbarrow grace reached by the lower bridge/road branch from the Dragonbarrow Fork area; the route is traversable in both directions and can have a nighttime field-boss risk.",
+      "sources": [
+        { "source_id": "eldenpedia-lennes-rise", "url": "https://eldenring.wiki.gg/wiki/Lenne%27s_Rise" },
+        { "source_id": "gamefaqs-dragonbarrow-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/1-quick-start" },
+        { "source_id": "redmaw-dragonbarrow-cross-check", "url": "https://eldenring.redmaw.dev/sheets/walkthrough" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "dragonbarrow-west-merchant-shack",
+      "claim": "The Isolated Merchant's Shack grace lies on the northwestern Dragonbarrow road beyond Dragonbarrow West and is a separate branch from the Divine Tower parkour route.",
+      "sources": [
+        { "source_id": "eldenpedia-isolated-merchant-shack-dragonbarrow", "url": "https://eldenring.wiki.gg/wiki/Isolated_Merchant%27s_Shack_%28Dragonbarrow%29" },
+        { "source_id": "gamefaqs-dragonbarrow-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/1-quick-start" },
+        { "source_id": "redmaw-dragonbarrow-cross-check", "url": "https://eldenring.redmaw.dev/sheets/walkthrough" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The route edges use abstract costs and risks; no original game XYZ is inferred.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}
