@@ -22,15 +22,32 @@ function populateCoordinateMapSelect() {
 
 async function loadCoordinateItems() {
   state.onlineItemRecords = [];
+  state.onlineEntityRecords = [];
+  state.onlineGatheringRecords = [];
   try {
-    const response = await fetch("/api/catalog/online-items?map=" + encodeURIComponent(state.coordinateMapId) + "&limit=500", { cache: "no-store" });
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const payload = await response.json();
-    state.onlineItemRecords = payload.records || [];
-    state.coordinateItemTotal = payload.total_matches || state.onlineItemRecords.length;
+    const map = encodeURIComponent(state.coordinateMapId);
+    const [itemResponse, entityResponse, gatheringResponse] = await Promise.all([
+      fetch("/api/catalog/online-items?map=" + map + "&limit=500", { cache: "no-store" }),
+      fetch("/api/catalog/entities?map=" + map + "&kind=enemy&limit=500", { cache: "no-store" }),
+      fetch("/api/catalog/gathering?map=" + map + "&limit=500", { cache: "no-store" }),
+    ]);
+    if (!itemResponse.ok || !entityResponse.ok || !gatheringResponse.ok) {
+      throw new Error("online layer HTTP " + [itemResponse.status, entityResponse.status, gatheringResponse.status].join("/"));
+    }
+    const [itemPayload, entityPayload, gatheringPayload] = await Promise.all([
+      itemResponse.json(), entityResponse.json(), gatheringResponse.json(),
+    ]);
+    state.onlineItemRecords = itemPayload.records || [];
+    state.coordinateItemTotal = itemPayload.total_matches || state.onlineItemRecords.length;
+    state.onlineEntityRecords = entityPayload.records || [];
+    state.coordinateEntityTotal = entityPayload.total_matches || state.onlineEntityRecords.length;
+    state.onlineGatheringRecords = gatheringPayload.records || [];
+    state.coordinateGatheringTotal = gatheringPayload.total_matches || state.onlineGatheringRecords.length;
   } catch (error) {
     state.coordinateItemTotal = 0;
-    els.mapToast.textContent = "物品坐标加载失败：" + error.message;
+    state.coordinateEntityTotal = 0;
+    state.coordinateGatheringTotal = 0;
+    els.mapToast.textContent = "online POI layer load failed: " + error.message;
   }
   renderCoordinateMap();
 }
@@ -41,8 +58,12 @@ function renderCoordinateMap() {
   els.nodeLayer.innerHTML = "";
   const points = state.onlineMapPointRecords.filter((record) => record.mapKey === state.coordinateMapId);
   const items = state.onlineItemRecords;
+  const entities = state.onlineEntityRecords;
+  const gathering = state.onlineGatheringRecords;
   const plotRecords = points.map((record) => ({ position: record.position, label: (record.names || []).join(" / "), kind: "point" }))
-    .concat(items.map((record) => ({ position: record.position, label: (record.items || []).map((item) => item.name || item.id).join(" / "), kind: "item" })));
+    .concat(items.map((record) => ({ position: record.position, label: (record.items || []).map((item) => item.name || item.id).join(" / "), kind: "item" })))
+    .concat(entities.map((record) => ({ position: record.position, label: record.name || record.model || record.entity_id, kind: "entity" })))
+    .concat(gathering.map((record) => ({ position: record.position, label: record.name || record.model, kind: "gathering" })));
   const xs = plotRecords.map((record) => Number(record.position[0])).filter(Number.isFinite);
   const ys = plotRecords.map((record) => Number(record.position[2])).filter(Number.isFinite);
   const rawMinX = xs.length ? Math.min(...xs) : -500;
@@ -68,7 +89,7 @@ function renderCoordinateMap() {
   }
   setZoom(state.zoom);
   const axis = svg("text", { x: minX + 10, y: minY + 16, class: "coordinate-axis" });
-  axis.textContent = state.coordinateMapId + " · X/Z 游戏坐标 · Y 为高度";
+  axis.textContent = state.coordinateMapId + " · X/Z online game coordinates · Y is height";
   els.regionLabels.appendChild(axis);
   plotRecords.forEach((record, index) => {
     const x = Number(record.position[0]);
@@ -82,7 +103,7 @@ function renderCoordinateMap() {
     group.append(circle, core, title);
     if (record.kind === "point" && (points.length <= 90 || index < 60)) {
       const label = svg("text", { x: 10, y: 3, class: "coordinate-poi-label" });
-      label.textContent = record.label || "地图点";
+      label.textContent = record.label || "map point";
       group.appendChild(label);
     }
     group.addEventListener("click", () => {
@@ -91,5 +112,5 @@ function renderCoordinateMap() {
     els.nodeLayer.appendChild(group);
   });
   const coverage = state.onlineIndex?.manifest?.coverage || {};
-  els.graphStats.textContent = state.coordinateMapId + " · " + points.length + " 命名地图点 · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " 物品记录 · " + (coverage.tileRegionRecords || 0) + " 地图层";
+  els.graphStats.textContent = state.coordinateMapId + " · " + points.length + " named points · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " items · " + entities.length + "/" + (state.coordinateEntityTotal || entities.length) + " enemies · " + gathering.length + "/" + (state.coordinateGatheringTotal || gathering.length) + " gathering nodes · " + (coverage.tileRegionRecords || 0) + " map layers";
 }

@@ -26,7 +26,27 @@ ONLINE_ITEM_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-item-index-part{part}-20260818.json"
     for part in range(1, 31)
 )
+ONLINE_ENTITY_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-entity-index-part{part}-20260818.json"
+    for part in range(1, 23)
+)
+ONLINE_GATHERING_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-gathering-index-part{part}-20260818.json"
+    for part in range(1, 33)
+)
 ONLINE_ITEM_CACHE = None
+ONLINE_ENTITY_CACHE = None
+ONLINE_GATHERING_CACHE = None
+
+
+def decode_online_chunks(paths):
+    chunks = [json.loads(path.read_bytes()) for path in paths]
+    chunks.sort(key=lambda payload: payload["part"])
+    expected_parts = chunks[0]["parts"] if chunks else 0
+    if not chunks or expected_parts != len(chunks) or [chunk["part"] for chunk in chunks] != list(range(1, expected_parts + 1)):
+        raise ValueError("online snapshot chunks are incomplete or out of order")
+    encoded = "".join(chunk["chunk"] for chunk in chunks)
+    return json.loads(zlib.decompress(base64.b64decode(encoded)).decode("utf-8"))
 
 
 class AppHandler(SimpleHTTPRequestHandler):
@@ -64,6 +84,12 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/online-items":
             self.send_online_items(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/entities":
+            self.send_entities(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/gathering":
+            self.send_gathering(parse_qs(parsed.query))
             return
         if parsed.path == "/":
             self.path = "/index.html"
@@ -160,14 +186,7 @@ class AppHandler(SimpleHTTPRequestHandler):
 
         try:
             if ONLINE_ITEM_CACHE is None:
-                chunks = []
-                for path in ONLINE_ITEM_FILES:
-                    chunks.append(json.loads(path.read_bytes()))
-                chunks.sort(key=lambda payload: payload["part"])
-                encoded = "".join(payload["chunk"] for payload in chunks)
-                ONLINE_ITEM_CACHE = json.loads(
-                    zlib.decompress(base64.b64decode(encoded)).decode("utf-8")
-                )
+                ONLINE_ITEM_CACHE = decode_online_chunks(ONLINE_ITEM_FILES)
             records = []
             for index, row in enumerate(ONLINE_ITEM_CACHE):
                 item_text = json.dumps(row[4], ensure_ascii=False).casefold()
@@ -212,6 +231,118 @@ class AppHandler(SimpleHTTPRequestHandler):
             "note": "在线物品/掉落坐标证据；不代表已建立从任意赐福到物品的正式可通行路线。",
         }
         body = json.dumps(response, ensure_ascii=False).encode("utf-8")
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def send_entities(self, query: dict[str, list[str]]):
+        global ONLINE_ENTITY_CACHE
+        search = query.get("q", [""])[0].strip().casefold()
+        map_id = query.get("map", [""])[0].strip()
+        kind = query.get("kind", [""])[0].strip().casefold()
+        try:
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+        except ValueError:
+            limit = 100
+        try:
+            if ONLINE_ENTITY_CACHE is None:
+                ONLINE_ENTITY_CACHE = decode_online_chunks(ONLINE_ENTITY_FILES)
+            records = []
+            for index, row in enumerate(ONLINE_ENTITY_CACHE):
+                row_map = str(row[1] or "")
+                row_kind = str(row[6] or "").casefold()
+                search_text = " / ".join(str(value or "") for value in (row[0], row[5], row[7]))
+                if search and search not in search_text.casefold():
+                    continue
+                if kind and row_kind != kind:
+                    continue
+                if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+                    continue
+                records.append(
+                    {
+                        "source_index": index,
+                        "entity_id": row[0],
+                        "map": row[1],
+                        "position": [row[2], row[3], row[4]],
+                        "model": row[5],
+                        "kind": row[6],
+                        "name": row[7],
+                    }
+                )
+        except (OSError, KeyError, TypeError, ValueError, zlib.error, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/online-entity-query@1",
+                "query": {"q": search, "map": map_id, "kind": kind, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "note": "online MSB entity coordinates; not a proof of a walkable route or enemy encounter state",
+            }
+        )
+
+    def send_gathering(self, query: dict[str, list[str]]):
+        global ONLINE_GATHERING_CACHE
+        search = query.get("q", [""])[0].strip().casefold()
+        map_id = query.get("map", [""])[0].strip()
+        try:
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+        except ValueError:
+            limit = 100
+        try:
+            if ONLINE_GATHERING_CACHE is None:
+                ONLINE_GATHERING_CACHE = decode_online_chunks(ONLINE_GATHERING_FILES)
+            records = []
+            for index, row in enumerate(ONLINE_GATHERING_CACHE):
+                row_map = str(row[2] or "")
+                search_text = " / ".join(str(value or "") for value in (row[0], row[1], row[10], row[11]))
+                if search and search not in search_text.casefold():
+                    continue
+                if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+                    continue
+                records.append(
+                    {
+                        "source_index": index,
+                        "model": row[0],
+                        "name": row[1],
+                        "map": row[2],
+                        "area": row[3],
+                        "position": [row[7], row[8], row[9]],
+                        "entity_id": row[10],
+                        "instance_id": row[11],
+                    }
+                )
+        except (OSError, KeyError, TypeError, ValueError, zlib.error, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/online-gathering-query@1",
+                "query": {"q": search, "map": map_id, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "note": "online gathering-node coordinates; not a proof of a walkable route or pickup availability state",
+            }
+        )
+
+    def send_json_error(self, exc):
+        body = json.dumps({"error": str(exc)}, ensure_ascii=False).encode("utf-8")
+        self.send_response(HTTPStatus.INTERNAL_SERVER_ERROR)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def send_json_payload(self, payload):
+        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Cache-Control", "no-store")

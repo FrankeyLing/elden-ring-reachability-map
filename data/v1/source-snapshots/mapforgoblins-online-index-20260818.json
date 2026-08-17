@@ -235,6 +235,330 @@
       "role": "compressed online item/loot placement index, chunk 30/30",
       "records": 31144,
       "chunk": 30
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part1-20260818.json",
+      "role": "compressed online MSB entity index, chunk 1/22",
+      "records": 15099,
+      "chunk": 1
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part2-20260818.json",
+      "role": "compressed online MSB entity index, chunk 2/22",
+      "records": 15099,
+      "chunk": 2
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part3-20260818.json",
+      "role": "compressed online MSB entity index, chunk 3/22",
+      "records": 15099,
+      "chunk": 3
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part4-20260818.json",
+      "role": "compressed online MSB entity index, chunk 4/22",
+      "records": 15099,
+      "chunk": 4
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part5-20260818.json",
+      "role": "compressed online MSB entity index, chunk 5/22",
+      "records": 15099,
+      "chunk": 5
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part6-20260818.json",
+      "role": "compressed online MSB entity index, chunk 6/22",
+      "records": 15099,
+      "chunk": 6
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part7-20260818.json",
+      "role": "compressed online MSB entity index, chunk 7/22",
+      "records": 15099,
+      "chunk": 7
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part8-20260818.json",
+      "role": "compressed online MSB entity index, chunk 8/22",
+      "records": 15099,
+      "chunk": 8
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part9-20260818.json",
+      "role": "compressed online MSB entity index, chunk 9/22",
+      "records": 15099,
+      "chunk": 9
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part10-20260818.json",
+      "role": "compressed online MSB entity index, chunk 10/22",
+      "records": 15099,
+      "chunk": 10
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part11-20260818.json",
+      "role": "compressed online MSB entity index, chunk 11/22",
+      "records": 15099,
+      "chunk": 11
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part12-20260818.json",
+      "role": "compressed online MSB entity index, chunk 12/22",
+      "records": 15099,
+      "chunk": 12
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part13-20260818.json",
+      "role": "compressed online MSB entity index, chunk 13/22",
+      "records": 15099,
+      "chunk": 13
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part14-20260818.json",
+      "role": "compressed online MSB entity index, chunk 14/22",
+      "records": 15099,
+      "chunk": 14
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part15-20260818.json",
+      "role": "compressed online MSB entity index, chunk 15/22",
+      "records": 15099,
+      "chunk": 15
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part16-20260818.json",
+      "role": "compressed online MSB entity index, chunk 16/22",
+      "records": 15099,
+      "chunk": 16
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part17-20260818.json",
+      "role": "compressed online MSB entity index, chunk 17/22",
+      "records": 15099,
+      "chunk": 17
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part18-20260818.json",
+      "role": "compressed online MSB entity index, chunk 18/22",
+      "records": 15099,
+      "chunk": 18
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part19-20260818.json",
+      "role": "compressed online MSB entity index, chunk 19/22",
+      "records": 15099,
+      "chunk": 19
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part20-20260818.json",
+      "role": "compressed online MSB entity index, chunk 20/22",
+      "records": 15099,
+      "chunk": 20
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part21-20260818.json",
+      "role": "compressed online MSB entity index, chunk 21/22",
+      "records": 15099,
+      "chunk": 21
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-entity-index-part22-20260818.json",
+      "role": "compressed online MSB entity index, chunk 22/22",
+      "records": 15099,
+      "chunk": 22
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part1-20260818.json",
+      "role": "compressed online gathering node index, chunk 1/32",
+      "records": 21824,
+      "chunk": 1
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part2-20260818.json",
+      "role": "compressed online gathering node index, chunk 2/32",
+      "records": 21824,
+      "chunk": 2
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part3-20260818.json",
+      "role": "compressed online gathering node index, chunk 3/32",
+      "records": 21824,
+      "chunk": 3
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part4-20260818.json",
+      "role": "compressed online gathering node index, chunk 4/32",
+      "records": 21824,
+      "chunk": 4
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part5-20260818.json",
+      "role": "compressed online gathering node index, chunk 5/32",
+      "records": 21824,
+      "chunk": 5
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part6-20260818.json",
+      "role": "compressed online gathering node index, chunk 6/32",
+      "records": 21824,
+      "chunk": 6
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part7-20260818.json",
+      "role": "compressed online gathering node index, chunk 7/32",
+      "records": 21824,
+      "chunk": 7
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part8-20260818.json",
+      "role": "compressed online gathering node index, chunk 8/32",
+      "records": 21824,
+      "chunk": 8
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part9-20260818.json",
+      "role": "compressed online gathering node index, chunk 9/32",
+      "records": 21824,
+      "chunk": 9
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part10-20260818.json",
+      "role": "compressed online gathering node index, chunk 10/32",
+      "records": 21824,
+      "chunk": 10
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part11-20260818.json",
+      "role": "compressed online gathering node index, chunk 11/32",
+      "records": 21824,
+      "chunk": 11
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part12-20260818.json",
+      "role": "compressed online gathering node index, chunk 12/32",
+      "records": 21824,
+      "chunk": 12
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part13-20260818.json",
+      "role": "compressed online gathering node index, chunk 13/32",
+      "records": 21824,
+      "chunk": 13
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part14-20260818.json",
+      "role": "compressed online gathering node index, chunk 14/32",
+      "records": 21824,
+      "chunk": 14
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part15-20260818.json",
+      "role": "compressed online gathering node index, chunk 15/32",
+      "records": 21824,
+      "chunk": 15
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part16-20260818.json",
+      "role": "compressed online gathering node index, chunk 16/32",
+      "records": 21824,
+      "chunk": 16
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part17-20260818.json",
+      "role": "compressed online gathering node index, chunk 17/32",
+      "records": 21824,
+      "chunk": 17
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part18-20260818.json",
+      "role": "compressed online gathering node index, chunk 18/32",
+      "records": 21824,
+      "chunk": 18
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part19-20260818.json",
+      "role": "compressed online gathering node index, chunk 19/32",
+      "records": 21824,
+      "chunk": 19
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part20-20260818.json",
+      "role": "compressed online gathering node index, chunk 20/32",
+      "records": 21824,
+      "chunk": 20
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part21-20260818.json",
+      "role": "compressed online gathering node index, chunk 21/32",
+      "records": 21824,
+      "chunk": 21
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part22-20260818.json",
+      "role": "compressed online gathering node index, chunk 22/32",
+      "records": 21824,
+      "chunk": 22
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part23-20260818.json",
+      "role": "compressed online gathering node index, chunk 23/32",
+      "records": 21824,
+      "chunk": 23
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part24-20260818.json",
+      "role": "compressed online gathering node index, chunk 24/32",
+      "records": 21824,
+      "chunk": 24
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part25-20260818.json",
+      "role": "compressed online gathering node index, chunk 25/32",
+      "records": 21824,
+      "chunk": 25
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part26-20260818.json",
+      "role": "compressed online gathering node index, chunk 26/32",
+      "records": 21824,
+      "chunk": 26
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part27-20260818.json",
+      "role": "compressed online gathering node index, chunk 27/32",
+      "records": 21824,
+      "chunk": 27
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part28-20260818.json",
+      "role": "compressed online gathering node index, chunk 28/32",
+      "records": 21824,
+      "chunk": 28
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part29-20260818.json",
+      "role": "compressed online gathering node index, chunk 29/32",
+      "records": 21824,
+      "chunk": 29
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part30-20260818.json",
+      "role": "compressed online gathering node index, chunk 30/32",
+      "records": 21824,
+      "chunk": 30
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part31-20260818.json",
+      "role": "compressed online gathering node index, chunk 31/32",
+      "records": 21824,
+      "chunk": 31
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-gathering-index-part32-20260818.json",
+      "role": "compressed online gathering node index, chunk 32/32",
+      "records": 21824,
+      "chunk": 32
     }
   ],
   "coverage": {
@@ -245,6 +569,10 @@
     "namedMapPointUniqueFormalCandidates": 157,
     "itemPlacementRecords": 31144,
     "itemIndexChunks": 30,
+    "entityRecords": 15099,
+    "entityIndexChunks": 22,
+    "gatheringRecords": 21824,
+    "gatheringIndexChunks": 32,
     "tileRegionRecords": 806,
     "legacyConversionRecords": 323,
     "dlcLegacyConversionRecords": 39

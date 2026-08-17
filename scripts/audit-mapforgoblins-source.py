@@ -33,6 +33,23 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def decode_chunks(paths: list[str], label: str) -> tuple[list[dict], list]:
+    payloads = sorted(
+        (load(ROOT / path) for path in paths),
+        key=lambda payload: payload["part"],
+    )
+    expected_parts = payloads[0]["parts"] if payloads else 0
+    parts = [payload["part"] for payload in payloads]
+    if not payloads or expected_parts != len(payloads) or parts != list(range(1, expected_parts + 1)):
+        raise ValueError(f"{label} chunks are incomplete or out of order")
+    records = json.loads(
+        zlib.decompress(
+            base64.b64decode("".join(payload["chunk"] for payload in payloads))
+        ).decode("utf-8")
+    )
+    return payloads, records
+
+
 def audit(source_dir: Path | None = None) -> dict:
     manifest = load(MANIFEST)
     source = manifest["source"]
@@ -62,6 +79,8 @@ def audit(source_dir: Path | None = None) -> dict:
     dlc_conversion_path = next(path for path in artifact_counts if "conversions-dlc" in path)
     map_point_paths = [path for path in artifact_counts if "map-points-part" in path]
     item_paths = [path for path in artifact_counts if "item-index-part" in path]
+    entity_paths = [path for path in artifact_counts if "entity-index-part" in path]
+    gathering_paths = [path for path in artifact_counts if "gathering-index-part" in path]
 
     grace = load(ROOT / grace_path)
     bosses = load(ROOT / boss_path)
@@ -73,17 +92,15 @@ def audit(source_dir: Path | None = None) -> dict:
     map_point_records = []
     for path in sorted(map_point_paths):
         map_point_records.extend(load(ROOT / path)["records"])
-    item_payloads = sorted(
-        (load(ROOT / path) for path in item_paths),
-        key=lambda payload: payload["part"],
-    )
-    if not item_payloads or [payload["part"] for payload in item_payloads] != list(range(1, len(item_payloads) + 1)):
-        raise ValueError("item index chunks are incomplete or out of order")
-    item_records = json.loads(
-        zlib.decompress(
-            base64.b64decode("".join(payload["chunk"] for payload in item_payloads))
-        ).decode("utf-8")
-    )
+    item_payloads, item_records = decode_chunks(item_paths, "item index")
+    entity_payloads, entity_records = decode_chunks(entity_paths, "entity index")
+    gathering_payloads, gathering_records = decode_chunks(gathering_paths, "gathering index")
+    if len(item_records) != 31144:
+        raise ValueError(f"unexpected item placement count: {len(item_records)}")
+    if len(entity_records) != 15099:
+        raise ValueError(f"unexpected entity count: {len(entity_records)}")
+    if len(gathering_records) != 21824:
+        raise ValueError(f"unexpected gathering count: {len(gathering_records)}")
 
     tile_ids = [record[0] for record in tile_records]
     if len(tile_ids) != len(set(tile_ids)):
@@ -120,6 +137,10 @@ def audit(source_dir: Path | None = None) -> dict:
             ),
             "item_placement_records": len(item_records),
             "item_index_chunks": len(item_payloads),
+            "entity_records": len(entity_records),
+            "entity_index_chunks": len(entity_payloads),
+            "gathering_records": len(gathering_records),
+            "gathering_index_chunks": len(gathering_payloads),
             "tile_region_records": len(tile_records),
             "legacy_conversion_records": len(base_conversions),
             "dlc_legacy_conversion_records": len(dlc_conversions),
