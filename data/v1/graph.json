@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.38-online-multiplane",
+    "version": "1.0.39-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -50,7 +50,8 @@
       "base-siofra-ancestor-deep-well-evidence-20260817",
       "base-siofra-waygate-dragonkin-evidence-20260817",
       "base-ainsel-well-surface-entry-evidence-20260817",
-      "base-deeproot-ainsel-coffin-evidence-20260817"
+      "base-deeproot-ainsel-coffin-evidence-20260817",
+      "base-west-altus-tower-sealed-tunnel-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -521,6 +522,11 @@
       "id": "siofra_dragonkin_soldier_defeated",
       "label": "Siofra Dragonkin Soldier defeated",
       "hint": "The optional Dragonkin Soldier reached through the upper Siofra sending gate has been cleared."
+    },
+    {
+      "id": "onyx_lord_sealed_tunnel_defeated",
+      "label": "Onyx Lord of Sealed Tunnel defeated",
+      "hint": "The Sealed Tunnel boss gate has been cleared and the exit to the Divine Tower of West Altus is open."
     }
   ],
   "sourceEvidence": [
@@ -750,6 +756,10 @@
     ,{ "id": "eldenpedia-ainsel-well", "label": "Eldenpedia · Ainsel River Well", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River_Well", "grade": "A" }
     ,{ "id": "game8-ainsel-well-cross-check", "label": "Game8 · Ainsel River Well route", "url": "https://game8.co/games/Elden-Ring/archives/382717", "grade": "B" }
     ,{ "id": "gamerguides-ainsel-well-cross-check", "label": "Gamer Guides · Ainsel River Well", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/ainsel-river-well", "grade": "C" }
+    ,{ "id": "eldenpedia-sealed-tunnel", "label": "Eldenpedia · Sealed Tunnel", "url": "https://eldenring.wiki.gg/wiki/Sealed_Tunnel", "grade": "A" }
+    ,{ "id": "game8-sealed-tunnel-cross-check", "label": "Game8 · Sealed Tunnel walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370259", "grade": "B" }
+    ,{ "id": "eldenpedia-divine-tower-west-altus", "label": "Eldenpedia · Divine Tower of West Altus", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_West_Altus", "grade": "A" }
+    ,{ "id": "pcgamer-west-altus-tower-cross-check", "label": "PC Gamer · West Altus Divine Tower route", "url": "https://www.pcgamer.com/elden-ring-west-altus-divine-tower/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -1786,6 +1796,66 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-ainsel-well-cross-check", "powerpyx-deeproot-cross-check", "powerpyx-ainsel-cross-check"],
       "description": "The second Deeproot coffin at the western waterfall edge; distinct from the Great Waterfall Basin coffin that enters Deeproot."
+    },
+    {
+      "id": "grace_capital_outskirts_sealed_tunnel",
+      "label": "Sealed Tunnel",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Capital Outskirts",
+      "floor": "Sealed Tunnel entrance",
+      "worldEpoch": "base_surface",
+      "x": 920,
+      "y": 420,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check", "eldenpedia-divine-tower-west-altus"],
+      "description": "The Sealed Tunnel grace beside the southern Capital Outskirts moat; illusory walls conceal the dungeon route."
+    },
+    {
+      "id": "onyx_lord_sealed_tunnel_gate",
+      "label": "Onyx Lord (Sealed Tunnel)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Sealed Tunnel",
+      "floor": "Sealed Tunnel boss arena",
+      "worldEpoch": "base_surface",
+      "x": 990,
+      "y": 420,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check"],
+      "description": "Optional Onyx Lord boss gate at the end of the Sealed Tunnel."
+    },
+    {
+      "id": "grace_divine_tower_west_altus_gate",
+      "label": "Divine Tower of West Altus: Gate",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Divine Tower of West Altus",
+      "floor": "Tower exterior gate",
+      "worldEpoch": "base_surface",
+      "x": 1060,
+      "y": 420,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-divine-tower-west-altus", "eldenpedia-sealed-tunnel", "pcgamer-west-altus-tower-cross-check"],
+      "description": "The exterior gate reached after exiting the Sealed Tunnel; its door remains tightly locked until Rykard is defeated."
+    },
+    {
+      "id": "grace_divine_tower_west_altus",
+      "label": "Divine Tower of West Altus",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Divine Tower of West Altus",
+      "floor": "Tower summit",
+      "worldEpoch": "base_surface",
+      "x": 1130,
+      "y": 420,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-divine-tower-west-altus", "pcgamer-west-altus-tower-cross-check", "eldenpedia-rykard"],
+      "description": "Summit grace above the tower lift; this is the activation branch for Rykard's Great Rune."
     },
     {
       "id": "grace_ainsel_river_main_ainsel_river_sluice_gate",
@@ -10348,6 +10418,66 @@
       "tags": ["walk", "surface", "cross_checked"]
     },
     {
+      "id": "outer-tree-to-sealed-tunnel",
+      "from": "grace_outer_wall_phantom_tree",
+      "to": "grace_capital_outskirts_sealed_tunnel",
+      "mode": "Outer Wall Phantom Tree to Sealed Tunnel",
+      "cost": 7,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "capital_moat_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check", "pcgamer-west-altus-tower-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Head southeast through the shallow moat from Outer Wall Phantom Tree to the southern Sealed Tunnel entrance.",
+      "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "sealed-tunnel-to-onyx-lord",
+      "from": "grace_capital_outskirts_sealed_tunnel",
+      "to": "onyx_lord_sealed_tunnel_gate",
+      "mode": "Sealed Tunnel internal route",
+      "cost": 10,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "illusory_wall_legacy_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Illusory walls and the hidden lift lead from the entrance grace to the Onyx Lord boss arena.",
+      "tags": ["walk", "hidden", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "onyx-lord-to-west-altus-gate",
+      "from": "onyx_lord_sealed_tunnel_gate",
+      "to": "grace_divine_tower_west_altus_gate",
+      "mode": "Onyx Lord completion to West Altus Tower gate",
+      "cost": 4,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_legacy_exit",
+      "requires": ["onyx_lord_sealed_tunnel_defeated"],
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check", "eldenpedia-divine-tower-west-altus"],
+      "verificationState": "online_cross_checked",
+      "note": "The tunnel exit opens beside the Divine Tower of West Altus after the Onyx Lord gate is cleared.",
+      "tags": ["boss", "conditional", "legacy", "cross_checked"]
+    },
+    {
+      "id": "west-altus-gate-to-tower",
+      "from": "grace_divine_tower_west_altus_gate",
+      "to": "grace_divine_tower_west_altus",
+      "mode": "West Altus Divine Tower locked door and lift",
+      "cost": 5,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "great_rune_tower_lift",
+      "requires": ["rykard_defeated"],
+      "sourceEvidence": ["eldenpedia-divine-tower-west-altus", "pcgamer-west-altus-tower-cross-check", "eldenpedia-rykard"],
+      "verificationState": "online_cross_checked",
+      "note": "The exterior door is tightly locked until Rykard is defeated; then the tower lift reaches the summit grace.",
+      "tags": ["key_gate", "elevator", "conditional", "legacy", "cross_checked"]
+    },
+    {
       "id": "outer-tree-to-battleground",
       "from": "grace_outer_wall_phantom_tree",
       "to": "grace_outer_wall_battleground",
@@ -12123,8 +12253,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 370,
-    "formalRouteEdgeCount": 387,
+    "formalNodeCount": 374,
+    "formalRouteEdgeCount": 391,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

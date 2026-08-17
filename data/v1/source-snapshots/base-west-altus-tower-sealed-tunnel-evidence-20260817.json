@@ -1,0 +1,32 @@
+{
+  "snapshot_id": "base-west-altus-tower-sealed-tunnel-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "outer-wall-to-sealed-tunnel",
+      "claim": "The Sealed Tunnel entrance is in the southern Capital Outskirts moat, reached from the Outer Wall Phantom Tree area.",
+      "sources": [
+        { "source_id": "eldenpedia-sealed-tunnel", "url": "https://eldenring.wiki.gg/wiki/Sealed_Tunnel" },
+        { "source_id": "game8-sealed-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370259" },
+        { "source_id": "pcgamer-west-altus-tower-cross-check", "url": "https://www.pcgamer.com/elden-ring-west-altus-divine-tower/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "sealed-tunnel-to-west-altus-tower",
+      "claim": "The Sealed Tunnel's illusory-wall route ends at the Onyx Lord; after clearing that boss, the tunnel exits at the Divine Tower of West Altus gate, whose inner door opens only after Rykard is defeated.",
+      "sources": [
+        { "source_id": "eldenpedia-sealed-tunnel", "url": "https://eldenring.wiki.gg/wiki/Sealed_Tunnel" },
+        { "source_id": "game8-sealed-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370259" },
+        { "source_id": "eldenpedia-divine-tower-west-altus", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_West_Altus" },
+        { "source_id": "pcgamer-west-altus-tower-cross-check", "url": "https://www.pcgamer.com/elden-ring-west-altus-divine-tower/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The Rykard condition is attached only to the tower door/lift edge; reaching the external gate does not imply the tower can already be entered.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}
