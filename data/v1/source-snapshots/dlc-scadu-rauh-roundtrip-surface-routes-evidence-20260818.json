@@ -1,0 +1,42 @@
+{
+  "snapshot_id": "dlc-scadu-rauh-roundtrip-surface-routes-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "scadu-altus-surface-roundtrips",
+      "claim": "Highroad Cross, Moorth Ruins, the Bonny Village bridge route, Church District Highroad, Cathedral of Manus Metyr and the Shadow Keep approaches form connected Shadow Realm surface branches. V1 exposes the documented return edges for the ordinary roads and bridges; the Moorth tunnel ladder remains directional.",
+      "sources": [
+        { "source_id": "eldenpedia-scadu-altus", "url": "https://eldenring.wiki.gg/wiki/Scadu_Altus" },
+        { "source_id": "eip-scadu-altus-cross-check", "url": "https://eip.gg/elden-ring/guides/scadu-altus/" },
+        { "source_id": "game8-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" },
+        { "source_id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "moorth-ruin-forge-fort-roundtrips",
+      "claim": "Moorth Ruins branches south to Moorth Highway South and the Fort of Reprimand entrance, east toward the lower Rauh Base entrance, and to the Ruined Forge of Starfall Past surface mouth. The reverse edges are surface or entrance returns and do not imply that a legacy-dungeon interior is freely traversable from the overworld.",
+      "sources": [
+        { "source_id": "eldenpedia-fort-of-reprimand", "url": "https://eldenring.wiki.gg/wiki/Fort_of_Reprimand" },
+        { "source_id": "eip-fort-reprimand-cross-check", "url": "https://eip.gg/elden-ring/guides/fort-of-reprimand/" },
+        { "source_id": "eldenpedia-ruined-forge-starfall-past", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_of_Starfall_Past" },
+        { "source_id": "eip-ruined-forge-starfall-cross-check", "url": "https://eip.gg/elden-ring/guides/ruined-forge-of-starfall-past/" },
+        { "source_id": "game8-ruined-forge-starfall-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459130" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "rauh-base-surface-roundtrips",
+      "claim": "Ancient Ruins Base connects by documented surface routes to Rauh Ancient Ruins East, Temple Town Ruins, the Scorpion River Catacombs mouth and Taylew's Ruined Forge mouth; Temple Town connects along the ravine, East connects through the viaduct and to West, and West branches to the Church of the Bud entrance and Ancient Ruins Grand Stairway. V1 adds the corresponding return edges.",
+      "sources": [
+        { "source_id": "eldenpedia-rauh", "url": "https://eldenring.wiki.gg/wiki/Rauh_Ruins" },
+        { "source_id": "eip-rauh-base-cross-check", "url": "https://eip.gg/elden-ring/guides/rauh-base/" },
+        { "source_id": "game8-rauh-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460470" },
+        { "source_id": "neoseeker-rauh-base-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Rauh_Base" },
+        { "source_id": "neoseeker-rauh-west-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Ancient_Ruins_of_Rauh" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
