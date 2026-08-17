@@ -89,6 +89,28 @@
       "import_status": "reference_only",
       "exclude": ["private APIs", "robots bypass", "tile mirroring", "bulk coordinate copying", "copyrighted walkthrough text"],
       "freshness": "manual review per claim"
+    },
+    {
+      "id": "game8_manual_cross_check",
+      "name": "Game8 Elden Ring guide",
+      "url": "https://game8.co/games/Elden-Ring/archives/372056",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
+    },
+    {
+      "id": "pcgamer_manual_cross_check",
+      "name": "PC Gamer Elden Ring guide",
+      "url": "https://www.pcgamer.com/elden-ring-bolt-of-gransax-location/",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
     }
   ]
 }

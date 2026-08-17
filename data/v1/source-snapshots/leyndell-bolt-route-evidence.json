@@ -1,0 +1,39 @@
+{
+  "snapshot_id": "leyndell-bolt-route-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "avenue-to-sanctuary",
+      "claim": "The Eldenpedia guide describes Avenue Balcony as a branch point and directs the player up the giant stone dragon wing toward Fortified Manor and Erdtree Sanctuary.",
+      "source_id": "eldenpedia",
+      "source_url": "https://eldenring.wiki.gg/wiki/Elden_Ring_Guide",
+      "page_id": 3479,
+      "revision_id": 13749,
+      "revision_timestamp": "2022-05-10T00:08:30Z",
+      "evidence_role": "route_semantics"
+    },
+    {
+      "claim_id": "sanctuary-to-spear",
+      "claim": "The Game8 walkthrough identifies the elevator west of the Erdtree Sanctuary boss room, the lower route, the railing jump and the giant spear as the acquisition sequence.",
+      "source_id": "game8_manual_cross_check",
+      "source_url": "https://game8.co/games/Elden-Ring/archives/372056",
+      "accessed_on": "2026-08-17",
+      "evidence_role": "manual_route_cross_check",
+      "imported_into_default_route": false
+    },
+    {
+      "claim_id": "avenue-to-sanctuary-independent",
+      "claim": "PC Gamer independently describes the Avenue Balcony, dragon wing, West Capital Rampart, root and Erdtree Sanctuary approach.",
+      "source_id": "pcgamer_manual_cross_check",
+      "source_url": "https://www.pcgamer.com/elden-ring-bolt-of-gransax-location/",
+      "accessed_on": "2026-08-17",
+      "evidence_role": "manual_route_cross_check",
+      "imported_into_default_route": false
+    }
+  ],
+  "notes": [
+    "Commercial guides are retained as evidence references only; their text, images and coordinates are not copied into the dataset.",
+    "The default route edges require the structured Eldenpedia claims plus this independent cross-check set."
+  ]
+}

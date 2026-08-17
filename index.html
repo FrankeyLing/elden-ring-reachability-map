@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d1117" />
+    <title>RUNE//PATH · Reachability Graph</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark">✦</div>
+          <div>
+            <div class="brand-name">RUNE<span>//</span>PATH</div>
+            <div class="brand-subtitle">THE LANDS BETWEEN · REACHABILITY GRAPH</div>
+          </div>
+        </div>
+        <div class="topbar-meta">
+          <span class="live-dot"></span>
+          <span>ONLINE VERIFIED V1</span>
+          <span class="meta-divider"></span>
+          <span id="dataset-version">v0.1.0</span>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="control-panel panel">
+          <div class="panel-kicker">ROUTE PLANNER <span>01</span></div>
+          <h1>寻找一条可达的路</h1>
+          <p class="lede">距离不是路线。选择两个拓扑节点，让图上的条件边替你筛掉不可行的直线。</p>
+
+          <div class="field-group">
+            <label for="origin-select">起点 <span>FROM</span></label>
+            <select id="origin-select"></select>
+          </div>
+          <div class="route-arrow">↓</div>
+          <div class="field-group">
+            <label for="destination-select">终点 <span>TO</span></label>
+            <select id="destination-select"></select>
+          </div>
+
+          <div class="section-line"><span>WORLD STATE</span></div>
+          <div id="conditions" class="condition-list"></div>
+
+          <div class="section-line"><span>ROUTE COST</span></div>
+          <div class="segmented" role="group" aria-label="路线偏好">
+            <button class="segment active" data-preference="balanced">平衡</button>
+            <button class="segment" data-preference="fast">最快</button>
+            <button class="segment" data-preference="safe">低风险</button>
+          </div>
+          <div class="preference-hint" id="preference-hint">综合时间与风险，适合首次探索。</div>
+
+          <button id="plan-route" class="primary-button"><span>◎</span> 规划可达路线</button>
+          <button id="reset-route" class="ghost-button">重置 V1 状态</button>
+
+          <div class="data-note">
+            <span class="note-icon">i</span>
+            <span>当前数据来自带 revision 的在线 Source Snapshot；坐标是抽象布局，路线边保留方向、条件和证据。</span>
+          </div>
+        </aside>
+
+        <section class="map-panel panel">
+          <div class="map-toolbar">
+            <div class="map-title">
+              <span class="eyebrow">WORLD TOPOLOGY / 001</span>
+              <strong>可达性图</strong>
+              <span id="graph-stats">加载中…</span>
+            </div>
+            <div class="toolbar-actions">
+              <div class="layer-tabs" role="tablist" aria-label="地图层级">
+                <button class="layer-tab active" data-layer="all">全域</button>
+                <button class="layer-tab" data-layer="surface">地表</button>
+                <button class="layer-tab" data-layer="underground">地下</button>
+                <button class="layer-tab" data-layer="legacy">独立地图 / 建筑层</button>
+              </div>
+              <div class="zoom-controls">
+                <button id="zoom-out" aria-label="缩小">−</button>
+                <button id="zoom-reset" aria-label="重置缩放">1:1</button>
+                <button id="zoom-in" aria-label="放大">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-stage" id="map-stage">
+            <svg id="topology-map" viewBox="0 0 1000 600" role="img" aria-label="艾尔登法环示例可达性图">
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(176, 155, 105, 0.08)" stroke-width="1" />
+                </pattern>
+                <filter id="route-glow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <marker id="arrow-default" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L8,4 L0,8 z" fill="#8f8b80" />
+                </marker>
+                <marker id="arrow-route" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L9,4.5 L0,9 z" fill="#e9c979" />
+                </marker>
+                <g id="map-transform">
+                  <rect class="map-grid" x="0" y="0" width="1000" height="600" />
+                  <g id="region-labels"></g>
+                  <g id="edge-layer"></g>
+                  <g id="node-layer"></g>
+                </g>
+              </defs>
+              <use href="#map-transform" />
+            </svg>
+            <div class="map-overlay top-left">
+              <div class="map-legend-title">EDGE SEMANTICS</div>
+              <div class="legend-row"><span class="legend-line route"></span><span>当前路线</span></div>
+              <div class="legend-row"><span class="legend-line"></span><span>可通行边</span></div>
+              <div class="legend-row"><span class="legend-line blocked"></span><span>条件未满足</span></div>
+            </div>
+            <div class="map-overlay bottom-right" id="map-toast">点击节点查看详情</div>
+            <div id="loading-state" class="loading-state">正在载入拓扑数据…</div>
+          </div>
+        </section>
+
+        <aside class="route-panel panel">
+          <div class="panel-kicker">NAVIGATION LOG <span>02</span></div>
+          <div id="route-summary" class="route-summary empty">
+            <div class="summary-icon">⌁</div>
+            <h2>还没有路线</h2>
+            <p>设定起点和终点后，规划器会按照当前世界状态计算可达路径。</p>
+          </div>
+          <div id="route-content" class="hidden">
+            <div class="summary-head">
+              <div>
+                <span class="eyebrow">BEST AVAILABLE PATH</span>
+                <h2 id="route-title">路线已规划</h2>
+              </div>
+              <button id="copy-route" class="copy-button" title="复制路线摘要">⧉</button>
+            </div>
+            <div class="metric-row">
+              <div><strong id="route-time">—</strong><span>相对成本</span></div>
+              <div><strong id="route-risk">—</strong><span>风险指数</span></div>
+              <div><strong id="route-hops">—</strong><span>段连接</span></div>
+            </div>
+            <div class="path-track" id="path-track"></div>
+            <div class="route-notice" id="route-notice"></div>
+          </div>
+
+          <div class="section-line node-section-title"><span>NODE INSPECTOR</span></div>
+          <div id="node-inspector" class="node-inspector">
+            <div class="inspector-placeholder">选择地图上的节点<br />查看它的层级、类型和可用连接。</div>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="footer-bar">
+        <span><i class="status-pip"></i> GRAPH ENGINE READY</span>
+        <span>DIRECTED EDGES · CONDITIONAL ACCESS · LAYER-AWARE ROUTING</span>
+      </footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

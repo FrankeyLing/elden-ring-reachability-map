@@ -1,0 +1,314 @@
+{
+  "meta": {
+    "title": "Leyndell P0 / Bolt of Gransax",
+    "subtitle": "Online Verified V1 · 来源可追溯的王城成就路线切片",
+    "version": "1.0.0-online-p0",
+    "verificationLabel": "Online Verified V1",
+    "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
+    "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
+    "coordinateSpace": { "width": 1000, "height": 600 },
+    "sourceSnapshots": [
+      "eldenpedia-sites-of-grace-r83774",
+      "eldenpedia-bolt-of-gransax-r84084",
+      "leyndell-bolt-route-evidence-20260817"
+    ]
+  },
+  "defaultOrigin": "grace_avenue_balcony",
+  "defaultDestination": "item_bolt_of_gransax",
+  "defaultConditions": ["royal_capital_pre_maliketh", "erdtree_sanctuary_activated"],
+  "layers": [
+    { "id": "all", "label": "全域", "short": "ALL" },
+    { "id": "surface", "label": "地表", "short": "SURFACE" },
+    { "id": "underground", "label": "地下", "short": "UNDER" },
+    { "id": "legacy", "label": "独立地图 / 建筑层", "short": "LEGACY" }
+  ],
+  "worldEpochs": [
+    {
+      "id": "royal_capital_pre_maliketh",
+      "label": "王城罗德尔（玛利喀斯前）",
+      "available": true,
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084"]
+    },
+    {
+      "id": "ashen_capital_post_maliketh",
+      "label": "灰烬王城（玛利喀斯后）",
+      "available": true,
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-bolt-of-gransax-r84084"]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "royal_capital_pre_maliketh",
+      "label": "王城仍为罗德尔",
+      "hint": "尚未击败玛利喀斯；目标仍存在于王城罗德尔。"
+    },
+    {
+      "id": "erdtree_sanctuary_activated",
+      "label": "已激活黄金树大教堂赐福",
+      "hint": "从该赐福出发的路线需要玩家已经激活它。"
+    }
+  ],
+  "sourceEvidence": [
+    { "id": "eldenpedia-sites-of-grace-r83774", "label": "Eldenpedia · Sites of Grace · r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "grade": "A" },
+    { "id": "eldenpedia-bolt-of-gransax-r84084", "label": "Eldenpedia · Bolt of Gransax · r84084", "url": "https://eldenring.wiki.gg/wiki/Bolt_of_Gransax", "grade": "A" },
+    { "id": "eldenpedia-guide-r13749", "label": "Eldenpedia · Elden Ring Guide · r13749", "url": "https://eldenring.wiki.gg/wiki/Elden_Ring_Guide", "grade": "B" },
+    { "id": "game8-route-cross-check", "label": "Game8 · manual route cross-check", "url": "https://game8.co/games/Elden-Ring/archives/372056", "grade": "B" },
+    { "id": "pcgamer-route-cross-check", "label": "PC Gamer · manual route cross-check", "url": "https://www.pcgamer.com/elden-ring-bolt-of-gransax-location/", "grade": "B" }
+  ],
+  "nodes": [
+    {
+      "id": "grace_avenue_balcony",
+      "label": "大道旁露台",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "王城罗德尔",
+      "floor": "王城街区",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 220,
+      "y": 330,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-guide-r13749"],
+      "description": "王城赐福清单中的大道旁露台；Eldenpedia 路线指南将其描述为王城路线分叉点。"
+    },
+    {
+      "id": "route_dragon_wing",
+      "label": "巨龙石翼上行段",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "王城罗德尔",
+      "floor": "外部高架路线",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 350,
+      "y": 260,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
+      "description": "从大道旁露台向高处前进的入口地标；这是路线语义节点，不是原始地图坐标。"
+    },
+    {
+      "id": "grace_erdtree_sanctuary",
+      "label": "黄金树大教堂",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "黄金树大教堂",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 500,
+      "y": 170,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "description": "古兰桑克斯的雷电路线起点赐福；默认路线要求该赐福已激活。"
+    },
+    {
+      "id": "sanctuary_west_exit",
+      "label": "大教堂西侧出口",
+      "kind": "entrance",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "黄金树大教堂外侧",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 610,
+      "y": 190,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "description": "离开黄金树大教堂并向电梯方向下行的出口节点。"
+    },
+    {
+      "id": "gransax_elevator_bottom",
+      "label": "西侧电梯下端",
+      "kind": "lift",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "大教堂西侧下层",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 680,
+      "y": 290,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "description": "电梯下降后的路线节点；之后继续沿楼梯和栏杆方向前进。"
+    },
+    {
+      "id": "gransax_overlook",
+      "label": "古兰桑克斯上方栏杆",
+      "kind": "transition",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "高架栏杆",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 770,
+      "y": 330,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "description": "需要从栏杆处向下跳到小平台；该连接是单向跳落。"
+    },
+    {
+      "id": "gransax_platform",
+      "label": "巨矛下方平台",
+      "kind": "transition",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "巨矛平台",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 820,
+      "y": 410,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "description": "从栏杆跳下后的中间落点，再跳到巨矛上。"
+    },
+    {
+      "id": "item_bolt_of_gransax",
+      "label": "古兰桑克斯的雷电",
+      "kind": "target",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "巨龙石矛",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 895,
+      "y": 470,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "description": "传奇武器目标。玛利喀斯改变王城为灰烬王城后，该目标不可获取。"
+    },
+    {
+      "id": "epoch_ashen_capital",
+      "label": "灰烬王城状态",
+      "kind": "world_state",
+      "layer": "surface",
+      "region": "灰烬王城",
+      "floor": "世界纪元",
+      "worldEpoch": "ashen_capital_post_maliketh",
+      "x": 520,
+      "y": 510,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-bolt-of-gransax-r84084"],
+      "description": "状态对照节点：古兰桑克斯的雷电不在该状态可获取。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "avenue-to-dragon-wing",
+      "from": "grace_avenue_balcony",
+      "to": "route_dragon_wing",
+      "mode": "巨龙石翼上行",
+      "cost": 8,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "landmark_route",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
+      "note": "从大道旁露台沿巨龙石翼向高处路线前进。",
+      "tags": ["walk", "vertical", "cross_checked"]
+    },
+    {
+      "id": "dragon-wing-to-sanctuary",
+      "from": "route_dragon_wing",
+      "to": "grace_erdtree_sanctuary",
+      "mode": "树根 / 高架入口",
+      "cost": 8,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "entrance",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
+      "note": "经王城高处路线进入黄金树大教堂区域。",
+      "tags": ["walk", "vertical", "cross_checked"]
+    },
+    {
+      "id": "sanctuary-to-west-exit",
+      "from": "grace_erdtree_sanctuary",
+      "to": "sanctuary_west_exit",
+      "mode": "西侧出口 / 下楼梯",
+      "cost": 2,
+      "risk": 0,
+      "direction": "forward",
+      "transitionType": "door_exit",
+      "requires": ["royal_capital_pre_maliketh", "erdtree_sanctuary_activated"],
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "note": "从黄金树大教堂退出并朝电梯方向下行。",
+      "tags": ["walk", "cross_checked"]
+    },
+    {
+      "id": "west-exit-to-elevator",
+      "from": "sanctuary_west_exit",
+      "to": "gransax_elevator_bottom",
+      "mode": "电梯下降",
+      "cost": 3,
+      "risk": 0,
+      "direction": "forward",
+      "transitionType": "elevator",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "note": "乘坐大教堂西侧电梯到下层。",
+      "tags": ["lift", "floor_change", "cross_checked"]
+    },
+    {
+      "id": "elevator-to-overlook",
+      "from": "gransax_elevator_bottom",
+      "to": "gransax_overlook",
+      "mode": "下层楼梯 / 栏杆",
+      "cost": 5,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "walkway",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "note": "沿下层路线前进到巨矛上方栏杆。",
+      "tags": ["walk", "floor_change", "cross_checked"]
+    },
+    {
+      "id": "overlook-to-platform",
+      "from": "gransax_overlook",
+      "to": "gransax_platform",
+      "mode": "栏杆单向跳落",
+      "cost": 3,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "one_way_drop",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "note": "从栏杆跳到下方小平台；不生成反向边。",
+      "tags": ["drop", "one_way", "cross_checked"]
+    },
+    {
+      "id": "platform-to-bolt",
+      "from": "gransax_platform",
+      "to": "item_bolt_of_gransax",
+      "mode": "跳上巨龙石矛",
+      "cost": 2,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "item_pickup_approach",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+      "note": "沿巨龙石矛向上到达目标物品。",
+      "tags": ["jump", "one_way", "cross_checked"]
+    }
+  ],
+  "relations": [
+    {
+      "id": "bolt-located-in-leyndell",
+      "from": "item_bolt_of_gransax",
+      "to": "grace_avenue_balcony",
+      "type": "located_in",
+      "routeable": false,
+      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084"]
+    }
+  ],
+  "coverage": {
+    "scope": "P0 vertical slice",
+    "formalNodeCount": 9,
+    "formalRouteEdgeCount": 7,
+    "semanticRelationCount": 1,
+    "originalGameCoordinates": false,
+    "localGameVerified": false,
+    "demoDataIncluded": false
+  }
+}

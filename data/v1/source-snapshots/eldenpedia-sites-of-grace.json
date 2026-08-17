@@ -1,0 +1,51 @@
+{
+  "snapshot_id": "eldenpedia-sites-of-grace-r83774",
+  "source_id": "eldenpedia",
+  "snapshot_kind": "normalized_source_extract",
+  "source_url": "https://eldenring.wiki.gg/wiki/Sites_of_grace",
+  "api_url": "https://eldenring.wiki.gg/api.php?action=query&prop=revisions&rvprop=ids%7Ctimestamp&format=json&titles=Sites%20of%20Grace",
+  "page_id": 12089,
+  "revision_id": 83774,
+  "revision_timestamp": "2025-05-03T03:46:26Z",
+  "license": "CC BY-SA 4.0 for page text unless otherwise noted",
+  "captured_on": "2026-08-17",
+  "raw_response_retained": false,
+  "extracted_records": [
+    {
+      "canonical_id": "grace_avenue_balcony",
+      "name": "Avenue Balcony",
+      "name_zh": "大道旁露台",
+      "region": "Leyndell, Royal Capital",
+      "world_epoch": "royal_capital_pre_maliketh",
+      "record_type": "site_of_grace"
+    },
+    {
+      "canonical_id": "grace_erdtree_sanctuary",
+      "name": "Erdtree Sanctuary",
+      "name_zh": "黄金树大教堂",
+      "region": "Leyndell, Royal Capital",
+      "world_epoch": "royal_capital_pre_maliketh",
+      "record_type": "site_of_grace"
+    },
+    {
+      "canonical_id": "grace_leyndell_capital_of_ash",
+      "name": "Leyndell, Capital of Ash",
+      "name_zh": "灰烬王城",
+      "region": "Leyndell, Ashen Capital",
+      "world_epoch": "ashen_capital_post_maliketh",
+      "record_type": "site_of_grace"
+    },
+    {
+      "canonical_id": "grace_avenue_balcony_ashen",
+      "name": "East Capital Rampart / Avenue Balcony state variant",
+      "name_zh": "灰烬王城对应王城赐福变体",
+      "region": "Leyndell, Ashen Capital",
+      "world_epoch": "ashen_capital_post_maliketh",
+      "record_type": "state_variant"
+    }
+  ],
+  "notes": [
+    "This snapshot records names, region and world-epoch facts only.",
+    "It does not claim original game coordinates or prove dungeon traversal geometry."
+  ]
+}
