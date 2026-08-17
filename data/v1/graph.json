@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.24-online-multiplane",
+    "version": "1.0.25-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -36,7 +36,8 @@
       "base-liurnia-precipice-altus-evidence-20260817",
       "base-gelmir-optional-branches-evidence-20260817",
       "base-caelid-aeonia-sellia-evidence-20260817",
-      "base-dragonbarrow-divine-tower-evidence-20260817"
+      "base-dragonbarrow-divine-tower-evidence-20260817",
+      "base-limgrave-divine-tower-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -589,6 +590,9 @@
     { "id": "eldenpedia-dragonbarrow", "label": "Eldenpedia / Greyoll's Dragonbarrow", "url": "https://eldenring.wiki.gg/wiki/Dragonbarrow", "grade": "A" },
     { "id": "pcgamer-caelid-divine-tower", "label": "PC Gamer / Divine Tower of Caelid route", "url": "https://www.pcgamer.com/elden-ring-caelid-divine-tower/", "grade": "B" },
     { "id": "game8-divine-tower-caelid-cross-check", "label": "Game8 / Divine Tower of Caelid walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369953", "grade": "B" },
+    { "id": "eldenpedia-divine-tower-limgrave", "label": "Eldenpedia / Divine Tower of Limgrave", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_Limgrave", "grade": "A" },
+    { "id": "game8-divine-tower-limgrave-cross-check", "label": "Game8 / Divine Tower of Limgrave route", "url": "https://game8.co/games/Elden-Ring/archives/369186", "grade": "B" },
+    { "id": "powerpyx-where-great-runes-cross-check", "label": "PowerPyx / Great Rune activation routes", "url": "https://www.powerpyx.com/elden-ring-where-to-bring-great-runes/", "grade": "B" },
     { "id": "eldenpedia-mt-gelmir", "label": "Eldenpedia / Mt. Gelmir", "url": "https://eldenring.wiki.gg/wiki/Mt._Gelmir", "grade": "A" },
     { "id": "eldenpedia-rykard", "label": "Eldenpedia / Rykard, Lord of Blasphemy", "url": "https://eldenring.wiki.gg/wiki/Rykard,_Lord_of_Blasphemy", "grade": "A" },
     { "id": "game8-altus-gelmir-cross-check", "label": "Game8 / Altus Plateau and Mt. Gelmir route", "url": "https://game8.co/games/Elden-Ring/archives/379636", "grade": "B" },
@@ -4899,6 +4903,36 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-divine-tower-caelid-cross-check", "pcgamer-caelid-divine-tower"],
       "description": "Optional basement Godskin Apostle boss gate."
+    },
+    {
+      "id": "grace_limgrave_stormhill_limgrave_tower_bridge",
+      "label": "Limgrave Tower Bridge",
+      "kind": "junction",
+      "layer": "surface",
+      "region": "Stormveil Castle",
+      "floor": "Eastern bridge approach",
+      "worldEpoch": "base_surface",
+      "x": 560,
+      "y": 820,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "eldenpedia-sites-of-grace-r83774", "game8-divine-tower-limgrave-cross-check"],
+      "description": "Stormveil-side grace before the broken bridge and sending gate to the Divine Tower."
+    },
+    {
+      "id": "grace_limgrave_stormhill_divine_tower_of_limgrave",
+      "label": "Divine Tower of Limgrave",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Divine Tower of Limgrave",
+      "floor": "Tower interior",
+      "worldEpoch": "base_surface",
+      "x": 700,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "eldenpedia-sites-of-grace-r83774", "game8-divine-tower-limgrave-cross-check"],
+      "description": "Tower grace reached through the broken bridge sending gate and internal lift."
     }
   ],
   "edges": [
@@ -9274,6 +9308,36 @@
       "verificationState": "online_cross_checked",
       "note": "Post-boss route returns to the center tower layer; the tower's top route is not conflated with the basement boss.",
       "tags": ["boss", "conditional", "legacy", "cross_checked"]
+    },
+    {
+      "id": "stormveil-to-limgrave-tower-bridge",
+      "from": "grace_stormveil_liftside_chamber",
+      "to": "grace_limgrave_stormhill_limgrave_tower_bridge",
+      "mode": "Stormveil courtyard to Limgrave Tower Bridge",
+      "cost": 10,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "stormveil_legacy_to_bridge",
+      "requires": ["godrick_defeated"],
+      "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "game8-divine-tower-limgrave-cross-check", "powerpyx-where-great-runes-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The eastern courtyard route leaves Stormveil for the bridge grace after the Godrick gate; this branch is not merged with the Lake-Facing Cliffs exit.",
+      "tags": ["walk", "vertical", "conditional", "legacy", "cross_checked"]
+    },
+    {
+      "id": "limgrave-tower-bridge-to-divine-tower",
+      "from": "grace_limgrave_stormhill_limgrave_tower_bridge",
+      "to": "grace_limgrave_stormhill_divine_tower_of_limgrave",
+      "mode": "Limgrave Tower Bridge sending gate",
+      "cost": 5,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "sending_gate_and_tower_lift",
+      "requires": ["godrick_defeated"],
+      "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "game8-divine-tower-limgrave-cross-check", "powerpyx-where-great-runes-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Three bridge golems guard the sending gate; the destination is the tower interior, not a walkable continuation across the broken bridge.",
+      "tags": ["teleport", "lift", "vertical", "conditional", "one_way", "cross_checked"]
     }
   ],
   "relations": [
@@ -9296,8 +9360,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 287,
-    "formalRouteEdgeCount": 292,
+    "formalNodeCount": 289,
+    "formalRouteEdgeCount": 294,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

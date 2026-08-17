@@ -1,0 +1,32 @@
+{
+  "snapshot_id": "base-limgrave-divine-tower-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Stormveil Liftside Chamber, Limgrave Tower Bridge, broken bridge sending gate and Divine Tower of Limgrave",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "stormveil-to-tower-bridge",
+      "from": "Stormveil Liftside Chamber",
+      "to": "Limgrave Tower Bridge",
+      "transition_type": "legacy_to_bridge_route",
+      "direction": "forward",
+      "claim": "The Stormveil courtyard route reaches the Limgrave Tower Bridge grace; the bridge route is distinct from the northern Lake-Facing Cliffs exit.",
+      "sources": ["eldenpedia-divine-tower-limgrave", "game8-divine-tower-limgrave-cross-check", "powerpyx-where-great-runes-cross-check"]
+    },
+    {
+      "id": "tower-bridge-sending-gate",
+      "from": "Limgrave Tower Bridge",
+      "to": "Divine Tower of Limgrave",
+      "transition_type": "broken_bridge_sending_gate_and_lift",
+      "direction": "forward",
+      "claim": "The bridge is broken; after the golems, a sending gate transports the player to the tower base, where an internal lift reaches the Divine Tower grace. The tower door requires Godrick's Great Rune state.",
+      "sources": ["eldenpedia-divine-tower-limgrave", "game8-divine-tower-limgrave-cross-check", "powerpyx-where-great-runes-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-divine-tower-limgrave", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_Limgrave" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-divine-tower-limgrave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369186" },
+    { "id": "powerpyx-where-great-runes-cross-check", "url": "https://www.powerpyx.com/elden-ring-where-to-bring-great-runes/" }
+  ]
+}
