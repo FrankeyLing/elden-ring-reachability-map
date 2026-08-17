@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.59-online-multiplane",
+    "version": "1.0.60-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -72,7 +72,8 @@
       "base-weeping-peninsula-morne-tunnel-evidence-20260818",
       "base-limgrave-fort-haight-evidence-20260818",
       "dlc-darklight-forsaken-graveyard-refinement-20260818",
-      "base-limgrave-starting-tutorial-evidence-20260818"
+      "base-limgrave-starting-tutorial-evidence-20260818",
+      "base-limgrave-chapel-four-belfries-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -878,6 +879,16 @@
       "id": "soldier_of_godrick_cave_knowledge_defeated",
       "label": "Soldier of Godrick defeated",
       "hint": "The optional Cave of Knowledge tutorial boss has been cleared and the return ledge is available."
+    },
+    {
+      "id": "grafted_scion_chapel_defeated",
+      "label": "Chapel of Anticipation Grafted Scion defeated",
+      "hint": "The opening Grafted Scion has been defeated; its reward and the later return route are available."
+    },
+    {
+      "id": "four_belfries_anticipation_waygate_unlocked",
+      "label": "Precipice of Anticipation waygate unlocked",
+      "hint": "An Imbued Sword Key has been used on the Four Belfries waygate marked Precipice of Anticipation."
     }
   ],
   "sourceEvidence": [
@@ -1287,6 +1298,11 @@
     ,{ "id": "bandai-cave-of-knowledge-cross-check", "label": "Bandai Namco - Cave of Knowledge early-game tips", "url": "https://en.bandainamcoent.eu/elden-ring/news/elden-ring-early-game-tips", "grade": "A" }
     ,{ "id": "neoseeker-stranded-graveyard-cross-check", "label": "Neoseeker - Stranded Graveyard walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Stranded_Graveyard", "grade": "B" }
     ,{ "id": "game8-stranded-graveyard-cross-check", "label": "Game8 - Stranded Graveyard walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369403", "grade": "B" }
+    ,{ "id": "eldenpedia-chapel-of-anticipation", "label": "Eldenpedia - Chapel of Anticipation", "url": "https://eldenring.wiki.gg/wiki/Chapel_of_Anticipation", "grade": "A" }
+    ,{ "id": "eldenpedia-grafted-scion-chapel", "label": "Eldenpedia - Grafted Scion opening encounter", "url": "https://eldenring.wiki.gg/wiki/Grafted_Scion", "grade": "A" }
+    ,{ "id": "eldenpedia-four-belfries", "label": "Eldenpedia - The Four Belfries", "url": "https://eldenring.wiki.gg/wiki/The_Four_Belfries", "grade": "A" }
+    ,{ "id": "game8-four-belfries-chapel-cross-check", "label": "Game8 - Four Belfries Chapel waygate", "url": "https://game8.co/games/Elden-Ring/archives/369646", "grade": "B" }
+    ,{ "id": "game8-nepheli-chapel-cross-check", "label": "Game8 - Nepheli / Chapel of Anticipation return", "url": "https://game8.co/games/Elden-Ring/archives/369268", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8559,6 +8575,38 @@
     {
       "id": "stranded_graveyard_surface_lift", "label": "Stranded Graveyard surface lift", "kind": "lift", "layer": "surface", "region": "Limgrave", "floor": "Tutorial exit lift shaft", "worldEpoch": "limgrave_surface", "x": 320, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "description": "Lift beyond the Stranded Graveyard doors; it bypasses the optional tutorial and reaches the overworld starting grace."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_foot_of_the_four_belfries", "label": "Foot of the Four Belfries", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Four Belfries hill foot", "worldEpoch": "liurnia_surface", "x": 500, "y": 660, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-four-belfries", "eldenpedia-sites-of-grace-r83774", "game8-four-belfries-chapel-cross-check"], "description": "Grace at the foot of the western Liurnia hill; the path climbs to The Four Belfries."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_the_four_belfries", "label": "The Four Belfries", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Four Belfries hilltop", "worldEpoch": "liurnia_surface", "x": 470, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-four-belfries", "eldenpedia-sites-of-grace-r83774", "game8-four-belfries-chapel-cross-check"], "description": "Hilltop grace beside three Sending Gates and the Imbued Sword Key chest."
+    },
+    {
+      "id": "chapel_of_anticipation_spawn", "label": "Chapel of Anticipation (opening chapel)", "kind": "junction", "layer": "legacy", "region": "Limgrave", "floor": "Opening chapel", "worldEpoch": "limgrave_surface", "x": 90, "y": 70, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "eldenpedia-game-start-cave-knowledge"], "description": "Opening island chapel and starting plane before the Grafted Scion encounter."
+    },
+    {
+      "id": "grafted_scion_chapel_gate", "label": "Grafted Scion (Chapel of Anticipation)", "kind": "boss", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Opening courtyard", "worldEpoch": "limgrave_surface", "x": 150, "y": 70, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-grafted-scion-chapel", "eldenpedia-chapel-of-anticipation"], "description": "Opening boss gate; the first-run route exits by the death/cutscene or the nearby fatal fall, while a later visit can clear the boss."
+    },
+    {
+      "id": "chapel_of_anticipation_post_scion_state", "label": "Chapel of Anticipation (post-Scion state)", "kind": "state", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Courtyard beyond Grafted Scion", "worldEpoch": "limgrave_surface", "x": 205, "y": 70, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-grafted-scion-chapel", "eldenpedia-chapel-of-anticipation"], "description": "Cleared opening courtyard with the Grafted Scion rewards available before the fatal drop/return transition."
+    },
+    {
+      "id": "four_belfries_anticipation_waygate", "label": "Precipice of Anticipation Sending Gate", "kind": "teleport", "layer": "surface", "region": "The Four Belfries", "floor": "Eastern Sending Gate", "worldEpoch": "liurnia_surface", "x": 430, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-four-belfries", "game8-four-belfries-chapel-cross-check", "game8-nepheli-chapel-cross-check"], "description": "One-way Sending Gate labelled Precipice of Anticipation; it consumes an Imbued Sword Key when first unlocked."
+    },
+    {
+      "id": "chapel_of_anticipation_return_state", "label": "Chapel of Anticipation (return visit)", "kind": "state", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Return island approach", "worldEpoch": "limgrave_surface", "x": 150, "y": 40, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "game8-four-belfries-chapel-cross-check", "game8-nepheli-chapel-cross-check"], "description": "Return arrival from the Four Belfries; the side chapel door is available for Stormhawk rewards. The plane has no ordinary walkable mainland bridge."
+    },
+    {
+      "id": "chapel_of_anticipation_side_door_rewards", "label": "Chapel of Anticipation side-door rewards", "kind": "reward", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Side chapel / rooftop", "worldEpoch": "limgrave_surface", "x": 110, "y": 35, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "game8-nepheli-chapel-cross-check"], "description": "Return-only side door route for Stormhawk King and Stormhawk Deenh; it is separate from the opening boss arena."
     }
   ],
   "edges": [
@@ -15991,6 +16039,36 @@
     },
     {
       "id": "stranded-surface-lift-to-first-step", "from": "stranded_graveyard_surface_lift", "to": "grace_first_step", "mode": "Stranded Graveyard lift to The First Step", "cost": 5, "risk": 4, "direction": "forward", "transitionType": "tutorial_surface_exit", "requires": [], "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the lift out of the starting graveyard to the first overworld grace at The First Step.", "tags": ["lift", "surface", "cross_checked"]
+    },
+    {
+      "id": "northern-liurnia-to-four-belfries-foot", "from": "grace_liurnia_of_the_lakes_main_northern_liurnia_lake_shore", "to": "grace_liurnia_of_the_lakes_main_foot_of_the_four_belfries", "mode": "Northern Liurnia to Four Belfries hill foot", "cost": 9, "risk": 5, "direction": "forward", "transitionType": "liurnia_surface_hill_approach", "requires": [], "sourceEvidence": ["eldenpedia-four-belfries", "game8-four-belfries-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the northern Liurnia lakebed and approach the western hill below The Four Belfries; the exact terrain coordinates remain abstract in V1.", "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "four-belfries-foot-to-grace", "from": "grace_liurnia_of_the_lakes_main_foot_of_the_four_belfries", "to": "grace_liurnia_of_the_lakes_main_the_four_belfries", "mode": "Four Belfries hill ascent", "cost": 5, "risk": 4, "direction": "forward", "transitionType": "steep_hill_ascent", "requires": [], "sourceEvidence": ["eldenpedia-four-belfries", "game8-four-belfries-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Take the steep path from the Foot of the Four Belfries grace to the hilltop grace and Sending Gates.", "tags": ["walk", "vertical", "surface", "cross_checked"]
+    },
+    {
+      "id": "four-belfries-grace-to-anticipation-waygate", "from": "grace_liurnia_of_the_lakes_main_the_four_belfries", "to": "four_belfries_anticipation_waygate", "mode": "The Four Belfries to Precipice of Anticipation gate", "cost": 2, "risk": 2, "direction": "forward", "transitionType": "sending_gate_approach", "requires": [], "sourceEvidence": ["eldenpedia-four-belfries", "game8-four-belfries-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Walk to the Sending Gate whose sign names the Chapel of Anticipation; the gate itself is represented separately from the grace.", "tags": ["walk", "waygate", "surface", "cross_checked"]
+    },
+    {
+      "id": "anticipation-waygate-to-return-chapel", "from": "four_belfries_anticipation_waygate", "to": "chapel_of_anticipation_return_state", "mode": "Precipice of Anticipation one-way teleport", "cost": 1, "risk": 2, "direction": "one_way", "transitionType": "waygate", "requires": ["four_belfries_anticipation_waygate_unlocked"], "sourceEvidence": ["eldenpedia-four-belfries", "game8-four-belfries-chapel-cross-check", "game8-nepheli-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Use an Imbued Sword Key to unlock the marked Sending Gate and arrive at the isolated opening island; no reverse walk edge is implied.", "tags": ["teleport", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "return-chapel-to-grafted-scion", "from": "chapel_of_anticipation_return_state", "to": "grafted_scion_chapel_gate", "mode": "Return chapel approach to Grafted Scion", "cost": 4, "risk": 8, "direction": "forward", "transitionType": "isolated_island_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "eldenpedia-grafted-scion-chapel", "game8-nepheli-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the return island and reach the same courtyard boss gate; the later visit is distinct from the opening spawn state.", "tags": ["walk", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "return-chapel-to-side-door-rewards", "from": "chapel_of_anticipation_return_state", "to": "chapel_of_anticipation_side_door_rewards", "mode": "Return chapel side-door route", "cost": 3, "risk": 4, "direction": "forward", "transitionType": "return_only_reward_branch", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "game8-nepheli-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Use the door that is available on a return visit to collect Stormhawk King and Stormhawk Deenh.", "tags": ["walk", "reward", "optional", "cross_checked"]
+    },
+    {
+      "id": "chapel-opening-to-grafted-scion", "from": "chapel_of_anticipation_spawn", "to": "grafted_scion_chapel_gate", "mode": "Opening chapel bridge to Grafted Scion", "cost": 5, "risk": 9, "direction": "forward", "transitionType": "opening_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "eldenpedia-grafted-scion-chapel", "eldenpedia-game-start-cave-knowledge"], "verificationState": "online_cross_checked", "note": "Leave the opening chapel, cross the short bridge and enter the courtyard where the Grafted Scion attacks.", "tags": ["walk", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "grafted-scion-to-stranded-graveyard", "from": "grafted_scion_chapel_gate", "to": "grace_limgrave_stranded_graveyard_stranded_graveyard", "mode": "Opening death/fall cutscene to Stranded Graveyard", "cost": 1, "risk": 10, "direction": "one_way", "transitionType": "opening_death_cutscene", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "eldenpedia-grafted-scion-chapel", "eldenpedia-game-start-cave-knowledge"], "verificationState": "online_cross_checked", "note": "The intended opening escape is death to the Grafted Scion or the nearby fatal fall, followed by the transition to Stranded Graveyard.", "tags": ["death", "one_way", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "grafted-scion-to-post-state", "from": "grafted_scion_chapel_gate", "to": "chapel_of_anticipation_post_scion_state", "mode": "Grafted Scion completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["grafted_scion_chapel_defeated"], "sourceEvidence": ["eldenpedia-grafted-scion-chapel", "eldenpedia-chapel-of-anticipation"], "verificationState": "online_cross_checked", "note": "Records the optional opening-boss clear and its weapon/shield reward before the player leaves the island.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "post-scion-to-stranded-graveyard", "from": "chapel_of_anticipation_post_scion_state", "to": "grace_limgrave_stranded_graveyard_stranded_graveyard", "mode": "Post-Scion fatal drop to Stranded Graveyard", "cost": 1, "risk": 10, "direction": "one_way", "transitionType": "opening_fall_transition", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "eldenpedia-grafted-scion-chapel"], "verificationState": "online_cross_checked", "note": "Even after defeating the opening boss, the nearby cliff/fall transition leaves the isolated starting island for Stranded Graveyard.", "tags": ["one_way", "vertical", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -16013,8 +16091,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 627,
-    "formalRouteEdgeCount": 655,
+    "formalNodeCount": 635,
+    "formalRouteEdgeCount": 665,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -1,0 +1,27 @@
+{
+  "snapshot_id": "base-limgrave-chapel-four-belfries-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "opening-chapel-to-stranded-graveyard",
+      "claim": "The game begins in the Chapel of Anticipation; the Grafted Scion encounter is intended to end in death or a fatal fall, followed by the cutscene transition to Stranded Graveyard.",
+      "sources": [
+        { "source_id": "eldenpedia-chapel-of-anticipation", "url": "https://eldenring.wiki.gg/wiki/Chapel_of_Anticipation" },
+        { "source_id": "eldenpedia-grafted-scion-chapel", "url": "https://eldenring.wiki.gg/wiki/Grafted_Scion" },
+        { "source_id": "eldenpedia-game-start-cave-knowledge", "url": "https://eldenring.wiki.gg/wiki/Walkthrough/Game_Start" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "four-belfries-waygate-to-return-chapel",
+      "claim": "The Four Belfries is a western Liurnia hilltop with a Sending Gate marked Precipice of Anticipation; using an Imbued Sword Key sends the player back to the Chapel of Anticipation, where the side door and Stormhawk rewards are available on the return visit.",
+      "sources": [
+        { "source_id": "eldenpedia-four-belfries", "url": "https://eldenring.wiki.gg/wiki/The_Four_Belfries" },
+        { "source_id": "game8-four-belfries-chapel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369646" },
+        { "source_id": "game8-nepheli-chapel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369268" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
