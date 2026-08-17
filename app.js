@@ -369,7 +369,7 @@ function renderGraph() {
   renderNodes();
   const coverage = state.onlineIndex?.manifest?.coverage;
  const onlineStats = coverage
-    ? ` · 在线坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.namedMapPointRecords} 地图点 / ${coverage.tileRegionRecords} 地图层`
+    ? ` · 在线坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.namedMapPointRecords} 地图点 / ${coverage.itemPlacementRecords} 物品 / ${coverage.tileRegionRecords} 地图层`
    : "";
   els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段${onlineStats} · ${state.data.meta.verificationLabel || "V1"}`;
 }

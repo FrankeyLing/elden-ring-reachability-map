@@ -9,8 +9,10 @@ conversions into traversal edges.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
+import zlib
 from pathlib import Path
 
 
@@ -41,12 +43,16 @@ def audit(source_dir: Path | None = None) -> dict:
     for artifact in artifacts:
         path = ROOT / artifact["path"]
         payload = load(path)
-        records = payload["records"]
-        if len(records) != artifact["records"]:
-            raise ValueError(f"record count mismatch: {artifact['path']}")
+        if payload.get("encoding") == "zlib+base64":
+            if not payload.get("chunk") or payload.get("part") != artifact["chunk"]:
+                raise ValueError(f"compressed chunk metadata mismatch: {artifact['path']}")
+        else:
+            records = payload["records"]
+            if len(records) != artifact["records"]:
+                raise ValueError(f"record count mismatch: {artifact['path']}")
         if payload["source"]["commit"] != source["commit"]:
             raise ValueError(f"commit mismatch: {artifact['path']}")
-        artifact_counts[artifact["path"]] = len(records)
+        artifact_counts[artifact["path"]] = artifact["records"]
         artifact_sources[artifact["path"]] = payload["source"]
 
     grace_path = next(path for path in artifact_counts if "grace-positions" in path)
@@ -55,6 +61,7 @@ def audit(source_dir: Path | None = None) -> dict:
     base_conversion_path = next(path for path in artifact_counts if "conversions-base" in path)
     dlc_conversion_path = next(path for path in artifact_counts if "conversions-dlc" in path)
     map_point_paths = [path for path in artifact_counts if "map-points-part" in path]
+    item_paths = [path for path in artifact_counts if "item-index-part" in path]
 
     grace = load(ROOT / grace_path)
     bosses = load(ROOT / boss_path)
@@ -66,6 +73,17 @@ def audit(source_dir: Path | None = None) -> dict:
     map_point_records = []
     for path in sorted(map_point_paths):
         map_point_records.extend(load(ROOT / path)["records"])
+    item_payloads = sorted(
+        (load(ROOT / path) for path in item_paths),
+        key=lambda payload: payload["part"],
+    )
+    if not item_payloads or [payload["part"] for payload in item_payloads] != list(range(1, len(item_payloads) + 1)):
+        raise ValueError("item index chunks are incomplete or out of order")
+    item_records = json.loads(
+        zlib.decompress(
+            base64.b64decode("".join(payload["chunk"] for payload in item_payloads))
+        ).decode("utf-8")
+    )
 
     tile_ids = [record[0] for record in tile_records]
     if len(tile_ids) != len(set(tile_ids)):
@@ -100,6 +118,8 @@ def audit(source_dir: Path | None = None) -> dict:
             "named_map_point_without_formal_candidate": sum(
                 not candidates for candidates in map_point_formal_candidates
             ),
+            "item_placement_records": len(item_records),
+            "item_index_chunks": len(item_payloads),
             "tile_region_records": len(tile_records),
             "legacy_conversion_records": len(base_conversions),
             "dlc_legacy_conversion_records": len(dlc_conversions),

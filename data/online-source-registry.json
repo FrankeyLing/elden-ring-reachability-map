@@ -41,11 +41,11 @@
       "url": "https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL",
       "access": "fixed Git commit and repository data files",
       "license": "MIT-style with bundled third-party notices",
-      "v1_role": ["online_game_coordinates", "named_map_points", "poi_positions", "map_layer_index", "map_conversion_evidence", "coverage_scale"],
+      "v1_role": ["online_game_coordinates", "named_map_points", "item_placements", "poi_positions", "map_layer_index", "map_conversion_evidence", "coverage_scale"],
       "import_status": "direct_fixed_git_json_snapshot",
       "revision": "324a895ba51d6091534578c2ce194d0c6720edc2",
       "snapshot_manifest": "data/v1/source-snapshots/mapforgoblins-online-index-20260818.json",
-      "allowed_files": ["grace_position_index.json", "boss_list.json", "WorldMapPointParam.json", "PlaceName_engus.json", "tile_region_map.json", "WorldMapLegacyConvParam.json", "WorldMapLegacyConvParam_dlc.json"],
+      "allowed_files": ["grace_position_index.json", "boss_list.json", "WorldMapPointParam.json", "PlaceName_engus.json", "items_database.json", "tile_region_map.json", "WorldMapLegacyConvParam.json", "WorldMapLegacyConvParam_dlc.json"],
       "exclude": ["DLL execution", "runtime injection", "overlay", "memory-derived state", "game assets without separate rights", "automatic promotion of map conversions to traversal edges"],
       "freshness": "fixed commit and vanilla+DLC JSON snapshot"
     },

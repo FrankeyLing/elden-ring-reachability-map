@@ -55,6 +55,186 @@
       "path": "data/v1/source-snapshots/mapforgoblins-map-points-part3-20260818.json",
       "role": "named online map-point coordinate evidence, part 3",
       "records": 187
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part1-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 1/30",
+      "records": 31144,
+      "chunk": 1
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part2-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 2/30",
+      "records": 31144,
+      "chunk": 2
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part3-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 3/30",
+      "records": 31144,
+      "chunk": 3
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part4-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 4/30",
+      "records": 31144,
+      "chunk": 4
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part5-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 5/30",
+      "records": 31144,
+      "chunk": 5
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part6-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 6/30",
+      "records": 31144,
+      "chunk": 6
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part7-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 7/30",
+      "records": 31144,
+      "chunk": 7
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part8-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 8/30",
+      "records": 31144,
+      "chunk": 8
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part9-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 9/30",
+      "records": 31144,
+      "chunk": 9
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part10-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 10/30",
+      "records": 31144,
+      "chunk": 10
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part11-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 11/30",
+      "records": 31144,
+      "chunk": 11
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part12-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 12/30",
+      "records": 31144,
+      "chunk": 12
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part13-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 13/30",
+      "records": 31144,
+      "chunk": 13
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part14-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 14/30",
+      "records": 31144,
+      "chunk": 14
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part15-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 15/30",
+      "records": 31144,
+      "chunk": 15
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part16-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 16/30",
+      "records": 31144,
+      "chunk": 16
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part17-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 17/30",
+      "records": 31144,
+      "chunk": 17
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part18-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 18/30",
+      "records": 31144,
+      "chunk": 18
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part19-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 19/30",
+      "records": 31144,
+      "chunk": 19
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part20-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 20/30",
+      "records": 31144,
+      "chunk": 20
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part21-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 21/30",
+      "records": 31144,
+      "chunk": 21
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part22-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 22/30",
+      "records": 31144,
+      "chunk": 22
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part23-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 23/30",
+      "records": 31144,
+      "chunk": 23
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part24-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 24/30",
+      "records": 31144,
+      "chunk": 24
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part25-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 25/30",
+      "records": 31144,
+      "chunk": 25
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part26-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 26/30",
+      "records": 31144,
+      "chunk": 26
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part27-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 27/30",
+      "records": 31144,
+      "chunk": 27
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part28-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 28/30",
+      "records": 31144,
+      "chunk": 28
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part29-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 29/30",
+      "records": 31144,
+      "chunk": 29
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-item-index-part30-20260818.json",
+      "role": "compressed online item/loot placement index, chunk 30/30",
+      "records": 31144,
+      "chunk": 30
     }
   ],
   "coverage": {
@@ -63,6 +243,8 @@
     "bossRecords": 215,
     "namedMapPointRecords": 563,
     "namedMapPointUniqueFormalCandidates": 157,
+    "itemPlacementRecords": 31144,
+    "itemIndexChunks": 30,
     "tileRegionRecords": 806,
     "legacyConversionRecords": 323,
     "dlcLegacyConversionRecords": 39
@@ -73,6 +255,7 @@
     "graceNameBinding": "do not pair grace array order with names; the fixed position index has no grace names",
     "bossNameBinding": "formalCandidates are review hints only; ambiguous and missing candidates remain unresolved",
     "mapPointNameBinding": "names are cleaned from the fixed WorldMapPointParam and PlaceName_engus files; formalCandidates are review hints only",
+    "itemUse": "物品和掉落记录仅通过在线查询接口提供坐标证据，不自动生成寻路节点或路线边",
     "conversionUse": "coordinate conversion is map-layer evidence, not proof of a walkable, one-way, elevator, coffin, portal, or boss-gated connection"
   },
   "safetyBoundary": {
