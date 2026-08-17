@@ -1,0 +1,61 @@
+{
+  "snapshot_id": "base-liurnia-caria-manor-ranni-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Northern Liurnia Lake Shore, Road to the Manor, Caria Manor floors, Royal Knight Loretta, Three Sisters, Ranni's Rise and Renna's Rise waygate",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "caria-manor-progression-order",
+      "from": "Northern Liurnia Lake Shore",
+      "to": "Ranni's Rise",
+      "transition_type": "surface_to_legacy_to_surface",
+      "direction": "forward",
+      "claim": "The documented progression order is Northern Liurnia Lake Shore, Road to the Manor, Main Caria Manor Gate, Manor Lower Level, Manor Upper Level, Royal Knight Loretta, Royal Moongazing Grounds and Ranni's Rise.",
+      "sources": ["eldenpedia-caria-manor", "eldenpedia-sites-of-grace-r83774", "powerpyx-caria-manor-cross-check"]
+    },
+    {
+      "id": "caria-internal-floors",
+      "from": "Main Caria Manor Gate",
+      "to": "Royal Moongazing Grounds",
+      "transition_type": "legacy_internal_route",
+      "direction": "forward",
+      "claim": "The manor courtyard leads to Manor Lower Level, stone walkways and a lift lead to Manor Upper Level, and the upper stairs lead to the Loretta boss room; the post-boss pool contains the Royal Moongazing Grounds grace.",
+      "sources": ["eldenpedia-caria-manor", "powerpyx-caria-manor-cross-check"]
+    },
+    {
+      "id": "three-sisters-exit",
+      "from": "Royal Moongazing Grounds",
+      "to": "Ranni's Rise",
+      "transition_type": "legacy_to_surface_route",
+      "direction": "forward",
+      "claim": "After Loretta, the north door from the Royal Moongazing Grounds opens into Three Sisters; Ranni's Rise is the middle tower and contains the next grace.",
+      "sources": ["eldenpedia-three-sisters", "powerpyx-caria-manor-cross-check"]
+    },
+    {
+      "id": "ranni-quest-waygate",
+      "from": "Ranni's Rise",
+      "to": "Ainsel River Main",
+      "transition_type": "one_way_waygate",
+      "direction": "forward",
+      "claim": "Ranni quest progression opens Renna's Rise; its sending gate teleports to Ainsel River Main, so the route is modeled as an explicit approach edge plus a one-way teleport edge rather than a walkable shortcut.",
+      "sources": ["eldenpedia-three-sisters", "gamespot-ainsel-cross-check", "game8-ranni-cross-check"]
+    },
+    {
+      "id": "ranni-chamber-state",
+      "from": "Ranni's Rise",
+      "to": "Ranni's Chamber",
+      "transition_type": "quest_state_room",
+      "direction": "forward",
+      "claim": "Ranni's upper chamber is modeled as a quest-state destination after the player accepts service and advances the dialogue at Ranni's Rise.",
+      "sources": ["eldenpedia-three-sisters", "eldenpedia-sites-of-grace-r83774", "powerpyx-caria-manor-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-caria-manor", "url": "https://eldenring.wiki.gg/wiki/Caria_Manor" },
+    { "id": "eldenpedia-three-sisters", "url": "https://eldenring.wiki.gg/wiki/Three_Sisters" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "powerpyx-caria-manor-cross-check", "url": "https://www.powerpyx.com/elden-ring-caria-manor-walkthrough/" },
+    { "id": "gamespot-ainsel-cross-check", "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/" },
+    { "id": "game8-ranni-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353051" }
+  ]
+}
