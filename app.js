@@ -530,12 +530,18 @@ function renderOnlinePoiResults(payload, kind) {
     const row = document.createElement("div");
     row.className = "online-poi-result";
     const title = document.createElement("strong");
-    title.textContent = kind === "items"
-      ? (record.items || []).map((item) => item.name || item.id).join(" / ") || "未命名物品"
-      : (record.names || []).join(" / ") || ("地图点 " + record.id);
+    if (kind === "items") {
+      title.textContent = (record.items || []).map((item) => item.name || item.id).join(" / ") || "unnamed item";
+    } else if (kind === "map-points") {
+      title.textContent = (record.names || []).join(" / ") || ("map point " + record.id);
+    } else if (kind === "grace-positions") {
+      title.textContent = "raw grace position #" + record.source_index + " · " + (record.major_region || record.sub_region || "unknown region");
+    } else {
+      title.textContent = record.name || record.model || (record.kind ? record.kind + " entity" : "online record");
+    }
     const detail = document.createElement("span");
     const position = record.position || [];
-    detail.textContent = (record.map || ("ID " + record.id)) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+    detail.textContent = (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
     row.append(title, detail);
     els.onlinePoiResults.appendChild(row);
   });
@@ -551,7 +557,7 @@ async function searchOnlinePoi() {
   const params = new URLSearchParams({ q: query, limit: "20" });
   els.onlinePoiResults.textContent = "正在读取固定在线快照……";
   try {
-    const endpoint = kind === "items" ? "online-items" : "map-points";
+    const endpoint = kind === "map-points" ? "map-points" : kind === "items" ? "online-items" : kind;
     const response = await fetch("/api/catalog/" + endpoint + "?" + params, { cache: "no-store" });
     if (!response.ok) throw new Error("HTTP " + response.status);
     renderOnlinePoiResults(await response.json(), kind);
