@@ -1,0 +1,122 @@
+{
+  "snapshot_id": "dlc-southern-shore-dheo-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Ellac River, Cerulean Coast, Finger Ruins of Rhia, Stone Coffin Fissure, Putrescent Knight, Scaduview Hinterland and Finger Ruins of Dheo",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "castle-front-to-cerulean-coast",
+      "from": "Castle Front",
+      "to": "Cerulean Coast",
+      "transition_type": "river_to_coast_route",
+      "direction": "forward",
+      "claim": "The Southern Shore route leaves Castle Front southeast, passes through Ellac River Cave and Ellac River Downstream, then reaches Cerulean Coast.",
+      "sources": ["eldenpedia-cerulean-coast", "game8-thiollier-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "cerulean-coast-branches",
+      "from": "Cerulean Coast",
+      "to": "Cerulean Coast Cross",
+      "transition_type": "surface_coast_route",
+      "direction": "forward",
+      "claim": "Cerulean Coast contains west, central cross and southern peninsula branches; the central cross is the junction for Finger Ruins of Rhia and the fissure.",
+      "sources": ["eldenpedia-cerulean-coast", "eldenpedia-sites-of-grace-r83774", "game8-cerulean-coast-cross-check"]
+    },
+    {
+      "id": "cerulean-cross-to-rhia",
+      "from": "Cerulean Coast Cross",
+      "to": "Finger Ruins of Rhia",
+      "transition_type": "surface_finger_ruins_branch",
+      "direction": "forward",
+      "claim": "Finger Ruins of Rhia is reached east through the beach from the Cerulean Coast Cross area.",
+      "sources": ["eldenpedia-cerulean-coast", "eldenpedia-finger-rhia", "game8-cerulean-coast-cross-check"]
+    },
+    {
+      "id": "coast-to-fissure",
+      "from": "Cerulean Coast Cross",
+      "to": "The Fissure",
+      "transition_type": "surface_fissure_approach",
+      "direction": "forward",
+      "claim": "The large hole southwest/south of the Cerulean Coast leads to the Stone Coffin Fissure route.",
+      "sources": ["eldenpedia-cerulean-coast", "eldenpedia-stone-coffin-fissure", "game8-stone-coffin-cross-check"]
+    },
+    {
+      "id": "fissure-world-state-gate",
+      "from": "The Fissure",
+      "to": "Stone Coffin Fissure",
+      "transition_type": "world_state_locked_descent",
+      "direction": "forward",
+      "claim": "The Stone Coffin Fissure can be accessed from Cerulean Coast after Miquella's Great Rune has been broken.",
+      "sources": ["eldenpedia-stone-coffin-fissure", "game8-cerulean-coast-cross-check", "game8-stone-coffin-cross-check"]
+    },
+    {
+      "id": "stone-coffin-internal-route",
+      "from": "Stone Coffin Fissure",
+      "to": "Fissure Depths",
+      "transition_type": "underground_vertical_route",
+      "direction": "forward",
+      "claim": "The fissure contains Stone Coffin Fissure, Fissure Cross, Fissure Waypoint and Fissure Depths, connected by coffin bridges and safe vertical drops.",
+      "sources": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-stone-coffin-cross-check"]
+    },
+    {
+      "id": "fissure-to-putrescent-knight",
+      "from": "Fissure Depths",
+      "to": "Putrescent Knight",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "The Fissure Depths route drops into the Putrescent Knight arena.",
+      "sources": ["eldenpedia-stone-coffin-fissure", "game8-thiollier-cross-check", "neoseeker-stone-coffin-cross-check"]
+    },
+    {
+      "id": "putrescent-to-garden",
+      "from": "Putrescent Knight",
+      "to": "Garden of Deep Purple",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "Garden of Deep Purple is the post-Putrescent Knight destination and Saint Trina area.",
+      "sources": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-thiollier-cross-check"]
+    },
+    {
+      "id": "scaduview-to-hinterland",
+      "from": "Shadow Keep, Back Gate",
+      "to": "Hinterland",
+      "transition_type": "gesture_world_gate",
+      "direction": "forward",
+      "claim": "The Hinterland is entered from the Shadow Keep Back Gate by using the O Mother gesture on the statue.",
+      "sources": ["game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check", "eldenpedia-finger-dheo"]
+    },
+    {
+      "id": "hinterland-to-fingerstone",
+      "from": "Hinterland",
+      "to": "Fingerstone Hill",
+      "transition_type": "scaduview_surface_walk",
+      "direction": "forward",
+      "claim": "The Hinterland route crosses Hinterland Bridge and continues to Fingerstone Hill, the nearest grace to Dheo.",
+      "sources": ["eldenpedia-finger-dheo", "eldenpedia-sites-of-grace-r83774", "eip-finger-dheo-cross-check"]
+    },
+    {
+      "id": "fingerstone-to-dheo",
+      "from": "Fingerstone Hill",
+      "to": "Finger Ruins of Dheo",
+      "transition_type": "finger_ruins_surface_route",
+      "direction": "forward",
+      "claim": "Finger Ruins of Dheo is reached by the road southeast from Hinterland Bridge, with Fingerstone Hill as the nearest grace.",
+      "sources": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-cerulean-coast", "url": "https://eldenring.wiki.gg/wiki/Cerulean_Coast" },
+    { "id": "eldenpedia-stone-coffin-fissure", "url": "https://eldenring.wiki.gg/wiki/Stone_Coffin_Fissure" },
+    { "id": "eldenpedia-finger-rhia", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Rhia" },
+    { "id": "eldenpedia-finger-dheo", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Dheo" },
+    { "id": "game8-cerulean-coast-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459538" },
+    { "id": "game8-stone-coffin-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459836" },
+    { "id": "game8-thiollier-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458688" },
+    { "id": "gamespot-thiollier-cross-check", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-thiollier-st-trina-elden-ring/2900-5501/" },
+    { "id": "neoseeker-stone-coffin-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Stone_Coffin_Fissure" },
+    { "id": "game8-finger-dheo-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460097" },
+    { "id": "eip-finger-dheo-cross-check", "url": "https://eip.gg/elden-ring/guides/finger-ruins-of-dheo/" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+  ]
+}
