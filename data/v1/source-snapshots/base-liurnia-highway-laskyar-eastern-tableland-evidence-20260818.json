@@ -1,0 +1,37 @@
+{
+  "snapshot_id": "base-liurnia-highway-laskyar-eastern-tableland-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "liurnia-lakebed-laskyar-branch",
+      "claim": "Laskyar Ruins is a distinct lakebed grace northwest of Liurnia Lake Shore. It is reached by riding through the lakebed and has its own sending-gate branch to South Raya Lucaria Gate, so it should not be collapsed into Academy Gate Town.",
+      "sources": [
+        { "source_id": "eldenpedia-liurnia-r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_Lake" },
+        { "source_id": "powerpyx-liurnia-cross-check", "url": "https://www.powerpyx.com/elden-ring-liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "neoseeker-liurnia-north-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "liurnia-highway-vertical-chain",
+      "claim": "The east Liurnia highway begins above the lake: Liurnia Lake Shore uses a Spiritspring to reach Liurnia Highway South, the road continues north to Liurnia Highway North, and then continues to Gate Town Bridge. This is a vertical-plus-road chain rather than a single flat lake route.",
+      "sources": [
+        { "source_id": "eldenpedia-liurnia-r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_Lake" },
+        { "source_id": "powerpyx-liurnia-cross-check", "url": "https://www.powerpyx.com/elden-ring-liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "neoseeker-liurnia-north-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "gate-town-eastern-tableland-branch",
+      "claim": "Gate Town Bridge is the north end of the highway and connects onward to the Eastern Liurnia Lake Shore. From the eastern-shore/Ainsel Well side, the route climbs to the separate Eastern Tableland grace near the Church of Vows approach.",
+      "sources": [
+        { "source_id": "eldenpedia-liurnia-r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_Lake" },
+        { "source_id": "powerpyx-liurnia-cross-check", "url": "https://www.powerpyx.com/elden-ring-liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "neoseeker-liurnia-north-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

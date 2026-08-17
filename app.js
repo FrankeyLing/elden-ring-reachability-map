@@ -639,6 +639,10 @@ async function init() {
       ["Margit, the Fell Omen", "margit_fell_omen_gate"],
       ["Margit, the Fell Omen Grace", "grace_limgrave_stormhill_margit_the_fell_omen"],
       ["Liurnia Lake Shore", "grace_liurnia_of_the_lakes_main_liurnia_lake_shore"],
+      ["Laskyar Ruins", "grace_liurnia_of_the_lakes_main_laskyar_ruins"],
+      ["Liurnia Highway South", "grace_liurnia_of_the_lakes_main_liurnia_highway_south"],
+      ["Liurnia Highway North", "grace_liurnia_of_the_lakes_main_liurnia_highway_north"],
+      ["Gate Town Bridge", "grace_liurnia_of_the_lakes_main_gate_town_bridge"],
       ["Academy Gate Town", "grace_liurnia_of_the_lakes_main_academy_gate_town"],
       ["South Raya Lucaria Gate", "grace_liurnia_of_the_lakes_main_south_raya_lucaria_gate"],
       ["Northern Liurnia Lake Shore", "grace_liurnia_of_the_lakes_main_northern_liurnia_lake_shore"],
@@ -653,6 +657,7 @@ async function init() {
       ["Ranni's Chamber", "grace_liurnia_of_the_lakes_main_ranni_s_chamber"],
       ["Gate Town North", "grace_liurnia_of_the_lakes_main_gate_town_north"],
       ["Eastern Liurnia Lake Shore", "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore"],
+      ["Eastern Tableland", "grace_liurnia_of_the_lakes_main_eastern_tableland"],
       ["Study Hall Entrance", "grace_liurnia_of_the_lakes_main_study_hall_entrance"],
       ["Liurnia Tower Bridge", "grace_liurnia_of_the_lakes_main_liurnia_tower_bridge"],
       ["Divine Tower of Liurnia", "grace_liurnia_of_the_lakes_main_divine_tower_of_liurnia"],
@@ -979,6 +984,7 @@ async function init() {
       if (["Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Church of Vows", "Ruined Labyrinth", "Black Knife Catacombs"].includes(record.name)) return;
       if (["Old Altus Tunnel", "Perfumer's Grotto", "Unsightly Catacombs", "Sage's Cave", "Auriza Hero's Grave", "Auriza Side Tomb", "Gelmir Hero's Grave", "Wyndham Catacombs", "Seethewater Cave", "Volcano Cave", "Altus Tunnel", "Sainted Hero's Grave"].includes(record.name)) return;
       if (["Sealed Tunnel", "Divine Tower of West Altus: Gate", "Divine Tower of West Altus"].includes(record.name)) return;
+      if (["Laskyar Ruins", "Liurnia Highway South", "Liurnia Highway North", "Gate Town Bridge", "Eastern Tableland"].includes(record.name)) return;
       if (["Small Private Altar", "Stagefront", "Ancient Ruins, Grand Stairway", "Ravine North", "Temple Town Ruins"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Below the Well", "Deep Siofra Well", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy", "Table of Lost Grace", "Agheel Lake North", "Seaside Ruins", "Church of Dragon Communion", "Summonwater Village Outskirts", "Waypoint Ruins Cellar", "Warmaster's Shack", "Ailing Village Outskirts", "Beside the Crater-Pocked Glade", "Beside the Crater-Pocked  Glade", "Isolated Merchant's Shack", "Tombsward", "Boilprawn Shack", "Folly on the Lake", "Village of the Albinaurics", "Jarburg", "Revenger's Shack", "Slumbering Wolf's Shack", "Frenzied Flame Village Outskirts", "Church of Inhibition", "Ancient Snow Valley Ruins", "Snow Valley Ruins Overlook", "First Church of Marika", "Church of Repose", "Hidden Path to the Haligtree", "Apostate Derelict", "Ordina Liturgical Town", "Capital Rampart", "Hermit Merchant's Shack", "Minor Erdtree Church", "Scaduview Cross", "Finger Birthing Grounds", "Shadow Keep, Black Gate", "Dark Chamber Entrance", "West Rampart", "Scorched Ruins", "Greatbridge, North", "Pillar Path Waypoint"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
