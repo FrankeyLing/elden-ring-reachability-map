@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.55-online-multiplane",
+    "version": "1.0.56-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -68,7 +68,8 @@
       "dlc-ruined-forges-evidence-20260818",
       "base-mountaintops-optional-dungeons-evidence-20260818",
       "dlc-ruined-forge-starfall-past-evidence-20260818",
-      "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818"
+      "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818",
+      "base-weeping-peninsula-morne-tunnel-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -859,6 +860,11 @@
       "id": "fort_reprimand_spirit_spring_unsealed",
       "label": "Fort of Reprimand spirit spring unsealed",
       "hint": "The sealed spirit spring in the northeastern Gravesite Plain poison-pool route has been opened for the rear fort landing."
+    },
+    {
+      "id": "scaly_misbegotten_morne_tunnel_defeated",
+      "label": "Morne Tunnel Scaly Misbegotten defeated",
+      "hint": "The Scaly Misbegotten boss at the bottom of Morne Tunnel has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -1258,6 +1264,9 @@
     ,{ "id": "eldenpedia-fog-rift-fort", "label": "Eldenpedia - Fog Rift Fort", "url": "https://eldenring.wiki.gg/wiki/Fog_Rift_Fort", "grade": "A" }
     ,{ "id": "gameofguides-fog-rift-fort-cross-check", "label": "Game of Guides - Fog Rift Fort walkthrough", "url": "https://video-game-guide-walkthrough.supersoluce.com/solution/elden-ring-shadow-of-the-erdtree-guide-walkthrough/dungeons-and-optional-areas/fog-rift-fort/", "grade": "B" }
     ,{ "id": "eip-garrew-fog-rift-cross-check", "label": "EIP Gaming - Black Knight Garrew", "url": "https://eip.gg/elden-ring/guides/black-knight-garrew-boss/", "grade": "B" }
+    ,{ "id": "eldenpedia-morne-tunnel", "label": "Eldenpedia - Morne Tunnel", "url": "https://eldenring.wiki.gg/wiki/Morne_Tunnel", "grade": "A" }
+    ,{ "id": "pushsquare-morne-tunnel-cross-check", "label": "Push Square - Morne Tunnel walkthrough", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-morne-tunnel", "grade": "B" }
+    ,{ "id": "gamerguides-morne-tunnel-cross-check", "label": "Gamer Guides - Morne Tunnel", "url": "https://www.gamerguides.com/elden-ring/database/locations/weeping-peninsula/morne-tunnel", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8470,6 +8479,22 @@
     {
       "id": "fog_rift_fort_post_boss_state", "label": "Fog Rift Fort (post-boss state)", "kind": "state", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Garrew bridge return state", "worldEpoch": "shadow_realm", "x": 380, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Cleared-state endpoint for Garrew's shield and the upper fort item route."
+    },
+    {
+      "id": "morne_tunnel_surface_entrance", "label": "Morne Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Weeping Peninsula", "floor": "Minor Erdtree eastern ravine", "worldEpoch": "limgrave_surface", "x": 330, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "description": "Mine entrance at the southern end of the rocky chasm east of the Weeping Peninsula Minor Erdtree."
+    },
+    {
+      "id": "grace_limgrave_weeping_peninsula_morne_tunnel", "label": "Morne Tunnel", "kind": "grace", "layer": "legacy", "region": "Morne Tunnel", "floor": "Lift bottom / mine entrance", "worldEpoch": "limgrave_surface", "x": 390, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "description": "The tunnel grace is at the bottom of the entrance lift, before the Misbegotten mine galleries."
+    },
+    {
+      "id": "scaly_misbegotten_morne_tunnel_gate", "label": "Scaly Misbegotten (Morne Tunnel)", "kind": "boss", "layer": "legacy", "region": "Morne Tunnel", "floor": "Tunnel boss chamber", "worldEpoch": "limgrave_surface", "x": 450, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "description": "Scaly Misbegotten at the end of the tunnel; the encounter rewards the Rusted Anchor."
+    },
+    {
+      "id": "morne_tunnel_post_boss_state", "label": "Morne Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Morne Tunnel", "floor": "Scaly Misbegotten chamber return state", "worldEpoch": "limgrave_surface", "x": 510, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check"], "description": "Cleared-state endpoint for the Rusted Anchor and the mine's remaining smithing materials."
     }
   ],
   "edges": [
@@ -15836,6 +15861,18 @@
     },
     {
       "id": "garrew-to-fog-rift-state", "from": "black_knight_garrew_fog_rift_gate", "to": "fog_rift_fort_post_boss_state", "mode": "Fog Rift Fort Garrew completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knight_garrew_defeated"], "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Black Steel Greatshield and upper fort item route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "south-lookout-to-morne-tunnel-mouth", "from": "grace_limgrave_weeping_peninsula_south_of_the_lookout_tower", "to": "morne_tunnel_surface_entrance", "mode": "South of the Lookout Tower to Morne Tunnel", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "ravine_tunnel_entrance", "requires": [], "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the rocky ravine west/east around the Minor Erdtree and descend to the southern mine mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "morne-tunnel-mouth-to-grace", "from": "morne_tunnel_surface_entrance", "to": "grace_limgrave_weeping_peninsula_morne_tunnel", "mode": "Morne Tunnel entrance lift", "cost": 4, "risk": 7, "direction": "forward", "transitionType": "elevator_legacy_entry", "requires": [], "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Take the entrance lift to the mine grace at the bottom; the mine's Misbegotten route begins below the surface layer.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "morne-tunnel-to-scaly-misbegotten", "from": "grace_limgrave_weeping_peninsula_morne_tunnel", "to": "scaly_misbegotten_morne_tunnel_gate", "mode": "Morne Tunnel mine gallery to Scaly Misbegotten", "cost": 12, "risk": 9, "direction": "forward", "transitionType": "tunnel_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Traverse the miner and Misbegotten galleries to the Scaly Misbegotten fog gate.", "tags": ["hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "scaly-misbegotten-to-morne-state", "from": "scaly_misbegotten_morne_tunnel_gate", "to": "morne_tunnel_post_boss_state", "mode": "Morne Tunnel Scaly Misbegotten completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["scaly_misbegotten_morne_tunnel_defeated"], "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Rusted Anchor.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -15858,8 +15895,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 612,
-    "formalRouteEdgeCount": 637,
+    "formalNodeCount": 616,
+    "formalRouteEdgeCount": 641,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

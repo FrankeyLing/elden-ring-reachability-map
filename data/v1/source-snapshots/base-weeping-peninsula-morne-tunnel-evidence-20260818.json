@@ -1,0 +1,27 @@
+{
+  "snapshot_id": "base-weeping-peninsula-morne-tunnel-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "morne-tunnel-location-and-grace",
+      "claim": "Morne Tunnel is in the central Weeping Peninsula near the Minor Erdtree, and its Site of Grace is at the bottom of the entrance lift.",
+      "sources": [
+        { "source_id": "eldenpedia-morne-tunnel", "url": "https://eldenring.wiki.gg/wiki/Morne_Tunnel" },
+        { "source_id": "pushsquare-morne-tunnel-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-morne-tunnel" },
+        { "source_id": "gamerguides-morne-tunnel-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/weeping-peninsula/morne-tunnel" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "morne-tunnel-scaly-misbegotten",
+      "claim": "The tunnel's endpoint is the Scaly Misbegotten boss, whose completion reward is the Rusted Anchor.",
+      "sources": [
+        { "source_id": "eldenpedia-morne-tunnel", "url": "https://eldenring.wiki.gg/wiki/Morne_Tunnel" },
+        { "source_id": "pushsquare-morne-tunnel-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-morne-tunnel" },
+        { "source_id": "gamerguides-morne-tunnel-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/weeping-peninsula/morne-tunnel" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

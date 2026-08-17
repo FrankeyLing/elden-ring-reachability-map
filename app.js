@@ -618,6 +618,7 @@ async function init() {
       ["Castle Morne Lift", "grace_limgrave_weeping_peninsula_castle_morne_lift"],
       ["Behind the Castle", "grace_limgrave_weeping_peninsula_behind_the_castle"],
       ["Beside the Rampart Gaol", "grace_limgrave_weeping_peninsula_beside_the_rampart_gaol"],
+      ["Morne Tunnel", "grace_limgrave_weeping_peninsula_morne_tunnel"],
       ["Leonine Misbegotten", "leonine_misbegotten_gate"],
       ["Morne Moangrave", "grace_limgrave_weeping_peninsula_morne_moangrave"],
       ["Castleward Tunnel", "grace_limgrave_stormhill_castleward_tunnel"],
@@ -923,7 +924,7 @@ async function init() {
       if (["Smoldering Wall", "Astray from Caelid Highway North", "Fort Gael North", "Cathedral of Dragon Communion", "Lenne's Rise", "Isolated Merchant's Shack (Dragonbarrow)", "Dragonbarrow Cave", "Sellia Hideaway", "Gael Tunnel", "Rear Gael Tunnel Entrance", "Abandoned Cave", "Caelid Catacombs", "Gaol Cave", "Minor Erdtree Catacombs", "War-Dead Catacombs", "Sellia Crystal Tunnel"].includes(record.name)) return;
       if (["Stormfoot Catacombs", "Limgrave Tunnels", "Groveside Cave", "Coastal Cave"].includes(record.name)) return;
       if (["Murkwater Coast", "Saintsbridge", "Murkwater Catacombs", "Murkwater Cave", "Deathtouched Catacombs", "Highroad Cave"].includes(record.name)) return;
-      if (["South of the Lookout Tower", "Fourth Church of Marika", "Church of Pilgrimage", "Earthbore Cave", "Tombsward Cave", "Tombsward Catacombs", "Impaler's Catacombs"].includes(record.name)) return;
+      if (["South of the Lookout Tower", "Fourth Church of Marika", "Church of Pilgrimage", "Earthbore Cave", "Tombsward Cave", "Tombsward Catacombs", "Impaler's Catacombs", "Morne Tunnel"].includes(record.name)) return;
       if (["Stillwater Cave", "Scenic Isle", "Lakeside Crystal Cave", "Converted Tower", "Road's End Catacombs", "Cliffbottom Catacombs"].includes(record.name)) return;
       if (["Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Church of Vows", "Ruined Labyrinth", "Black Knife Catacombs"].includes(record.name)) return;
       if (["Old Altus Tunnel", "Perfumer's Grotto", "Unsightly Catacombs", "Sage's Cave", "Auriza Hero's Grave", "Auriza Side Tomb", "Gelmir Hero's Grave", "Wyndham Catacombs", "Seethewater Cave", "Volcano Cave", "Altus Tunnel", "Sainted Hero's Grave"].includes(record.name)) return;
