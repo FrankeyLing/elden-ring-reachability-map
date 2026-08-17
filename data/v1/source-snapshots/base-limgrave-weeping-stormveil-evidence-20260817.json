@@ -1,0 +1,111 @@
+{
+  "snapshot_id": "base-limgrave-weeping-stormveil-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Limgrave southern road, Weeping Peninsula, Castle Morne and Stormhill/Margit/Stormveil entry",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "first-step-to-agheel-south",
+      "from": "The First Step",
+      "to": "Agheel Lake South",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The southern Limgrave road connects the opening area to the Agheel Lake South approach before the Weeping Peninsula bridge.",
+      "sources": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-weeping-cross-check"]
+    },
+    {
+      "id": "agheel-to-bridge",
+      "from": "Agheel Lake South",
+      "to": "Bridge of Sacrifice",
+      "transition_type": "surface_bridge_approach",
+      "direction": "forward",
+      "claim": "The southern road reaches the Bridge of Sacrifice; the bridge connects mainland Limgrave to the Weeping Peninsula.",
+      "sources": ["eldenpedia-bridge-sacrifice", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"]
+    },
+    {
+      "id": "bridge-to-castle-morne",
+      "from": "Bridge of Sacrifice",
+      "to": "Castle Morne Rampart",
+      "transition_type": "weeping_peninsula_surface_walk",
+      "direction": "forward",
+      "claim": "After crossing the bridge, the main southern road reaches Castle Morne Rampart and continues toward the castle.",
+      "sources": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"]
+    },
+    {
+      "id": "castle-morne-internal-route",
+      "from": "Castle Morne Rampart",
+      "to": "Beside the Rampart Gaol",
+      "transition_type": "vertical_legacy_route",
+      "direction": "forward",
+      "claim": "Castle Morne's route proceeds through Castle Morne Lift, Behind the Castle and Beside the Rampart Gaol.",
+      "sources": ["eldenpedia-castle-morne", "game8-castle-morne-cross-check", "powerpyx-weeping-cross-check"]
+    },
+    {
+      "id": "castle-morne-to-leonine",
+      "from": "Beside the Rampart Gaol",
+      "to": "Leonine Misbegotten",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "The lower rampart route leads to Leonine Misbegotten at the Castle Morne beach arena.",
+      "sources": ["eldenpedia-castle-morne", "game8-castle-morne-cross-check", "powerpyx-weeping-cross-check"]
+    },
+    {
+      "id": "leonine-to-morne-post",
+      "from": "Leonine Misbegotten",
+      "to": "Morne Moangrave",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "Morne Moangrave is the post-Leonine Castle Morne state.",
+      "sources": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check"]
+    },
+    {
+      "id": "stormhill-to-castleward",
+      "from": "Stormhill Shack",
+      "to": "Castleward Tunnel",
+      "transition_type": "stormhill_surface_walk",
+      "direction": "forward",
+      "claim": "The Stormhill road reaches Castleward Tunnel, the location that leads into Stormveil but is blocked by Margit.",
+      "sources": ["eldenpedia-castleward-tunnel", "eldenpedia-sites-of-grace-r83774", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "castleward-to-margit",
+      "from": "Castleward Tunnel",
+      "to": "Margit, the Fell Omen",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Margit appears at the Stormveil approach between Castleward Tunnel and the castle entrance.",
+      "sources": ["eldenpedia-margit-cross-check", "eldenpedia-castleward-tunnel", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "margit-post-state",
+      "from": "Margit, the Fell Omen",
+      "to": "Margit, the Fell Omen Grace",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "After Margit, the post-boss grace is available before entering Stormveil Castle.",
+      "sources": ["eldenpedia-margit-cross-check", "eldenpedia-sites-of-grace-r83774", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "margit-grace-to-stormveil",
+      "from": "Margit, the Fell Omen Grace",
+      "to": "Stormveil Main Gate",
+      "transition_type": "legacy_dungeon_entrance",
+      "direction": "forward",
+      "claim": "Stormveil Main Gate follows the Margit post-boss approach.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-bridge-sacrifice", "url": "https://eldenring.wiki.gg/wiki/Bridge_of_Sacrifice" },
+    { "id": "eldenpedia-weeping-peninsula", "url": "https://eldenring.wiki.gg/wiki/Weeping_Peninsula" },
+    { "id": "eldenpedia-castle-morne", "url": "https://eldenring.wiki.gg/wiki/Castle_Morne" },
+    { "id": "eldenpedia-castleward-tunnel", "url": "https://eldenring.wiki.gg/wiki/Castleward_Tunnel" },
+    { "id": "eldenpedia-margit-cross-check", "url": "https://eldenring.wiki.gg/wiki/Margit_the_Fell_Omen" },
+    { "id": "game8-limgrave-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" },
+    { "id": "game8-castle-morne-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369386" },
+    { "id": "powerpyx-weeping-cross-check", "url": "https://www.powerpyx.com/elden-ring-weeping-peninsula-walkthrough/" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-stormveil-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369338" },
+    { "id": "powerpyx-stormveil-cross-check", "url": "https://www.powerpyx.com/elden-ring-stormveil-castle-walkthrough/" }
+  ]
+}
