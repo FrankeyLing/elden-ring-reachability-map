@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.76-online-multiplane",
+  "version": "1.0.77-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -89,7 +89,8 @@
       "base-artists-shacks-region-disambiguation-evidence-20260818",
       "base-liurnia-roundtrip-surface-routes-evidence-20260818",
       "dlc-gravesite-cerulean-roundtrip-surface-routes-evidence-20260818",
-      "dlc-scadu-rauh-roundtrip-surface-routes-evidence-20260818"
+      "dlc-scadu-rauh-roundtrip-surface-routes-evidence-20260818",
+      "dlc-shadow-keep-scaduview-roundtrip-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17066,6 +17067,14 @@
     ,{ "id": "rauh-west-to-east", "from": "grace_rauh_ancient_ruins_west", "to": "grace_rauh_ancient_ruins_east", "mode": "Rauh West return to Rauh East", "cost": 9, "risk": 4, "direction": "backtrack", "transitionType": "rauh_bridge_and_ruins_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "game8-rauh-cross-check", "neoseeker-rauh-west-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the broken-bridge and ruin layers back to Rauh East.", "tags": ["walk", "vertical", "backtrack", "cross_checked"] }
     ,{ "id": "church-main-to-rauh-west", "from": "grace_church_of_bud_main_entrance", "to": "grace_rauh_ancient_ruins_west", "mode": "Church of the Bud return to Rauh West", "cost": 8, "risk": 5, "direction": "backtrack", "transitionType": "rauh_surface_route_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "game8-rauh-cross-check", "neoseeker-rauh-west-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the Church of the Bud approach to the western Rauh ruins.", "tags": ["walk", "surface", "legacy_entrance", "backtrack", "cross_checked"] }
     ,{ "id": "grand-stairway-to-rauh-west", "from": "grace_land_of_the_tower_ancient_ruins_of_rauh_ancient_ruins_grand_stairway", "to": "grace_rauh_ancient_ruins_west", "mode": "Ancient Ruins Grand Stairway return to Rauh West", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "rauh_surface_route_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "neoseeker-rauh-west-cross-check", "game8-rauh-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the grand stairway branch to the western Rauh ruins.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "scaduview-to-back-gate", "from": "grace_shadow_keep_scaduview", "to": "grace_shadow_keep_back_gate", "mode": "Scaduview return to Shadow Keep Back Gate", "cost": 4, "risk": 2, "direction": "backtrack", "transitionType": "shadow_keep_back_exit_return", "requires": [], "sourceEvidence": ["eldenpedia-scaduview", "game8-back-gate-cross-check", "eip-scaduview-cross-check"], "verificationState": "online_cross_checked", "note": "Return west across the exterior field to Shadow Keep's Back Gate grace.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "hinterland-bridge-to-hinterland", "from": "grace_shadow_keep_scaduview_hinterland_bridge", "to": "grace_shadow_keep_scaduview_hinterland", "mode": "Hinterland Bridge return to Hinterland", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "scaduview_surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-dheo", "eldenpedia-sites-of-grace-r83774", "eip-finger-dheo-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the eastern Hinterland road back uphill to the Hinterland grace.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "fingerstone-hill-to-hinterland-bridge", "from": "grace_shadow_keep_scaduview_fingerstone_hill", "to": "grace_shadow_keep_scaduview_hinterland_bridge", "mode": "Fingerstone Hill return to Hinterland Bridge", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "scaduview_surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-dheo", "eldenpedia-sites-of-grace-r83774", "game8-finger-dheo-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the open Hinterland road to the bridge grace.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "dheo-to-fingerstone-hill", "from": "finger_ruins_dheo", "to": "grace_shadow_keep_scaduview_fingerstone_hill", "mode": "Finger Ruins of Dheo return to Fingerstone Hill", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "finger_ruins_surface_route_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check"], "verificationState": "online_cross_checked", "note": "Return northwest from the Dheo ruins along the same short surface branch.", "tags": ["walk", "surface", "quest_branch", "backtrack", "cross_checked"] }
+    ,{ "id": "tree-worship-passage-to-sunken-chapel", "from": "grace_shadow_keep_tree_worship_passage", "to": "grace_shadow_keep_sunken_chapel", "mode": "Tree-Worship Passage elevator return to Sunken Chapel", "cost": 5, "risk": 2, "direction": "backtrack", "transitionType": "church_district_elevator_return", "requires": ["shadow_keep_church_district_drained"], "sourceEvidence": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "neoseeker-church-district-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the Church District elevator back up from Tree-Worship Passage to the Sunken Chapel level after draining the district.", "tags": ["lift", "vertical", "conditional", "backtrack", "cross_checked"] }
+    ,{ "id": "storehouse-loft-to-back-section", "from": "grace_shadow_keep_storehouse_loft", "to": "grace_shadow_keep_storehouse_back_section", "mode": "Storehouse Loft return to Back Section", "cost": 8, "risk": 4, "direction": "backtrack", "transitionType": "storehouse_ladder_rafters_return", "requires": ["shadow_keep_church_district_drained"], "sourceEvidence": ["eldenpedia-shadow-keep", "game8-back-gate-cross-check", "powerpyx-back-gate-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the same ladder and beam route from the loft to the Storehouse Back Section.", "tags": ["walk", "vertical", "conditional", "backtrack", "cross_checked"] }
+    ,{ "id": "west-rampart-to-storehouse-first", "from": "grace_shadow_keep_specimen_storehouse_west_rampart", "to": "grace_shadow_keep_storehouse_first_floor", "mode": "West Rampart lift return to Storehouse First Floor", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "storehouse_west_lift_return", "requires": [], "sourceEvidence": ["eldenpedia-shadow-keep", "game8-specimen-storehouse-cross-check", "game8-rauh-entry-cross-check"], "verificationState": "online_cross_checked", "note": "Take the activated west-side lift back to the Storehouse First Floor route.", "tags": ["lift", "vertical", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "rauh-viaduct-to-west-rampart", "from": "grace_rauh_viaduct_minor_tower", "to": "grace_shadow_keep_specimen_storehouse_west_rampart", "mode": "Viaduct Minor Tower return to West Rampart", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "shadow_keep_rauh_exit_return", "requires": [], "sourceEvidence": ["eldenpedia-shadow-keep", "game8-specimen-storehouse-cross-check", "game8-rauh-entry-cross-check"], "verificationState": "online_cross_checked", "note": "Use the Rauh approach lift and cross the rampart back into Shadow Keep's West Rampart.", "tags": ["walk", "bridge", "vertical", "surface", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17088,7 +17097,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 857,
+    "formalRouteEdgeCount": 865,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -1,0 +1,30 @@
+{
+  "snapshot_id": "dlc-shadow-keep-scaduview-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "scaduview-surface-roundtrips",
+      "claim": "Shadow Keep Back Gate opens onto the Scaduview field; the Hinterland road connects Hinterland to Hinterland Bridge, then to Fingerstone Hill and the Finger Ruins of Dheo branch. V1 adds return edges for the ordinary field roads while keeping the O Mother gesture passage directional.",
+      "sources": [
+        { "source_id": "eldenpedia-scaduview", "url": "https://eldenring.wiki.gg/wiki/Scaduview" },
+        { "source_id": "eldenpedia-finger-dheo", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Dheo" },
+        { "source_id": "eip-scaduview-cross-check", "url": "https://eip.gg/elden-ring/guides/scaduview/" },
+        { "source_id": "game8-finger-dheo-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458729" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "shadow-keep-internal-return-lifts",
+      "claim": "The drained Church District elevator can be retraced from Tree-Worship Passage to Sunken Chapel. The Storehouse Back Section and Loft are connected by the same ladder/beam route, and the First Floor/West Rampart/Viaduct route uses the documented lift and bridge sequence. V1 models these as conditional or ordinary backtrack edges rather than flattening Shadow Keep into one floor.",
+      "sources": [
+        { "source_id": "eldenpedia-shadow-keep", "url": "https://eldenring.wiki.gg/wiki/Shadow_Keep" },
+        { "source_id": "eip-shadow-keep-cross-check", "url": "https://eip.gg/elden-ring/guides/shadow-keep/" },
+        { "source_id": "eip-ancient-ruins-rauh-cross-check", "url": "https://eip.gg/elden-ring/guides/ancient-ruins-of-rauh/" },
+        { "source_id": "game8-church-district-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459170" },
+        { "source_id": "game8-specimen-storehouse-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459171" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
