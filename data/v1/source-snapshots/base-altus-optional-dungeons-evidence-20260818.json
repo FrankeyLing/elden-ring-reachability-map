@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "base-altus-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "old-altus-two-key-troll",
+      "claim": "Old Altus Tunnel is north-east of Wyndham Ruins, requires two Stonesword Keys, has an entrance lift to the grace, and ends at Stonedigger Troll.",
+      "sources": [
+        {"source_id": "eldenpedia-old-altus-tunnel", "url": "https://eldenring.wiki.gg/wiki/Old_Altus_Tunnel"},
+        {"source_id": "game8-old-altus-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458138"},
+        {"source_id": "game8-altus-old-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369846"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "perfumer-grotto-omenkiller",
+      "claim": "Perfumer's Grotto lies behind the poison flower on the Altus capital approach and ends at Omenkiller with Miranda the Blighted Bloom.",
+      "sources": [
+        {"source_id": "eldenpedia-perfumers-grotto", "url": "https://eldenring.wiki.gg/wiki/Perfumer%27s_Grotto"},
+        {"source_id": "game8-perfumers-grotto-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370252"},
+        {"source_id": "game8-omenkiller-perfumers-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369939"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "unsightly-one-key-duo",
+      "claim": "Unsightly Catacombs is below Perfumer's Ruins, opened by one Stonesword Key, and ends at Perfumer Tricia plus Misbegotten Warrior.",
+      "sources": [
+        {"source_id": "eldenpedia-unsightly-catacombs", "url": "https://eldenring.wiki.gg/wiki/Unsightly_Catacombs"},
+        {"source_id": "game8-unsightly-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370270"},
+        {"source_id": "eip-unsightly-catacombs-cross-check", "url": "https://eip.gg/elden-ring/guides/unsightly-catacombs-dungeon-walkthrough/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "sages-cave-two-boss-branches",
+      "claim": "Sage's Cave is a southwestern Altus grotto with separate Necromancer Garris and invisible-water Black Knife Assassin branches.",
+      "sources": [
+        {"source_id": "eldenpedia-sages-cave", "url": "https://eldenring.wiki.gg/wiki/Sage%27s_Cave"},
+        {"source_id": "game8-sages-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/374838"},
+        {"source_id": "gamerguides-sages-cave-cross-check", "url": "https://earth.gamerguides.com/elden-ring/database/bosses/altus-plateau-bosses/black-knife-assassin-sages-cave"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

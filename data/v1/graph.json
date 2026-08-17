@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.47-online-multiplane",
+    "version": "1.0.48-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -59,7 +59,8 @@
       "base-limgrave-east-optional-dungeons-evidence-20260818",
       "base-weeping-peninsula-optional-dungeons-evidence-20260818",
       "base-liurnia-optional-dungeons-evidence-20260818",
-      "base-liurnia-academy-optional-dungeons-evidence-20260818"
+      "base-liurnia-academy-optional-dungeons-evidence-20260818",
+      "base-altus-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -655,6 +656,41 @@
       "id": "black_knife_assassin_black_catacombs_defeated",
       "label": "Black Knife Catacombs Black Knife Assassin defeated",
       "hint": "The hidden Black Knife Assassin behind the illusory wall in Black Knife Catacombs has been cleared."
+    },
+    {
+      "id": "old_altus_tunnel_two_stonesword_keys",
+      "label": "Old Altus Tunnel two Stonesword Keys available",
+      "hint": "Two Stonesword Keys have been consumed to open the Old Altus Tunnel seal."
+    },
+    {
+      "id": "stonedigger_troll_old_altus_defeated",
+      "label": "Old Altus Tunnel Stonedigger Troll defeated",
+      "hint": "The Stonedigger Troll at the end of Old Altus Tunnel has been cleared."
+    },
+    {
+      "id": "omenkiller_perfumer_grotto_defeated",
+      "label": "Perfumer's Grotto Omenkiller defeated",
+      "hint": "The Omenkiller and Miranda encounter at the end of Perfumer's Grotto has been cleared."
+    },
+    {
+      "id": "unsightly_catacombs_one_stonesword_key",
+      "label": "Unsightly Catacombs Stonesword Key available",
+      "hint": "One Stonesword Key has been consumed at the Imp statue to open Unsightly Catacombs."
+    },
+    {
+      "id": "perfumer_tricia_unsightly_defeated",
+      "label": "Unsightly Catacombs Perfumer Tricia and Misbegotten Warrior defeated",
+      "hint": "The Perfumer Tricia and Misbegotten Warrior duo at the end of Unsightly Catacombs has been cleared."
+    },
+    {
+      "id": "necromancer_garris_defeated",
+      "label": "Sage's Cave Necromancer Garris defeated",
+      "hint": "Necromancer Garris behind the hidden wall in Sage's Cave has been cleared."
+    },
+    {
+      "id": "black_knife_assassin_sages_cave_defeated",
+      "label": "Sage's Cave Black Knife Assassin defeated",
+      "hint": "The invisible Black Knife Assassin in the deepest Sage's Cave water chamber has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -955,6 +991,18 @@
     ,{ "id": "eldenpedia-black-knife-catacombs", "label": "Eldenpedia · Black Knife Catacombs", "url": "https://eldenring.wiki.gg/wiki/Black_Knife_Catacombs", "grade": "A" }
     ,{ "id": "game8-black-knife-catacombs-cross-check", "label": "Game8 · Black Knife Catacombs walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369659", "grade": "B" }
     ,{ "id": "gamerguides-black-knife-catacombs-cross-check", "label": "Gamer Guides · Black Knife Catacombs database", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/black-knife-catacombs", "grade": "B" }
+    ,{ "id": "eldenpedia-old-altus-tunnel", "label": "Eldenpedia · Old Altus Tunnel", "url": "https://eldenring.wiki.gg/wiki/Old_Altus_Tunnel", "grade": "A" }
+    ,{ "id": "game8-old-altus-tunnel-cross-check", "label": "Game8 · Old Altus Tunnel / imp seal", "url": "https://game8.co/games/Elden-Ring/archives/458138", "grade": "B" }
+    ,{ "id": "game8-altus-old-tunnel-cross-check", "label": "Game8 · Altus Plateau dungeon map", "url": "https://game8.co/games/Elden-Ring/archives/369846", "grade": "B" }
+    ,{ "id": "eldenpedia-perfumers-grotto", "label": "Eldenpedia · Perfumer's Grotto", "url": "https://eldenring.wiki.gg/wiki/Perfumer%27s_Grotto", "grade": "A" }
+    ,{ "id": "game8-perfumers-grotto-cross-check", "label": "Game8 · Perfumer's Grotto walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370252", "grade": "B" }
+    ,{ "id": "game8-omenkiller-perfumers-cross-check", "label": "Game8 · Omenkiller / Perfumer's Grotto", "url": "https://game8.co/games/Elden-Ring/archives/369939", "grade": "B" }
+    ,{ "id": "eldenpedia-unsightly-catacombs", "label": "Eldenpedia · Unsightly Catacombs", "url": "https://eldenring.wiki.gg/wiki/Unsightly_Catacombs", "grade": "A" }
+    ,{ "id": "game8-unsightly-catacombs-cross-check", "label": "Game8 · Unsightly Catacombs walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370270", "grade": "B" }
+    ,{ "id": "eip-unsightly-catacombs-cross-check", "label": "EIP Gaming · Unsightly Catacombs walkthrough", "url": "https://eip.gg/elden-ring/guides/unsightly-catacombs-dungeon-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-sages-cave", "label": "Eldenpedia · Sage's Cave", "url": "https://eldenring.wiki.gg/wiki/Sage%27s_Cave", "grade": "A" }
+    ,{ "id": "game8-sages-cave-cross-check", "label": "Game8 · Sage's Cave bosses", "url": "https://game8.co/games/Elden-Ring/archives/374838", "grade": "B" }
+    ,{ "id": "gamerguides-sages-cave-cross-check", "label": "Gamer Guides · Sage's Cave Black Knife Assassin", "url": "https://earth.gamerguides.com/elden-ring/database/bosses/altus-plateau-bosses/black-knife-assassin-sages-cave", "grade": "B" }
   ],
   "nodes": [
     {
@@ -7583,6 +7631,78 @@
     {
       "id": "black_knife_catacombs_assassin_post_boss_state", "label": "Black Knife Catacombs (Assassin cleared)", "kind": "state", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Hidden Assassin chapel return state", "worldEpoch": "liurnia_surface", "x": 1680, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check"], "description": "Cleared-state node for the hidden Black Knife Assassin branch."
+    },
+    {
+      "id": "old_altus_tunnel_surface_entrance", "label": "Old Altus Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Wyndham north-eastern cliff", "worldEpoch": "altus_surface", "x": 650, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-old-altus-tunnel-cross-check", "game8-altus-old-tunnel-cross-check"], "description": "Two-key imp seal in the valley north of the Altus arrival route."
+    },
+    {
+      "id": "grace_altus_plateau_main_old_altus_tunnel", "label": "Old Altus Tunnel", "kind": "grace", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Lift landing", "worldEpoch": "altus_surface", "x": 710, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "description": "Grace at the bottom of the entrance lift."
+    },
+    {
+      "id": "stonedigger_troll_old_altus_gate", "label": "Stonedigger Troll (Old Altus Tunnel)", "kind": "boss", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Troll cavern", "worldEpoch": "altus_surface", "x": 770, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "description": "Stonedigger Troll boss gate amid explosive barrels."
+    },
+    {
+      "id": "old_altus_tunnel_post_boss_state", "label": "Old Altus Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Troll cavern return state", "worldEpoch": "altus_surface", "x": 830, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "description": "Cleared-state node for the Old Altus Troll."
+    },
+    {
+      "id": "perfumer_grotto_surface_entrance", "label": "Perfumer's Grotto surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Capital approach poison flower", "worldEpoch": "altus_surface", "x": 1350, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check"], "description": "Entrance behind the poison-spewing flower on the capital approach."
+    },
+    {
+      "id": "grace_altus_plateau_main_perfumer_s_grotto", "label": "Perfumer's Grotto", "kind": "grace", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Grotto entrance", "worldEpoch": "altus_surface", "x": 1410, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check"], "description": "Grace just inside the perfumer grotto."
+    },
+    {
+      "id": "omenkiller_perfumer_grotto_gate", "label": "Omenkiller and Miranda (Perfumer's Grotto)", "kind": "boss", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Omenkiller boss chamber", "worldEpoch": "altus_surface", "x": 1470, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check"], "description": "Omenkiller supported by Miranda the Blighted Bloom."
+    },
+    {
+      "id": "perfumer_grotto_post_boss_state", "label": "Perfumer's Grotto (post-boss state)", "kind": "state", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Boss chamber return state", "worldEpoch": "altus_surface", "x": 1530, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check"], "description": "Cleared-state node for the Omenkiller/Miranda encounter."
+    },
+    {
+      "id": "unsightly_catacombs_surface_entrance", "label": "Unsightly Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Below Perfumer's Ruins cliff", "worldEpoch": "altus_surface", "x": 730, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "description": "One-key imp statue entrance below Perfumer's Ruins."
+    },
+    {
+      "id": "grace_altus_plateau_main_unsightly_catacombs", "label": "Unsightly Catacombs", "kind": "grace", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 790, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "description": "Grace inside the catacombs below Perfumer's Ruins."
+    },
+    {
+      "id": "perfumer_tricia_unsightly_gate", "label": "Perfumer Tricia and Misbegotten Warrior", "kind": "boss", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Duo boss chamber", "worldEpoch": "altus_surface", "x": 850, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "description": "Perfumer Tricia and Misbegotten Warrior duo gate."
+    },
+    {
+      "id": "unsightly_catacombs_post_boss_state", "label": "Unsightly Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Duo boss chamber return state", "worldEpoch": "altus_surface", "x": 910, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check"], "description": "Cleared-state node for the Unsightly Catacombs duo."
+    },
+    {
+      "id": "sage_cave_surface_entrance", "label": "Sage's Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Southwestern Altus pool", "worldEpoch": "altus_surface", "x": 760, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Grotto mouth on the north-eastern edge of the shallow southwestern Altus pool."
+    },
+    {
+      "id": "grace_altus_plateau_main_sage_s_cave", "label": "Sage's Cave", "kind": "grace", "layer": "legacy", "region": "Sage's Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Grace just inside the cave of Those Who Live in Death."
+    },
+    {
+      "id": "necromancer_garris_gate", "label": "Necromancer Garris (Sage's Cave)", "kind": "boss", "layer": "legacy", "region": "Sage's Cave", "floor": "Hidden Garris chamber", "worldEpoch": "altus_surface", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Necromancer Garris behind an illusory wall."
+    },
+    {
+      "id": "sages_cave_garris_post_boss_state", "label": "Sage's Cave (Garris cleared)", "kind": "state", "layer": "legacy", "region": "Sage's Cave", "floor": "Garris chamber return state", "worldEpoch": "altus_surface", "x": 940, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check"], "description": "Cleared-state node for the Garris branch."
+    },
+    {
+      "id": "black_knife_assassin_sages_cave_gate", "label": "Black Knife Assassin (Sage's Cave)", "kind": "boss", "layer": "legacy", "region": "Sage's Cave", "floor": "Invisible water chamber", "worldEpoch": "altus_surface", "x": 880, "y": 580, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Invisible Black Knife Assassin boss gate in the deepest water chamber."
+    },
+    {
+      "id": "sages_cave_assassin_post_boss_state", "label": "Sage's Cave (Assassin cleared)", "kind": "state", "layer": "legacy", "region": "Sage's Cave", "floor": "Assassin water chamber return state", "worldEpoch": "altus_surface", "x": 940, "y": 580, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check"], "description": "Cleared-state node for the invisible Assassin branch."
     }
   ],
   "edges": [
@@ -14502,6 +14622,60 @@
     },
     {
       "id": "assassin-black-knife-to-state", "from": "black_knife_assassin_black_catacombs_gate", "to": "black_knife_catacombs_assassin_post_boss_state", "mode": "Black Knife Catacombs Assassin completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knife_assassin_black_catacombs_defeated"], "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the hidden Black Knife Assassin branch and Black Knifeprint route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "bridge-iniquity-to-old-altus-mouth", "from": "grace_altus_plateau_mt_gelmir_bridge_of_iniquity", "to": "old_altus_tunnel_surface_entrance", "mode": "Bridge of Iniquity to Old Altus Tunnel", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "stonesword_key_mine_seal", "requires": ["old_altus_tunnel_two_stonesword_keys"], "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-old-altus-tunnel-cross-check", "game8-altus-old-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "The valley path north of the Altus/Mt. Gelmir bridge reaches the two-key imp seal.", "tags": ["key_gate", "surface", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "old-altus-mouth-to-grace", "from": "old_altus_tunnel_surface_entrance", "to": "grace_altus_plateau_main_old_altus_tunnel", "mode": "Old Altus Tunnel entrance lift", "cost": 3, "risk": 5, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance lift descends to the internal mine grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "old-altus-to-stonedigger", "from": "grace_altus_plateau_main_old_altus_tunnel", "to": "stonedigger_troll_old_altus_gate", "mode": "Old Altus Tunnel internal route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "mine_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Mine platforms and Leyndell soldiers lead to the explosive-barrel Troll cavern.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "old-stonedigger-to-state", "from": "stonedigger_troll_old_altus_gate", "to": "old_altus_tunnel_post_boss_state", "mode": "Old Altus Stonedigger completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["stonedigger_troll_old_altus_defeated"], "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Old Altus Troll.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "altus-highway-to-perfumer-mouth", "from": "grace_altus_highway_junction", "to": "perfumer_grotto_surface_entrance", "mode": "Altus Highway to Perfumer's Grotto", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "poison_flower_cliff_entrance", "requires": [], "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the capital approach between the rock wall and road, then pass behind the poison flower.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "perfumer-mouth-to-grace", "from": "perfumer_grotto_surface_entrance", "to": "grace_altus_plateau_main_perfumer_s_grotto", "mode": "Perfumer's Grotto entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "grotto_entry", "requires": [], "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check"], "verificationState": "online_cross_checked", "note": "The flower-hidden mouth leads to the internal grotto grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "perfumer-to-omenkiller", "from": "grace_altus_plateau_main_perfumer_s_grotto", "to": "omenkiller_perfumer_grotto_gate", "mode": "Perfumer's Grotto internal route", "cost": 9, "risk": 9, "direction": "forward", "transitionType": "perfumer_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check"], "verificationState": "online_cross_checked", "note": "The perfumer chambers end at the Omenkiller and Miranda encounter.", "tags": ["walk", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "omenkiller-to-perfumer-state", "from": "omenkiller_perfumer_grotto_gate", "to": "perfumer_grotto_post_boss_state", "mode": "Perfumer's Grotto boss completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["omenkiller_perfumer_grotto_defeated"], "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Omenkiller/Miranda room.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "abandoned-coffin-to-unsightly-mouth", "from": "grace_altus_plateau_main_abandoned_coffin", "to": "unsightly_catacombs_surface_entrance", "mode": "Abandoned Coffin to Unsightly Catacombs", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "stonesword_key_catacomb_seal", "requires": ["unsightly_catacombs_one_stonesword_key"], "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Veer left below Perfumer's Ruins to the one-key Imp statue and catacomb entrance.", "tags": ["key_gate", "walk", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "unsightly-mouth-to-grace", "from": "unsightly_catacombs_surface_entrance", "to": "grace_altus_plateau_main_unsightly_catacombs", "mode": "Unsightly Catacombs entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The opened Imp statue route reaches the catacomb grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "unsightly-to-tricia", "from": "grace_altus_plateau_main_unsightly_catacombs", "to": "perfumer_tricia_unsightly_gate", "mode": "Unsightly Catacombs internal route", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "lever_duo_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Navigate the lower catacomb route and lever to the Perfumer Tricia/Misbegotten Warrior fog gate.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "tricia-to-unsightly-state", "from": "perfumer_tricia_unsightly_gate", "to": "unsightly_catacombs_post_boss_state", "mode": "Unsightly Catacombs duo completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["perfumer_tricia_unsightly_defeated"], "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the duo encounter.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "abandoned-coffin-to-sage-mouth", "from": "grace_altus_plateau_main_abandoned_coffin", "to": "sage_cave_surface_entrance", "mode": "Abandoned Coffin to Sage's Cave", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "shallow_pool_cave_entrance", "requires": [], "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the southwestern Altus pool edge to the grotto mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "sage-mouth-to-grace", "from": "sage_cave_surface_entrance", "to": "grace_altus_plateau_main_sage_s_cave", "mode": "Sage's Cave entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-sages-cave", "gamerguides-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The pool-edge grotto leads to the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sage-to-garris", "from": "grace_altus_plateau_main_sage_s_cave", "to": "necromancer_garris_gate", "mode": "Sage's Cave Garris branch", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "illusory_wall_boss_branch", "requires": [], "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "An illusory wall near the skeletal-mask route reveals Garris's chamber.", "tags": ["hidden", "boss", "branch", "legacy", "cross_checked"]
+    },
+    {
+      "id": "garris-to-sage-state", "from": "necromancer_garris_gate", "to": "sages_cave_garris_post_boss_state", "mode": "Sage's Cave Garris completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["necromancer_garris_defeated"], "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Garris's hidden branch.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sage-to-assassin", "from": "grace_altus_plateau_main_sage_s_cave", "to": "black_knife_assassin_sages_cave_gate", "mode": "Sage's Cave invisible Assassin branch", "cost": 11, "risk": 10, "direction": "forward", "transitionType": "water_chamber_hidden_boss_branch", "requires": [], "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The deepest water chamber contains an invisible Black Knife Assassin; Sentry's Torch visibility is not a reachability requirement.", "tags": ["hidden", "boss", "branch", "hazard", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sages-assassin-to-state", "from": "black_knife_assassin_sages_cave_gate", "to": "sages_cave_assassin_post_boss_state", "mode": "Sage's Cave Assassin completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knife_assassin_sages_cave_defeated"], "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the invisible Assassin branch.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -14524,8 +14698,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 466,
-    "formalRouteEdgeCount": 488,
+    "formalNodeCount": 484,
+    "formalRouteEdgeCount": 506,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
