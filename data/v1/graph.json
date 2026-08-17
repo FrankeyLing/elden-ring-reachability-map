@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.101-online-multiplane",
+  "version": "1.0.102-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -111,7 +111,8 @@
       "base-farum-dragon-temple-grace-evidence-20260818",
       "base-limgrave-weeping-return-coverage-evidence-20260818",
       "base-divine-tower-academy-return-evidence-20260818",
-      "base-capital-ranni-scadu-return-evidence-20260818"
+      "base-capital-ranni-scadu-return-evidence-20260818",
+      "base-special-postboss-return-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17346,6 +17347,8 @@
     ,{ "id": "lower-capital-church-to-avenue", "from": "grace_leyndell_royal_capital_main_lower_capital_church", "to": "grace_avenue_balcony", "mode": "Lower Capital Church return to Avenue Balcony", "cost": 9, "risk": 7, "direction": "backtrack", "transitionType": "lower_city_street_route_return", "requires": ["royal_capital_pre_maliketh"], "sourceEvidence": ["eip-leyndell-cross-check", "gamefaqs-leyndell-lower-church", "eldenpedia-sites-of-grace-r83774"], "verificationState": "online_cross_checked", "note": "Use the lower-city street, roof and canal route back to Avenue Balcony; this is distinct from the hazardous one-way drop modeled in the opposite direction.", "tags": ["walk", "legacy", "branch", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "ranni-chamber-to-ranni-rise", "from": "grace_liurnia_of_the_lakes_main_ranni_s_chamber", "to": "grace_liurnia_of_the_lakes_main_ranni_s_rise", "mode": "Ranni's Chamber return to Ranni's Rise", "cost": 3, "risk": 1, "direction": "backtrack", "transitionType": "quest_state_room_return", "requires": ["ranni_quest_started"], "sourceEvidence": ["eldenpedia-three-sisters", "eldenpedia-sites-of-grace-r83774", "game8-ranni-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the upper chamber and descend through Ranni's Rise; the chamber remains a quest-state room, not a separate world map.", "tags": ["quest", "conditional", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "scaduview-cross-to-moorth-ruins", "from": "grace_scadu_altus_main_scaduview_cross", "to": "grace_scadu_altus_moorth_ruins", "mode": "Scaduview Cross return down sealed Spiritspring", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "sealed_spiritspring_jump_return", "requires": ["scaduview_cross_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-scadu-altus", "eip-scadu-altus-cross-check", "powerpyx-dlc-all-graces-cross-check"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring to descend toward Moorth Ruins; the ascent and descent remain explicit conditional vertical transitions.", "tags": ["walk", "vertical", "spirit_spring", "conditional", "backtrack", "cross_checked"] }
+    ,{ "id": "abductor-virgin-to-seethewater-river", "from": "grace_volcano_manor_main_abductor_virgin", "to": "grace_altus_plateau_mt_gelmir_seethewater_river", "mode": "Abductor Virgin post-boss exit to Seethewater River", "cost": 10, "risk": 9, "direction": "backtrack", "transitionType": "volcano_inquisition_exit", "requires": ["abductor_virgins_defeated"], "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check"], "verificationState": "online_cross_checked", "note": "After the subterranean duo is defeated, use the opened lava-cave exit onto Mt. Gelmir's Seethewater route; the pre-boss fast-travel lock is not bypassed.", "tags": ["walk", "boss", "vertical", "legacy_entrance", "conditional", "backtrack", "cross_checked"] }
+    ,{ "id": "dragonkin-post-grace-to-ainsel-downstream", "from": "grace_ainsel_river_main_dragonkin_soldier_of_nokstella", "to": "grace_ainsel_river_main_ainsel_river_downstream", "mode": "Dragonkin Soldier post-boss return to Ainsel Downstream", "cost": 6, "risk": 7, "direction": "backtrack", "transitionType": "ainsel_boss_route_return", "requires": ["dragonkin_soldier_defeated"], "sourceEvidence": ["eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check", "gamespot-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared throne cavern and retrace the Ainsel downstream route; the Sluice Gate lift remains the next return layer.", "tags": ["walk", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17368,7 +17371,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1029,
+    "formalRouteEdgeCount": 1031,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
