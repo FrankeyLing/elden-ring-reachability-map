@@ -1,0 +1,29 @@
+{
+  "snapshot_id": "base-mt-gelmir-roundtrip-surface-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "gelmir-northeast-approach-roundtrips",
+      "claim": "The northeastern Mt. Gelmir approach is a traversable surface chain from Altus Plateau over the suspended Bridge of Iniquity, through First Mt. Gelmir Campsite and Road of Iniquity toward the Volcano Manor approach. V1 adds the ordinary return edges and keeps sealed cave gates separate.",
+      "sources": [
+        { "source_id": "eldenpedia-mt-gelmir", "url": "https://eldenring.wiki.gg/wiki/Mt._Gelmir" },
+        { "source_id": "eip-mt-gelmir-cross-check", "url": "https://eip.gg/elden-ring/guides/mt-gelmir-walkthrough/" },
+        { "source_id": "game8-altus-gelmir-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371438" },
+        { "source_id": "powerpyx-mt-gelmir-cross-check", "url": "https://www.powerpyx.com/elden-ring-mt-gelmir-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "gelmir-seethewater-roundtrips",
+      "claim": "The Seethewater River entrance, Seethewater Terminus, Craftsman's Shack and the western Gelmir/Azur branch are connected by open ravine and mountain paths. EIP explicitly describes backtracking through the ravine; V1 adds those returns without converting the Abductor Virgin death teleport or Stonesword Key dungeon seals into ordinary roads.",
+      "sources": [
+        { "source_id": "eldenpedia-mt-gelmir", "url": "https://eldenring.wiki.gg/wiki/Mt._Gelmir" },
+        { "source_id": "eip-mt-gelmir-cross-check", "url": "https://eip.gg/elden-ring/guides/mt-gelmir-walkthrough/" },
+        { "source_id": "eip-volcano-manor-cross-check", "url": "https://eip.gg/elden-ring/guides/volcano-manor-walkthrough/" },
+        { "source_id": "game8-volcano-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369100" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
