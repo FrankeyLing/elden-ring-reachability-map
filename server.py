@@ -16,6 +16,7 @@ CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
+ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_INDEX_MANIFEST_FILE = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 )
@@ -85,6 +86,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/grace-positions":
             self.send_grace_positions(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/boss-positions":
+            self.send_boss_positions(parse_qs(parsed.query))
             return
         if parsed.path == "/api/catalog/online-items":
             self.send_online_items(parse_qs(parsed.query))
@@ -226,6 +230,50 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "records": records[:limit],
                 "routeable": False,
                 "note": "raw online grace positions; the source index has no reliable grace names, so names are intentionally not guessed",
+            }
+        )
+
+    def send_boss_positions(self, query: dict[str, list[str]]):
+        map_id = query.get("map", [""])[0].strip()
+        search = query.get("q", [""])[0].strip().casefold()
+        try:
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), 500)
+        except ValueError:
+            limit = 500
+        try:
+            payload = json.loads(ONLINE_BOSS_POSITION_FILE.read_bytes())
+            records = []
+            for row in payload["records"]:
+                row_map = str(row[2] or "")
+                if search and search not in str(row[1] or "").casefold():
+                    continue
+                if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+                    continue
+                records.append(
+                    {
+                        "source_index": row[0],
+                        "name": row[1],
+                        "map": row_map,
+                        "area_no": row[3],
+                        "grid_x": row[4],
+                        "grid_z": row[5],
+                        "position": [row[6], row[7], row[8]],
+                        "model": row[9],
+                        "formal_candidates": row[13] or [],
+                    }
+                )
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/online-boss-position-query@1",
+                "query": {"q": search, "map": map_id, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "note": "raw online Boss coordinates; formal candidates are identity hints and do not create boss-gated traversal edges",
             }
         )
 
