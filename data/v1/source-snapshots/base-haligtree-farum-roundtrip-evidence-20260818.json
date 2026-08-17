@@ -1,0 +1,40 @@
+{
+  "snapshot_id": "base-haligtree-farum-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "haligtree-elphael-layered-route",
+      "claim": "The Haligtree/Elphael route is layered: Haligtree Canopy leads through Haligtree Town and its Plaza to Loretta; after Loretta, the Promenade elevator reaches Prayer Room, then Inner Wall, Drainage Channel and Haligtree Roots. V1 adds the documented return paths while preserving the scarlet-rot and elevator risks.",
+      "sources": [
+        { "source_id": "powerpyx-haligtree-cross-check", "url": "https://www.powerpyx.com/elden-ring-miquellas-haligtree-elphael-walkthrough/" },
+        { "source_id": "game8-haligtree-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369906" },
+        { "source_id": "gamefaqs-haligtree-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/12-the-haligtree" },
+        { "source_id": "eip-haligtree-cross-check", "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "farum-layered-route",
+      "claim": "Crumbling Farum Azula separates the Beast Grave entry, Tempest-Facing Balcony, Dragon Temple approach, Transept, Dragon Temple Altar, Rooftop and Beside the Great Bridge. The mainline lift/rooftop paths can be traversed back, while the Stonesword Key Dragon Temple Lift and Placidusax lie-down transition remain separate branches.",
+      "sources": [
+        { "source_id": "eldenpedia-farum-r83238", "url": "https://eldenring.wiki.gg/wiki/Crumbling_Farum_Azula" },
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "game8-farum-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371005" },
+        { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "endgame-one-way-guards",
+      "claim": "The Haligtree waygate is a conditional entry from Ordina, and Farum's Placidusax route is a lie-down/time transition rather than a walkable descent. V1 does not add reverse edges for those transitions or for the optional Stonesword Key lift; only the documented mainline returns are added.",
+      "sources": [
+        { "source_id": "eldenpedia-ordina-r95013", "url": "https://eldenring.wiki.gg/wiki/Ordina,_Liturgical_Town" },
+        { "source_id": "game8-ordina-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370663" },
+        { "source_id": "gamespot-placidusax-cross-check", "url": "https://www.gamespot.com/articles/how-to-beat-elden-ring-dragonlord-placidusax/1100-6501885/" },
+        { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
