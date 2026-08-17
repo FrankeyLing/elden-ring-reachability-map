@@ -10,6 +10,8 @@
   "license": "CC BY-SA 4.0 for page text unless otherwise noted",
   "captured_on": "2026-08-17",
   "raw_response_retained": false,
+  "catalog_artifact": "data/v1/entities/sites-of-grace.json",
+  "catalog_record_count": 418,
   "extracted_records": [
     {
       "canonical_id": "grace_avenue_balcony",

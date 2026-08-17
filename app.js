@@ -276,7 +276,8 @@ function renderNodes() {
     const hit = svg("circle", { r: 14, class: "node-hit" });
     const ring = svg("circle", { r: node.kind === "target" ? 9 : 7, class: "node-ring" });
     const core = svg("circle", { r: node.kind === "target" ? 4 : 3, class: "node-core", fill: nodeCoreColor(node.kind) });
-    const label = svg("text", { x: 12, y: 4, class: "node-label" });
+    const showCatalogLabel = !node.isCatalog || node.id === state.selectedNode || routeNodeIds.has(node.id);
+    const label = svg("text", { x: 12, y: 4, class: `node-label${showCatalogLabel ? "" : " node-label-hidden"}` });
     label.textContent = node.label;
     const region = svg("text", { x: 12, y: 15, class: "node-region" });
     region.textContent = `${node.layer.toUpperCase()} · ${node.region}`;
@@ -297,7 +298,7 @@ function renderGraph() {
   renderRegions();
   renderEdges();
   renderNodes();
-  els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 有向边 · ${state.data.meta.verificationLabel || "V1"}`;
+  els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福目录 · ${state.data.meta.verificationLabel || "V1"}`;
 }
 
 function renderInspector() {
@@ -428,9 +429,40 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const response = await fetch("/api/graph", { cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.data = await response.json();
+    const [graphResponse, catalogResponse] = await Promise.all([
+      fetch("/api/graph", { cache: "no-store" }),
+      fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
+    ]);
+    if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
+    if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
+    state.data = await graphResponse.json();
+    const catalog = await catalogResponse.json();
+    const regionSlots = new Map();
+    const layerBase = { surface: 55, underground: 275, legacy: 445 };
+    catalog.records.forEach((record) => {
+      if ((record.name === "Avenue Balcony" || record.name === "Erdtree Sanctuary") && !record.subgroup) return;
+      const groupKey = `${record.layer}|${record.region}`;
+      const slot = regionSlots.get(groupKey) || 0;
+      regionSlots.set(groupKey, slot + 1);
+      const groupIndex = [...regionSlots.keys()].indexOf(groupKey);
+      state.data.nodes.push({
+        id: record.canonical_id,
+        label: record.name,
+        kind: "grace",
+        layer: record.layer,
+        region: record.region,
+        floor: record.subgroup || record.region,
+        worldEpoch: record.region.includes("Ash") || record.subgroup.includes("Ash") ? "ashen_capital_post_maliketh" : "unknown",
+        x: 45 + (groupIndex % 5) * 190 + (slot % 7) * 20,
+        y: layerBase[record.layer] + Math.floor(slot / 7) * 18 + (groupIndex % 3) * 7,
+        coordinateType: record.coordinate_type,
+        verificationState: record.verification_state,
+        sourceEvidence: [record.source_evidence],
+        isCatalog: true,
+        description: `${record.region}${record.subgroup ? ` · ${record.subgroup}` : ""}。在线赐福目录实体；尚未获得游戏原始坐标或可通行边。`,
+      });
+    });
+    state.data.catalogRecordCount = catalog.record_count;
     state.nodes = new Map(state.data.nodes.map((node) => [node.id, node]));
     state.conditions = new Set(state.data.defaultConditions || DEFAULT_CONDITIONS);
     state.origin = state.data.defaultOrigin && state.nodes.has(state.data.defaultOrigin) ? state.data.defaultOrigin : state.data.nodes[0].id;

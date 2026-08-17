@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 DATA_FILE = ROOT / "data" / "v1" / "graph.json"
+CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 
 
 class AppHandler(SimpleHTTPRequestHandler):
@@ -28,15 +29,18 @@ class AppHandler(SimpleHTTPRequestHandler):
     def do_GET(self):  # noqa: N802 - stdlib handler API
         parsed = urlparse(self.path)
         if parsed.path == "/api/graph":
-            self.send_graph()
+            self.send_json_file(DATA_FILE)
+            return
+        if parsed.path == "/api/catalog/sites-of-grace":
+            self.send_json_file(CATALOG_FILE)
             return
         if parsed.path == "/":
             self.path = "/index.html"
         return super().do_GET()
 
-    def send_graph(self):
+    def send_json_file(self, path: Path):
         try:
-            payload = DATA_FILE.read_bytes()
+            payload = path.read_bytes()
             json.loads(payload)
         except (OSError, json.JSONDecodeError) as exc:
             body = json.dumps({"error": str(exc)}).encode("utf-8")
