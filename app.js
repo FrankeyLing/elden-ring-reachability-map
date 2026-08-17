@@ -62,6 +62,7 @@ function nodeLabel(id) {
 }
 
 function edgeIsAvailable(edge) {
+  if (edge.routeable === false) return false;
   return (edge.requires || []).every((condition) => state.conditions.has(condition));
 }
 
@@ -145,7 +146,7 @@ function findBlockedRequirements() {
     });
   }
   const missing = new Set();
-  state.data.edges.forEach((edge) => {
+  [...state.data.edges, ...(state.data.candidateEdges || [])].forEach((edge) => {
     if (reachable.has(edge.from) && !reachable.has(edge.to)) {
       (edge.requires || []).filter((id) => !state.conditions.has(id)).forEach((id) => missing.add(id));
     }
@@ -229,16 +230,16 @@ function renderEdges() {
       y1: from.y,
       x2: to.x,
       y2: to.y,
-      class: `edge ${available ? "available" : "blocked"} ${(edge.requires || []).length ? "conditional" : ""} ${isRoute ? "route" : ""}`,
+      class: `edge ${available ? "available" : "blocked"} ${(edge.requires || []).length ? "conditional" : ""} ${edge.candidate ? "candidate" : ""} ${isRoute ? "route" : ""}`,
       "data-edge-id": edge.id,
     });
     line.addEventListener("mouseenter", () => {
-      els.mapToast.textContent = `${from.label} → ${to.label} · ${edge.mode}${available ? "" : " · 条件未满足"}`;
+       els.mapToast.textContent = `${from.label} → ${to.label} · ${edge.mode}${edge.candidate ? " · 候选，尚未晋升" : available ? "" : " · 条件未满足"}`;
     });
     line.addEventListener("mouseleave", () => { els.mapToast.textContent = "点击节点查看详情"; });
     els.edgeLayer.appendChild(line);
 
-    if ((edge.requires || []).length || isRoute) {
+    if (!edge.candidate && ((edge.requires || []).length || isRoute)) {
       const labelX = (from.x + to.x) / 2;
       const labelY = (from.y + to.y) / 2 - 5;
       const label = svg("text", { x: labelX, y: labelY, class: `edge-label ${isRoute ? "route-label" : ""}` });
@@ -304,8 +305,9 @@ function renderGraph() {
 function renderInspector() {
   const node = state.nodes.get(state.selectedNode);
   if (!node) return;
-  const outgoing = state.data.edges.filter((edge) => edge.from === node.id).slice(0, 4);
-  const incoming = state.data.edges.filter((edge) => edge.to === node.id).slice(0, 3);
+  const allEdges = [...state.data.edges, ...(state.data.candidateEdges || [])];
+  const outgoing = allEdges.filter((edge) => edge.from === node.id).slice(0, 4);
+  const incoming = allEdges.filter((edge) => edge.to === node.id).slice(0, 3);
   const connections = [...outgoing, ...incoming];
   els.nodeInspector.innerHTML = `
     <div class="inspector-card">
@@ -320,7 +322,7 @@ function renderInspector() {
         ${connections.map((edge) => {
           const target = edge.from === node.id ? nodeLabel(edge.to) : `← ${nodeLabel(edge.from)}`;
           const lock = edgeIsAvailable(edge) ? "" : " · 锁定";
-          return `<div class="connection-item"><span>${target}</span><span class="connection-mode">${edge.mode}${lock}</span></div>`;
+           return `<div class="connection-item"><span>${target}</span><span class="connection-mode">${edge.candidate ? "候选未晋升" : edge.mode}${lock}</span></div>`;
         }).join("") || '<div class="connection-item"><span>暂无连接</span></div>'}
       </div>
     </div>`;
@@ -441,9 +443,14 @@ async function init() {
     const catalog = await catalogResponse.json();
     const routeLegCatalog = await routeLegResponse.json();
     const regionSlots = new Map();
+    const sourceNameToNodeId = new Map([
+      ["Avenue Balcony", "grace_avenue_balcony"],
+      ["Erdtree Sanctuary", "grace_erdtree_sanctuary"],
+      ["Elden Throne", "grace_elden_throne"],
+    ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if ((record.name === "Avenue Balcony" || record.name === "Erdtree Sanctuary") && !record.subgroup) return;
+      if ((record.name === "Avenue Balcony" || record.name === "Erdtree Sanctuary" || record.name === "Elden Throne") && !record.subgroup) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);
@@ -464,9 +471,56 @@ async function init() {
         isCatalog: true,
         description: `${record.region}${record.subgroup ? ` · ${record.subgroup}` : ""}。在线赐福目录实体；尚未获得游戏原始坐标或可通行边。`,
       });
+      if (!sourceNameToNodeId.has(record.name)) sourceNameToNodeId.set(record.name, record.canonical_id);
     });
     state.data.catalogRecordCount = catalog.record_count;
     state.data.candidateRouteLegCount = routeLegCatalog.record_count;
+    const candidateEndpointByName = new Map();
+    const candidateLayer = (regionName) => {
+      const match = catalog.records.find((record) => record.region === regionName);
+      return match?.layer || "legacy";
+    };
+    const ensureCandidateEndpoint = (name, regionName) => {
+      if (sourceNameToNodeId.has(name)) return sourceNameToNodeId.get(name);
+      if (candidateEndpointByName.has(name)) return candidateEndpointByName.get(name);
+      const layer = candidateLayer(regionName);
+      const key = `${layer}|candidate|${regionName}`;
+      const slot = regionSlots.get(key) || 0;
+      regionSlots.set(key, slot + 1);
+      const groupIndex = [...regionSlots.keys()].indexOf(key);
+      const id = `candidate_endpoint_${name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}`;
+      state.data.nodes.push({
+        id,
+        label: name,
+        kind: "junction",
+        layer,
+        region: regionName,
+        floor: regionName,
+        worldEpoch: "unknown",
+        x: 45 + (groupIndex % 5) * 190 + (slot % 7) * 20,
+        y: layerBase[layer] + Math.floor(slot / 7) * 18 + (groupIndex % 3) * 7,
+        coordinateType: "unplaced_route_candidate",
+        verificationState: "online_single",
+        sourceEvidence: ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+        isCatalog: true,
+        description: `${regionName} 的在线路线候选端点；尚未获得游戏原始坐标或正式 Transition。`,
+      });
+      candidateEndpointByName.set(name, id);
+      return id;
+    };
+    state.data.candidateEdges = routeLegCatalog.records.map((leg) => ({
+      id: leg.canonical_id,
+      from: ensureCandidateEndpoint(leg.from, leg.region_name),
+      to: ensureCandidateEndpoint(leg.to, leg.region_name),
+      mode: "候选赐福路段",
+      cost: 0,
+      risk: 0,
+      candidate: true,
+      routeable: false,
+      sourceEvidence: [leg.source_evidence],
+      note: `${leg.from} → ${leg.to}；步骤类型：${(leg.step_types || []).join("、")}。需要独立来源核对后才能进入寻路器。`,
+      tags: ["candidate", "source_only"],
+    }));
     state.nodes = new Map(state.data.nodes.map((node) => [node.id, node]));
     state.conditions = new Set(state.data.defaultConditions || DEFAULT_CONDITIONS);
     state.origin = state.data.defaultOrigin && state.nodes.has(state.data.defaultOrigin) ? state.data.defaultOrigin : state.data.nodes[0].id;

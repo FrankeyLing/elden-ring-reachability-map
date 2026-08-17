@@ -130,6 +130,7 @@ code { color: #c0b58f; font-size: 9px; }
 .edge { fill: none; stroke: #777a74; stroke-width: 1.8; opacity: .7; marker-end: url(#arrow-default); transition: .2s ease; }
 .edge.conditional { stroke-dasharray: 5 5; stroke: #545b58; opacity: .45; }
 .edge.blocked { stroke: #414744; opacity: .35; }
+.edge.candidate { stroke: #66716e; stroke-width: 1; stroke-dasharray: 2 6; opacity: .22; marker-end: none; }
 .edge.route { stroke: var(--gold); stroke-width: 3.3; opacity: 1; marker-end: url(#arrow-route); filter: url(#route-glow); }
 .edge-label { fill: #7b817c; font-size: 8px; pointer-events: none; paint-order: stroke; stroke: #11171b; stroke-width: 4px; stroke-linejoin: round; }
 .edge-label.route-label { fill: var(--gold-bright); }
