@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.14-online-multiplane",
+    "version": "1.0.15-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -26,7 +26,8 @@
       "dlc-rauh-enir-ilim-mainline-evidence-20260817",
       "dlc-jagged-abyssal-branches-evidence-20260817",
       "dlc-southern-shore-dheo-evidence-20260817",
-      "dlc-manus-metyr-ymir-evidence-20260817"
+      "dlc-manus-metyr-ymir-evidence-20260817",
+      "dlc-charo-scadutree-avatar-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -327,6 +328,16 @@
       "id": "metyr_defeated",
       "label": "Metyr, Mother of Fingers defeated",
       "hint": "The route back to Ymir's throne after the Mother of Fingers encounter is available."
+    },
+    {
+      "id": "lamenter_defeated",
+      "label": "Lamenter defeated",
+      "hint": "The Lamenter's Gaol post-boss state is available after clearing the optional gaol."
+    },
+    {
+      "id": "scadutree_avatar_defeated",
+      "label": "Scadutree Avatar defeated",
+      "hint": "The Scadutree Base grace/post-boss state is available after the Avatar encounter."
     }
   ],
   "sourceEvidence": [
@@ -481,7 +492,14 @@
     { "id": "eldenpedia-metyr", "label": "Eldenpedia / Metyr, Mother of Fingers", "url": "https://eldenring.wiki.gg/wiki/Metyr%2C_Mother_of_Fingers", "grade": "A" },
     { "id": "game8-ymir-cross-check", "label": "Game8 / Ymir quest and Cathedral route", "url": "https://game8.co/games/Elden-Ring/archives/458845", "grade": "B" },
     { "id": "powerpyx-ymir-cross-check", "label": "PowerPyx / Ymir and Jolan questline", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-ymir-jolan-questline-walkthrough/", "grade": "B" },
-    { "id": "gamespot-ymir-cross-check", "label": "GameSpot / Ymir Finger Ruins guide", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-ymir-finger-ruins-elden-ring/2900-5500/", "grade": "B" }
+    { "id": "gamespot-ymir-cross-check", "label": "GameSpot / Ymir Finger Ruins guide", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-ymir-finger-ruins-elden-ring/2900-5500/", "grade": "B" },
+    { "id": "eldenpedia-charo-hidden-grave", "label": "Eldenpedia / Charo's Hidden Grave", "url": "https://eldenring.wiki.gg/wiki/Charo%27s_Hidden_Grave", "grade": "A" },
+    { "id": "eldenpedia-lamenters-gaol", "label": "Eldenpedia / Lamenter's Gaol", "url": "https://eldenring.wiki.gg/wiki/Lamenter%27s_Gaol", "grade": "A" },
+    { "id": "game8-scadutree-base-cross-check", "label": "Game8 / Scadutree Base walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/460103", "grade": "B" },
+    { "id": "game8-scadutree-avatar-cross-check", "label": "Game8 / Scadutree Avatar guide", "url": "https://game8.co/games/Elden-Ring/archives/458844", "grade": "B" },
+    { "id": "neoseeker-charo-cross-check", "label": "Neoseeker / Charo's Hidden Grave walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Charos_Hidden_Grave", "grade": "B" },
+    { "id": "gamer-guides-lamenter-cross-check", "label": "Gamer Guides / Lamenter's Gaol route", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/guide/cerulean-coast/dungeons", "grade": "B" },
+    { "id": "powerpyx-dlc-ymir-cross-check", "label": "PowerPyx / Shadow of the Erdtree DLC route", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -3798,9 +3816,189 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"],
       "description": "Optional Ymir quest boss at the end of the third Finger Ruins bell route."
+    },
+    {
+      "id": "grace_gravesite_plain_charo_s_hidden_grave_charo_s_hidden_grave",
+      "label": "Charo's Hidden Grave",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Charo's Hidden Grave",
+      "worldEpoch": "shadow_realm",
+      "x": 700,
+      "y": 700,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-charo-hidden-grave", "eldenpedia-sites-of-grace-r83774", "neoseeker-charo-cross-check"],
+      "description": "Southern Shore branch between the Foot of the Jagged Peak and Cerulean Coast."
+    },
+    {
+      "id": "grace_gravesite_plain_charo_s_hidden_grave_lamenter_s_gaol",
+      "label": "Lamenter's Gaol",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Charo's Hidden Grave",
+      "worldEpoch": "shadow_realm",
+      "x": 580,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "eldenpedia-sites-of-grace-r83774", "neoseeker-charo-cross-check"],
+      "description": "Optional gaol entrance grace inside Charo's Hidden Grave."
+    },
+    {
+      "id": "lamenter_gate",
+      "label": "Lamenter",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Lamenter's Gaol",
+      "worldEpoch": "shadow_realm",
+      "x": 460,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "description": "Lamenter's Gaol boss gate."
+    },
+    {
+      "id": "lamenter_post_state",
+      "label": "Lamenter's Gaol Post-Boss",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Lamenter's Gaol post-boss",
+      "worldEpoch": "shadow_realm",
+      "x": 340,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "description": "Post-Lamenter state anchor for the optional gaol."
+    },
+    {
+      "id": "scadutree_avatar_gate",
+      "label": "Scadutree Avatar",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Scadutree Base",
+      "worldEpoch": "shadow_realm",
+      "x": 2020,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "description": "Optional remembrance boss at the Scadutree Base reached from Tree-Worship Sanctum."
     }
   ],
   "edges": [
+    {
+      "id": "finger-rhia-to-charo",
+      "from": "grace_gravesite_plain_cerulean_coast_finger_ruins_of_rhia",
+      "to": "grace_gravesite_plain_charo_s_hidden_grave_charo_s_hidden_grave",
+      "mode": "Finger Ruins of Rhia to Charo's Hidden Grave",
+      "cost": 9,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "southern_shore_surface_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-charo-hidden-grave", "game8-cerulean-coast-cross-check", "neoseeker-charo-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Southern Shore route from the Rhia branch toward Charo's Hidden Grave.",
+      "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "grand-altar-to-charo",
+      "from": "grace_gravesite_plain_foot_of_the_jagged_peak_grand_altar_of_dragon_communion",
+      "to": "grace_gravesite_plain_charo_s_hidden_grave_charo_s_hidden_grave",
+      "mode": "Grand Altar to Charo's Hidden Grave",
+      "cost": 8,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "southern_shore_surface_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-charo-hidden-grave", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Southwest route from the Grand Altar around the dragon remains to Charo's Hidden Grave.",
+      "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "charo-to-lamenter-gaol",
+      "from": "grace_gravesite_plain_charo_s_hidden_grave_charo_s_hidden_grave",
+      "to": "grace_gravesite_plain_charo_s_hidden_grave_lamenter_s_gaol",
+      "mode": "Charo's Hidden Grave to Lamenter's Gaol",
+      "cost": 6,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "optional_legacy_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The cave on the northern bank leads to the optional Lamenter's Gaol entrance grace.",
+      "tags": ["walk", "legacy", "optional", "cross_checked"]
+    },
+    {
+      "id": "lamenter-gaol-to-boss",
+      "from": "grace_gravesite_plain_charo_s_hidden_grave_lamenter_s_gaol",
+      "to": "lamenter_gate",
+      "mode": "Lamenter approach",
+      "cost": 8,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "legacy_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The gaol interior route leads to the Lamenter boss gate.",
+      "tags": ["boss", "legacy", "optional", "cross_checked"]
+    },
+    {
+      "id": "lamenter-to-post-state",
+      "from": "lamenter_gate",
+      "to": "lamenter_post_state",
+      "mode": "Lamenter completion",
+      "cost": 5,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["lamenter_defeated"],
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Explicit post-boss state for the optional gaol.",
+      "tags": ["boss", "state_change", "conditional", "optional", "cross_checked"]
+    },
+    {
+      "id": "tree-worship-sanctum-to-scadutree-avatar",
+      "from": "grace_shadow_keep_tree_worship_sanctum",
+      "to": "scadutree_avatar_gate",
+      "mode": "Scadutree Avatar approach",
+      "cost": 4,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "legacy_boss_approach",
+      "requires": ["shadow_keep_church_district_drained"],
+      "sourceEvidence": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "powerpyx-dlc-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Sanctum exit leads to the Scadutree Base fight after the Church District water state is solved.",
+      "tags": ["boss", "legacy", "conditional", "cross_checked"]
+    },
+    {
+      "id": "scadutree-avatar-to-base",
+      "from": "scadutree_avatar_gate",
+      "to": "grace_shadow_keep_scadutree_base",
+      "mode": "Scadutree Avatar completion",
+      "cost": 5,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["scadutree_avatar_defeated"],
+      "sourceEvidence": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "verificationState": "online_cross_checked",
+      "note": "The Scadutree Base grace/post-boss state is kept behind the Avatar gate on this route.",
+      "tags": ["boss", "state_change", "conditional", "cross_checked"]
+    },
     {
       "id": "finger-rhia-to-bell",
       "from": "grace_gravesite_plain_cerulean_coast_finger_ruins_of_rhia",
@@ -7085,8 +7283,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 221,
-    "formalRouteEdgeCount": 218,
+    "formalNodeCount": 226,
+    "formalRouteEdgeCount": 225,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

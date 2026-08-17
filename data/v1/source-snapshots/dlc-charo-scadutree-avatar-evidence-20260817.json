@@ -1,0 +1,72 @@
+{
+  "snapshot_id": "dlc-charo-scadutree-avatar-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Charo's Hidden Grave, Lamenter's Gaol, Tree-Worship Sanctum, Scadutree Avatar and Scadutree Base",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "rhia-to-charo",
+      "from": "Finger Ruins of Rhia",
+      "to": "Charo's Hidden Grave",
+      "transition_type": "southern_shore_surface_route",
+      "direction": "forward",
+      "claim": "Charo's Hidden Grave is a southern Gravesite Plain branch bordering the Cerulean Coast and the Foot of the Jagged Peak.",
+      "sources": ["eldenpedia-charo-hidden-grave", "game8-cerulean-coast-cross-check", "neoseeker-charo-cross-check"]
+    },
+    {
+      "id": "grand-altar-to-charo",
+      "from": "Grand Altar of Dragon Communion",
+      "to": "Charo's Hidden Grave",
+      "transition_type": "southern_shore_surface_route",
+      "direction": "forward",
+      "claim": "The route from the Grand Altar can head southwest around the dragon remains to Charo's Hidden Grave.",
+      "sources": ["eldenpedia-charo-hidden-grave", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"]
+    },
+    {
+      "id": "charo-to-lamenter",
+      "from": "Charo's Hidden Grave",
+      "to": "Lamenter's Gaol",
+      "transition_type": "optional_legacy_entrance",
+      "direction": "forward",
+      "claim": "A cave on the northern bank of Charo's Hidden Grave leads to the optional Lamenter's Gaol entrance grace.",
+      "sources": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"]
+    },
+    {
+      "id": "lamenter-gaol-boss",
+      "from": "Lamenter's Gaol",
+      "to": "Lamenter",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Lamenter's Gaol is a dungeon in Charo's Hidden Grave and contains the Lamenter boss gate.",
+      "sources": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"]
+    },
+    {
+      "id": "sanctum-to-scadutree-avatar",
+      "from": "Tree-Worship Sanctum",
+      "to": "Scadutree Avatar",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "After the Church District is drained, Tree-Worship Sanctum leads to the Scadutree Base and awakens the Scadutree Avatar.",
+      "sources": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "powerpyx-dlc-ymir-cross-check"]
+    },
+    {
+      "id": "scadutree-avatar-post-state",
+      "from": "Scadutree Avatar",
+      "to": "Scadutree Base",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "Defeating the Scadutree Avatar unlocks the Scadutree Base post-boss grace/state.",
+      "sources": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "eldenpedia-sites-of-grace-r83774"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-charo-hidden-grave", "url": "https://eldenring.wiki.gg/wiki/Charo%27s_Hidden_Grave" },
+    { "id": "eldenpedia-lamenters-gaol", "url": "https://eldenring.wiki.gg/wiki/Lamenter%27s_Gaol" },
+    { "id": "game8-scadutree-base-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460103" },
+    { "id": "game8-scadutree-avatar-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458844" },
+    { "id": "neoseeker-charo-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Charos_Hidden_Grave" },
+    { "id": "gamer-guides-lamenter-cross-check", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/guide/cerulean-coast/dungeons" },
+    { "id": "powerpyx-dlc-ymir-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" }
+  ]
+}
