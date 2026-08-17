@@ -465,8 +465,19 @@ async function init() {
       ["Elden Throne", "grace_elden_throne"],
       ["Siofra River Well Depths", "grace_siofra_well_depths"],
       ["Siofra River Bank", "grace_siofra_river_bank"],
+      ["Crumbling Beast Grave", "grace_crumbling_beast_grave"],
       ["Crumbling Beast Grave Depths", "grace_crumbling_beast_grave_depths"],
+      ["Beside the Great Bridge", "grace_beside_great_bridge"],
       ["Dragon Temple Altar", "grace_dragon_temple_altar"],
+      ["Maliketh", "maliketh_gate"],
+      ["Maliketh, the Black Blade", "grace_maliketh_black_blade"],
+      ["Leyndell, Capital of Ash", "grace_leyndell_capital_of_ash"],
+      ["Queen's Bedchamber", "grace_queens_bedchamber"],
+      ["Sir Gideon Ofnir, the All-Knowing", "gideon_ashen_gate"],
+      ["Godfrey, First Elden Lord", "godfrey_ashen_gate"],
+      ["Radagon of the Golden Order", "radagon_elden_beast_gate"],
+      ["Elden Beast", "radagon_elden_beast_gate"],
+      ["Fractured Marika", "grace_fractured_marika"],
       ["Castle Front", "grace_castle_front"],
       ["Castle Ensis Checkpoint", "grace_castle_ensis_checkpoint"],
       ["Castle-Lord's Chamber", "grace_castle_lord_chamber"],
@@ -560,6 +571,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Crumbling Beast Grave", "Beside the Great Bridge", "Maliketh, the Black Blade", "Leyndell, Capital of Ash", "Queen's Bedchamber", "Sir Gideon Ofnir, the All-Knowing", "Godfrey, First Elden Lord", "Radagon of the Golden Order", "Elden Beast", "Fractured Marika"].includes(record.name)) return;
       if (["Caelid Highway South", "Rotview Balcony", "Smoldering Church", "Caelem Ruins", "Impassable Greatbridge", "Redmane Castle Plaza", "Chamber Outside the Plaza", "Starscourge Radahn", "Southern Aeonia Swamp Bank", "Church of the Plague", "Bestial Sanctum", "Dragonbarrow Fork", "Fort Faroth"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;

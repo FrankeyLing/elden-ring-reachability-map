@@ -1,0 +1,139 @@
+{
+  "snapshot_id": "farum-ashen-mainline-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Forge of the Giants, Crumbling Farum Azula, Maliketh and Leyndell, Capital of Ash",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "forge-to-farum-entry",
+      "from": "Forge of the Giants",
+      "to": "Crumbling Beast Grave",
+      "transition_type": "world_state_teleport",
+      "direction": "forward",
+      "claim": "After the Fire Giant sequence and the Erdtree-burning transition at the Forge, the player is transported into Crumbling Farum Azula; the entry route begins at the Crumbling Beast Grave area.",
+      "sources": ["eldenpedia-forge-giants-r35883", "eldenpedia-farum-r83238", "powerpyx-farum-entry-cross-check", "game8-farum-cross-check"]
+    },
+    {
+      "id": "farum-entry-to-depths",
+      "from": "Crumbling Beast Grave",
+      "to": "Crumbling Beast Grave Depths",
+      "transition_type": "legacy_vertical_route",
+      "direction": "forward",
+      "claim": "The first Farum Azula arrival route proceeds from the Crumbling Beast Grave area into the Crumbling Beast Grave Depths layer.",
+      "sources": ["eldenpedia-farum-r83238", "powerpyx-farum-entry-cross-check", "game8-farum-cross-check"]
+    },
+    {
+      "id": "dragon-altar-to-great-bridge",
+      "from": "Dragon Temple Altar",
+      "to": "Beside the Great Bridge",
+      "transition_type": "legacy_mainline_route",
+      "direction": "forward",
+      "claim": "After the Dragon Temple route, the Farum mainline continues through the Dragon Temple Altar side toward Beside the Great Bridge.",
+      "sources": ["eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "game8-farum-cross-check"]
+    },
+    {
+      "id": "great-bridge-to-maliketh",
+      "from": "Beside the Great Bridge",
+      "to": "Maliketh, the Black Blade",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Beside the Great Bridge is the final named Farum grace approach to the Maliketh boss arena.",
+      "sources": ["eldenpedia-farum-r83238", "eldenpedia-maliketh-r100643", "powerpyx-farum-cross-check"]
+    },
+    {
+      "id": "maliketh-to-post-grace",
+      "from": "Maliketh, the Black Blade",
+      "to": "Maliketh, the Black Blade post-boss grace",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The post-boss grace associated with Maliketh is available after the Maliketh encounter is cleared.",
+      "sources": ["eldenpedia-maliketh-r100643", "eldenpedia-sites-of-grace-r83774", "powerpyx-farum-cross-check"]
+    },
+    {
+      "id": "maliketh-to-ashen-capital",
+      "from": "Maliketh, the Black Blade post-boss grace",
+      "to": "Leyndell, Capital of Ash",
+      "transition_type": "world_epoch_transition",
+      "direction": "forward",
+      "claim": "After Maliketh is defeated, the game transitions the player to Leyndell in its ash-covered capital state.",
+      "sources": ["eldenpedia-maliketh-r100643", "eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "gamesradar-mainline-state-cross-check"]
+    },
+    {
+      "id": "ashen-capital-to-gideon",
+      "from": "Leyndell, Capital of Ash",
+      "to": "Sir Gideon Ofnir, the All-Knowing",
+      "transition_type": "ashen_capital_boss_approach",
+      "direction": "forward",
+      "claim": "The Ashen Capital arrival route proceeds through the ash-covered city to the Sir Gideon Ofnir boss gate.",
+      "sources": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    },
+    {
+      "id": "gideon-to-ashen-sanctuary",
+      "from": "Sir Gideon Ofnir, the All-Knowing",
+      "to": "Erdtree Sanctuary (Ashen state)",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Erdtree Sanctuary route is the post-Gideon continuation in Leyndell, Ashen Capital.",
+      "sources": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    },
+    {
+      "id": "ashen-sanctuary-to-queen",
+      "from": "Erdtree Sanctuary (Ashen state)",
+      "to": "Queen's Bedchamber (Ashen state)",
+      "transition_type": "vertical_legacy_route",
+      "direction": "forward",
+      "claim": "The ash-state route climbs from the Erdtree Sanctuary through the roots to Queen's Bedchamber.",
+      "sources": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    },
+    {
+      "id": "ashen-queen-to-godfrey",
+      "from": "Queen's Bedchamber (Ashen state)",
+      "to": "Godfrey, First Elden Lord / Hoarah Loux",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "Queen's Bedchamber is the approach route to the penultimate Godfrey and Hoarah Loux encounter.",
+      "sources": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    },
+    {
+      "id": "godfrey-to-ashen-throne",
+      "from": "Godfrey, First Elden Lord / Hoarah Loux",
+      "to": "Elden Throne (Ashen state)",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "After Godfrey is defeated, the route continues to the Elden Throne and the entrance to the Erdtree.",
+      "sources": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    },
+    {
+      "id": "ashen-throne-to-final-boss",
+      "from": "Elden Throne (Ashen state)",
+      "to": "Radagon of the Golden Order / Elden Beast",
+      "transition_type": "final_boss_entrance",
+      "direction": "forward",
+      "claim": "The light at the Elden Throne leads into the back-to-back Radagon and Elden Beast final encounter.",
+      "sources": ["eldenpedia-ashen-capital-r65655", "eldenpedia-radagon-final", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    },
+    {
+      "id": "final-boss-to-fractured-marika",
+      "from": "Radagon of the Golden Order / Elden Beast",
+      "to": "Fractured Marika",
+      "transition_type": "final_boss_completion",
+      "direction": "forward",
+      "claim": "Defeating Elden Beast leaves the player at the Fractured Marika grace and ending interaction state.",
+      "sources": ["eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-forge-giants-r35883", "url": "https://eldenring.wiki.gg/wiki/Forge_of_the_Giants", "revision_id": 35883 },
+    { "id": "eldenpedia-farum-r83238", "url": "https://eldenring.wiki.gg/wiki/Crumbling_Farum_Azula", "revision_id": 83238 },
+    { "id": "eldenpedia-maliketh-r100643", "url": "https://eldenring.wiki.gg/wiki/Maliketh%2C_the_Black_Blade", "revision_id": 100643 },
+    { "id": "eldenpedia-ashen-capital-r65655", "url": "https://eldenring.wiki.gg/wiki/Leyndell,_Ashen_Capital", "revision_id": 65655 },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "revision_id": 83774 },
+    { "id": "powerpyx-farum-entry-cross-check", "url": "https://www.powerpyx.com/elden-ring-how-to-reach-crumbling-farum-azula/" },
+    { "id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+    { "id": "powerpyx-ashen-capital-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-ashen-capital-walkthrough/" },
+    { "id": "game8-farum-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371005" },
+    { "id": "gamesradar-mainline-state-cross-check", "url": "https://www.gamesradar.com/elden-ring-goldmask-questline-age-of-order-ending/" },
+    { "id": "game8-ashen-capital-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379950" },
+    { "id": "eldenpedia-radagon-final", "url": "https://eldenring.wiki.gg/wiki/Radagon_of_the_Golden_Order" }
+  ]
+}
