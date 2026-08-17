@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.48-online-multiplane",
+    "version": "1.0.49-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -60,7 +60,8 @@
       "base-weeping-peninsula-optional-dungeons-evidence-20260818",
       "base-liurnia-optional-dungeons-evidence-20260818",
       "base-liurnia-academy-optional-dungeons-evidence-20260818",
-      "base-altus-optional-dungeons-evidence-20260818"
+      "base-altus-optional-dungeons-evidence-20260818",
+      "base-altus-gelmir-capital-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -461,6 +462,41 @@
       "id": "abductor_virgins_defeated",
       "label": "Abductor Virgins defeated",
       "hint": "The Volcano Manor subterranean duo boss has been cleared and its post-boss grace is available."
+    },
+    {
+      "id": "auriza_hero_crucible_knights_defeated",
+      "label": "Crucible Knight Ordovis duo defeated",
+      "hint": "The Auriza Hero's Grave double Crucible Knight gate has been cleared."
+    },
+    {
+      "id": "auriza_side_grave_warden_duelist_defeated",
+      "label": "Grave Warden Duelist of Auriza Side Tomb defeated",
+      "hint": "The Auriza Side Tomb boss chamber has been cleared."
+    },
+    {
+      "id": "gelmir_hero_red_wolf_defeated",
+      "label": "Red Wolf of the Champion defeated",
+      "hint": "The Gelmir Hero's Grave chariot route and boss gate have been cleared."
+    },
+    {
+      "id": "wyndham_erdtree_watchdog_defeated",
+      "label": "Wyndham Erdtree Burial Watchdog defeated",
+      "hint": "The Wyndham Catacombs lightning-trap dungeon boss has been cleared."
+    },
+    {
+      "id": "seethewater_cave_one_stonesword_key",
+      "label": "One Stonesword Key for Seethewater Cave",
+      "hint": "The Imp seal at Seethewater Cave has been opened with one Stonesword Key."
+    },
+    {
+      "id": "seethewater_kindred_rot_defeated",
+      "label": "Kindred of Rot duo defeated",
+      "hint": "The Seethewater Cave Kindred of Rot boss pair has been cleared."
+    },
+    {
+      "id": "volcano_cave_demi_human_queen_margot_defeated",
+      "label": "Demi-Human Queen Margot defeated",
+      "hint": "The Volcano Cave boss gate has been cleared and the Jar Cannon reward route is complete."
     },
     {
       "id": "malenia_defeated",
@@ -1003,6 +1039,24 @@
     ,{ "id": "eldenpedia-sages-cave", "label": "Eldenpedia · Sage's Cave", "url": "https://eldenring.wiki.gg/wiki/Sage%27s_Cave", "grade": "A" }
     ,{ "id": "game8-sages-cave-cross-check", "label": "Game8 · Sage's Cave bosses", "url": "https://game8.co/games/Elden-Ring/archives/374838", "grade": "B" }
     ,{ "id": "gamerguides-sages-cave-cross-check", "label": "Gamer Guides · Sage's Cave Black Knife Assassin", "url": "https://earth.gamerguides.com/elden-ring/database/bosses/altus-plateau-bosses/black-knife-assassin-sages-cave", "grade": "B" }
+    ,{ "id": "eldenpedia-auriza-hero-grave", "label": "Eldenpedia - Auriza Hero's Grave", "url": "https://eldenring.wiki.gg/wiki/Auriza_Hero%27s_Grave", "grade": "A" }
+    ,{ "id": "game8-auriza-hero-grave-cross-check", "label": "Game8 - Crucible Knight Ordovis", "url": "https://game8.co/games/Elden-Ring/archives/369132", "grade": "B" }
+    ,{ "id": "eip-auriza-hero-grave-cross-check", "label": "EIP Gaming - Altus/Auriza route", "url": "https://eip.gg/elden-ring/guides/altus-plateau-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-auriza-side-tomb", "label": "Eldenpedia - Auriza Side Tomb", "url": "https://eldenring.wiki.gg/wiki/Auriza_Side_Tomb", "grade": "A" }
+    ,{ "id": "game8-auriza-side-tomb-cross-check", "label": "Game8 - Auriza Side Tomb walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370262", "grade": "B" }
+    ,{ "id": "neoseeker-auriza-side-tomb-cross-check", "label": "Neoseeker - Capital Outskirts/Auriza", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Capital_Outskirts", "grade": "B" }
+    ,{ "id": "eldenpedia-gelmir-hero-grave", "label": "Eldenpedia - Gelmir Hero's Grave", "url": "https://eldenring.wiki.gg/wiki/Gelmir_Hero%27s_Grave", "grade": "A" }
+    ,{ "id": "game8-gelmir-hero-grave-cross-check", "label": "Game8 - Gelmir Hero's Grave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370274", "grade": "B" }
+    ,{ "id": "neoseeker-gelmir-hero-grave-cross-check", "label": "Neoseeker - Red Wolf of the Champion", "url": "https://www.neoseeker.com/elden-ring/Bosses/Red_Wolf_of_the_Champion", "grade": "B" }
+    ,{ "id": "eldenpedia-wyndham-catacombs", "label": "Eldenpedia - Wyndham Catacombs", "url": "https://eldenring.wiki.gg/wiki/Wyndham_Catacombs", "grade": "A" }
+    ,{ "id": "game8-wyndham-catacombs-cross-check", "label": "Game8 - Wyndham Catacombs walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370268", "grade": "B" }
+    ,{ "id": "eip-wyndham-catacombs-cross-check", "label": "EIP Gaming - Wyndham Catacombs walkthrough", "url": "https://eip.gg/elden-ring/guides/wyndham-catacombs-dungeon-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-seethewater-cave", "label": "Eldenpedia - Seethewater Cave", "url": "https://eldenring.wiki.gg/wiki/Seethewater_Cave", "grade": "A" }
+    ,{ "id": "segmentnext-seethewater-cave", "label": "SegmentNext - Seethewater Cave walkthrough", "url": "https://segmentnext.com/elden-ring-seethewater-cave/", "grade": "B" }
+    ,{ "id": "gamepressure-seethewater-cave-cross-check", "label": "Gamepressure - Kindred of Rot / Seethewater Cave", "url": "https://www.gamepressure.com/elden-ring/kindred-of-rot/z4fe81", "grade": "B" }
+    ,{ "id": "pushsquare-volcano-cave", "label": "Push Square - Volcano Cave walkthrough", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-volcano-cave", "grade": "B" }
+    ,{ "id": "game8-volcano-cave-boss-cross-check", "label": "Game8 - Demi-Human Queen Margot", "url": "https://game8.co/games/Elden-Ring/archives/374831", "grade": "B" }
+    ,{ "id": "neoseeker-volcano-cave-cross-check", "label": "Neoseeker - Volcano Cave walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Mt_Gelmir", "grade": "B" }
   ],
   "nodes": [
     {
@@ -7703,6 +7757,102 @@
     {
       "id": "sages_cave_assassin_post_boss_state", "label": "Sage's Cave (Assassin cleared)", "kind": "state", "layer": "legacy", "region": "Sage's Cave", "floor": "Assassin water chamber return state", "worldEpoch": "altus_surface", "x": 940, "y": 580, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check"], "description": "Cleared-state node for the invisible Assassin branch."
+    },
+    {
+      "id": "auriza_hero_grave_surface_entrance", "label": "Auriza Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Capital Outskirts", "floor": "North-eastern capital outskirts cliff", "worldEpoch": "altus_surface", "x": 980, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "eip-auriza-hero-grave-cross-check"], "description": "Entrance beneath the north-eastern Leyndell outer wall, reached from the Capital Outskirts cliff route."
+    },
+    {
+      "id": "grace_altus_plateau_main_auriza_hero_s_grave", "label": "Auriza Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Auriza Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1040, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check"], "description": "Grace at the bottom of the starting lift."
+    },
+    {
+      "id": "crucible_knight_ordovis_auriza_gate", "label": "Crucible Knight Ordovis duo (Auriza Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Auriza Hero's Grave", "floor": "Twin Crucible Knight chamber", "worldEpoch": "altus_surface", "x": 1100, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "eip-auriza-hero-grave-cross-check"], "description": "The final double Crucible Knight boss gate."
+    },
+    {
+      "id": "auriza_hero_grave_post_boss_state", "label": "Auriza Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Auriza Hero's Grave", "floor": "Twin Crucible Knight chamber return state", "worldEpoch": "altus_surface", "x": 1160, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check"], "description": "Cleared-state node for the Auriza Hero's Grave boss route."
+    },
+    {
+      "id": "auriza_side_tomb_surface_entrance", "label": "Auriza Side Tomb surface entrance", "kind": "entrance", "layer": "surface", "region": "Capital Outskirts", "floor": "North of Auriza Hero's Grave", "worldEpoch": "altus_surface", "x": 980, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check"], "description": "Catacomb entrance on the path north of Auriza Hero's Grave."
+    },
+    {
+      "id": "grace_altus_plateau_main_auriza_side_tomb", "label": "Auriza Side Tomb", "kind": "grace", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 1040, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check"], "description": "Grace at the beginning of the trapped-chest catacomb."
+    },
+    {
+      "id": "grave_warden_duelist_auriza_side_gate", "label": "Grave Warden Duelist (Auriza Side Tomb)", "kind": "boss", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Duelist chamber", "worldEpoch": "altus_surface", "x": 1100, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check"], "description": "The side tomb's Grave Warden Duelist boss gate."
+    },
+    {
+      "id": "auriza_side_tomb_post_boss_state", "label": "Auriza Side Tomb (post-boss state)", "kind": "state", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Duelist chamber return state", "worldEpoch": "altus_surface", "x": 1160, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check"], "description": "Cleared-state node for the Grave Warden Duelist route."
+    },
+    {
+      "id": "gelmir_hero_grave_surface_entrance", "label": "Gelmir Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "West of First Mt. Gelmir Campsite", "worldEpoch": "altus_surface", "x": 500, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check"], "description": "Dome and lift entrance west of the First Mt. Gelmir Campsite."
+    },
+    {
+      "id": "grace_altus_plateau_main_gelmir_hero_s_grave", "label": "Gelmir Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 560, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check"], "description": "Grace at the bottom of the entrance lift."
+    },
+    {
+      "id": "red_wolf_champion_gelmir_gate", "label": "Red Wolf of the Champion (Gelmir Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Lava chariot route boss chamber", "worldEpoch": "altus_surface", "x": 620, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check"], "description": "Red Wolf of the Champion at the end of the chariot and lava route."
+    },
+    {
+      "id": "gelmir_hero_grave_post_boss_state", "label": "Gelmir Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Red Wolf chamber return state", "worldEpoch": "altus_surface", "x": 680, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check"], "description": "Cleared-state node for the Red Wolf of the Champion."
+    },
+    {
+      "id": "wyndham_catacombs_surface_entrance", "label": "Wyndham Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "Wyndham Ruins rear cliff", "worldEpoch": "altus_surface", "x": 600, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check"], "description": "Entrance behind the Wyndham Ruins at the base of Mt. Gelmir."
+    },
+    {
+      "id": "grace_altus_plateau_main_wyndham_catacombs", "label": "Wyndham Catacombs", "kind": "grace", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 660, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check"], "description": "Grace at the beginning of the lightning-trap catacombs."
+    },
+    {
+      "id": "erdtree_burial_watchdog_wyndham_gate", "label": "Erdtree Burial Watchdog (Wyndham Catacombs)", "kind": "boss", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Watchdog chamber", "worldEpoch": "altus_surface", "x": 720, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check"], "description": "Erdtree Burial Watchdog at the end of the flooded lower level."
+    },
+    {
+      "id": "wyndham_catacombs_post_boss_state", "label": "Wyndham Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Watchdog chamber return state", "worldEpoch": "altus_surface", "x": 780, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check"], "description": "Cleared-state node for the Wyndham Watchdog."
+    },
+    {
+      "id": "seethewater_cave_surface_entrance", "label": "Seethewater Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "Seethewater ravine imp seal", "worldEpoch": "altus_surface", "x": 460, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check"], "description": "One-key Imp seal in the ravine north of Seethewater River."
+    },
+    {
+      "id": "grace_altus_plateau_main_seethewater_cave", "label": "Seethewater Cave", "kind": "grace", "layer": "legacy", "region": "Seethewater Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 520, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave"], "description": "Grace inside the sealed cave entrance."
+    },
+    {
+      "id": "kindred_rot_seethewater_gate", "label": "Kindred of Rot duo (Seethewater Cave)", "kind": "boss", "layer": "legacy", "region": "Seethewater Cave", "floor": "Rot-infested lower chamber", "worldEpoch": "altus_surface", "x": 580, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check"], "description": "Twin Kindred of Rot boss gate at the cave's end."
+    },
+    {
+      "id": "seethewater_cave_post_boss_state", "label": "Seethewater Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Seethewater Cave", "floor": "Kindred of Rot chamber return state", "worldEpoch": "altus_surface", "x": 640, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave"], "description": "Cleared-state node for the Kindred of Rot duo."
+    },
+    {
+      "id": "volcano_cave_surface_entrance", "label": "Volcano Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "North of Ninth Mt. Gelmir Campsite", "worldEpoch": "altus_surface", "x": 720, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check"], "description": "Cave opening north of the bridge east of Ninth Mt. Gelmir Campsite."
+    },
+    {
+      "id": "grace_altus_plateau_main_volcano_cave", "label": "Volcano Cave", "kind": "grace", "layer": "legacy", "region": "Volcano Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 780, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["pushsquare-volcano-cave", "neoseeker-volcano-cave-cross-check"], "description": "Grace just inside the northern Gelmir cave."
+    },
+    {
+      "id": "demi_human_queen_margot_volcano_gate", "label": "Demi-Human Queen Margot (Volcano Cave)", "kind": "boss", "layer": "legacy", "region": "Volcano Cave", "floor": "Lowest cave chamber", "worldEpoch": "altus_surface", "x": 840, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check"], "description": "Demi-Human Queen Margot at the lowest chamber and Jar Cannon reward gate."
+    },
+    {
+      "id": "volcano_cave_post_boss_state", "label": "Volcano Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Volcano Cave", "floor": "Queen Margot chamber return state", "worldEpoch": "altus_surface", "x": 900, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check"], "description": "Cleared-state node for Demi-Human Queen Margot."
     }
   ],
   "edges": [
@@ -14676,6 +14826,78 @@
     },
     {
       "id": "sages-assassin-to-state", "from": "black_knife_assassin_sages_cave_gate", "to": "sages_cave_assassin_post_boss_state", "mode": "Sage's Cave Assassin completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knife_assassin_sages_cave_defeated"], "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the invisible Assassin branch.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "capital-rampart-to-auriza-hero-mouth", "from": "grace_east_capital_rampart", "to": "auriza_hero_grave_surface_entrance", "mode": "East Capital Rampart to Auriza Hero's Grave", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "capital_outskirts_cliff_entrance", "requires": [], "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "eip-auriza-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the north-eastern Capital Outskirts cliff and drop to the Hero's Grave entrance.", "tags": ["walk", "vertical", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "auriza-hero-mouth-to-grace", "from": "auriza_hero_grave_surface_entrance", "to": "grace_altus_plateau_main_auriza_hero_s_grave", "mode": "Auriza Hero's Grave entrance lift", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "The starting lift descends to the internal grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "auriza-hero-to-crucible-duo", "from": "grace_altus_plateau_main_auriza_hero_s_grave", "to": "crucible_knight_ordovis_auriza_gate", "mode": "Auriza Hero's Grave chariot route", "cost": 14, "risk": 10, "direction": "forward", "transitionType": "chariot_hero_grave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "eip-auriza-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Navigate the chariot corridors, flame pillar branch and final drop to the twin Crucible Knight chamber.", "tags": ["chariot", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "auriza-crucible-to-state", "from": "crucible_knight_ordovis_auriza_gate", "to": "auriza_hero_grave_post_boss_state", "mode": "Auriza Hero's Grave Crucible Knight completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["auriza_hero_crucible_knights_defeated"], "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Ordovis duo.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "capital-rampart-to-auriza-side-mouth", "from": "grace_east_capital_rampart", "to": "auriza_side_tomb_surface_entrance", "mode": "East Capital Rampart to Auriza Side Tomb", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "capital_outskirts_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check"], "verificationState": "online_cross_checked", "note": "Take the road under the capital bridge and follow the north-curving cliff path past Auriza Hero's Grave.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "auriza-side-mouth-to-grace", "from": "auriza_side_tomb_surface_entrance", "to": "grace_altus_plateau_main_auriza_side_tomb", "mode": "Auriza Side Tomb entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance passage reaches the first grace before the trapped-chest maze.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "auriza-side-to-duelist", "from": "grace_altus_plateau_main_auriza_side_tomb", "to": "grave_warden_duelist_auriza_side_gate", "mode": "Auriza Side Tomb trapped-chest route", "cost": 13, "risk": 9, "direction": "forward", "transitionType": "trapped_chest_catacomb_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check"], "verificationState": "online_cross_checked", "note": "The repeated rooms and trapped chests form a non-Euclidean route to the Grave Warden Duelist.", "tags": ["teleport", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "auriza-duelist-to-state", "from": "grave_warden_duelist_auriza_side_gate", "to": "auriza_side_tomb_post_boss_state", "mode": "Auriza Side Tomb Duelist completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["auriza_side_grave_warden_duelist_defeated"], "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Soldjars of Fortune reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "first-gelmir-to-hero-mouth", "from": "grace_altus_plateau_mt_gelmir_first_mt_gelmir_campsite", "to": "gelmir_hero_grave_surface_entrance", "mode": "First Mt. Gelmir Campsite to Gelmir Hero's Grave", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "mountain_dome_lift_entrance", "requires": [], "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Travel west along the mountain to the domed Hero's Grave entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "gelmir-hero-mouth-to-grace", "from": "gelmir_hero_grave_surface_entrance", "to": "grace_altus_plateau_main_gelmir_hero_s_grave", "mode": "Gelmir Hero's Grave entrance lift", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance elevator descends to the internal grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "gelmir-hero-to-red-wolf", "from": "grace_altus_plateau_main_gelmir_hero_s_grave", "to": "red_wolf_champion_gelmir_gate", "mode": "Gelmir Hero's Grave lava chariot route", "cost": 15, "risk": 10, "direction": "forward", "transitionType": "lava_chariot_hero_grave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Use safe ledges, the chariot and the beam/ladder descent to reach the Red Wolf chamber.", "tags": ["chariot", "lava", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "gelmir-red-wolf-to-state", "from": "red_wolf_champion_gelmir_gate", "to": "gelmir_hero_grave_post_boss_state", "mode": "Gelmir Hero's Grave Red Wolf completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["gelmir_hero_red_wolf_defeated"], "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Red Wolf and Bloodhound Knight Floh reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "seethewater-river-to-wyndham-mouth", "from": "grace_altus_plateau_mt_gelmir_seethewater_river", "to": "wyndham_catacombs_surface_entrance", "mode": "Seethewater River to Wyndham Catacombs", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "wyndham_ruins_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Climb toward the Wyndham Ruins and use the rear cliff entrance to the catacombs.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "wyndham-mouth-to-grace", "from": "wyndham_catacombs_surface_entrance", "to": "grace_altus_plateau_main_wyndham_catacombs", "mode": "Wyndham Catacombs entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance corridor reaches the catacomb grace before the lift and lightning traps.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "wyndham-to-watchdog", "from": "grace_altus_plateau_main_wyndham_catacombs", "to": "erdtree_burial_watchdog_wyndham_gate", "mode": "Wyndham Catacombs lightning-trap route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "flooded_catacomb_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Use the room lift, guillotines and flooded lower level to reach the Watchdog.", "tags": ["lift", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "wyndham-watchdog-to-state", "from": "erdtree_burial_watchdog_wyndham_gate", "to": "wyndham_catacombs_post_boss_state", "mode": "Wyndham Catacombs Watchdog completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["wyndham_erdtree_watchdog_defeated"], "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Wyndham Catacombs boss and bell-bearing route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "seethewater-river-to-cave-mouth", "from": "grace_altus_plateau_mt_gelmir_seethewater_river", "to": "seethewater_cave_surface_entrance", "mode": "Seethewater River to Seethewater Cave", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "stonesword_key_cave_seal", "requires": ["seethewater_cave_one_stonesword_key"], "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the ravine north to the one-key Imp seal embedded in the rock.", "tags": ["key_gate", "walk", "hazard", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "seethewater-mouth-to-grace", "from": "seethewater_cave_surface_entrance", "to": "grace_altus_plateau_main_seethewater_cave", "mode": "Seethewater Cave entrance passage", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave"], "verificationState": "online_cross_checked", "note": "The opened Imp seal leads to the cave's internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "seethewater-to-kindred-rot", "from": "grace_altus_plateau_main_seethewater_cave", "to": "kindred_rot_seethewater_gate", "mode": "Seethewater Cave rot chamber route", "cost": 12, "risk": 10, "direction": "forward", "transitionType": "poison_cave_duo_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the poison and mushroom chambers to the Kindred of Rot duo.", "tags": ["hazard", "poison", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "kindred-rot-to-seethewater-state", "from": "kindred_rot_seethewater_gate", "to": "seethewater_cave_post_boss_state", "mode": "Seethewater Cave Kindred of Rot completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["seethewater_kindred_rot_defeated"], "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Kindred of Rot duo and talisman route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "ninth-campsite-to-volcano-mouth", "from": "grace_altus_plateau_mt_gelmir_ninth_mt_gelmir_campsite", "to": "volcano_cave_surface_entrance", "mode": "Ninth Mt. Gelmir Campsite to Volcano Cave", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "gelmir_bridge_cave_entrance", "requires": [], "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the bridge east of the Ninth campsite and follow the northern mountain wall to the cave mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "volcano-mouth-to-grace", "from": "volcano_cave_surface_entrance", "to": "grace_altus_plateau_main_volcano_cave", "mode": "Volcano Cave entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["pushsquare-volcano-cave", "neoseeker-volcano-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The cave opening leads directly to the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "volcano-to-demi-human-queen", "from": "grace_altus_plateau_main_volcano_cave", "to": "demi_human_queen_margot_volcano_gate", "mode": "Volcano Cave demi-human route", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "cave_boss_approach", "requires": [], "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Descend through the demi-human chambers to the lowest cave floor and Queen Margot.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "volcano-queen-to-state", "from": "demi_human_queen_margot_volcano_gate", "to": "volcano_cave_post_boss_state", "mode": "Volcano Cave Queen Margot completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["volcano_cave_demi_human_queen_margot_defeated"], "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Jar Cannon reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -14698,8 +14920,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 484,
-    "formalRouteEdgeCount": 506,
+    "formalNodeCount": 508,
+    "formalRouteEdgeCount": 530,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

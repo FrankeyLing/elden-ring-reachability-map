@@ -1,0 +1,67 @@
+{
+  "snapshot_id": "base-altus-gelmir-capital-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "auriza-hero-crucible-duo",
+      "claim": "Auriza Hero's Grave is beneath the north-eastern Capital Outskirts, begins with a lift, uses chariot corridors, and ends at the Crucible Knight Ordovis duo.",
+      "sources": [
+        {"source_id": "eldenpedia-auriza-hero-grave", "url": "https://eldenring.wiki.gg/wiki/Auriza_Hero%27s_Grave"},
+        {"source_id": "game8-auriza-hero-grave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369132"},
+        {"source_id": "eip-auriza-hero-grave-cross-check", "url": "https://eip.gg/elden-ring/guides/altus-plateau-walkthrough/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "auriza-side-trapped-chest-duelist",
+      "claim": "Auriza Side Tomb is north of Auriza Hero's Grave, contains trapped chests that move between repeated sections, and ends at Grave Warden Duelist.",
+      "sources": [
+        {"source_id": "eldenpedia-auriza-side-tomb", "url": "https://eldenring.wiki.gg/wiki/Auriza_Side_Tomb"},
+        {"source_id": "game8-auriza-side-tomb-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370262"},
+        {"source_id": "neoseeker-auriza-side-tomb-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Capital_Outskirts"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "gelmir-hero-red-wolf",
+      "claim": "Gelmir Hero's Grave is west of First Mt. Gelmir Campsite, begins at the bottom of an entrance lift, uses lava and chariots, and ends at Red Wolf of the Champion.",
+      "sources": [
+        {"source_id": "eldenpedia-gelmir-hero-grave", "url": "https://eldenring.wiki.gg/wiki/Gelmir_Hero%27s_Grave"},
+        {"source_id": "game8-gelmir-hero-grave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370274"},
+        {"source_id": "neoseeker-gelmir-hero-grave-cross-check", "url": "https://www.neoseeker.com/elden-ring/Bosses/Red_Wolf_of_the_Champion"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "wyndham-lightning-watchdog",
+      "claim": "Wyndham Catacombs is behind Wyndham Ruins at the base of Mt. Gelmir, has lightning traps and a flooded lower level, and ends at Erdtree Burial Watchdog.",
+      "sources": [
+        {"source_id": "eldenpedia-wyndham-catacombs", "url": "https://eldenring.wiki.gg/wiki/Wyndham_Catacombs"},
+        {"source_id": "game8-wyndham-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370268"},
+        {"source_id": "eip-wyndham-catacombs-cross-check", "url": "https://eip.gg/elden-ring/guides/wyndham-catacombs-dungeon-walkthrough/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "seethewater-one-key-kindred",
+      "claim": "Seethewater Cave is reached from the Seethewater ravine through a one-key Imp seal and ends at the Kindred of Rot pair.",
+      "sources": [
+        {"source_id": "eldenpedia-seethewater-cave", "url": "https://eldenring.wiki.gg/wiki/Seethewater_Cave"},
+        {"source_id": "segmentnext-seethewater-cave", "url": "https://segmentnext.com/elden-ring-seethewater-cave/"},
+        {"source_id": "gamepressure-seethewater-cave-cross-check", "url": "https://www.gamepressure.com/elden-ring/kindred-of-rot/z4fe81"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "volcano-cave-margot",
+      "claim": "Volcano Cave is north of the Ninth Mt. Gelmir Campsite across the bridge, contains an internal grace, and ends at Demi-Human Queen Margot.",
+      "sources": [
+        {"source_id": "pushsquare-volcano-cave", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-volcano-cave"},
+        {"source_id": "game8-volcano-cave-boss-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/374831"},
+        {"source_id": "neoseeker-volcano-cave-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Mt_Gelmir"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
