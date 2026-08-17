@@ -10,7 +10,8 @@
     "sourceSnapshots": [
       "eldenpedia-sites-of-grace-r83774",
       "eldenpedia-bolt-of-gransax-r84084",
-      "leyndell-bolt-route-evidence-20260817"
+      "leyndell-bolt-route-evidence-20260817",
+      "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -46,12 +47,18 @@
       "id": "erdtree_sanctuary_activated",
       "label": "已激活黄金树大教堂赐福",
       "hint": "从该赐福出发的路线需要玩家已经激活它。"
+    },
+    {
+      "id": "morgott_defeated",
+      "label": "已击败蒙葛特",
+      "hint": "只有击败王座前的蒙葛特后，才能把艾尔登王座作为已激活赐福目标。"
     }
   ],
   "sourceEvidence": [
     { "id": "eldenpedia-sites-of-grace-r83774", "label": "Eldenpedia · Sites of Grace · r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "grade": "A" },
     { "id": "eldenpedia-bolt-of-gransax-r84084", "label": "Eldenpedia · Bolt of Gransax · r84084", "url": "https://eldenring.wiki.gg/wiki/Bolt_of_Gransax", "grade": "A" },
     { "id": "eldenpedia-guide-r13749", "label": "Eldenpedia · Elden Ring Guide · r13749", "url": "https://eldenring.wiki.gg/wiki/Elden_Ring_Guide", "grade": "B" },
+    { "id": "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa", "label": "er-guide · route JSON · 7f24d64", "url": "https://github.com/aether-auto/er-guide/tree/7f24d64d3631ef4d549f56b42d4c3e3817a269fa/data/regions", "grade": "C" },
     { "id": "game8-route-cross-check", "label": "Game8 · manual route cross-check", "url": "https://game8.co/games/Elden-Ring/archives/372056", "grade": "B" },
     { "id": "pcgamer-route-cross-check", "label": "PC Gamer · manual route cross-check", "url": "https://www.pcgamer.com/elden-ring-bolt-of-gransax-location/", "grade": "B" }
   ],
@@ -160,6 +167,51 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
       "description": "从栏杆跳下后的中间落点，再跳到巨矛上。"
+    },
+    {
+      "id": "grace_queens_bedchamber",
+      "label": "女王闺阁",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "女王闺阁",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 570,
+      "y": 85,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-guide-r13749", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "description": "王城路线中位于黄金树大教堂之后的赐福；不把它与王座前 Boss 房混为一层。"
+    },
+    {
+      "id": "morgott_arena_gate",
+      "label": "王座前蒙葛特 Boss 门",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "艾尔登王座前",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 655,
+      "y": 90,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-guide-r13749", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "description": "Boss 前的状态节点；到达这里不等于已激活艾尔登王座赐福。"
+    },
+    {
+      "id": "grace_elden_throne",
+      "label": "艾尔登王座",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "王城罗德尔",
+      "floor": "艾尔登王座",
+      "worldEpoch": "royal_capital_pre_maliketh",
+      "x": 735,
+      "y": 85,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-guide-r13749", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "description": "击败蒙葛特后可激活的王座赐福；路线状态与 Boss 前的王座门严格分离。"
     },
     {
       "id": "item_bolt_of_gransax",
@@ -290,6 +342,51 @@
       "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
       "note": "沿巨龙石矛向上到达目标物品。",
       "tags": ["jump", "one_way", "cross_checked"]
+    },
+    {
+      "id": "sanctuary-to-queens-bedchamber",
+      "from": "grace_erdtree_sanctuary",
+      "to": "grace_queens_bedchamber",
+      "mode": "树根上行 / 外部路线",
+      "cost": 4,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "vertical_walkway",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-guide-r13749", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "verificationState": "online_cross_checked",
+      "note": "从黄金树大教堂沿树根和外部高处路线到女王闺阁。",
+      "tags": ["walk", "vertical", "cross_checked"]
+    },
+    {
+      "id": "queens-bedchamber-to-morgott-gate",
+      "from": "grace_queens_bedchamber",
+      "to": "morgott_arena_gate",
+      "mode": "王座前通路",
+      "cost": 4,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "boss_approach",
+      "requires": ["royal_capital_pre_maliketh"],
+      "sourceEvidence": ["eldenpedia-guide-r13749", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "verificationState": "online_cross_checked",
+      "note": "女王闺阁之后到达王座前 Boss 区域；此边只表示到达 Boss 门。",
+      "tags": ["walk", "boss_gate", "cross_checked"]
+    },
+    {
+      "id": "morgott-gate-to-elden-throne",
+      "from": "morgott_arena_gate",
+      "to": "grace_elden_throne",
+      "mode": "击败蒙葛特后激活赐福",
+      "cost": 3,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["royal_capital_pre_maliketh", "morgott_defeated"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-guide-r13749", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "verificationState": "online_cross_checked",
+      "note": "Boss 房与赐福是两个节点；未击败蒙葛特时不能把艾尔登王座当作已激活终点。",
+      "tags": ["boss", "state_change", "conditional", "cross_checked"]
     }
   ],
   "relations": [
@@ -304,8 +401,8 @@
   ],
   "coverage": {
     "scope": "P0 vertical slice",
-    "formalNodeCount": 9,
-    "formalRouteEdgeCount": 7,
+    "formalNodeCount": 12,
+    "formalRouteEdgeCount": 10,
     "semanticRelationCount": 1,
     "originalGameCoordinates": false,
     "localGameVerified": false,

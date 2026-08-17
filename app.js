@@ -298,7 +298,7 @@ function renderGraph() {
   renderRegions();
   renderEdges();
   renderNodes();
-  els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福目录 · ${state.data.meta.verificationLabel || "V1"}`;
+  els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段 · ${state.data.meta.verificationLabel || "V1"}`;
 }
 
 function renderInspector() {
@@ -429,14 +429,17 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse] = await Promise.all([
+    const [graphResponse, catalogResponse, routeLegResponse] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
+      fetch("/api/catalog/route-legs", { cache: "no-store" }),
     ]);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
     if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
+    if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     state.data = await graphResponse.json();
     const catalog = await catalogResponse.json();
+    const routeLegCatalog = await routeLegResponse.json();
     const regionSlots = new Map();
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
@@ -463,6 +466,7 @@ async function init() {
       });
     });
     state.data.catalogRecordCount = catalog.record_count;
+    state.data.candidateRouteLegCount = routeLegCatalog.record_count;
     state.nodes = new Map(state.data.nodes.map((node) => [node.id, node]));
     state.conditions = new Set(state.data.defaultConditions || DEFAULT_CONDITIONS);
     state.origin = state.data.defaultOrigin && state.nodes.has(state.data.defaultOrigin) ? state.data.defaultOrigin : state.data.nodes[0].id;

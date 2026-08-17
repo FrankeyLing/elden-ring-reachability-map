@@ -11,6 +11,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent
 DATA_FILE = ROOT / "data" / "v1" / "graph.json"
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
+ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 
 
 class AppHandler(SimpleHTTPRequestHandler):
@@ -33,6 +34,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/sites-of-grace":
             self.send_json_file(CATALOG_FILE)
+            return
+        if parsed.path == "/api/catalog/route-legs":
+            self.send_json_file(ROUTE_LEGS_FILE)
             return
         if parsed.path == "/":
             self.path = "/index.html"
