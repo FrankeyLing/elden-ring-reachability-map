@@ -96,6 +96,7 @@ def audit() -> dict:
     graph = load("data/v1/graph.json")
     catalog = load("data/v1/entities/sites-of-grace.json")
     legs = load("data/v1/entities/er-guide-route-legs.json")
+    route_profiles = load("data/v1/route-profiles.json")
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     label_index: dict[str, list[dict]] = {}
@@ -178,12 +179,34 @@ def audit() -> dict:
                     queue.append(neighbor)
         return False
 
+    grace_ids = {node["id"] for node in formal_graces}
+    normal_profile_adjacency = {node_id: set(neighbors) for node_id, neighbors in topology_adjacency.items()}
+    for grace_id in grace_ids:
+        normal_profile_adjacency.setdefault(grace_id, set()).update(grace_ids - {grace_id})
+
+    def normal_profile_reachable(start: str, goal: str) -> bool:
+        if start == goal:
+            return True
+        seen = {start}
+        queue = [start]
+        while queue:
+            current = queue.pop()
+            for neighbor in normal_profile_adjacency.get(current, set()):
+                if neighbor == goal:
+                    return True
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    queue.append(neighbor)
+        return False
+
     endpoint_exact = 0
     endpoint_ambiguous = 0
     endpoint_unmapped = []
     exact_endpoint_without_path = []
     direct_edge_match = 0
     topology_path_match = 0
+    normal_profile_path_match = 0
+    normal_profile_matches = []
     for leg in legs["records"]:
         from_candidates = candidates_for(label_index, leg["from"], leg["region_name"])
         to_candidates = candidates_for(label_index, leg["to"], leg["region_name"])
@@ -205,6 +228,19 @@ def audit() -> dict:
                         "formal_to": pair[1],
                     }
                 )
+                if normal_profile_reachable(*pair):
+                    normal_profile_path_match += 1
+                    normal_profile_matches.append(
+                        {
+                            "catalog_id": leg["canonical_id"],
+                            "from": leg["from"],
+                            "to": leg["to"],
+                            "formal_from": pair[0],
+                            "formal_to": pair[1],
+                            "profile": "normal_fast_travel",
+                            "requires": [route_profiles["fastTravelRule"]["id"]],
+                        }
+                    )
         elif len(from_candidates) > 1 or len(to_candidates) > 1:
             endpoint_ambiguous += 1
         else:
@@ -242,6 +278,8 @@ def audit() -> dict:
             "endpoint_ambiguous": endpoint_ambiguous,
             "direct_or_reverse_formal_edge_matches": direct_edge_match,
             "formal_topology_path_matches": topology_path_match,
+            "normal_fast_travel_profile_matches": normal_profile_path_match,
+            "normal_fast_travel_matches": normal_profile_matches,
             "exact_endpoint_without_topology_path": exact_endpoint_without_path,
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
