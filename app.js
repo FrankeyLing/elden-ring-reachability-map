@@ -408,6 +408,8 @@ function routeText(route) {
   route.nodes.forEach((nodeId, index) => {
     lines.push(`${index + 1}. ${nodeLabel(nodeId)}${route.edges[index] ? ` —[${route.edges[index].mode}]→` : ""}`);
   });
+  lines.splice(2, 0, `路线 profile：${activeRouteProfile().label || activeRouteProfile().id}`);
+  if (route.edges.some((edge) => edge.dynamic)) lines.splice(3, 0, "注意：包含条件化地图快速旅行边，不代表玩家已激活所有目标赐福。");
   return lines.join("\n");
 }
 
