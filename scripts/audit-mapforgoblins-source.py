@@ -54,6 +54,7 @@ def audit(source_dir: Path | None = None) -> dict:
     tile_paths = [path for path in artifact_counts if "tile-regions" in path]
     base_conversion_path = next(path for path in artifact_counts if "conversions-base" in path)
     dlc_conversion_path = next(path for path in artifact_counts if "conversions-dlc" in path)
+    map_point_paths = [path for path in artifact_counts if "map-points-part" in path]
 
     grace = load(ROOT / grace_path)
     bosses = load(ROOT / boss_path)
@@ -62,12 +63,19 @@ def audit(source_dir: Path | None = None) -> dict:
         tile_records.extend(load(ROOT / path)["records"])
     base_conversions = load(ROOT / base_conversion_path)["records"]
     dlc_conversions = load(ROOT / dlc_conversion_path)["records"]
+    map_point_records = []
+    for path in sorted(map_point_paths):
+        map_point_records.extend(load(ROOT / path)["records"])
 
     tile_ids = [record[0] for record in tile_records]
     if len(tile_ids) != len(set(tile_ids)):
         raise ValueError("duplicate map IDs across tile-region snapshot parts")
+    map_point_ids = [record[1] for record in map_point_records]
+    if len(map_point_ids) != len(set(map_point_ids)):
+        raise ValueError("duplicate WorldMapPointParam IDs across map-point snapshot parts")
 
     boss_formal_candidates = [record[-1] for record in bosses["records"]]
+    map_point_formal_candidates = [record[-1] for record in map_point_records]
     result = {
         "manifest": str(MANIFEST.relative_to(ROOT)),
         "source": {
@@ -82,6 +90,16 @@ def audit(source_dir: Path | None = None) -> dict:
             "boss_unique_formal_candidates": sum(len(candidates) == 1 for candidates in boss_formal_candidates),
             "boss_ambiguous_formal_candidates": sum(len(candidates) > 1 for candidates in boss_formal_candidates),
             "boss_without_formal_candidate": sum(not candidates for candidates in boss_formal_candidates),
+            "named_map_point_records": len(map_point_records),
+            "named_map_point_unique_formal_candidates": sum(
+                len(candidates) == 1 for candidates in map_point_formal_candidates
+            ),
+            "named_map_point_ambiguous_formal_candidates": sum(
+                len(candidates) > 1 for candidates in map_point_formal_candidates
+            ),
+            "named_map_point_without_formal_candidate": sum(
+                not candidates for candidates in map_point_formal_candidates
+            ),
             "tile_region_records": len(tile_records),
             "legacy_conversion_records": len(base_conversions),
             "dlc_legacy_conversion_records": len(dlc_conversions),
@@ -91,6 +109,7 @@ def audit(source_dir: Path | None = None) -> dict:
             "formal_graph_edges_added": 0,
             "map_conversions_treated_as_routes": False,
             "grace_names_guessed_by_array_order": False,
+            "map_point_names_promoted_to_routes": False,
         },
         "safety": {
             "game_process_accessed": False,
@@ -106,13 +125,16 @@ def audit(source_dir: Path | None = None) -> dict:
         source_dir = source_dir.resolve()
         verified_files = {}
         for snapshot_source in artifact_sources.values():
-            filename = snapshot_source["file"]
-            path = source_dir / filename
-            if not path.is_file():
-                raise FileNotFoundError(path)
-            verified_files[filename] = sha256(path)
-            if verified_files[filename] != snapshot_source["sha256"]:
-                raise ValueError(f"source hash mismatch: {filename}")
+            files = snapshot_source.get("files")
+            if files is None:
+                files = {snapshot_source["file"]: snapshot_source["sha256"]}
+            for filename, expected_hash in files.items():
+                path = source_dir / filename
+                if not path.is_file():
+                    raise FileNotFoundError(path)
+                verified_files[filename] = sha256(path)
+                if verified_files[filename] != expected_hash:
+                    raise ValueError(f"source hash mismatch: {filename}")
         result["source_reverification"] = {
             "source_dir": str(source_dir),
             "verified_files": verified_files,

@@ -4,9 +4,10 @@ const DEFAULT_ROUTE_PROFILE = "physical_no_fast_travel";
 
 const state = {
   data: null,
-  onlineIndex: null,
-  onlineBossByNodeId: new Map(),
-  nodes: new Map(),
+ onlineIndex: null,
+ onlineBossByNodeId: new Map(),
+  onlineMapPointByNodeId: new Map(),
+ nodes: new Map(),
   layer: "all",
   origin: "grace_avenue_balcony",
   destination: "item_bolt_of_gransax",
@@ -367,9 +368,9 @@ function renderGraph() {
   renderEdges();
   renderNodes();
   const coverage = state.onlineIndex?.manifest?.coverage;
-  const onlineStats = coverage
-    ? ` · 在线坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.tileRegionRecords} 地图层`
-    : "";
+ const onlineStats = coverage
+    ? ` · 在线坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.namedMapPointRecords} 地图点 / ${coverage.tileRegionRecords} 地图层`
+   : "";
   els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段${onlineStats} · ${state.data.meta.verificationLabel || "V1"}`;
 }
 
@@ -380,7 +381,7 @@ function renderInspector() {
   const outgoing = allEdges.filter((edge) => edge.from === node.id).slice(0, 4);
   const incoming = allEdges.filter((edge) => edge.to === node.id).slice(0, 3);
   const connections = [...outgoing, ...incoming];
-  const onlineBoss = state.onlineBossByNodeId.get(node.id);
+  const onlineBoss = state.onlineBossByNodeId.get(node.id) || state.onlineMapPointByNodeId.get(node.id);
   const onlineEvidence = onlineBoss
     ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
     : "";
@@ -535,13 +536,16 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse] = await Promise.all([
+    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
       fetch("/api/route-profiles", { cache: "no-store" }),
       fetch("/api/online-index", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-boss-positions-20260818.json", { cache: "no-store" }),
+      fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part1-20260818.json", { cache: "no-store" }),
+      fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part2-20260818.json", { cache: "no-store" }),
+      fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part3-20260818.json", { cache: "no-store" }),
    ]);
     if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
@@ -551,9 +555,11 @@ async function init() {
     state.routeProfiles = await routeProfileResponse.json();
     if (!onlineIndexResponse.ok) throw new Error(`online index HTTP ${onlineIndexResponse.status}`);
     if (!onlineBossResponse.ok) throw new Error(`online boss coordinates HTTP ${onlineBossResponse.status}`);
+    if (!onlineMapPoint1Response.ok || !onlineMapPoint2Response.ok || !onlineMapPoint3Response.ok) throw new Error("online map point coordinates unavailable");
     state.onlineIndex = {
       manifest: await onlineIndexResponse.json(),
       bosses: await onlineBossResponse.json(),
+      mapPoints: await Promise.all([onlineMapPoint1Response.json(), onlineMapPoint2Response.json(), onlineMapPoint3Response.json()]),
     };
     state.onlineBossByNodeId = new Map();
     state.onlineIndex.bosses.records.forEach((record) => {
@@ -566,6 +572,20 @@ async function init() {
           sourceIndex: record[0],
         });
       }
+    });
+    state.onlineMapPointByNodeId = new Map();
+    state.onlineIndex.mapPoints.forEach((payload) => {
+      payload.records.forEach((record) => {
+        const formalCandidates = record[10] || [];
+        if (formalCandidates.length === 1) {
+          state.onlineMapPointByNodeId.set(formalCandidates[0], {
+            name: (record[9] || []).join(" / "),
+            map: `area ${record[3]} / grid ${record[4]},${record[5]}`,
+            position: [record[6], record[7], record[8]],
+            sourceIndex: record[0],
+          });
+        }
+      });
     });
     const fastTravelRule = state.routeProfiles.fastTravelRule;
     if (fastTravelRule && !state.data.conditions.some((condition) => condition.id === fastTravelRule.id)) {

@@ -5,7 +5,7 @@ import json
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 
 ROOT = Path(__file__).resolve().parent
@@ -15,6 +15,10 @@ ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_INDEX_MANIFEST_FILE = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
+)
+ONLINE_MAP_POINT_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-map-points-part{part}-20260818.json"
+    for part in (1, 2, 3)
 )
 
 
@@ -48,6 +52,9 @@ class AppHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/api/online-index":
             self.send_json_file(ONLINE_INDEX_MANIFEST_FILE)
             return
+        if parsed.path == "/api/catalog/map-points":
+            self.send_map_points(parse_qs(parsed.query))
+            return
         if parsed.path == "/":
             self.path = "/index.html"
         return super().do_GET()
@@ -71,6 +78,64 @@ class AppHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
         self.wfile.write(payload)
+
+    def send_map_points(self, query: dict[str, list[str]]):
+        search = query.get("q", [""])[0].strip().casefold()
+        formal_id = query.get("formal_id", [""])[0].strip()
+        try:
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+        except ValueError:
+            limit = 100
+
+        records = []
+        try:
+            for path in ONLINE_MAP_POINT_FILES:
+                payload = json.loads(path.read_bytes())
+                for row in payload["records"]:
+                    names = row[9] or []
+                    candidates = row[10] or []
+                    if search and search not in " / ".join(names).casefold():
+                        continue
+                    if formal_id and formal_id not in candidates:
+                        continue
+                    records.append(
+                        {
+                            "source_index": row[0],
+                            "id": row[1],
+                            "icon_id": row[2],
+                            "area_no": row[3],
+                            "grid_x": row[4],
+                            "grid_z": row[5],
+                            "position": [row[6], row[7], row[8]],
+                            "names": names,
+                            "formal_candidates": candidates,
+                        }
+                    )
+        except (OSError, KeyError, TypeError, json.JSONDecodeError) as exc:
+            body = json.dumps({"error": str(exc)}, ensure_ascii=False).encode("utf-8")
+            self.send_response(HTTPStatus.INTERNAL_SERVER_ERROR)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
+        response = {
+            "schema": "elden-ring-reachability-map/online-map-points-query@1",
+            "query": {"q": search, "formal_id": formal_id, "limit": limit},
+            "record_count": len(records[:limit]),
+            "total_matches": len(records),
+            "records": records[:limit],
+            "routeable": False,
+            "note": "在线地图点坐标证据；不代表存在正式可通行边。",
+        }
+        body = json.dumps(response, ensure_ascii=False).encode("utf-8")
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
     def log_message(self, fmt, *args):
         print(f"[{self.log_date_time_string()}] {fmt % args}")
