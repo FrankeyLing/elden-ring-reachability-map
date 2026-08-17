@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.99-online-multiplane",
+  "version": "1.0.100-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -109,7 +109,8 @@
       "base-siofra-sellia-gael-branch-evidence-20260818",
       "base-ainsel-astel-grace-evidence-20260818",
       "base-farum-dragon-temple-grace-evidence-20260818",
-      "base-limgrave-weeping-return-coverage-evidence-20260818"
+      "base-limgrave-weeping-return-coverage-evidence-20260818",
+      "base-divine-tower-academy-return-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17336,6 +17337,11 @@
     ,{ "id": "chair-crypt-to-sellia-backstreets", "from": "grace_caelid_main_chair_crypt_of_sellia", "to": "grace_caelid_main_sellia_backstreets", "mode": "Chair-Crypt of Sellia return to Sellia Backstreets", "cost": 5, "risk": 6, "direction": "backtrack", "transitionType": "sellia_three_braziers_gate_return", "requires": ["sellia_all_braziers_lit"], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Use the opened upper doorway to leave the chair-crypt and return to Sellia Backstreets.", "tags": ["walk", "surface", "branch", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "rear-gael-to-third-church", "from": "grace_limgrave_rear_gael_tunnel_entrance", "to": "grace_third_church_of_marika", "mode": "Rear Gael Tunnel return to Third Church", "cost": 8, "risk": 6, "direction": "backtrack", "transitionType": "limgrave_cliff_route_return", "requires": [], "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Limgrave-side rear entrance by the exterior cliff route; the inner tunnel door remains locked from this side.", "tags": ["walk", "surface", "legacy_entrance", "backtrack", "cross_checked"] }
     ,{ "id": "road-iniquity-side-to-bower", "from": "grace_altus_plateau_main_road_of_iniquity_side_path", "to": "grace_altus_plateau_main_bower_of_bounty", "mode": "Road of Iniquity Side Path return to Bower of Bounty", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "underbridge_waygate_branch_return", "requires": [], "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "powerpyx-altus-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the underbridge branch to the Bower of Bounty grace; this does not open a new waygate or surface shortcut.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "west-altus-tower-to-gate", "from": "grace_divine_tower_west_altus", "to": "grace_divine_tower_west_altus_gate", "mode": "West Altus Divine Tower return lift", "cost": 5, "risk": 2, "direction": "backtrack", "transitionType": "great_rune_tower_lift_return", "requires": ["rykard_defeated"], "sourceEvidence": ["eldenpedia-divine-tower-west-altus", "pcgamer-west-altus-tower-cross-check", "eldenpedia-rykard"], "verificationState": "online_cross_checked", "note": "Use the same tower lift to descend from the summit grace to the West Altus gate; the Rykard state remains attached to the opened tower door.", "tags": ["elevator", "vertical", "conditional", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "east-altus-tower-to-gate", "from": "grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus", "to": "grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus_gate", "mode": "East Altus Divine Tower return lift", "cost": 5, "risk": 4, "direction": "backtrack", "transitionType": "divine_tower_lift_return", "requires": ["fell_twins_defeated"], "sourceEvidence": ["powerpyx-leyndell-cross-check", "gamesradar-east-altus-tower-cross-check", "eldenpedia-sites-of-grace-r83774"], "verificationState": "online_cross_checked", "note": "Descend the East Altus Divine Tower lift to the gate grace after the Fell Twins gate has been cleared.", "tags": ["elevator", "vertical", "conditional", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "divine-tower-liurnia-to-bridge", "from": "grace_liurnia_of_the_lakes_main_divine_tower_of_liurnia", "to": "grace_liurnia_of_the_lakes_main_liurnia_tower_bridge", "mode": "Divine Tower of Liurnia return to Tower Bridge", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "bridge_and_tower_lift_return", "requires": [], "sourceEvidence": ["eldenpedia-divine-tower-liurnia", "game8-study-hall-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the summit through the tower lift and cross back to the Liurnia Tower Bridge grace.", "tags": ["bridge", "lift", "vertical", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "divine-tower-limgrave-to-bridge", "from": "grace_limgrave_stormhill_divine_tower_of_limgrave", "to": "grace_limgrave_stormhill_limgrave_tower_bridge", "mode": "Divine Tower of Limgrave return to Tower Bridge", "cost": 5, "risk": 9, "direction": "backtrack", "transitionType": "sending_gate_and_tower_lift_return", "requires": ["godrick_defeated"], "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "game8-divine-tower-limgrave-cross-check", "powerpyx-where-great-runes-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the tower interior through the same bridge and sending-gate approach; this is not a reverse of the Stormveil route.", "tags": ["teleport", "lift", "vertical", "conditional", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "grand-library-to-rennala-gate", "from": "grace_raya_lucaria_grand_library", "to": "rennala_gate", "mode": "Grand Library return to Rennala arena exit", "cost": 2, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["rennala_defeated"], "sourceEvidence": ["eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check", "eldenpedia-raya-r97405"], "verificationState": "online_cross_checked", "note": "Leave the post-Rennala grace through the opened boss-room route toward the Academy return path.", "tags": ["boss", "conditional", "legacy", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17358,7 +17364,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1021,
+    "formalRouteEdgeCount": 1026,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
