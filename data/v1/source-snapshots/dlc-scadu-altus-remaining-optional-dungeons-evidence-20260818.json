@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "bonny-gaol-branch",
+      "claim": "Bonny Gaol is southeast of Bonny Village across a wooden bridge, has an internal grace, and ends at Curseblade Labirith.",
+      "sources": [
+        { "source_id": "eldenpedia-bonny-gaol", "url": "https://eldenring.wiki.gg/wiki/Bonny_Gaol" },
+        { "source_id": "segmentnext-bonny-gaol-cross-check", "url": "https://segmentnext.com/elden-ring-bonny-gaol-complete-walkthrough/" },
+        { "source_id": "pushsquare-bonny-labirith-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-beat-curseblade-labirith" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "fort-reprimand-two-accesses",
+      "claim": "Fort of Reprimand has a front approach from Moorth Highway, South and a rear grace reached by a Gravesite Plain spiritspring or the cleared Castle Ensis rear route; the interior contains a separate fort grace and Black Knight Edredd.",
+      "sources": [
+        { "source_id": "eldenpedia-fort-of-reprimand", "url": "https://eldenring.wiki.gg/wiki/Fort_of_Reprimand" },
+        { "source_id": "eip-fort-reprimand-cross-check", "url": "https://eip.gg/elden-ring/guides/fort-of-reprimand/" },
+        { "source_id": "escapist-fort-reprimand-cross-check", "url": "https://www.escapistmagazine.com/how-to-complete-fort-of-reprimand-in-elden-ring/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "fog-rift-fort-vertical-entry",
+      "claim": "Fog Rift Fort sits below the Gravesite Plain road but is only accessed from Scadu Altus, West by descending cliff ledges and a ladder; Black Knight Garrew is the optional boss inside.",
+      "sources": [
+        { "source_id": "eldenpedia-fog-rift-fort", "url": "https://eldenring.wiki.gg/wiki/Fog_Rift_Fort" },
+        { "source_id": "gameofguides-fog-rift-fort-cross-check", "url": "https://video-game-guide-walkthrough.supersoluce.com/solution/elden-ring-shadow-of-the-erdtree-guide-walkthrough/dungeons-and-optional-areas/fog-rift-fort/" },
+        { "source_id": "eip-garrew-fog-rift-cross-check", "url": "https://eip.gg/elden-ring/guides/black-knight-garrew-boss/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "scadu-altus-optional-boss-rewards",
+      "claim": "The modeled boss completion endpoints are Curseblade Meera from Labirith, Aspects of the Crucible: Wings from Edredd, and Black Steel Greatshield from Garrew.",
+      "sources": [
+        { "source_id": "pushsquare-bonny-labirith-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-beat-curseblade-labirith" },
+        { "source_id": "eip-fort-reprimand-cross-check", "url": "https://eip.gg/elden-ring/guides/fort-of-reprimand/" },
+        { "source_id": "eip-garrew-fog-rift-cross-check", "url": "https://eip.gg/elden-ring/guides/black-knight-garrew-boss/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

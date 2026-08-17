@@ -516,7 +516,12 @@ async function init() {
       ["Cliffroad Terminus", "grace_shadow_realm_cliffroad_terminus"],
       ["Highroad Cross", "grace_scadu_altus_highroad_cross"],
       ["Moorth Ruins", "grace_scadu_altus_moorth_ruins"],
+      ["Moorth Highway, South", "grace_scadu_altus_main_moorth_highway_south"],
       ["Bonny Village", "grace_scadu_altus_bonny_village"],
+      ["Bonny Gaol", "grace_scadu_altus_main_bonny_gaol"],
+      ["Behind the Fort of Reprimand", "grace_scadu_altus_main_behind_the_fort_of_reprimand"],
+      ["Fort of Reprimand", "grace_scadu_altus_main_fort_of_reprimand"],
+      ["Scadu Altus, West", "grace_scadu_altus_main_scadu_altus_west"],
       ["Bridge Leading to the Village", "grace_scadu_altus_bridge_leading_to_village"],
       ["Church District Highroad", "grace_scadu_altus_church_district_highroad"],
       ["Shadow Keep Main Gate", "grace_shadow_keep_main_gate"],
@@ -902,7 +907,7 @@ async function init() {
       if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
       if (["Belurat Gaol", "Fog Rift Catacombs", "Rivermouth Cave", "Scorpion River Catacombs"].includes(record.name)) return;
       if (["Cave of the Forlorn", "Consecrated Snowfield Catacombs", "Yelough Anix Tunnel", "Giant-Conquering Hero's Grave", "Giants' Mountaintop Catacombs", "Spiritcaller's Cave"].includes(record.name)) return;
-      if (["Ruined Forge Lava Intake", "Taylew's Ruined Forge", "Ruined Forge of Starfall Past"].includes(record.name)) return;
+      if (["Ruined Forge Lava Intake", "Taylew's Ruined Forge", "Ruined Forge of Starfall Past", "Moorth Highway, South", "Bonny Gaol", "Behind the Fort of Reprimand", "Fort of Reprimand", "Scadu Altus, West"].includes(record.name)) return;
       if (["Mimic Tear", "Night's Sacred Ground", "Aqueduct-Facing Cliffs"].includes(record.name)) return;
       if (["Great Waterfall Crest", "The Nameless Eternal City", "Across the Roots", "Root-Facing Cliffs"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;

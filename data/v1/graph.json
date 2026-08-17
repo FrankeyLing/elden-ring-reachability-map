@@ -67,7 +67,8 @@
       "dlc-optional-gaols-catacombs-evidence-20260818",
       "dlc-ruined-forges-evidence-20260818",
       "base-mountaintops-optional-dungeons-evidence-20260818",
-      "dlc-ruined-forge-starfall-past-evidence-20260818"
+      "dlc-ruined-forge-starfall-past-evidence-20260818",
+      "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -838,6 +839,26 @@
       "id": "black_knife_assassin_sages_cave_defeated",
       "label": "Sage's Cave Black Knife Assassin defeated",
       "hint": "The invisible Black Knife Assassin in the deepest Sage's Cave water chamber has been cleared."
+    },
+    {
+      "id": "curseblade_labirith_defeated",
+      "label": "Bonny Gaol Curseblade Labirith defeated",
+      "hint": "The Curseblade Labirith boss gate at the end of Bonny Gaol has been cleared."
+    },
+    {
+      "id": "black_knight_edredd_defeated",
+      "label": "Fort of Reprimand Black Knight Edredd defeated",
+      "hint": "Black Knight Edredd in the Fort of Reprimand main hall has been cleared."
+    },
+    {
+      "id": "black_knight_garrew_defeated",
+      "label": "Fog Rift Fort Black Knight Garrew defeated",
+      "hint": "Black Knight Garrew in the lower Fog Rift Fort route has been cleared."
+    },
+    {
+      "id": "fort_reprimand_spirit_spring_unsealed",
+      "label": "Fort of Reprimand spirit spring unsealed",
+      "hint": "The sealed spirit spring in the northeastern Gravesite Plain poison-pool route has been opened for the rear fort landing."
     }
   ],
   "sourceEvidence": [
@@ -1228,6 +1249,15 @@
     ,{ "id": "eldenpedia-ruined-forge-starfall-past", "label": "Eldenpedia - Ruined Forge of Starfall Past", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_of_Starfall_Past", "grade": "A" }
     ,{ "id": "eip-ruined-forge-starfall-cross-check", "label": "EIP Gaming - Ruined Forge of Starfall Past walkthrough", "url": "https://eip.gg/elden-ring/guides/ruined-forge-of-starfall-past-dungeon/", "grade": "B" }
     ,{ "id": "game8-ruined-forge-starfall-cross-check", "label": "Game8 - Ruined Forge of Starfall Past walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/458904", "grade": "B" }
+    ,{ "id": "eldenpedia-bonny-gaol", "label": "Eldenpedia - Bonny Gaol", "url": "https://eldenring.wiki.gg/wiki/Bonny_Gaol", "grade": "A" }
+    ,{ "id": "segmentnext-bonny-gaol-cross-check", "label": "SegmentNext - Bonny Gaol walkthrough", "url": "https://segmentnext.com/elden-ring-bonny-gaol-complete-walkthrough/", "grade": "B" }
+    ,{ "id": "pushsquare-bonny-labirith-cross-check", "label": "Push Square - Curseblade Labirith", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-beat-curseblade-labirith", "grade": "B" }
+    ,{ "id": "eldenpedia-fort-of-reprimand", "label": "Eldenpedia - Fort of Reprimand", "url": "https://eldenring.wiki.gg/wiki/Fort_of_Reprimand", "grade": "A" }
+    ,{ "id": "eip-fort-reprimand-cross-check", "label": "EIP Gaming - Fort of Reprimand dungeon guide", "url": "https://eip.gg/elden-ring/guides/fort-of-reprimand/", "grade": "B" }
+    ,{ "id": "escapist-fort-reprimand-cross-check", "label": "The Escapist - Fort of Reprimand walkthrough", "url": "https://www.escapistmagazine.com/how-to-complete-fort-of-reprimand-in-elden-ring/", "grade": "B" }
+    ,{ "id": "eldenpedia-fog-rift-fort", "label": "Eldenpedia - Fog Rift Fort", "url": "https://eldenring.wiki.gg/wiki/Fog_Rift_Fort", "grade": "A" }
+    ,{ "id": "gameofguides-fog-rift-fort-cross-check", "label": "Game of Guides - Fog Rift Fort walkthrough", "url": "https://video-game-guide-walkthrough.supersoluce.com/solution/elden-ring-shadow-of-the-erdtree-guide-walkthrough/dungeons-and-optional-areas/fog-rift-fort/", "grade": "B" }
+    ,{ "id": "eip-garrew-fog-rift-cross-check", "label": "EIP Gaming - Black Knight Garrew", "url": "https://eip.gg/elden-ring/guides/black-knight-garrew-boss/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8380,6 +8410,66 @@
     {
       "id": "ruined_forge_starfall_reward_state", "label": "Ruined Forge of Starfall Past (altar reward state)", "kind": "state", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Forge altar", "worldEpoch": "shadow_realm", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "No-boss completion endpoint containing Ancient Meteoric Ore Greatsword and Ancient Dragon Smithing Stone; leave by fast travel or backtrack."
+    },
+    {
+      "id": "grace_scadu_altus_main_moorth_highway_south", "label": "Moorth Highway, South", "kind": "grace", "layer": "surface", "region": "Scadu Altus", "floor": "Moorth Highway south / fort approach", "worldEpoch": "shadow_realm", "x": 500, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "eldenpedia-sites-of-grace-r83774"], "description": "Surface grace on the highway immediately outside the front approach to Fort of Reprimand."
+    },
+    {
+      "id": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "label": "Behind the Fort of Reprimand", "kind": "grace", "layer": "surface", "region": "Scadu Altus", "floor": "Rear fort ramparts / spiritspring landing", "worldEpoch": "shadow_realm", "x": 420, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "description": "Rear-side grace reached either from the northeastern Gravesite Plain spiritspring or through Castle Ensis's rear exit."
+    },
+    {
+      "id": "grace_scadu_altus_main_fort_of_reprimand", "label": "Fort of Reprimand", "kind": "grace", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Fort battlements", "worldEpoch": "shadow_realm", "x": 560, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "eldenpedia-sites-of-grace-r83774"], "description": "Interior fort grace discovered on the battlements after entering from the highway or rear route."
+    },
+    {
+      "id": "fort_reprimand_front_entrance", "label": "Fort of Reprimand front entrance", "kind": "entrance", "layer": "surface", "region": "Fort of Reprimand", "floor": "Front courtyard", "worldEpoch": "shadow_realm", "x": 530, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "description": "Front courtyard entrance from Moorth Highway, South; the lower dungeon and main hall branch are distinct from the battlement grace."
+    },
+    {
+      "id": "fort_reprimand_spirit_spring_seal", "label": "Fort of Reprimand sealed spiritspring route", "kind": "junction", "layer": "surface", "region": "Gravesite Plain", "floor": "Northeastern poison pools / Ellac River descent", "worldEpoch": "shadow_realm", "x": 300, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "description": "The sealed spring below the Gravesite Plain cliffs; unsealing it enables the high jump to the rear fort landing."
+    },
+    {
+      "id": "black_knight_edredd_fort_gate", "label": "Black Knight Edredd (Fort of Reprimand)", "kind": "boss", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Main hall", "worldEpoch": "shadow_realm", "x": 620, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "description": "Optional Black Knight boss in the fort main hall; drops Aspects of the Crucible: Wings."
+    },
+    {
+      "id": "fort_reprimand_post_boss_state", "label": "Fort of Reprimand (post-Edredd state)", "kind": "state", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Main hall return state", "worldEpoch": "shadow_realm", "x": 680, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check"], "description": "Cleared-state endpoint for the Crucible Wings reward and remaining fort exploration."
+    },
+    {
+      "id": "bonny_gaol_surface_entrance", "label": "Bonny Gaol surface entrance", "kind": "entrance", "layer": "surface", "region": "Scadu Altus", "floor": "South-east of Bonny Village / wooden bridge", "worldEpoch": "shadow_realm", "x": 620, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check", "pushsquare-bonny-labirith-cross-check"], "description": "Gaol entrance across the southern bridge from Bonny Village."
+    },
+    {
+      "id": "grace_scadu_altus_main_bonny_gaol", "label": "Bonny Gaol", "kind": "grace", "layer": "legacy", "region": "Bonny Gaol", "floor": "Gaol entrance", "worldEpoch": "shadow_realm", "x": 680, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check"], "description": "Internal grace just inside the Bonny Gaol entrance."
+    },
+    {
+      "id": "curseblade_labirith_bonny_gate", "label": "Curseblade Labirith (Bonny Gaol)", "kind": "boss", "layer": "legacy", "region": "Bonny Gaol", "floor": "Gaol boss chamber", "worldEpoch": "shadow_realm", "x": 740, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "pushsquare-bonny-labirith-cross-check", "segmentnext-bonny-gaol-cross-check"], "description": "Curseblade Labirith at the end of the gaol; reward is the Curseblade Meera spirit ash."
+    },
+    {
+      "id": "bonny_gaol_post_boss_state", "label": "Bonny Gaol (post-boss state)", "kind": "state", "layer": "legacy", "region": "Bonny Gaol", "floor": "Labirith chamber return state", "worldEpoch": "shadow_realm", "x": 800, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "pushsquare-bonny-labirith-cross-check"], "description": "Cleared-state endpoint for the gaol's boss reward and Night armor branch."
+    },
+    {
+      "id": "grace_scadu_altus_main_scadu_altus_west", "label": "Scadu Altus, West", "kind": "grace", "layer": "surface", "region": "Scadu Altus", "floor": "Western Scadu Altus cliff edge", "worldEpoch": "shadow_realm", "x": 330, "y": 390, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eldenpedia-sites-of-grace-r83774"], "description": "Upper grace used as the only practical approach to Fog Rift Fort; the fort is below the cliff and not reached by a flat road."
+    },
+    {
+      "id": "fog_rift_fort_surface_entrance", "label": "Fog Rift Fort lower entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Cliff ledges below Scadu Altus, West", "worldEpoch": "shadow_realm", "x": 260, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Vertical drop route from Scadu Altus, West through cliff ledges and a ladder into the lower fort."
+    },
+    {
+      "id": "black_knight_garrew_fog_rift_gate", "label": "Black Knight Garrew (Fog Rift Fort)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Lower fort bridge / courtyard", "worldEpoch": "shadow_realm", "x": 320, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Optional Garrew encounter inside the lower fort; defeating him yields the Black Steel Greatshield."
+    },
+    {
+      "id": "fog_rift_fort_post_boss_state", "label": "Fog Rift Fort (post-boss state)", "kind": "state", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Garrew bridge return state", "worldEpoch": "shadow_realm", "x": 380, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Cleared-state endpoint for Garrew's shield and the upper fort item route."
     }
   ],
   "edges": [
@@ -15695,6 +15785,57 @@
     },
     {
       "id": "starfall-raised-to-reward", "from": "ruined_forge_starfall_heavy_door_raised_state", "to": "ruined_forge_starfall_reward_state", "mode": "Ruined Forge of Starfall Past altar", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "forge_anvil_reward", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Interact with the forge altar to claim the Ancient Meteoric Ore Greatsword and Ancient Dragon Smithing Stone; no boss gate exists.", "tags": ["reward", "legacy", "no_boss", "cross_checked"]
+    },
+    {
+      "id": "moorth-ruins-to-moorth-highway-south", "from": "grace_scadu_altus_moorth_ruins", "to": "grace_scadu_altus_main_moorth_highway_south", "mode": "Moorth Ruins to Moorth Highway, South", "cost": 9, "risk": 6, "direction": "forward", "transitionType": "shadow_realm_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "Follow the southern Moorth Highway past the Ghostflame Dragon approach to the grace outside Fort of Reprimand.", "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "moorth-highway-south-to-fort-front", "from": "grace_scadu_altus_main_moorth_highway_south", "to": "fort_reprimand_front_entrance", "mode": "Moorth Highway, South to Fort of Reprimand front", "cost": 4, "risk": 7, "direction": "forward", "transitionType": "fort_front_entrance", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the short approach from the highway grace into the fort courtyard and front door.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "fort-front-to-fort-grace", "from": "fort_reprimand_front_entrance", "to": "grace_scadu_altus_main_fort_of_reprimand", "mode": "Fort of Reprimand battlement ascent", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "fort_vertical_route", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the courtyard and internal stairs/ladders to discover the grace on the battlements.", "tags": ["vertical", "ladder", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fort-behind-to-fort-grace", "from": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "to": "grace_scadu_altus_main_fort_of_reprimand", "mode": "Rear Fort of Reprimand to battlement grace", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "rear_fort_ladder_route", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Use the rear landing and ladder route to reach the same battlement grace without entering through the highway door.", "tags": ["vertical", "ladder", "legacy", "cross_checked"]
+    },
+    {
+      "id": "ensis-to-fort-rear-grace", "from": "grace_ensis_moongazing_grounds", "to": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "mode": "Castle Ensis rear exit to Behind the Fort of Reprimand", "cost": 9, "risk": 7, "direction": "forward", "transitionType": "legacy_rear_exit", "requires": ["rellana_defeated"], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "After clearing Castle Ensis, descend through its rear route to the fort's back-side grace; this is not the same as the front highway approach.", "tags": ["conditional", "vertical", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "pillar-path-to-fort-spirit-spring-seal", "from": "grace_shadow_realm_pillar_path_cross", "to": "fort_reprimand_spirit_spring_seal", "mode": "Pillar Path Cross to Fort of Reprimand sealed spiritspring", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "poison_pool_spiritspring_approach", "requires": [], "sourceEvidence": ["eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the cliff-side Ellac River descent to the sealed spring below the fort; the approach is a separate vertical layer from the surface road.", "tags": ["walk", "vertical", "hidden", "cross_checked"]
+    },
+    {
+      "id": "fort-spirit-spring-to-rear-grace", "from": "fort_reprimand_spirit_spring_seal", "to": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "mode": "Fort of Reprimand spiritspring jump", "cost": 4, "risk": 10, "direction": "forward", "transitionType": "sealed_spiritspring_jump", "requires": ["fort_reprimand_spirit_spring_unsealed"], "sourceEvidence": ["eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Unseal the spring and make the two-jump ascent to the rear fort landing; without the spring state this edge is unavailable.", "tags": ["conditional", "vertical", "one_way", "hazard", "cross_checked"]
+    },
+    {
+      "id": "fort-grace-to-edredd", "from": "grace_scadu_altus_main_fort_of_reprimand", "to": "black_knight_edredd_fort_gate", "mode": "Fort of Reprimand main hall boss approach", "cost": 7, "risk": 10, "direction": "forward", "transitionType": "legacy_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "From the battlement grace, descend into the southeastern main hall to reach Black Knight Edredd.", "tags": ["boss", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "edredd-to-fort-state", "from": "black_knight_edredd_fort_gate", "to": "fort_reprimand_post_boss_state", "mode": "Fort of Reprimand Edredd completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knight_edredd_defeated"], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Clears the Edredd encounter and records the Crucible Wings reward state.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "bonny-village-to-bonny-gaol-mouth", "from": "grace_scadu_altus_bonny_village", "to": "bonny_gaol_surface_entrance", "mode": "Bonny Village south bridge to Bonny Gaol", "cost": 6, "risk": 6, "direction": "forward", "transitionType": "wooden_bridge_gaol_entrance", "requires": [], "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check", "pushsquare-bonny-labirith-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the southern wooden bridge from Bonny Village to the gaol mouth; this is a distinct optional branch from the main village route.", "tags": ["walk", "surface", "bridge", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "bonny-gaol-mouth-to-grace", "from": "bonny_gaol_surface_entrance", "to": "grace_scadu_altus_main_bonny_gaol", "mode": "Bonny Gaol entrance passage", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "gaol_entry", "requires": [], "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check"], "verificationState": "online_cross_checked", "note": "The gaol entrance reaches its internal grace after the bridge crossing.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "bonny-gaol-to-labirith", "from": "grace_scadu_altus_main_bonny_gaol", "to": "curseblade_labirith_bonny_gate", "mode": "Bonny Gaol shadow corridor to Labirith", "cost": 13, "risk": 10, "direction": "forward", "transitionType": "gaol_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check", "pushsquare-bonny-labirith-cross-check"], "verificationState": "online_cross_checked", "note": "Navigate the living-jar and rat cells through the dark gaol corridor to the Curseblade Labirith fog gate.", "tags": ["hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "labirith-to-bonny-gaol-state", "from": "curseblade_labirith_bonny_gate", "to": "bonny_gaol_post_boss_state", "mode": "Bonny Gaol Labirith completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["curseblade_labirith_defeated"], "sourceEvidence": ["eldenpedia-bonny-gaol", "pushsquare-bonny-labirith-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Curseblade Meera and the gaol's post-boss loot route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "ensis-to-scadu-altus-west", "from": "grace_ensis_moongazing_grounds", "to": "grace_scadu_altus_main_scadu_altus_west", "mode": "Castle Ensis exit to Scadu Altus, West", "cost": 8, "risk": 6, "direction": "forward", "transitionType": "shadow_realm_surface_exit", "requires": ["rellana_defeated"], "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eldenpedia-castle-ensis-r73643"], "verificationState": "online_cross_checked", "note": "Use the cleared Castle Ensis exit to reach the western Scadu Altus grace that overlooks Fog Rift Fort.", "tags": ["conditional", "surface", "cross_checked"]
+    },
+    {
+      "id": "scadu-altus-west-to-fog-rift-fort", "from": "grace_scadu_altus_main_scadu_altus_west", "to": "fog_rift_fort_surface_entrance", "mode": "Scadu Altus, West cliff descent to Fog Rift Fort", "cost": 10, "risk": 10, "direction": "forward", "transitionType": "cliff_ledge_drop", "requires": [], "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the visible cliff ledges and ladder; Fog Rift Fort is not reachable by a flat Gravesite Plain road.", "tags": ["vertical", "one_way", "hazard", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "fog-rift-fort-mouth-to-garrew", "from": "fog_rift_fort_surface_entrance", "to": "black_knight_garrew_fog_rift_gate", "mode": "Fog Rift Fort lower bridge route", "cost": 9, "risk": 10, "direction": "forward", "transitionType": "fort_lower_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "verificationState": "online_cross_checked", "note": "Enter the lower tower, cross the fort's bridges and approach Black Knight Garrew from the lower interior.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "garrew-to-fog-rift-state", "from": "black_knight_garrew_fog_rift_gate", "to": "fog_rift_fort_post_boss_state", "mode": "Fog Rift Fort Garrew completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knight_garrew_defeated"], "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Black Steel Greatshield and upper fort item route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -15717,8 +15858,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 597,
-    "formalRouteEdgeCount": 620,
+    "formalNodeCount": 612,
+    "formalRouteEdgeCount": 637,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
