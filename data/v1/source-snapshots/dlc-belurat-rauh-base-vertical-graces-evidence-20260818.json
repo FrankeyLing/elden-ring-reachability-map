@@ -1,0 +1,37 @@
+{
+  "snapshot_id": "dlc-belurat-rauh-base-vertical-graces-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "belurat-small-altar-stagefront-route",
+      "claim": "Belurat's interior is not a single direct line from its entry grace to the Divine Beast. The left branch reaches Small Private Altar, then the rooftop/spiral-stair route reaches Stagefront beside the theatre doors, and only then does the player approach the Divine Beast Dancing Lion.",
+      "sources": [
+        { "source_id": "eldenpedia-belurat-tower-settlement", "url": "https://eldenring.wiki.gg/wiki/Belurat%2C_Tower_Settlement" },
+        { "source_id": "game8-belurat-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458536" },
+        { "source_id": "eip-belurat-cross-check", "url": "https://eip.gg/elden-ring/guides/belurat-tower-settlement/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "rauh-base-temple-ravine-layer",
+      "claim": "Rauh Base is the lower valley beneath the Ancient Ruins. Ancient Ruins Base connects southwest to Temple Town Ruins; from Temple Town the river runs north to Ravine North, where the route climbs the eastern slope. These are separate lower-layer graces rather than aliases of the upper Ancient Ruins graces.",
+      "sources": [
+        { "source_id": "eldenpedia-rauh", "url": "https://eldenring.wiki.gg/wiki/Rauh" },
+        { "source_id": "neoseeker-rauh-base-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Rauh_Base" },
+        { "source_id": "game8-rauh-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460470" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "rauh-west-grand-stairway-elevator",
+      "claim": "Ancient Ruins, Grand Stairway is an upper Rauh grace reached from Rauh Ancient Ruins, West through the southwest temple, lattice/platform route and elevator. It is not reachable by simply treating Temple Town Ruins as the same elevation or by collapsing all Rauh graces into a single surface point.",
+      "sources": [
+        { "source_id": "eldenpedia-rauh", "url": "https://eldenring.wiki.gg/wiki/Rauh" },
+        { "source_id": "neoseeker-rauh-west-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Ancient_Ruins_of_Rauh_-_West" },
+        { "source_id": "game8-rauh-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460470" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
