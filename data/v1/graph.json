@@ -10510,8 +10510,9 @@
       "direction": "forward",
       "transitionType": "landmark_route",
       "requires": ["royal_capital_pre_maliketh"],
-      "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
-      "note": "从大道旁露台沿巨龙石翼向高处路线前进。",
+    "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "从大道旁露台沿巨龙石翼向高处路线前进。",
       "tags": ["walk", "vertical", "cross_checked"]
     },
     {
@@ -10524,8 +10525,9 @@
       "direction": "forward",
       "transitionType": "entrance",
       "requires": ["royal_capital_pre_maliketh"],
-      "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
-      "note": "经王城高处路线进入黄金树大教堂区域。",
+    "sourceEvidence": ["eldenpedia-guide-r13749", "pcgamer-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "经王城高处路线进入黄金树大教堂区域。",
       "tags": ["walk", "vertical", "cross_checked"]
     },
     {
@@ -10628,8 +10630,9 @@
       "direction": "forward",
       "transitionType": "door_exit",
       "requires": ["royal_capital_pre_maliketh", "erdtree_sanctuary_activated"],
-      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
-      "note": "从黄金树大教堂退出并朝电梯方向下行。",
+    "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "从黄金树大教堂退出并朝电梯方向下行。",
       "tags": ["walk", "cross_checked"]
     },
     {
@@ -10642,8 +10645,9 @@
       "direction": "forward",
       "transitionType": "elevator",
       "requires": ["royal_capital_pre_maliketh"],
-      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
-      "note": "乘坐大教堂西侧电梯到下层。",
+    "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "乘坐大教堂西侧电梯到下层。",
       "tags": ["lift", "floor_change", "cross_checked"]
     },
     {
@@ -10656,8 +10660,9 @@
       "direction": "forward",
       "transitionType": "walkway",
       "requires": ["royal_capital_pre_maliketh"],
-      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
-      "note": "沿下层路线前进到巨矛上方栏杆。",
+    "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "沿下层路线前进到巨矛上方栏杆。",
       "tags": ["walk", "floor_change", "cross_checked"]
     },
     {
@@ -10670,8 +10675,9 @@
       "direction": "forward",
       "transitionType": "one_way_drop",
       "requires": ["royal_capital_pre_maliketh"],
-      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
-      "note": "从栏杆跳到下方小平台；不生成反向边。",
+    "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "从栏杆跳到下方小平台；不生成反向边。",
       "tags": ["drop", "one_way", "cross_checked"]
     },
     {
@@ -10684,8 +10690,9 @@
       "direction": "forward",
       "transitionType": "item_pickup_approach",
       "requires": ["royal_capital_pre_maliketh"],
-      "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
-      "note": "沿巨龙石矛向上到达目标物品。",
+    "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084", "game8-route-cross-check"],
+    "verificationState": "online_cross_checked",
+    "note": "沿巨龙石矛向上到达目标物品。",
       "tags": ["jump", "one_way", "cross_checked"]
     },
     {
