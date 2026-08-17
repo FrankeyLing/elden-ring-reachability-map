@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.41-online-multiplane",
+    "version": "1.0.42-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -53,7 +53,8 @@
       "base-deeproot-ainsel-coffin-evidence-20260817",
       "base-west-altus-tower-sealed-tunnel-evidence-20260817",
       "base-dragonbarrow-lenne-merchant-evidence-20260817",
-      "base-caelid-main-road-branches-evidence-20260817"
+      "base-caelid-main-road-branches-evidence-20260817",
+      "base-caelid-optional-dungeons-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -529,6 +530,21 @@
       "id": "onyx_lord_sealed_tunnel_defeated",
       "label": "Onyx Lord of Sealed Tunnel defeated",
       "hint": "The Sealed Tunnel boss gate has been cleared and the exit to the Divine Tower of West Altus is open."
+    },
+    {
+      "id": "beastmen_dragonbarrow_cave_defeated",
+      "label": "Dragonbarrow Cave Beastmen defeated",
+      "hint": "The two Beastmen of Farum Azula at the end of Dragonbarrow Cave have been cleared."
+    },
+    {
+      "id": "putrid_crystalian_trio_sellia_defeated",
+      "label": "Sellia Hideaway Putrid Crystalian Trio defeated",
+      "hint": "The Putrid Crystalian trio at the end of Sellia Hideaway has been cleared."
+    },
+    {
+      "id": "magma_wyrm_gael_tunnel_defeated",
+      "label": "Gael Tunnel Magma Wyrm defeated",
+      "hint": "The Magma Wyrm at the end of the Caelid Gael Tunnel route has been cleared, opening the Limgrave-side rear exit."
     }
   ],
   "sourceEvidence": [
@@ -769,6 +785,14 @@
     ,{ "id": "game8-caelid-walkthrough-cross-check", "label": "Game8 · Caelid walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379537", "grade": "B" }
     ,{ "id": "game8-cathedral-dragon-communion-cross-check", "label": "Game8 · Cathedral of Dragon Communion", "url": "https://game8.co/games/Elden-Ring/archives/369947", "grade": "B" }
     ,{ "id": "vgkami-caelid-grace-cross-check", "label": "VGKAMI · Caelid Sites of Grace", "url": "https://vgkami.com/elden-ring-every-site-of-grace-location/", "grade": "C" }
+    ,{ "id": "eldenpedia-dragonbarrow-cave", "label": "Eldenpedia · Dragonbarrow Cave", "url": "https://eldenring.wiki.gg/wiki/Dragonbarrow_Cave", "grade": "A" }
+    ,{ "id": "game8-dragonbarrow-cave-cross-check", "label": "Game8 · Dragonbarrow Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/375461", "grade": "B" }
+    ,{ "id": "neoseeker-dragonbarrow-cave-cross-check", "label": "Neoseeker · Northern Dragonbarrow walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Northern_Greyolls_Dragonbarrow", "grade": "B" }
+    ,{ "id": "eldenpedia-sellia-hideaway", "label": "Eldenpedia · Sellia Hideaway", "url": "https://eldenring.wiki.gg/wiki/Sellia_Hideaway", "grade": "A" }
+    ,{ "id": "game8-sellia-hideaway-cross-check", "label": "Game8 · Sellia Hideaway walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370642", "grade": "B" }
+    ,{ "id": "eip-sellia-hideaway-cross-check", "label": "EIP Gaming · Sellia Hideaway walkthrough", "url": "https://eip.gg/elden-ring/guides/sellia-hideaway-dungeon-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-gael-tunnel", "label": "Eldenpedia · Gael Tunnel", "url": "https://eldenring.wiki.gg/wiki/Gael_Tunnel", "grade": "A" }
+    ,{ "id": "gamerguides-gael-tunnel-cross-check", "label": "Gamer Guides · Gael Tunnel Magma Wyrm route", "url": "https://www.gamerguides.com/elden-ring/guide/caelid/bosses/how-to-beat-the-magma-wyrm-in-gael-tunnel", "grade": "C" }
   ],
   "nodes": [
     {
@@ -6097,6 +6121,141 @@
       "description": "Southern branch off Caelid Highway South, at the peninsula used for Dragon Communion."
     },
     {
+      "id": "grace_caelid_dragonbarrow_cave",
+      "label": "Dragonbarrow Cave",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Greyoll's Dragonbarrow",
+      "floor": "Dragonbarrow Cave entrance",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 620,
+      "y": 735,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "description": "Cave grace on the lower path east of Dragonbarrow Fork, beneath the Dragonbarrow Minor Erdtree."
+    },
+    {
+      "id": "beastmen_dragonbarrow_cave_gate",
+      "label": "Beastmen of Farum Azula (Dragonbarrow Cave)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Dragonbarrow Cave",
+      "floor": "Dragonbarrow Cave boss cavern",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 680,
+      "y": 735,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "description": "Two-Beastmen optional boss gate at the end of Dragonbarrow Cave."
+    },
+    {
+      "id": "dragonbarrow_cave_post_boss_state",
+      "label": "Dragonbarrow Cave (post-boss state)",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Dragonbarrow Cave",
+      "floor": "Dragonbarrow Cave boss cavern return state",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 740,
+      "y": 735,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check"],
+      "description": "Cleared-state node for the Dragonbarrow Cave duo; no artificial post-boss grace is fabricated."
+    },
+    {
+      "id": "grace_caelid_sellia_hideaway",
+      "label": "Sellia Hideaway",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Sellia, Town of Sorcery",
+      "floor": "Hidden crystal cave entrance",
+      "worldEpoch": "caelid_surface",
+      "x": 1510,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check"],
+      "description": "Hidden grace behind the illusory wall in the cemetery northeast of the Church of the Plague."
+    },
+    {
+      "id": "putrid_crystalian_trio_sellia_hideaway_gate",
+      "label": "Putrid Crystalian Trio (Sellia Hideaway)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Sellia Hideaway",
+      "floor": "Sellia Hideaway boss cavern",
+      "worldEpoch": "caelid_surface",
+      "x": 1570,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check"],
+      "description": "Putrid Crystalian staff, ringblade and spear trio at the end of Sellia Hideaway."
+    },
+    {
+      "id": "sellia_hideaway_post_boss_state",
+      "label": "Sellia Hideaway (post-boss state)",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Sellia Hideaway",
+      "floor": "Sellia Hideaway boss cavern return state",
+      "worldEpoch": "caelid_surface",
+      "x": 1630,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check"],
+      "description": "Cleared-state node for the hidden cave trio; no artificial post-boss grace is fabricated."
+    },
+    {
+      "id": "grace_caelid_gael_tunnel",
+      "label": "Gael Tunnel",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Gael Tunnel",
+      "floor": "Caelid main entrance / lower mine",
+      "worldEpoch": "caelid_surface",
+      "x": 1050,
+      "y": 520,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"],
+      "description": "Caelid-side Gael Tunnel grace at the bottom of the vertical mine shaft."
+    },
+    {
+      "id": "grace_limgrave_rear_gael_tunnel_entrance",
+      "label": "Rear Gael Tunnel Entrance",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Gael Tunnel",
+      "floor": "Limgrave locked rear entrance",
+      "worldEpoch": "base_surface",
+      "x": 1060,
+      "y": 600,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check"],
+      "description": "Limgrave-side rear grace; the inner door is locked from this side until the Magma Wyrm route is cleared."
+    },
+    {
+      "id": "magma_wyrm_gael_tunnel_gate",
+      "label": "Magma Wyrm (Gael Tunnel)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Gael Tunnel",
+      "floor": "Gael Tunnel boss arena",
+      "worldEpoch": "caelid_surface",
+      "x": 1110,
+      "y": 520,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"],
+      "description": "Magma Wyrm boss gate in the Caelid-side tunnel; the Moonveil route terminates here before the rear exit opens."
+    },
+    {
       "id": "grace_caelid_greyoll_s_dragonbarrow_farum_greatbridge",
       "label": "Farum Greatbridge",
       "kind": "grace",
@@ -10907,6 +11066,156 @@
       "tags": ["boss", "conditional", "state_change", "underground", "cross_checked"]
     },
     {
+      "id": "dragonbarrow-fork-to-dragonbarrow-cave",
+      "from": "grace_dragonbarrow_fork",
+      "to": "grace_caelid_dragonbarrow_cave",
+      "mode": "Dragonbarrow Fork to Dragonbarrow Cave",
+      "cost": 6,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "dragonbarrow_lower_path",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Take the lower path east from Dragonbarrow Fork and descend to the cave entrance beneath the Minor Erdtree.",
+      "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "dragonbarrow-cave-to-beastmen",
+      "from": "grace_caelid_dragonbarrow_cave",
+      "to": "beastmen_dragonbarrow_cave_gate",
+      "mode": "Dragonbarrow Cave internal route",
+      "cost": 9,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "cave_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The cave descent and wolf/Runebear section lead to the two-Beastmen boss cavern.",
+      "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "beastmen-to-dragonbarrow-cave-state",
+      "from": "beastmen_dragonbarrow_cave_gate",
+      "to": "dragonbarrow_cave_post_boss_state",
+      "mode": "Dragonbarrow Cave Beastmen completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_state",
+      "requires": ["beastmen_dragonbarrow_cave_defeated"],
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Explicit cleared state for the optional duo; no nonexistent post-boss grace is created.",
+      "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "church-plague-to-sellia-hideaway",
+      "from": "grace_church_of_plague",
+      "to": "grace_caelid_sellia_hideaway",
+      "mode": "Church of the Plague to Sellia Hideaway",
+      "cost": 8,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "illusory_cliff_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Head northeast to the cemetery; the illusory wall behind the large gravestone reveals the hidden cave grace.",
+      "tags": ["walk", "hidden", "legacy_entrance", "branch", "cross_checked"]
+    },
+    {
+      "id": "sellia-hideaway-to-crystalian-trio",
+      "from": "grace_caelid_sellia_hideaway",
+      "to": "putrid_crystalian_trio_sellia_hideaway_gate",
+      "mode": "Sellia Hideaway internal route",
+      "cost": 10,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "crystal_cave_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Illusory walls, crystals and miner platforms lead to the Putrid Crystalian trio.",
+      "tags": ["walk", "hidden", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "crystalian-trio-to-sellia-hideaway-state",
+      "from": "putrid_crystalian_trio_sellia_hideaway_gate",
+      "to": "sellia_hideaway_post_boss_state",
+      "mode": "Sellia Hideaway Crystalian completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_state",
+      "requires": ["putrid_crystalian_trio_sellia_defeated"],
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Explicit cleared state for the hidden cave trio; Sellen/Lusat quest conditions remain separate data not conflated with reachability.",
+      "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "rotview-to-gael-tunnel",
+      "from": "grace_rotview_balcony",
+      "to": "grace_caelid_gael_tunnel",
+      "mode": "Rotview Balcony to Gael Tunnel main entrance",
+      "cost": 8,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "caelid_cave_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Caelid-side entrance lies south of Rotview Balcony near the soldier camp and vertical mine shaft.",
+      "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "third-church-to-rear-gael-tunnel",
+      "from": "grace_third_church_of_marika",
+      "to": "grace_limgrave_rear_gael_tunnel_entrance",
+      "mode": "Third Church to Rear Gael Tunnel Entrance",
+      "cost": 9,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "limgrave_cliff_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Limgrave rear entrance is reached via the cliffs north of the Third Church; its inner door remains locked before the boss is cleared.",
+      "tags": ["walk", "vertical", "legacy_entrance", "one_way_lock", "cross_checked"]
+    },
+    {
+      "id": "gael-tunnel-to-magma-wyrm",
+      "from": "grace_caelid_gael_tunnel",
+      "to": "magma_wyrm_gael_tunnel_gate",
+      "mode": "Gael Tunnel main route to Magma Wyrm",
+      "cost": 11,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "mine_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The mine platforms, miners and wooden gate lead to the Magma Wyrm arena; the rear grace is not treated as a pre-boss shortcut.",
+      "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "magma-wyrm-to-rear-gael-tunnel",
+      "from": "magma_wyrm_gael_tunnel_gate",
+      "to": "grace_limgrave_rear_gael_tunnel_entrance",
+      "mode": "Magma Wyrm completion to rear entrance",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_locked_door",
+      "requires": ["magma_wyrm_gael_tunnel_defeated"],
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "After the Magma Wyrm, the rear Limgrave-side door becomes the exit route; before that, the rear grace cannot reach the boss.",
+      "tags": ["boss", "conditional", "one_way", "legacy", "cross_checked"]
+    },
+    {
       "id": "nokron-to-ancestral-woods",
       "from": "grace_nokron_eternal_city",
       "to": "mimic_tear_gate",
@@ -12502,8 +12811,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 380,
-    "formalRouteEdgeCount": 401,
+    "formalNodeCount": 389,
+    "formalRouteEdgeCount": 411,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
