@@ -500,6 +500,10 @@ async function init() {
       ["Leyndell, Capital of Ash", "grace_leyndell_capital_of_ash"],
       ["Gravesite Plain", "grace_shadow_realm_gravesite_plain"],
       ["Three-Path Cross", "grace_shadow_realm_three_path_cross"],
+      ["Belurat Gaol", "grace_shadow_realm_belurat_gaol"],
+      ["Fog Rift Catacombs", "grace_shadow_realm_fog_rift_catacombs"],
+      ["Rivermouth Cave", "grace_shadow_realm_rivermouth_cave"],
+      ["Scorpion River Catacombs", "grace_shadow_realm_scorpion_river_catacombs"],
       ["Church of Consolation", "landmark_church_of_consolation"],
       ["Main Gate Cross", "grace_shadow_realm_main_gate_cross"],
       ["Belurat, Tower Settlement", "grace_belurat_tower_settlement"],
@@ -887,6 +891,7 @@ async function init() {
       if (["Haligtree Town", "Haligtree Town Plaza", "Haligtree Promenade", "Prayer Room", "Elphael Inner Wall", "Drainage Channel", "Haligtree Roots", "Malenia, Goddess of Rot"].includes(record.name)) return;
       if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
       if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
+      if (["Belurat Gaol", "Fog Rift Catacombs", "Rivermouth Cave", "Scorpion River Catacombs"].includes(record.name)) return;
       if (["Mimic Tear", "Night's Sacred Ground", "Aqueduct-Facing Cliffs"].includes(record.name)) return;
       if (["Great Waterfall Crest", "The Nameless Eternal City", "Across the Roots", "Root-Facing Cliffs"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;

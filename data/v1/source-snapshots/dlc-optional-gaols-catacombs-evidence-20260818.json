@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "dlc-optional-gaols-catacombs-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "belurat-gaol-onze",
+      "claim": "Belurat Gaol is an optional gaol west of Belurat by the lake, with a jar-platform descent ending at Demi-Human Swordmaster Onze.",
+      "sources": [
+        {"source_id": "eldenpedia-belurat-gaol", "url": "https://eldenring.wiki.gg/wiki/Belurat_Gaol"},
+        {"source_id": "game8-belurat-onze-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458691"},
+        {"source_id": "pushsquare-belurat-gaol-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-belurat-gaol"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "fog-rift-death-knight",
+      "claim": "Fog Rift Catacombs uses spike traps, safe spots and a final elevator before its Death Knight boss chamber.",
+      "sources": [
+        {"source_id": "game8-fog-rift-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458920"},
+        {"source_id": "neoseeker-fog-rift-catacombs-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Fog_Rift_Catacombs"},
+        {"source_id": "escapist-fog-rift-cross-check", "url": "https://www.escapistmagazine.com/the-complete-fog-rift-catacombs-elden-ring-walkthrough/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "rivermouth-chief-bloodfiend",
+      "claim": "Rivermouth Cave follows the Ellac River upstream, has a grace just beyond the entrance, and ends at Chief Bloodfiend in the blood pool chamber.",
+      "sources": [
+        {"source_id": "eldenpedia-rivermouth-cave", "url": "https://eldenring.wiki.gg/wiki/Rivermouth_Cave"},
+        {"source_id": "neoseeker-rivermouth-cave-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Rivermouth_Cave"},
+        {"source_id": "game8-chief-bloodfiend-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458695"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "scorpion-river-death-knight",
+      "claim": "Scorpion River Catacombs lies at the western end of the Scorpion River in Rauh Base and uses death-blight/spike traps before the Death Knight boss.",
+      "sources": [
+        {"source_id": "game8-scorpion-river-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459412"},
+        {"source_id": "eip-scorpion-river-catacombs-cross-check", "url": "https://eip.gg/elden-ring/guides/scorpion-river-catacombs/"},
+        {"source_id": "neoseeker-scorpion-river-catacombs-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Scorpion_River_Catacombs"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

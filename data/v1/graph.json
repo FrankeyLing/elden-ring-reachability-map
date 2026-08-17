@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.51-online-multiplane",
+    "version": "1.0.52-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -63,7 +63,8 @@
       "base-altus-optional-dungeons-evidence-20260818",
       "base-altus-gelmir-capital-dungeons-evidence-20260818",
       "base-altus-tunnel-sainted-hero-evidence-20260818",
-      "base-caelid-optional-dungeons-evidence-20260818"
+      "base-caelid-optional-dungeons-evidence-20260818",
+      "dlc-optional-gaols-catacombs-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -544,6 +545,26 @@
       "id": "sellia_crystal_tunnel_fallingstar_beast_defeated",
       "label": "Sellia Crystal Tunnel Fallingstar Beast defeated",
       "hint": "The Fallingstar Beast at the end of Sellia Crystal Tunnel has been cleared."
+    },
+    {
+      "id": "belurat_gaol_onze_defeated",
+      "label": "Demi-Human Swordmaster Onze defeated",
+      "hint": "The Belurat Gaol boss gate has been cleared."
+    },
+    {
+      "id": "fog_rift_death_knight_defeated",
+      "label": "Fog Rift Catacombs Death Knight defeated",
+      "hint": "The Death Knight at the deepest Fog Rift Catacombs chamber has been cleared."
+    },
+    {
+      "id": "rivermouth_chief_bloodfiend_defeated",
+      "label": "Chief Bloodfiend defeated",
+      "hint": "The Rivermouth Cave Chief Bloodfiend gate has been cleared."
+    },
+    {
+      "id": "scorpion_river_death_knight_defeated",
+      "label": "Scorpion River Catacombs Death Knight defeated",
+      "hint": "The Death Knight at the deepest Scorpion River Catacombs chamber has been cleared."
     },
     {
       "id": "malenia_defeated",
@@ -1125,6 +1146,18 @@
     ,{ "id": "passaguai-sellia-crystal-cross-check", "label": "Passaguai - Sellia Crystal Tunnel walkthrough", "url": "https://passaguai.com/posts/my-ultimate-guide-to-conquering-sellia-crystal-tunnel-in-elden-ring-2025", "grade": "C" }
     ,{ "id": "eldenpedia-frenzied-duelist", "label": "Eldenpedia - Frenzied Duelist", "url": "https://eldenring.wiki.gg/wiki/Frenzied_Duelist", "grade": "A" }
     ,{ "id": "neoseeker-frenzied-duelist-cross-check", "label": "Neoseeker - Frenzied Duelist", "url": "https://www.neoseeker.com/elden-ring/Bosses/Frenzied_Duelist", "grade": "B" }
+    ,{ "id": "eldenpedia-belurat-gaol", "label": "Eldenpedia - Belurat Gaol", "url": "https://eldenring.wiki.gg/wiki/Belurat_Gaol", "grade": "A" }
+    ,{ "id": "game8-belurat-onze-cross-check", "label": "Game8 - Demi-Human Swordmaster Onze", "url": "https://game8.co/games/Elden-Ring/archives/458691", "grade": "B" }
+    ,{ "id": "pushsquare-belurat-gaol-cross-check", "label": "Push Square - Belurat Gaol walkthrough", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-belurat-gaol", "grade": "B" }
+    ,{ "id": "game8-fog-rift-catacombs-cross-check", "label": "Game8 - Fog Rift Catacombs walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/458920", "grade": "B" }
+    ,{ "id": "neoseeker-fog-rift-catacombs-cross-check", "label": "Neoseeker - Fog Rift Catacombs walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Fog_Rift_Catacombs", "grade": "B" }
+    ,{ "id": "escapist-fog-rift-cross-check", "label": "The Escapist - Fog Rift Catacombs walkthrough", "url": "https://www.escapistmagazine.com/the-complete-fog-rift-catacombs-elden-ring-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-rivermouth-cave", "label": "Eldenpedia - Rivermouth Cave", "url": "https://eldenring.wiki.gg/wiki/Rivermouth_Cave", "grade": "A" }
+    ,{ "id": "neoseeker-rivermouth-cave-cross-check", "label": "Neoseeker - Rivermouth Cave walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Rivermouth_Cave", "grade": "B" }
+    ,{ "id": "game8-chief-bloodfiend-cross-check", "label": "Game8 - Chief Bloodfiend", "url": "https://game8.co/games/Elden-Ring/archives/458695", "grade": "B" }
+    ,{ "id": "game8-scorpion-river-catacombs-cross-check", "label": "Game8 - Scorpion River Catacombs", "url": "https://game8.co/games/Elden-Ring/archives/459412", "grade": "B" }
+    ,{ "id": "eip-scorpion-river-catacombs-cross-check", "label": "EIP Gaming - Scorpion River Catacombs guide", "url": "https://eip.gg/elden-ring/guides/scorpion-river-catacombs/", "grade": "B" }
+    ,{ "id": "neoseeker-scorpion-river-catacombs-cross-check", "label": "Neoseeker - Scorpion River Catacombs walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Scorpion_River_Catacombs", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8053,6 +8086,70 @@
     {
       "id": "sellia_crystal_tunnel_post_boss_state", "label": "Sellia Crystal Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Fallingstar Beast chamber return state", "worldEpoch": "caelid_surface", "x": 1080, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "description": "Cleared-state node for the Somberstone Miner's Bell Bearing route."
+    },
+    {
+      "id": "belurat_gaol_surface_entrance", "label": "Belurat Gaol surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Belurat", "worldEpoch": "shadow_realm", "x": 270, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check"], "description": "Cave entrance by the lake west of Belurat, reached from Three-Path Cross."
+    },
+    {
+      "id": "grace_shadow_realm_belurat_gaol", "label": "Belurat Gaol", "kind": "grace", "layer": "legacy", "region": "Belurat Gaol", "floor": "Gaol entrance", "worldEpoch": "shadow_realm", "x": 330, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "pushsquare-belurat-gaol-cross-check"], "description": "Grace immediately inside the optional gaol."
+    },
+    {
+      "id": "demi_human_swordmaster_onze_gate", "label": "Demi-Human Swordmaster Onze (Belurat Gaol)", "kind": "boss", "layer": "legacy", "region": "Belurat Gaol", "floor": "Bottom lake boss chamber", "worldEpoch": "shadow_realm", "x": 390, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check"], "description": "Boss chamber at the bottom of the hanging-jar and platforming route."
+    },
+    {
+      "id": "belurat_gaol_post_boss_state", "label": "Belurat Gaol (post-boss state)", "kind": "state", "layer": "legacy", "region": "Belurat Gaol", "floor": "Onze chamber return state", "worldEpoch": "shadow_realm", "x": 450, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check"], "description": "Cleared-state node for Demi-Human Swordsman Yosh."
+    },
+    {
+      "id": "fog_rift_catacombs_surface_entrance", "label": "Fog Rift Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Fog Rift ravine", "worldEpoch": "shadow_realm", "x": 120, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check"], "description": "Catacomb mouth in the fog-filled ravine north of the Castle Front approach."
+    },
+    {
+      "id": "grace_shadow_realm_fog_rift_catacombs", "label": "Fog Rift Catacombs", "kind": "grace", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Catacomb entrance", "worldEpoch": "shadow_realm", "x": 180, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check"], "description": "Grace at the start of the spike-trap catacombs."
+    },
+    {
+      "id": "death_knight_fog_rift_gate", "label": "Death Knight (Fog Rift Catacombs)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Deepest elevator boss chamber", "worldEpoch": "shadow_realm", "x": 240, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check"], "description": "Death Knight behind the final elevator and fog door."
+    },
+    {
+      "id": "fog_rift_catacombs_post_boss_state", "label": "Fog Rift Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Death Knight chamber return state", "worldEpoch": "shadow_realm", "x": 300, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check"], "description": "Cleared-state node for Death Knight's Twin Axes and the catacomb reward route."
+    },
+    {
+      "id": "rivermouth_cave_surface_entrance", "label": "Rivermouth Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Ellac River upstream mouth", "worldEpoch": "shadow_realm", "x": 340, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "description": "Small cave entrance at the northern end of the Ellac River."
+    },
+    {
+      "id": "grace_shadow_realm_rivermouth_cave", "label": "Rivermouth Cave", "kind": "grace", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Cave entrance", "worldEpoch": "shadow_realm", "x": 400, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check"], "description": "Grace just beyond the cave entrance."
+    },
+    {
+      "id": "chief_bloodfiend_rivermouth_gate", "label": "Chief Bloodfiend (Rivermouth Cave)", "kind": "boss", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Blood pool boss chamber", "worldEpoch": "shadow_realm", "x": 460, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "description": "Chief Bloodfiend beyond the Bloodfiend ritual pool."
+    },
+    {
+      "id": "rivermouth_cave_post_boss_state", "label": "Rivermouth Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Chief Bloodfiend chamber return state", "worldEpoch": "shadow_realm", "x": 520, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check"], "description": "Cleared-state node for Bloodfiend Hexer's Ashes and the return teleporter."
+    },
+    {
+      "id": "scorpion_river_catacombs_surface_entrance", "label": "Scorpion River Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Rauh Base", "floor": "Scorpion River western end", "worldEpoch": "shadow_realm", "x": 760, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "description": "Catacomb mouth at the far western end of the Scorpion River."
+    },
+    {
+      "id": "grace_shadow_realm_scorpion_river_catacombs", "label": "Scorpion River Catacombs", "kind": "grace", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Catacomb entrance", "worldEpoch": "shadow_realm", "x": 820, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check"], "description": "Grace at the beginning of the death-blight trap catacombs."
+    },
+    {
+      "id": "death_knight_scorpion_river_gate", "label": "Death Knight (Scorpion River Catacombs)", "kind": "boss", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Deepest elevator boss chamber", "worldEpoch": "shadow_realm", "x": 880, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "description": "Death Knight at the end of the death-blight and spike-trap route."
+    },
+    {
+      "id": "scorpion_river_catacombs_post_boss_state", "label": "Scorpion River Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Death Knight chamber return state", "worldEpoch": "shadow_realm", "x": 940, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check"], "description": "Cleared-state node for Death Knight's Longhaft Axe and Cerulean Amber Medallion +3."
     }
   ],
   "edges": [
@@ -15197,6 +15294,54 @@
     },
     {
       "id": "fallingstar-to-sellia-crystal-state", "from": "fallingstar_beast_sellia_tunnel_gate", "to": "sellia_crystal_tunnel_post_boss_state", "mode": "Sellia Crystal Tunnel Fallingstar completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["sellia_crystal_tunnel_fallingstar_beast_defeated"], "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Somberstone Miner's Bell Bearing route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "three-path-to-belurat-gaol", "from": "grace_shadow_realm_three_path_cross", "to": "belurat_gaol_surface_entrance", "mode": "Three-Path Cross to Belurat Gaol", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "lake_cave_entrance", "requires": [], "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check"], "verificationState": "online_cross_checked", "note": "Head north beyond the bridge and follow the lake edge to the cave beneath Belurat.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "belurat-gaol-mouth-to-grace", "from": "belurat_gaol_surface_entrance", "to": "grace_shadow_realm_belurat_gaol", "mode": "Belurat Gaol entrance passage", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "gaol_entry", "requires": [], "sourceEvidence": ["eldenpedia-belurat-gaol", "pushsquare-belurat-gaol-cross-check"], "verificationState": "online_cross_checked", "note": "The cage-lined entrance reaches the first gaol grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "belurat-gaol-to-onze", "from": "grace_shadow_realm_belurat_gaol", "to": "demi_human_swordmaster_onze_gate", "mode": "Belurat Gaol hanging-jar route", "cost": 13, "risk": 10, "direction": "forward", "transitionType": "jar_platform_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the hanging jars and collapsing platforms to the bottom lake arena.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "onze-to-belurat-gaol-state", "from": "demi_human_swordmaster_onze_gate", "to": "belurat_gaol_post_boss_state", "mode": "Belurat Gaol Onze completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["belurat_gaol_onze_defeated"], "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Demi-Human Swordsman Yosh.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "castle-front-to-fog-rift-mouth", "from": "grace_castle_front", "to": "fog_rift_catacombs_surface_entrance", "mode": "Castle Front to Fog Rift Catacombs", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "fog_ravine_catacomb_entrance", "requires": [], "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the ravine route north from Castle Front to the Fog Rift entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "fog-rift-mouth-to-grace", "from": "fog_rift_catacombs_surface_entrance", "to": "grace_shadow_realm_fog_rift_catacombs", "mode": "Fog Rift Catacombs entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The ravine mouth reaches the first catacomb grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fog-rift-to-death-knight", "from": "grace_shadow_realm_fog_rift_catacombs", "to": "death_knight_fog_rift_gate", "mode": "Fog Rift Catacombs spike-trap route", "cost": 15, "risk": 10, "direction": "forward", "transitionType": "spike_trap_elevator_boss_approach", "requires": [], "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check"], "verificationState": "online_cross_checked", "note": "Use the safe spots, spike ceilings and final elevator to reach the Death Knight fog door.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fog-rift-death-knight-to-state", "from": "death_knight_fog_rift_gate", "to": "fog_rift_catacombs_post_boss_state", "mode": "Fog Rift Catacombs Death Knight completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["fog_rift_death_knight_defeated"], "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Death Knight Twin Axes and catacomb rewards.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "ellac-cave-to-rivermouth-mouth", "from": "grace_gravesite_plain_main_ellac_river_cave", "to": "rivermouth_cave_surface_entrance", "mode": "Ellac River Cave to Rivermouth Cave", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "river_upstream_cave_entrance", "requires": [], "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the Ellac River upstream to the cave at its mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "rivermouth-mouth-to-grace", "from": "rivermouth_cave_surface_entrance", "to": "grace_shadow_realm_rivermouth_cave", "mode": "Rivermouth Cave entrance passage", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The small river cave entrance reaches the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "rivermouth-to-chief-bloodfiend", "from": "grace_shadow_realm_rivermouth_cave", "to": "chief_bloodfiend_rivermouth_gate", "mode": "Rivermouth Cave blood-pool route", "cost": 12, "risk": 9, "direction": "forward", "transitionType": "blood_pool_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "verificationState": "online_cross_checked", "note": "Drop through the collapsed floor and cross the Bloodfiend ritual pool to the fog door.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "chief-bloodfiend-to-rivermouth-state", "from": "chief_bloodfiend_rivermouth_gate", "to": "rivermouth_cave_post_boss_state", "mode": "Rivermouth Cave Chief Bloodfiend completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["rivermouth_chief_bloodfiend_defeated"], "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Bloodfiend Hexer's Ashes and the return teleporter.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "rauh-base-to-scorpion-river-mouth", "from": "grace_rauh_ancient_ruins_base", "to": "scorpion_river_catacombs_surface_entrance", "mode": "Rauh Base to Scorpion River Catacombs", "cost": 9, "risk": 8, "direction": "forward", "transitionType": "river_catacomb_entrance", "requires": [], "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the river west and south from Rauh Base to the catacomb entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "scorpion-river-mouth-to-grace", "from": "scorpion_river_catacombs_surface_entrance", "to": "grace_shadow_realm_scorpion_river_catacombs", "mode": "Scorpion River Catacombs entrance passage", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The guarded river mouth reaches the catacomb grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "scorpion-river-to-death-knight", "from": "grace_shadow_realm_scorpion_river_catacombs", "to": "death_knight_scorpion_river_gate", "mode": "Scorpion River Catacombs death-blight route", "cost": 16, "risk": 10, "direction": "forward", "transitionType": "death_blight_spike_elevator_boss_approach", "requires": [], "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the death-blight eyes, spike traps and elevators to reach the Death Knight.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "scorpion-death-knight-to-state", "from": "death_knight_scorpion_river_gate", "to": "scorpion_river_catacombs_post_boss_state", "mode": "Scorpion River Catacombs Death Knight completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["scorpion_river_death_knight_defeated"], "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Death Knight's Longhaft Axe and Cerulean Amber Medallion +3.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -15219,8 +15364,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 541,
-    "formalRouteEdgeCount": 563,
+    "formalNodeCount": 557,
+    "formalRouteEdgeCount": 579,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
