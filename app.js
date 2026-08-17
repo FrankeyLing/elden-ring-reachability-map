@@ -483,6 +483,31 @@ async function init() {
       ["Castle Sol Rooftop", "grace_castle_sol_rooftop"],
       ["Consecrated Snowfield", "grace_consecrated_snowfield"],
       ["Inner Consecrated Snowfield", "grace_inner_consecrated_snowfield"],
+      ["The First Step", "grace_first_step"],
+      ["Church of Elleh", "grace_church_elleh"],
+      ["Gatefront", "grace_gatefront"],
+      ["Stormhill Shack", "grace_stormhill_shack"],
+      ["Stormveil Main Gate", "grace_stormveil_main_gate"],
+      ["Stormveil Cliffside", "grace_stormveil_cliffside"],
+      ["Rampart Tower", "grace_stormveil_rampart_tower"],
+      ["Liftside Chamber", "grace_stormveil_liftside_chamber"],
+      ["Secluded Cell", "grace_stormveil_secluded_cell"],
+      ["Godrick the Grafted", "godrick_gate"],
+      ["Lake-Facing Cliffs", "grace_lake_facing_cliffs"],
+      ["Main Academy Gate", "grace_main_academy_gate"],
+      ["Church of the Cuckoo", "grace_church_of_cuckoo"],
+      ["Schoolhouse Classroom", "grace_schoolhouse_classroom"],
+      ["Red Wolf of Radagon", "red_wolf_gate"],
+      ["Debate Parlor", "grace_debate_parlor"],
+      ["Rennala, Queen of the Full Moon", "rennala_gate"],
+      ["Raya Lucaria Grand Library", "grace_raya_lucaria_grand_library"],
+      ["Grand Lift of Dectus", "grace_grand_lift_dectus"],
+      ["Altus Plateau", "grace_altus_plateau"],
+      ["Altus Highway Junction", "grace_altus_highway_junction"],
+      ["Outer Wall Phantom Tree", "grace_outer_wall_phantom_tree"],
+      ["Outer Wall Battleground", "grace_outer_wall_battleground"],
+      ["Draconic Tree Sentinel", "draconic_tree_sentinel_gate"],
+      ["East Capital Rampart", "grace_east_capital_rampart"],
       ["Starfall Crater (Mistwood, Limgrave)", "starfall_crater_entrance"],
       ["Nokron, Eternal City", "grace_nokron_eternal_city"],
       ["Aqueduct-Facing Cliffs", "siofra_aqueduct_valiant_gargoyle_gate"],
@@ -499,7 +524,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "Nokron, Eternal City", "Aqueduct-Facing Cliffs", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Aqueduct-Facing Cliffs", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);

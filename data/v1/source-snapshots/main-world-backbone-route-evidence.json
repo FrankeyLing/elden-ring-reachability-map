@@ -1,0 +1,256 @@
+{
+  "snapshot_id": "main-world-backbone-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Limgrave, Stormveil Castle, Liurnia of the Lakes, Academy of Raya Lucaria, Altus Plateau and Leyndell approach",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "first-step-to-elleh",
+      "from": "The First Step",
+      "to": "Church of Elleh",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The opening Limgrave route proceeds from The First Step to Church of Elleh.",
+      "sources": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-limgrave-cross-check"]
+    },
+    {
+      "id": "elleh-to-gatefront",
+      "from": "Church of Elleh",
+      "to": "Gatefront",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The northern Limgrave road continues from Church of Elleh through Gatefront.",
+      "sources": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-limgrave-cross-check"]
+    },
+    {
+      "id": "gatefront-to-stormhill",
+      "from": "Gatefront",
+      "to": "Stormhill Shack",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The Stormveil approach road continues from Gatefront to Stormhill Shack.",
+      "sources": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-cross-check"]
+    },
+    {
+      "id": "stormhill-to-stormveil",
+      "from": "Stormhill Shack",
+      "to": "Stormveil Main Gate",
+      "transition_type": "legacy_dungeon_entrance",
+      "direction": "forward",
+      "claim": "The main legacy-dungeon approach reaches Stormveil Main Gate after the Margit gate is cleared.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "stormveil-main-to-cliffside",
+      "from": "Stormveil Main Gate",
+      "to": "Stormveil Cliffside",
+      "transition_type": "legacy_dungeon_walk",
+      "direction": "forward",
+      "claim": "The Stormveil outer-wall route continues from the main gate to Stormveil Cliffside.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "stormveil-cliffside-to-rampart",
+      "from": "Stormveil Cliffside",
+      "to": "Rampart Tower",
+      "transition_type": "vertical_legacy_route",
+      "direction": "forward",
+      "claim": "The outer-wall ascent reaches Rampart Tower through the castle's vertical route.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "rampart-to-liftside",
+      "from": "Rampart Tower",
+      "to": "Liftside Chamber",
+      "transition_type": "legacy_dungeon_walk",
+      "direction": "forward",
+      "claim": "The castle interior route connects Rampart Tower with Liftside Chamber.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "liftside-to-secluded-cell",
+      "from": "Liftside Chamber",
+      "to": "Secluded Cell",
+      "transition_type": "legacy_dungeon_walk",
+      "direction": "forward",
+      "claim": "The main Stormveil route continues from Liftside Chamber to Secluded Cell.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "secluded-cell-to-godrick",
+      "from": "Secluded Cell",
+      "to": "Godrick the Grafted",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "Secluded Cell is the final named grace approach before the Godrick boss gate.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "godrick-to-lake-facing-cliffs",
+      "from": "Godrick the Grafted",
+      "to": "Lake-Facing Cliffs",
+      "transition_type": "boss_completion_world_exit",
+      "direction": "forward",
+      "claim": "The back exit of Stormveil opens the route into Liurnia at Lake-Facing Cliffs after Godrick.",
+      "sources": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"]
+    },
+    {
+      "id": "lake-facing-to-main-academy",
+      "from": "Lake-Facing Cliffs",
+      "to": "Main Academy Gate",
+      "transition_type": "academy_gate",
+      "direction": "forward",
+      "claim": "The Liurnia route reaches the Academy's Main Academy Gate; entry is kept conditional on an Academy Glintstone Key.",
+      "sources": ["eldenpedia-liurnia-r49924", "eldenpedia-raya-r97405", "powerpyx-raya-cross-check"]
+    },
+    {
+      "id": "main-academy-to-cuckoo",
+      "from": "Main Academy Gate",
+      "to": "Church of the Cuckoo",
+      "transition_type": "academy_elevator",
+      "direction": "forward",
+      "claim": "The Academy proper begins at Main Academy Gate and its nearby elevator leads to the Church of the Cuckoo grace.",
+      "sources": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"]
+    },
+    {
+      "id": "cuckoo-to-schoolhouse",
+      "from": "Church of the Cuckoo",
+      "to": "Schoolhouse Classroom",
+      "transition_type": "waterwheel_vertical_route",
+      "direction": "forward",
+      "claim": "The Academy route crosses the graveyard and waterwheel layers to Schoolhouse Classroom.",
+      "sources": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"]
+    },
+    {
+      "id": "schoolhouse-to-redwolf",
+      "from": "Schoolhouse Classroom",
+      "to": "Red Wolf of Radagon",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "Schoolhouse Classroom is the formal approach layer for the Red Wolf route.",
+      "sources": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"]
+    },
+    {
+      "id": "redwolf-to-debate",
+      "from": "Red Wolf of Radagon",
+      "to": "Debate Parlor",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Debate Parlor route follows the Red Wolf encounter and is therefore modeled as a Boss-state edge.",
+      "sources": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"]
+    },
+    {
+      "id": "debate-to-rennala",
+      "from": "Debate Parlor",
+      "to": "Rennala, Queen of the Full Moon",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "Debate Parlor is the Academy route node before Rennala's boss arena.",
+      "sources": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"]
+    },
+    {
+      "id": "rennala-to-grand-library",
+      "from": "Rennala, Queen of the Full Moon",
+      "to": "Raya Lucaria Grand Library",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Raya Lucaria Grand Library grace is the post-Rennala destination in the Academy route.",
+      "sources": ["eldenpedia-raya-r97405", "eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check"]
+    },
+    {
+      "id": "academy-to-dectus",
+      "from": "Main Academy Gate",
+      "to": "Grand Lift of Dectus",
+      "transition_type": "bridge_and_waygate",
+      "direction": "forward",
+      "claim": "The eastern Academy gate/bridge route reaches the Grand Lift of Dectus without requiring Rennala.",
+      "sources": ["eldenpedia-liurnia-r49924", "eldenpedia-dectus-r37956", "powerpyx-altus-cross-check"]
+    },
+    {
+      "id": "dectus-to-altus",
+      "from": "Grand Lift of Dectus",
+      "to": "Altus Plateau",
+      "transition_type": "medallion_lift",
+      "direction": "forward",
+      "claim": "The Grand Lift of Dectus connects Liurnia to Altus Plateau when the two-piece Dectus Medallion is complete.",
+      "sources": ["eldenpedia-dectus-r37956", "powerpyx-altus-cross-check", "game8-dectus-cross-check"]
+    },
+    {
+      "id": "altus-to-highway-junction",
+      "from": "Altus Plateau",
+      "to": "Altus Highway Junction",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The first Altus route continues from the lift arrival to Altus Highway Junction.",
+      "sources": ["eldenpedia-altus-r65232", "powerpyx-altus-cross-check", "game8-altus-cross-check"]
+    },
+    {
+      "id": "highway-to-outer-wall-tree",
+      "from": "Altus Highway Junction",
+      "to": "Outer Wall Phantom Tree",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The eastern road from Altus Highway Junction reaches the Outer Wall Phantom Tree approach.",
+      "sources": ["eldenpedia-altus-r65232", "eldenpedia-outer-wall-r100441", "game8-altus-cross-check"]
+    },
+    {
+      "id": "outer-tree-to-battleground",
+      "from": "Outer Wall Phantom Tree",
+      "to": "Outer Wall Battleground",
+      "transition_type": "capital_outskirts_walk",
+      "direction": "forward",
+      "claim": "The Capital Outskirts route continues from the Phantom Tree to the Outer Wall Battleground.",
+      "sources": ["eldenpedia-outer-wall-r100441", "powerpyx-leyndell-cross-check", "game8-leyndell-cross-check"]
+    },
+    {
+      "id": "battleground-to-draconic-sentinel",
+      "from": "Outer Wall Battleground",
+      "to": "Draconic Tree Sentinel",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "The outer-wall approach culminates at the Draconic Tree Sentinel gate before the capital entrance.",
+      "sources": ["eldenpedia-outer-wall-r100441", "powerpyx-leyndell-cross-check", "game8-leyndell-cross-check"]
+    },
+    {
+      "id": "draconic-sentinel-to-east-rampart",
+      "from": "Draconic Tree Sentinel",
+      "to": "East Capital Rampart",
+      "transition_type": "boss_completion_capital_gate",
+      "direction": "forward",
+      "claim": "The East Capital Rampart side of Leyndell is opened after the Draconic Tree Sentinel gate.",
+      "sources": ["eldenpedia-leyndell-r97244", "powerpyx-leyndell-cross-check", "game8-leyndell-cross-check"]
+    },
+    {
+      "id": "east-rampart-to-avenue",
+      "from": "grace_east_capital_rampart",
+      "to": "grace_avenue_balcony",
+      "transition_type": "capital_inner_walk",
+      "direction": "forward",
+      "claim": "The capital interior route continues from East Capital Rampart to Avenue Balcony.",
+      "sources": ["eldenpedia-leyndell-r97244", "eldenpedia-sites-of-grace-r83774", "powerpyx-leyndell-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-limgrave-r97518", "label": "Eldenpedia · Limgrave · r97518", "url": "https://eldenring.wiki.gg/wiki/Limgrave", "grade": "A" },
+    { "id": "eldenpedia-stormveil-r97036", "label": "Eldenpedia · Stormveil Castle · r97036", "url": "https://eldenring.wiki.gg/wiki/Stormveil_Castle", "grade": "A" },
+    { "id": "eldenpedia-liurnia-r49924", "label": "Eldenpedia · Liurnia of the Lakes · r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_Lake", "grade": "A" },
+    { "id": "eldenpedia-raya-r97405", "label": "Eldenpedia · Academy of Raya Lucaria · r97405", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria", "grade": "A" },
+    { "id": "eldenpedia-raya-library-r65940", "label": "Eldenpedia · Raya Lucaria Grand Library · r65940", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria_Grand_Library", "grade": "A" },
+    { "id": "eldenpedia-dectus-r37956", "label": "Eldenpedia · Grand Lift of Dectus · r37956", "url": "https://eldenring.wiki.gg/wiki/Grand_Lift_of_Dectus", "grade": "A" },
+    { "id": "eldenpedia-altus-r65232", "label": "Eldenpedia · Altus Plateau · r65232", "url": "https://eldenring.wiki.gg/wiki/Altus_Plateau", "grade": "A" },
+    { "id": "eldenpedia-outer-wall-r100441", "label": "Eldenpedia · Outer Wall Phantom Tree · r100441", "url": "https://eldenring.wiki.gg/wiki/Outer_Wall_Phantom_Tree", "grade": "A" },
+    { "id": "eldenpedia-leyndell-r97244", "label": "Eldenpedia · Leyndell, Royal Capital · r97244", "url": "https://eldenring.wiki.gg/wiki/Leyndell,_Royal_Capital", "grade": "A" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "label": "Eldenpedia · Sites of Grace · r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "grade": "A" },
+    { "id": "powerpyx-limgrave-cross-check", "label": "PowerPyx · Limgrave walkthrough", "url": "https://www.powerpyx.com/elden-ring-limgrave-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-stormveil-cross-check", "label": "PowerPyx · Stormveil Castle walkthrough", "url": "https://www.powerpyx.com/elden-ring-stormveil-castle-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-raya-cross-check", "label": "PowerPyx · Academy of Raya Lucaria walkthrough", "url": "https://www.powerpyx.com/elden-ring-academy-of-raya-lucaria-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-altus-cross-check", "label": "PowerPyx · Altus Plateau walkthrough", "url": "https://www.powerpyx.com/elden-ring-altus-plateau-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-leyndell-cross-check", "label": "PowerPyx · Leyndell walkthrough", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/", "grade": "B" },
+    { "id": "game8-limgrave-cross-check", "label": "Game8 · Limgrave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379489", "grade": "B" },
+    { "id": "game8-stormveil-cross-check", "label": "Game8 · Stormveil Castle guide", "url": "https://game8.co/games/Elden-Ring/archives/369338", "grade": "B" },
+    { "id": "game8-raya-cross-check", "label": "Game8 · Academy of Raya Lucaria guide", "url": "https://game8.co/games/Elden-Ring/archives/369673", "grade": "B" },
+    { "id": "game8-dectus-cross-check", "label": "Game8 · Grand Lift of Dectus guide", "url": "https://game8.co/games/Elden-Ring/archives/369656", "grade": "B" },
+    { "id": "game8-altus-cross-check", "label": "Game8 · Altus Plateau walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379636", "grade": "B" },
+    { "id": "game8-leyndell-cross-check", "label": "Game8 · Leyndell route cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368933", "grade": "B" }
+  ]
+}
