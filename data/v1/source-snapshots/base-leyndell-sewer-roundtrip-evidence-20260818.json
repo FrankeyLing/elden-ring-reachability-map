@@ -1,0 +1,41 @@
+{
+  "snapshot_id": "base-leyndell-sewer-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "leyndell-inner-return-routes",
+      "claim": "Leyndell's Avenue Balcony, Dragon Wing, West Capital Rampart, Fortified Manor and Divine Bridge form a layered legacy-dungeon route. The Divine Bridge is reached through the Fortified Manor elevator; the sending gate to the Isolated Divine Tower is a separate one-way plane transition. V1 adds only the documented walk/elevator returns and keeps the elevator return conditional on the activated bridge state.",
+      "sources": [
+        { "source_id": "eldenpedia-leyndell-r97244", "url": "https://eldenring.wiki.gg/wiki/Leyndell,_Royal_Capital" },
+        { "source_id": "eldenpedia-isolated-divine-tower", "url": "https://eldenring.wiki.gg/wiki/Isolated_Divine_Tower" },
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" },
+        { "source_id": "powerpyx-leyndell-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/" },
+        { "source_id": "gamesradar-east-altus-tower-cross-check", "url": "https://www.gamesradar.com/elden-ring-divine-tower/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "leyndell-sewer-layer-returns",
+      "claim": "The Avenue Balcony entrance descends into Underground Roadside; the sewer then branches through pipes, ladders and a cage lift toward Forsaken Depths and Leyndell Catacombs. Those branches can be represented as returns to the upper sewer junction, while the surface ascent is kept as a high-risk layer transition rather than a flat same-floor edge.",
+      "sources": [
+        { "source_id": "eldenpedia-leyndell-sewers", "url": "https://eldenring.wiki.gg/wiki/Leyndell_Sewers" },
+        { "source_id": "game8-shunning-grounds-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/380540" },
+        { "source_id": "neoseeker-shunning-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Subterranean_Shunning-Grounds" },
+        { "source_id": "gamefaqs-leyndell-lower-church", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/7-leyndell-royal-capital-part-1" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "leyndell-one-way-and-boss-guards",
+      "claim": "Mohg, the Omen must be defeated before the Cathedral of the Forsaken grace exists; the Frenzied Flame Proscription descent requires the post-boss and Morgott state and remains a high-risk one-way descent. V1 adds the post-boss return to Forsaken Depths without inventing a reverse edge for the beam parkour or the Divine Bridge sending gate.",
+      "sources": [
+        { "source_id": "eldenpedia-mohg-omen", "url": "https://eldenring.wiki.gg/wiki/Mohg,_the_Omen" },
+        { "source_id": "game8-shunning-grounds-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/380540" },
+        { "source_id": "neoseeker-shunning-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Subterranean_Shunning-Grounds" },
+        { "source_id": "eldenpedia-isolated-divine-tower", "url": "https://eldenring.wiki.gg/wiki/Isolated_Divine_Tower" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
