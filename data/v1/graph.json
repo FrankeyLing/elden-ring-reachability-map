@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.83-online-multiplane",
+  "version": "1.0.84-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -96,7 +96,8 @@
       "base-limgrave-weeping-roundtrip-surface-evidence-20260818",
       "base-underground-ainsel-lake-roundtrip-evidence-20260818",
       "base-siofra-river-roundtrip-evidence-20260818",
-      "base-deeproot-roundtrip-root-routes-evidence-20260818"
+      "base-deeproot-roundtrip-root-routes-evidence-20260818",
+      "base-stormveil-roundtrip-legacy-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17118,6 +17119,11 @@
     ,{ "id": "below-the-well-to-worshippers", "from": "grace_siofra_river_below_the_well", "to": "grace_worshippers_woods", "mode": "Below the Well return to Worshippers' Woods", "cost": 8, "risk": 6, "direction": "backtrack", "transitionType": "northern_cliff_route_return", "requires": [], "sourceEvidence": ["game8-siofra-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Use the alternate northern cliff branch back toward Worshippers' Woods.", "tags": ["walk", "vertical", "branch", "underground", "backtrack", "cross_checked"] }
     ,{ "id": "deeproot-to-great-waterfall-crest", "from": "grace_deeproot_depths", "to": "grace_deeproot_depths_main_great_waterfall_crest", "mode": "Deeproot Depths return to Great Waterfall Crest", "cost": 5, "risk": 4, "direction": "backtrack", "transitionType": "root_crossing_return", "requires": [], "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the lower root and water route to the Great Waterfall Crest arrival side.", "tags": ["walk", "vertical", "underground", "backtrack", "cross_checked"] }
     ,{ "id": "nameless-city-to-deeproot", "from": "grace_deeproot_depths_main_the_nameless_eternal_city", "to": "grace_deeproot_depths", "mode": "Nameless Eternal City return to Deeproot Depths", "cost": 9, "risk": 3, "direction": "backtrack", "transitionType": "root_city_route_return", "requires": [], "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "Return across the root and ruin route from the Nameless Eternal City to the lower Deeproot grace.", "tags": ["walk", "vertical", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "stormveil-main-to-margit-grace", "from": "grace_stormveil_main_gate", "to": "grace_limgrave_stormhill_margit_the_fell_omen", "mode": "Stormveil Main Gate return to Margit approach", "cost": 3, "risk": 3, "direction": "backtrack", "transitionType": "legacy_dungeon_entrance_return", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Leave Stormveil through the entrance route and return to the Margit approach grace.", "tags": ["walk", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "stormveil-cliffside-to-main", "from": "grace_stormveil_cliffside", "to": "grace_stormveil_main_gate", "mode": "Stormveil Cliffside return to Main Gate", "cost": 6, "risk": 4, "direction": "backtrack", "transitionType": "legacy_dungeon_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the outer-wall route back to the castle entrance grace.", "tags": ["walk", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "stormveil-rampart-to-cliffside", "from": "grace_stormveil_rampart_tower", "to": "grace_stormveil_cliffside", "mode": "Stormveil Rampart Tower return to Cliffside", "cost": 8, "risk": 5, "direction": "backtrack", "transitionType": "vertical_legacy_route_return", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the wall stairs and ladders from Rampart Tower to the Cliffside grace.", "tags": ["vertical", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "liftside-to-rampart", "from": "grace_stormveil_liftside_chamber", "to": "grace_stormveil_rampart_tower", "mode": "Liftside Chamber return to Rampart Tower", "cost": 8, "risk": 4, "direction": "backtrack", "transitionType": "legacy_dungeon_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Use the opened shortcut/elevator and interior route back to Rampart Tower.", "tags": ["walk", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "secluded-cell-to-liftside", "from": "grace_stormveil_secluded_cell", "to": "grace_stormveil_liftside_chamber", "mode": "Secluded Cell return to Liftside Chamber", "cost": 10, "risk": 5, "direction": "backtrack", "transitionType": "legacy_dungeon_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the Secluded Cell through the opened doorway and upper castle route to Liftside Chamber.", "tags": ["walk", "legacy", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17140,7 +17146,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 902,
+    "formalRouteEdgeCount": 907,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

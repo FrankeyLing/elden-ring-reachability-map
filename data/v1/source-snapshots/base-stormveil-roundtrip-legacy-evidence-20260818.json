@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "base-stormveil-roundtrip-legacy-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "stormveil-entrance-cliffside-roundtrip",
+      "claim": "The post-Margit approach reaches Stormveil Main Gate, and the castle's outer-wall Cliffside route can be traversed back to the entrance. V1 adds the explicit entrance and Cliffside return edges.",
+      "sources": [
+        { "source_id": "eldenpedia-stormveil-r97036", "url": "https://eldenring.wiki.gg/wiki/Stormveil_Castle" },
+        { "source_id": "eip-stormveil-cross-check", "url": "https://eip.gg/elden-ring/guides/stormveil-castle-walkthrough/" },
+        { "source_id": "powerpyx-stormveil-cross-check", "url": "https://www.powerpyx.com/elden-ring-stormveil-castle-walkthrough/" },
+        { "source_id": "game8-stormveil-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/367169" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "stormveil-internal-return-shortcuts",
+      "claim": "Stormveil's Rampart Tower, Liftside Chamber and Secluded Cell are separate internal floors. The documented elevator shortcut and return route allow V1 to add backtrack edges without flattening the castle or adding a reverse Godrick boss-gate edge.",
+      "sources": [
+        { "source_id": "eldenpedia-stormveil-r97036", "url": "https://eldenring.wiki.gg/wiki/Stormveil_Castle" },
+        { "source_id": "eip-stormveil-cross-check", "url": "https://eip.gg/elden-ring/guides/stormveil-castle-walkthrough/" },
+        { "source_id": "game8-stormveil-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/367169" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
