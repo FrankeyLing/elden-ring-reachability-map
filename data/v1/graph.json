@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.98-online-multiplane",
+  "version": "1.0.99-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -13206,6 +13206,36 @@
       "tags": ["walk", "surface", "boss_approach", "cross_checked"]
     },
     {
+      "id": "stormveil-main-to-gateside",
+      "from": "grace_stormveil_main_gate",
+      "to": "grace_stormveil_castle_main_gateside_chamber",
+      "mode": "Stormveil Main Gate to Gateside Chamber side room",
+      "cost": 3,
+      "risk": 5,
+      "direction": "branch",
+      "transitionType": "stormveil_courtyard_side_room_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Enter the castle gate approach and take the documented side-room branch to Gateside Chamber; this does not collapse the route into Rampart Tower.",
+      "tags": ["walk", "legacy", "branch", "cross_checked"]
+    },
+    {
+      "id": "gateside-to-stormveil-main",
+      "from": "grace_stormveil_castle_main_gateside_chamber",
+      "to": "grace_stormveil_main_gate",
+      "mode": "Gateside Chamber return to Stormveil Main Gate",
+      "cost": 3,
+      "risk": 5,
+      "direction": "backtrack",
+      "transitionType": "stormveil_courtyard_side_room_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Leave Gateside Chamber through the same gate-side branch and return to the Stormveil Main Gate approach.",
+      "tags": ["walk", "legacy", "branch", "backtrack", "cross_checked"]
+    },
+    {
       "id": "stormveil-main-to-cliffside",
       "from": "grace_stormveil_main_gate",
       "to": "grace_stormveil_cliffside",
@@ -17328,7 +17358,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1019,
+    "formalRouteEdgeCount": 1021,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

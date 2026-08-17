@@ -1,5 +1,6 @@
 const SVG_NS = "http://www.w3.org/2000/svg";
 const DEFAULT_CONDITIONS = [];
+const DEFAULT_ROUTE_PROFILE = "physical_no_fast_travel";
 
 const state = {
   data: null,
@@ -8,6 +9,8 @@ const state = {
   origin: "grace_avenue_balcony",
   destination: "item_bolt_of_gransax",
   conditions: new Set(DEFAULT_CONDITIONS),
+  routeProfiles: null,
+  routeProfile: DEFAULT_ROUTE_PROFILE,
   preference: "balanced",
   zoom: 1,
   route: null,
@@ -17,6 +20,8 @@ const state = {
 const els = {
   origin: document.getElementById("origin-select"),
   destination: document.getElementById("destination-select"),
+  routeProfile: document.getElementById("route-profile-select"),
+  routeProfileHint: document.getElementById("route-profile-hint"),
   conditions: document.getElementById("conditions"),
   plan: document.getElementById("plan-route"),
   reset: document.getElementById("reset-route"),
@@ -61,6 +66,47 @@ function nodeLabel(id) {
   return state.nodes.get(id)?.label || id;
 }
 
+function activeRouteProfile() {
+  return state.routeProfiles?.profiles?.find((profile) => profile.id === state.routeProfile)
+    || state.routeProfiles?.profiles?.[0]
+    || { id: DEFAULT_ROUTE_PROFILE, dynamicFastTravel: false, description: "仅使用正式物理拓扑边。" };
+}
+
+function isGraceNode(id) {
+  return state.nodes.get(id)?.kind === "grace";
+}
+
+function fastTravelEdgesFrom(nodeId) {
+  const profile = activeRouteProfile();
+  const rule = state.routeProfiles?.fastTravelRule;
+  if (!profile.dynamicFastTravel || !rule || !state.conditions.has(rule.id) || !isGraceNode(nodeId)) return [];
+
+  return [...state.nodes.values()]
+    .filter((node) => node.kind === "grace" && node.id !== nodeId)
+    .map((node) => ({
+      id: `dynamic-fast-travel:${nodeId}:${node.id}`,
+      from: nodeId,
+      to: node.id,
+      mode: "地图快速旅行（目标赐福需已发现）",
+      cost: 1,
+      risk: 0,
+      direction: "teleport",
+      transitionType: "map_fast_travel",
+      requires: [rule.id],
+      sourceEvidence: rule.sourceEvidence || [],
+      verificationState: "online_cross_checked",
+      dynamic: true,
+      note: "规划层动态边；不写入 formal graph，不代表玩家已经激活目标赐福。",
+      tags: ["fast_travel", "profile_only", "conditional"],
+    }));
+}
+
+function outgoingEdgesFrom(nodeId) {
+  return state.data.edges
+    .filter((edge) => edge.from === nodeId)
+    .concat(fastTravelEdgesFrom(nodeId));
+}
+
 function edgeIsAvailable(edge) {
   if (edge.routeable === false) return false;
   return (edge.requires || []).every((condition) => state.conditions.has(condition));
@@ -97,8 +143,8 @@ function calculateRoute() {
     if (!current || current === state.destination) break;
     unvisited.delete(current);
 
-    state.data.edges
-      .filter((edge) => edge.from === current && edgeIsAvailable(edge))
+    outgoingEdgesFrom(current)
+      .filter((edge) => edgeIsAvailable(edge))
       .forEach((edge) => {
         if (!unvisited.has(edge.to)) return;
         const edgeScore = Number(edge.cost) + Number(edge.risk || 0) * getPreferenceRiskWeight();
@@ -138,11 +184,13 @@ function findBlockedRequirements() {
   let changed = true;
   while (changed) {
     changed = false;
-    state.data.edges.forEach((edge) => {
-      if (reachable.has(edge.from) && edgeIsAvailable(edge) && !reachable.has(edge.to)) {
-        reachable.add(edge.to);
-        changed = true;
-      }
+    [...reachable].forEach((nodeId) => {
+      outgoingEdgesFrom(nodeId).forEach((edge) => {
+        if (edgeIsAvailable(edge) && !reachable.has(edge.to)) {
+          reachable.add(edge.to);
+          changed = true;
+        }
+      });
     });
   }
   const missing = new Set();
@@ -151,6 +199,9 @@ function findBlockedRequirements() {
       (edge.requires || []).filter((id) => !state.conditions.has(id)).forEach((id) => missing.add(id));
     }
   });
+  if (activeRouteProfile().dynamicFastTravel && !state.conditions.has(state.routeProfiles?.fastTravelRule?.id)) {
+    missing.add(state.routeProfiles.fastTravelRule.id);
+  }
   return [...missing].map((id) => state.data.conditions.find((condition) => condition.id === id)?.label || id);
 }
 
@@ -167,6 +218,20 @@ function populateSelects() {
   });
   els.origin.value = state.origin;
   els.destination.value = state.destination;
+}
+
+function populateRouteProfiles() {
+  const profiles = state.routeProfiles?.profiles || [];
+  els.routeProfile.innerHTML = "";
+  profiles.forEach((profile) => {
+    const option = document.createElement("option");
+    option.value = profile.id;
+    option.textContent = profile.label;
+    els.routeProfile.appendChild(option);
+  });
+  state.routeProfile = state.routeProfiles?.defaultProfile || DEFAULT_ROUTE_PROFILE;
+  els.routeProfile.value = state.routeProfile;
+  els.routeProfileHint.textContent = activeRouteProfile().description;
 }
 
 function renderConditions() {
@@ -368,6 +433,9 @@ function renderRoute() {
   els.routeNotice.textContent = state.preference === "safe" && state.route.risk > 3
     ? "当前没有完全低风险的连通方案；这条路线已经是在现有图中风险最低的可达路径。"
     : "路线按有向连接计算；标记为单向的跳落、传送和棺材边不会自动反向。";
+  if (state.route.edges.some((edge) => edge.dynamic)) {
+    els.routeNotice.textContent = "本路线使用了动态地图快速旅行边；它不计入物理拓扑，目标赐福必须已发现，且当前状态允许快速旅行。";
+  }
   els.routeNotice.classList.toggle("warning", state.preference === "safe" && state.route.risk > 3);
 }
 
@@ -401,16 +469,24 @@ function applyMapCoordinateSpace() {
 function wireEvents() {
   els.origin.addEventListener("change", () => { state.origin = els.origin.value; state.selectedNode = state.origin; planAndRender(); });
   els.destination.addEventListener("change", () => { state.destination = els.destination.value; state.selectedNode = state.destination; planAndRender(); });
+  els.routeProfile.addEventListener("change", () => {
+    state.routeProfile = els.routeProfile.value;
+    els.routeProfileHint.textContent = activeRouteProfile().description;
+    planAndRender();
+  });
   els.plan.addEventListener("click", planAndRender);
   els.reset.addEventListener("click", () => {
     state.origin = state.data.defaultOrigin || state.data.nodes[0]?.id;
     state.destination = state.data.defaultDestination || state.data.nodes.at(-1)?.id;
     state.conditions = new Set(state.data.defaultConditions || DEFAULT_CONDITIONS);
     state.preference = "balanced";
+    state.routeProfile = state.routeProfiles?.defaultProfile || DEFAULT_ROUTE_PROFILE;
     state.layer = "all";
     state.selectedNode = state.origin;
     els.origin.value = state.origin;
     els.destination.value = state.destination;
+    els.routeProfile.value = state.routeProfile;
+    els.routeProfileHint.textContent = activeRouteProfile().description;
     document.querySelectorAll(".condition-item input").forEach((input) => { input.checked = state.conditions.has(input.dataset.conditionId); });
     document.querySelectorAll(".segment").forEach((button) => button.classList.toggle("active", button.dataset.preference === state.preference));
     document.querySelectorAll(".layer-tab").forEach((button) => button.classList.toggle("active", button.dataset.layer === state.layer));
@@ -446,15 +522,22 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, routeLegResponse] = await Promise.all([
+    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
+      fetch("/api/route-profiles", { cache: "no-store" }),
     ]);
+    if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
     if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     state.data = await graphResponse.json();
+    state.routeProfiles = await routeProfileResponse.json();
+    const fastTravelRule = state.routeProfiles.fastTravelRule;
+    if (fastTravelRule && !state.data.conditions.some((condition) => condition.id === fastTravelRule.id)) {
+      state.data.conditions.push(fastTravelRule);
+    }
     applyMapCoordinateSpace();
     const catalog = await catalogResponse.json();
     const routeLegCatalog = await routeLegResponse.json();
@@ -1089,6 +1172,7 @@ async function init() {
     state.destination = state.data.defaultDestination && state.nodes.has(state.data.defaultDestination) ? state.data.defaultDestination : state.data.nodes.at(-1).id;
     els.datasetVersion.textContent = `v${state.data.meta.version}`;
     populateSelects();
+    populateRouteProfiles();
     renderConditions();
     els.preferenceHint.textContent = preferenceHints[state.preference];
     els.loading.classList.add("hidden");

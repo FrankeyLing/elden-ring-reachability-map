@@ -23,6 +23,16 @@
         { "source_id": "game8-stormveil-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/367169" }
       ],
       "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "stormveil-gateside-main-gate-branch",
+      "claim": "Gateside Chamber is the side-room grace on the far side of Stormveil's main gate approach. The main gate approach and the side-room branch are modeled as separate local connections, so the route to Rampart Tower continues through the castle's Cliffside ascent instead of using a direct shortcut edge.",
+      "sources": [
+        { "source_id": "eldenpedia-stormveil-r97036", "url": "https://eldenring.wiki.gg/wiki/Stormveil_Castle" },
+        { "source_id": "powerpyx-stormveil-cross-check", "url": "https://www.powerpyx.com/elden-ring-stormveil-castle-walkthrough/" },
+        { "source_id": "game8-stormveil-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/367169" }
+      ],
+      "route_state": "online_cross_checked"
     }
   ]
 }

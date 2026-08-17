@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0-online-route-profiles",
+  "defaultProfile": "physical_no_fast_travel",
+  "profiles": [
+    {
+      "id": "physical_no_fast_travel",
+      "label": "物理拓扑 / 禁止快速旅行",
+      "shortLabel": "物理拓扑",
+      "dynamicFastTravel": false,
+      "description": "只使用已交叉核对的有向步行、升降梯、跳落、传送门和 Boss/任务条件边。不会把赐福目录关系自动变成通路。"
+    },
+    {
+      "id": "normal_fast_travel",
+      "label": "正常流程 / 允许快速旅行",
+      "shortLabel": "正常流程",
+      "dynamicFastTravel": true,
+      "requires": ["map_fast_travel_available"],
+      "description": "在已标记为赐福的节点之间加入条件化地图快速旅行边；目标赐福必须已发现，且当前不处于禁止快速旅行的地牢/状态。"
+    }
+  ],
+  "fastTravelRule": {
+    "id": "map_fast_travel_available",
+    "label": "允许地图快速旅行（目标赐福已发现）",
+    "hint": "这是玩家状态声明，不读取游戏进程或存档；在部分地牢、Boss 尚存的地牢或传送陷阱限制期间，游戏会禁用快速旅行。",
+    "sourceEvidence": [
+      "eldenpedia-sites-of-grace-r83774",
+      "eldenpedia-fast-travel-sites-of-grace",
+      "eldenpedia-map-fast-travel"
+    ]
+  },
+  "sourceEvidence": [
+    "eldenpedia-sites-of-grace-r83774",
+    "eldenpedia-fast-travel-sites-of-grace",
+    "eldenpedia-map-fast-travel"
+  ],
+  "sources": [
+    {
+      "id": "eldenpedia-sites-of-grace-r83774",
+      "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace",
+      "claim": "Sites of Grace act as checkpoints and can be fast travelled to."
+    },
+    {
+      "id": "eldenpedia-fast-travel-sites-of-grace",
+      "url": "https://eldenring.wiki.gg/wiki/About_Fast_Travel_to_Sites_of_Grace",
+      "claim": "The map can instantly travel to discovered Sites of Grace, with dungeon restrictions."
+    },
+    {
+      "id": "eldenpedia-map-fast-travel",
+      "url": "https://eldenring.wiki.gg/wiki/Map",
+      "claim": "Fast travel may be disabled in certain dungeons or automatic-teleport restrictions."
+    }
+  ],
+  "verificationState": "online_cross_checked",
+  "notes": [
+    "动态快速旅行边不写入 formal graph，也不计入物理拓扑审计。",
+    "路线结果必须保留快速旅行边的条件和说明，不能伪装成步行路线。",
+    "不自动推断玩家已经发现哪些赐福；勾选条件只是对当前规划请求的明确声明。"
+  ]
+}
