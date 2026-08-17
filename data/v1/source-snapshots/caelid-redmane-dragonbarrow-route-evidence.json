@@ -1,0 +1,170 @@
+{
+  "snapshot_id": "caelid-redmane-dragonbarrow-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Caelid, Redmane Castle, Starscourge Radahn and Greyoll's Dragonbarrow / Fort Faroth",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "mistwood-to-caelid",
+      "from": "Mistwood Outskirts",
+      "to": "Caelid Highway South",
+      "transition_type": "surface_region_crossing",
+      "direction": "forward",
+      "claim": "The East Limgrave road crosses into the Caelid Highway South region.",
+      "sources": ["eldenpedia-caelid-r68953", "powerpyx-caelid-cross-check", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "highway-to-rotview",
+      "from": "Caelid Highway South",
+      "to": "Rotview Balcony",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "Rotview Balcony is the first major grace on the Caelid approach from Limgrave.",
+      "sources": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "rotview-to-smoldering",
+      "from": "Rotview Balcony",
+      "to": "Smoldering Church",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The northern Caelid road continues toward Smoldering Church.",
+      "sources": ["eldenpedia-caelid-r68953", "powerpyx-caelid-cross-check", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "highway-to-caelem",
+      "from": "Caelid Highway South",
+      "to": "Caelem Ruins",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The Caelid main-road route includes Caelem Ruins before the southern Redmane approach.",
+      "sources": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "caelem-to-impassable",
+      "from": "Caelem Ruins",
+      "to": "Impassable Greatbridge",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The southern Caelid road reaches Impassable Greatbridge, the Redmane Castle approach grace.",
+      "sources": ["eldenpedia-caelid-r68953", "powerpyx-caelid-cross-check", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "impassable-to-redmane",
+      "from": "Impassable Greatbridge",
+      "to": "Redmane Castle Plaza",
+      "transition_type": "festival_waygate",
+      "direction": "forward",
+      "claim": "The bridge waygate enters Redmane Castle Plaza only after the Radahn Festival state is active.",
+      "sources": ["eldenpedia-redmane-r16802", "powerpyx-redmane-cross-check", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "redmane-to-chamber",
+      "from": "Redmane Castle Plaza",
+      "to": "Chamber Outside the Plaza",
+      "transition_type": "castle_interior_route",
+      "direction": "forward",
+      "claim": "The festival castle route proceeds from the plaza to the chamber outside the plaza before the elevator and shore portal.",
+      "sources": ["eldenpedia-redmane-r16802", "powerpyx-redmane-cross-check", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "chamber-to-radahn",
+      "from": "Chamber Outside the Plaza",
+      "to": "Starscourge Radahn",
+      "transition_type": "elevator_and_waygate_boss",
+      "direction": "forward",
+      "claim": "The castle elevator and shore waygate form the final transition into the Starscourge Radahn arena.",
+      "sources": ["eldenpedia-redmane-r16802", "powerpyx-redmane-cross-check", "game8-redmane-cross-check"]
+    },
+    {
+      "id": "radahn-to-grace",
+      "from": "Starscourge Radahn",
+      "to": "Starscourge Radahn grace",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Starscourge Radahn grace is modeled as the post-boss state.",
+      "sources": ["eldenpedia-radahn-r97504", "eldenpedia-sites-of-grace-r83774", "powerpyx-redmane-cross-check"]
+    },
+    {
+      "id": "radahn-to-starfall",
+      "from": "Starscourge Radahn grace",
+      "to": "Starfall Crater",
+      "transition_type": "world_state_entrance",
+      "direction": "forward",
+      "claim": "The Starfall Crater route is the post-Radahn world-state transition into Nokron.",
+      "sources": ["eldenpedia-siofra-r71937", "eldenpedia-nokron-r66900", "game8-nokron-cross-check"]
+    },
+    {
+      "id": "caelid-to-southern-aeonia",
+      "from": "Caelid Highway South",
+      "to": "Southern Aeonia Swamp Bank",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The Caelid road branches into the southern Aeonia Swamp route.",
+      "sources": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "powerpyx-caelid-cross-check"]
+    },
+    {
+      "id": "southern-aeonia-to-plague",
+      "from": "Southern Aeonia Swamp Bank",
+      "to": "Church of the Plague",
+      "transition_type": "surface_quest_route",
+      "direction": "forward",
+      "claim": "The southern Aeonia route continues toward the Church of the Plague and its Millicent/Gowry branch.",
+      "sources": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check", "powerpyx-caelid-cross-check"]
+    },
+    {
+      "id": "third-church-to-bestial",
+      "from": "Third Church of Marika",
+      "to": "Bestial Sanctum",
+      "transition_type": "sending_gate",
+      "direction": "forward",
+      "claim": "A Limgrave sending gate near the Third Church reaches Bestial Sanctum in Dragonbarrow.",
+      "sources": ["eldenpedia-caelid-r68953", "game8-caelid-cross-check", "powerpyx-dragonbarrow-cross-check"]
+    },
+    {
+      "id": "bestial-to-dragonbarrow-fork",
+      "from": "Bestial Sanctum",
+      "to": "Dragonbarrow Fork",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The Dragonbarrow road connects Bestial Sanctum with Dragonbarrow Fork.",
+      "sources": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "powerpyx-dragonbarrow-cross-check"]
+    },
+    {
+      "id": "dragonbarrow-to-faroth",
+      "from": "Dragonbarrow Fork",
+      "to": "Fort Faroth",
+      "transition_type": "dragonbarrow_surface_walk",
+      "direction": "forward",
+      "claim": "The eastern Dragonbarrow route reaches Fort Faroth, whose interior contains Dectus Medallion (Right).",
+      "sources": ["eldenpedia-fort-faroth-r39788", "eldenpedia-sites-of-grace-r83774", "powerpyx-dectus-right-cross-check"]
+    },
+    {
+      "id": "faroth-to-dectus-right",
+      "from": "Fort Faroth",
+      "to": "Dectus Medallion (Right)",
+      "transition_type": "fort_interior_item_route",
+      "direction": "forward",
+      "claim": "The Dectus right half is a collectible inside Fort Faroth; its item relationship is stored separately from traversal edges.",
+      "sources": ["eldenpedia-fort-faroth-r39788", "powerpyx-dectus-right-cross-check", "game8-dectus-right-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-caelid-r68953", "label": "Eldenpedia · Caelid · r68953", "url": "https://eldenring.wiki.gg/wiki/Caelid", "grade": "A" },
+    { "id": "eldenpedia-redmane-r16802", "label": "Eldenpedia · Redmane Castle · r16802", "url": "https://eldenring.wiki.gg/wiki/Redmane_Castle", "grade": "A" },
+    { "id": "eldenpedia-radahn-r97504", "label": "Eldenpedia · Starscourge Radahn · r97504", "url": "https://eldenring.wiki.gg/wiki/Starscourge_Radahn", "grade": "A" },
+    { "id": "eldenpedia-fort-faroth-r39788", "label": "Eldenpedia · Fort Faroth · r39788", "url": "https://eldenring.wiki.gg/wiki/Fort_Faroth", "grade": "A" },
+    { "id": "eldenpedia-siofra-r71937", "label": "Eldenpedia · Siofra River · r71937", "url": "https://eldenring.wiki.gg/wiki/Siofra_River", "grade": "A" },
+    { "id": "eldenpedia-nokron-r66900", "label": "Eldenpedia · Nokron · r66900", "url": "https://eldenring.wiki.gg/wiki/Nokron,_Eternal_City", "grade": "A" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "label": "Eldenpedia · Sites of Grace · r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "grade": "A" },
+    { "id": "powerpyx-caelid-cross-check", "label": "PowerPyx · Caelid walkthrough", "url": "https://www.powerpyx.com/elden-ring-caelid-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-redmane-cross-check", "label": "PowerPyx · Redmane/Radahn route", "url": "https://www.powerpyx.com/elden-ring-caelid-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-dragonbarrow-cross-check", "label": "PowerPyx · Dragonbarrow route", "url": "https://www.powerpyx.com/elden-ring-dragonbarrow-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-dectus-right-cross-check", "label": "PowerPyx · Dectus Medallion right half", "url": "https://www.powerpyx.com/elden-ring-dectus-medallion-right-location/", "grade": "B" },
+    { "id": "game8-redmane-cross-check", "label": "Game8 · Redmane Castle guide", "url": "https://game8.co/games/Elden-Ring/archives/369958", "grade": "B" },
+    { "id": "game8-caelid-cross-check", "label": "Game8 · Caelid route cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368933", "grade": "B" },
+    { "id": "game8-nokron-cross-check", "label": "Game8 · Nokron route", "url": "https://game8.co/games/Elden-Ring/archives/370740", "grade": "B" },
+    { "id": "game8-dectus-right-cross-check", "label": "Game8 · Dectus Medallion guide", "url": "https://game8.co/games/Elden-Ring/archives/369656", "grade": "B" },
+    { "id": "pcgamer-millicent-cross-check", "label": "PC Gamer · Millicent/Caelid route", "url": "https://www.pcgamer.com/elden-ring-millicent-quest/", "grade": "B" }
+  ]
+}

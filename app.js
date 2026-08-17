@@ -531,6 +531,20 @@ async function init() {
       ["Worshippers' Woods", "grace_worshippers_woods"],
       ["Ancestral Woods", "grace_ancestral_woods"],
       ["Aqueduct-Facing Cliffs", "grace_aqueduct_facing_cliffs"],
+      ["Caelid Highway South", "grace_caelid_highway_south"],
+      ["Rotview Balcony", "grace_rotview_balcony"],
+      ["Smoldering Church", "grace_smoldering_church"],
+      ["Caelem Ruins", "grace_caelem_ruins"],
+      ["Impassable Greatbridge", "grace_impassable_greatbridge"],
+      ["Redmane Castle Plaza", "grace_redmane_castle_plaza"],
+      ["Chamber Outside the Plaza", "grace_chamber_outside_plaza"],
+      ["Starscourge Radahn", "grace_starscourge_radahn"],
+      ["Southern Aeonia Swamp Bank", "grace_southern_aeonia_swamp_bank"],
+      ["Church of the Plague", "grace_church_of_plague"],
+      ["Bestial Sanctum", "grace_bestial_sanctum"],
+      ["Dragonbarrow Fork", "grace_dragonbarrow_fork"],
+      ["Fort Faroth", "grace_fort_faroth"],
+      ["Dectus Medallion (Right)", "item_dectus_medallion_right"],
       ["Starfall Crater (Mistwood, Limgrave)", "starfall_crater_entrance"],
       ["Nokron, Eternal City", "grace_nokron_eternal_city"],
       ["Siofra Aqueduct (Valiant Gargoyles)", "siofra_aqueduct_valiant_gargoyle_gate"],
@@ -546,6 +560,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Caelid Highway South", "Rotview Balcony", "Smoldering Church", "Caelem Ruins", "Impassable Greatbridge", "Redmane Castle Plaza", "Chamber Outside the Plaza", "Starscourge Radahn", "Southern Aeonia Swamp Bank", "Church of the Plague", "Bestial Sanctum", "Dragonbarrow Fork", "Fort Faroth"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
