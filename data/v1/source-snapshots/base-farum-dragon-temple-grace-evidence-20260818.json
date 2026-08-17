@@ -14,6 +14,16 @@
         { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
       ],
       "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "farum-dragon-temple-lift-return",
+      "claim": "The optional Dragon Temple Lift branch opened with Stonesword Keys is not a true terminal: the upper branch and floating platforms allow a return to the Dragon Temple grace. The branch remains separate from the Dragon Temple Rooftop main route.",
+      "sources": [
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "game8-farum-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371005" },
+        { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
     }
   ]
 }
