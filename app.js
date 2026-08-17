@@ -735,6 +735,12 @@ async function init() {
       ["Limgrave Tunnels", "grace_limgrave_main_limgrave_tunnels"],
       ["Groveside Cave", "grace_limgrave_main_groveside_cave"],
       ["Coastal Cave", "grace_limgrave_main_coastal_cave"],
+      ["Murkwater Coast", "grace_limgrave_main_murkwater_coast"],
+      ["Saintsbridge", "grace_limgrave_stormhill_saintsbridge"],
+      ["Murkwater Catacombs", "grace_limgrave_main_murkwater_catacombs"],
+      ["Murkwater Cave", "grace_limgrave_main_murkwater_cave"],
+      ["Deathtouched Catacombs", "grace_limgrave_stormhill_deathtouched_catacombs"],
+      ["Highroad Cave", "grace_limgrave_main_highroad_cave"],
       ["Stormhill Shack", "grace_stormhill_shack"],
       ["Stormveil Main Gate", "grace_stormveil_main_gate"],
       ["Stormveil Cliffside", "grace_stormveil_cliffside"],
@@ -859,6 +865,7 @@ async function init() {
       if (["Caelid Highway South", "Rotview Balcony", "Smoldering Church", "Caelem Ruins", "Impassable Greatbridge", "Redmane Castle Plaza", "Chamber Outside the Plaza", "Starscourge Radahn", "Southern Aeonia Swamp Bank", "Church of the Plague", "Bestial Sanctum", "Dragonbarrow Fork", "Fort Faroth"].includes(record.name)) return;
       if (["Smoldering Wall", "Astray from Caelid Highway North", "Fort Gael North", "Cathedral of Dragon Communion", "Lenne's Rise", "Isolated Merchant's Shack (Dragonbarrow)", "Dragonbarrow Cave", "Sellia Hideaway", "Gael Tunnel", "Rear Gael Tunnel Entrance"].includes(record.name)) return;
       if (["Stormfoot Catacombs", "Limgrave Tunnels", "Groveside Cave", "Coastal Cave"].includes(record.name)) return;
+      if (["Murkwater Coast", "Saintsbridge", "Murkwater Catacombs", "Murkwater Cave", "Deathtouched Catacombs", "Highroad Cave"].includes(record.name)) return;
       if (["Sealed Tunnel", "Divine Tower of West Altus: Gate", "Divine Tower of West Altus"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Below the Well", "Deep Siofra Well", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
