@@ -457,8 +457,19 @@ async function init() {
       ["Ensis Moongazing Grounds", "grace_ensis_moongazing_grounds"],
       ["Renna's Rise (sending gate)", "renna_rise_waygate"],
       ["Ainsel River Main", "grace_ainsel_river_main"],
+      ["Nokstella, Eternal City", "grace_nokstella_eternal_city"],
+      ["Nokstella Waterfall Basin", "grace_nokstella_waterfall_basin"],
+      ["Lake of Rot Shoreside", "grace_lake_of_rot_shoreside"],
+      ["Grand Cloister", "grace_grand_cloister"],
+      ["Astel, Naturalborn of the Void", "astel_naturalborn_gate"],
+      ["Moonlight Altar", "grace_moonlight_altar"],
       ["Starfall Crater (Mistwood, Limgrave)", "starfall_crater_entrance"],
       ["Nokron, Eternal City", "grace_nokron_eternal_city"],
+      ["Aqueduct-Facing Cliffs", "siofra_aqueduct_valiant_gargoyle_gate"],
+      ["Siofra Aqueduct (Valiant Gargoyles)", "siofra_aqueduct_valiant_gargoyle_gate"],
+      ["Deeproot coffin", "deeproot_coffin"],
+      ["Deeproot Depths", "grace_deeproot_depths"],
+      ["Prince of Death's Throne", "grace_prince_of_deaths_throne"],
       ["Ordina, Liturgical Town (Consecrated Snowfield)", "grace_ordina_liturgical_town"],
       ["Volcano Manor (entrance)", "grace_volcano_manor_entrance"],
       ["Prison Town Church", "grace_prison_town_church"],
@@ -468,7 +479,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokron, Eternal City", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name) && !record.subgroup) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Nokron, Eternal City", "Aqueduct-Facing Cliffs", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);

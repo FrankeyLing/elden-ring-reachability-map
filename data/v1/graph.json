@@ -13,7 +13,8 @@
       "leyndell-bolt-route-evidence-20260817",
       "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa",
       "multi-plane-route-evidence-20260817",
-      "vertical-region-route-evidence-20260817"
+      "vertical-region-route-evidence-20260817",
+      "underground-continuity-route-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -94,6 +95,26 @@
       "id": "loretta_haligtree_defeated",
       "label": "已击败圣树骑士罗蕾塔",
       "hint": "击败圣树城入口 Boss 后，继续向圣树城区域推进。"
+    },
+    {
+      "id": "baleful_shadow_defeated",
+      "label": "Baleful Shadow defeated",
+      "hint": "Conservative route state for the Ranni progression before the descent from Nokstella Waterfall Basin to Lake of Rot."
+    },
+    {
+      "id": "astel_defeated",
+      "label": "Astel defeated",
+      "hint": "The route beyond the Astel arena is only available after the boss encounter is complete."
+    },
+    {
+      "id": "dark_moon_ring",
+      "label": "Dark Moon Ring route state",
+      "hint": "The locked route from Astel's arena to Moonlight Altar is modeled conservatively with this Ranni quest state."
+    },
+    {
+      "id": "valiant_gargoyles_defeated",
+      "label": "Valiant Gargoyles defeated",
+      "hint": "The Deeproot coffin route is kept closed until the Siofra Aqueduct boss gate has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -122,6 +143,16 @@
     ,{ "id": "eldenpedia-volcano-r97173", "label": "Eldenpedia · Volcano Manor · r97173", "url": "https://eldenring.wiki.gg/wiki/Volcano_Manor", "grade": "A" }
     ,{ "id": "powerpyx-volcano-cross-check", "label": "PowerPyx · Volcano Manor route", "url": "https://www.powerpyx.com/elden-ring-volcano-manor-walkthrough/", "grade": "B" }
     ,{ "id": "game8-volcano-cross-check", "label": "Game8 · Volcano Manor quest route", "url": "https://game8.co/games/Elden-Ring/archives/370280", "grade": "B" }
+    ,{ "id": "eldenpedia-nokstella-r83146", "label": "Eldenpedia · Nokstella · r83146", "url": "https://eldenring.wiki.gg/wiki/Nokstella", "grade": "A" }
+    ,{ "id": "eldenpedia-lake-of-rot-r83258", "label": "Eldenpedia · Lake of Rot · r83258", "url": "https://eldenring.wiki.gg/wiki/Lake_of_Rot", "grade": "A" }
+    ,{ "id": "eldenpedia-grand-cloister-r65881", "label": "Eldenpedia · Grand Cloister · r65881", "url": "https://eldenring.wiki.gg/wiki/Grand_Cloister", "grade": "A" }
+    ,{ "id": "eldenpedia-siofra-aqueduct-r48924", "label": "Eldenpedia · Siofra Aqueduct · r48924", "url": "https://eldenring.wiki.gg/wiki/Siofra_Aqueduct", "grade": "A" }
+    ,{ "id": "eldenpedia-deeproot-r65395", "label": "Eldenpedia · Deeproot Depths · r65395", "url": "https://eldenring.wiki.gg/wiki/Deeproot_Depths", "grade": "A" }
+    ,{ "id": "powerpyx-ainsel-cross-check", "label": "PowerPyx · Ainsel River and Nokstella walkthrough", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/", "grade": "B" }
+    ,{ "id": "game8-astel-cross-check", "label": "Game8 · Astel and Lake of Rot route", "url": "https://game8.co/games/Elden-Ring/archives/353051", "grade": "B" }
+    ,{ "id": "game8-deeproot-cross-check", "label": "Game8 · Deeproot Depths map route", "url": "https://game8.co/games/Elden-Ring/archives/370580", "grade": "B" }
+    ,{ "id": "powerpyx-deeproot-cross-check", "label": "PowerPyx · Deeproot Depths walkthrough", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/", "grade": "B" }
+    ,{ "id": "gamesradar-deeproot-cross-check", "label": "GamesRadar · Fia and Deeproot route", "url": "https://www.gamesradar.com/elden-ring-fia-quest-walkthrough-deathbed-companion-age-of-duskborn-ending/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -663,6 +694,156 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-bolt-of-gransax-r84084"],
       "description": "状态对照节点：古兰桑克斯的雷电不在该状态可获取。"
+    },
+    {
+      "id": "grace_nokstella_eternal_city",
+      "label": "Nokstella, Eternal City",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Ainsel River",
+      "floor": "Nokstella city section",
+      "worldEpoch": "nokstella_underground",
+      "x": 280,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "Formal route node for the Nokstella city section; the catalog contains the underlying grace entry."
+    },
+    {
+      "id": "grace_nokstella_waterfall_basin",
+      "label": "Nokstella Waterfall Basin",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Ainsel River",
+      "floor": "Nokstella Waterfall Basin",
+      "worldEpoch": "nokstella_underground",
+      "x": 385,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "Vertical transition node below Nokstella, before the descent to Lake of Rot."
+    },
+    {
+      "id": "grace_lake_of_rot_shoreside",
+      "label": "Lake of Rot Shoreside",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Lake of Rot",
+      "floor": "Lake of Rot",
+      "worldEpoch": "lake_of_rot_underground",
+      "x": 490,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "Entry node for the rot lake crossing; route risk is represented on the outgoing edge."
+    },
+    {
+      "id": "grace_grand_cloister",
+      "label": "Grand Cloister",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Lake of Rot",
+      "floor": "Grand Cloister",
+      "worldEpoch": "lake_of_rot_underground",
+      "x": 595,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "Cloister node containing the coffin transition to the Astel encounter."
+    },
+    {
+      "id": "astel_naturalborn_gate",
+      "label": "Astel, Naturalborn of the Void",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Grand Cloister",
+      "floor": "Astel arena",
+      "worldEpoch": "lake_of_rot_underground",
+      "x": 700,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "Boss gate reached by the Grand Cloister coffin; the exit is state-gated."
+    },
+    {
+      "id": "grace_moonlight_altar",
+      "label": "Moonlight Altar",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Moonlight Altar",
+      "worldEpoch": "base_surface",
+      "x": 805,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-astel-cross-check", "game8-ranni-cross-check", "eldenpedia-grand-cloister-r65881"],
+      "description": "Post-Astel destination reached through the locked Ranni route."
+    },
+    {
+      "id": "siofra_aqueduct_valiant_gargoyle_gate",
+      "label": "Siofra Aqueduct / Valiant Gargoyles",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Siofra Aqueduct",
+      "worldEpoch": "siofra_underground",
+      "x": 260,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "description": "Aqueduct boss gate before the coffin transfer to Deeproot Depths."
+    },
+    {
+      "id": "deeproot_coffin",
+      "label": "Deeproot coffin",
+      "kind": "teleport",
+      "layer": "underground",
+      "region": "Siofra Aqueduct",
+      "floor": "Great Waterfall Basin",
+      "worldEpoch": "deeproot_underground",
+      "x": 385,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "description": "One-way coffin transition after the Valiant Gargoyles gate."
+    },
+    {
+      "id": "grace_deeproot_depths",
+      "label": "Deeproot Depths",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Deeproot Depths",
+      "worldEpoch": "deeproot_underground",
+      "x": 510,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "description": "Arrival node for the Deeproot coffin route."
+    },
+    {
+      "id": "grace_prince_of_deaths_throne",
+      "label": "Prince of Death's Throne",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Prince of Death's Throne",
+      "worldEpoch": "deeproot_underground",
+      "x": 635,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "description": "Upper-root route destination in Deeproot Depths."
     }
   ],
   "edges": [
@@ -1063,6 +1244,141 @@
       "verificationState": "online_cross_checked",
       "note": "击败神皮贵族后激活 Temple of Eiglay 赐福。",
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
+    },
+    {
+      "id": "ainsel-main-to-nokstella",
+      "from": "grace_ainsel_river_main",
+      "to": "grace_nokstella_eternal_city",
+      "mode": "underground passage",
+      "cost": 8,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "underground_walk",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Ainsel River Main continues into the Nokstella city section; no surface shortcut is implied.",
+      "tags": ["walk", "underground", "cross_checked"]
+    },
+    {
+      "id": "nokstella-to-waterfall-basin",
+      "from": "grace_nokstella_eternal_city",
+      "to": "grace_nokstella_waterfall_basin",
+      "mode": "elevator descent",
+      "cost": 4,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "elevator",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The basin is a lower floor of the Nokstella route, not a nearby surface marker.",
+      "tags": ["elevator", "vertical", "cross_checked"]
+    },
+    {
+      "id": "waterfall-basin-to-lake-of-rot",
+      "from": "grace_nokstella_waterfall_basin",
+      "to": "grace_lake_of_rot_shoreside",
+      "mode": "elevator descent",
+      "cost": 5,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "elevator",
+      "requires": ["baleful_shadow_defeated"],
+      "sourceEvidence": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Conservative Ranni-state gate for the descent after the Baleful Shadow section.",
+      "tags": ["elevator", "vertical", "conditional", "cross_checked"]
+    },
+    {
+      "id": "lake-of-rot-to-grand-cloister",
+      "from": "grace_lake_of_rot_shoreside",
+      "to": "grace_grand_cloister",
+      "mode": "rot lake crossing",
+      "cost": 12,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "hazardous_crossing",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Represents the hazardous crossing and route landmarks; it is not an Euclidean straight-line edge.",
+      "tags": ["walk", "hazard", "vertical_region", "cross_checked"]
+    },
+    {
+      "id": "grand-cloister-to-astel",
+      "from": "grace_grand_cloister",
+      "to": "astel_naturalborn_gate",
+      "mode": "coffin transfer",
+      "cost": 2,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "coffin",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The coffin is modeled as a one-way plane transition into the Astel encounter area.",
+      "tags": ["coffin", "one_way", "cross_checked"]
+    },
+    {
+      "id": "astel-to-moonlight-altar",
+      "from": "astel_naturalborn_gate",
+      "to": "grace_moonlight_altar",
+      "mode": "boss completion and elevator",
+      "cost": 5,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "boss_gate_and_elevator",
+      "requires": ["astel_defeated", "dark_moon_ring"],
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "game8-ranni-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The post-boss exit is state-gated; the route does not assume the arena can be bypassed.",
+      "tags": ["boss", "elevator", "conditional", "cross_checked"]
+    },
+    {
+      "id": "aqueduct-to-deeproot-coffin",
+      "from": "siofra_aqueduct_valiant_gargoyle_gate",
+      "to": "deeproot_coffin",
+      "mode": "coffin transfer",
+      "cost": 2,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "coffin",
+      "requires": ["valiant_gargoyles_defeated"],
+      "sourceEvidence": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Aqueduct boss gate must be cleared before the coffin transition is considered reachable.",
+      "tags": ["boss", "coffin", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "deeproot-coffin-to-depths",
+      "from": "deeproot_coffin",
+      "to": "grace_deeproot_depths",
+      "mode": "coffin arrival",
+      "cost": 1,
+      "risk": 0,
+      "direction": "forward",
+      "transitionType": "coffin_arrival",
+      "requires": ["valiant_gargoyles_defeated"],
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The arrival remains on the underground Deeproot layer.",
+      "tags": ["coffin", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "deeproot-depths-to-prince-throne",
+      "from": "grace_deeproot_depths",
+      "to": "grace_prince_of_deaths_throne",
+      "mode": "root traverse",
+      "cost": 9,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "vertical_region_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Represents the root-and-ledge route to the upper Deeproot landmark.",
+      "tags": ["walk", "vertical", "cross_checked"]
     }
   ],
   "relations": [
@@ -1077,8 +1393,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 36,
-    "formalRouteEdgeCount": 27,
+    "formalNodeCount": 46,
+    "formalRouteEdgeCount": 36,
     "semanticRelationCount": 1,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -1,0 +1,104 @@
+{
+  "snapshot_id": "underground-continuity-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Ainsel River / Nokstella / Lake of Rot / Astel and Siofra Aqueduct / Deeproot continuity",
+  "method": "Online source cross-check. Claims are paraphrased and are not extracted from the running game.",
+  "claims": [
+    {
+      "id": "ainsel-main-to-nokstella",
+      "from": "Ainsel River Main",
+      "to": "Nokstella, Eternal City",
+      "transition_type": "underground_walk",
+      "direction": "forward",
+      "claim": "The Ainsel River Main route continues into Nokstella, Eternal City through the connected underground passage.",
+      "sources": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"]
+    },
+    {
+      "id": "nokstella-to-waterfall-basin",
+      "from": "Nokstella, Eternal City",
+      "to": "Nokstella Waterfall Basin",
+      "transition_type": "elevator",
+      "direction": "forward",
+      "claim": "The route descends from the Nokstella city section to Nokstella Waterfall Basin by the area's vertical connection.",
+      "sources": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"]
+    },
+    {
+      "id": "waterfall-basin-to-lake-of-rot",
+      "from": "Nokstella Waterfall Basin",
+      "to": "Lake of Rot Shoreside",
+      "transition_type": "elevator",
+      "direction": "forward",
+      "claim": "After the Baleful Shadow section of the Ranni route, the elevator at the basin leads down to Lake of Rot Shoreside.",
+      "sources": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"]
+    },
+    {
+      "id": "lake-of-rot-to-grand-cloister",
+      "from": "Lake of Rot Shoreside",
+      "to": "Grand Cloister",
+      "transition_type": "hazardous_crossing",
+      "direction": "forward",
+      "claim": "The Lake of Rot crossing continues to the Grand Cloister area; the route is hazardous but is not modeled as a teleport.",
+      "sources": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"]
+    },
+    {
+      "id": "grand-cloister-to-astel",
+      "from": "Grand Cloister",
+      "to": "Astel, Naturalborn of the Void",
+      "transition_type": "coffin",
+      "direction": "forward",
+      "claim": "A coffin at the Grand Cloister transfers the player to the Astel encounter area.",
+      "sources": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"]
+    },
+    {
+      "id": "astel-to-moonlight-altar",
+      "from": "Astel, Naturalborn of the Void",
+      "to": "Moonlight Altar",
+      "transition_type": "boss_gate_and_elevator",
+      "direction": "forward",
+      "claim": "The post-Astel route to Moonlight Altar requires the boss to be defeated and the Dark Moon Ring route state to be satisfied.",
+      "sources": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "game8-ranni-cross-check"]
+    },
+    {
+      "id": "aqueduct-to-deeproot-coffin",
+      "from": "Siofra Aqueduct / Valiant Gargoyles",
+      "to": "Deeproot coffin",
+      "transition_type": "coffin",
+      "direction": "forward",
+      "claim": "After the Valiant Gargoyles encounter, the coffin near the Great Waterfall Basin route transfers the player to Deeproot Depths.",
+      "sources": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"]
+    },
+    {
+      "id": "deeproot-coffin-to-depths",
+      "from": "Deeproot coffin",
+      "to": "Deeproot Depths",
+      "transition_type": "coffin_arrival",
+      "direction": "forward",
+      "claim": "The coffin arrival is placed in Deeproot Depths rather than treated as a direct surface connection.",
+      "sources": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"]
+    },
+    {
+      "id": "deeproot-depths-to-prince-throne",
+      "from": "Deeproot Depths",
+      "to": "Prince of Death's Throne",
+      "transition_type": "root_traverse",
+      "direction": "forward",
+      "claim": "The Deeproot route crosses the root and upper-ground landmarks to reach Prince of Death's Throne.",
+      "sources": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-ainsel-r71938", "label": "Eldenpedia · Ainsel River · r71938", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River", "grade": "A" },
+    { "id": "eldenpedia-nokstella-r83146", "label": "Eldenpedia · Nokstella · r83146", "url": "https://eldenring.wiki.gg/wiki/Nokstella", "grade": "A" },
+    { "id": "eldenpedia-lake-of-rot-r83258", "label": "Eldenpedia · Lake of Rot · r83258", "url": "https://eldenring.wiki.gg/wiki/Lake_of_Rot", "grade": "A" },
+    { "id": "eldenpedia-grand-cloister-r65881", "label": "Eldenpedia · Grand Cloister · r65881", "url": "https://eldenring.wiki.gg/wiki/Grand_Cloister", "grade": "A" },
+    { "id": "eldenpedia-siofra-aqueduct-r48924", "label": "Eldenpedia · Siofra Aqueduct · r48924", "url": "https://eldenring.wiki.gg/wiki/Siofra_Aqueduct", "grade": "A" },
+    { "id": "eldenpedia-deeproot-r65395", "label": "Eldenpedia · Deeproot Depths · r65395", "url": "https://eldenring.wiki.gg/wiki/Deeproot_Depths", "grade": "A" },
+    { "id": "gamespot-ainsel-cross-check", "label": "GameSpot · Ainsel route cross-check", "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/", "grade": "B" },
+    { "id": "powerpyx-ainsel-cross-check", "label": "PowerPyx · Ainsel River and Nokstella walkthrough", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/", "grade": "B" },
+    { "id": "game8-ranni-cross-check", "label": "Game8 · Ranni quest route", "url": "https://game8.co/games/Elden-Ring/archives/353051", "grade": "B" },
+    { "id": "game8-astel-cross-check", "label": "Game8 · Astel and Lake of Rot route", "url": "https://game8.co/games/Elden-Ring/archives/353051", "grade": "B" },
+    { "id": "game8-deeproot-cross-check", "label": "Game8 · Deeproot Depths map route", "url": "https://game8.co/games/Elden-Ring/archives/370580", "grade": "B" },
+    { "id": "powerpyx-deeproot-cross-check", "label": "PowerPyx · Deeproot Depths walkthrough", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/", "grade": "B" },
+    { "id": "gamesradar-deeproot-cross-check", "label": "GamesRadar · Fia and Deeproot route", "url": "https://www.gamesradar.com/elden-ring-fia-quest-walkthrough-deathbed-companion-age-of-duskborn-ending/", "grade": "B" }
+  ]
+}
