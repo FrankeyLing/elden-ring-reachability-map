@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.100-online-multiplane",
+  "version": "1.0.101-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -110,7 +110,8 @@
       "base-ainsel-astel-grace-evidence-20260818",
       "base-farum-dragon-temple-grace-evidence-20260818",
       "base-limgrave-weeping-return-coverage-evidence-20260818",
-      "base-divine-tower-academy-return-evidence-20260818"
+      "base-divine-tower-academy-return-evidence-20260818",
+      "base-capital-ranni-scadu-return-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17342,6 +17343,9 @@
     ,{ "id": "divine-tower-liurnia-to-bridge", "from": "grace_liurnia_of_the_lakes_main_divine_tower_of_liurnia", "to": "grace_liurnia_of_the_lakes_main_liurnia_tower_bridge", "mode": "Divine Tower of Liurnia return to Tower Bridge", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "bridge_and_tower_lift_return", "requires": [], "sourceEvidence": ["eldenpedia-divine-tower-liurnia", "game8-study-hall-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the summit through the tower lift and cross back to the Liurnia Tower Bridge grace.", "tags": ["bridge", "lift", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "divine-tower-limgrave-to-bridge", "from": "grace_limgrave_stormhill_divine_tower_of_limgrave", "to": "grace_limgrave_stormhill_limgrave_tower_bridge", "mode": "Divine Tower of Limgrave return to Tower Bridge", "cost": 5, "risk": 9, "direction": "backtrack", "transitionType": "sending_gate_and_tower_lift_return", "requires": ["godrick_defeated"], "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "game8-divine-tower-limgrave-cross-check", "powerpyx-where-great-runes-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the tower interior through the same bridge and sending-gate approach; this is not a reverse of the Stormveil route.", "tags": ["teleport", "lift", "vertical", "conditional", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "grand-library-to-rennala-gate", "from": "grace_raya_lucaria_grand_library", "to": "rennala_gate", "mode": "Grand Library return to Rennala arena exit", "cost": 2, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["rennala_defeated"], "sourceEvidence": ["eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check", "eldenpedia-raya-r97405"], "verificationState": "online_cross_checked", "note": "Leave the post-Rennala grace through the opened boss-room route toward the Academy return path.", "tags": ["boss", "conditional", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "lower-capital-church-to-avenue", "from": "grace_leyndell_royal_capital_main_lower_capital_church", "to": "grace_avenue_balcony", "mode": "Lower Capital Church return to Avenue Balcony", "cost": 9, "risk": 7, "direction": "backtrack", "transitionType": "lower_city_street_route_return", "requires": ["royal_capital_pre_maliketh"], "sourceEvidence": ["eip-leyndell-cross-check", "gamefaqs-leyndell-lower-church", "eldenpedia-sites-of-grace-r83774"], "verificationState": "online_cross_checked", "note": "Use the lower-city street, roof and canal route back to Avenue Balcony; this is distinct from the hazardous one-way drop modeled in the opposite direction.", "tags": ["walk", "legacy", "branch", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "ranni-chamber-to-ranni-rise", "from": "grace_liurnia_of_the_lakes_main_ranni_s_chamber", "to": "grace_liurnia_of_the_lakes_main_ranni_s_rise", "mode": "Ranni's Chamber return to Ranni's Rise", "cost": 3, "risk": 1, "direction": "backtrack", "transitionType": "quest_state_room_return", "requires": ["ranni_quest_started"], "sourceEvidence": ["eldenpedia-three-sisters", "eldenpedia-sites-of-grace-r83774", "game8-ranni-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the upper chamber and descend through Ranni's Rise; the chamber remains a quest-state room, not a separate world map.", "tags": ["quest", "conditional", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "scaduview-cross-to-moorth-ruins", "from": "grace_scadu_altus_main_scaduview_cross", "to": "grace_scadu_altus_moorth_ruins", "mode": "Scaduview Cross return down sealed Spiritspring", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "sealed_spiritspring_jump_return", "requires": ["scaduview_cross_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-scadu-altus", "eip-scadu-altus-cross-check", "powerpyx-dlc-all-graces-cross-check"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring to descend toward Moorth Ruins; the ascent and descent remain explicit conditional vertical transitions.", "tags": ["walk", "vertical", "spirit_spring", "conditional", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17364,7 +17368,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1026,
+    "formalRouteEdgeCount": 1029,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
