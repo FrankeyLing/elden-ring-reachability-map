@@ -1,0 +1,50 @@
+{
+  "snapshot_id": "base-siofra-ancestor-deep-well-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "siofra-lower-graces",
+      "claim": "The lower Siofra River branch contains Siofra River Well Depths, Siofra River Bank, Worshippers' Woods and Below the Well; the Siofra River Well in Mistwood is the lower-region access point.",
+      "sources": [
+        { "source_id": "eldenpedia-siofra-r71937", "url": "https://eldenring.wiki.gg/wiki/Siofra_River", "revision_id": 71937 },
+        { "source_id": "game8-siofra-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379579" },
+        { "source_id": "gamefaqs-siofra-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/2-first-bosses" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "siofra-ancestor-spirit-gate",
+      "claim": "The lower Siofra Ancestor Spirit is reached at the southern Hallowhorn Grounds after all eight braziers are lit and the horned remains are activated.",
+      "sources": [
+        { "source_id": "eldenpedia-ancestor-spirit", "url": "https://eldenring.wiki.gg/wiki/Ancestor_Spirit" },
+        { "source_id": "gamespot-siofra-cross-check", "url": "https://www.gamespot.com/articles/elden-ring-siofra-river-guide-where-to-go-items-to-get-and-enemies-to-watch-out-for/1100-6501889/" },
+        { "source_id": "neoseeker-siofra-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "siofra-below-well-route",
+      "claim": "From Siofra River Bank, the northern/eastern cliff route reaches the Below the Well grace and the adjacent northern lift.",
+      "sources": [
+        { "source_id": "gamefaqs-siofra-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/2-first-bosses" },
+        { "source_id": "neoseeker-siofra-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "deep-siofra-cross-plane-lift",
+      "claim": "The northern Siofra lift connects Below the Well to the Deep Siofra Well in Caelid and requires two Stonesword Keys to unlock.",
+      "sources": [
+        { "source_id": "game8-deep-siofra-well-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370641" },
+        { "source_id": "neoseeker-siofra-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River" },
+        { "source_id": "gamespot-siofra-cross-check", "url": "https://www.gamespot.com/articles/elden-ring-siofra-river-guide-where-to-go-items-to-get-and-enemies-to-watch-out-for/1100-6501889/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The post-boss and lift-unlocked nodes represent route state transitions; they do not claim the user's current save state.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}

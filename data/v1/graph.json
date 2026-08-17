@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.34-online-multiplane",
+    "version": "1.0.35-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -46,7 +46,8 @@
       "base-farum-azula-layered-mainline-evidence-20260817",
       "base-ainsel-south-ranni-branch-evidence-20260817",
       "base-nokron-aqueduct-deeproot-evidence-20260817",
-      "base-deeproot-fia-fortissax-evidence-20260817"
+      "base-deeproot-fia-fortissax-evidence-20260817",
+      "base-siofra-ancestor-deep-well-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -497,6 +498,21 @@
       "id": "lichdragon_fortissax_defeated",
       "label": "Lichdragon Fortissax defeated",
       "hint": "Fia's Deathbed Dream dragon encounter has been cleared."
+    },
+    {
+      "id": "siofra_ancestor_braziers_lit",
+      "label": "Siofra River eight braziers lit",
+      "hint": "All eight braziers around the lower Siofra Hallowhorn Grounds have been lit, enabling the Ancestor Spirit encounter."
+    },
+    {
+      "id": "siofra_ancestor_spirit_defeated",
+      "label": "Ancestor Spirit defeated",
+      "hint": "The optional lower Siofra Ancestor Spirit encounter has been cleared and its post-boss return state is available."
+    },
+    {
+      "id": "deep_siofra_lift_unlocked",
+      "label": "Deep Siofra Well lift unlocked",
+      "hint": "Two Stonesword Keys have been used at the northern Siofra lift; the elevator between Below the Well and Caelid is usable."
     }
   ],
   "sourceEvidence": [
@@ -716,6 +732,11 @@
     ,{ "id": "gamespot-placidusax-cross-check", "label": "GameSpot / Dragonlord Placidusax route", "url": "https://www.gamespot.com/articles/how-to-beat-elden-ring-dragonlord-placidusax/1100-6501885/", "grade": "B" }
     ,{ "id": "powerpyx-nokron-cross-check", "label": "PowerPyx / Nokron walkthrough", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/", "grade": "B" }
     ,{ "id": "neoseeker-deeproot-cross-check", "label": "Neoseeker / Deeproot Depths walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Deeproot_Depths", "grade": "B" }
+    ,{ "id": "eldenpedia-ancestor-spirit", "label": "Eldenpedia · Ancestor Spirit", "url": "https://eldenring.wiki.gg/wiki/Ancestor_Spirit", "grade": "A" }
+    ,{ "id": "gamespot-siofra-cross-check", "label": "GameSpot · Siofra River guide", "url": "https://www.gamespot.com/articles/elden-ring-siofra-river-guide-where-to-go-items-to-get-and-enemies-to-watch-out-for/1100-6501889/", "grade": "B" }
+    ,{ "id": "gamefaqs-siofra-cross-check", "label": "GameFAQs · Siofra River route", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/2-first-bosses", "grade": "C" }
+    ,{ "id": "neoseeker-siofra-cross-check", "label": "Neoseeker · Siofra River walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River", "grade": "B" }
+    ,{ "id": "game8-deep-siofra-well-cross-check", "label": "Game8 · Deep Siofra Well route", "url": "https://game8.co/games/Elden-Ring/archives/370641", "grade": "B" }
   ],
   "nodes": [
     {
@@ -927,6 +948,96 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check"],
       "description": "希芙拉河主河道的赐福；从井底通过远端电梯抵达。"
+    },
+    {
+      "id": "hallowhorn_grounds_siofra",
+      "label": "Hallowhorn Grounds (Siofra River)",
+      "kind": "landmark",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Hallowhorn Grounds (south)",
+      "worldEpoch": "siofra_underground",
+      "x": 325,
+      "y": 445,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-siofra-r71937", "eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Southern Hallowhorn Grounds beside the lower Siofra River; kept separate from Nokron's northern Hallowhorn Grounds."
+    },
+    {
+      "id": "ancestor_spirit_siofra_gate",
+      "label": "Ancestor Spirit",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Hallowhorn Grounds (south) boss arena",
+      "worldEpoch": "siofra_underground",
+      "x": 390,
+      "y": 445,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ancestor-spirit", "gamespot-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Lower Siofra Ancestor Spirit gate; all eight braziers must be lit before touching the horned remains."
+    },
+    {
+      "id": "grace_siofra_ancestor_spirit_post_boss",
+      "label": "Ancestor Spirit (post-boss return)",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Hallowhorn Grounds (south) return state",
+      "worldEpoch": "siofra_underground",
+      "x": 455,
+      "y": 445,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Explicit post-Ancestor-Spirit state, kept separate from the ordinary Siofra River Bank route."
+    },
+    {
+      "id": "grace_siofra_river_below_the_well",
+      "label": "Below the Well",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Northern Siofra / Deep Well lift approach",
+      "worldEpoch": "siofra_underground",
+      "x": 505,
+      "y": 410,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-siofra-r71937", "gamefaqs-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Northern Siofra grace at the lower end of the lift to the Deep Siofra Well; it is not the Caelid surface grace."
+    },
+    {
+      "id": "siofra_deep_well_lift",
+      "label": "Deep Siofra Well lift",
+      "kind": "lift",
+      "layer": "underground",
+      "region": "Siofra River / Dragonbarrow",
+      "floor": "Northern Siofra lift shaft",
+      "worldEpoch": "siofra_underground",
+      "x": 565,
+      "y": 400,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Northern Siofra two-Stonesword-Key lift; its upper and lower endpoints belong to different world planes."
+    },
+    {
+      "id": "grace_deep_siofra_well",
+      "label": "Deep Siofra Well",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Greyoll's Dragonbarrow",
+      "floor": "Deep Siofra Well ravine",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 635,
+      "y": 400,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check", "gamespot-siofra-cross-check"],
+      "description": "Caelid's northern ravine grace, reachable only through the northern Siofra lift."
     },
     {
       "id": "grace_crumbling_beast_grave_depths",
@@ -10194,6 +10305,126 @@
       "tags": ["walk", "underground", "branch", "cross_checked"]
     },
     {
+      "id": "siofra-bank-to-hallowhorn-south",
+      "from": "grace_siofra_river_bank",
+      "to": "hallowhorn_grounds_siofra",
+      "mode": "Siofra River Bank to southern Hallowhorn Grounds",
+      "cost": 4,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "hallowhorn_ground_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The southern Hallowhorn Grounds is the lower Siofra branch southeast of Siofra River Bank; it is not the Regal Ancestor branch in Nokron.",
+      "tags": ["walk", "branch", "underground", "cross_checked"]
+    },
+    {
+      "id": "siofra-hallowhorn-to-ancestor-spirit",
+      "from": "hallowhorn_grounds_siofra",
+      "to": "ancestor_spirit_siofra_gate",
+      "mode": "Southern Hallowhorn Grounds brazier puzzle",
+      "cost": 3,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "hallowhorn_puzzle_boss_branch",
+      "requires": ["siofra_ancestor_braziers_lit"],
+      "sourceEvidence": ["eldenpedia-ancestor-spirit", "gamespot-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The lower Siofra boss appears only after all eight braziers are lit and the horned remains are activated.",
+      "tags": ["puzzle", "boss", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "ancestor-spirit-to-return",
+      "from": "ancestor_spirit_siofra_gate",
+      "to": "grace_siofra_ancestor_spirit_post_boss",
+      "mode": "Ancestor Spirit completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["siofra_ancestor_spirit_defeated"],
+      "sourceEvidence": ["eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Boss completion is represented as a separate state node so the route planner can distinguish the cleared arena from the approach.",
+      "tags": ["boss", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "siofra-bank-to-below-the-well",
+      "from": "grace_siofra_river_bank",
+      "to": "grace_siofra_river_below_the_well",
+      "mode": "Siofra River Bank to Below the Well",
+      "cost": 10,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "northern_cliff_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-siofra-r71937", "gamefaqs-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Follow the northern/eastern cliff route past the bridge and spirit-spring branch to the Below the Well grace.",
+      "tags": ["walk", "vertical", "branch", "underground", "cross_checked"]
+    },
+    {
+      "id": "below-the-well-to-deep-lift",
+      "from": "grace_siofra_river_below_the_well",
+      "to": "siofra_deep_well_lift",
+      "mode": "Below the Well lift approach",
+      "cost": 2,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "stonesword_key_lift_approach",
+      "requires": [],
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The northern lift stands beside Below the Well; the two-key seal is modeled on the lift activation edges.",
+      "tags": ["walk", "lift", "underground", "cross_checked"]
+    },
+    {
+      "id": "deep-lift-to-caelid-well",
+      "from": "siofra_deep_well_lift",
+      "to": "grace_deep_siofra_well",
+      "mode": "Deep Siofra Well lift to Dragonbarrow",
+      "cost": 5,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "stonesword_key_elevator",
+      "requires": ["deep_siofra_lift_unlocked"],
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check", "gamespot-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Use two Stonesword Keys to ride up from northern Siofra to the Caelid/Dragonbarrow Deep Siofra Well grace.",
+      "tags": ["elevator", "vertical", "conditional", "surface", "cross_checked"]
+    },
+    {
+      "id": "caelid-well-to-deep-lift",
+      "from": "grace_deep_siofra_well",
+      "to": "siofra_deep_well_lift",
+      "mode": "Deep Siofra Well return lift",
+      "cost": 5,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "stonesword_key_elevator_return",
+      "requires": ["deep_siofra_lift_unlocked"],
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The activated lift is bidirectional; the return edge makes the cross-plane connection usable from either endpoint.",
+      "tags": ["elevator", "vertical", "conditional", "surface", "cross_checked"]
+    },
+    {
+      "id": "deep-lift-to-below-the-well",
+      "from": "siofra_deep_well_lift",
+      "to": "grace_siofra_river_below_the_well",
+      "mode": "Deep Siofra Well descent lift",
+      "cost": 5,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "stonesword_key_elevator_return",
+      "requires": ["deep_siofra_lift_unlocked"],
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Return from the lift shaft to the Below the Well grace after unlocking the two-key seal.",
+      "tags": ["elevator", "vertical", "conditional", "underground", "cross_checked"]
+    },
+    {
       "id": "nokron-to-ancestral-woods",
       "from": "grace_nokron_eternal_city",
       "to": "mimic_tear_gate",
@@ -11609,8 +11840,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 358,
-    "formalRouteEdgeCount": 367,
+    "formalNodeCount": 364,
+    "formalRouteEdgeCount": 375,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
