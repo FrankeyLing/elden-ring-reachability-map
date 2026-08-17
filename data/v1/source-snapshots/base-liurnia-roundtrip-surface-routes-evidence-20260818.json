@@ -1,0 +1,39 @@
+{
+  "snapshot_id": "base-liurnia-roundtrip-surface-routes-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "liurnia-road-and-lake-roundtrips",
+      "claim": "The Liurnia walkthrough describes a connected open surface network rather than isolated one-way objectives: Liurnia Lake Shore, the Academy Gate Town/lakebed branches, Liurnia Highway South and North, Gate Town Bridge, Eastern Liurnia Lake Shore, Eastern Tableland and Bellum Highway are traversed as ordinary roads, lakebed or shoreline routes. V1 now records explicit return edges for those same physical connections.",
+      "sources": [
+        { "source_id": "eldenpedia-liurnia-r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_Lake" },
+        { "source_id": "powerpyx-liurnia-cross-check", "url": "https://www.powerpyx.com/elden-ring-liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "eip-liurnia-cross-check", "url": "https://eip.gg/elden-ring/guides/liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "neoseeker-liurnia-north-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "liurnia-legacy-mouth-roundtrips",
+      "claim": "Return edges were added at physical cave, mine and catacomb mouths—Stillwater, Lakeside Crystal Cave, Road's End Catacombs, Cliffbottom Catacombs, Academy Crystal Cave and Raya Lucaria Crystal Tunnel—without reversing their internal boss routes or one-way lifts. This keeps the entrance plane distinct from the legacy/underground plane.",
+      "sources": [
+        { "source_id": "eldenpedia-stillwater-cave", "url": "https://eldenring.wiki.gg/wiki/Stillwater_Cave" },
+        { "source_id": "eldenpedia-lakeside-crystal-cave", "url": "https://eldenring.wiki.gg/wiki/Lakeside_Crystal_Cave" },
+        { "source_id": "eldenpedia-cliffbottom-catacombs", "url": "https://eldenring.wiki.gg/wiki/Cliffbottom_Catacombs" },
+        { "source_id": "eldenpedia-academy-crystal-cave", "url": "https://eldenring.wiki.gg/wiki/Academy_Crystal_Cave" },
+        { "source_id": "eldenpedia-raya-lucaria-crystal-tunnel", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria_Crystal_Tunnel" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "liurnia-one-way-exclusion-policy",
+      "claim": "The roundtrip batch intentionally excludes Academy Glintstone Key gates, Ranni waygates, the Grand Lift of Dectus, the Makar-to-Altus one-way lift, boss completion edges, tombstone descents and other explicitly directional transitions. Those remain directed or condition-gated in the graph.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "eip-liurnia-cross-check", "url": "https://eip.gg/elden-ring/guides/liurnia-of-the-lakes-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
