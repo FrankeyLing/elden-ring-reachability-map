@@ -504,6 +504,21 @@ async function init() {
       ["Scaduview", "grace_shadow_keep_scaduview"],
       ["Commander Gaius", "commander_gaius_gate"],
       ["Scadutree Base", "grace_shadow_keep_scadutree_base"],
+      ["Ancient Ruins Base", "grace_rauh_ancient_ruins_base"],
+      ["Viaduct Minor Tower", "grace_rauh_viaduct_minor_tower"],
+      ["Rauh Ancient Ruins, East", "grace_rauh_ancient_ruins_east"],
+      ["Rauh Ancient Ruins, West", "grace_rauh_ancient_ruins_west"],
+      ["Church of the Bud, Main Entrance", "grace_church_of_bud_main_entrance"],
+      ["Romina, Saint of the Bud", "romina_gate"],
+      ["Church of the Bud", "grace_church_of_bud"],
+      ["Enir-Ilim: Outer Wall", "grace_enir_ilim_outer_wall"],
+      ["First Rise", "grace_enir_ilim_first_rise"],
+      ["Spiral Rise", "grace_enir_ilim_spiral_rise"],
+      ["Cleansing Chamber Anteroom", "grace_enir_ilim_cleansing_chamber"],
+      ["Leda and Allies", "leda_allies_gate"],
+      ["Divine Gate Front Staircase", "grace_enir_ilim_divine_gate_front_staircase"],
+      ["Promised Consort Radahn", "promised_consort_radahn_gate"],
+      ["Gate of Divinity", "grace_enir_ilim_gate_of_divinity"],
       ["Queen's Bedchamber", "grace_queens_bedchamber"],
       ["Sir Gideon Ofnir, the All-Knowing", "gideon_ashen_gate"],
       ["Godfrey, First Elden Lord", "godfrey_ashen_gate"],
@@ -603,7 +618,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Crumbling Beast Grave", "Beside the Great Bridge", "Maliketh, the Black Blade", "Leyndell, Capital of Ash", "Gravesite Plain", "Three-Path Cross", "Church of Consolation", "Main Gate Cross", "Belurat, Tower Settlement", "Divine Beast Dancing Lion", "Theatre of the Divine Beast", "Pillar Path Cross", "Cliffroad Terminus", "Highroad Cross", "Moorth Ruins", "Bonny Village", "Bridge Leading to the Village", "Church District Highroad", "Shadow Keep Main Gate", "Main Gate Plaza", "Golden Hippopotamus", "Church District Entrance", "Sunken Chapel", "Tree-Worship Passage", "Tree-Worship Sanctum", "Storehouse, First Floor", "Storehouse, Fourth Floor", "Storehouse, Seventh Floor", "Storehouse, Back Section", "Storehouse, Loft", "Shadow Keep, Back Gate", "Scaduview", "Commander Gaius", "Scadutree Base", "Messmer the Impaler", "Messmer's Dark Chamber", "Queen's Bedchamber", "Sir Gideon Ofnir, the All-Knowing", "Godfrey, First Elden Lord", "Radagon of the Golden Order", "Elden Beast", "Fractured Marika"].includes(record.name)) return;
+      if (["Crumbling Beast Grave", "Beside the Great Bridge", "Maliketh, the Black Blade", "Leyndell, Capital of Ash", "Gravesite Plain", "Three-Path Cross", "Church of Consolation", "Main Gate Cross", "Belurat, Tower Settlement", "Divine Beast Dancing Lion", "Theatre of the Divine Beast", "Pillar Path Cross", "Cliffroad Terminus", "Highroad Cross", "Moorth Ruins", "Bonny Village", "Bridge Leading to the Village", "Church District Highroad", "Shadow Keep Main Gate", "Main Gate Plaza", "Golden Hippopotamus", "Church District Entrance", "Sunken Chapel", "Tree-Worship Passage", "Tree-Worship Sanctum", "Storehouse, First Floor", "Storehouse, Fourth Floor", "Storehouse, Seventh Floor", "Storehouse, Back Section", "Storehouse, Loft", "Shadow Keep, Back Gate", "Scaduview", "Commander Gaius", "Scadutree Base", "Ancient Ruins Base", "Viaduct Minor Tower", "Rauh Ancient Ruins, East", "Rauh Ancient Ruins, West", "Church of the Bud, Main Entrance", "Romina, Saint of the Bud", "Church of the Bud", "Enir-Ilim: Outer Wall", "First Rise", "Spiral Rise", "Cleansing Chamber Anteroom", "Divine Gate Front Staircase", "Gate of Divinity", "Messmer the Impaler", "Messmer's Dark Chamber", "Queen's Bedchamber", "Sir Gideon Ofnir, the All-Knowing", "Godfrey, First Elden Lord", "Radagon of the Golden Order", "Elden Beast", "Fractured Marika"].includes(record.name)) return;
       if (["Caelid Highway South", "Rotview Balcony", "Smoldering Church", "Caelem Ruins", "Impassable Greatbridge", "Redmane Castle Plaza", "Chamber Outside the Plaza", "Starscourge Radahn", "Southern Aeonia Swamp Bank", "Church of the Plague", "Bestial Sanctum", "Dragonbarrow Fork", "Fort Faroth"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;

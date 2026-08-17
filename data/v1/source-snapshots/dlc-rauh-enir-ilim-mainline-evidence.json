@@ -1,0 +1,165 @@
+{
+  "snapshot_id": "dlc-rauh-enir-ilim-mainline-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Shadow Keep post-Messmer exit, Rauh Ancient Ruins, Romina, Sealing Tree, Enir-Ilim and Promised Consort Radahn",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "messmer-to-viaduct",
+      "from": "Storehouse, First Floor",
+      "to": "Viaduct Minor Tower",
+      "transition_type": "shadow_keep_rauh_exit",
+      "direction": "forward",
+      "claim": "After Messmer, the Specimen Storehouse route uses its lower/side exit to reach the Viaduct Minor Tower and the Rauh approach.",
+      "sources": ["eldenpedia-rauh", "game8-after-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "moorth-to-rauh-base",
+      "from": "Moorth Ruins",
+      "to": "Ancient Ruins Base",
+      "transition_type": "scadu_altus_to_rauh_base",
+      "direction": "forward",
+      "claim": "A northern Scadu Altus route from the Moorth side reaches the Rauh Base entrance and its Ancient Ruins Base grace.",
+      "sources": ["eldenpedia-rauh", "neoseeker-rauh-base-cross-check", "game8-rauh-cross-check"]
+    },
+    {
+      "id": "rauh-base-to-east",
+      "from": "Ancient Ruins Base",
+      "to": "Rauh Ancient Ruins, East",
+      "transition_type": "rauh_surface_route",
+      "direction": "forward",
+      "claim": "The Rauh Base route eventually joins the upper Ancient Ruins at Rauh Ancient Ruins, East.",
+      "sources": ["eldenpedia-rauh", "neoseeker-rauh-base-cross-check", "game8-rauh-cross-check"]
+    },
+    {
+      "id": "viaduct-to-rauh-east",
+      "from": "Viaduct Minor Tower",
+      "to": "Rauh Ancient Ruins, East",
+      "transition_type": "rauh_surface_route",
+      "direction": "forward",
+      "claim": "The upper viaduct route crosses the ruin structures and reaches the Rauh Ancient Ruins, East grace.",
+      "sources": ["eldenpedia-rauh", "game8-rauh-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "rauh-east-to-west",
+      "from": "Rauh Ancient Ruins, East",
+      "to": "Rauh Ancient Ruins, West",
+      "transition_type": "rauh_bridge_and_ruins",
+      "direction": "forward",
+      "claim": "The Rauh route crosses the broken bridge and western ruin layers from East to West.",
+      "sources": ["eldenpedia-rauh", "game8-rauh-cross-check", "neoseeker-rauh-west-cross-check"]
+    },
+    {
+      "id": "rauh-west-to-church-main",
+      "from": "Rauh Ancient Ruins, West",
+      "to": "Church of the Bud, Main Entrance",
+      "transition_type": "rauh_vertical_route",
+      "direction": "forward",
+      "claim": "The western Rauh route uses the ruin layers and lift near the Kindreds of Rot to reach Church of the Bud, Main Entrance.",
+      "sources": ["eldenpedia-rauh", "game8-rauh-cross-check", "neoseeker-rauh-west-cross-check"]
+    },
+    {
+      "id": "church-main-to-romina",
+      "from": "Church of the Bud, Main Entrance",
+      "to": "Romina, Saint of the Bud",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "The Main Entrance grace is the approach node immediately before the Romina boss arena.",
+      "sources": ["eldenpedia-rauh", "game8-romina-cross-check", "neoseeker-rauh-west-cross-check"]
+    },
+    {
+      "id": "romina-to-church-grace",
+      "from": "Romina, Saint of the Bud",
+      "to": "Church of the Bud",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Church of the Bud grace is the post-Romina state before the Sealing Tree interaction.",
+      "sources": ["eldenpedia-rauh", "game8-romina-cross-check", "game8-final-dlc-cross-check"]
+    },
+    {
+      "id": "church-to-enir-outer-wall",
+      "from": "Church of the Bud",
+      "to": "Enir-Ilim: Outer Wall",
+      "transition_type": "sealing_tree_world_teleport",
+      "direction": "forward",
+      "claim": "After Romina and with Messmer's Kindling, burning the Sealing Tree transports the player to Enir-Ilim: Outer Wall.",
+      "sources": ["eldenpedia-enir-ilim", "game8-final-dlc-cross-check", "game8-after-messmer-cross-check"]
+    },
+    {
+      "id": "enir-outer-to-first-rise",
+      "from": "Enir-Ilim: Outer Wall",
+      "to": "First Rise",
+      "transition_type": "enir_ilim_legacy_route",
+      "direction": "forward",
+      "claim": "The first Enir-Ilim ascent reaches the First Rise grace after the Outer Wall arrival.",
+      "sources": ["eldenpedia-enir-ilim", "game8-final-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "first-rise-to-spiral-rise",
+      "from": "First Rise",
+      "to": "Spiral Rise",
+      "transition_type": "enir_ilim_spiral_ascent",
+      "direction": "forward",
+      "claim": "The main vertical path of Enir-Ilim continues from First Rise to Spiral Rise.",
+      "sources": ["eldenpedia-enir-ilim", "game8-final-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "spiral-to-cleansing-ante",
+      "from": "Spiral Rise",
+      "to": "Cleansing Chamber Anteroom",
+      "transition_type": "enir_ilim_rooftop_route",
+      "direction": "forward",
+      "claim": "The spiral stairs, roofs and tower windows lead from Spiral Rise to Cleansing Chamber Anteroom.",
+      "sources": ["eldenpedia-enir-ilim", "game8-final-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "cleansing-to-leda-allies",
+      "from": "Cleansing Chamber Anteroom",
+      "to": "Leda and Allies",
+      "transition_type": "npc_boss_gate",
+      "direction": "forward",
+      "claim": "The Cleansing Chamber encounter with Leda and her allies blocks the route to the Divine Gate Front Staircase.",
+      "sources": ["eldenpedia-enir-ilim", "game8-final-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "leda-to-divine-front",
+      "from": "Leda and Allies",
+      "to": "Divine Gate Front Staircase",
+      "transition_type": "npc_boss_completion",
+      "direction": "forward",
+      "claim": "After the Cleansing Chamber battle, the lift behind the chamber reaches Divine Gate Front Staircase.",
+      "sources": ["eldenpedia-enir-ilim", "game8-final-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "divine-front-to-promised-radahn",
+      "from": "Divine Gate Front Staircase",
+      "to": "Promised Consort Radahn",
+      "transition_type": "final_boss_approach",
+      "direction": "forward",
+      "claim": "The Divine Gate Front Staircase is the final grace approach to the Promised Consort Radahn arena.",
+      "sources": ["eldenpedia-enir-ilim", "eldenpedia-radahn-consort", "game8-promised-radahn-cross-check"]
+    },
+    {
+      "id": "promised-radahn-to-gate-of-divinity",
+      "from": "Promised Consort Radahn",
+      "to": "Gate of Divinity",
+      "transition_type": "final_boss_completion",
+      "direction": "forward",
+      "claim": "Gate of Divinity is the post-boss grace/ending state after the Promised Consort Radahn encounter.",
+      "sources": ["eldenpedia-enir-ilim", "eldenpedia-radahn-consort", "game8-promised-radahn-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-rauh", "url": "https://eldenring.wiki.gg/wiki/Rauh" },
+    { "id": "eldenpedia-enir-ilim", "url": "https://eldenring.wiki.gg/wiki/Enir-Ilim" },
+    { "id": "eldenpedia-radahn-consort", "url": "https://eldenring.wiki.gg/wiki/Radahn_Consort_of_Miquella" },
+    { "id": "game8-rauh-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460470" },
+    { "id": "game8-after-messmer-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460219" },
+    { "id": "game8-romina-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458711" },
+    { "id": "game8-final-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" },
+    { "id": "game8-promised-radahn-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458928" },
+    { "id": "neoseeker-rauh-base-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Rauh_Base" },
+    { "id": "neoseeker-rauh-west-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Ancient_Ruins_of_Rauh_-_West" },
+    { "id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+  ]
+}
