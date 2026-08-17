@@ -461,6 +461,16 @@ async function init() {
     const regionSlots = new Map();
     const sourceNameToNodeId = new Map([
       ["Avenue Balcony", "grace_avenue_balcony"],
+      ["Lower Capital Church", "grace_leyndell_royal_capital_main_lower_capital_church"],
+      ["West Capital Rampart", "grace_leyndell_royal_capital_main_west_capital_rampart"],
+      ["Fortified Manor, First Floor", "grace_leyndell_royal_capital_main_fortified_manor_first_floor"],
+      ["Divine Bridge", "grace_leyndell_royal_capital_main_divine_bridge"],
+      ["Isolated Divine Tower", "grace_caelid_greyoll_s_dragonbarrow_isolated_divine_tower"],
+      ["Forbidden Lands", "grace_mountaintops_of_the_giants_forbidden_lands_forbidden_lands"],
+      ["Fell Twins", "fell_twins_gate"],
+      ["Divine Tower of East Altus: Gate", "grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus_gate"],
+      ["Divine Tower of East Altus", "grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus"],
+      ["Godfrey, First Elden Lord (golden shade)", "godfrey_royal_capital_gate"],
       ["Erdtree Sanctuary", "grace_erdtree_sanctuary"],
       ["Elden Throne", "grace_elden_throne"],
       ["Siofra River Well Depths", "grace_siofra_well_depths"],
@@ -756,6 +766,7 @@ async function init() {
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
       if (["Abandoned Coffin", "Erdtree-Gazing Hill", "Forest-Spanning Greatbridge", "Windmill Village", "Windmill Heights", "Bower of Bounty", "Road of Iniquity Side Path", "Rampartside Path", "Shaded Castle Ramparts", "Shaded Castle Inner Gate", "Castellan's Hall"].includes(record.name)) return;
+      if (["Lower Capital Church", "West Capital Rampart", "Fortified Manor, First Floor", "Divine Bridge", "Isolated Divine Tower", "Forbidden Lands", "Divine Tower of East Altus: Gate", "Divine Tower of East Altus"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;

@@ -1,0 +1,58 @@
+{
+  "snapshot_id": "base-leyndell-capital-main-divine-branches-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "avenue-to-west-rampart",
+      "claim": "The main Leyndell progression lists Avenue Balcony before West Capital Rampart; the dragon-wing climb from Avenue Balcony reaches the West Capital Rampart grace.",
+      "sources": [
+        { "source_id": "powerpyx-leyndell-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/" },
+        { "source_id": "game8-leyndell-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368933" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "west-rampart-to-godfrey-and-fortified-manor",
+      "claim": "West Capital Rampart branches upward through the root to the Royal Capital Godfrey gate and downward through the gargoyle/stable route to Fortified Manor, First Floor.",
+      "sources": [
+        { "source_id": "powerpyx-leyndell-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/" },
+        { "source_id": "game8-leyndell-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368933" },
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "avenue-to-lower-church",
+      "claim": "Lower Capital Church is an explicit lower-city branch reached from the Avenue Balcony side through the underpass/roof/drop route, not a same-floor alias of Avenue Balcony.",
+      "sources": [
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" },
+        { "source_id": "gamefaqs-leyndell-lower-church", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/7-leyndell-royal-capital-part-1" }
+      ],
+      "route_state": "online_cross_checked_with_low_grade_secondary"
+    },
+    {
+      "claim_id": "fortified-manor-to-isolated-divine-tower",
+      "claim": "The Fortified Manor lower-courtyard elevator reaches Divine Bridge, and the bridge-side waygate leads to the Isolated Divine Tower; this is a vertical/teleport plane transition rather than a walkable Caelid road.",
+      "sources": [
+        { "source_id": "eldenpedia-isolated-divine-tower", "url": "https://eldenring.wiki.gg/wiki/Isolated_Divine_Tower" },
+        { "source_id": "eip-leyndell-cross-check", "url": "https://eip.gg/elden-ring/guides/leyndell-royal-capital-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "morgott-to-east-altus-and-rold",
+      "claim": "After Morgott, the Elden Throne route exits through the capital elevator to Forbidden Lands; the normal road reaches Grand Lift of Rold, while the separate bridge branch triggers the Fell Twins before the East Altus Divine Tower.",
+      "sources": [
+        { "source_id": "powerpyx-leyndell-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/" },
+        { "source_id": "gamesradar-east-altus-tower-cross-check", "url": "https://www.gamesradar.com/elden-ring-divine-tower/" },
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "revision_id": 83774 }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The snapshot records route claims and source URLs only; it does not copy game archives, original XYZ coordinates, or local save state.",
+    "Conditions are modeled as selectable world/quest state and are not claims about the current player save."
+  ]
+}
