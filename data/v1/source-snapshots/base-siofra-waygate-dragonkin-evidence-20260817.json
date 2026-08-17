@@ -1,0 +1,31 @@
+{
+  "snapshot_id": "base-siofra-waygate-dragonkin-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "siofra-hidden-waygate",
+      "claim": "A sending gate on the fallen pillar south of Worshippers' Woods reaches the upper Siofra waterfall plateau.",
+      "sources": [
+        { "source_id": "eldenpedia-sending-gate-cross-check", "url": "https://eldenring.wiki.gg/wiki/Sending_Gate" },
+        { "source_id": "game8-siofra-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379579" },
+        { "source_id": "neoseeker-siofra-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "siofra-dragonkin-boss",
+      "claim": "The upper Siofra plateau reached by that sending gate contains the separate Dragonkin Soldier boss; it is not Dragonkin Soldier of Nokstella in Ainsel River.",
+      "sources": [
+        { "source_id": "eldenpedia-dragonkin-cross-check", "url": "https://eldenring.wiki.gg/wiki/Dragonkin_Soldier" },
+        { "source_id": "game8-siofra-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379579" },
+        { "source_id": "gamefaqs-siofra-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/2-first-bosses" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The post-boss node is a cleared-state node, not a claim that the game creates a Site of Grace at this arena.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}

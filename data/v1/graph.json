@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.35-online-multiplane",
+    "version": "1.0.36-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -47,7 +47,8 @@
       "base-ainsel-south-ranni-branch-evidence-20260817",
       "base-nokron-aqueduct-deeproot-evidence-20260817",
       "base-deeproot-fia-fortissax-evidence-20260817",
-      "base-siofra-ancestor-deep-well-evidence-20260817"
+      "base-siofra-ancestor-deep-well-evidence-20260817",
+      "base-siofra-waygate-dragonkin-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -513,6 +514,11 @@
       "id": "deep_siofra_lift_unlocked",
       "label": "Deep Siofra Well lift unlocked",
       "hint": "Two Stonesword Keys have been used at the northern Siofra lift; the elevator between Below the Well and Caelid is usable."
+    },
+    {
+      "id": "siofra_dragonkin_soldier_defeated",
+      "label": "Siofra Dragonkin Soldier defeated",
+      "hint": "The optional Dragonkin Soldier reached through the upper Siofra sending gate has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -737,6 +743,8 @@
     ,{ "id": "gamefaqs-siofra-cross-check", "label": "GameFAQs · Siofra River route", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/2-first-bosses", "grade": "C" }
     ,{ "id": "neoseeker-siofra-cross-check", "label": "Neoseeker · Siofra River walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_River", "grade": "B" }
     ,{ "id": "game8-deep-siofra-well-cross-check", "label": "Game8 · Deep Siofra Well route", "url": "https://game8.co/games/Elden-Ring/archives/370641", "grade": "B" }
+    ,{ "id": "eldenpedia-dragonkin-cross-check", "label": "Eldenpedia · Dragonkin Soldier", "url": "https://eldenring.wiki.gg/wiki/Dragonkin_Soldier", "grade": "A" }
+    ,{ "id": "eldenpedia-sending-gate-cross-check", "label": "Eldenpedia · Sending Gate", "url": "https://eldenring.wiki.gg/wiki/Sending_Gate", "grade": "A" }
   ],
   "nodes": [
     {
@@ -1038,6 +1046,51 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check", "gamespot-siofra-cross-check"],
       "description": "Caelid's northern ravine grace, reachable only through the northern Siofra lift."
+    },
+    {
+      "id": "siofra_hidden_waygate",
+      "label": "Hidden Arcane Waygate (Siofra)",
+      "kind": "teleport",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Worshippers' Woods southern fallen pillar",
+      "worldEpoch": "siofra_underground",
+      "x": 405,
+      "y": 385,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sending-gate-cross-check", "eldenpedia-dragonkin-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Worshippers' Woods south-side sending gate on a fallen pillar; it is the portal route to the upper Siofra waterfall area."
+    },
+    {
+      "id": "dragonkin_soldier_siofra_gate",
+      "label": "Dragonkin Soldier (Siofra River)",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Upper waterfall plateau",
+      "worldEpoch": "siofra_underground",
+      "x": 470,
+      "y": 335,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "eldenpedia-sending-gate-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Optional Siofra Dragonkin Soldier boss reached through the hidden sending gate; distinct from Dragonkin Soldier of Nokstella in Ainsel River."
+    },
+    {
+      "id": "siofra_dragonkin_post_boss_state",
+      "label": "Dragonkin Soldier (Siofra post-boss state)",
+      "kind": "state",
+      "layer": "underground",
+      "region": "Siofra River",
+      "floor": "Upper waterfall plateau return state",
+      "worldEpoch": "siofra_underground",
+      "x": 535,
+      "y": 335,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "description": "Boss-cleared state for the isolated upper Siofra plateau; no nonexistent Site of Grace is fabricated."
     },
     {
       "id": "grace_crumbling_beast_grave_depths",
@@ -10380,6 +10433,21 @@
       "tags": ["walk", "lift", "underground", "cross_checked"]
     },
     {
+      "id": "worshippers-to-below-the-well",
+      "from": "grace_worshippers_woods",
+      "to": "grace_siofra_river_below_the_well",
+      "mode": "Worshippers' Woods to Below the Well",
+      "cost": 8,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "northern_cliff_route",
+      "requires": [],
+      "sourceEvidence": ["game8-siofra-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The route from Worshippers' Woods continues north along the cliff and joins the Below the Well approach; this is an alternate branch from the direct River Bank route.",
+      "tags": ["walk", "vertical", "branch", "underground", "cross_checked"]
+    },
+    {
       "id": "deep-lift-to-caelid-well",
       "from": "siofra_deep_well_lift",
       "to": "grace_deep_siofra_well",
@@ -10423,6 +10491,51 @@
       "verificationState": "online_cross_checked",
       "note": "Return from the lift shaft to the Below the Well grace after unlocking the two-key seal.",
       "tags": ["elevator", "vertical", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "worshippers-to-siofra-hidden-waygate",
+      "from": "grace_worshippers_woods",
+      "to": "siofra_hidden_waygate",
+      "mode": "Worshippers' Woods to fallen-pillar waygate",
+      "cost": 5,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "fallen_pillar_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-sending-gate-cross-check", "game8-siofra-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Backtrack south from Worshippers' Woods to the collapsed pillar; the portal is not the northern Deep Well lift.",
+      "tags": ["walk", "vertical", "waygate", "branch", "underground", "cross_checked"]
+    },
+    {
+      "id": "siofra-waygate-to-dragonkin",
+      "from": "siofra_hidden_waygate",
+      "to": "dragonkin_soldier_siofra_gate",
+      "mode": "Siofra upper waterfall waygate",
+      "cost": 2,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "sending_gate",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-sending-gate-cross-check", "eldenpedia-dragonkin-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The fallen-pillar portal sends the player to the upper waterfall plateau immediately before the Siofra Dragonkin Soldier route.",
+      "tags": ["teleport", "waygate", "boss", "one_way", "underground", "cross_checked"]
+    },
+    {
+      "id": "siofra-dragonkin-to-post-state",
+      "from": "dragonkin_soldier_siofra_gate",
+      "to": "siofra_dragonkin_post_boss_state",
+      "mode": "Siofra Dragonkin Soldier completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_state",
+      "requires": ["siofra_dragonkin_soldier_defeated"],
+      "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The boss reward/cleared state is explicit, while no artificial post-boss grace is added because the online sources identify no such grace here.",
+      "tags": ["boss", "conditional", "state_change", "underground", "cross_checked"]
     },
     {
       "id": "nokron-to-ancestral-woods",
@@ -11840,8 +11953,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 364,
-    "formalRouteEdgeCount": 375,
+    "formalNodeCount": 367,
+    "formalRouteEdgeCount": 379,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
