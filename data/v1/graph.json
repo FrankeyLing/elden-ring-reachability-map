@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.72-online-multiplane",
+  "version": "1.0.73-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -85,7 +85,8 @@
       "dlc-belurat-rauh-base-vertical-graces-evidence-20260818",
       "base-liurnia-highway-laskyar-eastern-tableland-evidence-20260818",
       "base-liurnia-crystalline-temple-quarter-evidence-20260818",
-      "base-liurnia-moonlight-stormveil-gateside-evidence-20260818"
+      "base-liurnia-moonlight-stormveil-gateside-evidence-20260818",
+      "base-artists-shacks-region-disambiguation-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1386,6 +1387,9 @@
     ,{ "id": "gamerguides-altar-south-cross-check", "label": "Gamer Guides - Altar South database", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/database/sites-of-grace/moonlight-altar/altar-south", "grade": "B" }
     ,{ "id": "eldenpedia-cathedral-manus-celes", "label": "Eldenpedia - Cathedral of Manus Celes", "url": "https://eldenring.wiki.gg/wiki/Cathedral_of_Manus_Celes", "grade": "A" }
     ,{ "id": "eip-stormveil-cross-check", "label": "EIP Gaming - Stormveil Castle walkthrough", "url": "https://eip.gg/elden-ring/guides/stormveil-castle-walkthrough/", "grade": "B" }
+    ,{ "id": "gamerguides-artist-shack-limgrave-cross-check", "label": "Gamer Guides - Artist's Shack in Limgrave", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-artists-shack-in-limgrave", "grade": "B" }
+    ,{ "id": "gamerguides-artist-shack-liurnia-cross-check", "label": "Gamer Guides - Artist's Shack in Liurnia", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/artists-shack", "grade": "B" }
+    ,{ "id": "neoseeker-liurnia-central-east-cross-check", "label": "Neoseeker - Central Liurnia East route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Central_Liurnia_of_the_Lakes_East", "grade": "B" }
     ,{ "id": "game8-hermit-merchant-cross-check", "label": "Game8 - Hermit Merchant's Shack", "url": "https://game8.co/games/Elden-Ring/archives/370263", "grade": "B" }
     ,{ "id": "game8-minor-erdtree-church-cross-check", "label": "Game8 - Minor Erdtree Church", "url": "https://game8.co/games/Elden-Ring/archives/370260", "grade": "B" }
   ],
@@ -9124,6 +9128,14 @@
     {
       "id": "grace_stormveil_castle_main_gateside_chamber", "label": "Gateside Chamber", "kind": "grace", "layer": "legacy", "region": "Stormveil Castle", "floor": "Castle gate courtyard side room", "worldEpoch": "stormveil_pre_godrick", "x": 500, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "eip-stormveil-cross-check"], "description": "Optional side-room grace near the castle gate, reached from the courtyard/bridge return route; it is not collapsed into Stormveil Main Gate or Stormveil Cliffside."
+    },
+    {
+      "id": "grace_limgrave_main_artist_s_shack", "label": "Artist's Shack", "aliases": ["Artist's Shack (Limgrave)"], "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Eastern Limgrave shack", "worldEpoch": "limgrave_surface", "x": 410, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-limgrave-cross-check"], "description": "Limgrave Artist's Shack between Agheel Lake North and Third Church of Marika; it is deliberately separate from the identically named Liurnia grace."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_artist_s_shack", "label": "Artist's Shack", "aliases": ["Artist's Shack (Liurnia)"], "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia cliff shack", "worldEpoch": "liurnia_surface", "x": 1180, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check"], "description": "Liurnia Artist's Shack on the eastern cliff north of Liurnia Highway North; it is deliberately separate from the Limgrave grace with the same display name."
     }
   ],
   "edges": [
@@ -16974,6 +16986,14 @@
     ,{ "id": "manus-celes-to-moonlight-altar", "from": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "to": "grace_moonlight_altar", "mode": "Cathedral of Manus Celes return to Moonlight Altar", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "moonlight_altar_cathedral_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-cathedral-manus-celes", "eip-moonlight-altar-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cathedral and return southwest along the same plateau path; the hole below the grace is kept as a separate quest interaction.", "tags": ["walk", "surface", "branch", "hazard", "backtrack", "cross_checked"] }
     ,{ "id": "limgrave-tower-bridge-to-gateside", "from": "grace_limgrave_stormhill_limgrave_tower_bridge", "to": "grace_stormveil_castle_main_gateside_chamber", "mode": "Limgrave Tower Bridge return to Gateside Chamber", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "stormveil_courtyard_side_room_route", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "eip-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Backtrack through the Stormveil courtyard and ballista approach to the Gateside Chamber side room.", "tags": ["walk", "legacy", "branch", "hazard", "cross_checked"] }
     ,{ "id": "gateside-to-limgrave-tower-bridge", "from": "grace_stormveil_castle_main_gateside_chamber", "to": "grace_limgrave_stormhill_limgrave_tower_bridge", "mode": "Gateside Chamber to Limgrave Tower Bridge", "cost": 6, "risk": 8, "direction": "forward", "transitionType": "stormveil_courtyard_side_room_route", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "eip-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the side room and cross the courtyard route back toward Limgrave Tower Bridge; the castle gate lever is a local shortcut, not a teleport.", "tags": ["walk", "legacy", "branch", "hazard", "backtrack", "cross_checked"] }
+    ,{ "id": "agheel-north-to-limgrave-artist", "from": "grace_limgrave_main_agheel_lake_north", "to": "grace_limgrave_main_artist_s_shack", "mode": "Agheel Lake North to Artist's Shack (Limgrave)", "cost": 7, "risk": 5, "direction": "forward", "transitionType": "limgrave_eastern_road_branch", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the southeastern road from Agheel Lake North across the bridge, then take the northwest trail toward the Limgrave Artist's Shack.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "limgrave-artist-to-agheel-north", "from": "grace_limgrave_main_artist_s_shack", "to": "grace_limgrave_main_agheel_lake_north", "mode": "Artist's Shack (Limgrave) return to Agheel Lake North", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "limgrave_eastern_road_branch", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return southeast along the same bridge and road route to Agheel Lake North.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "liurnia-highway-north-to-artist", "from": "grace_liurnia_of_the_lakes_main_liurnia_highway_north", "to": "grace_liurnia_of_the_lakes_main_artist_s_shack", "mode": "Liurnia Highway North to Artist's Shack (Liurnia)", "cost": 6, "risk": 6, "direction": "forward", "transitionType": "liurnia_eastern_muddy_path", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "gamerguides-artist-shack-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check"], "verificationState": "online_cross_checked", "note": "Leave Liurnia Highway North by the muddy path north toward the eastern cliff shack; this is the Liurnia Artist's Shack, not the Limgrave duplicate.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "liurnia-artist-to-highway-north", "from": "grace_liurnia_of_the_lakes_main_artist_s_shack", "to": "grace_liurnia_of_the_lakes_main_liurnia_highway_north", "mode": "Artist's Shack (Liurnia) return to Liurnia Highway North", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "liurnia_eastern_muddy_path", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "gamerguides-artist-shack-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return south along the muddy path to Liurnia Highway North.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "liurnia-artist-to-eastern-tableland", "from": "grace_liurnia_of_the_lakes_main_artist_s_shack", "to": "grace_liurnia_of_the_lakes_main_eastern_tableland", "mode": "Artist's Shack (Liurnia) to Eastern Tableland", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "liurnia_eastern_highland_route", "requires": [], "sourceEvidence": ["eip-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check"], "verificationState": "online_cross_checked", "note": "Travel east/northeast from the shack through the eastern highland road and camp to Eastern Tableland.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "eastern-tableland-to-liurnia-artist", "from": "grace_liurnia_of_the_lakes_main_eastern_tableland", "to": "grace_liurnia_of_the_lakes_main_artist_s_shack", "mode": "Eastern Tableland return to Artist's Shack (Liurnia)", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "liurnia_eastern_highland_route", "requires": [], "sourceEvidence": ["eip-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check"], "verificationState": "online_cross_checked", "note": "Return west/southwest through the eastern highland route to the Liurnia Artist's Shack.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "liurnia-artist-to-jarburg", "from": "grace_liurnia_of_the_lakes_main_artist_s_shack", "to": "grace_liurnia_of_the_lakes_main_jarburg", "mode": "Artist's Shack (Liurnia) tombstone descent to Jarburg", "cost": 8, "risk": 9, "direction": "one_way", "transitionType": "liurnia_tombstone_cliff_descent", "requires": [], "sourceEvidence": ["neoseeker-liurnia-central-east-cross-check", "gamerguides-artist-shack-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the tombstones on the cliff south/east of the shack to Jarburg; this is a fall-risk vertical branch, not a normal road.", "tags": ["walk", "surface", "vertical", "one_way", "cross_checked"] }
+    ,{ "id": "jarburg-to-liurnia-artist", "from": "grace_liurnia_of_the_lakes_main_jarburg", "to": "grace_liurnia_of_the_lakes_main_artist_s_shack", "mode": "Jarburg return to Artist's Shack (Liurnia)", "cost": 9, "risk": 10, "direction": "one_way", "transitionType": "liurnia_tombstone_cliff_ascent", "requires": [], "sourceEvidence": ["neoseeker-liurnia-central-east-cross-check", "gamerguides-artist-shack-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Climb back via the tombstone ledges to the cliff above Jarburg and the Liurnia Artist's Shack; the ascent retains high fall risk.", "tags": ["walk", "surface", "vertical", "one_way", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -16995,8 +17015,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 696,
-    "formalRouteEdgeCount": 780,
+    "formalNodeCount": 698,
+    "formalRouteEdgeCount": 788,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

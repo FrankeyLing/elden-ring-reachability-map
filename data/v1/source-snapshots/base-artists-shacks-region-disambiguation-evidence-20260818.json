@@ -1,0 +1,36 @@
+{
+  "snapshot_id": "base-artists-shacks-region-disambiguation-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "limgrave-artist-shack-route",
+      "claim": "The Limgrave Artist's Shack is a distinct grace between Agheel Lake North and Third Church of Marika; the reliable approach follows the road southeast from Agheel Lake North across the bridge and then leaves onto the northwest trail.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "gamerguides-artist-shack-limgrave-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-artists-shack-in-limgrave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "liurnia-artist-shack-region-disambiguation",
+      "claim": "The Liurnia Artist's Shack is a separate eastern-cliff grace reached north from Liurnia Highway North by the muddy path. Its nearby topology includes the risky tombstone descent to Jarburg and the eastern highland route toward Eastern Tableland; it must not be merged with the Limgrave Artist's Shack.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "gamerguides-artist-shack-liurnia-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/artists-shack" },
+        { "source_id": "neoseeker-liurnia-central-east-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Central_Liurnia_of_the_Lakes_East" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "catalog-canonical-region-resolution",
+      "claim": "The online grace catalog contains two records whose display name is exactly Artist's Shack. V1 now resolves catalog entities by canonical ID and region/name before falling back to a global name lookup, preventing route and map-node collision between Limgrave and Liurnia.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "gamerguides-artist-shack-limgrave-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-artists-shack-in-limgrave" },
+        { "source_id": "gamerguides-artist-shack-liurnia-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/artists-shack" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

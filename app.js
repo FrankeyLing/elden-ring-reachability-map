@@ -962,8 +962,20 @@ async function init() {
       ["Malenia, Goddess of Rot (post-boss grace)", "grace_malenia_post_boss"],
       ["Ulcerated Tree Spirit (Elphael)", "ulcerated_tree_spirit_elphael_gate"],
     ]);
+    const sourceCanonicalIdToNodeId = new Map();
+    const sourceRegionNameToNodeId = new Map();
+    const catalogNameCounts = new Map();
+    catalog.records.forEach((record) => catalogNameCounts.set(record.name, (catalogNameCounts.get(record.name) || 0) + 1));
+    const formalNodeIds = new Set(state.data.nodes.map((node) => node.id));
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      const regionNameKey = `${record.region}|${record.name}`;
+      if (formalNodeIds.has(record.canonical_id)) {
+        sourceCanonicalIdToNodeId.set(record.canonical_id, record.canonical_id);
+        sourceRegionNameToNodeId.set(regionNameKey, record.canonical_id);
+        if (catalogNameCounts.get(record.name) === 1 && !sourceNameToNodeId.has(record.name)) sourceNameToNodeId.set(record.name, record.canonical_id);
+        return;
+      }
       if (["Abandoned Coffin", "Erdtree-Gazing Hill", "Forest-Spanning Greatbridge", "Windmill Village", "Windmill Heights", "Bower of Bounty", "Road of Iniquity Side Path", "Rampartside Path", "Shaded Castle Ramparts", "Shaded Castle Inner Gate", "Castellan's Hall"].includes(record.name)) return;
       if (["Lower Capital Church", "West Capital Rampart", "Fortified Manor, First Floor", "Divine Bridge", "Isolated Divine Tower", "Forbidden Lands", "Divine Tower of East Altus: Gate", "Divine Tower of East Altus"].includes(record.name)) return;
       if (["Guest Hall", "Subterranean Inquisition Chamber", "Abductor Virgin"].includes(record.name)) return;
@@ -1016,24 +1028,29 @@ async function init() {
         isCatalog: true,
         description: `${record.region}${record.subgroup ? ` · ${record.subgroup}` : ""}。在线赐福目录实体；尚未获得游戏原始坐标或可通行边。`,
       });
-      if (!sourceNameToNodeId.has(record.name)) sourceNameToNodeId.set(record.name, record.canonical_id);
+      const resolvedNodeId = catalogNameCounts.get(record.name) > 1 ? record.canonical_id : (sourceNameToNodeId.get(record.name) || record.canonical_id);
+      sourceCanonicalIdToNodeId.set(record.canonical_id, resolvedNodeId);
+      sourceRegionNameToNodeId.set(regionNameKey, resolvedNodeId);
+      if (catalogNameCounts.get(record.name) === 1 && !sourceNameToNodeId.has(record.name)) sourceNameToNodeId.set(record.name, record.canonical_id);
     });
     state.data.catalogRecordCount = catalog.record_count;
     state.data.candidateRouteLegCount = routeLegCatalog.record_count;
-    const candidateEndpointByName = new Map();
+    const candidateEndpointByRegionName = new Map();
     const candidateLayer = (regionName) => {
       const match = catalog.records.find((record) => record.region === regionName);
       return match?.layer || "legacy";
     };
     const ensureCandidateEndpoint = (name, regionName) => {
-      if (sourceNameToNodeId.has(name)) return sourceNameToNodeId.get(name);
-      if (candidateEndpointByName.has(name)) return candidateEndpointByName.get(name);
+      const regionNameKey = `${regionName}|${name}`;
+      if (sourceRegionNameToNodeId.has(regionNameKey)) return sourceRegionNameToNodeId.get(regionNameKey);
+      if (sourceNameToNodeId.has(name) && catalogNameCounts.get(name) <= 1) return sourceNameToNodeId.get(name);
+      if (candidateEndpointByRegionName.has(regionNameKey)) return candidateEndpointByRegionName.get(regionNameKey);
       const layer = candidateLayer(regionName);
       const key = `${layer}|candidate|${regionName}`;
       const slot = regionSlots.get(key) || 0;
       regionSlots.set(key, slot + 1);
       const groupIndex = [...regionSlots.keys()].indexOf(key);
-      const id = `candidate_endpoint_${name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}`;
+      const id = `candidate_endpoint_${`${regionName} ${name}`.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}`;
       state.data.nodes.push({
         id,
         label: name,
@@ -1050,7 +1067,7 @@ async function init() {
         isCatalog: true,
         description: `${regionName} 的在线路线候选端点；尚未获得游戏原始坐标或正式 Transition。`,
       });
-      candidateEndpointByName.set(name, id);
+      candidateEndpointByRegionName.set(regionNameKey, id);
       return id;
     };
     state.data.candidateEdges = routeLegCatalog.records.map((leg) => ({
