@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Never commit original game archives, unpacked files, saves, or private source snapshots.
+game-install/
+source-snapshots/
+raw-extract/
+private-artifacts/
+*.bdt
+*.bhd
+*.sl2
+*.dcx
