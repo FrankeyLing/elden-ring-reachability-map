@@ -1,0 +1,207 @@
+{
+  "snapshot_id": "mountaintops-mohgwyn-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Grand Lift of Rold, Mountaintops of the Giants, Consecrated Snowfield and Mohgwyn Palace",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "rold-to-zamor",
+      "from": "Grand Lift of Rold",
+      "to": "Zamor Ruins",
+      "transition_type": "medallion_lift",
+      "direction": "forward",
+      "claim": "Using the normal Rold Medallion at the Grand Lift transfers the player to the Mountaintops route beginning at Zamor Ruins.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-grand-lift-rold-r42274", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "zamor-to-whiteridge",
+      "from": "Zamor Ruins",
+      "to": "Whiteridge Road",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The west Mountaintops route continues from Zamor Ruins toward Whiteridge Road.",
+      "sources": ["eldenpedia-mountaintops-r99043", "powerpyx-mountaintops-cross-check", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "whiteridge-to-giants-gravepost",
+      "from": "Whiteridge Road",
+      "to": "Giants' Gravepost",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The main eastern route leaves Whiteridge Road and reaches Giants' Gravepost before the forge approach.",
+      "sources": ["eldenpedia-mountaintops-r99043", "powerpyx-mountaintops-cross-check", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "whiteridge-to-castle-sol",
+      "from": "Whiteridge Road",
+      "to": "Castle Sol Main Gate",
+      "transition_type": "legacy_dungeon_branch",
+      "direction": "forward",
+      "claim": "Castle Sol is a branch from the northern Mountaintops route and must be represented as a separate legacy-dungeon layer.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "castle-sol-main-to-eclipse",
+      "from": "Castle Sol Main Gate",
+      "to": "Church of the Eclipse",
+      "transition_type": "legacy_dungeon_walk",
+      "direction": "forward",
+      "claim": "The Castle Sol interior route passes from the main gate through the church section before the rooftop boss approach.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "eclipse-to-niall",
+      "from": "Church of the Eclipse",
+      "to": "Commander Niall",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "The Castle Sol rooftop boss approach is Commander Niall's gate.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "niall-to-castle-sol-rooftop",
+      "from": "Commander Niall",
+      "to": "Castle Sol Rooftop",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The rooftop grace is modeled as the post-boss state after Commander Niall rather than as an unconditional shortcut.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "gravepost-to-foot",
+      "from": "Giants' Gravepost",
+      "to": "Foot of the Forge",
+      "transition_type": "chain_bridge_approach",
+      "direction": "forward",
+      "claim": "The Flame Peak route crosses the giant-chain approach from Giants' Gravepost to Foot of the Forge.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "foot-to-fire-giant",
+      "from": "Foot of the Forge",
+      "to": "Fire Giant",
+      "transition_type": "boss_approach",
+      "direction": "forward",
+      "claim": "Foot of the Forge is the approach grace for the Fire Giant encounter.",
+      "sources": ["eldenpedia-fire-giant-r66845", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "fire-giant-to-forge",
+      "from": "Fire Giant",
+      "to": "Forge of the Giants",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Forge of the Giants grace is placed after the Fire Giant gate and is not reachable through the formal route until the boss is defeated.",
+      "sources": ["eldenpedia-fire-giant-r66845", "eldenpedia-forge-giants-r35883", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "rold-to-consecrated",
+      "from": "Grand Lift of Rold",
+      "to": "Consecrated Snowfield",
+      "transition_type": "secret_medallion_lift",
+      "direction": "forward",
+      "claim": "The Haligtree Secret Medallion route at the Grand Lift opens the Consecrated Snowfield layer.",
+      "sources": ["eldenpedia-mountaintops-r99043", "eldenpedia-consecrated-snowfield-r65359", "game8-medallion-cross-check"]
+    },
+    {
+      "id": "snowfield-to-inner",
+      "from": "Consecrated Snowfield",
+      "to": "Inner Consecrated Snowfield",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The snowfield route continues through the inner snowfield layer before reaching Ordina.",
+      "sources": ["eldenpedia-consecrated-snowfield-r65359", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"]
+    },
+    {
+      "id": "inner-to-ordina",
+      "from": "Inner Consecrated Snowfield",
+      "to": "Ordina, Liturgical Town",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "Ordina is the northern snowfield route landmark before the Haligtree sending gate.",
+      "sources": ["eldenpedia-consecrated-snowfield-r65359", "eldenpedia-ordina-r95013", "game8-ordina-cross-check"]
+    },
+    {
+      "id": "snowfield-to-mohgwyn-waygate",
+      "from": "Consecrated Snowfield",
+      "to": "Mohgwyn sending gate",
+      "transition_type": "sending_gate_approach",
+      "direction": "forward",
+      "claim": "A separate sending gate on the western Consecrated Snowfield provides the conventional late-game entrance to Mohgwyn Palace.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "eldenpedia-consecrated-snowfield-r65359", "game8-portal-cross-check"]
+    },
+    {
+      "id": "mohgwyn-waygate-to-palace-approach",
+      "from": "Mohgwyn sending gate",
+      "to": "Palace Approach Ledge-Road",
+      "transition_type": "waygate",
+      "direction": "forward",
+      "claim": "The Snowfield sending gate transfers into the Palace Approach side of Mohgwyn Palace.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-portal-cross-check"]
+    },
+    {
+      "id": "pureblood-medal-to-entrance",
+      "from": "Pureblood Knight's Medal",
+      "to": "Dynasty Mausoleum Entrance",
+      "transition_type": "teleport",
+      "direction": "forward",
+      "claim": "Using the Pureblood Knight's Medal teleports to the Dynasty Mausoleum Entrance, providing a second legal Mohgwyn entry path.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-medal-cross-check"]
+    },
+    {
+      "id": "palace-approach-to-entrance",
+      "from": "Palace Approach Ledge-Road",
+      "to": "Dynasty Mausoleum Entrance",
+      "transition_type": "underground_walk",
+      "direction": "forward",
+      "claim": "The Palace Approach route continues through the blood lake and mausoleum approach to the Dynasty Mausoleum Entrance grace.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check"]
+    },
+    {
+      "id": "entrance-to-midpoint",
+      "from": "Dynasty Mausoleum Entrance",
+      "to": "Dynasty Mausoleum Midpoint",
+      "transition_type": "legacy_dungeon_walk",
+      "direction": "forward",
+      "claim": "The mausoleum interior route continues from the entrance grace to the midpoint grace.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check"]
+    },
+    {
+      "id": "midpoint-to-mohg",
+      "from": "Dynasty Mausoleum Midpoint",
+      "to": "Mohg, Lord of Blood",
+      "transition_type": "elevator_boss_approach",
+      "direction": "forward",
+      "claim": "The midpoint route uses the mausoleum elevator and continues to the Mohg boss room.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check"]
+    },
+    {
+      "id": "mohg-to-cocoon",
+      "from": "Mohg, Lord of Blood",
+      "to": "Cocoon of the Empyrean",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Cocoon of the Empyrean grace is modeled after the Mohg encounter.",
+      "sources": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-mohgwyn-r83796", "label": "Eldenpedia · Mohgwyn Palace · r83796", "url": "https://eldenring.wiki.gg/wiki/Mohgwyn_Palace", "grade": "A" },
+    { "id": "eldenpedia-mountaintops-r99043", "label": "Eldenpedia · Mountaintops of the Giants · r99043", "url": "https://eldenring.wiki.gg/wiki/Mountaintops_of_the_Giants", "grade": "A" },
+    { "id": "eldenpedia-consecrated-snowfield-r65359", "label": "Eldenpedia · Consecrated Snowfield · r65359", "url": "https://eldenring.wiki.gg/wiki/Consecrated_Snowfield", "grade": "A" },
+    { "id": "eldenpedia-grand-lift-rold-r42274", "label": "Eldenpedia · Grand Lift of Rold · r42274", "url": "https://eldenring.wiki.gg/wiki/Grand_Lift_of_Rold", "grade": "A" },
+    { "id": "eldenpedia-zamor-r44298", "label": "Eldenpedia · Zamor Ruins · r44298", "url": "https://eldenring.wiki.gg/wiki/Zamor_Ruins", "grade": "A" },
+    { "id": "eldenpedia-fire-giant-r66845", "label": "Eldenpedia · Fire Giant · r66845", "url": "https://eldenring.wiki.gg/wiki/Fire_Giant", "grade": "A" },
+    { "id": "eldenpedia-forge-giants-r35883", "label": "Eldenpedia · Forge of the Giants · r35883", "url": "https://eldenring.wiki.gg/wiki/Forge_of_the_Giants", "grade": "A" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "label": "Eldenpedia · Sites of Grace · r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "grade": "A" },
+    { "id": "powerpyx-mohgwyn-cross-check", "label": "PowerPyx · Mohgwyn Palace walkthrough", "url": "https://www.powerpyx.com/elden-ring-mohgwyn-palace-walkthrough/", "grade": "B" },
+    { "id": "powerpyx-mountaintops-cross-check", "label": "PowerPyx · Mountaintops walkthrough", "url": "https://www.powerpyx.com/elden-ring-mountaintops-of-the-giants-walkthrough/", "grade": "B" },
+    { "id": "game8-mohgwyn-cross-check", "label": "Game8 · Mohgwyn Palace route", "url": "https://game8.co/games/Elden-Ring/archives/375778", "grade": "B" },
+    { "id": "game8-medal-cross-check", "label": "Game8 · Pureblood Knight's Medal", "url": "https://game8.co/games/Elden-Ring/archives/375778", "grade": "B" },
+    { "id": "game8-portal-cross-check", "label": "Game8 · portals and teleport locations", "url": "https://game8.co/games/Elden-Ring/archives/457275", "grade": "B" },
+    { "id": "game8-mountaintops-cross-check", "label": "Game8 · Mountaintops walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379750", "grade": "B" },
+    { "id": "game8-medallion-cross-check", "label": "Game8 · Mountaintops interactive map guide", "url": "https://game8.co/games/Elden-Ring/archives/370372", "grade": "B" },
+    { "id": "eldenpedia-ordina-r95013", "label": "Eldenpedia · Ordina · r95013", "url": "https://eldenring.wiki.gg/wiki/Ordina,_Liturgical_Town", "grade": "A" },
+    { "id": "game8-ordina-cross-check", "label": "Game8 · Ordina puzzle", "url": "https://game8.co/games/Elden-Ring/archives/370663", "grade": "B" }
+  ]
+}

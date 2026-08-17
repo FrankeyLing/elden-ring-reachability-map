@@ -463,6 +463,26 @@ async function init() {
       ["Grand Cloister", "grace_grand_cloister"],
       ["Astel, Naturalborn of the Void", "astel_naturalborn_gate"],
       ["Moonlight Altar", "grace_moonlight_altar"],
+      ["Mohgwyn sending gate", "mohgwyn_sending_gate"],
+      ["Pureblood Knight's Medal", "pureblood_knight_medal_gate"],
+      ["Palace Approach Ledge-Road", "grace_palace_approach_ledge_road"],
+      ["Dynasty Mausoleum Entrance", "grace_dynasty_mausoleum_entrance"],
+      ["Dynasty Mausoleum Midpoint", "grace_dynasty_mausoleum_midpoint"],
+      ["Cocoon of the Empyrean", "grace_cocoon_of_empyrean"],
+      ["Grand Lift of Rold", "grace_grand_lift_of_rold"],
+      ["Zamor Ruins", "grace_zamor_ruins"],
+      ["Whiteridge Road", "grace_whiteridge_road"],
+      ["Freezing Lake", "grace_freezing_lake"],
+      ["Giants' Gravepost", "grace_giants_gravepost"],
+      ["Foot of the Forge", "grace_foot_of_forge"],
+      ["Fire Giant", "fire_giant_gate"],
+      ["Forge of the Giants", "grace_forge_of_giants"],
+      ["Castle Sol Main Gate", "grace_castle_sol_main_gate"],
+      ["Church of the Eclipse", "grace_church_of_eclipse"],
+      ["Commander Niall", "commander_niall_gate"],
+      ["Castle Sol Rooftop", "grace_castle_sol_rooftop"],
+      ["Consecrated Snowfield", "grace_consecrated_snowfield"],
+      ["Inner Consecrated Snowfield", "grace_inner_consecrated_snowfield"],
       ["Starfall Crater (Mistwood, Limgrave)", "starfall_crater_entrance"],
       ["Nokron, Eternal City", "grace_nokron_eternal_city"],
       ["Aqueduct-Facing Cliffs", "siofra_aqueduct_valiant_gargoyle_gate"],
@@ -479,7 +499,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Nokron, Eternal City", "Aqueduct-Facing Cliffs", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "Nokron, Eternal City", "Aqueduct-Facing Cliffs", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);

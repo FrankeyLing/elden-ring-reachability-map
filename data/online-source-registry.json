@@ -111,6 +111,50 @@
       "import_status": "reference_only",
       "exclude": ["copied article text", "images", "coordinates", "private API"],
       "freshness": "manual review per claim"
+    },
+    {
+      "id": "powerpyx_manual_cross_check",
+      "name": "PowerPyx Elden Ring walkthrough",
+      "url": "https://www.powerpyx.com/elden-ring-mohgwyn-palace-walkthrough/",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
+    },
+    {
+      "id": "gamespot_manual_cross_check",
+      "name": "GameSpot Elden Ring guide",
+      "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
+    },
+    {
+      "id": "gamesradar_manual_cross_check",
+      "name": "GamesRadar Elden Ring guide",
+      "url": "https://www.gamesradar.com/elden-ring-fia-quest-walkthrough-deathbed-companion-age-of-duskborn-ending/",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
+    },
+    {
+      "id": "eip_manual_cross_check",
+      "name": "EIP Gaming Elden Ring guide",
+      "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
     }
   ]
 }
