@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.42-online-multiplane",
+    "version": "1.0.43-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -54,7 +54,8 @@
       "base-west-altus-tower-sealed-tunnel-evidence-20260817",
       "base-dragonbarrow-lenne-merchant-evidence-20260817",
       "base-caelid-main-road-branches-evidence-20260817",
-      "base-caelid-optional-dungeons-evidence-20260817"
+      "base-caelid-optional-dungeons-evidence-20260817",
+      "base-limgrave-west-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -545,6 +546,26 @@
       "id": "magma_wyrm_gael_tunnel_defeated",
       "label": "Gael Tunnel Magma Wyrm defeated",
       "hint": "The Magma Wyrm at the end of the Caelid Gael Tunnel route has been cleared, opening the Limgrave-side rear exit."
+    },
+    {
+      "id": "erdtree_burial_watchdog_stormfoot_defeated",
+      "label": "Stormfoot Catacombs Erdtree Burial Watchdog defeated",
+      "hint": "The Erdtree Burial Watchdog at the end of Stormfoot Catacombs has been cleared."
+    },
+    {
+      "id": "stonedigger_troll_limgrave_tunnels_defeated",
+      "label": "Limgrave Tunnels Stonedigger Troll defeated",
+      "hint": "The Stonedigger Troll at the end of Limgrave Tunnels has been cleared."
+    },
+    {
+      "id": "beastman_of_farum_azula_groveside_defeated",
+      "label": "Groveside Cave Beastman of Farum Azula defeated",
+      "hint": "The Beastman of Farum Azula at the end of Groveside Cave has been cleared."
+    },
+    {
+      "id": "demi_human_chiefs_coastal_cave_defeated",
+      "label": "Coastal Cave Demi-Human Chiefs defeated",
+      "hint": "Both Demi-Human Chiefs in Coastal Cave have been cleared, opening the route toward the Dragon Communion island exit."
     }
   ],
   "sourceEvidence": [
@@ -647,7 +668,6 @@
     { "id": "game8-belurat-cross-check", "label": "Game8 / Belurat Tower Settlement walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/458536", "grade": "B" },
     { "id": "game8-church-of-consolation-cross-check", "label": "Game8 / Church of Consolation location", "url": "https://game8.co/games/Elden-Ring/archives/459946", "grade": "B" },
     { "id": "powerpyx-dlc-access-cross-check", "label": "PowerPyx / starting Shadow of the Erdtree", "url": "https://www.powerpyx.com/elden-ring-how-to-start-shadow-of-the-erdtree-dlc/", "grade": "B" },
-    { "id": "powerpyx-dlc-walkthrough-cross-check", "label": "PowerPyx / Shadow of the Erdtree walkthrough", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/", "grade": "B" },
     { "id": "eip-gravesite-cross-check", "label": "EIP Gaming / Gravesite Plain walkthrough", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/", "grade": "B" },
     { "id": "eip-belurat-cross-check", "label": "EIP Gaming / Belurat walkthrough", "url": "https://eip.gg/elden-ring/guides/belurat-tower-settlement/", "grade": "B" },
     { "id": "eldenpedia-scadu-altus", "label": "Eldenpedia / Scadu Altus", "url": "https://eldenring.wiki.gg/wiki/Scadu_Altus", "grade": "A" },
@@ -793,6 +813,18 @@
     ,{ "id": "eip-sellia-hideaway-cross-check", "label": "EIP Gaming · Sellia Hideaway walkthrough", "url": "https://eip.gg/elden-ring/guides/sellia-hideaway-dungeon-walkthrough/", "grade": "B" }
     ,{ "id": "eldenpedia-gael-tunnel", "label": "Eldenpedia · Gael Tunnel", "url": "https://eldenring.wiki.gg/wiki/Gael_Tunnel", "grade": "A" }
     ,{ "id": "gamerguides-gael-tunnel-cross-check", "label": "Gamer Guides · Gael Tunnel Magma Wyrm route", "url": "https://www.gamerguides.com/elden-ring/guide/caelid/bosses/how-to-beat-the-magma-wyrm-in-gael-tunnel", "grade": "C" }
+    ,{ "id": "eldenpedia-stormfoot-catacombs", "label": "Eldenpedia · Stormfoot Catacombs", "url": "https://eldenring.wiki.gg/wiki/Stormfoot_Catacombs", "grade": "A" }
+    ,{ "id": "game8-stormfoot-catacombs-cross-check", "label": "Game8 · Stormfoot Catacombs route", "url": "https://game8.co/games/Elden-Ring/archives/353632", "grade": "B" }
+    ,{ "id": "gamerguides-stormfoot-catacombs-cross-check", "label": "Gamer Guides · Stormfoot Catacombs walkthrough", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-stormfoot-catacombs-in-limgrave", "grade": "C" }
+    ,{ "id": "eldenpedia-limgrave-tunnels", "label": "Eldenpedia · Limgrave Tunnels", "url": "https://eldenring.wiki.gg/wiki/Limgrave_Tunnels", "grade": "A" }
+    ,{ "id": "game8-limgrave-tunnels-cross-check", "label": "Game8 · Limgrave Tunnels walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369359", "grade": "B" }
+    ,{ "id": "gamerguides-limgrave-tunnels-cross-check", "label": "Gamer Guides · Limgrave Tunnels walkthrough", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-limgrave-tunnels-in-limgrave", "grade": "C" }
+    ,{ "id": "eldenpedia-groveside-cave", "label": "Eldenpedia · Groveside Cave", "url": "https://eldenring.wiki.gg/wiki/Groveside_Cave", "grade": "A" }
+    ,{ "id": "game8-groveside-cave-cross-check", "label": "Game8 · Groveside Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369342", "grade": "B" }
+    ,{ "id": "neoseeker-groveside-cave-cross-check", "label": "Neoseeker · Central Limgrave west route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Central_Limgrave_West", "grade": "B" }
+    ,{ "id": "game8-coastal-cave-cross-check", "label": "Game8 · Coastal Cave Demi-Human Chiefs", "url": "https://game8.co/games/Elden-Ring/archives/353678", "grade": "B" }
+    ,{ "id": "neoseeker-coastal-cave-cross-check", "label": "Neoseeker · Demi-Human Chief route", "url": "https://www.neoseeker.com/elden-ring/Bosses/Demi-Human_Chief", "grade": "B" }
+    ,{ "id": "gamefaqs-limgrave-west-coastal-cross-check", "label": "GameFAQs · Limgrave west walkthrough", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/82087/limgrave-west", "grade": "C" }
   ],
   "nodes": [
     {
@@ -6629,6 +6661,216 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-shaded-castle", "eldenpedia-sites-of-grace-r83774", "game8-shaded-castle-cross-check"],
       "description": "Post-Elemer Castellan's Hall grace."
+    },
+    {
+      "id": "grace_limgrave_main_stormfoot_catacombs",
+      "label": "Stormfoot Catacombs",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Stormfoot Catacombs",
+      "floor": "Catacomb entrance",
+      "worldEpoch": "base_surface",
+      "x": 180,
+      "y": 900,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check"],
+      "description": "Grace at the start of the catacomb northwest of the Church of Elleh."
+    },
+    {
+      "id": "erdtree_burial_watchdog_stormfoot_gate",
+      "label": "Erdtree Burial Watchdog (Stormfoot Catacombs)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Stormfoot Catacombs",
+      "floor": "Watchdog boss chamber",
+      "worldEpoch": "base_surface",
+      "x": 240,
+      "y": 900,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check"],
+      "description": "Lever-gated Erdtree Burial Watchdog boss gate at the end of Stormfoot Catacombs."
+    },
+    {
+      "id": "stormfoot_catacombs_post_boss_state",
+      "label": "Stormfoot Catacombs (post-boss state)",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Stormfoot Catacombs",
+      "floor": "Watchdog chamber return state",
+      "worldEpoch": "base_surface",
+      "x": 300,
+      "y": 900,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check"],
+      "description": "Cleared-state node for the Stormfoot Watchdog; no nonexistent post-boss grace is fabricated."
+    },
+    {
+      "id": "limgrave_tunnels_surface_entrance",
+      "label": "Limgrave Tunnels surface entrance",
+      "kind": "entrance",
+      "layer": "surface",
+      "region": "Limgrave",
+      "floor": "Northwestern Agheel Lake shore",
+      "worldEpoch": "base_surface",
+      "x": 205,
+      "y": 1035,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "description": "Surface mouth at the north end of Lake Agheel; the internal grace is reached by the mine lift."
+    },
+    {
+      "id": "grace_limgrave_main_limgrave_tunnels",
+      "label": "Limgrave Tunnels",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Limgrave Tunnels",
+      "floor": "Lower mine entrance lift landing",
+      "worldEpoch": "base_surface",
+      "x": 265,
+      "y": 1035,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "description": "Grace at the bottom of the entrance elevator in the Limgrave mining tunnel."
+    },
+    {
+      "id": "stonedigger_troll_limgrave_tunnels_gate",
+      "label": "Stonedigger Troll (Limgrave Tunnels)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Limgrave Tunnels",
+      "floor": "Stonedigger Troll chamber",
+      "worldEpoch": "base_surface",
+      "x": 325,
+      "y": 1035,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "description": "Stonedigger Troll boss gate reached from the grace via the hidden lower platform route."
+    },
+    {
+      "id": "limgrave_tunnels_post_boss_state",
+      "label": "Limgrave Tunnels (post-boss state)",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Limgrave Tunnels",
+      "floor": "Stonedigger Troll chamber return state",
+      "worldEpoch": "base_surface",
+      "x": 385,
+      "y": 1035,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check"],
+      "description": "Cleared-state node for the Limgrave Tunnels troll; no artificial post-boss grace is created."
+    },
+    {
+      "id": "grace_limgrave_main_groveside_cave",
+      "label": "Groveside Cave",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Groveside Cave",
+      "floor": "Cave entrance",
+      "worldEpoch": "base_surface",
+      "x": 150,
+      "y": 940,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check"],
+      "description": "Grace inside the cave west of the Church of Elleh and north of the early Limgrave road."
+    },
+    {
+      "id": "beastman_farum_azula_groveside_gate",
+      "label": "Beastman of Farum Azula (Groveside Cave)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Groveside Cave",
+      "floor": "Beastman boss chamber",
+      "worldEpoch": "base_surface",
+      "x": 210,
+      "y": 940,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check"],
+      "description": "Beastman of Farum Azula boss gate at the end of Groveside Cave."
+    },
+    {
+      "id": "groveside_cave_post_boss_state",
+      "label": "Groveside Cave (post-boss state)",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Groveside Cave",
+      "floor": "Beastman chamber return state",
+      "worldEpoch": "base_surface",
+      "x": 270,
+      "y": 940,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check"],
+      "description": "Cleared-state node for the Groveside Beastman; the cave portal return is represented as a state transition."
+    },
+    {
+      "id": "grace_limgrave_main_coastal_cave",
+      "label": "Coastal Cave",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Coastal Cave",
+      "floor": "Coastal cave entrance",
+      "worldEpoch": "base_surface",
+      "x": 95,
+      "y": 1050,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "description": "Grace at the beach cave west of the Church of Elleh."
+    },
+    {
+      "id": "demi_human_chiefs_coastal_cave_gate",
+      "label": "Demi-Human Chiefs (Coastal Cave)",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Coastal Cave",
+      "floor": "Demi-Human Chiefs chamber",
+      "worldEpoch": "base_surface",
+      "x": 155,
+      "y": 1050,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "description": "Paired Demi-Human Chiefs boss gate in the deepest Coastal Cave chamber."
+    },
+    {
+      "id": "coastal_cave_post_boss_state",
+      "label": "Coastal Cave (post-boss state)",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Coastal Cave",
+      "floor": "Demi-Human Chiefs chamber return state",
+      "worldEpoch": "base_surface",
+      "x": 215,
+      "y": 1050,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check"],
+      "description": "Cleared-state node before the cave's rear passage to the Dragon Communion island."
+    },
+    {
+      "id": "coastal_cave_dragon_communion_island_exit",
+      "label": "Coastal Cave Dragon Communion island exit",
+      "kind": "exit",
+      "layer": "surface",
+      "region": "Limgrave",
+      "floor": "Dragon Communion island",
+      "worldEpoch": "base_surface",
+      "x": 275,
+      "y": 1050,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "description": "Surface exit on the island beyond Coastal Cave; it is not merged with Caelid's Cathedral of Dragon Communion."
     }
   ],
   "edges": [
@@ -12789,6 +13031,216 @@
       "verificationState": "online_cross_checked",
       "note": "Castellan's Hall appears in the boss-room post-Elemer state.",
       "tags": ["boss", "conditional", "legacy", "cross_checked"]
+    },
+    {
+      "id": "church-elleh-to-stormfoot-catacombs",
+      "from": "grace_church_elleh",
+      "to": "grace_limgrave_main_stormfoot_catacombs",
+      "mode": "Church of Elleh to Stormfoot Catacombs",
+      "cost": 5,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "surface_to_legacy_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Ride northwest from the Church of Elleh through the woods to the catacomb entrance grace; the route is a branch, not a Gatefront detour.",
+      "tags": ["walk", "surface", "legacy_entrance", "branch", "cross_checked"]
+    },
+    {
+      "id": "stormfoot-to-watchdog",
+      "from": "grace_limgrave_main_stormfoot_catacombs",
+      "to": "erdtree_burial_watchdog_stormfoot_gate",
+      "mode": "Stormfoot Catacombs internal route",
+      "cost": 9,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "lever_gated_catacomb_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The catacomb route requires reaching and operating the internal lever before the Watchdog fog gate.",
+      "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "watchdog-to-stormfoot-state",
+      "from": "erdtree_burial_watchdog_stormfoot_gate",
+      "to": "stormfoot_catacombs_post_boss_state",
+      "mode": "Stormfoot Catacombs Watchdog completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_state",
+      "requires": ["erdtree_burial_watchdog_stormfoot_defeated"],
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Explicit cleared state for the optional Watchdog; no artificial post-boss grace is created.",
+      "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "agheel-south-to-limgrave-tunnels-mouth",
+      "from": "grace_limgrave_main_agheel_lake_south",
+      "to": "limgrave_tunnels_surface_entrance",
+      "mode": "Agheel Lake route to Limgrave Tunnels surface entrance",
+      "cost": 8,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "lakebed_surface_walk",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Follow the lakebed north toward the northwestern mine mouth; the explicit entrance node prevents the tunnel lift from being mistaken for an outdoor route.",
+      "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "limgrave-tunnels-mouth-to-grace",
+      "from": "limgrave_tunnels_surface_entrance",
+      "to": "grace_limgrave_main_limgrave_tunnels",
+      "mode": "Limgrave Tunnels entrance elevator",
+      "cost": 3,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "lift_descent",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The mine lift descends from the outdoor mouth to the lower entrance grace; this is a vertical plane transition.",
+      "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "limgrave-tunnels-to-stonedigger",
+      "from": "grace_limgrave_main_limgrave_tunnels",
+      "to": "stonedigger_troll_limgrave_tunnels_gate",
+      "mode": "Limgrave Tunnels internal route",
+      "cost": 10,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "mine_platform_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Use the mine platforms and hidden lower route to reach the Stonedigger Troll chamber.",
+      "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "stonedigger-to-limgrave-tunnels-state",
+      "from": "stonedigger_troll_limgrave_tunnels_gate",
+      "to": "limgrave_tunnels_post_boss_state",
+      "mode": "Limgrave Tunnels Stonedigger Troll completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_state",
+      "requires": ["stonedigger_troll_limgrave_tunnels_defeated"],
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Explicit cleared state for the Limgrave Tunnels troll; no nonexistent post-boss grace is fabricated.",
+      "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "church-elleh-to-groveside-cave",
+      "from": "grace_church_elleh",
+      "to": "grace_limgrave_main_groveside_cave",
+      "mode": "Church of Elleh to Groveside Cave",
+      "cost": 4,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "surface_to_legacy_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Head west from the Church of Elleh along the northern Limgrave road to the cave entrance grace.",
+      "tags": ["walk", "surface", "legacy_entrance", "branch", "cross_checked"]
+    },
+    {
+      "id": "groveside-to-beastman",
+      "from": "grace_limgrave_main_groveside_cave",
+      "to": "beastman_farum_azula_groveside_gate",
+      "mode": "Groveside Cave internal route",
+      "cost": 8,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "cave_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The wolf-filled cave route leads to the Beastman of Farum Azula boss chamber.",
+      "tags": ["walk", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "beastman-to-groveside-state",
+      "from": "beastman_farum_azula_groveside_gate",
+      "to": "groveside_cave_post_boss_state",
+      "mode": "Groveside Cave Beastman completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_portal_state",
+      "requires": ["beastman_of_farum_azula_groveside_defeated"],
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Cleared-state node for the cave boss; the cave's post-boss portal return is kept separate from the outdoor road.",
+      "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "church-elleh-to-coastal-cave",
+      "from": "grace_church_elleh",
+      "to": "grace_limgrave_main_coastal_cave",
+      "mode": "Church of Elleh to Coastal Cave",
+      "cost": 6,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "coastline_to_legacy_entrance",
+      "requires": [],
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Travel west and downhill from the Church of Elleh to the beach cave; this is not the Caelid Cathedral location.",
+      "tags": ["walk", "surface", "legacy_entrance", "branch", "cross_checked"]
+    },
+    {
+      "id": "coastal-cave-to-demi-human-chiefs",
+      "from": "grace_limgrave_main_coastal_cave",
+      "to": "demi_human_chiefs_coastal_cave_gate",
+      "mode": "Coastal Cave internal route",
+      "cost": 8,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "cave_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The cave passage reaches the paired Demi-Human Chiefs arena.",
+      "tags": ["walk", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "demi-human-chiefs-to-coastal-state",
+      "from": "demi_human_chiefs_coastal_cave_gate",
+      "to": "coastal_cave_post_boss_state",
+      "mode": "Coastal Cave Demi-Human Chiefs completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_state",
+      "requires": ["demi_human_chiefs_coastal_cave_defeated"],
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Explicit cleared state for the paired chiefs before taking the rear passage toward the Dragon Communion island.",
+      "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "coastal-state-to-dragon-communion-island",
+      "from": "coastal_cave_post_boss_state",
+      "to": "coastal_cave_dragon_communion_island_exit",
+      "mode": "Coastal Cave rear passage to Dragon Communion island",
+      "cost": 4,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "legacy_to_surface_exit",
+      "requires": ["demi_human_chiefs_coastal_cave_defeated"],
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The rear cave passage emerges on the Dragon Communion island; it is modeled as a one-way plane exit until a reverse route is separately verified.",
+      "tags": ["walk", "exit", "surface", "conditional", "one_way", "cross_checked"]
     }
   ],
   "relations": [
@@ -12811,8 +13263,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 389,
-    "formalRouteEdgeCount": 411,
+    "formalNodeCount": 403,
+    "formalRouteEdgeCount": 425,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

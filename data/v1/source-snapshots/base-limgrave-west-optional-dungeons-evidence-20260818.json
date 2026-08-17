@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "base-limgrave-west-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "stormfoot-catacombs-entry-watchdog",
+      "claim": "Stormfoot Catacombs lies northwest of the Church of Elleh; its starting grace is inside the catacombs and the route ends at an Erdtree Burial Watchdog reached after operating the lever.",
+      "sources": [
+        { "source_id": "eldenpedia-stormfoot-catacombs", "url": "https://eldenring.wiki.gg/wiki/Stormfoot_Catacombs" },
+        { "source_id": "game8-stormfoot-catacombs-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353632" },
+        { "source_id": "gamerguides-stormfoot-catacombs-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-stormfoot-catacombs-in-limgrave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "limgrave-tunnels-lift-troll",
+      "claim": "Limgrave Tunnels is at the northwestern end of Lake Agheel; the entrance elevator reaches the grace and the mine route continues to the Stonedigger Troll boss chamber.",
+      "sources": [
+        { "source_id": "eldenpedia-limgrave-tunnels", "url": "https://eldenring.wiki.gg/wiki/Limgrave_Tunnels" },
+        { "source_id": "game8-limgrave-tunnels-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369359" },
+        { "source_id": "gamerguides-limgrave-tunnels-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-limgrave-tunnels-in-limgrave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "groveside-cave-entry-beastman",
+      "claim": "Groveside Cave is west of the Church of Elleh in Limgrave; its internal route leads to the Beastman of Farum Azula and the cave has a post-boss portal return state.",
+      "sources": [
+        { "source_id": "eldenpedia-groveside-cave", "url": "https://eldenring.wiki.gg/wiki/Groveside_Cave" },
+        { "source_id": "game8-groveside-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369342" },
+        { "source_id": "neoseeker-groveside-cave-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Central_Limgrave_West" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "coastal-cave-chiefs-island-exit",
+      "claim": "Coastal Cave is reached from the Limgrave west coast near the Church of Elleh; the cave contains two Demi-Human Chiefs and the rear passage emerges toward the Dragon Communion island.",
+      "sources": [
+        { "source_id": "game8-coastal-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353678" },
+        { "source_id": "neoseeker-coastal-cave-cross-check", "url": "https://www.neoseeker.com/elden-ring/Bosses/Demi-Human_Chief" },
+        { "source_id": "gamefaqs-limgrave-west-coastal-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/82087/limgrave-west" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
