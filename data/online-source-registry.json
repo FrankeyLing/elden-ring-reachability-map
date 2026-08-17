@@ -155,6 +155,17 @@
       "import_status": "reference_only",
       "exclude": ["copied article text", "images", "coordinates", "private API"],
       "freshness": "manual review per claim"
+    },
+    {
+      "id": "neoseeker_manual_cross_check",
+      "name": "Neoseeker Elden Ring guide",
+      "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_Aqueduct",
+      "access": "manual page review only",
+      "license": "proprietary; no bulk reuse",
+      "v1_role": ["route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "coordinates", "private API"],
+      "freshness": "manual review per claim"
     }
   ]
 }

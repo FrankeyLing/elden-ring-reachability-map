@@ -1,0 +1,115 @@
+{
+  "snapshot_id": "siofra-underground-entrance-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "East Limgrave Siofra Well, lower Siofra River, post-Radahn Nokron and Siofra Aqueduct entrance",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "gatefront-to-mistwood",
+      "from": "Gatefront",
+      "to": "Mistwood Outskirts",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The East Limgrave road branches from the Gatefront area toward Mistwood.",
+      "sources": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-limgrave-cross-check"]
+    },
+    {
+      "id": "mistwood-to-third-church",
+      "from": "Mistwood Outskirts",
+      "to": "Third Church of Marika",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The Mistwood route reaches the Third Church of Marika landmark before the Siofra Well entrance.",
+      "sources": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-siofra-cross-check"]
+    },
+    {
+      "id": "third-church-to-siofra-well",
+      "from": "Third Church of Marika",
+      "to": "Siofra River Well",
+      "transition_type": "surface_walk",
+      "direction": "forward",
+      "claim": "The Siofra River Well lies south of the Third Church of Marika and is the East Limgrave entrance to the underground river.",
+      "sources": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check"]
+    },
+    {
+      "id": "siofra-well-to-depths",
+      "from": "Siofra River Well",
+      "to": "Siofra River Well Depths",
+      "transition_type": "well_elevator",
+      "direction": "forward",
+      "claim": "Activating the platform inside the well descends to Siofra River Well Depths.",
+      "sources": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check"]
+    },
+    {
+      "id": "siofra-bank-to-worshippers",
+      "from": "Siofra River Bank",
+      "to": "Worshippers' Woods",
+      "transition_type": "underground_walk",
+      "direction": "forward",
+      "claim": "Worshippers' Woods is a separate Siofra River grace branch from the lower river bank.",
+      "sources": ["eldenpedia-siofra-r71937", "eldenpedia-sites-of-grace-r83774", "game8-siofra-cross-check"]
+    },
+    {
+      "id": "crater-to-nokron",
+      "from": "Starfall Crater",
+      "to": "Nokron, Eternal City",
+      "transition_type": "post_radahn_crater",
+      "direction": "forward",
+      "claim": "After Starscourge Radahn, the Starfall Crater descent opens the Nokron entrance.",
+      "sources": ["eldenpedia-nokron-r66900", "game8-nokron-cross-check", "pcgamer-ranni-cross-check"]
+    },
+    {
+      "id": "nokron-to-ancestral-woods",
+      "from": "Nokron, Eternal City",
+      "to": "Ancestral Woods",
+      "transition_type": "underground_walk",
+      "direction": "forward",
+      "claim": "Ancestral Woods is an upper Nokron route landmark after entering the Eternal City.",
+      "sources": ["eldenpedia-siofra-r71937", "eldenpedia-nokron-r66900", "game8-nokron-cross-check"]
+    },
+    {
+      "id": "ancestral-to-aqueduct-cliffs",
+      "from": "Ancestral Woods",
+      "to": "Aqueduct-Facing Cliffs",
+      "transition_type": "vertical_underground_route",
+      "direction": "forward",
+      "claim": "The Nokron route reaches Aqueduct-Facing Cliffs before entering Siofra Aqueduct.",
+      "sources": ["eldenpedia-siofra-r71937", "game8-nokron-cross-check", "neoseeker-aqueduct-cross-check"]
+    },
+    {
+      "id": "aqueduct-cliffs-to-gargoyles",
+      "from": "Aqueduct-Facing Cliffs",
+      "to": "Siofra Aqueduct / Valiant Gargoyles",
+      "transition_type": "aqueduct_boss_approach",
+      "direction": "forward",
+      "claim": "Aqueduct-Facing Cliffs is the approach layer for the Valiant Gargoyles gate.",
+      "sources": ["eldenpedia-siofra-aqueduct-r48924", "neoseeker-aqueduct-cross-check", "powerpyx-deeproot-cross-check"]
+    },
+    {
+      "id": "gargoyles-to-deeproot",
+      "from": "Siofra Aqueduct / Valiant Gargoyles",
+      "to": "Deeproot coffin",
+      "transition_type": "coffin",
+      "direction": "forward",
+      "claim": "The coffin route to Deeproot is available after the Valiant Gargoyles gate.",
+      "sources": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-limgrave-r97518", "label": "Eldenpedia · Limgrave · r97518", "url": "https://eldenring.wiki.gg/wiki/Limgrave", "grade": "A" },
+    { "id": "eldenpedia-siofra-r71937", "label": "Eldenpedia · Siofra River · r71937", "url": "https://eldenring.wiki.gg/wiki/Siofra_River", "grade": "A" },
+    { "id": "eldenpedia-nokron-r66900", "label": "Eldenpedia · Nokron · r66900", "url": "https://eldenring.wiki.gg/wiki/Nokron,_Eternal_City", "grade": "A" },
+    { "id": "eldenpedia-siofra-aqueduct-r48924", "label": "Eldenpedia · Siofra Aqueduct · r48924", "url": "https://eldenring.wiki.gg/wiki/Siofra_Aqueduct", "grade": "A" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "label": "Eldenpedia · Sites of Grace · r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "grade": "A" },
+    { "id": "powerpyx-limgrave-cross-check", "label": "PowerPyx · Limgrave walkthrough", "url": "https://www.powerpyx.com/elden-ring-limgrave-walkthrough/", "grade": "B" },
+    { "id": "game8-limgrave-cross-check", "label": "Game8 · Limgrave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379489", "grade": "B" },
+    { "id": "game8-siofra-cross-check", "label": "Game8 · Siofra River walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379579", "grade": "B" },
+    { "id": "pcgamer-siofra-cross-check", "label": "PC Gamer · Siofra River well route", "url": "https://www.pcgamer.com/elden-ring-siofra-river-well-map-location/", "grade": "B" },
+    { "id": "game8-nokron-cross-check", "label": "Game8 · Nokron route", "url": "https://game8.co/games/Elden-Ring/archives/370740", "grade": "B" },
+    { "id": "pcgamer-ranni-cross-check", "label": "PC Gamer · Ranni/Nokron route", "url": "https://www.pcgamer.com/elden-ring-ranni-quest-nokron/", "grade": "B" },
+    { "id": "neoseeker-aqueduct-cross-check", "label": "Neoseeker · Siofra Aqueduct walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_Aqueduct", "grade": "B" },
+    { "id": "powerpyx-deeproot-cross-check", "label": "PowerPyx · Deeproot Depths walkthrough", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/", "grade": "B" },
+    { "id": "game8-deeproot-cross-check", "label": "Game8 · Deeproot Depths map route", "url": "https://game8.co/games/Elden-Ring/archives/370580", "grade": "B" },
+    { "id": "gamesradar-deeproot-cross-check", "label": "GamesRadar · Fia and Deeproot route", "url": "https://www.gamesradar.com/elden-ring-fia-quest-walkthrough-deathbed-companion-age-of-duskborn-ending/", "grade": "B" }
+  ]
+}

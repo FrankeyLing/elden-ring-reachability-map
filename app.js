@@ -380,7 +380,22 @@ function planAndRender() {
 
 function setZoom(nextZoom) {
   state.zoom = Math.max(0.7, Math.min(1.7, nextZoom));
-  els.mapTransform.setAttribute("transform", `translate(500 300) scale(${state.zoom}) translate(-500 -300)`);
+  const width = state.data?.meta?.coordinateSpace?.width || 1000;
+  const height = state.data?.meta?.coordinateSpace?.height || 600;
+  els.mapTransform.setAttribute("transform", `translate(${width / 2} ${height / 2}) scale(${state.zoom}) translate(${-width / 2} ${-height / 2})`);
+}
+
+function applyMapCoordinateSpace() {
+  const width = state.data?.meta?.coordinateSpace?.width || 1000;
+  const height = state.data?.meta?.coordinateSpace?.height || 600;
+  const map = document.getElementById("topology-map");
+  map.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  const grid = document.querySelector(".map-grid");
+  if (grid) {
+    grid.setAttribute("width", String(width));
+    grid.setAttribute("height", String(height));
+  }
+  setZoom(state.zoom);
 }
 
 function wireEvents() {
@@ -440,6 +455,7 @@ async function init() {
     if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     state.data = await graphResponse.json();
+    applyMapCoordinateSpace();
     const catalog = await catalogResponse.json();
     const routeLegCatalog = await routeLegResponse.json();
     const regionSlots = new Map();
@@ -508,9 +524,15 @@ async function init() {
       ["Outer Wall Battleground", "grace_outer_wall_battleground"],
       ["Draconic Tree Sentinel", "draconic_tree_sentinel_gate"],
       ["East Capital Rampart", "grace_east_capital_rampart"],
+      ["Mistwood Outskirts", "grace_mistwood_outskirts"],
+      ["Third Church of Marika", "grace_third_church_of_marika"],
+      ["Siofra River Well", "siofra_well_surface_entrance"],
+      ["Siofra Well descent lift", "siofra_well_lift"],
+      ["Worshippers' Woods", "grace_worshippers_woods"],
+      ["Ancestral Woods", "grace_ancestral_woods"],
+      ["Aqueduct-Facing Cliffs", "grace_aqueduct_facing_cliffs"],
       ["Starfall Crater (Mistwood, Limgrave)", "starfall_crater_entrance"],
       ["Nokron, Eternal City", "grace_nokron_eternal_city"],
-      ["Aqueduct-Facing Cliffs", "siofra_aqueduct_valiant_gargoyle_gate"],
       ["Siofra Aqueduct (Valiant Gargoyles)", "siofra_aqueduct_valiant_gargoyle_gate"],
       ["Deeproot coffin", "deeproot_coffin"],
       ["Deeproot Depths", "grace_deeproot_depths"],
@@ -524,7 +546,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Aqueduct-Facing Cliffs", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);
