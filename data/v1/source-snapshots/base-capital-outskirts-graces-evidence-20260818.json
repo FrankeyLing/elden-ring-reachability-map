@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "base-capital-outskirts-graces-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "capital-rampart-entry-layer",
+      "claim": "The Draconic Tree Sentinel gate leads first to Capital Rampart; East Capital Rampart is a separate interior grace reached after entering the capital, so the two are not collapsed into one point.",
+      "sources": [
+        { "source_id": "eldenpedia-leyndell-r97244", "url": "https://eldenring.wiki.gg/wiki/Leyndell,_Royal_Capital" },
+        { "source_id": "powerpyx-leyndell-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/" },
+        { "source_id": "game8-leyndell-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368933" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "capital-outskirts-side-graces",
+      "claim": "Hermit Merchant's Shack is reached by climbing east/northwest from Outer Wall Battleground, while Minor Erdtree Church is at the end of the southeast path from Outer Wall Phantom Tree; both are optional Capital Outskirts branches.",
+      "sources": [
+        { "source_id": "eldenpedia-altus-r65232", "url": "https://eldenring.wiki.gg/wiki/Altus_Plateau" },
+        { "source_id": "game8-hermit-merchant-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370263" },
+        { "source_id": "game8-minor-erdtree-church-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370260" },
+        { "source_id": "powerpyx-leyndell-cross-check", "url": "https://www.powerpyx.com/elden-ring-leyndell-royal-capital-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
