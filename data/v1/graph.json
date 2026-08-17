@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.64-online-multiplane",
+    "version": "1.0.65-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -77,7 +77,8 @@
       "base-roundtable-hold-invitation-evidence-20260818",
       "base-limgrave-early-surface-nodes-evidence-20260818",
       "base-weeping-peninsula-surface-nodes-evidence-20260818",
-      "base-liurnia-lakeside-cliff-branches-evidence-20260818"
+      "base-liurnia-lakeside-cliff-branches-evidence-20260818",
+      "base-mountaintops-snowfield-surface-branches-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -8771,6 +8772,30 @@
     {
       "id": "grace_liurnia_of_the_lakes_bellum_highway_church_of_inhibition", "label": "Church of Inhibition", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northern plateau church", "worldEpoch": "liurnia_surface", "x": 1140, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check"], "description": "High northern church grace reached by the back slope of Frenzied Flame Village; the approach crosses a Madness hazard and can spawn Festering Fingerprint Vyke."
+    },
+    {
+      "id": "grace_mountaintops_of_the_giants_ancient_snow_valley_ruins", "label": "Ancient Snow Valley Ruins", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Frozen river valley", "worldEpoch": "mountaintops_surface", "x": 950, "y": 640, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Frozen river grace after Zamor Ruins and before the Snow Valley Ruins Overlook branch."
+    },
+    {
+      "id": "grace_mountaintops_of_the_giants_snow_valley_ruins_overlook", "label": "Snow Valley Ruins Overlook", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Northern frozen valley overlook", "worldEpoch": "mountaintops_surface", "x": 1040, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "eldenpedia-guide-r13749"], "description": "Overlook beside the broken bridge and the route toward Freezing Lake/Heretical Rise."
+    },
+    {
+      "id": "grace_mountaintops_of_the_giants_first_church_of_marika", "label": "First Church of Marika", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Freezing Lake southeastern shore", "worldEpoch": "mountaintops_surface", "x": 1160, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Church grace on the southeastern Freezing Lake route, separate from Church of Repose and Foot of the Forge."
+    },
+    {
+      "id": "grace_mountaintops_of_the_giants_church_of_repose", "label": "Church of Repose", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Flame Peak eastern approach", "worldEpoch": "mountaintops_surface", "x": 1320, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Flame Peak church grace on the approach from Foot of the Forge; the Bloody Finger Okina encounter is a local hazard."
+    },
+    {
+      "id": "grace_mountaintops_of_the_giants_hidden_path_to_the_haligtree", "label": "Hidden Path to the Haligtree", "kind": "grace", "layer": "legacy", "region": "Forbidden Lands", "floor": "Secret Rold lift dungeon", "worldEpoch": "consecrated_snowfield", "x": 800, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-consecrated-snowfield-r65359", "game8-medallion-cross-check"], "description": "Secret lift/dungeon grace reached by using the Haligtree Secret Medallion at Grand Lift of Rold; it is not the normal Mountaintops lift result."
+    },
+    {
+      "id": "grace_mountaintops_of_the_giants_apostate_derelict", "label": "Apostate Derelict", "kind": "grace", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Northwestern Snowfield church", "worldEpoch": "consecrated_snowfield", "x": 570, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-r65359", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Northwestern Snowfield church grace northwest of Ordina, with the Latenna-related reward branch."
     }
   ],
   "edges": [
@@ -16294,6 +16319,20 @@
     ,{ "id": "church-inhibition-to-frenzied-village", "from": "grace_liurnia_of_the_lakes_bellum_highway_church_of_inhibition", "to": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "mode": "Church of Inhibition return to Frenzied Flame Village", "cost": 6, "risk": 10, "direction": "backtrack", "transitionType": "church_hill_descent", "requires": [], "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the same northern plateau slope.", "tags": ["walk", "vertical", "hazard", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "folly-on-lake-to-revengers-shack", "from": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "to": "grace_liurnia_of_the_lakes_main_revengers_shack", "mode": "Folly on the Lake to Revenger's Shack", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "western_liurnia_surface_branch", "requires": [], "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the western Liurnia shore branch to the Revenger's Shack grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
     ,{ "id": "revengers-shack-to-folly-on-lake", "from": "grace_liurnia_of_the_lakes_main_revengers_shack", "to": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "mode": "Revenger's Shack return to Folly on the Lake", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "western_liurnia_surface_branch", "requires": [], "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the western lake branch.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "zamor-to-ancient-snow-valley", "from": "grace_zamor_ruins", "to": "grace_mountaintops_of_the_giants_ancient_snow_valley_ruins", "mode": "Zamor Ruins to Ancient Snow Valley Ruins", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "mountaintop_frozen_river_route", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check", "powerpyx-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the northeastern frozen river route from Zamor Ruins to Ancient Snow Valley Ruins.", "tags": ["walk", "surface", "cross_checked"] }
+    ,{ "id": "ancient-snow-valley-to-zamor", "from": "grace_mountaintops_of_the_giants_ancient_snow_valley_ruins", "to": "grace_zamor_ruins", "mode": "Ancient Snow Valley return to Zamor Ruins", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "mountaintop_frozen_river_route", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "powerpyx-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the frozen river to the Zamor Ruins side of the mountaintop route.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "ancient-snow-valley-to-overlook", "from": "grace_mountaintops_of_the_giants_ancient_snow_valley_ruins", "to": "grace_mountaintops_of_the_giants_snow_valley_ruins_overlook", "mode": "Ancient Snow Valley to Snow Valley Ruins Overlook", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "frozen_valley_ascent", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-guide-r13749", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the frozen valley path toward the overlook beside the broken bridge.", "tags": ["walk", "vertical", "surface", "cross_checked"] }
+    ,{ "id": "overlook-to-ancient-snow-valley", "from": "grace_mountaintops_of_the_giants_snow_valley_ruins_overlook", "to": "grace_mountaintops_of_the_giants_ancient_snow_valley_ruins", "mode": "Snow Valley Ruins Overlook return to Ancient Snow Valley", "cost": 8, "risk": 8, "direction": "backtrack", "transitionType": "frozen_valley_descent", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the same frozen valley route.", "tags": ["walk", "vertical", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "overlook-to-freezing-lake", "from": "grace_mountaintops_of_the_giants_snow_valley_ruins_overlook", "to": "grace_freezing_lake", "mode": "Snow Valley Overlook to Freezing Lake", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "frozen_lake_approach", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-guide-r13749", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the river past the overlook to the Freezing Lake grace.", "tags": ["walk", "surface", "hazard", "cross_checked"] }
+    ,{ "id": "freezing-lake-to-overlook", "from": "grace_freezing_lake", "to": "grace_mountaintops_of_the_giants_snow_valley_ruins_overlook", "mode": "Freezing Lake return to Snow Valley Overlook", "cost": 8, "risk": 8, "direction": "backtrack", "transitionType": "frozen_lake_approach", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the frozen river to the overlook.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
+    ,{ "id": "freezing-lake-to-first-church", "from": "grace_freezing_lake", "to": "grace_mountaintops_of_the_giants_first_church_of_marika", "mode": "Freezing Lake to First Church of Marika", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "frozen_lake_southeast_route", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check", "powerpyx-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Travel southeast around the frozen lake to the First Church of Marika grace.", "tags": ["walk", "surface", "hazard", "cross_checked"] }
+    ,{ "id": "first-church-to-freezing-lake", "from": "grace_mountaintops_of_the_giants_first_church_of_marika", "to": "grace_freezing_lake", "mode": "First Church of Marika return to Freezing Lake", "cost": 7, "risk": 8, "direction": "backtrack", "transitionType": "frozen_lake_northwest_route", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return northwest along the frozen lake shore.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
+    ,{ "id": "foot-of-forge-to-church-repose", "from": "grace_foot_of_forge", "to": "grace_mountaintops_of_the_giants_church_of_repose", "mode": "Foot of the Forge to Church of Repose", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "flame_peak_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check", "powerpyx-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Take the eastern Flame Peak route from Foot of the Forge to Church of Repose.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "church-repose-to-foot-of-forge", "from": "grace_mountaintops_of_the_giants_church_of_repose", "to": "grace_foot_of_forge", "mode": "Church of Repose return to Foot of the Forge", "cost": 7, "risk": 8, "direction": "backtrack", "transitionType": "flame_peak_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the Flame Peak approach.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "rold-to-hidden-haligtree-path", "from": "grace_grand_lift_of_rold", "to": "grace_mountaintops_of_the_giants_hidden_path_to_the_haligtree", "mode": "Grand Lift of Rold secret medallion route", "cost": 3, "risk": 4, "direction": "one_way", "transitionType": "secret_medallion_lift", "requires": ["haligtree_secret_medallion_complete"], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-consecrated-snowfield-r65359", "game8-medallion-cross-check"], "verificationState": "online_cross_checked", "note": "Use the Haligtree Secret Medallion at the Grand Lift to enter the distinct Hidden Path dungeon; this is separate from the normal Rold lift result.", "tags": ["lift", "one_way", "conditional", "legacy", "cross_checked"] }
+    ,{ "id": "hidden-path-to-consecrated-snowfield", "from": "grace_mountaintops_of_the_giants_hidden_path_to_the_haligtree", "to": "grace_consecrated_snowfield", "mode": "Hidden Path to the Haligtree Snowfield exit", "cost": 8, "risk": 9, "direction": "one_way", "transitionType": "hidden_path_snowfield_exit", "requires": [], "sourceEvidence": ["eldenpedia-consecrated-snowfield-r65359", "game8-medallion-cross-check", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Traverse the secret dungeon and exit to the Consecrated Snowfield; the invisible floor and Stray Mimic Tear branch are separate internal hazards.", "tags": ["legacy", "one_way", "vertical", "cross_checked"] }
+    ,{ "id": "ordina-to-apostate-derelict", "from": "grace_ordina_liturgical_town", "to": "grace_mountaintops_of_the_giants_apostate_derelict", "mode": "Ordina to Apostate Derelict", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "snowfield_northwest_route", "requires": [], "sourceEvidence": ["eldenpedia-consecrated-snowfield-r65359", "game8-mountaintops-cross-check", "game8-ordina-cross-check"], "verificationState": "online_cross_checked", "note": "Travel northwest from Ordina across the Snowfield to the Apostate Derelict church grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "apostate-derelict-to-ordina", "from": "grace_mountaintops_of_the_giants_apostate_derelict", "to": "grace_ordina_liturgical_town", "mode": "Apostate Derelict return to Ordina", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "snowfield_southeast_route", "requires": [], "sourceEvidence": ["eldenpedia-consecrated-snowfield-r65359", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return southeast across the Snowfield toward Ordina.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -16315,8 +16354,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 661,
-    "formalRouteEdgeCount": 719,
+    "formalNodeCount": 667,
+    "formalRouteEdgeCount": 733,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
