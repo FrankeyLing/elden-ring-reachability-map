@@ -166,6 +166,17 @@
       "import_status": "reference_only",
       "exclude": ["copied article text", "images", "coordinates", "private API"],
       "freshness": "manual review per claim"
+    },
+    {
+      "id": "bandai_namco_official",
+      "name": "Bandai Namco Elden Ring official pages",
+      "url": "https://en.bandainamcoent.eu/elden-ring/",
+      "access": "public official page review only",
+      "license": "official web content; no bulk reuse",
+      "v1_role": ["dlc_scope", "access_requirements", "official_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["copied article text", "images", "game assets", "private API"],
+      "freshness": "manual review per claim"
     }
   ]
 }

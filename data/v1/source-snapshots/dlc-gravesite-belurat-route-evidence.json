@@ -1,0 +1,114 @@
+{
+  "snapshot_id": "dlc-gravesite-belurat-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Cocoon of the Empyrean, Gravesite Plain, Belurat, Castle Ensis and nearby Realm of Shadow routes",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "cocoon-to-gravesite-plain",
+      "from": "Cocoon of the Empyrean",
+      "to": "Gravesite Plain",
+      "transition_type": "shadow_realm_world_teleport",
+      "direction": "forward",
+      "claim": "After Starscourge Radahn and Mohg, Lord of Blood are defeated, touching Miquella's withered hand at the Cocoon of the Empyrean sends the player into the Realm of Shadow at Gravesite Plain.",
+      "sources": ["bandai-dlc-access-official", "game8-dlc-access-cross-check", "powerpyx-dlc-access-cross-check", "eldenpedia-shadow-realm-access"]
+    },
+    {
+      "id": "gravesite-to-three-path",
+      "from": "Gravesite Plain",
+      "to": "Three-Path Cross",
+      "transition_type": "shadow_realm_surface_walk",
+      "direction": "forward",
+      "claim": "The initial Gravesite Plain route reaches the Three-Path Cross area and its nearby Site of Grace.",
+      "sources": ["eldenpedia-gravesite-plain", "game8-dlc-cross-check", "eip-gravesite-cross-check"]
+    },
+    {
+      "id": "gravesite-to-church-of-consolation",
+      "from": "Gravesite Plain",
+      "to": "Church of Consolation",
+      "transition_type": "shadow_realm_landmark_walk",
+      "direction": "forward",
+      "claim": "Church of Consolation is an eastern Gravesite Plain landmark reached by following the road from the Gravesite Plain Site of Grace; it is not a Site of Grace itself.",
+      "sources": ["eldenpedia-church-of-consolation", "game8-church-of-consolation-cross-check", "eldenpedia-gravesite-plain"]
+    },
+    {
+      "id": "three-path-to-main-gate-cross",
+      "from": "Three-Path Cross",
+      "to": "Main Gate Cross",
+      "transition_type": "shadow_realm_surface_walk",
+      "direction": "forward",
+      "claim": "The westward route from Three-Path Cross reaches Main Gate Cross outside Belurat Tower Settlement.",
+      "sources": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-gravesite-cross-check"]
+    },
+    {
+      "id": "main-gate-cross-to-belurat",
+      "from": "Main Gate Cross",
+      "to": "Belurat, Tower Settlement",
+      "transition_type": "legacy_dungeon_entrance",
+      "direction": "forward",
+      "claim": "The large stair and gate beyond Main Gate Cross is the first entrance into Belurat Tower Settlement.",
+      "sources": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-belurat-cross-check"]
+    },
+    {
+      "id": "belurat-to-divine-beast",
+      "from": "Belurat, Tower Settlement",
+      "to": "Divine Beast Dancing Lion",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Belurat Tower Settlement's legacy-dungeon route culminates at the Divine Beast Dancing Lion boss gate.",
+      "sources": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-belurat-cross-check"]
+    },
+    {
+      "id": "divine-beast-to-theatre",
+      "from": "Divine Beast Dancing Lion",
+      "to": "Theatre of the Divine Beast",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Theatre of the Divine Beast grace is the post-boss continuation of the Belurat legacy dungeon.",
+      "sources": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-belurat-cross-check"]
+    },
+    {
+      "id": "three-path-to-pillar-path",
+      "from": "Three-Path Cross",
+      "to": "Pillar Path Cross",
+      "transition_type": "shadow_realm_surface_walk",
+      "direction": "forward",
+      "claim": "The Gravesite Plain route branches from the Three-Path Cross area toward Pillar Path Cross as a separate surface route.",
+      "sources": ["eldenpedia-gravesite-plain", "game8-dlc-cross-check", "eip-gravesite-cross-check"]
+    },
+    {
+      "id": "gravesite-to-castle-front",
+      "from": "Gravesite Plain",
+      "to": "Castle Front",
+      "transition_type": "greatbridge_surface_walk",
+      "direction": "forward",
+      "claim": "The main Gravesite Plain route heads northeast across Ellac Greatbridge to Castle Front before Castle Ensis.",
+      "sources": ["eldenpedia-gravesite-plain", "game8-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "ensis-to-cliffroad",
+      "from": "Ensis Moongazing Grounds",
+      "to": "Cliffroad Terminus",
+      "transition_type": "shadow_realm_surface_exit",
+      "direction": "forward",
+      "claim": "The route beyond Castle Ensis connects the southern legacy-dungeon exit area with the Cliffroad Terminus route on Gravesite Plain.",
+      "sources": ["eldenpedia-castle-ensis-r73643", "game8-dlc-cross-check", "eip-gravesite-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "bandai-dlc-access-official", "url": "https://en.bandainamcoent.eu/elden-ring/news/elden-ring-how-enter-the-realm-of-shadow" },
+    { "id": "eldenpedia-shadow-realm-access", "url": "https://eldenring.wiki.gg/wiki/Realm_of_Shadow" },
+    { "id": "eldenpedia-gravesite-plain", "url": "https://eldenring.wiki.gg/wiki/Gravesite_Plain" },
+    { "id": "eldenpedia-church-of-consolation", "url": "https://eldenring.wiki.gg/wiki/Church_of_Consolation" },
+    { "id": "eldenpedia-belurat-tower-settlement", "url": "https://eldenring.wiki.gg/wiki/Belurat%2C_Tower_Settlement" },
+    { "id": "eldenpedia-castle-ensis-r73643", "url": "https://eldenring.wiki.gg/wiki/Castle_Ensis", "revision_id": 73643 },
+    { "id": "game8-dlc-access-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/451395" },
+    { "id": "game8-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" },
+    { "id": "game8-belurat-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458536" },
+    { "id": "game8-church-of-consolation-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459946" },
+    { "id": "powerpyx-dlc-access-cross-check", "url": "https://www.powerpyx.com/elden-ring-how-to-start-shadow-of-the-erdtree-dlc/" },
+    { "id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" },
+    { "id": "eip-gravesite-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/" },
+    { "id": "eip-belurat-cross-check", "url": "https://eip.gg/elden-ring/guides/belurat-tower-settlement/" }
+  ]
+}
