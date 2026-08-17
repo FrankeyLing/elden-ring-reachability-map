@@ -4,6 +4,8 @@ const DEFAULT_ROUTE_PROFILE = "physical_no_fast_travel";
 
 const state = {
   data: null,
+  onlineIndex: null,
+  onlineBossByNodeId: new Map(),
   nodes: new Map(),
   layer: "all",
   origin: "grace_avenue_balcony",
@@ -364,7 +366,11 @@ function renderGraph() {
   renderRegions();
   renderEdges();
   renderNodes();
-  els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段 · ${state.data.meta.verificationLabel || "V1"}`;
+  const coverage = state.onlineIndex?.manifest?.coverage;
+  const onlineStats = coverage
+    ? ` · 在线坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.tileRegionRecords} 地图层`
+    : "";
+  els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段${onlineStats} · ${state.data.meta.verificationLabel || "V1"}`;
 }
 
 function renderInspector() {
@@ -374,13 +380,18 @@ function renderInspector() {
   const outgoing = allEdges.filter((edge) => edge.from === node.id).slice(0, 4);
   const incoming = allEdges.filter((edge) => edge.to === node.id).slice(0, 3);
   const connections = [...outgoing, ...incoming];
+  const onlineBoss = state.onlineBossByNodeId.get(node.id);
+  const onlineEvidence = onlineBoss
+    ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
+    : "";
   els.nodeInspector.innerHTML = `
     <div class="inspector-card">
       <div class="inspector-head">
         <div><div class="inspector-title">${node.label}</div><div class="inspector-type">${node.kind.toUpperCase()} · ${node.layer.toUpperCase()}</div></div>
         <div class="inspector-region">${node.region}</div>
       </div>
-       <p class="inspector-description">${node.description}</p>
+      <p class="inspector-description">${node.description}</p>
+       ${onlineEvidence}
        <div class="inspector-source">验证：${node.verificationState || "unknown"} · 坐标：${node.coordinateType || "unknown"}<br>来源：${(node.sourceEvidence || []).map((id) => state.data.sourceEvidence?.find((item) => item.id === id)?.label || id).join("；") || "未登记"}</div>
       <div class="inspector-actions"><button data-set-origin="${node.id}">设为起点</button><button data-set-destination="${node.id}">设为终点</button></div>
       <div class="connection-list"><div class="connection-list-title">附近连接 / ${connections.length}</div>
@@ -524,18 +535,38 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse] = await Promise.all([
+    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
       fetch("/api/route-profiles", { cache: "no-store" }),
-    ]);
+      fetch("/api/online-index", { cache: "no-store" }),
+      fetch("/data/v1/source-snapshots/mapforgoblins-boss-positions-20260818.json", { cache: "no-store" }),
+   ]);
     if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
     if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     state.data = await graphResponse.json();
     state.routeProfiles = await routeProfileResponse.json();
+    if (!onlineIndexResponse.ok) throw new Error(`online index HTTP ${onlineIndexResponse.status}`);
+    if (!onlineBossResponse.ok) throw new Error(`online boss coordinates HTTP ${onlineBossResponse.status}`);
+    state.onlineIndex = {
+      manifest: await onlineIndexResponse.json(),
+      bosses: await onlineBossResponse.json(),
+    };
+    state.onlineBossByNodeId = new Map();
+    state.onlineIndex.bosses.records.forEach((record) => {
+      const formalCandidates = record[13] || [];
+      if (formalCandidates.length === 1) {
+        state.onlineBossByNodeId.set(formalCandidates[0], {
+          name: record[1],
+          map: record[2],
+          position: [record[6], record[7], record[8]],
+          sourceIndex: record[0],
+        });
+      }
+    });
     const fastTravelRule = state.routeProfiles.fastTravelRule;
     if (fastTravelRule && !state.data.conditions.some((condition) => condition.id === fastTravelRule.id)) {
       state.data.conditions.push(fastTravelRule);

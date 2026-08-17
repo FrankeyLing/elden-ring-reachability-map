@@ -13,6 +13,9 @@ DATA_FILE = ROOT / "data" / "v1" / "graph.json"
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
+ONLINE_INDEX_MANIFEST_FILE = (
+    ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
+)
 
 
 class AppHandler(SimpleHTTPRequestHandler):
@@ -41,6 +44,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/route-profiles":
             self.send_json_file(ROUTE_PROFILES_FILE)
+            return
+        if parsed.path == "/api/online-index":
+            self.send_json_file(ONLINE_INDEX_MANIFEST_FILE)
             return
         if parsed.path == "/":
             self.path = "/index.html"

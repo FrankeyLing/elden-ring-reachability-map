@@ -186,6 +186,7 @@ code { color: #c0b58f; font-size: 9px; }
 .inspector-type { color: var(--gold); font-size: 9px; margin-top: 4px; }
 .inspector-region { color: #737b78; font-size: 10px; }
 .inspector-description { color: var(--muted); line-height: 1.6; font-size: 10px; margin: 12px 0; }
+.inspector-online { color: #b7c18f; line-height: 1.6; font-size: 9px; margin: 8px 0 12px; border-left: 2px solid rgba(160, 190, 110, .55); padding-left: 8px; }
 .inspector-source { color: #7f8984; line-height: 1.6; font-size: 9px; margin: 8px 0 12px; border-left: 2px solid rgba(230, 200, 121, .35); padding-left: 8px; }
 .inspector-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .inspector-actions button { border: 1px solid var(--line); background: transparent; color: #9b9f94; font-size: 9px; padding: 7px 3px; cursor: pointer; }

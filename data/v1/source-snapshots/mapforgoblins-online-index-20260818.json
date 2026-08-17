@@ -1,0 +1,70 @@
+{
+  "schema": "elden-ring-reachability-map/online-index-manifest@1",
+  "capturedAt": "2026-08-18",
+  "source": {
+    "id": "map_for_goblins",
+    "name": "ERR-MapForGoblins-DLL",
+    "url": "https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL",
+    "commit": "324a895ba51d6091534578c2ce194d0c6720edc2",
+    "license": "MIT-style with bundled third-party notices",
+    "licenseFile": "data/licenses/mapforgoblins-LICENSE.txt",
+    "licenseUrl": "https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL/blob/324a895ba51d6091534578c2ce194d0c6720edc2/LICENSE.txt"
+  },
+  "artifacts": [
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-grace-positions-20260818.json",
+      "role": "online grace position evidence",
+      "records": 444
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-boss-positions-20260818.json",
+      "role": "online boss position and event-flag evidence",
+      "records": 215
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-tile-regions-part1-20260818.json",
+      "role": "online map-layer and region index, part 1",
+      "records": 403
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-tile-regions-part2-20260818.json",
+      "role": "online map-layer and region index, part 2",
+      "records": 403
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-map-conversions-base-20260818.json",
+      "role": "candidate base-game map coordinate conversions; not traversal edges",
+      "records": 323
+    },
+    {
+      "path": "data/v1/source-snapshots/mapforgoblins-map-conversions-dlc-20260818.json",
+      "role": "candidate Shadow of the Erdtree map coordinate conversions; not traversal edges",
+      "records": 39
+    }
+  ],
+  "coverage": {
+    "gracePositionRecords": 444,
+    "gracePositionNonDummy": 442,
+    "bossRecords": 215,
+    "tileRegionRecords": 806,
+    "legacyConversionRecords": 323,
+    "dlcLegacyConversionRecords": 39
+  },
+  "promotionRules": {
+    "coordinateType": "online_game_extract",
+    "formalGraphPromotion": "never automatic",
+    "graceNameBinding": "do not pair grace array order with names; the fixed position index has no grace names",
+    "bossNameBinding": "formalCandidates are review hints only; ambiguous and missing candidates remain unresolved",
+    "conversionUse": "coordinate conversion is map-layer evidence, not proof of a walkable, one-way, elevator, coffin, portal, or boss-gated connection"
+  },
+  "safetyBoundary": {
+    "readOnly": true,
+    "gameProcessAccessed": false,
+    "gameFilesAccessed": false,
+    "runtimeInjection": false,
+    "overlay": false,
+    "saveAccess": false,
+    "gameDirectoryAccess": false,
+    "sourceDataOnly": true
+  }
+}
