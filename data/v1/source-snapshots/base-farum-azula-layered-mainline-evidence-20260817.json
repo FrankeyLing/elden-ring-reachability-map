@@ -1,0 +1,40 @@
+{
+  "snapshot_id": "base-farum-azula-layered-mainline-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "beast-depths-to-dragon-temple",
+      "claim": "The Farum progression proceeds from Crumbling Beast Grave Depths to Tempest-Facing Balcony, then Dragon Temple and Dragon Temple Transept before Godskin Duo.",
+      "sources": [
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "game8-farum-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371005" },
+        { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "godskin-to-rooftop",
+      "claim": "After Godskin Duo, Dragon Temple Altar is the post-boss grace; the main route continues through Dragon Temple Rooftop to Beside the Great Bridge, while Dragon Temple Lift is an optional Stonesword Key branch.",
+      "sources": [
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "game8-farum-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371005" },
+        { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "great-bridge-to-placidusax",
+      "claim": "From Beside the Great Bridge, the optional Placidusax route descends to floating ruins and uses the Lie Down prompt to trigger a one-way transition to the time-lost arena.",
+      "sources": [
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "gamespot-placidusax-cross-check", "url": "https://www.gamespot.com/articles/how-to-beat-elden-ring-dragonlord-placidusax/1100-6501885/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The main and optional Farum layers are represented separately; the Placidusax time transition is not treated as a normal walkable edge.",
+    "No game process, save, archive, memory or original XYZ coordinate was accessed."
+  ]
+}

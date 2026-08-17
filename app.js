@@ -477,8 +477,15 @@ async function init() {
       ["Siofra River Bank", "grace_siofra_river_bank"],
       ["Crumbling Beast Grave", "grace_crumbling_beast_grave"],
       ["Crumbling Beast Grave Depths", "grace_crumbling_beast_grave_depths"],
+      ["Tempest-Facing Balcony", "grace_farum_tempest_facing_balcony"],
+      ["Dragon Temple", "farum_dragon_temple_approach"],
+      ["Dragon Temple Transept", "grace_farum_dragon_temple_transept"],
       ["Beside the Great Bridge", "grace_beside_great_bridge"],
       ["Dragon Temple Altar", "grace_dragon_temple_altar"],
+      ["Dragon Temple Lift", "grace_farum_dragon_temple_lift"],
+      ["Dragon Temple Rooftop", "grace_farum_dragon_temple_rooftop"],
+      ["Dragonlord Placidusax", "dragonlord_placidusax_gate"],
+      ["Dragonlord Placidusax (post-boss grace)", "grace_farum_dragonlord_placidusax"],
       ["Maliketh", "maliketh_gate"],
       ["Maliketh, the Black Blade", "grace_maliketh_black_blade"],
       ["Leyndell, Capital of Ash", "grace_leyndell_capital_of_ash"],
@@ -784,6 +791,7 @@ async function init() {
       if (["Lower Capital Church", "West Capital Rampart", "Fortified Manor, First Floor", "Divine Bridge", "Isolated Divine Tower", "Forbidden Lands", "Divine Tower of East Altus: Gate", "Divine Tower of East Altus"].includes(record.name)) return;
       if (["Guest Hall", "Subterranean Inquisition Chamber", "Abductor Virgin"].includes(record.name)) return;
       if (["Haligtree Town", "Haligtree Town Plaza", "Haligtree Promenade", "Prayer Room", "Elphael Inner Wall", "Drainage Channel", "Haligtree Roots", "Malenia, Goddess of Rot"].includes(record.name)) return;
+      if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;
