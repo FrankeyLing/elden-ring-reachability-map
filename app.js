@@ -46,7 +46,11 @@ const els = {
   nodeInspector: document.getElementById("node-inspector"),
   mapToast: document.getElementById("map-toast"),
   mapTransform: document.getElementById("map-transform"),
-  copyRoute: document.getElementById("copy-route"),
+ copyRoute: document.getElementById("copy-route"),
+  onlinePoiKind: document.getElementById("online-poi-kind"),
+  onlinePoiQuery: document.getElementById("online-poi-query"),
+  onlinePoiSearch: document.getElementById("online-poi-search"),
+  onlinePoiResults: document.getElementById("online-poi-results"),
 };
 
 const preferenceHints = {
@@ -480,6 +484,50 @@ function applyMapCoordinateSpace() {
   setZoom(state.zoom);
 }
 
++function renderOnlinePoiResults(payload, kind) {
+  els.onlinePoiResults.innerHTML = "";
+  if (!payload.records?.length) {
+    els.onlinePoiResults.textContent = "没有匹配的在线记录。";
+    return;
+  }
+  const summary = document.createElement("div");
+  summary.className = "online-poi-summary";
+  summary.textContent = "匹配 " + payload.total_matches + " 条，显示 " + payload.record_count + " 条；仅为坐标证据。";
+  els.onlinePoiResults.appendChild(summary);
+  payload.records.forEach((record) => {
+    const row = document.createElement("div");
+    row.className = "online-poi-result";
+    const title = document.createElement("strong");
+    title.textContent = kind === "items"
+      ? (record.items || []).map((item) => item.name || item.id).join(" / ") || "未命名物品"
+      : (record.names || []).join(" / ") || ("地图点 " + record.id);
+    const detail = document.createElement("span");
+    const position = record.position || [];
+    detail.textContent = (record.map || ("ID " + record.id)) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+    row.append(title, detail);
+    els.onlinePoiResults.appendChild(row);
+  });
+}
+
+async function searchOnlinePoi() {
+  const query = els.onlinePoiQuery.value.trim();
+  if (!query) {
+    els.onlinePoiResults.textContent = "请输入名称后查询。";
+    return;
+  }
+  const kind = els.onlinePoiKind.value;
+  const params = new URLSearchParams({ q: query, limit: "20" });
+  els.onlinePoiResults.textContent = "正在读取固定在线快照……";
+  try {
+    const endpoint = kind === "items" ? "online-items" : "map-points";
+    const response = await fetch("/api/catalog/" + endpoint + "?" + params, { cache: "no-store" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    renderOnlinePoiResults(await response.json(), kind);
+  } catch (error) {
+    els.onlinePoiResults.textContent = "在线 POI 查询失败：" + error.message;
+  }
+}
+
 function wireEvents() {
   els.origin.addEventListener("change", () => { state.origin = els.origin.value; state.selectedNode = state.origin; planAndRender(); });
   els.destination.addEventListener("change", () => { state.destination = els.destination.value; state.selectedNode = state.destination; planAndRender(); });
@@ -521,6 +569,10 @@ function wireEvents() {
   document.getElementById("zoom-in").addEventListener("click", () => setZoom(state.zoom + 0.1));
   document.getElementById("zoom-out").addEventListener("click", () => setZoom(state.zoom - 0.1));
   document.getElementById("zoom-reset").addEventListener("click", () => setZoom(1));
+  els.onlinePoiSearch.addEventListener("click", searchOnlinePoi);
+  els.onlinePoiQuery.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") searchOnlinePoi();
+  });
   els.copyRoute.addEventListener("click", async () => {
     if (!state.route) return;
     try {

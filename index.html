@@ -150,7 +150,19 @@
             <div class="route-notice" id="route-notice"></div>
           </div>
 
-          <div class="section-line node-section-title"><span>NODE INSPECTOR</span></div>
+           <div class="section-line online-query-title"><span>ONLINE POI LOOKUP</span></div>
+           <div class="online-query">
+             <div class="online-query-row">
+               <select id="online-poi-kind" aria-label="在线数据类型">
+                 <option value="map-points">地图点</option>
+                 <option value="items">物品/掉落</option>
+               </select>
+               <input id="online-poi-query" type="search" placeholder="搜索名称，例如 Shabriri Grape" />
+               <button id="online-poi-search">查询</button>
+             </div>
+             <div id="online-poi-results" class="online-poi-results">输入名称查询固定在线坐标证据。</div>
+           </div>
+           <div class="section-line node-section-title"><span>NODE INSPECTOR</span></div>
           <div id="node-inspector" class="node-inspector">
             <div class="inspector-placeholder">选择地图上的节点<br />查看它的层级、类型和可用连接。</div>
           </div>
