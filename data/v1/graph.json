@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.66-online-multiplane",
+  "version": "1.0.67-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -79,7 +79,8 @@
       "base-weeping-peninsula-surface-nodes-evidence-20260818",
       "base-liurnia-lakeside-cliff-branches-evidence-20260818",
       "base-mountaintops-snowfield-surface-branches-evidence-20260818",
-      "base-capital-outskirts-graces-evidence-20260818"
+    "base-capital-outskirts-graces-evidence-20260818",
+    "dlc-scadu-altus-shadow-keep-vertical-graces-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -872,6 +873,11 @@
       "hint": "The sealed spirit spring in the northeastern Gravesite Plain poison-pool route has been opened for the rear fort landing."
     },
     {
+      "id": "scaduview_cross_spiritspring_unsealed",
+      "label": "Scaduview Cross sealed spirit spring unsealed",
+      "hint": "The sealed spirit spring southeast of Moorth Ruins has been opened by destroying its stone cairn, enabling the Torrent jump to Scaduview Cross."
+    },
+    {
       "id": "scaly_misbegotten_morne_tunnel_defeated",
       "label": "Morne Tunnel Scaly Misbegotten defeated",
       "hint": "The Scaly Misbegotten boss at the bottom of Morne Tunnel has been cleared."
@@ -1072,6 +1078,10 @@
     { "id": "eldenpedia-finger-miyr", "label": "Eldenpedia / Finger Ruins of Miyr", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Miyr", "grade": "A" },
     { "id": "eldenpedia-metyr", "label": "Eldenpedia / Metyr, Mother of Fingers", "url": "https://eldenring.wiki.gg/wiki/Metyr%2C_Mother_of_Fingers", "grade": "A" },
     { "id": "game8-ymir-cross-check", "label": "Game8 / Ymir quest and Cathedral route", "url": "https://game8.co/games/Elden-Ring/archives/458845", "grade": "B" },
+    { "id": "powerpyx-dlc-all-graces-cross-check", "label": "PowerPyx / Shadow of the Erdtree Sites of Grace", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-all-sites-of-grace-locations/", "grade": "B" },
+    { "id": "eip-scadu-altus-cross-check", "label": "EIP Gaming / Scadu Altus and Scaduview Cross route", "url": "https://eip.gg/elden-ring/guides/scadu-altus/", "grade": "B" },
+    { "id": "game8-specimen-storehouse-cross-check", "label": "Game8 / Specimen Storehouse walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/459941", "grade": "B" },
+    { "id": "game8-rauh-entry-cross-check", "label": "Game8 / Ancient Ruins of Rauh entry", "url": "https://game8.co/games/Elden-Ring/archives/460470", "grade": "B" },
     { "id": "powerpyx-ymir-cross-check", "label": "PowerPyx / Ymir and Jolan questline", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-ymir-jolan-questline-walkthrough/", "grade": "B" },
     { "id": "gamespot-ymir-cross-check", "label": "GameSpot / Ymir Finger Ruins guide", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-ymir-finger-ruins-elden-ring/2900-5500/", "grade": "B" },
     { "id": "eldenpedia-charo-hidden-grave", "label": "Eldenpedia / Charo's Hidden Grave", "url": "https://eldenring.wiki.gg/wiki/Charo%27s_Hidden_Grave", "grade": "A" },
@@ -4415,6 +4425,21 @@
       "description": "Surface ruins above the vertical tunnel to Bonny Village."
     },
     {
+      "id": "grace_scadu_altus_main_scaduview_cross",
+      "label": "Scaduview Cross",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Scadu Altus",
+      "floor": "Southern Scaduview butte",
+      "worldEpoch": "shadow_realm",
+      "x": 1010,
+      "y": 1010,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-scadu-altus", "eldenpedia-sites-of-grace-r83774", "eip-scadu-altus-cross-check", "powerpyx-dlc-all-graces-cross-check"],
+      "description": "High butte grace reached from Moorth Ruins through the southeast sealed spirit spring; this is distinct from the Scaduview grace beyond Shadow Keep's Black Gate."
+    },
+    {
       "id": "grace_scadu_altus_bonny_village",
       "label": "Bonny Village",
       "kind": "grace",
@@ -4580,6 +4605,21 @@
       "description": "First floor of the Specimen Storehouse after the Main Gate Plaza route."
     },
     {
+      "id": "grace_shadow_keep_specimen_storehouse_west_rampart",
+      "label": "West Rampart",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Specimen Storehouse west rampart",
+      "worldEpoch": "shadow_realm",
+      "x": 1110,
+      "y": 520,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-specimen-storehouse-cross-check", "game8-rauh-entry-cross-check"],
+      "description": "Western Storehouse exit grace reached by the lift beside Storehouse, First Floor; its bridge continues into the Rauh ruins."
+    },
+    {
       "id": "grace_shadow_keep_storehouse_fourth_floor",
       "label": "Storehouse, Fourth Floor",
       "kind": "grace",
@@ -4608,6 +4648,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check"],
       "description": "Upper storehouse approach before the Messmer boss route."
+    },
+    {
+      "id": "grace_shadow_keep_specimen_storehouse_dark_chamber_entrance",
+      "label": "Dark Chamber Entrance",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Specimen Storehouse Dark Chamber approach",
+      "worldEpoch": "shadow_realm",
+      "x": 1490,
+      "y": 430,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-specimen-storehouse-cross-check"],
+      "description": "Storehouse grace immediately before the Messmer the Impaler boss approach; it is reached after the seventh-floor lever and platform route."
     },
     {
       "id": "messmer_gate",
@@ -4671,7 +4726,7 @@
     },
     {
       "id": "grace_shadow_keep_back_gate",
-      "label": "Shadow Keep, Back Gate",
+      "label": "Shadow Keep, Black Gate",
       "kind": "grace",
       "layer": "legacy",
       "region": "Shadow Keep",
@@ -4681,8 +4736,9 @@
       "y": 700,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-back-gate-cross-check"],
-      "description": "Separate northern/back exit grace from the Main Gate route."
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-back-gate-cross-check", "game8-specimen-storehouse-cross-check"],
+      "aliases": ["Shadow Keep, Back Gate"],
+      "description": "Separate northern/back exit grace from the Main Gate route. Online sources use both Black Gate and Back Gate for this same grace; the catalog spelling is retained as the primary label."
     },
     {
       "id": "grace_shadow_keep_scaduview",
@@ -5673,6 +5729,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"],
       "description": "Optional Ymir quest boss at the end of the third Finger Ruins bell route."
+    },
+    {
+      "id": "grace_scadu_altus_main_finger_birthing_grounds",
+      "label": "Finger Birthing Grounds",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Scadu Altus",
+      "floor": "Finger Ruins of Miyr hidden arena",
+      "worldEpoch": "shadow_realm",
+      "x": 2010,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-metyr", "eldenpedia-sites-of-grace-r83774", "game8-ymir-cross-check", "powerpyx-dlc-all-graces-cross-check"],
+      "description": "Post-Metyr grace in the hidden Finger Ruins of Miyr arena; reaching the arena is a Ymir quest teleport, not a normal surface walk."
     },
     {
       "id": "grace_gravesite_plain_charo_s_hidden_grave_charo_s_hidden_grave",
@@ -9325,6 +9396,21 @@
       "tags": ["quest", "boss", "underground", "conditional", "cross_checked"]
     },
     {
+      "id": "metyr-to-finger-birthing-grounds",
+      "from": "metyr_gate",
+      "to": "grace_scadu_altus_main_finger_birthing_grounds",
+      "mode": "Metyr completion to Finger Birthing Grounds grace",
+      "cost": 2,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "boss_completion_grace_activation",
+      "requires": ["metyr_defeated"],
+      "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-metyr", "game8-ymir-cross-check", "powerpyx-dlc-all-graces-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The hidden arena's grace is activated after the Metyr encounter; it is not a normal walkable connection from Cathedral of Manus Metyr.",
+      "tags": ["boss", "grace_activation", "underground", "conditional", "cross_checked"]
+    },
+    {
       "id": "metyr-to-ymir-throne-return",
       "from": "metyr_gate",
       "to": "ymir_throne_gate",
@@ -11898,6 +11984,21 @@
       "tags": ["walk", "surface", "cross_checked"]
     },
     {
+      "id": "moorth-ruins-to-scaduview-cross",
+      "from": "grace_scadu_altus_moorth_ruins",
+      "to": "grace_scadu_altus_main_scaduview_cross",
+      "mode": "Moorth Ruins to Scaduview Cross sealed spirit spring",
+      "cost": 8,
+      "risk": 7,
+      "direction": "one_way",
+      "transitionType": "sealed_spiritspring_jump",
+      "requires": ["scaduview_cross_spiritspring_unsealed"],
+      "sourceEvidence": ["eldenpedia-scadu-altus", "eip-scadu-altus-cross-check", "powerpyx-dlc-all-graces-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Ride south from Moorth Ruins to the sealed spring, circle east to destroy its stone cairn, then use the wind torrent and follow the cliff path to the high butte grace.",
+      "tags": ["walk", "vertical", "spirit_spring", "one_way", "conditional", "cross_checked"]
+    },
+    {
       "id": "moorth-ruins-to-bonny-village",
       "from": "grace_scadu_altus_moorth_ruins",
       "to": "grace_scadu_altus_bonny_village",
@@ -12093,19 +12194,34 @@
       "tags": ["walk", "vertical", "conditional", "cross_checked"]
     },
     {
-      "id": "storehouse-seventh-to-messmer",
+      "id": "storehouse-seventh-to-dark-chamber",
       "from": "grace_shadow_keep_storehouse_seventh_floor",
-      "to": "messmer_gate",
-      "mode": "Messmer approach",
+      "to": "grace_shadow_keep_specimen_storehouse_dark_chamber_entrance",
+      "mode": "Storehouse Seventh Floor to Dark Chamber Entrance",
       "cost": 5,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "storehouse_dark_chamber_route",
+      "requires": ["golden_hippopotamus_defeated"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-specimen-storehouse-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "After the seventh-floor lever rotates the central pillar, cross the platforms and open the Fire Knight door to reach the Dark Chamber Entrance grace.",
+      "tags": ["walk", "vertical", "legacy", "conditional", "cross_checked"]
+    },
+    {
+      "id": "dark-chamber-entrance-to-messmer",
+      "from": "grace_shadow_keep_specimen_storehouse_dark_chamber_entrance",
+      "to": "messmer_gate",
+      "mode": "Dark Chamber Entrance to Messmer",
+      "cost": 2,
       "risk": 8,
       "direction": "forward",
       "transitionType": "legacy_boss_approach",
-      "requires": ["golden_hippopotamus_defeated"],
-      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-specimen-storehouse-cross-check", "game8-shadow-keep-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "Top-floor Specimen Storehouse route to the Messmer boss gate.",
-      "tags": ["boss", "walk", "legacy", "conditional", "cross_checked"]
+      "note": "The grace is immediately before the Messmer boss arena; the final door and stairs are modeled as a separate boss edge.",
+      "tags": ["boss", "walk", "legacy", "cross_checked"]
     },
     {
       "id": "messmer-to-dark-chamber",
@@ -12213,19 +12329,34 @@
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
     },
     {
-      "id": "storehouse-first-to-rauh-viaduct",
+      "id": "storehouse-first-to-west-rampart",
       "from": "grace_shadow_keep_storehouse_first_floor",
+      "to": "grace_shadow_keep_specimen_storehouse_west_rampart",
+      "mode": "Storehouse First Floor west lift to West Rampart",
+      "cost": 7,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "storehouse_west_lift",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-specimen-storehouse-cross-check", "game8-rauh-entry-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Take the west-side lift beside Storehouse, First Floor, pass the living-jar infirmary, and activate the separate West Rampart grace.",
+      "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "west-rampart-to-rauh-viaduct",
+      "from": "grace_shadow_keep_specimen_storehouse_west_rampart",
       "to": "grace_rauh_viaduct_minor_tower",
-      "mode": "Storehouse to Rauh Viaduct",
-      "cost": 9,
-      "risk": 4,
+      "mode": "West Rampart bridge to Viaduct Minor Tower",
+      "cost": 6,
+      "risk": 6,
       "direction": "forward",
       "transitionType": "shadow_keep_rauh_exit",
-      "requires": ["messmer_defeated"],
-      "sourceEvidence": ["eldenpedia-rauh", "game8-after-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-specimen-storehouse-cross-check", "game8-rauh-entry-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "Post-Messmer west/lower Storehouse exit into the Rauh approach.",
-      "tags": ["walk", "surface", "conditional", "cross_checked"]
+      "note": "Cross the West Rampart bridge and take the far lift to the Rauh approach grace; this branch does not require Messmer to be defeated.",
+      "tags": ["walk", "bridge", "vertical", "surface", "cross_checked"]
     },
     {
       "id": "moorth-to-rauh-base",
@@ -16375,8 +16506,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 670,
-    "formalRouteEdgeCount": 739,
+    "formalNodeCount": 674,
+    "formalRouteEdgeCount": 743,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

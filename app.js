@@ -516,6 +516,7 @@ async function init() {
       ["Cliffroad Terminus", "grace_shadow_realm_cliffroad_terminus"],
       ["Highroad Cross", "grace_scadu_altus_highroad_cross"],
       ["Moorth Ruins", "grace_scadu_altus_moorth_ruins"],
+      ["Scaduview Cross", "grace_scadu_altus_main_scaduview_cross"],
       ["Moorth Highway, South", "grace_scadu_altus_main_moorth_highway_south"],
       ["Bonny Village", "grace_scadu_altus_bonny_village"],
       ["Bonny Gaol", "grace_scadu_altus_main_bonny_gaol"],
@@ -532,12 +533,15 @@ async function init() {
       ["Tree-Worship Passage", "grace_shadow_keep_tree_worship_passage"],
       ["Tree-Worship Sanctum", "grace_shadow_keep_tree_worship_sanctum"],
       ["Storehouse, First Floor", "grace_shadow_keep_storehouse_first_floor"],
+      ["West Rampart", "grace_shadow_keep_specimen_storehouse_west_rampart"],
       ["Storehouse, Fourth Floor", "grace_shadow_keep_storehouse_fourth_floor"],
       ["Storehouse, Seventh Floor", "grace_shadow_keep_storehouse_seventh_floor"],
+      ["Dark Chamber Entrance", "grace_shadow_keep_specimen_storehouse_dark_chamber_entrance"],
       ["Messmer the Impaler", "messmer_gate"],
       ["Messmer's Dark Chamber", "grace_shadow_keep_messmer_dark_chamber"],
       ["Storehouse, Back Section", "grace_shadow_keep_storehouse_back_section"],
       ["Storehouse, Loft", "grace_shadow_keep_storehouse_loft"],
+      ["Shadow Keep, Black Gate", "grace_shadow_keep_back_gate"],
       ["Shadow Keep, Back Gate", "grace_shadow_keep_back_gate"],
       ["Scaduview", "grace_shadow_keep_scaduview"],
       ["Commander Gaius", "commander_gaius_gate"],
@@ -608,6 +612,7 @@ async function init() {
       ["Count Ymir's Throne", "ymir_throne_gate"],
       ["Finger Ruins of Miyr", "finger_ruins_miyr"],
       ["Metyr, Mother of Fingers", "metyr_gate"],
+      ["Finger Birthing Grounds", "grace_scadu_altus_main_finger_birthing_grounds"],
       ["Charo's Hidden Grave", "grace_gravesite_plain_charo_s_hidden_grave_charo_s_hidden_grave"],
       ["Lamenter's Gaol", "grace_gravesite_plain_charo_s_hidden_grave_lamenter_s_gaol"],
       ["Lamenter", "lamenter_gate"],
@@ -966,7 +971,7 @@ async function init() {
       if (["Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Church of Vows", "Ruined Labyrinth", "Black Knife Catacombs"].includes(record.name)) return;
       if (["Old Altus Tunnel", "Perfumer's Grotto", "Unsightly Catacombs", "Sage's Cave", "Auriza Hero's Grave", "Auriza Side Tomb", "Gelmir Hero's Grave", "Wyndham Catacombs", "Seethewater Cave", "Volcano Cave", "Altus Tunnel", "Sainted Hero's Grave"].includes(record.name)) return;
       if (["Sealed Tunnel", "Divine Tower of West Altus: Gate", "Divine Tower of West Altus"].includes(record.name)) return;
-      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Below the Well", "Deep Siofra Well", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy", "Table of Lost Grace", "Agheel Lake North", "Seaside Ruins", "Church of Dragon Communion", "Summonwater Village Outskirts", "Waypoint Ruins Cellar", "Warmaster's Shack", "Ailing Village Outskirts", "Beside the Crater-Pocked Glade", "Beside the Crater-Pocked  Glade", "Isolated Merchant's Shack", "Tombsward", "Boilprawn Shack", "Folly on the Lake", "Village of the Albinaurics", "Jarburg", "Revenger's Shack", "Slumbering Wolf's Shack", "Frenzied Flame Village Outskirts", "Church of Inhibition", "Ancient Snow Valley Ruins", "Snow Valley Ruins Overlook", "First Church of Marika", "Church of Repose", "Hidden Path to the Haligtree", "Apostate Derelict", "Ordina Liturgical Town", "Capital Rampart", "Hermit Merchant's Shack", "Minor Erdtree Church"].includes(record.name)) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Below the Well", "Deep Siofra Well", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy", "Table of Lost Grace", "Agheel Lake North", "Seaside Ruins", "Church of Dragon Communion", "Summonwater Village Outskirts", "Waypoint Ruins Cellar", "Warmaster's Shack", "Ailing Village Outskirts", "Beside the Crater-Pocked Glade", "Beside the Crater-Pocked  Glade", "Isolated Merchant's Shack", "Tombsward", "Boilprawn Shack", "Folly on the Lake", "Village of the Albinaurics", "Jarburg", "Revenger's Shack", "Slumbering Wolf's Shack", "Frenzied Flame Village Outskirts", "Church of Inhibition", "Ancient Snow Valley Ruins", "Snow Valley Ruins Overlook", "First Church of Marika", "Church of Repose", "Hidden Path to the Haligtree", "Apostate Derelict", "Ordina Liturgical Town", "Capital Rampart", "Hermit Merchant's Shack", "Minor Erdtree Church", "Scaduview Cross", "Finger Birthing Grounds", "Shadow Keep, Black Gate", "Dark Chamber Entrance", "West Rampart"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);
