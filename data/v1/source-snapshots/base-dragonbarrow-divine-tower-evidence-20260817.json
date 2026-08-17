@@ -1,0 +1,51 @@
+{
+  "snapshot_id": "base-dragonbarrow-divine-tower-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Bestial Sanctum, Farum Greatbridge, Dragonbarrow Fork, Dragonbarrow West, Divine Tower of Caelid Center and Basement, Godskin Apostle",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "sanctum-to-greatbridge",
+      "from": "Bestial Sanctum",
+      "to": "Farum Greatbridge",
+      "transition_type": "dragonbarrow_downhill_surface_route",
+      "direction": "forward",
+      "claim": "The downhill path outside Bestial Sanctum reaches the Farum Greatbridge grace before the Dragonbarrow road continues.",
+      "sources": ["eldenpedia-dragonbarrow", "eldenpedia-sites-of-grace-r83774", "powerpyx-dragonbarrow-cross-check"]
+    },
+    {
+      "id": "dragonbarrow-to-tower-center",
+      "from": "Dragonbarrow Fork",
+      "to": "Divine Tower of Caelid: Center",
+      "transition_type": "surface_to_parkour_legacy",
+      "direction": "forward",
+      "claim": "Dragonbarrow's western ridge approaches the Divine Tower; roots, ledges and ladders lead to the Center grace.",
+      "sources": ["eldenpedia-dragonbarrow", "pcgamer-caelid-divine-tower", "game8-divine-tower-caelid-cross-check"]
+    },
+    {
+      "id": "tower-center-to-basement",
+      "from": "Divine Tower of Caelid: Center",
+      "to": "Divine Tower of Caelid: Basement",
+      "transition_type": "vertical_legacy_descent",
+      "direction": "forward",
+      "claim": "The tower has a separate dangerous basement descent in addition to the Center grace and upper tower route.",
+      "sources": ["eldenpedia-dragonbarrow", "pcgamer-caelid-divine-tower", "game8-divine-tower-caelid-cross-check"]
+    },
+    {
+      "id": "tower-basement-apostle",
+      "from": "Divine Tower of Caelid: Basement",
+      "to": "Godskin Apostle",
+      "transition_type": "legacy_boss_gate",
+      "direction": "forward",
+      "claim": "The basement contains the Godskin Apostle encounter; the completed route returns to the tower center rather than pretending the boss is the tower entrance.",
+      "sources": ["game8-divine-tower-caelid-cross-check", "pcgamer-caelid-divine-tower"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-dragonbarrow", "url": "https://eldenring.wiki.gg/wiki/Dragonbarrow" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "pcgamer-caelid-divine-tower", "url": "https://www.pcgamer.com/elden-ring-caelid-divine-tower/" },
+    { "id": "game8-divine-tower-caelid-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369953" },
+    { "id": "powerpyx-dragonbarrow-cross-check", "url": "https://www.powerpyx.com/elden-ring-dragonbarrow-walkthrough/" }
+  ]
+}

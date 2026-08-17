@@ -624,6 +624,11 @@ async function init() {
       ["Sellia Under-Stair", "grace_caelid_main_sellia_under_stair"],
       ["Sellia Backstreets", "grace_caelid_main_sellia_backstreets"],
       ["Chair-Crypt of Sellia", "grace_caelid_main_chair_crypt_of_sellia"],
+      ["Dragonbarrow West", "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west"],
+      ["Farum Greatbridge", "grace_caelid_greyoll_s_dragonbarrow_farum_greatbridge"],
+      ["Divine Tower of Caelid: Center", "grace_caelid_greyoll_s_dragonbarrow_divine_tower_of_caelid_center"],
+      ["Divine Tower of Caelid: Basement", "grace_caelid_greyoll_s_dragonbarrow_divine_tower_of_caelid_basement"],
+      ["Godskin Apostle (Divine Tower of Caelid)", "godskin_apostle_caelid_gate"],
       ["Bridge of Iniquity", "grace_altus_plateau_mt_gelmir_bridge_of_iniquity"],
       ["First Mt.Gelmir Campsite", "grace_altus_plateau_mt_gelmir_first_mt_gelmir_campsite"],
       ["Road of Iniquity", "grace_altus_plateau_mt_gelmir_road_of_iniquity"],
@@ -729,6 +734,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;
       if (["Aeonia Swamp Shore", "Heart of Aeonia", "Inner Aeonia", "Sellia Under-Stair", "Sellia Backstreets", "Chair-Crypt of Sellia"].includes(record.name)) return;
       if (["Ninth Mt. Gelmir Campsite", "Seethewater River", "Seethewater Terminus", "Craftsman's Shack", "Primeval Sorcerer Azur"].includes(record.name)) return;
       if (["The Ravine", "Ravine-Veiled Village", "Ruin-Strewn Precipice", "Ruin-Strewn Precipice Overlook", "Magma Wyrm Makar"].includes(record.name)) return;
