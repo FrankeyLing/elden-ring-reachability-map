@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.54-online-multiplane",
+    "version": "1.0.55-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -66,7 +66,8 @@
       "base-caelid-optional-dungeons-evidence-20260818",
       "dlc-optional-gaols-catacombs-evidence-20260818",
       "dlc-ruined-forges-evidence-20260818",
-      "base-mountaintops-optional-dungeons-evidence-20260818"
+      "base-mountaintops-optional-dungeons-evidence-20260818",
+      "dlc-ruined-forge-starfall-past-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1224,6 +1225,9 @@
     ,{ "id": "eldenpedia-spiritcallers-cave", "label": "Eldenpedia - Spiritcaller's Cave", "url": "https://eldenring.wiki.gg/wiki/Spiritcaller%27s_Cave", "grade": "A" }
     ,{ "id": "game8-spiritcallers-cave-cross-check", "label": "Game8 - Spiritcaller's Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370653", "grade": "B" }
     ,{ "id": "segmentnext-spiritcallers-cave-cross-check", "label": "SegmentNext - Spiritcaller's Cave walkthrough", "url": "https://segmentnext.com/elden-ring-spiritcallers-cave/", "grade": "B" }
+    ,{ "id": "eldenpedia-ruined-forge-starfall-past", "label": "Eldenpedia - Ruined Forge of Starfall Past", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_of_Starfall_Past", "grade": "A" }
+    ,{ "id": "eip-ruined-forge-starfall-cross-check", "label": "EIP Gaming - Ruined Forge of Starfall Past walkthrough", "url": "https://eip.gg/elden-ring/guides/ruined-forge-of-starfall-past-dungeon/", "grade": "B" }
+    ,{ "id": "game8-ruined-forge-starfall-cross-check", "label": "Game8 - Ruined Forge of Starfall Past walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/458904", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8348,6 +8352,34 @@
     {
       "id": "spiritcallers_cave_post_boss_state", "label": "Spiritcaller's Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Spiritcaller reward chamber", "worldEpoch": "mountaintops_surface", "x": 740, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Cleared-state node for Godskin Swaddling Cloth and Black Flame Ritual."
+    },
+    {
+      "id": "ruined_forge_starfall_surface_entrance", "label": "Ruined Forge of Starfall Past surface entrance", "kind": "entrance", "layer": "surface", "region": "Scadu Altus", "floor": "South-west of Moorth Ruins / Moorth Highway", "worldEpoch": "shadow_realm", "x": 520, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Rear structure entrance southwest of Moorth Ruins, reached by the torch-marked opening and ladder."
+    },
+    {
+      "id": "grace_shadow_realm_ruined_forge_starfall_past", "label": "Ruined Forge of Starfall Past", "kind": "grace", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 580, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Internal grace immediately inside the forge; this dungeon has no boss encounter."
+    },
+    {
+      "id": "ruined_forge_starfall_first_door_state", "label": "Ruined Forge of Starfall Past (first door opened)", "kind": "checkpoint", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "First chamber / large iron door", "worldEpoch": "shadow_realm", "x": 640, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "First lever state: the large door below the opening chamber is raised; the nearby reverse lever closes it again."
+    },
+    {
+      "id": "ruined_forge_starfall_heavy_door_lowered_state", "label": "Ruined Forge of Starfall Past (heavy door lowered)", "kind": "checkpoint", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Lava room / heavy iron door", "worldEpoch": "shadow_realm", "x": 700, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Second lever lowers the heavy door, exposing the side route to the Smithscript Cirque and the lever behind the door."
+    },
+    {
+      "id": "ruined_forge_starfall_cirque_branch", "label": "Ruined Forge of Starfall Past (Smithscript Cirque branch)", "kind": "junction", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Side room beyond heavy door", "worldEpoch": "shadow_realm", "x": 760, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Optional side branch ending at Smithscript Cirque; the bottomless pit is a lethal one-way drop, so the route returns by the same corridor."
+    },
+    {
+      "id": "ruined_forge_starfall_heavy_door_raised_state", "label": "Ruined Forge of Starfall Past (altar lift raised)", "kind": "checkpoint", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Raised heavy door / altar approach", "worldEpoch": "shadow_realm", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Pull the lever behind the lowered door, stand on the rising door, and jump to the altar platform."
+    },
+    {
+      "id": "ruined_forge_starfall_reward_state", "label": "Ruined Forge of Starfall Past (altar reward state)", "kind": "state", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Forge altar", "worldEpoch": "shadow_realm", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "No-boss completion endpoint containing Ancient Meteoric Ore Greatsword and Ancient Dragon Smithing Stone; leave by fast travel or backtrack."
     }
   ],
   "edges": [
@@ -15639,6 +15671,30 @@
     },
     {
       "id": "spiritcaller-noble-to-state", "from": "spiritcaller_godskin_noble_gate", "to": "spiritcallers_cave_post_boss_state", "mode": "Spiritcaller's Cave Godskin Noble completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["spiritcaller_godskin_noble_defeated"], "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Godskin Swaddling Cloth and Black Flame Ritual.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "moorth-ruins-to-starfall-forge-mouth", "from": "grace_scadu_altus_moorth_ruins", "to": "ruined_forge_starfall_surface_entrance", "mode": "Moorth Ruins to Ruined Forge of Starfall Past", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "ruined_forge_entrance", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Take the Moorth Highway southwest from Moorth Ruins, then turn west to the torch-marked ruin entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "starfall-forge-mouth-to-grace", "from": "ruined_forge_starfall_surface_entrance", "to": "grace_shadow_realm_ruined_forge_starfall_past", "mode": "Ruined Forge of Starfall Past entrance passage", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "forge_entry", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Enter the rear structure, descend the ladder and activate the internal grace.", "tags": ["walk", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "starfall-forge-to-first-door", "from": "grace_shadow_realm_ruined_forge_starfall_past", "to": "ruined_forge_starfall_first_door_state", "mode": "Ruined Forge of Starfall Past first lever", "cost": 10, "risk": 8, "direction": "forward", "transitionType": "lever_door_route", "requires": [], "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the opening chamber and pull the brazier-side lever to open the first large door.", "tags": ["lever", "hazard", "legacy", "cross_checked"]
+    },
+    {
+      "id": "starfall-first-door-to-heavy-door-lowered", "from": "ruined_forge_starfall_first_door_state", "to": "ruined_forge_starfall_heavy_door_lowered_state", "mode": "Ruined Forge of Starfall Past second lever", "cost": 12, "risk": 10, "direction": "forward", "transitionType": "heavy_door_lower_route", "requires": [], "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Climb through the lava-side route and pull the second lever to lower the heavy iron door.", "tags": ["lever", "vertical", "hazard", "legacy", "cross_checked"]
+    },
+    {
+      "id": "starfall-heavy-door-to-cirque", "from": "ruined_forge_starfall_heavy_door_lowered_state", "to": "ruined_forge_starfall_cirque_branch", "mode": "Ruined Forge of Starfall Past Smithscript Cirque side branch", "cost": 8, "risk": 10, "direction": "forward", "transitionType": "side_branch_item_route", "requires": [], "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Pass through the lowered door to the Smithscript Cirque corpse; do not jump into the bottomless pit.", "tags": ["item", "hazard", "one_way_hazard", "legacy", "cross_checked"]
+    },
+    {
+      "id": "starfall-cirque-backtrack-to-heavy-door", "from": "ruined_forge_starfall_cirque_branch", "to": "ruined_forge_starfall_heavy_door_lowered_state", "mode": "Ruined Forge of Starfall Past Cirque backtrack", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "backtrack", "requires": [], "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the same corridor after taking the Cirque; the pit below is not a valid route.", "tags": ["backtrack", "hazard", "legacy", "cross_checked"]
+    },
+    {
+      "id": "starfall-heavy-door-to-raised", "from": "ruined_forge_starfall_heavy_door_lowered_state", "to": "ruined_forge_starfall_heavy_door_raised_state", "mode": "Ruined Forge of Starfall Past altar lift", "cost": 7, "risk": 10, "direction": "forward", "transitionType": "rising_door_lift", "requires": [], "sourceEvidence": ["eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Use the lever behind the door, stand on the raised door and jump to the altar platform.", "tags": ["lever", "lift", "vertical", "one_way", "legacy", "cross_checked"]
+    },
+    {
+      "id": "starfall-raised-to-reward", "from": "ruined_forge_starfall_heavy_door_raised_state", "to": "ruined_forge_starfall_reward_state", "mode": "Ruined Forge of Starfall Past altar", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "forge_anvil_reward", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "verificationState": "online_cross_checked", "note": "Interact with the forge altar to claim the Ancient Meteoric Ore Greatsword and Ancient Dragon Smithing Stone; no boss gate exists.", "tags": ["reward", "legacy", "no_boss", "cross_checked"]
     }
   ],
   "relations": [
@@ -15661,8 +15717,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 590,
-    "formalRouteEdgeCount": 612,
+    "formalNodeCount": 597,
+    "formalRouteEdgeCount": 620,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

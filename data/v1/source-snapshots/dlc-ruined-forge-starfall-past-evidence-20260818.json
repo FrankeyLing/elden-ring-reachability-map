@@ -1,0 +1,36 @@
+{
+  "snapshot_id": "dlc-ruined-forge-starfall-past-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "starfall-location-and-no-boss",
+      "claim": "Ruined Forge of Starfall Past is a Scadu Altus dungeon southwest of Moorth Ruins; it has an internal Site of Grace and no boss encounter.",
+      "sources": [
+        { "source_id": "eldenpedia-ruined-forge-starfall-past", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_of_Starfall_Past" },
+        { "source_id": "eip-ruined-forge-starfall-cross-check", "url": "https://eip.gg/elden-ring/guides/ruined-forge-of-starfall-past-dungeon/" },
+        { "source_id": "game8-ruined-forge-starfall-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458904" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "starfall-lever-door-sequence",
+      "claim": "The forge route uses an opening-chamber lever, a second lever that lowers the heavy door for the Smithscript Cirque branch, and a lever behind that door that raises the door as a lift to the altar.",
+      "sources": [
+        { "source_id": "eip-ruined-forge-starfall-cross-check", "url": "https://eip.gg/elden-ring/guides/ruined-forge-of-starfall-past-dungeon/" },
+        { "source_id": "game8-ruined-forge-starfall-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458904" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "starfall-altar-rewards",
+      "claim": "The no-boss completion endpoint is the forge altar, which yields the Ancient Meteoric Ore Greatsword and an Ancient Dragon Smithing Stone.",
+      "sources": [
+        { "source_id": "eldenpedia-ruined-forge-starfall-past", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_of_Starfall_Past" },
+        { "source_id": "eip-ruined-forge-starfall-cross-check", "url": "https://eip.gg/elden-ring/guides/ruined-forge-of-starfall-past-dungeon/" },
+        { "source_id": "game8-ruined-forge-starfall-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458904" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
