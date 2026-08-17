@@ -789,6 +789,7 @@ async function init() {
       ["The Nameless Eternal City", "grace_deeproot_depths_main_the_nameless_eternal_city"],
       ["Across the Roots", "grace_deeproot_depths_main_across_the_roots"],
       ["Root-Facing Cliffs", "grace_deeproot_depths_main_root_facing_cliffs"],
+      ["Deeproot to Ainsel coffin", "deeproot_ainsel_coffin"],
       ["Fia's Champions", "fia_champions_gate"],
       ["Lichdragon Fortissax", "lichdragon_fortissax_gate"],
       ["Lichdragon Fortissax (post-boss state)", "grace_lichdragon_fortissax_post_boss"],

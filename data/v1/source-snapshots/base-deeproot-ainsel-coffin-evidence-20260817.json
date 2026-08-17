@@ -1,0 +1,22 @@
+{
+  "snapshot_id": "base-deeproot-ainsel-coffin-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "deeproot-ainsel-coffin",
+      "claim": "A second coffin on the western waterfall edge near The Nameless Eternal City sends the player to Ainsel River Main; it is separate from the coffin used to enter Deeproot from Siofra Aqueduct.",
+      "sources": [
+        { "source_id": "eldenpedia-deeproot-r65395", "url": "https://eldenring.wiki.gg/wiki/Deeproot_Depths", "revision_id": 65395 },
+        { "source_id": "game8-ainsel-well-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/382717" },
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" },
+        { "source_id": "powerpyx-ainsel-cross-check", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The coffin transition is modeled as one-way because the sources describe the Deeproot-to-Ainsel arrival, not a reverse walkable route.",
+    "No article text, images, tiles or original game coordinates are copied."
+  ]
+}

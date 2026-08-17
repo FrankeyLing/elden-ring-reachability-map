@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.37-online-multiplane",
+    "version": "1.0.38-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -49,7 +49,8 @@
       "base-deeproot-fia-fortissax-evidence-20260817",
       "base-siofra-ancestor-deep-well-evidence-20260817",
       "base-siofra-waygate-dragonkin-evidence-20260817",
-      "base-ainsel-well-surface-entry-evidence-20260817"
+      "base-ainsel-well-surface-entry-evidence-20260817",
+      "base-deeproot-ainsel-coffin-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1770,6 +1771,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
       "description": "The vertical lift between eastern Liurnia and Ainsel River Well Depths; separate from Renna's Rise's quest waygate."
+    },
+    {
+      "id": "deeproot_ainsel_coffin",
+      "label": "Deeproot to Ainsel coffin",
+      "kind": "teleport",
+      "layer": "underground",
+      "region": "Deeproot Depths / Ainsel River",
+      "floor": "The Nameless Eternal City western waterfall",
+      "worldEpoch": "deeproot_underground",
+      "x": 380,
+      "y": 700,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-ainsel-well-cross-check", "powerpyx-deeproot-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "The second Deeproot coffin at the western waterfall edge; distinct from the Great Waterfall Basin coffin that enters Deeproot."
     },
     {
       "id": "grace_ainsel_river_main_ainsel_river_sluice_gate",
@@ -11772,6 +11788,36 @@
       "tags": ["parkour", "vertical", "hazard", "underground", "cross_checked"]
     },
     {
+      "id": "nameless-city-to-ainsel-coffin",
+      "from": "grace_deeproot_depths_main_the_nameless_eternal_city",
+      "to": "deeproot_ainsel_coffin",
+      "mode": "Nameless Eternal City to Ainsel coffin",
+      "cost": 4,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "coffin_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-ainsel-well-cross-check", "powerpyx-deeproot-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The western waterfall edge near The Nameless Eternal City contains a second coffin; it is separate from the Great Waterfall Basin entry coffin.",
+      "tags": ["walk", "coffin", "branch", "underground", "cross_checked"]
+    },
+    {
+      "id": "deeproot-ainsel-coffin-to-main",
+      "from": "deeproot_ainsel_coffin",
+      "to": "grace_ainsel_river_main",
+      "mode": "Deeproot coffin to Ainsel River Main",
+      "cost": 2,
+      "risk": 0,
+      "direction": "forward",
+      "transitionType": "coffin_teleport",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-ainsel-well-cross-check", "powerpyx-deeproot-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Resting in the Deeproot coffin sends the player to the northern Ainsel River Main arrival; this is a one-way plane transition.",
+      "tags": ["teleport", "coffin", "one_way", "underground", "cross_checked"]
+    },
+    {
       "id": "deeproot-to-root-facing-cliffs",
       "from": "grace_deeproot_depths",
       "to": "grace_deeproot_depths_main_root_facing_cliffs",
@@ -12077,8 +12123,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 369,
-    "formalRouteEdgeCount": 385,
+    "formalNodeCount": 370,
+    "formalRouteEdgeCount": 387,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
