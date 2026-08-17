@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.93-online-multiplane",
+  "version": "1.0.94-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -106,7 +106,8 @@
       "base-snowfield-mohgwyn-roundtrip-evidence-20260818",
       "base-postboss-deeproot-roundtrip-evidence-20260818",
       "base-dlc-postboss-roundtrip-evidence-20260818",
-      "base-siofra-sellia-gael-branch-evidence-20260818"
+      "base-siofra-sellia-gael-branch-evidence-20260818",
+      "base-ainsel-astel-grace-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -2868,6 +2869,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
       "description": "Boss gate reached by the Grand Cloister coffin; the exit is state-gated."
+    },
+    {
+      "id": "grace_ainsel_river_main_astel_naturalborn_of_the_void",
+      "label": "Astel, Naturalborn of the Void",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Ainsel River",
+      "floor": "Astel arena",
+      "worldEpoch": "lake_of_rot_underground",
+      "x": 735,
+      "y": 405,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "description": "Independent post-boss grace in Astel's arena; it is separate from the boss fog gate and precedes the Ring-gated lift to Moonlight Altar."
     },
     {
       "id": "grace_moonlight_altar",
@@ -11463,18 +11479,33 @@
       "tags": ["coffin", "one_way", "cross_checked"]
     },
     {
-      "id": "astel-to-moonlight-altar",
+      "id": "astel-to-post-grace",
       "from": "astel_naturalborn_gate",
+      "to": "grace_ainsel_river_main_astel_naturalborn_of_the_void",
+      "mode": "Astel completion to arena grace",
+      "cost": 2,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "boss_completion_grace_activation",
+      "requires": ["astel_defeated"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The post-boss Site of Grace is modeled as a separate standable node in the arena rather than being hidden inside the boss edge.",
+      "tags": ["boss", "grace", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "astel-post-grace-to-moonlight-altar",
+      "from": "grace_ainsel_river_main_astel_naturalborn_of_the_void",
       "to": "grace_moonlight_altar",
-      "mode": "boss completion and elevator",
+      "mode": "Astel arena exit tunnel and lift",
       "cost": 5,
       "risk": 7,
       "direction": "forward",
       "transitionType": "boss_gate_and_elevator",
       "requires": ["astel_defeated", "dark_moon_ring"],
-      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "game8-ranni-cross-check"],
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "The post-boss exit is state-gated; the route does not assume the arena can be bypassed.",
+      "note": "Leave the arena through the tunnel and take the lift to Moonlight Altar; the Dark Moon Ring condition remains explicit.",
       "tags": ["boss", "elevator", "conditional", "cross_checked"]
     },
     {
@@ -17258,8 +17289,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 698,
-    "formalRouteEdgeCount": 1011,
+    "formalNodeCount": 699,
+    "formalRouteEdgeCount": 1012,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

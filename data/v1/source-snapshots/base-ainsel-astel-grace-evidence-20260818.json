@@ -1,0 +1,19 @@
+{
+  "snapshot_id": "base-ainsel-astel-grace-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "astel-post-boss-grace-and-moonlight-lift",
+      "claim": "Astel, Naturalborn of the Void has its own Site of Grace that becomes available after the boss is defeated. The route beyond the arena continues through the exit tunnel and lift to Moonlight Altar, and the sealed route requires the Dark Moon Ring state.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "eldenpedia-grand-cloister-r65881", "url": "https://eldenring.wiki.gg/wiki/Grand_Cloister" },
+        { "source_id": "game8-astel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353051" },
+        { "source_id": "game8-ranni-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353051" },
+        { "source_id": "powerpyx-ainsel-cross-check", "url": "https://www.powerpyx.com/elden-ring-ainsel-river-nokstella-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
