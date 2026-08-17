@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.33-online-multiplane",
+    "version": "1.0.34-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -45,7 +45,8 @@
       "base-haligtree-elphael-mainline-evidence-20260817",
       "base-farum-azula-layered-mainline-evidence-20260817",
       "base-ainsel-south-ranni-branch-evidence-20260817",
-      "base-nokron-aqueduct-deeproot-evidence-20260817"
+      "base-nokron-aqueduct-deeproot-evidence-20260817",
+      "base-deeproot-fia-fortissax-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -481,6 +482,21 @@
       "id": "regal_ancestor_spirit_defeated",
       "label": "Regal Ancestor Spirit defeated",
       "hint": "The optional Hollowhorn Grounds encounter has been cleared and its post-boss return state is available."
+    },
+    {
+      "id": "fia_champions_defeated",
+      "label": "Fia's Champions defeated",
+      "hint": "The Deeproot Champions arena has been cleared and the Prince of Death's Throne grace is available."
+    },
+    {
+      "id": "cursemark_of_death_available",
+      "label": "Cursemark of Death available",
+      "hint": "The Ranni/Carian Study Hall progression has produced the Cursemark required for Fia's Deathbed Dream."
+    },
+    {
+      "id": "lichdragon_fortissax_defeated",
+      "label": "Lichdragon Fortissax defeated",
+      "hint": "Fia's Deathbed Dream dragon encounter has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -699,6 +715,7 @@
     ,{ "id": "eip-farum-cross-check", "label": "EIP Gaming / Crumbling Farum Azula route", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/", "grade": "B" }
     ,{ "id": "gamespot-placidusax-cross-check", "label": "GameSpot / Dragonlord Placidusax route", "url": "https://www.gamespot.com/articles/how-to-beat-elden-ring-dragonlord-placidusax/1100-6501885/", "grade": "B" }
     ,{ "id": "powerpyx-nokron-cross-check", "label": "PowerPyx / Nokron walkthrough", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/", "grade": "B" }
+    ,{ "id": "neoseeker-deeproot-cross-check", "label": "Neoseeker / Deeproot Depths walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Deeproot_Depths", "grade": "B" }
   ],
   "nodes": [
     {
@@ -1720,6 +1737,111 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "neoseeker-aqueduct-cross-check", "powerpyx-deeproot-cross-check"],
       "description": "Post-Valiant-Gargoyles grace beside the waterfall and coffin to Deeproot Depths."
+    },
+    {
+      "id": "grace_deeproot_depths_main_great_waterfall_crest",
+      "label": "Great Waterfall Crest",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Great Waterfall Crest / coffin arrival",
+      "worldEpoch": "deeproot_underground",
+      "x": 500,
+      "y": 570,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "description": "First grace after the Aqueduct coffin, southwest of the main Deeproot root network."
+    },
+    {
+      "id": "grace_deeproot_depths_main_the_nameless_eternal_city",
+      "label": "The Nameless Eternal City",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Nameless Eternal City lower roots",
+      "worldEpoch": "deeproot_underground",
+      "x": 610,
+      "y": 570,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-deeproot-cross-check", "neoseeker-deeproot-cross-check"],
+      "description": "Lower root-city landmark between the coffin arrival and the upward Across the Roots route."
+    },
+    {
+      "id": "grace_deeproot_depths_main_across_the_roots",
+      "label": "Across the Roots",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Upper root crossing / Fia approach",
+      "worldEpoch": "deeproot_underground",
+      "x": 740,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "description": "Upper-root grace before Fia's Champions and the Prince of Death's Throne."
+    },
+    {
+      "id": "grace_deeproot_depths_main_root_facing_cliffs",
+      "label": "Root-Facing Cliffs",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Western hidden-root route",
+      "worldEpoch": "deeproot_underground",
+      "x": 430,
+      "y": 650,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "neoseeker-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "description": "Optional/hidden western Deeproot route associated with the Frenzied Flame descent; kept separate from the Fia route."
+    },
+    {
+      "id": "fia_champions_gate",
+      "label": "Fia's Champions",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Fia's Champions arena",
+      "worldEpoch": "deeproot_underground",
+      "x": 860,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "description": "Fia quest boss group at the upper end of the Deeproot root route."
+    },
+    {
+      "id": "lichdragon_fortissax_gate",
+      "label": "Lichdragon Fortissax",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Fia's Deathbed Dream",
+      "worldEpoch": "deeproot_underground",
+      "x": 980,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "description": "Optional Fia quest dream boss; the entry is gated by the Cursemark and Fia's post-Champions state."
+    },
+    {
+      "id": "grace_lichdragon_fortissax_post_boss",
+      "label": "Lichdragon Fortissax (post-boss state)",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Deeproot Depths",
+      "floor": "Fia's Deathbed Dream return",
+      "worldEpoch": "deeproot_underground",
+      "x": 1100,
+      "y": 500,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "description": "Post-dream-boss return state; kept separate from the Prince of Death's Throne grace."
     },
     {
       "id": "epoch_ashen_capital",
@@ -8094,7 +8216,7 @@
     {
       "id": "deeproot-coffin-to-depths",
       "from": "deeproot_coffin",
-      "to": "grace_deeproot_depths",
+      "to": "grace_deeproot_depths_main_great_waterfall_crest",
       "mode": "coffin arrival",
       "cost": 1,
       "risk": 0,
@@ -8109,7 +8231,7 @@
     {
       "id": "deeproot-depths-to-prince-throne",
       "from": "grace_deeproot_depths",
-      "to": "grace_prince_of_deaths_throne",
+      "to": "grace_deeproot_depths_main_across_the_roots",
       "mode": "root traverse",
       "cost": 9,
       "risk": 3,
@@ -11137,6 +11259,126 @@
       "tags": ["parkour", "vertical", "conditional", "underground", "one_way", "cross_checked"]
     },
     {
+      "id": "great-waterfall-crest-to-deeproot",
+      "from": "grace_deeproot_depths_main_great_waterfall_crest",
+      "to": "grace_deeproot_depths",
+      "mode": "Great Waterfall Crest root crossing",
+      "cost": 8,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "root_crossing",
+      "requires": [],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Cross the lower roots from the coffin arrival grace into the main Deeproot Depths area.",
+      "tags": ["walk", "vertical", "underground", "cross_checked"]
+    },
+    {
+      "id": "deeproot-to-nameless-city",
+      "from": "grace_deeproot_depths",
+      "to": "grace_deeproot_depths_main_the_nameless_eternal_city",
+      "mode": "Deeproot Depths to Nameless Eternal City",
+      "cost": 9,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "root_city_route",
+      "requires": [],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "neoseeker-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The root-city route crosses the central Deeproot structures before rising toward Across the Roots.",
+      "tags": ["walk", "vertical", "underground", "cross_checked"]
+    },
+    {
+      "id": "nameless-city-to-across-roots",
+      "from": "grace_deeproot_depths_main_the_nameless_eternal_city",
+      "to": "grace_deeproot_depths_main_across_the_roots",
+      "mode": "Nameless Eternal City root ascent",
+      "cost": 10,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "vertical_root_parkour",
+      "requires": [],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Climb the large roots to the upper eastern cliff and Across the Roots grace.",
+      "tags": ["parkour", "vertical", "hazard", "underground", "cross_checked"]
+    },
+    {
+      "id": "deeproot-to-root-facing-cliffs",
+      "from": "grace_deeproot_depths",
+      "to": "grace_deeproot_depths_main_root_facing_cliffs",
+      "mode": "Deeproot hidden western route",
+      "cost": 7,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "hidden_wall_root_branch",
+      "requires": [],
+      "sourceEvidence": ["neoseeker-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Optional western/hidden branch associated with the Frenzied Flame route; it is not merged into Fia's eastern root ascent.",
+      "tags": ["hidden", "branch", "underground", "cross_checked"]
+    },
+    {
+      "id": "across-roots-to-fia-champions",
+      "from": "grace_deeproot_depths_main_across_the_roots",
+      "to": "fia_champions_gate",
+      "mode": "Across the Roots to Fia's Champions",
+      "cost": 8,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "sending_gate_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The upper battlefield and sending gate lead to Fia's Champions; the Prince of Death's Throne grace is post-boss state.",
+      "tags": ["boss", "walk", "underground", "cross_checked"]
+    },
+    {
+      "id": "fia-champions-to-prince-throne",
+      "from": "fia_champions_gate",
+      "to": "grace_prince_of_deaths_throne",
+      "mode": "Fia's Champions completion",
+      "cost": 4,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["fia_champions_defeated"],
+      "sourceEvidence": ["eldenpedia-deeproot-r65395", "powerpyx-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Prince of Death's Throne grace becomes the post-Champions Fia state.",
+      "tags": ["boss", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "prince-throne-to-fortissax",
+      "from": "grace_prince_of_deaths_throne",
+      "to": "lichdragon_fortissax_gate",
+      "mode": "Fia's Deathbed Dream entry",
+      "cost": 3,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "deathbed_dream_teleport",
+      "requires": ["fia_champions_defeated", "cursemark_of_death_available"],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Fia's sleep and the Cursemark open the Deathbed Dream; this is a plane transition into Fortissax's arena.",
+      "tags": ["teleport", "boss", "conditional", "one_way", "underground", "cross_checked"]
+    },
+    {
+      "id": "fortissax-to-post-state",
+      "from": "lichdragon_fortissax_gate",
+      "to": "grace_lichdragon_fortissax_post_boss",
+      "mode": "Lichdragon Fortissax completion",
+      "cost": 4,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["lichdragon_fortissax_defeated"],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Post-Dream-boss state returns to the Deeproot/Fia quest context.",
+      "tags": ["boss", "conditional", "underground", "cross_checked"]
+    },
+    {
       "id": "frenzied-proscription-to-deeproot",
       "from": "grace_leyndell_royal_capital_subterranean_shunning_grounds_frenzied_flame_proscription",
       "to": "grace_deeproot_depths",
@@ -11367,8 +11609,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 351,
-    "formalRouteEdgeCount": 359,
+    "formalNodeCount": 358,
+    "formalRouteEdgeCount": 367,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

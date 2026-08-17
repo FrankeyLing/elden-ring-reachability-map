@@ -774,6 +774,13 @@ async function init() {
       ["Siofra Aqueduct (Valiant Gargoyles)", "siofra_aqueduct_valiant_gargoyle_gate"],
       ["Deeproot coffin", "deeproot_coffin"],
       ["Deeproot Depths", "grace_deeproot_depths"],
+      ["Great Waterfall Crest", "grace_deeproot_depths_main_great_waterfall_crest"],
+      ["The Nameless Eternal City", "grace_deeproot_depths_main_the_nameless_eternal_city"],
+      ["Across the Roots", "grace_deeproot_depths_main_across_the_roots"],
+      ["Root-Facing Cliffs", "grace_deeproot_depths_main_root_facing_cliffs"],
+      ["Fia's Champions", "fia_champions_gate"],
+      ["Lichdragon Fortissax", "lichdragon_fortissax_gate"],
+      ["Lichdragon Fortissax (post-boss state)", "grace_lichdragon_fortissax_post_boss"],
       ["Prince of Death's Throne", "grace_prince_of_deaths_throne"],
       ["Ordina, Liturgical Town (Consecrated Snowfield)", "grace_ordina_liturgical_town"],
       ["Volcano Manor (entrance)", "grace_volcano_manor_entrance"],
@@ -806,6 +813,7 @@ async function init() {
       if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
       if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
       if (["Mimic Tear", "Night's Sacred Ground", "Aqueduct-Facing Cliffs"].includes(record.name)) return;
+      if (["Great Waterfall Crest", "The Nameless Eternal City", "Across the Roots", "Root-Facing Cliffs"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;

@@ -1,0 +1,41 @@
+{
+  "snapshot_id": "base-deeproot-fia-fortissax-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "coffin-to-across-roots",
+      "claim": "The Aqueduct coffin arrives at Great Waterfall Crest; the Deeproot route then crosses the roots through the central Nameless Eternal City area to Across the Roots.",
+      "sources": [
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" },
+        { "source_id": "neoseeker-deeproot-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Deeproot_Depths" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368945" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "across-roots-to-fia",
+      "claim": "Across the Roots leads to Fia's Champions; after that boss, the Prince of Death's Throne grace becomes available.",
+      "sources": [
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368945" },
+        { "source_id": "gamesradar-deeproot-cross-check", "url": "https://www.gamesradar.com/elden-ring-fia-quest-questline-walkthrough-deathbed-companion-age-of-duskborn/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "fia-to-fortissax",
+      "claim": "Fia's Deathbed Dream requires the Cursemark of Death and opens a separate plane transition to Lichdragon Fortissax; the post-boss state returns to the Deeproot/Fia context.",
+      "sources": [
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" },
+        { "source_id": "gamesradar-deeproot-cross-check", "url": "https://www.gamesradar.com/elden-ring-fia-quest-questline-walkthrough-deathbed-companion-age-of-duskborn/" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368945" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "Deeproot's central roots, hidden western branch, Fia boss state and Deathbed Dream are modeled as distinct nodes and transitions.",
+    "No game process, save, archive, memory or original XYZ coordinate was accessed."
+  ]
+}
