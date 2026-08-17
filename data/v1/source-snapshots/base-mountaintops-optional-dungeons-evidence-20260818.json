@@ -1,0 +1,67 @@
+{
+  "snapshot_id": "base-mountaintops-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "cave-forlorn-misbegotten",
+      "claim": "Cave of the Forlorn is in the Consecrated Snowfield near Albinauric Rise and ends at Misbegotten Crusader.",
+      "sources": [
+        {"source_id": "eldenpedia-cave-of-forlorn", "url": "https://eldenring.wiki.gg/wiki/Cave_of_the_Forlorn"},
+        {"source_id": "game8-cave-of-forlorn-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/375577"},
+        {"source_id": "arrpeegeez-cave-of-forlorn-cross-check", "url": "https://www.arrpeegeez.com/2022/09/elden-ring-walkthrough-cave-of-forlorn.html"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "snowfield-catacombs-putrid-duelist",
+      "claim": "Consecrated Snowfield Catacombs lies south-east of Inner Consecrated Snowfield and uses a lever/pillar route to Putrid Grave Warden Duelist.",
+      "sources": [
+        {"source_id": "eldenpedia-consecrated-snowfield-catacombs", "url": "https://eldenring.wiki.gg/wiki/Consecrated_Snowfield_Catacombs"},
+        {"source_id": "gameofguides-snowfield-catacombs-cross-check", "url": "https://video-game-guide-walkthrough.supersoluce.com/solution/elden-ring-guide-walkthrough/er-optional-areas/consecrated-snowfield/consecrated-snowfield-catacombs/"},
+        {"source_id": "gamerguides-putrid-duelist-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/bosses/consecrated-snowfield-bosses/putrid-grave-warden-duelist"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "yelough-astel",
+      "claim": "Yelough Anix Tunnel is a frozen mine below Yelough Anix Ruins, begins at the bottom of a lift, and ends at Astel, Stars of Darkness.",
+      "sources": [
+        {"source_id": "eldenpedia-yelough-anix-tunnel", "url": "https://eldenring.wiki.gg/wiki/Yelough_Anix_Tunnel"},
+        {"source_id": "eip-yelough-anix-tunnel-cross-check", "url": "https://eip.gg/elden-ring/guides/yelough-anix-tunnel-walkthrough/"},
+        {"source_id": "arrpeegeez-yelough-anix-cross-check", "url": "https://www.arrpeegeez.com/2022/09/elden-ring-walkthrough-yelough-anix.html"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "giant-conquering-zamor",
+      "claim": "Giant-Conquering Hero's Grave is reached by the elevated chain/bridge approach in the Mountaintops and ends at Ancient Hero of Zamor.",
+      "sources": [
+        {"source_id": "eldenpedia-giant-conquering-hero-grave", "url": "https://eldenring.wiki.gg/wiki/Giant-Conquering_Hero%27s_Grave"},
+        {"source_id": "pushsquare-giant-conquering-hero-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-giant-conquering-heros-grave"},
+        {"source_id": "eip-giant-conquering-hero-cross-check", "url": "https://eip.gg/elden-ring/guides/giant-conquering-heros-grave-dungeon-walkthrough/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "giants-catacombs-watchdog",
+      "claim": "Giants' Mountaintop Catacombs uses multiple elevators and a hidden lower route before the Erdtree Burial Watchdog encounter.",
+      "sources": [
+        {"source_id": "eldenpedia-giants-mountaintop-catacombs", "url": "https://eldenring.wiki.gg/wiki/Giants%27_Mountaintop_Catacombs"},
+        {"source_id": "eip-giants-mountaintop-catacombs-cross-check", "url": "https://eip.gg/elden-ring/guides/giants-mountaintop-catacombs-walkthrough/"},
+        {"source_id": "game8-giants-watchdog-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353632"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "spiritcaller-sequential-godskins",
+      "claim": "Spiritcaller's Cave is sealed by one Stonesword Key west of the Freezing Lake and has sequential Godskin Apostle then Godskin Noble encounters summoned by a hidden snail.",
+      "sources": [
+        {"source_id": "eldenpedia-spiritcallers-cave", "url": "https://eldenring.wiki.gg/wiki/Spiritcaller%27s_Cave"},
+        {"source_id": "game8-spiritcallers-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370653"},
+        {"source_id": "segmentnext-spiritcallers-cave-cross-check", "url": "https://segmentnext.com/elden-ring-spiritcallers-cave/"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

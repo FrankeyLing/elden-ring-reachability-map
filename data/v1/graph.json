@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.53-online-multiplane",
+    "version": "1.0.54-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -65,7 +65,8 @@
       "base-altus-tunnel-sainted-hero-evidence-20260818",
       "base-caelid-optional-dungeons-evidence-20260818",
       "dlc-optional-gaols-catacombs-evidence-20260818",
-      "dlc-ruined-forges-evidence-20260818"
+      "dlc-ruined-forges-evidence-20260818",
+      "base-mountaintops-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -566,6 +567,46 @@
       "id": "scorpion_river_death_knight_defeated",
       "label": "Scorpion River Catacombs Death Knight defeated",
       "hint": "The Death Knight at the deepest Scorpion River Catacombs chamber has been cleared."
+    },
+    {
+      "id": "cave_of_forlorn_misbegotten_crusader_defeated",
+      "label": "Misbegotten Crusader defeated",
+      "hint": "The Cave of the Forlorn boss gate has been cleared."
+    },
+    {
+      "id": "snowfield_catacombs_putrid_duelist_defeated",
+      "label": "Putrid Grave Warden Duelist defeated",
+      "hint": "The Consecrated Snowfield Catacombs boss gate has been cleared."
+    },
+    {
+      "id": "yelough_anix_astel_defeated",
+      "label": "Astel, Stars of Darkness defeated",
+      "hint": "The Yelough Anix Tunnel Astel gate has been cleared."
+    },
+    {
+      "id": "giant_conquering_ancient_zamor_defeated",
+      "label": "Ancient Hero of Zamor (Giant-Conquering) defeated",
+      "hint": "The Giant-Conquering Hero's Grave boss gate has been cleared."
+    },
+    {
+      "id": "giants_mountaintop_watchdog_defeated",
+      "label": "Giant's Mountaintop Burial Watchdog defeated",
+      "hint": "The Giant's Mountaintop Catacombs boss gate has been cleared."
+    },
+    {
+      "id": "spiritcaller_cave_one_stonesword_key",
+      "label": "One Stonesword Key for Spiritcaller's Cave",
+      "hint": "The Stonesword Key seal at Spiritcaller's Cave has been opened."
+    },
+    {
+      "id": "spiritcaller_godskin_apostle_defeated",
+      "label": "Spiritcaller's Cave Godskin Apostle defeated",
+      "hint": "The first sequential Godskin encounter in Spiritcaller's Cave has been cleared."
+    },
+    {
+      "id": "spiritcaller_godskin_noble_defeated",
+      "label": "Spiritcaller's Cave Godskin Noble defeated",
+      "hint": "The second sequential Godskin encounter in Spiritcaller's Cave has been cleared."
     },
     {
       "id": "malenia_defeated",
@@ -1165,6 +1206,24 @@
     ,{ "id": "game8-taylew-ruined-forge-cross-check", "label": "Game8 - Taylew's Ruined Forge walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/460287", "grade": "B" }
     ,{ "id": "neoseeker-taylew-ruined-forge-cross-check", "label": "Neoseeker - Taylew's Ruined Forge walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Taylews_Ruined_Forge", "grade": "B" }
     ,{ "id": "eip-taylew-ruined-forge-cross-check", "label": "EIP Gaming - Taylew's Ruined Forge guide", "url": "https://eip.gg/elden-ring/guides/taylews-ruined-forge-dungeon/", "grade": "B" }
+    ,{ "id": "eldenpedia-cave-of-forlorn", "label": "Eldenpedia - Cave of the Forlorn", "url": "https://eldenring.wiki.gg/wiki/Cave_of_the_Forlorn", "grade": "A" }
+    ,{ "id": "game8-cave-of-forlorn-cross-check", "label": "Game8 - Misbegotten Crusader", "url": "https://game8.co/games/Elden-Ring/archives/375577", "grade": "B" }
+    ,{ "id": "arrpeegeez-cave-of-forlorn-cross-check", "label": "ArrPeeGeez - Cave of the Forlorn walkthrough", "url": "https://www.arrpeegeez.com/2022/09/elden-ring-walkthrough-cave-of-forlorn.html", "grade": "B" }
+    ,{ "id": "eldenpedia-consecrated-snowfield-catacombs", "label": "Eldenpedia - Consecrated Snowfield Catacombs", "url": "https://eldenring.wiki.gg/wiki/Consecrated_Snowfield_Catacombs", "grade": "A" }
+    ,{ "id": "gameofguides-snowfield-catacombs-cross-check", "label": "Game of Guides - Snowfield Catacombs walkthrough", "url": "https://video-game-guide-walkthrough.supersoluce.com/solution/elden-ring-guide-walkthrough/er-optional-areas/consecrated-snowfield/consecrated-snowfield-catacombs/", "grade": "B" }
+    ,{ "id": "gamerguides-putrid-duelist-cross-check", "label": "Gamer Guides - Putrid Grave Warden Duelist", "url": "https://www.gamerguides.com/elden-ring/database/bosses/consecrated-snowfield-bosses/putrid-grave-warden-duelist", "grade": "B" }
+    ,{ "id": "eldenpedia-yelough-anix-tunnel", "label": "Eldenpedia - Yelough Anix Tunnel", "url": "https://eldenring.wiki.gg/wiki/Yelough_Anix_Tunnel", "grade": "A" }
+    ,{ "id": "eip-yelough-anix-tunnel-cross-check", "label": "EIP Gaming - Yelough Anix Tunnel walkthrough", "url": "https://eip.gg/elden-ring/guides/yelough-anix-tunnel-walkthrough/", "grade": "B" }
+    ,{ "id": "arrpeegeez-yelough-anix-cross-check", "label": "ArrPeeGeez - Yelough Anix Tunnel walkthrough", "url": "https://www.arrpeegeez.com/2022/09/elden-ring-walkthrough-yelough-anix.html", "grade": "B" }
+    ,{ "id": "eldenpedia-giant-conquering-hero-grave", "label": "Eldenpedia - Giant-Conquering Hero's Grave", "url": "https://eldenring.wiki.gg/wiki/Giant-Conquering_Hero%27s_Grave", "grade": "A" }
+    ,{ "id": "pushsquare-giant-conquering-hero-cross-check", "label": "Push Square - Giant-Conquering Hero's Grave", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-giant-conquering-heros-grave", "grade": "B" }
+    ,{ "id": "eip-giant-conquering-hero-cross-check", "label": "EIP Gaming - Giant-Conquering Hero's Grave", "url": "https://eip.gg/elden-ring/guides/giant-conquering-heros-grave-dungeon-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-giants-mountaintop-catacombs", "label": "Eldenpedia - Giants' Mountaintop Catacombs", "url": "https://eldenring.wiki.gg/wiki/Giants%27_Mountaintop_Catacombs", "grade": "A" }
+    ,{ "id": "eip-giants-mountaintop-catacombs-cross-check", "label": "EIP Gaming - Giants' Mountaintop Catacombs", "url": "https://eip.gg/elden-ring/guides/giants-mountaintop-catacombs-walkthrough/", "grade": "B" }
+    ,{ "id": "game8-giants-watchdog-cross-check", "label": "Game8 - Mountaintops Burial Watchdog", "url": "https://game8.co/games/Elden-Ring/archives/353632", "grade": "B" }
+    ,{ "id": "eldenpedia-spiritcallers-cave", "label": "Eldenpedia - Spiritcaller's Cave", "url": "https://eldenring.wiki.gg/wiki/Spiritcaller%27s_Cave", "grade": "A" }
+    ,{ "id": "game8-spiritcallers-cave-cross-check", "label": "Game8 - Spiritcaller's Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370653", "grade": "B" }
+    ,{ "id": "segmentnext-spiritcallers-cave-cross-check", "label": "SegmentNext - Spiritcaller's Cave walkthrough", "url": "https://segmentnext.com/elden-ring-spiritcallers-cave/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8189,6 +8248,106 @@
     {
       "id": "taylew_ruined_forge_reward_state", "label": "Taylew's Ruined Forge (reward state)", "kind": "state", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Smithing altar", "worldEpoch": "shadow_realm", "x": 920, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "eip-taylew-ruined-forge-cross-check"], "description": "Reward endpoint for Taylew the Golem Smith and Ancient Dragon Smithing Stones; no boss encounter exists here."
+    },
+    {
+      "id": "cave_of_forlorn_surface_entrance", "label": "Cave of the Forlorn surface entrance", "kind": "entrance", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Albinauric Rise approach", "worldEpoch": "consecrated_snowfield", "x": 1060, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check"], "description": "Cave entrance near Albinauric Rise in the Consecrated Snowfield."
+    },
+    {
+      "id": "grace_mountaintops_main_cave_of_forlorn", "label": "Cave of the Forlorn", "kind": "grace", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Cave entrance", "worldEpoch": "consecrated_snowfield", "x": 1120, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check"], "description": "Grace at the beginning of the snowy cave."
+    },
+    {
+      "id": "misbegotten_crusader_cave_forlorn_gate", "label": "Misbegotten Crusader (Cave of the Forlorn)", "kind": "boss", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Crusader boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1180, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check"], "description": "Misbegotten Crusader at the end of the cave."
+    },
+    {
+      "id": "cave_of_forlorn_post_boss_state", "label": "Cave of the Forlorn (post-boss state)", "kind": "state", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Crusader chamber return state", "worldEpoch": "consecrated_snowfield", "x": 1240, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check"], "description": "Cleared-state node for the Golden Order Greatsword route."
+    },
+    {
+      "id": "snowfield_catacombs_surface_entrance", "label": "Consecrated Snowfield Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Consecrated Snowfield", "floor": "South-east of Inner Consecrated Snowfield", "worldEpoch": "consecrated_snowfield", "x": 980, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check"], "description": "Catacomb entrance south-east of the Inner Consecrated Snowfield grace."
+    },
+    {
+      "id": "grace_mountaintops_main_consecrated_snowfield_catacombs", "label": "Consecrated Snowfield Catacombs", "kind": "grace", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Catacomb entrance", "worldEpoch": "consecrated_snowfield", "x": 1040, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check"], "description": "Grace at the start of the frost catacombs."
+    },
+    {
+      "id": "putrid_grave_warden_snowfield_gate", "label": "Putrid Grave Warden Duelist (Snowfield Catacombs)", "kind": "boss", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Duelist boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1100, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check"], "description": "Putrid Grave Warden Duelist beyond the lever and frost catacomb route."
+    },
+    {
+      "id": "snowfield_catacombs_post_boss_state", "label": "Consecrated Snowfield Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Duelist chamber return state", "worldEpoch": "consecrated_snowfield", "x": 1160, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check"], "description": "Cleared-state node for Great Grave Glovewort and Rotten Gravekeeper Cloak."
+    },
+    {
+      "id": "yelough_anix_tunnel_surface_entrance", "label": "Yelough Anix Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Below Yelough Anix Ruins", "worldEpoch": "consecrated_snowfield", "x": 1160, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "description": "Frozen mine entrance below Yelough Anix Ruins."
+    },
+    {
+      "id": "grace_mountaintops_main_yelough_anix_tunnel", "label": "Yelough Anix Tunnel", "kind": "grace", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Bottom of entrance lift", "worldEpoch": "consecrated_snowfield", "x": 1220, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check"], "description": "Grace at the bottom of the frozen mine lift."
+    },
+    {
+      "id": "astel_stars_darkness_yelough_gate", "label": "Astel, Stars of Darkness (Yelough Anix Tunnel)", "kind": "boss", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Astel boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1280, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "description": "Astel at the end of the frozen mine."
+    },
+    {
+      "id": "yelough_anix_tunnel_post_boss_state", "label": "Yelough Anix Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Astel chamber return state", "worldEpoch": "consecrated_snowfield", "x": 1340, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check"], "description": "Cleared-state node for Meteorite of Astel and the Ancient Dragon Smithing Stone route."
+    },
+    {
+      "id": "giant_conquering_hero_surface_entrance", "label": "Giant-Conquering Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Chain/invisible bridge approach", "worldEpoch": "mountaintops_surface", "x": 820, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check"], "description": "Hero's Grave entrance reached across the elevated chain and bridge approach."
+    },
+    {
+      "id": "grace_mountaintops_main_giant_conquering_hero_s_grave", "label": "Giant-Conquering Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "mountaintops_surface", "x": 880, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check"], "description": "Grace at the bottom of the Hero's Grave lift."
+    },
+    {
+      "id": "ancient_hero_zamor_giant_conquering_gate", "label": "Ancient Hero of Zamor (Giant-Conquering Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Zamor boss chamber", "worldEpoch": "mountaintops_surface", "x": 940, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check"], "description": "Ancient Hero of Zamor at the end of the shadow-light grave route."
+    },
+    {
+      "id": "giant_conquering_hero_post_boss_state", "label": "Giant-Conquering Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Zamor chamber return state", "worldEpoch": "mountaintops_surface", "x": 1000, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check"], "description": "Cleared-state node for the Zamor armor and curved sword route."
+    },
+    {
+      "id": "giants_mountaintop_catacombs_surface_entrance", "label": "Giants' Mountaintop Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Flame Peak catacomb mouth", "worldEpoch": "mountaintops_surface", "x": 700, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "game8-giants-watchdog-cross-check"], "description": "Catacomb entrance in the Flame Peak approach."
+    },
+    {
+      "id": "grace_mountaintops_main_giants_mountaintop_catacombs", "label": "Giants' Mountaintop Catacombs", "kind": "grace", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Catacomb entrance", "worldEpoch": "mountaintops_surface", "x": 760, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check"], "description": "Grace at the start of the multi-elevator catacombs."
+    },
+    {
+      "id": "giants_mountaintop_watchdog_gate", "label": "Erdtree Burial Watchdog (Giants' Mountaintop Catacombs)", "kind": "boss", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Watchdog boss chamber", "worldEpoch": "mountaintops_surface", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "game8-giants-watchdog-cross-check"], "description": "Erdtree Burial Watchdog at the end of the deep elevator route."
+    },
+    {
+      "id": "giants_mountaintop_catacombs_post_boss_state", "label": "Giants' Mountaintop Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Watchdog chamber return state", "worldEpoch": "mountaintops_surface", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check"], "description": "Cleared-state node for the Watchdog's Greatsword route."
+    },
+    {
+      "id": "spiritcaller_cave_surface_entrance", "label": "Spiritcaller's Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Western Freezing Lake", "worldEpoch": "mountaintops_surface", "x": 500, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "One-key Imp seal north-west of the First Church of Marika, across the frozen lake."
+    },
+    {
+      "id": "grace_mountaintops_main_spiritcallers_cave", "label": "Spiritcaller's Cave", "kind": "grace", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Cave entrance", "worldEpoch": "mountaintops_surface", "x": 560, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check"], "description": "Grace inside the Stonesword-sealed cave."
+    },
+    {
+      "id": "spiritcaller_godskin_apostle_gate", "label": "Godskin Apostle (Spiritcaller's Cave)", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "First sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 620, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "First boss phase summoned by the Spiritcaller Snail."
+    },
+    {
+      "id": "spiritcaller_godskin_noble_gate", "label": "Godskin Noble (Spiritcaller's Cave)", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Second sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 680, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Second boss phase after the Apostle; both are summoned sequentially by the hidden snail."
+    },
+    {
+      "id": "spiritcallers_cave_post_boss_state", "label": "Spiritcaller's Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Spiritcaller reward chamber", "worldEpoch": "mountaintops_surface", "x": 740, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Cleared-state node for Godskin Swaddling Cloth and Black Flame Ritual."
     }
   ],
   "edges": [
@@ -15405,6 +15564,81 @@
     },
     {
       "id": "taylew-forge-pipe-to-reward", "from": "taylew_ruined_forge_pipe_state", "to": "taylew_ruined_forge_reward_state", "mode": "Taylew's Ruined Forge smithing altar route", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "forge_anvil_reward", "requires": [], "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "eip-taylew-ruined-forge-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the reoriented pipe to the altar; the exit teleporter appears after claiming Taylew and the smithing stones.", "tags": ["reward", "teleporter", "lever", "legacy", "no_boss", "cross_checked"]
+    },
+    {
+      "id": "inner-snowfield-to-cave-forlorn", "from": "grace_inner_consecrated_snowfield", "to": "cave_of_forlorn_surface_entrance", "mode": "Inner Consecrated Snowfield to Cave of the Forlorn", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "snowfield_cave_entrance", "requires": [], "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the snowfield route near Albinauric Rise to the cave mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "cave-forlorn-mouth-to-grace", "from": "cave_of_forlorn_surface_entrance", "to": "grace_mountaintops_main_cave_of_forlorn", "mode": "Cave of the Forlorn entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check"], "verificationState": "online_cross_checked", "note": "The cave mouth leads to the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cave-forlorn-to-crusader", "from": "grace_mountaintops_main_cave_of_forlorn", "to": "misbegotten_crusader_cave_forlorn_gate", "mode": "Cave of the Forlorn frozen cave route", "cost": 12, "risk": 9, "direction": "forward", "transitionType": "cave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check"], "verificationState": "online_cross_checked", "note": "Traverse the frozen cave chambers to the Misbegotten Crusader fog gate.", "tags": ["walk", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "crusader-to-cave-forlorn-state", "from": "misbegotten_crusader_cave_forlorn_gate", "to": "cave_of_forlorn_post_boss_state", "mode": "Cave of the Forlorn Misbegotten completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["cave_of_forlorn_misbegotten_crusader_defeated"], "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Golden Order Greatsword.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "inner-snowfield-to-snowfield-catacombs", "from": "grace_inner_consecrated_snowfield", "to": "snowfield_catacombs_surface_entrance", "mode": "Inner Consecrated Snowfield to Snowfield Catacombs", "cost": 6, "risk": 8, "direction": "forward", "transitionType": "snowfield_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check"], "verificationState": "online_cross_checked", "note": "Ride south-east from the Inner Snowfield to the catacomb mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "snowfield-catacombs-mouth-to-grace", "from": "snowfield_catacombs_surface_entrance", "to": "grace_mountaintops_main_consecrated_snowfield_catacombs", "mode": "Snowfield Catacombs entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The catacomb mouth reaches its entrance grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "snowfield-catacombs-to-putrid-duelist", "from": "grace_mountaintops_main_consecrated_snowfield_catacombs", "to": "putrid_grave_warden_snowfield_gate", "mode": "Snowfield Catacombs lever and pillar route", "cost": 14, "risk": 10, "direction": "forward", "transitionType": "frost_catacomb_lever_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check"], "verificationState": "online_cross_checked", "note": "Use the pillar reactivation and lever to open the Putrid Grave Warden Duelist route.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "putrid-duelist-to-snowfield-state", "from": "putrid_grave_warden_snowfield_gate", "to": "snowfield_catacombs_post_boss_state", "mode": "Snowfield Catacombs Putrid Duelist completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["snowfield_catacombs_putrid_duelist_defeated"], "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Great Grave Glovewort and Rotten Gravekeeper Cloak.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "snowfield-to-yelough-anix-mouth", "from": "grace_consecrated_snowfield", "to": "yelough_anix_tunnel_surface_entrance", "mode": "Consecrated Snowfield to Yelough Anix Tunnel", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "frozen_mine_entrance", "requires": [], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "verificationState": "online_cross_checked", "note": "Reach the tunnel below Yelough Anix Ruins through the south-western snowfield.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "yelough-mouth-to-grace", "from": "yelough_anix_tunnel_surface_entrance", "to": "grace_mountaintops_main_yelough_anix_tunnel", "mode": "Yelough Anix Tunnel entrance lift", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "The frozen mine lift descends to the internal grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "yelough-to-astel-stars", "from": "grace_mountaintops_main_yelough_anix_tunnel", "to": "astel_stars_darkness_yelough_gate", "mode": "Yelough Anix frozen mine route", "cost": 14, "risk": 10, "direction": "forward", "transitionType": "frozen_mine_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the frozen mine galleries and pass the Lord chambers to reach Astel.", "tags": ["vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "astel-stars-to-yelough-state", "from": "astel_stars_darkness_yelough_gate", "to": "yelough_anix_tunnel_post_boss_state", "mode": "Yelough Anix Astel completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["yelough_anix_astel_defeated"], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Meteorite of Astel.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "zamor-ruins-to-giant-conquering-mouth", "from": "grace_zamor_ruins", "to": "giant_conquering_hero_surface_entrance", "mode": "Zamor Ruins to Giant-Conquering Hero's Grave", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "chain_bridge_hero_grave_entrance", "requires": [], "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the elevated chain and bridge approach to the high Hero's Grave entrance.", "tags": ["vertical", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "giant-conquering-mouth-to-grace", "from": "giant_conquering_hero_surface_entrance", "to": "grace_mountaintops_main_giant_conquering_hero_s_grave", "mode": "Giant-Conquering Hero's Grave entrance lift", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check"], "verificationState": "online_cross_checked", "note": "The Hero's Grave lift descends to the internal grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "giant-conquering-to-zamor", "from": "grace_mountaintops_main_giant_conquering_hero_s_grave", "to": "ancient_hero_zamor_giant_conquering_gate", "mode": "Giant-Conquering Hero's Grave shadow route", "cost": 15, "risk": 10, "direction": "forward", "transitionType": "shadow_hero_grave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check"], "verificationState": "online_cross_checked", "note": "Use the illuminated shadow-enemy route and open the heavy boss door to reach Zamor.", "tags": ["light_gate", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "giant-zamor-to-state", "from": "ancient_hero_zamor_giant_conquering_gate", "to": "giant_conquering_hero_post_boss_state", "mode": "Giant-Conquering Hero's Grave Zamor completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["giant_conquering_ancient_zamor_defeated"], "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Zamor armor and curved sword.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "gravepost-to-giants-catacombs-mouth", "from": "grace_giants_gravepost", "to": "giants_mountaintop_catacombs_surface_entrance", "mode": "Giants' Gravepost to Giants' Mountaintop Catacombs", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "flame_peak_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "game8-giants-watchdog-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the Flame Peak route to the catacomb mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "giants-catacombs-mouth-to-grace", "from": "giants_mountaintop_catacombs_surface_entrance", "to": "grace_mountaintops_main_giants_mountaintop_catacombs", "mode": "Giants' Mountaintop Catacombs entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance stairs reach the catacomb grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "giants-catacombs-to-watchdog", "from": "grace_mountaintops_main_giants_mountaintop_catacombs", "to": "giants_mountaintop_watchdog_gate", "mode": "Giants' Mountaintop Catacombs multi-elevator route", "cost": 16, "risk": 10, "direction": "forward", "transitionType": "multi_elevator_catacomb_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "game8-giants-watchdog-cross-check"], "verificationState": "online_cross_checked", "note": "Send the first lift upward, take the hidden lower lift, and descend through the frost traps to the Watchdog.", "tags": ["lift", "vertical", "hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "giants-watchdog-to-state", "from": "giants_mountaintop_watchdog_gate", "to": "giants_mountaintop_catacombs_post_boss_state", "mode": "Giants' Mountaintop Catacombs Watchdog completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["giants_mountaintop_watchdog_defeated"], "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Watchdog's Greatsword.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "freezing-lake-to-spiritcaller-mouth", "from": "grace_freezing_lake", "to": "spiritcaller_cave_surface_entrance", "mode": "Freezing Lake to Spiritcaller's Cave", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "stonesword_key_frozen_lake_cave_seal", "requires": ["spiritcaller_cave_one_stonesword_key"], "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the frozen lake beyond Borealis and open the one-key fog seal.", "tags": ["key_gate", "surface", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "spiritcaller-mouth-to-grace", "from": "spiritcaller_cave_surface_entrance", "to": "grace_mountaintops_main_spiritcallers_cave", "mode": "Spiritcaller's Cave entrance passage", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The opened fog seal reaches the cave grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "spiritcaller-to-godskin-apostle", "from": "grace_mountaintops_main_spiritcallers_cave", "to": "spiritcaller_godskin_apostle_gate", "mode": "Spiritcaller's Cave snail route to Apostle", "cost": 12, "risk": 10, "direction": "forward", "transitionType": "spiritcaller_sequential_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Find and strike the hidden Spiritcaller Snail to end the summoned Apostle phase.", "tags": ["hidden", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "spiritcaller-apostle-to-noble", "from": "spiritcaller_godskin_apostle_gate", "to": "spiritcaller_godskin_noble_gate", "mode": "Spiritcaller's Cave sequential Godskin transition", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "sequential_boss_phase", "requires": ["spiritcaller_godskin_apostle_defeated"], "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The hidden snail summons Godskin Noble immediately after Apostle is cleared.", "tags": ["boss", "sequential", "conditional", "legacy", "cross_checked"]
+    },
+    {
+      "id": "spiritcaller-noble-to-state", "from": "spiritcaller_godskin_noble_gate", "to": "spiritcallers_cave_post_boss_state", "mode": "Spiritcaller's Cave Godskin Noble completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["spiritcaller_godskin_noble_defeated"], "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Godskin Swaddling Cloth and Black Flame Ritual.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -15427,8 +15661,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 565,
-    "formalRouteEdgeCount": 587,
+    "formalNodeCount": 590,
+    "formalRouteEdgeCount": 612,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

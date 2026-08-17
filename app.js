@@ -742,6 +742,12 @@ async function init() {
       ["Castle Sol Rooftop", "grace_castle_sol_rooftop"],
       ["Consecrated Snowfield", "grace_consecrated_snowfield"],
       ["Inner Consecrated Snowfield", "grace_inner_consecrated_snowfield"],
+      ["Cave of the Forlorn", "grace_mountaintops_main_cave_of_forlorn"],
+      ["Consecrated Snowfield Catacombs", "grace_mountaintops_main_consecrated_snowfield_catacombs"],
+      ["Yelough Anix Tunnel", "grace_mountaintops_main_yelough_anix_tunnel"],
+      ["Giant-Conquering Hero's Grave", "grace_mountaintops_main_giant_conquering_hero_s_grave"],
+      ["Giants' Mountaintop Catacombs", "grace_mountaintops_main_giants_mountaintop_catacombs"],
+      ["Spiritcaller's Cave", "grace_mountaintops_main_spiritcallers_cave"],
       ["The First Step", "grace_first_step"],
       ["Church of Elleh", "grace_church_elleh"],
       ["Gatefront", "grace_gatefront"],
@@ -894,6 +900,7 @@ async function init() {
       if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
       if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
       if (["Belurat Gaol", "Fog Rift Catacombs", "Rivermouth Cave", "Scorpion River Catacombs"].includes(record.name)) return;
+      if (["Cave of the Forlorn", "Consecrated Snowfield Catacombs", "Yelough Anix Tunnel", "Giant-Conquering Hero's Grave", "Giants' Mountaintop Catacombs", "Spiritcaller's Cave"].includes(record.name)) return;
       if (["Ruined Forge Lava Intake", "Taylew's Ruined Forge"].includes(record.name)) return;
       if (["Mimic Tear", "Night's Sacred Ground", "Aqueduct-Facing Cliffs"].includes(record.name)) return;
       if (["Great Waterfall Crest", "The Nameless Eternal City", "Across the Roots", "Root-Facing Cliffs"].includes(record.name)) return;
