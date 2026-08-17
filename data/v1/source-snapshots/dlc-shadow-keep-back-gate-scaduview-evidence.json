@@ -1,0 +1,72 @@
+{
+  "snapshot_id": "dlc-shadow-keep-back-gate-scaduview-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Shadow Keep Church District to Storehouse Back Section, Loft, Back Gate, Scaduview and Commander Gaius",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "tree-sanctum-to-storehouse-back",
+      "from": "Tree-Worship Sanctum",
+      "to": "Storehouse, Back Section",
+      "transition_type": "church_to_storehouse_elevator",
+      "direction": "forward",
+      "claim": "The Church District route continues through the upper church and lift into the back section of the Specimen Storehouse.",
+      "sources": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "powerpyx-back-gate-cross-check"]
+    },
+    {
+      "id": "storehouse-back-to-loft",
+      "from": "Storehouse, Back Section",
+      "to": "Storehouse, Loft",
+      "transition_type": "storehouse_ladder_rafters",
+      "direction": "forward",
+      "claim": "From the Storehouse Back Section, ladders, stairs and rafters lead to the Loft layer.",
+      "sources": ["eldenpedia-shadow-keep", "game8-back-gate-cross-check", "powerpyx-back-gate-cross-check"]
+    },
+    {
+      "id": "storehouse-loft-to-back-gate",
+      "from": "Storehouse, Loft",
+      "to": "Shadow Keep, Back Gate",
+      "transition_type": "storehouse_external_elevators",
+      "direction": "forward",
+      "claim": "The Loft route uses the exterior elevators to descend to the Shadow Keep Back Gate grace.",
+      "sources": ["eldenpedia-shadow-keep", "game8-back-gate-cross-check", "powerpyx-back-gate-cross-check"]
+    },
+    {
+      "id": "back-gate-to-scaduview",
+      "from": "Shadow Keep, Back Gate",
+      "to": "Scaduview",
+      "transition_type": "shadow_keep_back_exit",
+      "direction": "forward",
+      "claim": "Shadow Keep, Back Gate is the entry point to the exterior Scaduview area behind the keep.",
+      "sources": ["eldenpedia-scaduview", "game8-back-gate-cross-check", "eip-scaduview-cross-check"]
+    },
+    {
+      "id": "scaduview-to-gaius",
+      "from": "Scaduview",
+      "to": "Commander Gaius",
+      "transition_type": "scaduview_boss_approach",
+      "direction": "forward",
+      "claim": "The field beyond the Back Gate contains the Commander Gaius boss approach.",
+      "sources": ["eldenpedia-scaduview", "game8-gaius-cross-check", "eip-scaduview-cross-check"]
+    },
+    {
+      "id": "gaius-to-scadutree-base",
+      "from": "Commander Gaius",
+      "to": "Scadutree Base",
+      "transition_type": "boss_completion_scaduview",
+      "direction": "forward",
+      "claim": "The Scadutree Base/Chalice side of Scaduview is the post-Gaius route and is not treated as an unconditional field walk.",
+      "sources": ["eldenpedia-scaduview", "game8-gaius-cross-check", "game8-scadutree-chalice-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-shadow-keep", "url": "https://eldenring.wiki.gg/wiki/Shadow_Keep" },
+    { "id": "eldenpedia-scaduview", "url": "https://eldenring.wiki.gg/wiki/Scaduview" },
+    { "id": "game8-church-district-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459782" },
+    { "id": "game8-back-gate-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459028" },
+    { "id": "game8-gaius-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458756" },
+    { "id": "game8-scadutree-chalice-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460712" },
+    { "id": "powerpyx-back-gate-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-all-scadutree-fragment-locations/" },
+    { "id": "eip-scaduview-cross-check", "url": "https://eip.gg/elden-ring/guides/scaduview/" }
+  ]
+}

@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.9-online-multiplane",
+    "version": "1.0.10-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -21,7 +21,8 @@
       "caelid-redmane-dragonbarrow-route-evidence-20260817",
       "farum-ashen-mainline-route-evidence-20260817",
       "dlc-gravesite-belurat-route-evidence-20260817",
-      "dlc-scadu-shadow-keep-route-evidence-20260817"
+      "dlc-scadu-shadow-keep-route-evidence-20260817",
+      "dlc-shadow-keep-back-gate-scaduview-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -237,6 +238,11 @@
       "id": "messmer_defeated",
       "label": "Messmer the Impaler defeated",
       "hint": "The Messmer post-boss grace state is available."
+    },
+    {
+      "id": "commander_gaius_defeated",
+      "label": "Commander Gaius defeated",
+      "hint": "The Scadutree Base/Chalice continuation beyond Scaduview is open."
     }
   ],
   "sourceEvidence": [
@@ -348,7 +354,13 @@
     { "id": "game8-church-district-cross-check", "label": "Game8 / Church District walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/459782", "grade": "B" },
     { "id": "game8-messmer-cross-check", "label": "Game8 / Messmer route", "url": "https://game8.co/games/Elden-Ring/archives/458685", "grade": "B" },
     { "id": "powerpyx-dlc-walkthrough-cross-check", "label": "PowerPyx / Shadow of the Erdtree walkthrough", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/", "grade": "B" },
-    { "id": "neoseeker-church-district-cross-check", "label": "Neoseeker / Shadow Keep Church District walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Shadow_Keep_-_Church_District", "grade": "B" }
+    { "id": "neoseeker-church-district-cross-check", "label": "Neoseeker / Shadow Keep Church District walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Shadow_Keep_-_Church_District", "grade": "B" },
+    { "id": "eldenpedia-scaduview", "label": "Eldenpedia / Scaduview", "url": "https://eldenring.wiki.gg/wiki/Scaduview", "grade": "A" },
+    { "id": "game8-back-gate-cross-check", "label": "Game8 / Shadow Keep Back Gate", "url": "https://game8.co/games/Elden-Ring/archives/459028", "grade": "B" },
+    { "id": "game8-gaius-cross-check", "label": "Game8 / Commander Gaius route", "url": "https://game8.co/games/Elden-Ring/archives/458756", "grade": "B" },
+    { "id": "game8-scadutree-chalice-cross-check", "label": "Game8 / Scadutree Chalice route", "url": "https://game8.co/games/Elden-Ring/archives/460712", "grade": "B" },
+    { "id": "powerpyx-back-gate-cross-check", "label": "PowerPyx / Shadow Keep Back Gate route", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-all-scadutree-fragment-locations/", "grade": "B" },
+    { "id": "eip-scaduview-cross-check", "label": "EIP Gaming / Scaduview walkthrough", "url": "https://eip.gg/elden-ring/guides/scaduview/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -2630,6 +2642,96 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-messmer-cross-check"],
       "description": "Post-Messmer grace state in the Specimen Storehouse."
+    },
+    {
+      "id": "grace_shadow_keep_storehouse_back_section",
+      "label": "Storehouse, Back Section",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Specimen Storehouse back section",
+      "worldEpoch": "shadow_realm",
+      "x": 1460,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "powerpyx-back-gate-cross-check"],
+      "description": "Church District-side Storehouse entry and back-section route."
+    },
+    {
+      "id": "grace_shadow_keep_storehouse_loft",
+      "label": "Storehouse, Loft",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Specimen Storehouse loft",
+      "worldEpoch": "shadow_realm",
+      "x": 1530,
+      "y": 700,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-back-gate-cross-check"],
+      "description": "Upper rafters and loft layer before the external back-gate elevators."
+    },
+    {
+      "id": "grace_shadow_keep_back_gate",
+      "label": "Shadow Keep, Back Gate",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Back Gate",
+      "worldEpoch": "shadow_realm",
+      "x": 1610,
+      "y": 700,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-back-gate-cross-check"],
+      "description": "Separate northern/back exit grace from the Main Gate route."
+    },
+    {
+      "id": "grace_shadow_keep_scaduview",
+      "label": "Scaduview",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Scaduview field",
+      "worldEpoch": "shadow_realm",
+      "x": 1710,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-scaduview", "eldenpedia-sites-of-grace-r83774", "eip-scaduview-cross-check"],
+      "description": "Exterior highland immediately beyond Shadow Keep's Back Gate."
+    },
+    {
+      "id": "commander_gaius_gate",
+      "label": "Commander Gaius",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Scaduview field",
+      "worldEpoch": "shadow_realm",
+      "x": 1810,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-scaduview", "game8-gaius-cross-check", "eip-scaduview-cross-check"],
+      "description": "Mounted boss gate in the field behind Shadow Keep."
+    },
+    {
+      "id": "grace_shadow_keep_scadutree_base",
+      "label": "Scadutree Base",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Scadutree Base",
+      "worldEpoch": "shadow_realm",
+      "x": 1910,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-scaduview", "eldenpedia-sites-of-grace-r83774", "game8-scadutree-chalice-cross-check"],
+      "description": "Post-Gaius Scaduview/Scadutree Chalice route state."
     }
   ],
   "edges": [
@@ -4082,6 +4184,96 @@
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
     },
     {
+      "id": "tree-worship-sanctum-to-storehouse-back",
+      "from": "grace_shadow_keep_tree_worship_sanctum",
+      "to": "grace_shadow_keep_storehouse_back_section",
+      "mode": "Church District to Storehouse Back Section",
+      "cost": 7,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "church_to_storehouse_elevator",
+      "requires": ["shadow_keep_church_district_drained"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "powerpyx-back-gate-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Upper Church District lift to the Storehouse back section.",
+      "tags": ["lift", "vertical", "conditional", "cross_checked"]
+    },
+    {
+      "id": "storehouse-back-to-loft",
+      "from": "grace_shadow_keep_storehouse_back_section",
+      "to": "grace_shadow_keep_storehouse_loft",
+      "mode": "Back Section to Storehouse Loft",
+      "cost": 8,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "storehouse_ladder_rafters",
+      "requires": ["shadow_keep_church_district_drained"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-back-gate-cross-check", "powerpyx-back-gate-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Ladders and rafters form a separate upper floor route.",
+      "tags": ["walk", "vertical", "conditional", "cross_checked"]
+    },
+    {
+      "id": "storehouse-loft-to-back-gate",
+      "from": "grace_shadow_keep_storehouse_loft",
+      "to": "grace_shadow_keep_back_gate",
+      "mode": "Loft to Back Gate elevators",
+      "cost": 7,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "storehouse_external_elevators",
+      "requires": ["shadow_keep_church_district_drained"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-back-gate-cross-check", "powerpyx-back-gate-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "External elevator sequence to the distinct Back Gate grace.",
+      "tags": ["lift", "vertical", "conditional", "cross_checked"]
+    },
+    {
+      "id": "back-gate-to-scaduview",
+      "from": "grace_shadow_keep_back_gate",
+      "to": "grace_shadow_keep_scaduview",
+      "mode": "Back Gate to Scaduview",
+      "cost": 4,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "shadow_keep_back_exit",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-scaduview", "game8-back-gate-cross-check", "eip-scaduview-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Exterior field beyond the north/back gate.",
+      "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "scaduview-to-gaius",
+      "from": "grace_shadow_keep_scaduview",
+      "to": "commander_gaius_gate",
+      "mode": "Commander Gaius approach",
+      "cost": 5,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "scaduview_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-scaduview", "game8-gaius-cross-check", "eip-scaduview-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Boss field immediately beyond the Back Gate side of Shadow Keep.",
+      "tags": ["boss", "walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "gaius-to-scadutree-base",
+      "from": "commander_gaius_gate",
+      "to": "grace_shadow_keep_scadutree_base",
+      "mode": "Commander Gaius completion",
+      "cost": 5,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_scaduview",
+      "requires": ["commander_gaius_defeated"],
+      "sourceEvidence": ["eldenpedia-scaduview", "game8-gaius-cross-check", "game8-scadutree-chalice-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Scadutree Base/Chalice side is kept behind the Gaius gate.",
+      "tags": ["boss", "state_change", "conditional", "cross_checked"]
+    },
+    {
       "id": "first-step-to-elleh",
       "from": "grace_first_step",
       "to": "grace_church_elleh",
@@ -4837,8 +5029,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 152,
-    "formalRouteEdgeCount": 146,
+    "formalNodeCount": 158,
+    "formalRouteEdgeCount": 152,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
