@@ -1,0 +1,26 @@
+{
+  "snapshot_id": "dlc-ruined-forges-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "lava-intake-no-boss",
+      "claim": "Ruined Forge Lava Intake lies south-south-east of Castle Front, has a grace just inside, and has no boss; its route ends at the forge anvil rewards.",
+      "sources": [
+        {"source_id": "eldenpedia-ruined-forge-lava-intake", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_Lava_Intake"},
+        {"source_id": "eip-ruined-forge-lava-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "taylew-forge-pipe-altar",
+      "claim": "Taylew's Ruined Forge is north-east of Ancient Ruins Base; its central pipe is reoriented by a lever and the altar rewards Taylew the Golem Smith and Ancient Dragon Smithing Stones, with no boss.",
+      "sources": [
+        {"source_id": "eldenpedia-taylew-ruined-forge", "url": "https://eldenring.wiki.gg/wiki/Taylew%27s_Ruined_Forge"},
+        {"source_id": "game8-taylew-ruined-forge-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460287"},
+        {"source_id": "neoseeker-taylew-ruined-forge-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Taylews_Ruined_Forge"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

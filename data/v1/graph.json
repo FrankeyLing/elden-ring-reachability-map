@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.52-online-multiplane",
+    "version": "1.0.53-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -64,7 +64,8 @@
       "base-altus-gelmir-capital-dungeons-evidence-20260818",
       "base-altus-tunnel-sainted-hero-evidence-20260818",
       "base-caelid-optional-dungeons-evidence-20260818",
-      "dlc-optional-gaols-catacombs-evidence-20260818"
+      "dlc-optional-gaols-catacombs-evidence-20260818",
+      "dlc-ruined-forges-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1158,6 +1159,12 @@
     ,{ "id": "game8-scorpion-river-catacombs-cross-check", "label": "Game8 - Scorpion River Catacombs", "url": "https://game8.co/games/Elden-Ring/archives/459412", "grade": "B" }
     ,{ "id": "eip-scorpion-river-catacombs-cross-check", "label": "EIP Gaming - Scorpion River Catacombs guide", "url": "https://eip.gg/elden-ring/guides/scorpion-river-catacombs/", "grade": "B" }
     ,{ "id": "neoseeker-scorpion-river-catacombs-cross-check", "label": "Neoseeker - Scorpion River Catacombs walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Scorpion_River_Catacombs", "grade": "B" }
+    ,{ "id": "eldenpedia-ruined-forge-lava-intake", "label": "Eldenpedia - Ruined Forge Lava Intake", "url": "https://eldenring.wiki.gg/wiki/Ruined_Forge_Lava_Intake", "grade": "A" }
+    ,{ "id": "eip-ruined-forge-lava-cross-check", "label": "EIP Gaming - Gravesite Plain / Ruined Forge Lava Intake", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/", "grade": "B" }
+    ,{ "id": "eldenpedia-taylew-ruined-forge", "label": "Eldenpedia - Taylew's Ruined Forge", "url": "https://eldenring.wiki.gg/wiki/Taylew%27s_Ruined_Forge", "grade": "A" }
+    ,{ "id": "game8-taylew-ruined-forge-cross-check", "label": "Game8 - Taylew's Ruined Forge walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/460287", "grade": "B" }
+    ,{ "id": "neoseeker-taylew-ruined-forge-cross-check", "label": "Neoseeker - Taylew's Ruined Forge walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Taylews_Ruined_Forge", "grade": "B" }
+    ,{ "id": "eip-taylew-ruined-forge-cross-check", "label": "EIP Gaming - Taylew's Ruined Forge guide", "url": "https://eip.gg/elden-ring/guides/taylews-ruined-forge-dungeon/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8150,6 +8157,38 @@
     {
       "id": "scorpion_river_catacombs_post_boss_state", "label": "Scorpion River Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Death Knight chamber return state", "worldEpoch": "shadow_realm", "x": 940, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check"], "description": "Cleared-state node for Death Knight's Longhaft Axe and Cerulean Amber Medallion +3."
+    },
+    {
+      "id": "ruined_forge_lava_intake_surface_entrance", "label": "Ruined Forge Lava Intake surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "South-east of Castle Front", "worldEpoch": "shadow_realm", "x": 160, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "description": "Ruined forge entrance south-south-east of Castle Front, among massive ruined columns."
+    },
+    {
+      "id": "grace_shadow_realm_ruined_forge_lava_intake", "label": "Ruined Forge Lava Intake", "kind": "grace", "layer": "legacy", "region": "Ruined Forge Lava Intake", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 220, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "description": "Grace just inside the forge entrance."
+    },
+    {
+      "id": "ruined_forge_lava_intake_pipe_state", "label": "Ruined Forge Lava Intake (pipe route)", "kind": "checkpoint", "layer": "legacy", "region": "Ruined Forge Lava Intake", "floor": "Intake pipe and lava channel", "worldEpoch": "shadow_realm", "x": 280, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "description": "Internal pipe/lava transition before the forge's final anvil route."
+    },
+    {
+      "id": "ruined_forge_lava_intake_reward_state", "label": "Ruined Forge Lava Intake (reward state)", "kind": "state", "layer": "legacy", "region": "Ruined Forge Lava Intake", "floor": "Anvil altar", "worldEpoch": "shadow_realm", "x": 340, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "description": "Reward endpoint for Smithscript Dagger and Anvil Hammer; no boss encounter exists here."
+    },
+    {
+      "id": "taylew_ruined_forge_surface_entrance", "label": "Taylew's Ruined Forge surface entrance", "kind": "entrance", "layer": "surface", "region": "Rauh Base", "floor": "North-east of Ancient Ruins Base", "worldEpoch": "shadow_realm", "x": 740, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "neoseeker-taylew-ruined-forge-cross-check"], "description": "Forge entrance north-east of the Ancient Ruins Base grace."
+    },
+    {
+      "id": "grace_shadow_realm_taylew_ruined_forge", "label": "Taylew's Ruined Forge", "kind": "grace", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 800, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check"], "description": "Grace at the beginning of the pipe-and-lava forge."
+    },
+    {
+      "id": "taylew_ruined_forge_pipe_state", "label": "Taylew's Ruined Forge (reoriented pipe)", "kind": "checkpoint", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Central tilted pipe and lever", "worldEpoch": "shadow_realm", "x": 860, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "neoseeker-taylew-ruined-forge-cross-check"], "description": "Lever state that reverses the central pipe and opens the final altar route."
+    },
+    {
+      "id": "taylew_ruined_forge_reward_state", "label": "Taylew's Ruined Forge (reward state)", "kind": "state", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Smithing altar", "worldEpoch": "shadow_realm", "x": 920, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "eip-taylew-ruined-forge-cross-check"], "description": "Reward endpoint for Taylew the Golem Smith and Ancient Dragon Smithing Stones; no boss encounter exists here."
     }
   ],
   "edges": [
@@ -15342,6 +15381,30 @@
     },
     {
       "id": "scorpion-death-knight-to-state", "from": "death_knight_scorpion_river_gate", "to": "scorpion_river_catacombs_post_boss_state", "mode": "Scorpion River Catacombs Death Knight completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["scorpion_river_death_knight_defeated"], "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for Death Knight's Longhaft Axe and Cerulean Amber Medallion +3.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "castle-front-to-lava-forge-mouth", "from": "grace_castle_front", "to": "ruined_forge_lava_intake_surface_entrance", "mode": "Castle Front to Ruined Forge Lava Intake", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "ruined_forge_entrance", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the south-eastern Castle Ensis approach through the ruined columns to the forge mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "lava-forge-mouth-to-grace", "from": "ruined_forge_lava_intake_surface_entrance", "to": "grace_shadow_realm_ruined_forge_lava_intake", "mode": "Ruined Forge Lava Intake entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "forge_entry", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "verificationState": "online_cross_checked", "note": "The forge entrance opens directly to its internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "lava-forge-to-pipe-state", "from": "grace_shadow_realm_ruined_forge_lava_intake", "to": "ruined_forge_lava_intake_pipe_state", "mode": "Ruined Forge Lava Intake pipe route", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "lava_pipe_internal_route", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the Golem Smith and Molten Tear rooms to the intake pipe transition.", "tags": ["hazard", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "lava-forge-pipe-to-reward", "from": "ruined_forge_lava_intake_pipe_state", "to": "ruined_forge_lava_intake_reward_state", "mode": "Ruined Forge Lava Intake anvil route", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "forge_anvil_reward", "requires": [], "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the pipe to the anvil altar; this dungeon has no boss gate or boss-cleared condition.", "tags": ["reward", "hazard", "legacy", "no_boss", "cross_checked"]
+    },
+    {
+      "id": "rauh-base-to-taylew-forge-mouth", "from": "grace_rauh_ancient_ruins_base", "to": "taylew_ruined_forge_surface_entrance", "mode": "Ancient Ruins Base to Taylew's Ruined Forge", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "rauh_forge_entrance", "requires": [], "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "neoseeker-taylew-ruined-forge-cross-check"], "verificationState": "online_cross_checked", "note": "Travel north-east from Ancient Ruins Base past the roadblock and into the forge ruin.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "taylew-forge-mouth-to-grace", "from": "taylew_ruined_forge_surface_entrance", "to": "grace_shadow_realm_taylew_ruined_forge", "mode": "Taylew's Ruined Forge entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "forge_entry", "requires": [], "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check"], "verificationState": "online_cross_checked", "note": "The ruin entrance reaches the internal forge grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "taylew-forge-to-pipe-state", "from": "grace_shadow_realm_taylew_ruined_forge", "to": "taylew_ruined_forge_pipe_state", "mode": "Taylew's Ruined Forge central pipe route", "cost": 13, "risk": 10, "direction": "forward", "transitionType": "lever_reoriented_pipe_route", "requires": [], "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "neoseeker-taylew-ruined-forge-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the lower rooms and operate the lever to reverse the central tilted pipe.", "tags": ["lever", "vertical", "hazard", "legacy", "cross_checked"]
+    },
+    {
+      "id": "taylew-forge-pipe-to-reward", "from": "taylew_ruined_forge_pipe_state", "to": "taylew_ruined_forge_reward_state", "mode": "Taylew's Ruined Forge smithing altar route", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "forge_anvil_reward", "requires": [], "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "eip-taylew-ruined-forge-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the reoriented pipe to the altar; the exit teleporter appears after claiming Taylew and the smithing stones.", "tags": ["reward", "teleporter", "lever", "legacy", "no_boss", "cross_checked"]
     }
   ],
   "relations": [
@@ -15364,8 +15427,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 557,
-    "formalRouteEdgeCount": 579,
+    "formalNodeCount": 565,
+    "formalRouteEdgeCount": 587,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

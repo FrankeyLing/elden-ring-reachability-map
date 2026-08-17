@@ -504,6 +504,8 @@ async function init() {
       ["Fog Rift Catacombs", "grace_shadow_realm_fog_rift_catacombs"],
       ["Rivermouth Cave", "grace_shadow_realm_rivermouth_cave"],
       ["Scorpion River Catacombs", "grace_shadow_realm_scorpion_river_catacombs"],
+      ["Ruined Forge Lava Intake", "grace_shadow_realm_ruined_forge_lava_intake"],
+      ["Taylew's Ruined Forge", "grace_shadow_realm_taylew_ruined_forge"],
       ["Church of Consolation", "landmark_church_of_consolation"],
       ["Main Gate Cross", "grace_shadow_realm_main_gate_cross"],
       ["Belurat, Tower Settlement", "grace_belurat_tower_settlement"],
@@ -892,6 +894,7 @@ async function init() {
       if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
       if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
       if (["Belurat Gaol", "Fog Rift Catacombs", "Rivermouth Cave", "Scorpion River Catacombs"].includes(record.name)) return;
+      if (["Ruined Forge Lava Intake", "Taylew's Ruined Forge"].includes(record.name)) return;
       if (["Mimic Tear", "Night's Sacred Ground", "Aqueduct-Facing Cliffs"].includes(record.name)) return;
       if (["Great Waterfall Crest", "The Nameless Eternal City", "Across the Roots", "Root-Facing Cliffs"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
