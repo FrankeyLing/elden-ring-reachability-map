@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.81-online-multiplane",
+  "version": "1.0.82-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -94,7 +94,8 @@
       "base-mt-gelmir-roundtrip-surface-evidence-20260818",
       "base-mountaintops-roundtrip-surface-evidence-20260818",
       "base-limgrave-weeping-roundtrip-surface-evidence-20260818",
-      "base-underground-ainsel-lake-roundtrip-evidence-20260818"
+      "base-underground-ainsel-lake-roundtrip-evidence-20260818",
+      "base-siofra-river-roundtrip-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17108,6 +17109,12 @@
     ,{ "id": "nokstella-to-ainsel-main", "from": "grace_nokstella_eternal_city", "to": "grace_ainsel_river_main", "mode": "Nokstella return to Ainsel River Main", "cost": 8, "risk": 2, "direction": "backtrack", "transitionType": "underground_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the Ainsel River Main passage from the Nokstella city section.", "tags": ["walk", "underground", "backtrack", "cross_checked"] }
     ,{ "id": "waterfall-basin-to-nokstella", "from": "grace_nokstella_waterfall_basin", "to": "grace_nokstella_eternal_city", "mode": "Nokstella Waterfall Basin lift return", "cost": 4, "risk": 1, "direction": "backtrack", "transitionType": "elevator_return", "requires": [], "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the Nokstella elevator back to the Eternal City level.", "tags": ["elevator", "vertical", "backtrack", "cross_checked"] }
     ,{ "id": "grand-cloister-to-lake-of-rot", "from": "grace_grand_cloister", "to": "grace_lake_of_rot_shoreside", "mode": "Grand Cloister return across Lake of Rot", "cost": 12, "risk": 6, "direction": "backtrack", "transitionType": "hazardous_crossing_return", "requires": [], "sourceEvidence": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the rot-lake platforms and shoreline route to the Lake of Rot grace.", "tags": ["walk", "hazard", "vertical_region", "backtrack", "cross_checked"] }
+    ,{ "id": "siofra-lift-to-surface-well", "from": "siofra_well_lift", "to": "siofra_well_surface_entrance", "mode": "Siofra Well lift return to surface", "cost": 5, "risk": 1, "direction": "backtrack", "transitionType": "well_elevator_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the Siofra Well lift back to the surface entrance.", "tags": ["elevator", "vertical", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "siofra-depths-to-descent-lift", "from": "grace_siofra_well_depths", "to": "siofra_well_lift", "mode": "Siofra Well Depths return to descent lift", "cost": 5, "risk": 1, "direction": "backtrack", "transitionType": "elevator_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the well shaft to the lift platform.", "tags": ["elevator", "vertical", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "worshippers-to-siofra-bank", "from": "grace_worshippers_woods", "to": "grace_siofra_river_bank", "mode": "Worshippers' Woods return to Siofra River Bank", "cost": 8, "risk": 3, "direction": "backtrack", "transitionType": "underground_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "eldenpedia-sites-of-grace-r83774", "game8-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Return south along the Siofra underground branch to the River Bank grace.", "tags": ["walk", "underground", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "hallowhorn-to-siofra-bank", "from": "hallowhorn_grounds_siofra", "to": "grace_siofra_river_bank", "mode": "Southern Hallowhorn Grounds return to Siofra River Bank", "cost": 4, "risk": 3, "direction": "backtrack", "transitionType": "hallowhorn_ground_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the southern Hallowhorn branch to Siofra River Bank.", "tags": ["walk", "branch", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "below-the-well-to-siofra-bank", "from": "grace_siofra_river_below_the_well", "to": "grace_siofra_river_bank", "mode": "Below the Well return to Siofra River Bank", "cost": 10, "risk": 6, "direction": "backtrack", "transitionType": "northern_cliff_route_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "gamefaqs-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the northern/eastern cliff route to the main River Bank grace.", "tags": ["walk", "vertical", "branch", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "below-the-well-to-worshippers", "from": "grace_siofra_river_below_the_well", "to": "grace_worshippers_woods", "mode": "Below the Well return to Worshippers' Woods", "cost": 8, "risk": 6, "direction": "backtrack", "transitionType": "northern_cliff_route_return", "requires": [], "sourceEvidence": ["game8-siofra-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Use the alternate northern cliff branch back toward Worshippers' Woods.", "tags": ["walk", "vertical", "branch", "underground", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17130,7 +17137,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 894,
+    "formalRouteEdgeCount": 900,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

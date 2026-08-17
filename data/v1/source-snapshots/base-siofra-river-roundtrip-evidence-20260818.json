@@ -1,0 +1,29 @@
+{
+  "snapshot_id": "base-siofra-river-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "siofra-well-and-river-roundtrips",
+      "claim": "The Siofra Well surface entrance, lift and Well Depths form a vertical elevator chain. From Siofra River Bank, the open underground branches reach Worshippers' Woods, southern Hallowhorn Grounds and Below the Well; V1 adds their documented return edges.",
+      "sources": [
+        { "source_id": "eldenpedia-siofra-r71937", "url": "https://eldenring.wiki.gg/wiki/Siofra_River" },
+        { "source_id": "eip-siofra-cross-check", "url": "https://eip.gg/elden-ring/guides/siofra-river-dungeon-walkthrough/" },
+        { "source_id": "game8-siofra-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368443" },
+        { "source_id": "pcgamer-siofra-cross-check", "url": "https://www.pcgamer.com/elden-ring-siofra-river-well-location/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "siofra-nokron-boundary",
+      "claim": "Nokron is reached through the post-Radahn crater and is not modeled as a direct walkable continuation from the lower Siofra River. The Valiant Gargoyle route to Deeproot remains a separate defeated-Boss plus coffin transition.",
+      "sources": [
+        { "source_id": "eldenpedia-nokron-r66900", "url": "https://eldenring.wiki.gg/wiki/Nokron,_Eternal_City" },
+        { "source_id": "eip-nokron-siofra-cross-check", "url": "https://eip.gg/elden-ring/guides/nokron-siofra-river/" },
+        { "source_id": "eip-nokron-cross-check", "url": "https://eip.gg/elden-ring/guides/nokron-eternal-city-walkthrough/" },
+        { "source_id": "eip-deeproot-cross-check", "url": "https://eip.gg/elden-ring/guides/deeproot-depths-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
