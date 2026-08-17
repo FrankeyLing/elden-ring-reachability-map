@@ -1,0 +1,40 @@
+{
+  "snapshot_id": "base-caelid-dragonbarrow-roundtrip-surface-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "caelid-main-road-roundtrips",
+      "claim": "Caelid's ordinary surface network connects the Mistwood approach, Caelid Highway South, Rotview Balcony, Smoldering Church, Caelem Ruins, Smoldering Wall and the Fort/Cathedral side branches. V1 adds the documented return edges while keeping Redmane's festival waygate separate.",
+      "sources": [
+        { "source_id": "eldenpedia-caelid-r68953", "url": "https://eldenring.wiki.gg/wiki/Caelid" },
+        { "source_id": "eip-caelid-cross-check", "url": "https://eip.gg/elden-ring/guides/caelid-walkthrough/" },
+        { "source_id": "powerpyx-caelid-cross-check", "url": "https://www.powerpyx.com/elden-ring-caelid-walkthrough/" },
+        { "source_id": "game8-caelid-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370239" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "aeonia-sellia-roundtrips",
+      "claim": "Southern Aeonia, Aeonia Swamp Shore, Heart of Aeonia, Inner Aeonia, Sellia Under-Stair and the Church of the Plague form hazardous but traversable surface branches. V1 records their return edges and leaves Sellia's three-brazier gates separate.",
+      "sources": [
+        { "source_id": "eldenpedia-caelid-r68953", "url": "https://eldenring.wiki.gg/wiki/Caelid" },
+        { "source_id": "eldenpedia-sellia-town", "url": "https://eldenring.wiki.gg/wiki/Sellia,_Town_of_Sorcery" },
+        { "source_id": "eip-caelid-cross-check", "url": "https://eip.gg/elden-ring/guides/caelid-walkthrough/" },
+        { "source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368326" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "dragonbarrow-entrance-roundtrips",
+      "claim": "Dragonbarrow Fork branches to Dragonbarrow Cave, Fort Faroth, Dragonbarrow West and the Farum Greatbridge road. V1 adds the ordinary entrance and surface returns without flattening Divine Tower parkour or the Bestial Sanctum descent.",
+      "sources": [
+        { "source_id": "eldenpedia-dragonbarrow", "url": "https://eldenring.wiki.gg/wiki/Greyoll%27s_Dragonbarrow" },
+        { "source_id": "eldenpedia-dragonbarrow-cave", "url": "https://eldenring.wiki.gg/wiki/Dragonbarrow_Cave" },
+        { "source_id": "eip-caelid-cross-check", "url": "https://eip.gg/elden-ring/guides/caelid-walkthrough/" },
+        { "source_id": "game8-dragonbarrow-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371559" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
