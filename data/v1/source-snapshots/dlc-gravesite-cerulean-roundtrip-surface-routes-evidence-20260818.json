@@ -1,0 +1,39 @@
+{
+  "snapshot_id": "dlc-gravesite-cerulean-roundtrip-surface-routes-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "gravesite-plain-surface-roundtrips",
+      "claim": "The Gravesite Plain arrival, Scorched Ruins, Three-Path Cross, Greatbridge North, Main Gate Cross and Pillar Path Cross are connected by ordinary Shadow Realm surface roads and branches. V1 now exposes the documented return edges while keeping the bridge and local hazard costs.",
+      "sources": [
+        { "source_id": "eldenpedia-gravesite-plain", "url": "https://eldenring.wiki.gg/wiki/Gravesite_Plain" },
+        { "source_id": "eip-gravesite-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/" },
+        { "source_id": "game8-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" },
+        { "source_id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "cerulean-coast-surface-roundtrips",
+      "claim": "Ellac River Downstream connects back to Ellac River Cave and onward to Cerulean Coast; Cerulean Coast branches to Cerulean Coast West, Cerulean Coast Cross and Finger Ruins of Rhia. These are surface branches, so their return edges are separate from the explicitly downward Fissure descent.",
+      "sources": [
+        { "source_id": "eldenpedia-cerulean-coast", "url": "https://eldenring.wiki.gg/wiki/Cerulean_Coast" },
+        { "source_id": "eip-gravesite-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/" },
+        { "source_id": "game8-cerulean-coast-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459538" },
+        { "source_id": "eldenpedia-finger-rhia", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Rhia" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "jagged-peak-charo-roundtrip",
+      "claim": "Foot of the Jagged Peak, Grand Altar of Dragon Communion and Charo's Hidden Grave form an optional southern surface branch. The branch can be traversed back toward the Jagged Peak route; Bayle and other boss completion edges remain separate.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "eldenpedia-charo-hidden-grave", "url": "https://eldenring.wiki.gg/wiki/Charo%27s_Hidden_Grave" },
+        { "source_id": "neoseeker-charo-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Charos_Hidden_Grave" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
