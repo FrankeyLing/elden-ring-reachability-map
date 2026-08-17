@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.60-online-multiplane",
+    "version": "1.0.61-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -73,7 +73,8 @@
       "base-limgrave-fort-haight-evidence-20260818",
       "dlc-darklight-forsaken-graveyard-refinement-20260818",
       "base-limgrave-starting-tutorial-evidence-20260818",
-      "base-limgrave-chapel-four-belfries-evidence-20260818"
+      "base-limgrave-chapel-four-belfries-evidence-20260818",
+      "base-roundtable-hold-invitation-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -889,6 +890,16 @@
       "id": "four_belfries_anticipation_waygate_unlocked",
       "label": "Precipice of Anticipation waygate unlocked",
       "hint": "An Imbued Sword Key has been used on the Four Belfries waygate marked Precipice of Anticipation."
+    },
+    {
+      "id": "roundtable_hold_invitation_available",
+      "label": "Melina Roundtable invitation trigger available",
+      "hint": "The player has crossed the relevant world-state threshold, such as resting outside Limgrave/Weeping Peninsula or facing Margit, so Melina can offer the Roundtable invitation."
+    },
+    {
+      "id": "roundtable_hold_invited",
+      "label": "Roundtable Hold invitation accepted",
+      "hint": "The player accepted Melina's offer to go to Roundtable Hold; its map fast-travel grace is now available."
     }
   ],
   "sourceEvidence": [
@@ -1303,6 +1314,10 @@
     ,{ "id": "eldenpedia-four-belfries", "label": "Eldenpedia - The Four Belfries", "url": "https://eldenring.wiki.gg/wiki/The_Four_Belfries", "grade": "A" }
     ,{ "id": "game8-four-belfries-chapel-cross-check", "label": "Game8 - Four Belfries Chapel waygate", "url": "https://game8.co/games/Elden-Ring/archives/369646", "grade": "B" }
     ,{ "id": "game8-nepheli-chapel-cross-check", "label": "Game8 - Nepheli / Chapel of Anticipation return", "url": "https://game8.co/games/Elden-Ring/archives/369268", "grade": "B" }
+    ,{ "id": "eldenpedia-roundtable-hold", "label": "Eldenpedia - Roundtable Hold", "url": "https://eldenring.wiki.gg/wiki/Roundtable_Hold", "grade": "A" }
+    ,{ "id": "eldenpedia-melina-roundtable", "label": "Eldenpedia - Melina Roundtable invitation conditions", "url": "https://eldenring.wiki.gg/wiki/Melina", "grade": "A" }
+    ,{ "id": "game8-roundtable-hold-cross-check", "label": "Game8 - How to get to Roundtable Hold", "url": "https://game8.co/games/Elden-Ring/archives/368940", "grade": "B" }
+    ,{ "id": "gamerguides-roundtable-hold-cross-check", "label": "Gamer Guides - Roundtable Hold access", "url": "https://www.gamerguides.com/elden-ring/guide/roundtable-hold", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8607,6 +8622,14 @@
     {
       "id": "chapel_of_anticipation_side_door_rewards", "label": "Chapel of Anticipation side-door rewards", "kind": "reward", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Side chapel / rooftop", "worldEpoch": "limgrave_surface", "x": 110, "y": 35, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "game8-nepheli-chapel-cross-check"], "description": "Return-only side door route for Stormhawk King and Stormhawk Deenh; it is separate from the opening boss arena."
+    },
+    {
+      "id": "roundtable_hold_invitation_trigger", "label": "Melina Roundtable invitation scene", "kind": "teleport", "layer": "legacy", "region": "Roundtable Hold", "floor": "Invitation transition", "worldEpoch": "roundtable_hold", "x": 125, "y": 880, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-melina-roundtable", "game8-roundtable-hold-cross-check"], "description": "Event node at an eligible grace where Melina offers the Roundtable Hold invitation; this is a scene transition, not a walkable location."
+    },
+    {
+      "id": "grace_roundtable_hold_main_table_of_lost_grace", "label": "Table of Lost Grace", "kind": "grace", "layer": "legacy", "region": "Roundtable Hold", "floor": "Roundtable Hold main hall", "worldEpoch": "roundtable_hold", "x": 140, "y": 840, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-sites-of-grace-r83774", "game8-roundtable-hold-cross-check"], "description": "Isolated hub grace. Roundtable Hold is not present as a normal overworld landmass and is accessed by map fast travel after Melina's invitation."
     }
   ],
   "edges": [
@@ -16069,6 +16092,15 @@
     },
     {
       "id": "post-scion-to-stranded-graveyard", "from": "chapel_of_anticipation_post_scion_state", "to": "grace_limgrave_stranded_graveyard_stranded_graveyard", "mode": "Post-Scion fatal drop to Stranded Graveyard", "cost": 1, "risk": 10, "direction": "one_way", "transitionType": "opening_fall_transition", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "eldenpedia-grafted-scion-chapel"], "verificationState": "online_cross_checked", "note": "Even after defeating the opening boss, the nearby cliff/fall transition leaves the isolated starting island for Stranded Graveyard.", "tags": ["one_way", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "gatefront-to-roundtable-invitation", "from": "grace_gatefront", "to": "roundtable_hold_invitation_trigger", "mode": "Gatefront rest to Melina invitation", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "melina_invitation_scene", "requires": ["roundtable_hold_invitation_available"], "sourceEvidence": ["eldenpedia-melina-roundtable", "eldenpedia-roundtable-hold", "game8-roundtable-hold-cross-check"], "verificationState": "online_cross_checked", "note": "At an eligible grace, rest and speak with Melina after the invitation threshold is met; the event is represented separately from the target hub."
+    },
+    {
+      "id": "lake-facing-cliffs-to-roundtable-invitation", "from": "grace_lake_facing_cliffs", "to": "roundtable_hold_invitation_trigger", "mode": "Lake-Facing Cliffs rest to Melina invitation", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "melina_invitation_scene", "requires": ["roundtable_hold_invitation_available"], "sourceEvidence": ["eldenpedia-melina-roundtable", "eldenpedia-roundtable-hold", "game8-roundtable-hold-cross-check"], "verificationState": "online_cross_checked", "note": "Representative Liurnia-side invitation trigger; this avoids implying a physical road to the isolated hub."
+    },
+    {
+      "id": "roundtable-invitation-to-table-of-lost-grace", "from": "roundtable_hold_invitation_trigger", "to": "grace_roundtable_hold_main_table_of_lost_grace", "mode": "Melina one-way transport to Roundtable Hold", "cost": 1, "risk": 1, "direction": "one_way", "transitionType": "melina_fast_travel", "requires": ["roundtable_hold_invited"], "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-melina-roundtable", "game8-roundtable-hold-cross-check", "gamerguides-roundtable-hold-cross-check"], "verificationState": "online_cross_checked", "note": "Accept Melina's offer to arrive at Table of Lost Grace; subsequent access is via the map fast-travel entry, not a physical overworld edge."
     }
   ],
   "relations": [
@@ -16091,8 +16123,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 635,
-    "formalRouteEdgeCount": 665,
+    "formalNodeCount": 637,
+    "formalRouteEdgeCount": 668,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
