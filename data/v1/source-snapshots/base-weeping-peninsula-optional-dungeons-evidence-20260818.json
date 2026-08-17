@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "base-weeping-peninsula-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "earthbore-cave-lookout-runebear",
+      "claim": "Earthbore Cave is on the northern edge of Weeping Peninsula between the lookout tower and the demi-human forest; its entrance is reached from a cliff strip and its route ends at a Runebear.",
+      "sources": [
+        { "source_id": "eldenpedia-earthbore-cave", "url": "https://eldenring.wiki.gg/wiki/Earthbore_Cave" },
+        { "source_id": "gamerguides-earthbore-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/weeping-peninsula/bosses/how-to-beat-the-runebear-in-earthbore-cave" },
+        { "source_id": "neoseeker-earthbore-cross-check", "url": "https://www.neoseeker.com/elden-ring/Bosses/Runebear" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "tombsward-cave-fourth-church-miranda",
+      "claim": "Tombsward Cave is southeast of the Fourth Church of Marika in Weeping Peninsula, contains poison hazards, and ends at Miranda the Blighted Bloom.",
+      "sources": [
+        { "source_id": "game8-tombsward-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/374567" },
+        { "source_id": "gamerguides-tombsward-cave-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/weeping-peninsula/tombsward-cave" },
+        { "source_id": "game8-limgrave-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "tombsward-catacombs-minor-erdtree-cemetery-shade",
+      "claim": "Tombsward Catacombs is north of the Weeping Peninsula Minor Erdtree behind the fallen stone pillar; fire platforms and a lever open the Cemetery Shade chamber.",
+      "sources": [
+        { "source_id": "eldenpedia-tombsward-catacombs", "url": "https://eldenring.wiki.gg/wiki/Tombsward_Catacombs" },
+        { "source_id": "gamerguides-tombsward-catacombs-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/weeping-peninsula/tombsward-catacombs" },
+        { "source_id": "game8-limgrave-weeping-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379489" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "impalers-catacombs-morne-watchdog",
+      "claim": "Impaler's Catacombs is reached from Castle Morne Rampart by taking the northeastern plateau route and descending near the jellyfish cliff; the trap-floor/water-chamber route and lever lead to the Erdtree Burial Watchdog.",
+      "sources": [
+        { "source_id": "eldenpedia-impalers-catacombs", "url": "https://eldenring.wiki.gg/wiki/Impaler%27s_Catacombs" },
+        { "source_id": "gamerguides-impalers-catacombs-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/weeping-peninsula/bosses/how-to-beat-erdtree-burial-watchdog-in-the-impalers-catacombs" },
+        { "source_id": "ludo-impalers-catacombs-cross-check", "url": "https://www.ludo.guide/guide/elden-ring/limgrave/locations/how-to-find-and-complete-the-impalers-catacombs-in-t-4du93q" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
