@@ -1,0 +1,41 @@
+{
+  "snapshot_id": "base-postboss-deeproot-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "deeproot-fia-return",
+      "claim": "Deeproot's hidden Root-Facing Cliffs branch returns to the Deeproot hub; after Fia's Champions, Prince of Death's Throne is the next grace before the Deathbed Dream. Defeating Fortissax automatically returns the player beside Fia, so V1 models the post-boss state back to Prince of Death's Throne rather than leaving it as an unreachable terminal.",
+      "sources": [
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/372046" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/372046" },
+        { "source_id": "gamesradar-deeproot-cross-check", "url": "https://www.gamesradar.com/elden-ring-fia-quest-questline-walkthrough-deathbed-companion-age-of-duskborn-ending/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "base-legacy-postboss-returns",
+      "claim": "Morne Moangrave is the Castle Morne boss-room grace after Leonine; Rykard's grace is the cleared Audience Pathway boss route; Windmill Heights is activated after the Godskin Apostle; and Castellan's Hall is the Shaded Castle post-Elemer room. V1 adds their physical returns to the preceding route nodes with boss-state conditions.",
+      "sources": [
+        { "source_id": "eldenpedia-castle-morne", "url": "https://eldenring.wiki.gg/wiki/Castle_Morne" },
+        { "source_id": "game8-castle-morne-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369386" },
+        { "source_id": "eldenpedia-rykard", "url": "https://eldenring.wiki.gg/wiki/Rykard,_Lord_of_Blasphemy" },
+        { "source_id": "powerpyx-volcano-cross-check", "url": "https://www.powerpyx.com/elden-ring-volcano-manor-walkthrough/" },
+        { "source_id": "eldenpedia-shaded-castle", "url": "https://eldenring.wiki.gg/wiki/The_Shaded_Castle" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "windmill-and-shaded-layer-guards",
+      "claim": "Windmill Heights and Shaded Castle Castellan's Hall are modeled as post-boss return states, not merged with their surface approach. Boss completion remains required; no reverse edge is added for unrelated one-way teleports or for a boss gate before its cleared state.",
+      "sources": [
+        { "source_id": "eldenpedia-altus-r65232", "url": "https://eldenring.wiki.gg/wiki/Altus_Plateau" },
+        { "source_id": "powerpyx-altus-cross-check", "url": "https://www.powerpyx.com/elden-ring-altus-plateau-walkthrough/" },
+        { "source_id": "game8-altus-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379636" },
+        { "source_id": "game8-shaded-castle-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370264" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

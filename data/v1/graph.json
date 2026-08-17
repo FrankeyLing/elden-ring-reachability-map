@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.90-online-multiplane",
+  "version": "1.0.91-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -103,7 +103,8 @@
       "base-altus-capital-outskirts-roundtrip-evidence-20260818",
       "base-leyndell-sewer-roundtrip-evidence-20260818",
       "base-haligtree-farum-roundtrip-evidence-20260818",
-      "base-snowfield-mohgwyn-roundtrip-evidence-20260818"
+      "base-snowfield-mohgwyn-roundtrip-evidence-20260818",
+      "base-postboss-deeproot-roundtrip-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17211,6 +17212,14 @@
     ,{ "id": "yelough-mouth-to-snowfield", "from": "yelough_anix_tunnel_surface_entrance", "to": "grace_consecrated_snowfield", "mode": "Yelough Anix Tunnel mouth return to Snowfield", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "frozen_mine_entrance_return", "requires": [], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the tunnel mouth across the southwest Snowfield route.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
     ,{ "id": "yelough-grace-to-mouth", "from": "grace_mountaintops_main_yelough_anix_tunnel", "to": "yelough_anix_tunnel_surface_entrance", "mode": "Yelough Anix Tunnel return to surface mouth", "cost": 4, "risk": 7, "direction": "backtrack", "transitionType": "lift_descent_return", "requires": [], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "arrpeegeez-yelough-anix-cross-check", "eip-yelough-anix-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the entrance lift back to the Yelough Anix surface mouth.", "tags": ["elevator", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "yelough-post-to-grace", "from": "yelough_anix_tunnel_post_boss_state", "to": "grace_mountaintops_main_yelough_anix_tunnel", "mode": "Yelough Anix Tunnel post-boss return", "cost": 3, "risk": 9, "direction": "backtrack", "transitionType": "boss_completion_state_return", "requires": ["yelough_anix_astel_defeated"], "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "arrpeegeez-yelough-anix-cross-check", "eip-yelough-anix-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the cleared Astel chamber to the Yelough Anix Tunnel grace.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "root-facing-cliffs-to-deeproot", "from": "grace_deeproot_depths_main_root_facing_cliffs", "to": "grace_deeproot_depths", "mode": "Root-Facing Cliffs return to Deeproot Depths", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "hidden_wall_root_branch_return", "requires": [], "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "neoseeker-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the western hidden-root branch back to the Deeproot Depths hub grace.", "tags": ["walk", "vertical", "underground", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "prince-throne-to-across-roots", "from": "grace_prince_of_deaths_throne", "to": "grace_deeproot_depths_main_across_the_roots", "mode": "Prince of Death's Throne return to Across the Roots", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "fia_champions_route_return", "requires": ["fia_champions_defeated"], "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "Leave Fia's throne area through the cleared Champions route and return to the upper root crossing.", "tags": ["walk", "vertical", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "fortissax-post-to-prince-throne", "from": "grace_lichdragon_fortissax_post_boss", "to": "grace_prince_of_deaths_throne", "mode": "Fortissax post-boss return to Prince of Death's Throne", "cost": 2, "risk": 3, "direction": "backtrack", "transitionType": "deathbed_dream_return", "requires": ["lichdragon_fortissax_defeated"], "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "The Deathbed Dream returns the player beside Fia at the Prince of Death's Throne after Fortissax is defeated.", "tags": ["dream", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "rykard-post-to-audience-pathway", "from": "grace_volcano_manor_main_rykard_lord_of_blasphemy", "to": "grace_volcano_manor_main_audience_pathway", "mode": "Rykard post-boss return to Audience Pathway", "cost": 4, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["rykard_defeated"], "sourceEvidence": ["eldenpedia-rykard", "eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared Rykard arena through the same boss approach and return to the Audience Pathway grace.", "tags": ["walk", "boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "morne-moangrave-to-rampart-gaol", "from": "grace_limgrave_weeping_peninsula_morne_moangrave", "to": "grace_limgrave_weeping_peninsula_beside_the_rampart_gaol", "mode": "Morne Moangrave return to Beside the Rampart Gaol", "cost": 4, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["leonine_misbegotten_defeated"], "sourceEvidence": ["eldenpedia-castle-morne", "game8-castle-morne-cross-check", "powerpyx-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the post-Leonine boss-room grace and return to the lower rampart gaol route.", "tags": ["walk", "boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "windmill-heights-to-village", "from": "grace_altus_plateau_main_windmill_heights", "to": "grace_altus_plateau_main_windmill_village", "mode": "Windmill Heights return to Windmill Village", "cost": 4, "risk": 5, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["godskin_noble_altus_defeated"], "sourceEvidence": ["eldenpedia-altus-r65232", "powerpyx-altus-cross-check", "game8-altus-cross-check"], "verificationState": "online_cross_checked", "note": "Descend from the Godskin Apostle post-boss heights to the Windmill Village grace.", "tags": ["walk", "boss", "surface", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "castellans-hall-to-inner-gate", "from": "grace_altus_plateau_main_castellan_s_hall", "to": "grace_altus_plateau_main_shaded_castle_inner_gate", "mode": "Castellan's Hall return to Shaded Castle Inner Gate", "cost": 5, "risk": 7, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["elemer_of_the_briar_defeated"], "sourceEvidence": ["eldenpedia-shaded-castle", "game8-shaded-castle-cross-check", "powerpyx-altus-cross-check"], "verificationState": "online_cross_checked", "note": "Leave Elemer's cleared hall through the interior route to the Inner Gate grace.", "tags": ["walk", "boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "shaded-inner-gate-to-ramparts", "from": "grace_altus_plateau_main_shaded_castle_inner_gate", "to": "grace_altus_plateau_main_shaded_castle_ramparts", "mode": "Shaded Castle Inner Gate return to Ramparts", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "legacy_internal_route_return", "requires": [], "sourceEvidence": ["eldenpedia-shaded-castle", "game8-shaded-castle-cross-check", "powerpyx-altus-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the inner keep route to the Shaded Castle Ramparts grace.", "tags": ["walk", "legacy", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17233,7 +17242,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 988,
+    "formalRouteEdgeCount": 996,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
