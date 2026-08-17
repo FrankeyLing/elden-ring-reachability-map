@@ -1,10 +1,10 @@
 # 《艾尔登法环》全位面 1:1 互动地图执行规格
 
-> 文档版本：1.1  
-> 编制日期：2026-08-17（Asia/Shanghai）  
-> 本次修订：按“全位面、全楼层、全世界状态、可自动验证的真实可达性图”重新收紧数据模型、路线契约、来源基线和验收门  
-> 目标目录：`C:\Users\Frankey\ZCodeProject\repos\elden-ring-reachability-map`  
-> 当前阶段：只做立项、数据、工程和验收设计；本文件不授权开始编写业务代码。
+> 文档版本：1.2
+> 编制日期：2026-08-17（Asia/Shanghai）
+> 本次修订：采用 Online-first V1；先用有许可、可追溯的在线结构化数据交付真实可用版本，再由本地游戏文件校准为完整 1:1
+> 目标目录：`C:\Users\Frankey\ZCodeProject\repos\elden-ring-reachability-map`
+> 当前阶段：Phase 1A Online-first V1；允许在 `GAMING_SAFE + ONLINE_INGEST` 约束内进行在线数据接入和产品实现，禁止影响前台游戏。
 
 ## 0. 执行结论
 
@@ -12,19 +12,21 @@
 
 1. 保留现有界面中可用的交互概念，例如筛选、起终点、路线步骤和节点详情；
 2. 将现有演示数据整体隔离为 `demo fixture`，任何节点和边都不得未经重新取证进入正式数据集；
-3. 以用户合法持有的当前 PC 游戏安装文件作为坐标、地图实体、物品、事件和本地化名称的主真值；
-4. 在线互动地图、Wiki、资料库和社区工具只用于补充攻略语义、发现遗漏和交叉校验，不能反过来覆盖游戏文件中的坐标与 ID；
-5. “所有位面”必须覆盖地表、地下、幽影之地、全部可游玩的独立地图、遗迹地牢的每个实际楼层、Boss 独立场景和世界状态变体；
-6. 知识图谱中的“属于、位于、掉落、对应地图”等关系必须与“玩家能从 A 到 B”彻底隔离，只有带方向、条件、几何和证据的正式 `Transition` 才能进入寻路器；
-7. 公开发布若要直接展示游戏原始地图纹理、图标或模型，必须先取得相应权利人的书面许可；未获许可时，公开版必须使用自制视觉层，但仍保持游戏坐标和空间关系精确。
+3. V1 优先从 Eldenpedia、ERDB、FrontierNav，以及经逐文件许可/来源审计的 Map For Goblins 和 `er-guide` 建立在线数据快照，先交付真实 POI、全成就导航、赐福到目标路线和关键世界状态；
+4. V1 每条记录必须标明在线来源、revision/commit、许可证、抓取时间、坐标类型和证据等级；没有来源的数据不得进入正式构建；
+5. V2 以用户合法持有的当前 PC 游戏安装文件作为坐标、地图实体、物品、事件和本地化名称的最终主真值，对 V1 逐项升级为 `local_game_verified`；
+6. “所有位面”必须覆盖地表、地下、幽影之地、全部可游玩的独立地图、遗迹地牢的每个实际楼层、Boss 独立场景和世界状态变体；
+7. 知识图谱中的“属于、位于、掉落、对应地图”等关系必须与“玩家能从 A 到 B”彻底隔离，只有带方向、条件、几何和证据的正式 `Transition` 才能进入寻路器；
+8. MapGenie、Fextralife、Wand、AtlasForge 等专有互动地图只做人工查漏和 UX 对标，不绕过 robots、不抓私有接口、不镜像瓦片或批量复制专有坐标；
+9. 公开发布若要直接展示游戏原始地图纹理、图标或模型，必须先取得相应权利人的书面许可；未获许可时，V1 使用自制/抽象底图，V2 公开版继续使用自制视觉层。
 
-项目最终交付物不是一张贴满图标的大图，而是一个可追溯到特定游戏版本、能够解释每一条数据来源、能够正确切换楼层和世界状态，并按玩家当前周目、已激活赐福、钥匙、Boss/任务 flag 和世界纪元给出真实可行路线的地图系统。
+项目先交付标明来源与在线证据等级的 `Online Verified V1`，解决“目标在哪、从哪个赐福出发、入口和楼层在哪里、当前状态能不能拿到”；再通过本地游戏文件升级为能够声明空间、数据和拓扑 1:1 的最终版本。
 
 ## 1. 现有原型审计
 
 ### 1.1 已确认现状
 
-- 当前目录不是 Git 仓库，尚无可追溯的版本历史。
+- 当前目录已初始化 Git；Phase 0 环境基线已有独立提交，现有未跟踪 WebUI 演示文件继续保持隔离，不纳入正式数据提交。
 - README 已明确说明现有数据只是演示拓扑，不是完整世界数据集。
 - 当前数据只有 25 个节点、30 条边、5 个条件和 4 个粗粒度图层。
 - 所有坐标都位于人为设定的 `1000 × 600` SVG 画布，不是游戏世界坐标。
@@ -114,7 +116,9 @@
 
 ### 3.1 权威顺序
 
-出现冲突时按以下顺序处理：
+V1 的实施优先级是：可许可接入的在线结构化数据 → 在线路线/知识图谱 → 专有互动地图人工核对 → 本地游戏文件后续校准。这样可以先交付产品，不必等待本地归档提取。
+
+但出现事实冲突时，权威顺序仍然是：
 
 1. 当前目标版本的游戏文件与实际离线游戏行为；
 2. 官方版本公告和游戏内文本；
@@ -123,7 +127,7 @@
 5. 在线互动地图和攻略文章；
 6. 无法追溯版本的搜索摘要、帖子或二次转载。
 
-低等级来源可以触发复查，不能直接覆盖高等级来源。
+低等级来源可以触发复查，不能直接覆盖高等级来源。V1 尚无本地证据的记录必须保留 `online_single` 或 `online_cross_checked` 状态；V2 才能升级为 `local_game_verified`。
 
 ### 3.2 具体来源矩阵
 
@@ -146,7 +150,7 @@
 | MapGenie、Fextralife、IGN、Game8 等在线地图 | 发现漏点、名称差异和用户常用分类 | 人工对照或取得书面许可后的正式接口/导出 | 禁止绕过 robots、批量镜像瓦片或抓取私有接口；不得把第三方坐标当主真值 |
 | Future Press 等攻略书 | 特殊路线与官方攻略语义复核 | 使用合法购买版本人工核对 | 不扫描、复制或公开再分发受版权保护的页面 |
 
-不存在一个可以直接接入并宣称完成本项目的单一上游。正确分工是：游戏文件与实机行为提供事实真值，Compass 等工具提供可审计的提取/存档实现参考，FrontierNav 提供知识关系架构参考，`er-guide` 提供路线写作与覆盖工作流参考，ER Route Tracker 或自建离线采集器提供真实轨迹证据，传统互动地图只负责漏点发现和用户分类对照。
+不存在一个可以单独宣称完成全世界 1:1 的上游，但 V1 可以组合多个在线源直接交付。具体接入许可、用途和排除项以 `data/online-source-registry.json` 与 `ONLINE_FIRST_V1_PLAN.md` 为准；本地游戏文件与实机行为继续作为后续最终裁决依据。
 
 ### 3.3 外部来源留痕
 
@@ -171,7 +175,7 @@
 - 已发现真实游戏目录：`C:\MyProgram\Steam\steamapps\common\ELDEN RING\Game`。
 - `eldenring.exe` 文件版本为 `2.6.2.0`；Steam BuildID 为 `22984413`。
 - `regulation.bin`、EXE、Data0/1/2/3 BHD 和 DLC BHD 的 SHA-256 已记录在 `data/source-manifest.json`。
-- 当前游戏进程正在运行；为避免影响前台游戏，真实归档提取和工具启动暂缓，Phase 1 尚未执行。
+- 当前游戏进程正在运行；Phase 1A 可在限速、无 GUI 的在线数据通道中继续，直接游戏归档提取、工具启动和实机采集延后到 Phase 1B 的合格窗口。
 
 ### 4.2 开工前必须满足
 
@@ -181,7 +185,7 @@
 4. 建立 Git 仓库，但把原始游戏资源、解包缓存和存档加入忽略规则；
 5. 确认剩余磁盘空间和备份位置；
 6. 整个提取过程只读，不修改游戏安装，不把修改器接入在线/EAC 会话；
-7. 归档枚举、解包、解析和实机采集只能在游戏进程未运行时执行；游戏运行期间只允许读取已知元数据，不触碰游戏进程、存档、归档内容和前台窗口。
+7. 游戏运行期间允许按 `CONCURRENT_EXECUTION_PLAN.md` 执行有许可、可追溯的小型文本/JSON 在线快照与规范化；直接读取原始游戏 BDT、制作快照、大规模解包、GUI 工具和实机采集仍属 `IDLE_ONLY`，只有来自已验证独立健康物理盘的只读快照才可进入 `SNAPSHOT_IO`；任何通道均不得触碰游戏进程、存档或前台窗口。
 
 ### 4.3 必须停止而不能猜的情况
 
@@ -193,6 +197,16 @@
 - 原始美术拟公开发布但尚无授权；
 - 游戏进程正在运行而操作计划需要读取大型归档、启动工具或采集实时位置；
 - 关键路线只能靠“看起来应该能走”推断，尚未实机验证。
+
+### 4.4 游戏并行执行模式
+
+并行工作的完整硬边界见 `CONCURRENT_EXECUTION_PLAN.md`，机器可读约束见 `data/execution-policy.json`：
+
+- 当前游戏运行时启用 `GAMING_SAFE + ONLINE_INGEST`，用于文档、Schema、许可证审计、受限文本/JSON 获取、Source Snapshot、规范化和小型校验；
+- 在线任务单响应不超过 8 MiB、单任务累计不超过 32 MiB、每秒不超过 1 个请求、吞吐不超过 1 MiB/s，只允许文本/JSON，不获取地图瓦片、图片、视频或大型压缩包；
+- 在线结果必须先落到不可变 Source Snapshot，再由 snapshot 构建规范数据；页面改版或接口失效不能直接污染已发布数据；
+- 当前游戏与项目都在 C:，且没有合格独立快照盘，因此直接本地归档任务全部排队；历史不稳定的 D: 不得用作快照、缓存、日志或中间数据盘；
+- 任务必须无窗口、无通知、无声音、单工作者且失败静默；绝不向 `eldenring.exe`、EAC、Steam 游戏窗口或存档发出任何操作。
 
 ## 5. 数据生产架构
 
@@ -584,6 +598,8 @@ Souls Modding 的地图资料说明：
 - 固定 Smithbox、SoulsFormatsNEXT、Paramdex 等提交；
 - 固定并审计 Compass、FrontierNav 文档、`er-guide`、ER Route Tracker 等当前对标版本、许可证和数据来源；
 - 建立 source/license ledger；
+- 建立 `data/online-source-registry.json`，逐源登记直接接入字段、禁用资产、许可证、revision/commit 和同步方式；
+- 固定 `data/execution-policy.json`，把在线同步、游戏并行和本地归档三类任务变成可校验的调度边界；
 - 为每个外部来源标明“事实真值 / 提取参考 / 语义参考 / 轨迹证据 / UX 对标”，禁止角色混用；
 - 初始化 Git，隔离当前 demo；
 - 确定本地版与公开版资源边界。
@@ -592,10 +608,32 @@ Souls Modding 的地图资料说明：
 
 - 能从 manifest 唯一重现数据源；
 - 不存在来源不明的工具或资源；
-- 没有任何第三方地图、知识图谱或路线指南被登记为游戏坐标/通行真值；
+- 没有任何第三方地图、知识图谱或路线指南被误登记为 `local_game_verified`；第三方坐标必须保留原坐标系和证据等级，语义关系不能直接成为通行边；
 - 原始游戏资产不在源码提交范围。
 
-### Phase 1：四类地图真值样片
+### Phase 1A：Online-first 真实可用 V1
+
+**工作**
+
+- 冻结 `data/online-source-registry.json` 中各来源的许可证、revision/commit、允许字段和禁止用途；
+- 以小型文本/JSON 请求获取 Eldenpedia、ERDB 和经审计开源仓库的不可变 Source Snapshot，不镜像专有地图瓦片、图片或私有接口；
+- 建立统一 `Entity`、`Placement`、`RouteLeg`、`SemanticRelation`、`SourceEvidence` 和来源坐标契约；
+- 首先导入全成就依赖、关键错过项、全部赐福、地区/子地区、主要入口与关键 `WorldEpoch`；
+- 使用 `er-guide` 的 grace-to-grace 路段结构和 Wiki walkthrough 路线语义建立 `RouteLeg` 候选，但排除来源混杂且未经独立确认的瓦片、图片和坐标；
+- 每条默认路线边要求两个独立在线来源一致，或一个结构化来源加人工核对；只描述目标位置而未描述通行机制的资料不得生成路线边；
+- 在线坐标保留来源坐标系，经版本化控制点变换投影到自制/抽象底图；不得冒充游戏原始 X/Y/Z；
+- 接入现有 WebUI，并确保正式构建不读取 `data/graph.json` 演示点。
+
+**退出门**
+
+- 可发布 `Online Verified V1`，而不是演示数据或未经说明的“1:1 完成版”；
+- 全部成就依赖至少具备来源、最近可用赐福、入口地标、楼层/位面、必要状态和可执行步骤；未知项显式返回 unknown；
+- 地表、地下、独立地图/楼层和幽影之地四类顶层空间均可检索与导航，关键错过项和“黄金树大教堂 → 古兰桑克斯的雷电”通过金标准用例；
+- 每条正式记录均具有来源 URL、revision/commit、许可证、获取时间、坐标类型和证据等级；
+- `SemanticRelation` 进入路线编译器即构建失败；没有证据的临近点不自动连边；
+- 发布物不含未经许可的瓦片、图片、批量专有坐标、游戏原始资产或演示数据。
+
+### Phase 1B：四类地图本地真值样片
 
 选取四个代表区：
 
@@ -855,7 +893,11 @@ Souls Modding 的地图资料说明：
 
 | 里程碑 | 累计工期参考 | 结果 |
 |---|---:|---|
-| R0 真值样片 | 2–3 周 | 四类地图、坐标、楼层、关系隔离和状态路线样片通过 |
+| V1-A 在线来源冻结 | 1–2 天 | 来源注册表、许可证、revision/commit 和首批 Source Snapshot 可复现 |
+| V1-B 全成就导航 | 3–7 天 | 全成就依赖、关键错过项、赐福起点、入口/楼层、世界状态和步骤可用 |
+| V1-C 世界导航骨架 | 1–2 周 | 地表、地下、独立地图/楼层、幽影之地的主要入口和跨区连接可用 |
+| V1-D 收集扩展 | 2–4 周 | 主要唯一物、Boss、NPC、升级材料和地点逐类扩展并保留证据等级 |
+| R0 本地真值样片 | 2–3 周（可与 V1-C/V1-D 错峰） | 四类地图、游戏坐标、楼层、关系隔离和状态路线样片通过 |
 | R1 全世界底图 + 核心 POI | 6–10 周 | 地表/地下/DLC、主要唯一物和世界纪元骨架可用 |
 | R2 全独立地图/全楼层 + 全量 POI | 14–22 周 | 所有 playable map、候选点、楼层和跨图端点完成审计 |
 | R3 全状态可达性、路线、存档和发布 QA | 24–36 周 | 达到本文的完整拓扑、状态路线和 1:1 验收口径 |
@@ -881,17 +923,17 @@ Souls Modding 的地图资料说明：
 
 ## 17. 开工顺序
 
-用户确认本规格后，下一步只执行 Phase 0 和 Phase 1，不直接铺满全图：
+实际安装路径和基础哈希已经确认；从现在起按在线 V1 与本地校准双轨开工：
 
-1. 用户提供实际游戏安装路径；
-2. 默认按“本地私用真值版”启动，公开版同时走自制底图预案；
-3. 建立版本/许可/哈希清单和外部来源职责矩阵；
-4. 隔离演示数据；
-5. 定义 SemanticRelation、RouteNode、Transition、StateSnapshot、RouteRequest 和 RouteResult 的冻结契约；
-6. 先做宁姆格福、希芙拉河、史东薇尔、幽影城四个真值样片；
-7. 加入玛利喀斯前/后王城状态对和“黄金树大教堂 → 古兰桑克斯的雷电”强制用例；
-8. 提交样片的 transform、floor、POI、relation、transition、state-effect 和实机验收报告；
-9. 样片通过后，才进入全地图扩展。
+1. 在游戏运行期间按 `ONLINE_FIRST_V1_PLAN.md` 和 `data/execution-policy.json` 冻结在线来源、许可证与请求限额；
+2. 建立小型 Source Snapshot，先接入全成就依赖、赐福、地区、入口、楼层、关键世界状态和唯一物；
+3. 定义并冻结 `SemanticRelation`、`RouteLeg`、`RouteNode`、`Transition`、`StateSnapshot`、`RouteRequest` 和 `RouteResult` 契约；
+4. 用两源规则建立“最近可用赐福 → 入口地标 → 楼层 → 必经连接 → 条件边 → 目标”，禁止按二维距离自动连边；
+5. 以玛利喀斯前/后王城状态对和“黄金树大教堂 → 古兰桑克斯的雷电”为强制用例，交付 `Online Verified V1`；
+6. 游戏退出后再执行本地工具 spike；有合格独立健康盘时制作只读快照，否则只在空闲窗口直接读取归档；
+7. 先做宁姆格福、希芙拉河、史东薇尔、幽影城四类本地真值样片，把在线记录逐项升级为 `local_game_verified`；
+8. 提交 transform、floor、POI、relation、transition、state-effect、来源差异和实机验收报告；
+9. V1 达标后继续扩大在线覆盖，本地样片达标后继续全图 1:1 校准；二者任一未过门都不能冒充最终完成。
 
 ## 18. 本文核对过的主要在线依据
 
@@ -909,12 +951,16 @@ Souls Modding 的地图资料说明：
 - [Paramdex](https://github.com/soulsmods/Paramdex)
 - [Eldenpedia：Maps](https://eldenring.wiki.gg/wiki/Maps)
 - [Eldenpedia：Editing Guidelines](https://eldenring.wiki.gg/wiki/Elden_Ring_Wiki%3AEditing_Guidelines)
+- [Eldenpedia：许可说明](https://eldenring.wiki.gg/wiki/Category%3AEldenpedia)
+- [MediaWiki Action API](https://www.mediawiki.org/wiki/API:Main_page)
 - [Map For Goblins DLL](https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL)
 - [ERDB](https://github.com/EldenRingDatabase/erdb)
+- [Elden Ring Fan API](https://github.com/deliton/eldenring-api)
 - [Elden Ring Compass](https://github.com/EthanShoeDev/elden-ring-compass)
 - [FrontierNav：Data Model](https://docs.frontiernav.net/editing-data/data-model)
 - [FrontierNav：Deep Query](https://docs.frontiernav.net/navigation/query)
 - [FrontierNav：Edit Interactive Maps](https://docs.frontiernav.net/editing-data/editing-interactive-maps)
+- [FrontierNav：Terms of Use](https://docs.frontiernav.net/policies/terms-of-use)
 - [FrontierNav：《艾尔登法环》公开关系示例](https://frontiernav.net/wiki/elden-ring/entities/atlus-plateau)
 - [Elden Ring 100% Route Guide](https://github.com/aether-auto/er-guide)
 - [ER Route Tracker](https://www.nexusmods.com/eldenring/mods/9294?tab=docs)

@@ -1,0 +1,110 @@
+{
+  "policy_version": 2,
+  "captured_at": "2026-08-17",
+  "mode_when_game_running": "gaming_safe_plus_online_ingest",
+  "game_process_names": [
+    "eldenring"
+  ],
+  "hard_prohibitions": {
+    "game_process_memory_access": true,
+    "game_process_injection": true,
+    "game_directory_writes": true,
+    "save_reads_or_writes_while_running": true,
+    "gui_or_uac_while_running": true,
+    "gpu_work_while_running": true,
+    "direct_bdt_reads_from_game_disk_while_running": true,
+    "use_drive_d": true
+  },
+  "gaming_safe": {
+    "max_workers": 1,
+    "max_project_io_per_task_mib": 16,
+    "allowed": [
+      "documentation",
+      "schema_design",
+      "source_and_license_audit",
+      "licensed_online_source_snapshot_design",
+      "small_json_validation",
+      "small_unit_tests",
+      "static_code_review",
+      "git_commits"
+    ],
+    "forbidden": [
+      "game_directory_scan",
+      "bdt_read",
+      "recursive_hash",
+      "dependency_install",
+      "full_build",
+      "browser_e2e",
+      "screenshot_or_video_processing"
+    ]
+  },
+  "online_ingest": {
+    "enabled": true,
+    "requires_registered_source": true,
+    "requires_known_license_and_allowed_fields": true,
+    "requires_revision_or_commit": true,
+    "requires_user_agent": true,
+    "requires_immutable_source_snapshot": true,
+    "allowed_content_types": [
+      "text",
+      "json",
+      "mediawiki_api",
+      "fixed_git_files"
+    ],
+    "forbidden_content": [
+      "proprietary_map_tiles",
+      "images",
+      "video",
+      "large_archives",
+      "private_api_probing",
+      "unlicensed_bulk_coordinates"
+    ],
+    "max_workers": 1,
+    "max_requests_per_second": 1,
+    "max_response_mib": 8,
+    "max_task_mib": 32,
+    "network_mib_per_second": 1,
+    "gui_allowed": false,
+    "gpu_allowed": false,
+    "stop_on_http_status": [
+      403,
+      429
+    ],
+    "stop_on_license_unknown": true,
+    "stop_on_schema_drift": true
+  },
+  "snapshot_io": {
+    "enabled": false,
+    "requires_different_healthy_physical_disk": true,
+    "requires_snapshot_created_while_game_stopped": true,
+    "max_workers": 1,
+    "process_priority": "BelowNormal",
+    "cpu_average_percent": 8,
+    "cpu_peak_5s_percent": 15,
+    "working_set_mib": 1536,
+    "working_set_percent_of_physical_memory": 8,
+    "read_mib_per_second": 4,
+    "write_mib_per_second": 2,
+    "max_chunk_mib": 64,
+    "max_chunk_seconds": 20,
+    "gpu_allowed": false,
+    "network_mib_per_second": 1,
+    "log_flush_seconds": 10
+  },
+  "scheduler": {
+    "game_detection_interval_seconds": 5,
+    "cooldown_after_game_exit_seconds": 120,
+    "pause_flag": "PAUSE_GAMING_WORK.flag",
+    "register_startup_task": false,
+    "register_global_hotkey": false,
+    "show_notifications": false,
+    "automatic_retry_on_crash": false
+  },
+  "current_host": {
+    "game_volume": "C:",
+    "workspace_volume": "C:",
+    "snapshot_volume": null,
+    "drive_d_allowed": false,
+    "decision": "GAMING_SAFE and licensed ONLINE_INGEST work are allowed while the game is running. Local archive work remains queued until a healthy independent snapshot disk is verified or the game is stopped."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "registry_version": 1,
+  "reviewed_at": "2026-08-17",
+  "sources": [
+    {
+      "id": "eldenpedia",
+      "name": "Eldenpedia / eldenring.wiki.gg",
+      "url": "https://eldenring.wiki.gg/",
+      "access": "MediaWiki Action or REST API",
+      "license": "CC BY-SA 4.0 for page text unless otherwise noted; media is per-file",
+      "v1_role": ["entities", "regions", "walkthrough_semantics", "entrances", "floors", "quests"],
+      "import_status": "direct",
+      "exclude": ["media without per-file license audit"],
+      "freshness": "fetch revision per page"
+    },
+    {
+      "id": "erdb",
+      "name": "EldenRingDatabase/erdb",
+      "url": "https://github.com/EldenRingDatabase/erdb",
+      "access": "public REST API or fixed Git commit",
+      "license": "MIT",
+      "v1_role": ["items", "ids", "stats", "versioned_schema"],
+      "import_status": "direct",
+      "exclude": ["unverified claims of current 2.6.2.0 coverage"],
+      "freshness": "API and commit spike required"
+    },
+    {
+      "id": "frontiernav",
+      "name": "FrontierNav Elden Ring Wiki",
+      "url": "https://frontiernav.net/wiki/elden-ring",
+      "access": "public pages and Deep Query",
+      "license": "CC BY-SA 4.0 for contributed text; non-text media varies",
+      "v1_role": ["semantic_relations", "entity_relationships", "region_membership"],
+      "import_status": "direct",
+      "exclude": ["non-text media without license audit", "automatic conversion of semantic relations to traversal edges"],
+      "freshness": "Elden Ring dataset completeness and revision audit required"
+    },
+    {
+      "id": "map_for_goblins",
+      "name": "ERR-MapForGoblins-DLL",
+      "url": "https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL",
+      "access": "fixed Git commit and repository data files",
+      "license": "MIT-style with bundled third-party notices",
+      "v1_role": ["poi_categories", "candidate_placements", "extraction_rules", "coverage_scale"],
+      "import_status": "conditional",
+      "exclude": ["DLL execution", "runtime injection", "overlay", "memory-derived state", "game assets without separate rights"],
+      "freshness": "pin commit and vanilla+DLC profile"
+    },
+    {
+      "id": "er_guide",
+      "name": "aether-auto/er-guide",
+      "url": "https://github.com/aether-auto/er-guide",
+      "access": "fixed Git commit; selected JSON only",
+      "license": "MIT code; route and imported data require file/source-level audit",
+      "v1_role": ["grace_to_grace_legs", "route_steps", "achievement_and_unique_item_coverage"],
+      "import_status": "conditional",
+      "exclude": ["Fextralife tiles", "images", "mixed-origin coordinates until independently confirmed"],
+      "freshness": "pin commit and preserve upstream attribution"
+    },
+    {
+      "id": "elden_ring_compass",
+      "name": "Elden Ring Compass",
+      "url": "https://github.com/EthanShoeDev/elden-ring-compass",
+      "access": "public repository and website",
+      "license": "root-level reuse status requires audit",
+      "v1_role": ["schema_reference", "coverage_statistics", "save_state_reference"],
+      "import_status": "reference_only",
+      "exclude": ["code", "prebuilt game data", "icons"],
+      "freshness": "current README describes active extractor and v2.6.2 data"
+    },
+    {
+      "id": "elden_ring_fan_api",
+      "name": "Elden Ring Fan API",
+      "url": "https://github.com/deliton/eldenring-api",
+      "access": "public API and repository JSON",
+      "license": "no clear root license confirmed during 2026-08-17 review",
+      "v1_role": ["difference_detection", "descriptions_reference"],
+      "import_status": "reference_only",
+      "exclude": ["published data until license and provenance are confirmed"],
+      "freshness": "2022-era API; freshness audit required"
+    },
+    {
+      "id": "proprietary_interactive_maps",
+      "name": "MapGenie, Fextralife, Wand, AtlasForge, IGN, Game8",
+      "url": null,
+      "access": "manual browser cross-check only",
+      "license": "proprietary or source-specific",
+      "v1_role": ["gap_detection", "ux_reference", "manual_route_cross_check"],
+      "import_status": "reference_only",
+      "exclude": ["private APIs", "robots bypass", "tile mirroring", "bulk coordinate copying", "copyrighted walkthrough text"],
+      "freshness": "manual review per claim"
+    }
+  ]
+}
