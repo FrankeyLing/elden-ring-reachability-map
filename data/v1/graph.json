@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.50-online-multiplane",
+    "version": "1.0.51-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -62,7 +62,8 @@
       "base-liurnia-academy-optional-dungeons-evidence-20260818",
       "base-altus-optional-dungeons-evidence-20260818",
       "base-altus-gelmir-capital-dungeons-evidence-20260818",
-      "base-altus-tunnel-sainted-hero-evidence-20260818"
+      "base-altus-tunnel-sainted-hero-evidence-20260818",
+      "base-caelid-optional-dungeons-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -508,6 +509,41 @@
       "id": "sainted_hero_ancient_zamor_defeated",
       "label": "Ancient Hero of Zamor defeated",
       "hint": "The Sainted Hero's Grave boss gate has been cleared."
+    },
+    {
+      "id": "abandoned_cave_cleanrot_knights_defeated",
+      "label": "Abandoned Cave Cleanrot Knights defeated",
+      "hint": "The Cleanrot Knight pair at the end of Abandoned Cave has been cleared."
+    },
+    {
+      "id": "caelid_catacombs_cemetery_shade_defeated",
+      "label": "Caelid Catacombs Cemetery Shade defeated",
+      "hint": "The Cemetery Shade boss gate in Caelid Catacombs has been cleared."
+    },
+    {
+      "id": "gaol_cave_two_stonesword_keys",
+      "label": "Two Stonesword Keys for Gaol Cave",
+      "hint": "The two-key Imp seal at the Scarlet Rot pool has been opened."
+    },
+    {
+      "id": "gaol_cave_frenzied_duelist_defeated",
+      "label": "Frenzied Duelist defeated",
+      "hint": "The Gaol Cave boss gate has been cleared and the Limgrave cliff exit is open."
+    },
+    {
+      "id": "minor_erdtree_catacombs_watchdogs_defeated",
+      "label": "Minor Erdtree Catacombs Watchdog pair defeated",
+      "hint": "The sword and scepter Erdtree Burial Watchdogs have been cleared."
+    },
+    {
+      "id": "war_dead_putrid_tree_spirit_defeated",
+      "label": "War-Dead Catacombs Putrid Tree Spirit defeated",
+      "hint": "The post-Radahn War-Dead Catacombs boss has been cleared."
+    },
+    {
+      "id": "sellia_crystal_tunnel_fallingstar_beast_defeated",
+      "label": "Sellia Crystal Tunnel Fallingstar Beast defeated",
+      "hint": "The Fallingstar Beast at the end of Sellia Crystal Tunnel has been cleared."
     },
     {
       "id": "malenia_defeated",
@@ -1074,6 +1110,21 @@
     ,{ "id": "eldenpedia-sainted-hero-grave", "label": "Eldenpedia - Sainted Hero's Grave", "url": "https://eldenring.wiki.gg/wiki/Sainted_Hero%27s_Grave", "grade": "A" }
     ,{ "id": "game8-sainted-hero-grave-cross-check", "label": "Game8 - Sainted Hero's Grave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370253", "grade": "B" }
     ,{ "id": "eip-sainted-hero-grave-cross-check", "label": "EIP Gaming - Sainted Hero's Grave walkthrough", "url": "https://eip.gg/elden-ring/guides/sainted-heros-grave-dungeon-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-abandoned-cave", "label": "Eldenpedia - Abandoned Cave", "url": "https://eldenring.wiki.gg/wiki/Abandoned_Cave", "grade": "A" }
+    ,{ "id": "gamesradar-abandoned-cave-cross-check", "label": "GamesRadar - Abandoned Cave / Golden Scarab", "url": "https://www.gamesradar.com/elden-ring-golden-scarab-talisman-cleanrot-knights/", "grade": "B" }
+    ,{ "id": "eldenpedia-caelid-catacombs", "label": "Eldenpedia - Caelid Catacombs", "url": "https://eldenring.wiki.gg/wiki/Caelid_Catacombs", "grade": "A" }
+    ,{ "id": "segmentnext-cemetery-shade-cross-check", "label": "SegmentNext - Cemetery Shade locations", "url": "https://segmentnext.com/cemetery-shade-locations/", "grade": "B" }
+    ,{ "id": "eldenpedia-gaol-cave", "label": "Eldenpedia - Gaol Cave", "url": "https://eldenring.wiki.gg/wiki/Gaol_Cave", "grade": "A" }
+    ,{ "id": "game8-gaol-cave-cross-check", "label": "Game8 - Gaol Cave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369946", "grade": "B" }
+    ,{ "id": "pushsquare-gaol-cave-cross-check", "label": "Push Square - Gaol Cave walkthrough", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-gaol-cave", "grade": "B" }
+    ,{ "id": "eldenpedia-minor-erdtree-catacombs", "label": "Eldenpedia - Minor Erdtree Catacombs", "url": "https://eldenring.wiki.gg/wiki/Minor_Erdtree_Catacombs", "grade": "A" }
+    ,{ "id": "game8-erdtree-watchdog-cross-check", "label": "Game8 - Erdtree Burial Watchdog guide", "url": "https://game8.co/games/Elden-Ring/archives/353632", "grade": "B" }
+    ,{ "id": "eldenpedia-war-dead-catacombs", "label": "Eldenpedia - War-Dead Catacombs", "url": "https://eldenring.wiki.gg/wiki/War-Dead_Catacombs", "grade": "A" }
+    ,{ "id": "neoseeker-war-dead-catacombs-cross-check", "label": "Neoseeker - Putrid Tree Spirit", "url": "https://www.neoseeker.com/elden-ring/Bosses/Putrid_Tree_Spirit", "grade": "B" }
+    ,{ "id": "eldenpedia-sellia-crystal-tunnel", "label": "Eldenpedia - Sellia Crystal Tunnel", "url": "https://eldenring.wiki.gg/wiki/Sellia_Crystal_Tunnel", "grade": "A" }
+    ,{ "id": "passaguai-sellia-crystal-cross-check", "label": "Passaguai - Sellia Crystal Tunnel walkthrough", "url": "https://passaguai.com/posts/my-ultimate-guide-to-conquering-sellia-crystal-tunnel-in-elden-ring-2025", "grade": "C" }
+    ,{ "id": "eldenpedia-frenzied-duelist", "label": "Eldenpedia - Frenzied Duelist", "url": "https://eldenring.wiki.gg/wiki/Frenzied_Duelist", "grade": "A" }
+    ,{ "id": "neoseeker-frenzied-duelist-cross-check", "label": "Neoseeker - Frenzied Duelist", "url": "https://www.neoseeker.com/elden-ring/Bosses/Frenzied_Duelist", "grade": "B" }
   ],
   "nodes": [
     {
@@ -7902,6 +7953,106 @@
     {
       "id": "sainted_hero_grave_post_boss_state", "label": "Sainted Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Ancient Hero chamber return state", "worldEpoch": "altus_surface", "x": 1200, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "description": "Cleared-state node for the Ancient Hero of Zamor."
+    },
+    {
+      "id": "abandoned_cave_surface_entrance", "label": "Abandoned Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Aeonia ravine branch", "worldEpoch": "caelid_surface", "x": 350, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Branch crossing over the ravine east of Smoldering Wall."
+    },
+    {
+      "id": "grace_caelid_main_abandoned_cave", "label": "Abandoned Cave", "kind": "grace", "layer": "legacy", "region": "Abandoned Cave", "floor": "Cave entrance", "worldEpoch": "caelid_surface", "x": 410, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check"], "description": "Grace inside the scarlet-rot cave."
+    },
+    {
+      "id": "cleanrot_knights_abandoned_gate", "label": "Cleanrot Knight pair (Abandoned Cave)", "kind": "boss", "layer": "legacy", "region": "Abandoned Cave", "floor": "Scarlet-rot boss chamber", "worldEpoch": "caelid_surface", "x": 470, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Spear and Sickle Cleanrot Knight duo behind the scarlet-rot approach."
+    },
+    {
+      "id": "abandoned_cave_post_boss_state", "label": "Abandoned Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Abandoned Cave", "floor": "Cleanrot Knight chamber return state", "worldEpoch": "caelid_surface", "x": 530, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check"], "description": "Cleared-state node for the Golden Scarab route."
+    },
+    {
+      "id": "caelid_catacombs_surface_entrance", "label": "Caelid Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Southern Caelid cliff", "worldEpoch": "caelid_surface", "x": 560, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check"], "description": "Catacomb mouth on the southern Caelid approach."
+    },
+    {
+      "id": "grace_caelid_main_caelid_catacombs", "label": "Caelid Catacombs", "kind": "grace", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Catacomb entrance", "worldEpoch": "caelid_surface", "x": 620, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check"], "description": "Grace at the beginning of the scarlet-rot catacombs."
+    },
+    {
+      "id": "cemetery_shade_caelid_gate", "label": "Cemetery Shade (Caelid Catacombs)", "kind": "boss", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Cemetery Shade chamber", "worldEpoch": "caelid_surface", "x": 680, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check"], "description": "Cemetery Shade at the end of the catacomb route."
+    },
+    {
+      "id": "caelid_catacombs_post_boss_state", "label": "Caelid Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Cemetery Shade chamber return state", "worldEpoch": "caelid_surface", "x": 740, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check"], "description": "Cleared-state node for the Kindred of Rot Ashes route."
+    },
+    {
+      "id": "gaol_cave_surface_entrance", "label": "Gaol Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Scarlet-rot pool beneath Fort Gael", "worldEpoch": "caelid_surface", "x": 290, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "pushsquare-gaol-cave-cross-check"], "description": "Two-key Imp seal at the blood-rot pool south-east of Fort Gael."
+    },
+    {
+      "id": "grace_caelid_main_gaol_cave", "label": "Gaol Cave", "kind": "grace", "layer": "legacy", "region": "Gaol Cave", "floor": "Cave entrance tunnel", "worldEpoch": "caelid_surface", "x": 350, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check"], "description": "Grace just inside the prison cave."
+    },
+    {
+      "id": "frenzied_duelist_gaol_gate", "label": "Frenzied Duelist (Gaol Cave)", "kind": "boss", "layer": "legacy", "region": "Gaol Cave", "floor": "Lower chasm boss chamber", "worldEpoch": "caelid_surface", "x": 410, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-frenzied-duelist", "game8-gaol-cave-cross-check", "neoseeker-frenzied-duelist-cross-check"], "description": "Frenzied Duelist at the bottom of the cell and chasm route."
+    },
+    {
+      "id": "gaol_cave_post_boss_state", "label": "Gaol Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Gaol Cave", "floor": "Frenzied Duelist chamber return state", "worldEpoch": "caelid_surface", "x": 470, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check"], "description": "Cleared-state node before the one-way cliff exit toward Limgrave."
+    },
+    {
+      "id": "gaol_cave_limgrave_exit", "label": "Gaol Cave Limgrave cliff exit", "kind": "exit", "layer": "surface", "region": "Limgrave", "floor": "Third Church of Marika cliff", "worldEpoch": "limgrave_surface", "x": 530, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "pushsquare-gaol-cave-cross-check"], "description": "One-way boss-side exit onto the Limgrave cliff near the Regalia of Eochaid route."
+    },
+    {
+      "id": "minor_erdtree_catacombs_surface_entrance", "label": "Minor Erdtree Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Northern Caelid Minor Erdtree", "worldEpoch": "caelid_surface", "x": 700, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Catacomb entrance beside the northern Caelid Minor Erdtree."
+    },
+    {
+      "id": "grace_caelid_main_minor_erdtree_catacombs", "label": "Minor Erdtree Catacombs", "kind": "grace", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Catacomb entrance", "worldEpoch": "caelid_surface", "x": 760, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check"], "description": "Grace at the beginning of the scarlet-rot catacomb."
+    },
+    {
+      "id": "minor_erdtree_watchdogs_caelid_gate", "label": "Erdtree Burial Watchdogs (Minor Erdtree Catacombs)", "kind": "boss", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Twin Watchdog chamber", "worldEpoch": "caelid_surface", "x": 820, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Sword and Scepter Erdtree Burial Watchdog pair."
+    },
+    {
+      "id": "minor_erdtree_catacombs_post_boss_state", "label": "Minor Erdtree Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Twin Watchdog chamber return state", "worldEpoch": "caelid_surface", "x": 880, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check"], "description": "Cleared-state node for the Mad Pumpkin Head Ashes route."
+    },
+    {
+      "id": "war_dead_catacombs_surface_entrance", "label": "War-Dead Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Wailing Dunes north-east shore", "worldEpoch": "post_radahn_world_state", "x": 650, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Post-Radahn catacomb entrance on the northern edge of the Wailing Dunes."
+    },
+    {
+      "id": "grace_caelid_main_war_dead_catacombs", "label": "War-Dead Catacombs", "kind": "grace", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Catacomb entrance", "worldEpoch": "post_radahn_world_state", "x": 710, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "game8-caelid-walkthrough-cross-check"], "description": "Grace inside the post-Radahn battlefield catacombs."
+    },
+    {
+      "id": "putrid_tree_spirit_war_dead_gate", "label": "Putrid Tree Spirit (War-Dead Catacombs)", "kind": "boss", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Putrid Tree Spirit chamber", "worldEpoch": "post_radahn_world_state", "x": 770, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Putrid Tree Spirit at the end of the battlefield catacombs."
+    },
+    {
+      "id": "war_dead_catacombs_post_boss_state", "label": "War-Dead Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Putrid Tree Spirit chamber return state", "worldEpoch": "post_radahn_world_state", "x": 830, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check"], "description": "Cleared-state node for Golden Seed and Redmane Knight Ogha."
+    },
+    {
+      "id": "sellia_crystal_tunnel_surface_entrance", "label": "Sellia Crystal Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "North-west of Sellia", "worldEpoch": "caelid_surface", "x": 900, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check"], "description": "Mine entrance north-west of Sellia, with a separate Dragon-Burnt Ruins trap-chest arrival."
+    },
+    {
+      "id": "grace_caelid_main_sellia_crystal_tunnel", "label": "Sellia Crystal Tunnel", "kind": "grace", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Mine entrance", "worldEpoch": "caelid_surface", "x": 960, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "description": "Grace at the start of the crystal mine."
+    },
+    {
+      "id": "fallingstar_beast_sellia_tunnel_gate", "label": "Fallingstar Beast (Sellia Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Fallingstar Beast mine chamber", "worldEpoch": "caelid_surface", "x": 1020, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check"], "description": "Fallingstar Beast at the end of the crystal mine."
+    },
+    {
+      "id": "sellia_crystal_tunnel_post_boss_state", "label": "Sellia Crystal Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Fallingstar Beast chamber return state", "worldEpoch": "caelid_surface", "x": 1080, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "description": "Cleared-state node for the Somberstone Miner's Bell Bearing route."
     }
   ],
   "edges": [
@@ -14971,6 +15122,81 @@
     },
     {
       "id": "sainted-zamor-to-state", "from": "ancient_hero_zamor_sainted_gate", "to": "sainted_hero_grave_post_boss_state", "mode": "Sainted Hero's Grave Ancient Hero completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["sainted_hero_ancient_zamor_defeated"], "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Ancient Dragon Knight Kristoff reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "caelid-highway-to-abandoned-cave", "from": "grace_caelid_highway_south", "to": "abandoned_cave_surface_entrance", "mode": "Caelid Highway South to Abandoned Cave", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "ravine_branch_crossing", "requires": [], "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the narrow branch over the ravine east of Smoldering Wall to the cave mouth.", "tags": ["walk", "hazard", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "abandoned-cave-mouth-to-grace", "from": "abandoned_cave_surface_entrance", "to": "grace_caelid_main_abandoned_cave", "mode": "Abandoned Cave entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The cave mouth descends into the scarlet-rot cave grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "abandoned-cave-to-cleanrot", "from": "grace_caelid_main_abandoned_cave", "to": "cleanrot_knights_abandoned_gate", "mode": "Abandoned Cave scarlet-rot route", "cost": 12, "risk": 10, "direction": "forward", "transitionType": "scarlet_rot_cave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the poison and scarlet-rot pools to the Cleanrot Knight duo.", "tags": ["hazard", "poison", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cleanrot-to-abandoned-state", "from": "cleanrot_knights_abandoned_gate", "to": "abandoned_cave_post_boss_state", "mode": "Abandoned Cave Cleanrot completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["abandoned_cave_cleanrot_knights_defeated"], "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Golden Scarab reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "aeonia-shore-to-caelid-catacombs", "from": "grace_caelid_swamp_of_aeonia_aeonia_swamp_shore", "to": "caelid_catacombs_surface_entrance", "mode": "Aeonia Swamp Shore to Caelid Catacombs", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "rot_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the southern Caelid cliff to the catacomb mouth.", "tags": ["walk", "hazard", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "caelid-catacombs-mouth-to-grace", "from": "caelid_catacombs_surface_entrance", "to": "grace_caelid_main_caelid_catacombs", "mode": "Caelid Catacombs entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance route reaches the internal grace before the rot pools.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "caelid-catacombs-to-cemetery-shade", "from": "grace_caelid_main_caelid_catacombs", "to": "cemetery_shade_caelid_gate", "mode": "Caelid Catacombs rot route", "cost": 12, "risk": 10, "direction": "forward", "transitionType": "rot_catacomb_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check"], "verificationState": "online_cross_checked", "note": "Use the catacomb lever and rot-flooded lower route to reach Cemetery Shade.", "tags": ["hazard", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "cemetery-shade-to-caelid-state", "from": "cemetery_shade_caelid_gate", "to": "caelid_catacombs_post_boss_state", "mode": "Caelid Catacombs Cemetery Shade completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["caelid_catacombs_cemetery_shade_defeated"], "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Kindred of Rot Ashes route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fort-gael-to-gaol-mouth", "from": "grace_fort_gael_north", "to": "gaol_cave_surface_entrance", "mode": "Fort Gael North to Gaol Cave", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "two_key_rot_pool_seal", "requires": ["gaol_cave_two_stonesword_keys"], "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "pushsquare-gaol-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the scarlet-rot pool south-east of Fort Gael and open the two-key Imp seal.", "tags": ["key_gate", "hazard", "surface", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "gaol-mouth-to-grace", "from": "gaol_cave_surface_entrance", "to": "grace_caelid_main_gaol_cave", "mode": "Gaol Cave entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The short tunnel leads to the prison cave grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "gaol-to-frenzied-duelist", "from": "grace_caelid_main_gaol_cave", "to": "frenzied_duelist_gaol_gate", "mode": "Gaol Cave prison-cell and chasm route", "cost": 13, "risk": 10, "direction": "forward", "transitionType": "cell_chasm_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-frenzied-duelist", "game8-gaol-cave-cross-check", "neoseeker-frenzied-duelist-cross-check"], "verificationState": "online_cross_checked", "note": "Open the cell route, pull the lever and descend the chasm to the Frenzied Duelist.", "tags": ["vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "frenzied-duelist-to-gaol-state", "from": "frenzied_duelist_gaol_gate", "to": "gaol_cave_post_boss_state", "mode": "Gaol Cave Frenzied Duelist completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["gaol_cave_frenzied_duelist_defeated"], "sourceEvidence": ["eldenpedia-frenzied-duelist", "game8-gaol-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state before the boss-side cliff exit.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "gaol-to-limgrave-cliff-exit", "from": "gaol_cave_post_boss_state", "to": "gaol_cave_limgrave_exit", "mode": "Gaol Cave one-way Limgrave exit", "cost": 4, "risk": 8, "direction": "forward", "transitionType": "one_way_boss_cliff_exit", "requires": ["gaol_cave_frenzied_duelist_defeated"], "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "pushsquare-gaol-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The boss-side door opens onto the Limgrave cliff near the Regalia of Eochaid route; this is not modeled as a reversible walk edge.", "tags": ["one_way", "cross_plane", "conditional", "exit", "cross_checked"]
+    },
+    {
+      "id": "heart-aeonia-to-minor-erdtree-catacombs", "from": "grace_caelid_swamp_of_aeonia_heart_of_aeonia", "to": "minor_erdtree_catacombs_surface_entrance", "mode": "Heart of Aeonia to Minor Erdtree Catacombs", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "minor_erdtree_catacomb_entrance", "requires": [], "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Ride north toward the Caelid Minor Erdtree and descend to the catacomb entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "minor-erdtree-mouth-to-grace", "from": "minor_erdtree_catacombs_surface_entrance", "to": "grace_caelid_main_minor_erdtree_catacombs", "mode": "Minor Erdtree Catacombs entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check"], "verificationState": "online_cross_checked", "note": "The entrance reaches the grace before the lift and rot lower floor.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "minor-erdtree-to-watchdog-pair", "from": "grace_caelid_main_minor_erdtree_catacombs", "to": "minor_erdtree_watchdogs_caelid_gate", "mode": "Minor Erdtree Catacombs rot and lift route", "cost": 13, "risk": 10, "direction": "forward", "transitionType": "rot_catacomb_duo_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Use the lower rot passage, hidden ladder and lever to reach the paired Watchdogs.", "tags": ["hazard", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "watchdog-pair-to-minor-erdtree-state", "from": "minor_erdtree_watchdogs_caelid_gate", "to": "minor_erdtree_catacombs_post_boss_state", "mode": "Minor Erdtree Catacombs Watchdog completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["minor_erdtree_catacombs_watchdogs_defeated"], "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Mad Pumpkin Head Ashes route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "radahn-grace-to-war-dead-mouth", "from": "grace_starscourge_radahn", "to": "war_dead_catacombs_surface_entrance", "mode": "Post-Radahn Wailing Dunes to War-Dead Catacombs", "cost": 5, "risk": 9, "direction": "forward", "transitionType": "post_boss_battlefield_catacomb_entrance", "requires": ["radahn_defeated"], "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "The catacomb is on the north-east edge of the Radahn battlefield and is modeled only after the Radahn world state.", "tags": ["post_boss", "surface", "legacy_entrance", "conditional", "cross_checked"]
+    },
+    {
+      "id": "war-dead-mouth-to-grace", "from": "war_dead_catacombs_surface_entrance", "to": "grace_caelid_main_war_dead_catacombs", "mode": "War-Dead Catacombs entrance passage", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "catacomb_entry", "requires": [], "sourceEvidence": ["eldenpedia-war-dead-catacombs", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "The post-battlefield entrance reaches the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "war-dead-to-putrid-tree-spirit", "from": "grace_caelid_main_war_dead_catacombs", "to": "putrid_tree_spirit_war_dead_gate", "mode": "War-Dead Catacombs battlefield route", "cost": 13, "risk": 10, "direction": "forward", "transitionType": "catacomb_tree_spirit_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Descend through the hostile battlefield catacomb to the Putrid Tree Spirit.", "tags": ["hazard", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "putrid-tree-spirit-to-war-dead-state", "from": "putrid_tree_spirit_war_dead_gate", "to": "war_dead_catacombs_post_boss_state", "mode": "War-Dead Catacombs Putrid Tree Spirit completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["war_dead_putrid_tree_spirit_defeated"], "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Golden Seed and Redmane Knight Ogha route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sellia-under-to-crystal-tunnel-mouth", "from": "grace_caelid_main_sellia_under_stair", "to": "sellia_crystal_tunnel_surface_entrance", "mode": "Sellia Under-Stair to Sellia Crystal Tunnel", "cost": 8, "risk": 8, "direction": "forward", "transitionType": "sellia_crystal_mine_entrance", "requires": [], "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the northern Sellia/Caelid cliff to the mine entrance; the Dragon-Burnt Ruins chest remains a separate teleport arrival.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "sellia-crystal-mouth-to-grace", "from": "sellia_crystal_tunnel_surface_entrance", "to": "grace_caelid_main_sellia_crystal_tunnel", "mode": "Sellia Crystal Tunnel entrance passage", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "mine_entry", "requires": [], "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "The mine mouth reaches the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sellia-crystal-to-fallingstar", "from": "grace_caelid_main_sellia_crystal_tunnel", "to": "fallingstar_beast_sellia_tunnel_gate", "mode": "Sellia Crystal Tunnel mine route", "cost": 12, "risk": 9, "direction": "forward", "transitionType": "crystal_mine_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the mine shafts and crystal platforms to the Fallingstar Beast chamber.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fallingstar-to-sellia-crystal-state", "from": "fallingstar_beast_sellia_tunnel_gate", "to": "sellia_crystal_tunnel_post_boss_state", "mode": "Sellia Crystal Tunnel Fallingstar completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["sellia_crystal_tunnel_fallingstar_beast_defeated"], "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Somberstone Miner's Bell Bearing route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -14993,8 +15219,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 516,
-    "formalRouteEdgeCount": 538,
+    "formalNodeCount": 541,
+    "formalRouteEdgeCount": 563,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

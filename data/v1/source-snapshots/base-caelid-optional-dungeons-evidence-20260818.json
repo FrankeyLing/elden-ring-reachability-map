@@ -1,0 +1,67 @@
+{
+  "snapshot_id": "base-caelid-optional-dungeons-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "abandoned-cave-cleanrot",
+      "claim": "Abandoned Cave is reached by a branch over the ravine east of Smoldering Wall, has scarlet-rot hazards, and ends at the Cleanrot Knight pair with the Golden Scarab reward.",
+      "sources": [
+        {"source_id": "eldenpedia-abandoned-cave", "url": "https://eldenring.wiki.gg/wiki/Abandoned_Cave"},
+        {"source_id": "gamesradar-abandoned-cave-cross-check", "url": "https://www.gamesradar.com/elden-ring-golden-scarab-talisman-cleanrot-knights/"},
+        {"source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "caelid-catacombs-cemetery-shade",
+      "claim": "Caelid Catacombs is a scarlet-rot catacomb ending at Cemetery Shade and the Kindred of Rot Ashes route.",
+      "sources": [
+        {"source_id": "eldenpedia-caelid-catacombs", "url": "https://eldenring.wiki.gg/wiki/Caelid_Catacombs"},
+        {"source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537"},
+        {"source_id": "segmentnext-cemetery-shade-cross-check", "url": "https://segmentnext.com/cemetery-shade-locations/"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "gaol-two-keys-one-way-exit",
+      "claim": "Gaol Cave is beneath Fort Gael, requires two Stonesword Keys, contains the Frenzied Duelist, and opens onto a Limgrave cliff after the boss.",
+      "sources": [
+        {"source_id": "eldenpedia-gaol-cave", "url": "https://eldenring.wiki.gg/wiki/Gaol_Cave"},
+        {"source_id": "game8-gaol-cave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369946"},
+        {"source_id": "pushsquare-gaol-cave-cross-check", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-gaol-cave"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "minor-erdtree-watchdog-pair",
+      "claim": "Minor Erdtree Catacombs beside the northern Caelid Minor Erdtree contains a sword and scepter Erdtree Burial Watchdog pair.",
+      "sources": [
+        {"source_id": "eldenpedia-minor-erdtree-catacombs", "url": "https://eldenring.wiki.gg/wiki/Minor_Erdtree_Catacombs"},
+        {"source_id": "game8-erdtree-watchdog-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/353632"},
+        {"source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "war-dead-post-radahn",
+      "claim": "War-Dead Catacombs sits on the north-east edge of the Wailing Dunes and is entered after Starscourge Radahn has been defeated; its boss is Putrid Tree Spirit.",
+      "sources": [
+        {"source_id": "eldenpedia-war-dead-catacombs", "url": "https://eldenring.wiki.gg/wiki/War-Dead_Catacombs"},
+        {"source_id": "neoseeker-war-dead-catacombs-cross-check", "url": "https://www.neoseeker.com/elden-ring/Bosses/Putrid_Tree_Spirit"},
+        {"source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "sellia-crystal-tunnel-fallingstar",
+      "claim": "Sellia Crystal Tunnel is a crystal mine north-west of Sellia, also reachable through the Dragon-Burnt Ruins trap chest, and ends at Fallingstar Beast.",
+      "sources": [
+        {"source_id": "eldenpedia-sellia-crystal-tunnel", "url": "https://eldenring.wiki.gg/wiki/Sellia_Crystal_Tunnel"},
+        {"source_id": "game8-caelid-walkthrough-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379537"},
+        {"source_id": "passaguai-sellia-crystal-cross-check", "url": "https://passaguai.com/posts/my-ultimate-guide-to-conquering-sellia-crystal-tunnel-in-elden-ring-2025"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
