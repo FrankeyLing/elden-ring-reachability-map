@@ -1,0 +1,30 @@
+{
+  "snapshot_id": "base-limgrave-early-surface-nodes-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "limgrave-lake-coastal-branch",
+      "claim": "Agheel Lake North lies east of Gatefront; Seaside Ruins is on the southern lake coast; the Church of Dragon Communion is an offshore island reached through Coastal Cave rather than by crossing open water.",
+      "sources": [
+        { "source_id": "eldenpedia-limgrave-r97518", "url": "https://eldenring.wiki.gg/wiki/Limgrave" },
+        { "source_id": "eldenpedia-seaside-ruins", "url": "https://eldenring.wiki.gg/wiki/Seaside_Ruins" },
+        { "source_id": "eldenpedia-church-dragon-communion", "url": "https://eldenring.wiki.gg/wiki/Church_of_Dragon_Communion" },
+        { "source_id": "powerpyx-church-dragon-communion-cross-check", "url": "https://www.powerpyx.com/elden-ring-church-of-dragon-communion-location/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "limgrave-stormhill-waypoint-summonwater-branch",
+      "claim": "Waypoint Ruins is a cellar route with the Mad Pumpkin Head gate; Warmaster's Shack leads east toward Saintsbridge, which leads across the road to Summonwater Village Outskirts and the optional Tibia Mariner.",
+      "sources": [
+        { "source_id": "eldenpedia-waypoint-ruins", "url": "https://eldenring.wiki.gg/wiki/Waypoint_Ruins" },
+        { "source_id": "eldenpedia-warmaster-shack", "url": "https://eldenring.wiki.gg/wiki/Warmaster%27s_Shack" },
+        { "source_id": "eldenpedia-summonwater-village", "url": "https://eldenring.wiki.gg/wiki/Summonwater_Village" },
+        { "source_id": "game8-summonwater-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369143" },
+        { "source_id": "gamerguides-saintsbridge-cross-check", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-saintsbridge-in-limgrave" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

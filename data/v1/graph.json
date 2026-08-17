@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.61-online-multiplane",
+    "version": "1.0.62-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -74,7 +74,8 @@
       "dlc-darklight-forsaken-graveyard-refinement-20260818",
       "base-limgrave-starting-tutorial-evidence-20260818",
       "base-limgrave-chapel-four-belfries-evidence-20260818",
-      "base-roundtable-hold-invitation-evidence-20260818"
+      "base-roundtable-hold-invitation-evidence-20260818",
+      "base-limgrave-early-surface-nodes-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -900,6 +901,16 @@
       "id": "roundtable_hold_invited",
       "label": "Roundtable Hold invitation accepted",
       "hint": "The player accepted Melina's offer to go to Roundtable Hold; its map fast-travel grace is now available."
+    },
+    {
+      "id": "tibia_mariner_summonwater_defeated",
+      "label": "Tibia Mariner (Summonwater Village) defeated",
+      "hint": "The optional Tibia Mariner in Summonwater Village has been defeated and Deathroot is available."
+    },
+    {
+      "id": "mad_pumpkin_head_waypoint_defeated",
+      "label": "Mad Pumpkin Head (Waypoint Ruins) defeated",
+      "hint": "The Waypoint Ruins cellar boss has been defeated and the cellar's NPC/reward state is available."
     }
   ],
   "sourceEvidence": [
@@ -1318,6 +1329,20 @@
     ,{ "id": "eldenpedia-melina-roundtable", "label": "Eldenpedia - Melina Roundtable invitation conditions", "url": "https://eldenring.wiki.gg/wiki/Melina", "grade": "A" }
     ,{ "id": "game8-roundtable-hold-cross-check", "label": "Game8 - How to get to Roundtable Hold", "url": "https://game8.co/games/Elden-Ring/archives/368940", "grade": "B" }
     ,{ "id": "gamerguides-roundtable-hold-cross-check", "label": "Gamer Guides - Roundtable Hold access", "url": "https://www.gamerguides.com/elden-ring/guide/roundtable-hold", "grade": "B" }
+    ,{ "id": "eldenpedia-church-dragon-communion", "label": "Eldenpedia - Church of Dragon Communion", "url": "https://eldenring.wiki.gg/wiki/Church_of_Dragon_Communion", "grade": "A" }
+    ,{ "id": "powerpyx-church-dragon-communion-cross-check", "label": "PowerPyx - Church of Dragon Communion route", "url": "https://www.powerpyx.com/elden-ring-church-of-dragon-communion-location/", "grade": "B" }
+    ,{ "id": "game8-church-dragon-communion-cross-check", "label": "Game8 - Church of Dragon Communion location", "url": "https://game8.co/games/Elden-Ring/archives/369366", "grade": "B" }
+    ,{ "id": "eldenpedia-seaside-ruins", "label": "Eldenpedia - Seaside Ruins", "url": "https://eldenring.wiki.gg/wiki/Seaside_Ruins", "grade": "A" }
+    ,{ "id": "eldenpedia-waypoint-ruins", "label": "Eldenpedia - Waypoint Ruins", "url": "https://eldenring.wiki.gg/wiki/Waypoint_Ruins", "grade": "A" }
+    ,{ "id": "gamerguides-waypoint-cross-check", "label": "Gamer Guides - Waypoint Ruins cellar", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations", "grade": "B" }
+    ,{ "id": "eldenpedia-summonwater-village", "label": "Eldenpedia - Summonwater Village", "url": "https://eldenring.wiki.gg/wiki/Summonwater_Village", "grade": "A" }
+    ,{ "id": "game8-summonwater-cross-check", "label": "Game8 - Summonwater Village walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369143", "grade": "B" }
+    ,{ "id": "gamerguides-summonwater-cross-check", "label": "Gamer Guides - Summonwater Village route", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-summonwater-village-in-limgrave", "grade": "B" }
+    ,{ "id": "eldenpedia-warmaster-shack", "label": "Eldenpedia - Warmaster's Shack", "url": "https://eldenring.wiki.gg/wiki/Warmaster%27s_Shack", "grade": "A" }
+    ,{ "id": "game8-warmaster-shack-cross-check", "label": "Game8 - Warmaster's Shack location", "url": "https://game8.co/games/Elden-Ring/archives/369395", "grade": "B" }
+    ,{ "id": "gamerguides-warmaster-shack-cross-check", "label": "Gamer Guides - Warmaster's Shack route", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-warmasters-shack-in-limgrave", "grade": "B" }
+    ,{ "id": "gamerguides-saintsbridge-cross-check", "label": "Gamer Guides - Saintsbridge route", "url": "https://www.gamerguides.com/elden-ring/guide/limgrave/locations/how-to-find-and-complete-the-saintsbridge-in-limgrave", "grade": "B" }
+    ,{ "id": "neoseeker-stormhill-cross-check", "label": "Neoseeker - Stormhill / Warmaster's Shack route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Stormhill", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8630,6 +8655,46 @@
     {
       "id": "grace_roundtable_hold_main_table_of_lost_grace", "label": "Table of Lost Grace", "kind": "grace", "layer": "legacy", "region": "Roundtable Hold", "floor": "Roundtable Hold main hall", "worldEpoch": "roundtable_hold", "x": 140, "y": 840, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-sites-of-grace-r83774", "game8-roundtable-hold-cross-check"], "description": "Isolated hub grace. Roundtable Hold is not present as a normal overworld landmass and is accessed by map fast travel after Melina's invitation."
+    },
+    {
+      "id": "grace_limgrave_main_agheel_lake_north", "label": "Agheel Lake North", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Northern Agheel Lake", "worldEpoch": "limgrave_surface", "x": 290, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "powerpyx-limgrave-cross-check"], "description": "Northern lake grace east of Gatefront; it is also a valid early-world Melina interaction landmark."
+    },
+    {
+      "id": "grace_limgrave_main_seaside_ruins", "label": "Seaside Ruins", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Southern Agheel Lake coast", "worldEpoch": "limgrave_surface", "x": 55, "y": 1050, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-seaside-ruins", "eldenpedia-sites-of-grace-r83774", "powerpyx-limgrave-cross-check"], "description": "Southern lake/coast grace near the Yura and Agheel approach; it is a surface branch, not an underground entrance."
+    },
+    {
+      "id": "grace_limgrave_main_church_of_dragon_communion", "label": "Church of Dragon Communion", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Offshore Dragon Communion island", "worldEpoch": "limgrave_surface", "x": 30, "y": 1130, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-church-dragon-communion", "powerpyx-church-dragon-communion-cross-check", "game8-church-dragon-communion-cross-check"], "description": "Island grace reached through Coastal Cave's rear passage; the island is a separate surface plane segment from the mainland coast."
+    },
+    {
+      "id": "grace_limgrave_main_summonwater_village_outskirts", "label": "Summonwater Village Outskirts", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Western Summonwater approach", "worldEpoch": "limgrave_surface", "x": 520, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-summonwater-village", "eldenpedia-sites-of-grace-r83774", "game8-summonwater-cross-check"], "description": "Staging grace west of the flooded Summonwater Village and its optional Tibia Mariner arena."
+    },
+    {
+      "id": "tibia_mariner_summonwater_gate", "label": "Tibia Mariner (Summonwater Village)", "kind": "boss", "layer": "surface", "region": "Summonwater Village", "floor": "Flooded village basin", "worldEpoch": "limgrave_surface", "x": 570, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "description": "Optional field boss reached east from the Summonwater Village Outskirts grace; the village route itself is not sealed by this boss."
+    },
+    {
+      "id": "summonwater_village_post_boss_state", "label": "Summonwater Village (post-Tibia Mariner state)", "kind": "state", "layer": "surface", "region": "Summonwater Village", "floor": "Flooded village cleared state", "worldEpoch": "limgrave_surface", "x": 620, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check"], "description": "Cleared-state node for Deathroot and the eastern Green Turtle Talisman cellar branch."
+    },
+    {
+      "id": "grace_limgrave_main_waypoint_ruins_cellar", "label": "Waypoint Ruins Cellar", "kind": "grace", "layer": "legacy", "region": "Limgrave", "floor": "Waypoint Ruins cellar", "worldEpoch": "limgrave_surface", "x": 185, "y": 1040, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-waypoint-ruins", "eldenpedia-sites-of-grace-r83774", "gamerguides-waypoint-cross-check"], "description": "Cellar grace below the Waypoint Ruins; the Mad Pumpkin Head gate and Sellen route are underground relative to the surface ruins."
+    },
+    {
+      "id": "mad_pumpkin_head_waypoint_gate", "label": "Mad Pumpkin Head (Waypoint Ruins)", "kind": "boss", "layer": "legacy", "region": "Waypoint Ruins", "floor": "Cellar boss room", "worldEpoch": "limgrave_surface", "x": 225, "y": 1040, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check", "game8-limgrave-cross-check"], "description": "Cellar boss gate below the Waypoint Ruins; defeating it opens the room beyond for Sorceress Sellen."
+    },
+    {
+      "id": "waypoint_ruins_post_boss_state", "label": "Waypoint Ruins Cellar (post-boss state)", "kind": "state", "layer": "legacy", "region": "Waypoint Ruins", "floor": "Cellar beyond Mad Pumpkin Head", "worldEpoch": "limgrave_surface", "x": 270, "y": 1040, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check"], "description": "Cleared cellar state with the Sellen dialogue room available."
+    },
+    {
+      "id": "grace_limgrave_stormhill_warmasters_shack", "label": "Warmaster's Shack", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Central Stormhill woods", "worldEpoch": "limgrave_surface", "x": 380, "y": 940, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-warmaster-shack", "eldenpedia-sites-of-grace-r83774", "game8-warmaster-shack-cross-check"], "description": "Stormhill shack grace on the road between Stormhill Shack and Saintsbridge; night state can replace Bernahl with the Bell Bearing Hunter."
     }
   ],
   "edges": [
@@ -16102,6 +16167,30 @@
     {
       "id": "roundtable-invitation-to-table-of-lost-grace", "from": "roundtable_hold_invitation_trigger", "to": "grace_roundtable_hold_main_table_of_lost_grace", "mode": "Melina one-way transport to Roundtable Hold", "cost": 1, "risk": 1, "direction": "one_way", "transitionType": "melina_fast_travel", "requires": ["roundtable_hold_invited"], "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-melina-roundtable", "game8-roundtable-hold-cross-check", "gamerguides-roundtable-hold-cross-check"], "verificationState": "online_cross_checked", "note": "Accept Melina's offer to arrive at Table of Lost Grace; subsequent access is via the map fast-travel entry, not a physical overworld edge."
     }
+    ,{ "id": "gatefront-to-agheel-lake-north", "from": "grace_gatefront", "to": "grace_limgrave_main_agheel_lake_north", "mode": "Gatefront east road to Agheel Lake North", "cost": 6, "risk": 4, "direction": "forward", "transitionType": "limgrave_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Take the eastern road from Gatefront Ruins toward the northern lake grace.", "tags": ["walk", "surface", "cross_checked"] }
+    ,{ "id": "agheel-lake-north-to-gatefront", "from": "grace_limgrave_main_agheel_lake_north", "to": "grace_gatefront", "mode": "Agheel Lake North return to Gatefront", "cost": 6, "risk": 4, "direction": "backtrack", "transitionType": "limgrave_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the same open-world road; no boss gate blocks this surface connection.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "agheel-north-to-agheel-south", "from": "grace_limgrave_main_agheel_lake_north", "to": "grace_limgrave_main_agheel_lake_south", "mode": "Northern Agheel Lake to southern lake road", "cost": 6, "risk": 6, "direction": "forward", "transitionType": "limgrave_lake_walk", "requires": [], "sourceEvidence": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Ride around the lake edge between the northern and southern Agheel graces; the lake boss and ruins remain optional side hazards.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "agheel-south-to-agheel-north", "from": "grace_limgrave_main_agheel_lake_south", "to": "grace_limgrave_main_agheel_lake_north", "mode": "Southern Agheel Lake to northern lake road", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "limgrave_lake_walk", "requires": [], "sourceEvidence": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return around the open lake surface to the northern Agheel grace.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "first-step-to-seaside-ruins", "from": "grace_first_step", "to": "grace_limgrave_main_seaside_ruins", "mode": "The First Step to Seaside Ruins", "cost": 7, "risk": 5, "direction": "forward", "transitionType": "limgrave_coast_walk", "requires": [], "sourceEvidence": ["eldenpedia-seaside-ruins", "eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the southern/western lake coast from the opening grace to the Seaside Ruins grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "seaside-ruins-to-first-step", "from": "grace_limgrave_main_seaside_ruins", "to": "grace_first_step", "mode": "Seaside Ruins return to The First Step", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "limgrave_coast_walk", "requires": [], "sourceEvidence": ["eldenpedia-seaside-ruins", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the open coast to the First Step region.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "seaside-ruins-to-agheel-south", "from": "grace_limgrave_main_seaside_ruins", "to": "grace_limgrave_main_agheel_lake_south", "mode": "Seaside Ruins to Agheel Lake South", "cost": 5, "risk": 5, "direction": "forward", "transitionType": "limgrave_lake_walk", "requires": [], "sourceEvidence": ["eldenpedia-seaside-ruins", "eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the lake edge east/southeast to Agheel Lake South; the lake is a hazardous open surface, not a straight-line distance field.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "agheel-south-to-seaside-ruins", "from": "grace_limgrave_main_agheel_lake_south", "to": "grace_limgrave_main_seaside_ruins", "mode": "Agheel Lake South to Seaside Ruins", "cost": 5, "risk": 5, "direction": "backtrack", "transitionType": "limgrave_lake_walk", "requires": [], "sourceEvidence": ["eldenpedia-seaside-ruins", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return around the southern lake shore to the Seaside Ruins grace.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "agheel-south-to-waypoint-cellar", "from": "grace_limgrave_main_agheel_lake_south", "to": "grace_limgrave_main_waypoint_ruins_cellar", "mode": "Agheel Lake South to Waypoint Ruins Cellar", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "ruins_cellar_entrance", "requires": [], "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check", "powerpyx-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the northern road to the Waypoint Ruins and descend through the flower-filled ruins to the cellar grace.", "tags": ["walk", "surface", "vertical", "legacy", "cross_checked"] }
+    ,{ "id": "waypoint-cellar-to-agheel-south", "from": "grace_limgrave_main_waypoint_ruins_cellar", "to": "grace_limgrave_main_agheel_lake_south", "mode": "Waypoint Ruins Cellar return to Agheel Lake South", "cost": 6, "risk": 7, "direction": "backtrack", "transitionType": "ruins_cellar_exit", "requires": [], "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check"], "verificationState": "online_cross_checked", "note": "Climb out of the cellar and return south to the lake road.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
+    ,{ "id": "waypoint-cellar-to-mad-pumpkin", "from": "grace_limgrave_main_waypoint_ruins_cellar", "to": "mad_pumpkin_head_waypoint_gate", "mode": "Waypoint Ruins cellar boss approach", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "cellar_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check", "game8-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Pass through the cellar rooms to the Mad Pumpkin Head fog gate.", "tags": ["boss", "legacy", "cross_checked"] }
+    ,{ "id": "mad-pumpkin-to-waypoint-state", "from": "mad_pumpkin_head_waypoint_gate", "to": "waypoint_ruins_post_boss_state", "mode": "Waypoint Ruins Mad Pumpkin Head completion", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["mad_pumpkin_head_waypoint_defeated"], "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check"], "verificationState": "online_cross_checked", "note": "Clears the cellar boss and exposes the Sellen room beyond.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
+    ,{ "id": "waypoint-state-to-cellar-grace", "from": "waypoint_ruins_post_boss_state", "to": "grace_limgrave_main_waypoint_ruins_cellar", "mode": "Waypoint Ruins cellar cleared return", "cost": 2, "risk": 3, "direction": "backtrack", "transitionType": "cellar_return", "requires": [], "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check"], "verificationState": "online_cross_checked", "note": "Return to the cellar grace after speaking with Sellen; the boss room is not treated as a permanent one-way trap.", "tags": ["backtrack", "legacy", "cross_checked"] }
+    ,{ "id": "coastal-island-exit-to-dragon-communion", "from": "coastal_cave_dragon_communion_island_exit", "to": "grace_limgrave_main_church_of_dragon_communion", "mode": "Coastal Cave island exit to Church of Dragon Communion", "cost": 4, "risk": 3, "direction": "forward", "transitionType": "island_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-church-dragon-communion", "powerpyx-church-dragon-communion-cross-check", "game8-church-dragon-communion-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cave's rear tunnel onto the offshore island and climb to the church grace.", "tags": ["walk", "surface", "legacy_exit", "cross_checked"] }
+    ,{ "id": "dragon-communion-to-coastal-island-exit", "from": "grace_limgrave_main_church_of_dragon_communion", "to": "coastal_cave_dragon_communion_island_exit", "mode": "Church of Dragon Communion return to cave island exit", "cost": 4, "risk": 3, "direction": "backtrack", "transitionType": "island_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-church-dragon-communion", "powerpyx-church-dragon-communion-cross-check"], "verificationState": "online_cross_checked", "note": "Walk back down the island to the rear Coastal Cave passage; no mainland water crossing is implied.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "stormhill-to-warmaster-shack", "from": "grace_stormhill_shack", "to": "grace_limgrave_stormhill_warmasters_shack", "mode": "Stormhill Shack to Warmaster's Shack", "cost": 5, "risk": 5, "direction": "forward", "transitionType": "stormhill_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-warmaster-shack", "game8-warmaster-shack-cross-check", "gamerguides-warmaster-shack-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the road northeast from Stormhill Shack into the woods to Warmaster's Shack.", "tags": ["walk", "surface", "cross_checked"] }
+    ,{ "id": "warmaster-to-stormhill-shack", "from": "grace_limgrave_stormhill_warmasters_shack", "to": "grace_stormhill_shack", "mode": "Warmaster's Shack return to Stormhill Shack", "cost": 5, "risk": 5, "direction": "backtrack", "transitionType": "stormhill_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-warmaster-shack", "gamerguides-warmaster-shack-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the Stormhill road.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "warmaster-to-saintsbridge", "from": "grace_limgrave_stormhill_warmasters_shack", "to": "grace_limgrave_stormhill_saintsbridge", "mode": "Warmaster's Shack to Saintsbridge", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "stormhill_east_road", "requires": [], "sourceEvidence": ["eldenpedia-warmaster-shack", "gamerguides-saintsbridge-cross-check", "neoseeker-stormhill-cross-check"], "verificationState": "online_cross_checked", "note": "Take the east/northeast road from Warmaster's Shack to the Saintsbridge grace.", "tags": ["walk", "surface", "cross_checked"] }
+    ,{ "id": "saintsbridge-to-warmaster", "from": "grace_limgrave_stormhill_saintsbridge", "to": "grace_limgrave_stormhill_warmasters_shack", "mode": "Saintsbridge return to Warmaster's Shack", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "stormhill_west_road", "requires": [], "sourceEvidence": ["gamerguides-saintsbridge-cross-check", "neoseeker-stormhill-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the same Stormhill road.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "saintsbridge-to-summonwater", "from": "grace_limgrave_stormhill_saintsbridge", "to": "grace_limgrave_main_summonwater_village_outskirts", "mode": "Saintsbridge to Summonwater Village Outskirts", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "limgrave_east_road", "requires": [], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Cross Saintsbridge and follow the east road to the village's western outskirts grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "summonwater-to-saintsbridge", "from": "grace_limgrave_main_summonwater_village_outskirts", "to": "grace_limgrave_stormhill_saintsbridge", "mode": "Summonwater Village return to Saintsbridge", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "limgrave_west_road", "requires": [], "sourceEvidence": ["game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Return west from the village approach and cross Saintsbridge.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "summonwater-to-tibia-mariner", "from": "grace_limgrave_main_summonwater_village_outskirts", "to": "tibia_mariner_summonwater_gate", "mode": "Summonwater Village east approach", "cost": 6, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Enter the flooded village to the east; Tibia Mariner is an optional field-boss encounter, not a map-wide traversal gate.", "tags": ["walk", "surface", "boss", "cross_checked"] }
+    ,{ "id": "tibia-mariner-to-summonwater-state", "from": "tibia_mariner_summonwater_gate", "to": "summonwater_village_post_boss_state", "mode": "Summonwater Village Tibia Mariner completion", "cost": 3, "risk": 8, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["tibia_mariner_summonwater_defeated"], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Records the optional boss clear and Deathroot reward state.", "tags": ["boss", "conditional", "state_change", "surface", "cross_checked"] }
+    ,{ "id": "summonwater-state-to-outskirts", "from": "summonwater_village_post_boss_state", "to": "grace_limgrave_main_summonwater_village_outskirts", "mode": "Summonwater cleared return", "cost": 4, "risk": 5, "direction": "backtrack", "transitionType": "field_boss_return", "requires": [], "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check"], "verificationState": "online_cross_checked", "note": "Return to the west-side staging grace after clearing the village boss.", "tags": ["backtrack", "surface", "cross_checked"] }
   ],
   "relations": [
     {
@@ -16123,8 +16212,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 637,
-    "formalRouteEdgeCount": 668,
+    "formalNodeCount": 647,
+    "formalRouteEdgeCount": 692,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
