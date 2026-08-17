@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.16-online-multiplane",
+    "version": "1.0.17-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -28,7 +28,8 @@
       "dlc-southern-shore-dheo-evidence-20260817",
       "dlc-manus-metyr-ymir-evidence-20260817",
       "dlc-charo-scadutree-avatar-evidence-20260817",
-      "base-limgrave-weeping-stormveil-evidence-20260817"
+      "base-limgrave-weeping-stormveil-evidence-20260817",
+      "base-liurnia-academy-entry-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -513,7 +514,9 @@
     { "id": "eldenpedia-margit-cross-check", "label": "Eldenpedia / Margit, the Fell Omen", "url": "https://eldenring.wiki.gg/wiki/Margit_the_Fell_Omen", "grade": "A" },
     { "id": "game8-limgrave-weeping-cross-check", "label": "Game8 / Limgrave and Weeping Peninsula walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379489", "grade": "B" },
     { "id": "game8-castle-morne-cross-check", "label": "Game8 / Castle Morne walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369386", "grade": "B" },
-    { "id": "powerpyx-weeping-cross-check", "label": "PowerPyx / Weeping Peninsula walkthrough", "url": "https://www.powerpyx.com/elden-ring-weeping-peninsula-walkthrough/", "grade": "B" }
+    { "id": "powerpyx-weeping-cross-check", "label": "PowerPyx / Weeping Peninsula walkthrough", "url": "https://www.powerpyx.com/elden-ring-weeping-peninsula-walkthrough/", "grade": "B" },
+    { "id": "game8-liurnia-cross-check", "label": "Game8 / Liurnia of the Lakes walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379573", "grade": "B" },
+    { "id": "eldenpedia-academy-gate-town", "label": "Eldenpedia / Academy Gate Town", "url": "https://eldenring.wiki.gg/wiki/Academy_Gate_Town", "grade": "A" }
   ],
   "nodes": [
     {
@@ -4070,9 +4073,99 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-margit-cross-check", "eldenpedia-sites-of-grace-r83774", "game8-stormveil-cross-check"],
       "description": "Post-Margit grace before entering Stormveil Castle."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore",
+      "label": "Liurnia Lake Shore",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Southern Liurnia lake",
+      "worldEpoch": "unknown",
+      "x": 700,
+      "y": 980,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"],
+      "description": "Southern Liurnia lake route after the Godrick exit."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_academy_gate_town",
+      "label": "Academy Gate Town",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Academy Gate Town",
+      "worldEpoch": "unknown",
+      "x": 780,
+      "y": 980,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"],
+      "description": "Southeastern academy town checkpoint."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_south_raya_lucaria_gate",
+      "label": "South Raya Lucaria Gate",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Academy south gate",
+      "worldEpoch": "unknown",
+      "x": 860,
+      "y": 980,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-sites-of-grace-r83774", "game8-raya-cross-check"],
+      "description": "Southern Raya Lucaria seal/entrance grace before the Academy key gate."
     }
   ],
   "edges": [
+    {
+      "id": "liurnia-lake-shore-to-academy-town",
+      "from": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore",
+      "to": "grace_liurnia_of_the_lakes_main_academy_gate_town",
+      "mode": "Liurnia Lake Shore to Academy Gate Town",
+      "cost": 8,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "liurnia_surface_walk",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-academy-gate-town", "game8-liurnia-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "North/northeast lake route to the academy town checkpoint.",
+      "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "academy-town-to-south-raya-gate",
+      "from": "grace_liurnia_of_the_lakes_main_academy_gate_town",
+      "to": "grace_liurnia_of_the_lakes_main_south_raya_lucaria_gate",
+      "mode": "Academy Gate Town to South Raya Lucaria Gate",
+      "cost": 7,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "academy_surface_approach",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-academy-gate-town", "game8-raya-cross-check", "game8-liurnia-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The town's western route reaches the southern academy seal.",
+      "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "south-raya-gate-to-main-academy",
+      "from": "grace_liurnia_of_the_lakes_main_south_raya_lucaria_gate",
+      "to": "grace_main_academy_gate",
+      "mode": "Raya Lucaria Glintstone Key gate",
+      "cost": 4,
+      "risk": 3,
+      "direction": "forward",
+      "transitionType": "academy_gate",
+      "requires": ["academy_glintstone_key"],
+      "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-raya-r97405", "game8-raya-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Academy Glintstone Key is kept on the actual sealed academy entrance edge.",
+      "tags": ["key_gate", "legacy", "conditional", "cross_checked"]
+    },
     {
       "id": "first-step-to-agheel-south",
       "from": "grace_first_step",
@@ -7022,19 +7115,19 @@
       "tags": ["boss", "world_exit", "conditional", "cross_checked"]
     },
     {
-      "id": "lake-facing-to-main-academy",
+      "id": "lake-facing-to-liurnia-lake-shore",
       "from": "grace_lake_facing_cliffs",
-      "to": "grace_main_academy_gate",
-      "mode": "Liurnia lake road and Academy seal",
-      "cost": 12,
+      "to": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore",
+      "mode": "Lake-Facing Cliffs to Liurnia Lake Shore",
+      "cost": 7,
       "risk": 3,
       "direction": "forward",
-      "transitionType": "academy_gate",
-      "requires": ["academy_glintstone_key"],
-      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-raya-r97405", "powerpyx-raya-cross-check"],
+      "transitionType": "liurnia_surface_walk",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "Conservative Academy-key gate; the wider Liurnia surface remains a separate future expansion.",
-      "tags": ["walk", "legacy", "conditional", "cross_checked"]
+      "note": "Godrick's northern exit is separated from the lake route rather than jumping directly to the Academy gate.",
+      "tags": ["walk", "surface", "cross_checked"]
     },
     {
       "id": "main-academy-to-cuckoo",
@@ -7627,8 +7720,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 237,
-    "formalRouteEdgeCount": 236,
+    "formalNodeCount": 240,
+    "formalRouteEdgeCount": 239,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

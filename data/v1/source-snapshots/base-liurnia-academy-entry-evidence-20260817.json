@@ -1,0 +1,62 @@
+{
+  "snapshot_id": "base-liurnia-academy-entry-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Godrick post-Stormveil exit, Liurnia Lake Shore, Academy Gate Town, South Raya Lucaria Gate and Main Academy Gate",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "godrick-exit-to-lake-shore",
+      "from": "Lake-Facing Cliffs",
+      "to": "Liurnia Lake Shore",
+      "transition_type": "liurnia_surface_walk",
+      "direction": "forward",
+      "claim": "The northern Stormveil exit reaches southern Liurnia before the route continues through the lake shore.",
+      "sources": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"]
+    },
+    {
+      "id": "lake-shore-to-academy-town",
+      "from": "Liurnia Lake Shore",
+      "to": "Academy Gate Town",
+      "transition_type": "liurnia_surface_walk",
+      "direction": "forward",
+      "claim": "The lake route proceeds north/northeast to Academy Gate Town, which lies southeast of Raya Lucaria.",
+      "sources": ["eldenpedia-liurnia-r49924", "eldenpedia-academy-gate-town", "game8-liurnia-cross-check"]
+    },
+    {
+      "id": "academy-town-to-south-gate",
+      "from": "Academy Gate Town",
+      "to": "South Raya Lucaria Gate",
+      "transition_type": "academy_surface_approach",
+      "direction": "forward",
+      "claim": "Academy Gate Town contains the route to the South Raya Lucaria Gate outside the academy.",
+      "sources": ["eldenpedia-academy-gate-town", "game8-raya-cross-check", "game8-liurnia-cross-check"]
+    },
+    {
+      "id": "south-gate-key-gate",
+      "from": "South Raya Lucaria Gate",
+      "to": "Main Academy Gate",
+      "transition_type": "academy_gate",
+      "direction": "forward",
+      "claim": "The Academy Glintstone Key is required to pass the sealed academy entrance and reach Main Academy Gate.",
+      "sources": ["eldenpedia-academy-gate-town", "eldenpedia-raya-r97405", "game8-raya-cross-check"]
+    },
+    {
+      "id": "academy-internal-continuity",
+      "from": "Main Academy Gate",
+      "to": "Raya Lucaria Grand Library",
+      "transition_type": "legacy_internal_route",
+      "direction": "forward",
+      "claim": "The Academy internal progression continues through Church of the Cuckoo, Schoolhouse Classroom, Red Wolf, Debate Parlor and Rennala to the Grand Library.",
+      "sources": ["eldenpedia-raya-r97405", "game8-raya-cross-check", "powerpyx-raya-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "game8-liurnia-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379573" },
+    { "id": "eldenpedia-academy-gate-town", "url": "https://eldenring.wiki.gg/wiki/Academy_Gate_Town" },
+    { "id": "eldenpedia-liurnia-r49924", "url": "https://eldenring.wiki.gg/wiki/Liurnia_Lake" },
+    { "id": "eldenpedia-raya-r97405", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria" },
+    { "id": "game8-raya-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369673" },
+    { "id": "powerpyx-raya-cross-check", "url": "https://www.powerpyx.com/elden-ring-academy-of-raya-lucaria-walkthrough/" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" }
+  ]
+}
