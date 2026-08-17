@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.57-online-multiplane",
+    "version": "1.0.58-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -70,7 +70,8 @@
       "dlc-ruined-forge-starfall-past-evidence-20260818",
       "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818",
       "base-weeping-peninsula-morne-tunnel-evidence-20260818",
-      "base-limgrave-fort-haight-evidence-20260818"
+      "base-limgrave-fort-haight-evidence-20260818",
+      "dlc-darklight-forsaken-graveyard-refinement-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -8524,6 +8525,10 @@
     {
       "id": "fort_haight_post_boss_state", "label": "Fort Haight (post-Godrick Knight state)", "kind": "state", "layer": "legacy", "region": "Fort Haight", "floor": "Upper fort cleared state", "worldEpoch": "limgrave_surface", "x": 510, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "description": "Cleared-state endpoint for Bloody Slash and Kenneth Haight's liberated-fort quest step."
+    },
+    {
+      "id": "grace_scadu_altus_abyssal_woods_forsaken_graveyard", "label": "Forsaken Graveyard", "kind": "junction", "layer": "underground", "region": "Scadu Altus", "floor": "Darklight Catacombs exit / Abyssal Woods threshold", "worldEpoch": "shadow_realm", "x": 760, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"], "description": "The graveyard immediately beyond Jori's arena and before the forbidden forest entrance."
     }
   ],
   "edges": [
@@ -9563,19 +9568,34 @@
       "tags": ["boss", "legacy", "cross_checked"]
     },
     {
-      "id": "jori-to-abyssal-woods",
+      "id": "jori-to-forsaken-graveyard",
       "from": "jori_gate",
-      "to": "grace_scadu_altus_abyssal_woods_abyssal_woods",
-      "mode": "Jori completion to Abyssal Woods",
+      "to": "grace_scadu_altus_abyssal_woods_forsaken_graveyard",
+      "mode": "Jori completion to Forsaken Graveyard",
       "cost": 5,
       "risk": 8,
       "direction": "forward",
-      "transitionType": "boss_completion_region_unlock",
+      "transitionType": "boss_completion_state",
       "requires": ["jori_defeated"],
       "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "Jori is the actual access gate to the forbidden forest; the region is not treated as a free surface branch.",
+      "note": "Jori is the actual access gate to the Forsaken Graveyard threshold; the forest entrance remains a separate downstream transition.",
       "tags": ["boss", "state_change", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "forsaken-graveyard-to-abyssal-woods",
+      "from": "grace_scadu_altus_abyssal_woods_forsaken_graveyard",
+      "to": "grace_scadu_altus_abyssal_woods_abyssal_woods",
+      "mode": "Forsaken Graveyard to Abyssal Woods",
+      "cost": 3,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "forbidden_forest_threshold",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Cross the graveyard threshold into Abyssal Woods after the Jori-cleared state has been reached.",
+      "tags": ["underground", "legacy", "cross_checked"]
     },
     {
       "id": "abyssal-woods-to-woodland-trail",
@@ -15945,8 +15965,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 621,
-    "formalRouteEdgeCount": 648,
+    "formalNodeCount": 622,
+    "formalRouteEdgeCount": 649,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

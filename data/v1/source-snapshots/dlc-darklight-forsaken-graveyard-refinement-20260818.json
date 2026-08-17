@@ -1,0 +1,17 @@
+{
+  "snapshot_id": "dlc-darklight-forsaken-graveyard-refinement-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "darklight-forsaken-threshold",
+      "claim": "Darklight Catacombs ends at the Forsaken Graveyard, where Jori guards the entrance to Abyssal Woods; the graveyard is a real intermediate threshold rather than the same node as the forest grace.",
+      "sources": [
+        { "source_id": "eldenpedia-darklight", "url": "https://eldenring.wiki.gg/wiki/Darklight_Catacombs" },
+        { "source_id": "eldenpedia-abyssal", "url": "https://eldenring.wiki.gg/wiki/Abyssal_Woods" },
+        { "source_id": "game8-midra-manse-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459949" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
