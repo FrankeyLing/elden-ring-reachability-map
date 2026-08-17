@@ -1,0 +1,90 @@
+{
+  "snapshot_id": "base-gelmir-volcano-rykard-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Altus Plateau entry to Mt. Gelmir, Volcano Manor, Prison Town, Godskin Noble, Temple of Eiglay, Audience Pathway and Rykard",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "altus-to-mt-gelmir",
+      "from": "Altus Plateau",
+      "to": "Bridge of Iniquity",
+      "transition_type": "mt_gelmir_surface_entrance",
+      "direction": "forward",
+      "claim": "Mt. Gelmir can be accessed from northern Altus via the Bridge of Iniquity and then climbed through the mountain campsites.",
+      "sources": ["eldenpedia-mt-gelmir", "game8-altus-gelmir-cross-check", "powerpyx-mt-gelmir-cross-check"]
+    },
+    {
+      "id": "gelmir-climb-to-manor",
+      "from": "Bridge of Iniquity",
+      "to": "Volcano Manor",
+      "transition_type": "volcano_manor_surface_approach",
+      "direction": "forward",
+      "claim": "The route proceeds through First Mt.Gelmir Campsite and Road of Iniquity to Volcano Manor.",
+      "sources": ["eldenpedia-mt-gelmir", "eldenpedia-volcano-r97173", "game8-volcano-cross-check", "powerpyx-mt-gelmir-cross-check"]
+    },
+    {
+      "id": "manor-to-prison-town",
+      "from": "Volcano Manor",
+      "to": "Prison Town Church",
+      "transition_type": "legacy_hidden_route",
+      "direction": "forward",
+      "claim": "After entering the Manor, the hidden wall/key route reaches Prison Town Church.",
+      "sources": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"]
+    },
+    {
+      "id": "prison-town-to-godskin",
+      "from": "Prison Town Church",
+      "to": "Godskin Noble",
+      "transition_type": "vertical_legacy_route",
+      "direction": "forward",
+      "claim": "Prison Town's rooftops, bridge and lift route lead to the Godskin Noble gate.",
+      "sources": ["powerpyx-volcano-cross-check", "game8-volcano-cross-check", "eldenpedia-volcano-r97173"]
+    },
+    {
+      "id": "godskin-to-eiglay",
+      "from": "Godskin Noble",
+      "to": "Temple of Eiglay",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "Defeating Godskin Noble unlocks the Temple of Eiglay grace and the next Volcano Manor route.",
+      "sources": ["eldenpedia-volcano-r97173", "game8-volcano-cross-check", "powerpyx-volcano-cross-check"]
+    },
+    {
+      "id": "eiglay-to-audience",
+      "from": "Temple of Eiglay",
+      "to": "Audience Pathway",
+      "transition_type": "sending_gate_legacy_route",
+      "direction": "forward",
+      "claim": "The post-Godskin lift/lava route reaches a sending gate to Audience Pathway.",
+      "sources": ["eldenpedia-volcano-r97173", "game8-volcano-cross-check", "powerpyx-volcano-cross-check"]
+    },
+    {
+      "id": "audience-to-rykard",
+      "from": "Audience Pathway",
+      "to": "Rykard, Lord of Blasphemy",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Audience Pathway is the final grace before the Rykard fog gate.",
+      "sources": ["eldenpedia-rykard", "eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check"]
+    },
+    {
+      "id": "rykard-post-state",
+      "from": "Rykard, Lord of Blasphemy",
+      "to": "Rykard, Lord of Blasphemy Grace",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "A grace appears in the Rykard arena after the God-Devouring Serpent/Rykard encounter.",
+      "sources": ["eldenpedia-rykard", "eldenpedia-sites-of-grace-r83774", "game8-volcano-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-mt-gelmir", "url": "https://eldenring.wiki.gg/wiki/Mt._Gelmir" },
+    { "id": "eldenpedia-volcano-r97173", "url": "https://eldenring.wiki.gg/wiki/Volcano_Manor" },
+    { "id": "eldenpedia-rykard", "url": "https://eldenring.wiki.gg/wiki/Rykard,_Lord_of_Blasphemy" },
+    { "id": "game8-altus-gelmir-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379636" },
+    { "id": "game8-volcano-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370280" },
+    { "id": "powerpyx-mt-gelmir-cross-check", "url": "https://www.powerpyx.com/elden-ring-mt-gelmir-walkthrough/" },
+    { "id": "powerpyx-volcano-cross-check", "url": "https://www.powerpyx.com/elden-ring-volcano-manor-walkthrough/" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" }
+  ]
+}
