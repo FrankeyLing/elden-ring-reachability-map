@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "base-mountaintops-roundtrip-surface-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "mountaintops-west-east-surface-roundtrips",
+      "claim": "The Mountaintops surface network connects Zamor Ruins to Whiteridge Road, the Freezing Lake branch and Giants' Gravepost by open snowy roads. V1 adds the documented return edges while leaving the Grand Lift transition separate.",
+      "sources": [
+        { "source_id": "eldenpedia-mountaintops-r99043", "url": "https://eldenring.wiki.gg/wiki/Mountaintops_of_the_Giants" },
+        { "source_id": "eip-mountaintops-cross-check", "url": "https://eip.gg/elden-ring/guides/mountaintops-of-the-giants-walkthrough/" },
+        { "source_id": "powerpyx-mountaintops-cross-check", "url": "https://www.powerpyx.com/elden-ring-mountaintops-of-the-giants-walkthrough/" },
+        { "source_id": "game8-mountaintops-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370241" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "castle-sol-and-foot-forge-entrance-returns",
+      "claim": "Whiteridge Road branches to Castle Sol's front gate, and Giants' Gravepost connects to Foot of the Forge across the Flame Peak chain route. V1 exposes the front-gate and chain-route returns without creating an internal Castle Sol floor graph or a boss-gate reverse edge.",
+      "sources": [
+        { "source_id": "eldenpedia-mountaintops-r99043", "url": "https://eldenring.wiki.gg/wiki/Mountaintops_of_the_Giants" },
+        { "source_id": "eip-mountaintops-cross-check", "url": "https://eip.gg/elden-ring/guides/mountaintops-of-the-giants-walkthrough/" },
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

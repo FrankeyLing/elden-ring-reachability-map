@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.78-online-multiplane",
+  "version": "1.0.79-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -91,7 +91,8 @@
       "dlc-gravesite-cerulean-roundtrip-surface-routes-evidence-20260818",
       "dlc-scadu-rauh-roundtrip-surface-routes-evidence-20260818",
       "dlc-shadow-keep-scaduview-roundtrip-evidence-20260818",
-      "base-mt-gelmir-roundtrip-surface-evidence-20260818"
+      "base-mt-gelmir-roundtrip-surface-evidence-20260818",
+      "base-mountaintops-roundtrip-surface-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17085,6 +17086,11 @@
     ,{ "id": "seethewater-terminus-to-river", "from": "grace_altus_plateau_mt_gelmir_seethewater_terminus", "to": "grace_altus_plateau_mt_gelmir_seethewater_river", "mode": "Seethewater Terminus return to Seethewater River", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "seethewater_ravine_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-mt-gelmir", "eldenpedia-sites-of-grace-r83774", "powerpyx-mt-gelmir-cross-check"], "verificationState": "online_cross_checked", "note": "Backtrack through the geyser ravine to Seethewater River.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
     ,{ "id": "craftsman-shack-to-terminus", "from": "grace_altus_plateau_mt_gelmir_craftsman_s_shack", "to": "grace_altus_plateau_mt_gelmir_seethewater_terminus", "mode": "Craftsman's Shack return to Seethewater Terminus", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "lava_and_boss_bypass_route_return", "requires": [], "sourceEvidence": ["eldenpedia-mt-gelmir", "eldenpedia-sites-of-grace-r83774", "game8-altus-gelmir-cross-check"], "verificationState": "online_cross_checked", "note": "Return west through the Fort Laiedd and lava-side approach to Seethewater Terminus.", "tags": ["walk", "surface", "branch", "hazard", "backtrack", "cross_checked"] }
     ,{ "id": "azur-to-craftsman-shack", "from": "grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur", "to": "grace_altus_plateau_mt_gelmir_craftsman_s_shack", "mode": "Primeval Sorcerer Azur return to Craftsman's Shack", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "hermit_village_route_return", "requires": [], "sourceEvidence": ["eldenpedia-mt-gelmir", "eldenpedia-sites-of-grace-r83774", "powerpyx-mt-gelmir-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the western Gelmir cliff route to Craftsman's Shack.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "whiteridge-to-zamor", "from": "grace_whiteridge_road", "to": "grace_zamor_ruins", "mode": "Whiteridge Road return to Zamor Ruins", "cost": 8, "risk": 3, "direction": "backtrack", "transitionType": "mountaintop_surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "powerpyx-mountaintops-cross-check", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return east along the first Mountaintops road to Zamor Ruins.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "freezing-lake-to-whiteridge", "from": "grace_freezing_lake", "to": "grace_whiteridge_road", "mode": "Freezing Lake return to Whiteridge Road", "cost": 8, "risk": 4, "direction": "backtrack", "transitionType": "surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "powerpyx-mountaintops-cross-check", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return west from the frozen lake branch to Whiteridge Road.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "gravepost-to-freezing-lake", "from": "grace_giants_gravepost", "to": "grace_freezing_lake", "mode": "Giants' Gravepost return to Freezing Lake", "cost": 7, "risk": 4, "direction": "backtrack", "transitionType": "surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "powerpyx-mountaintops-cross-check", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Return north along the eastern Mountaintops branch to Freezing Lake.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "castle-sol-main-to-whiteridge", "from": "grace_castle_sol_main_gate", "to": "grace_whiteridge_road", "mode": "Castle Sol Main Gate return to Whiteridge Road", "cost": 9, "risk": 4, "direction": "backtrack", "transitionType": "legacy_dungeon_entrance_return", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Leave Castle Sol through the front gate and return to the Whiteridge Road branch.", "tags": ["walk", "surface", "legacy_entrance", "backtrack", "cross_checked"] }
+    ,{ "id": "foot-of-forge-to-gravepost", "from": "grace_foot_of_forge", "to": "grace_giants_gravepost", "mode": "Foot of the Forge return to Giants' Gravepost", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "chain_bridge_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the Flame Peak chain route back from Foot of the Forge to Giants' Gravepost.", "tags": ["vertical", "surface", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17107,7 +17113,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 874,
+    "formalRouteEdgeCount": 879,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
