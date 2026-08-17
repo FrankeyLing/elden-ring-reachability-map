@@ -1,0 +1,61 @@
+{
+  "snapshot_id": "base-liurnia-east-study-hall-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Gate Town North, Eastern Liurnia Lake Shore, Carian Study Hall, Liurnia Tower Bridge, Divine Tower of Liurnia and Bellum Highway",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "eastern-liurnia-study-hall-approach",
+      "from": "Gate Town North",
+      "to": "Study Hall Entrance",
+      "transition_type": "surface_to_legacy_entrance",
+      "direction": "forward",
+      "claim": "The east Liurnia route reaches the eastern lake shore and the Carian Study Hall entrance; the Study Hall is on Liurnia's eastern coast.",
+      "sources": ["eldenpedia-carian-study-hall", "eldenpedia-sites-of-grace-r83774", "game8-study-hall-cross-check"]
+    },
+    {
+      "id": "study-hall-inversion-gate",
+      "from": "Study Hall Entrance",
+      "to": "Liurnia Tower Bridge",
+      "transition_type": "inverted_legacy_to_bridge",
+      "direction": "forward",
+      "claim": "The Divine Tower path is hidden behind the Carian Inverted Statue pedestal; after inversion, the traversal reaches the bridge leading to the Divine Tower.",
+      "sources": ["eldenpedia-carian-study-hall", "eldenpedia-divine-tower-liurnia", "game8-study-hall-cross-check"]
+    },
+    {
+      "id": "tower-bridge-lift",
+      "from": "Liurnia Tower Bridge",
+      "to": "Divine Tower of Liurnia",
+      "transition_type": "bridge_and_tower_lift",
+      "direction": "forward",
+      "claim": "Liurnia Tower Bridge is reached after crossing the Study Hall; the Divine Tower grace is reached after using the tower lift.",
+      "sources": ["eldenpedia-divine-tower-liurnia", "game8-study-hall-cross-check"]
+    },
+    {
+      "id": "bellum-highway-continuity",
+      "from": "East Raya Lucaria Gate",
+      "to": "Grand Lift of Dectus",
+      "transition_type": "surface_highway",
+      "direction": "forward",
+      "claim": "Bellum Highway starts at the East Raya Lucaria Gate and continues to the Grand Lift of Dectus; Bellum Church is modeled as an intermediate grace.",
+      "sources": ["eldenpedia-bellum-highway", "eldenpedia-sites-of-grace-r83774", "gamerguides-bellum-cross-check"]
+    },
+    {
+      "id": "academy-north-seal",
+      "from": "Main Academy Gate",
+      "to": "East Raya Lucaria Gate",
+      "transition_type": "sealed_gate_to_highway",
+      "direction": "forward",
+      "claim": "The north-side seal at the Main Academy Gate is represented as a separate route into Bellum Highway rather than being conflated with the Academy's Glintstone Key entrance.",
+      "sources": ["eldenpedia-bellum-highway", "eldenpedia-sites-of-grace-r83774", "gamerguides-bellum-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-carian-study-hall", "url": "https://eldenring.wiki.gg/wiki/Carian_Study_Hall" },
+    { "id": "eldenpedia-divine-tower-liurnia", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_Liurnia" },
+    { "id": "eldenpedia-bellum-highway", "url": "https://eldenring.wiki.gg/wiki/Bellum_Highway" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-study-hall-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369663" },
+    { "id": "gamerguides-bellum-cross-check", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/bellum-highway" }
+  ]
+}
