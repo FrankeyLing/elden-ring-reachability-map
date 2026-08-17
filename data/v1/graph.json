@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.71-online-multiplane",
+  "version": "1.0.72-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -84,7 +84,8 @@
       "dlc-gravesite-plain-early-branches-evidence-20260818",
       "dlc-belurat-rauh-base-vertical-graces-evidence-20260818",
       "base-liurnia-highway-laskyar-eastern-tableland-evidence-20260818",
-      "base-liurnia-crystalline-temple-quarter-evidence-20260818"
+      "base-liurnia-crystalline-temple-quarter-evidence-20260818",
+      "base-liurnia-moonlight-stormveil-gateside-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1380,6 +1381,11 @@
     ,{ "id": "game8-liurnia-branches-cross-check", "label": "Game8 - Liurnia interactive map and region guide", "url": "https://game8.co/games/Elden-Ring/archives/369315", "grade": "B" }
     ,{ "id": "neoseeker-liurnia-north-cross-check", "label": "Neoseeker - Northern Liurnia route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North", "grade": "B" }
     ,{ "id": "eip-liurnia-cross-check", "label": "EIP Gaming - Liurnia of the Lakes walkthrough", "url": "https://eip.gg/elden-ring/guides/liurnia-of-the-lakes-walkthrough/", "grade": "B" }
+    ,{ "id": "eip-moonlight-altar-cross-check", "label": "EIP Gaming - Moonlight Altar walkthrough", "url": "https://eip.gg/elden-ring/guides/moonlight-altar-walkthrough/", "grade": "B" }
+    ,{ "id": "vgkami-sites-of-grace-cross-check", "label": "VGKAMI - Elden Ring Sites of Grace locations", "url": "https://vgkami.com/elden-ring-every-site-of-grace-location/", "grade": "B" }
+    ,{ "id": "gamerguides-altar-south-cross-check", "label": "Gamer Guides - Altar South database", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/database/sites-of-grace/moonlight-altar/altar-south", "grade": "B" }
+    ,{ "id": "eldenpedia-cathedral-manus-celes", "label": "Eldenpedia - Cathedral of Manus Celes", "url": "https://eldenring.wiki.gg/wiki/Cathedral_of_Manus_Celes", "grade": "A" }
+    ,{ "id": "eip-stormveil-cross-check", "label": "EIP Gaming - Stormveil Castle walkthrough", "url": "https://eip.gg/elden-ring/guides/stormveil-castle-walkthrough/", "grade": "B" }
     ,{ "id": "game8-hermit-merchant-cross-check", "label": "Game8 - Hermit Merchant's Shack", "url": "https://game8.co/games/Elden-Ring/archives/370263", "grade": "B" }
     ,{ "id": "game8-minor-erdtree-church-cross-check", "label": "Game8 - Minor Erdtree Church", "url": "https://game8.co/games/Elden-Ring/archives/370260", "grade": "B" }
   ],
@@ -9102,6 +9108,22 @@
     {
       "id": "grace_liurnia_of_the_lakes_main_east_gate_bridge_trestle", "label": "East Gate Bridge Trestle", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Academy eastern bridge underside", "worldEpoch": "liurnia_surface", "x": 1110, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "neoseeker-liurnia-north-cross-check"], "description": "Bridge-underside grace reached from the northern lake-island route; it provides the distinct eastward connection to Gate Town North beneath the collapsed bridge."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_mausoleum_compound", "label": "Mausoleum Compound", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Uld Palace Ruins upper approach", "worldEpoch": "liurnia_surface", "x": 1500, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "neoseeker-liurnia-north-cross-check"], "description": "Upper Uld Palace Ruins grace reached by climbing northwest from the Ruined Labyrinth side; it is separated from the lower ruins by a cliff/route transition."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_moonlight_altar_altar_south", "label": "Altar South", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Moonlight Altar southern plateau", "worldEpoch": "moonlight_altar", "x": 690, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-moonlight-altar-cross-check", "vgkami-sites-of-grace-cross-check", "gamerguides-altar-south-cross-check"], "description": "Southern Moonlight Altar grace before Chelona's Rise; the three-wise-beasts puzzle is local to the nearby tower and does not gate the grace."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "label": "Cathedral of Manus Celes", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Cathedral of Manus Celes interior", "worldEpoch": "moonlight_altar", "x": 930, "y": 330, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-cathedral-manus-celes", "eip-moonlight-altar-cross-check"], "description": "Interior cathedral grace northeast of Moonlight Altar; the hole and Ranni interaction below are modeled as a separate quest interaction, not as a prerequisite for reaching the grace."
+    },
+    {
+      "id": "grace_stormveil_castle_main_gateside_chamber", "label": "Gateside Chamber", "kind": "grace", "layer": "legacy", "region": "Stormveil Castle", "floor": "Castle gate courtyard side room", "worldEpoch": "stormveil_pre_godrick", "x": 500, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "eip-stormveil-cross-check"], "description": "Optional side-room grace near the castle gate, reached from the courtyard/bridge return route; it is not collapsed into Stormveil Main Gate or Stormveil Cliffside."
     }
   ],
   "edges": [
@@ -16944,6 +16966,14 @@
     ,{ "id": "east-gate-trestle-to-sorcerer-isle", "from": "grace_liurnia_of_the_lakes_main_east_gate_bridge_trestle", "to": "grace_liurnia_of_the_lakes_main_sorcerer_s_isle", "mode": "East Gate Bridge Trestle return to Sorcerer's Isle", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "liurnia_bridge_support_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return northwest through the bridge-support and lake-island route.", "tags": ["walk", "surface", "lakebed", "vertical", "backtrack", "cross_checked"] }
     ,{ "id": "east-gate-trestle-to-gate-town-north", "from": "grace_liurnia_of_the_lakes_main_east_gate_bridge_trestle", "to": "grace_liurnia_of_the_lakes_main_gate_town_north", "mode": "East Gate Bridge Trestle to Gate Town North", "cost": 5, "risk": 6, "direction": "forward", "transitionType": "liurnia_collapsed_bridge_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "neoseeker-liurnia-north-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the bridge underside eastward to Gate Town North; this keeps the trestle grace distinct from the higher East Raya Lucaria Gate.", "tags": ["walk", "surface", "branch", "cross_checked"] }
     ,{ "id": "gate-town-north-to-east-gate-trestle", "from": "grace_liurnia_of_the_lakes_main_gate_town_north", "to": "grace_liurnia_of_the_lakes_main_east_gate_bridge_trestle", "mode": "Gate Town North return to East Gate Bridge Trestle", "cost": 5, "risk": 6, "direction": "backtrack", "transitionType": "liurnia_collapsed_bridge_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return west under the collapsed bridge to the East Gate Bridge Trestle grace.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "ruined-labyrinth-to-mausoleum-compound", "from": "grace_liurnia_of_the_lakes_main_ruined_labyrinth", "to": "grace_liurnia_of_the_lakes_main_mausoleum_compound", "mode": "Ruined Labyrinth to Mausoleum Compound", "cost": 8, "risk": 8, "direction": "one_way", "transitionType": "uld_palace_cliff_ascent", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "neoseeker-liurnia-north-cross-check"], "verificationState": "online_cross_checked", "note": "Climb north/northwest from the Ruined Labyrinth side past the mausoleum and up the rock path to the separate Mausoleum Compound grace.", "tags": ["walk", "surface", "vertical", "one_way", "cross_checked"] }
+    ,{ "id": "mausoleum-compound-to-ruined-labyrinth", "from": "grace_liurnia_of_the_lakes_main_mausoleum_compound", "to": "grace_liurnia_of_the_lakes_main_ruined_labyrinth", "mode": "Mausoleum Compound return to Ruined Labyrinth", "cost": 8, "risk": 8, "direction": "one_way", "transitionType": "uld_palace_cliff_descent", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the same Uld Palace Ruins cliff route toward the lower Ruined Labyrinth grace; this is represented as a vertical return, not a flat road.", "tags": ["walk", "surface", "vertical", "one_way", "backtrack", "cross_checked"] }
+    ,{ "id": "moonlight-altar-to-altar-south", "from": "grace_moonlight_altar", "to": "grace_liurnia_of_the_lakes_moonlight_altar_altar_south", "mode": "Moonlight Altar to Altar South", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "moonlight_altar_southern_plateau_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-moonlight-altar-cross-check", "vgkami-sites-of-grace-cross-check", "gamerguides-altar-south-cross-check"], "verificationState": "online_cross_checked", "note": "Ride south/southwest across the Moonlight Altar plateau to the grace before Chelona's Rise; the tower puzzle is a local optional branch.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "altar-south-to-moonlight-altar", "from": "grace_liurnia_of_the_lakes_moonlight_altar_altar_south", "to": "grace_moonlight_altar", "mode": "Altar South return to Moonlight Altar", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "moonlight_altar_southern_plateau_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eip-moonlight-altar-cross-check", "vgkami-sites-of-grace-cross-check"], "verificationState": "online_cross_checked", "note": "Return northeast across the plateau to Moonlight Altar.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "moonlight-altar-to-manus-celes", "from": "grace_moonlight_altar", "to": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "mode": "Moonlight Altar to Cathedral of Manus Celes", "cost": 6, "risk": 8, "direction": "forward", "transitionType": "moonlight_altar_cathedral_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-cathedral-manus-celes", "eip-moonlight-altar-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the dirt path north/northeast and swing around the optional Glintstone Dragon Adula encounter to enter the cathedral from the north.", "tags": ["walk", "surface", "branch", "hazard", "cross_checked"] }
+    ,{ "id": "manus-celes-to-moonlight-altar", "from": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "to": "grace_moonlight_altar", "mode": "Cathedral of Manus Celes return to Moonlight Altar", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "moonlight_altar_cathedral_route", "requires": [], "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-cathedral-manus-celes", "eip-moonlight-altar-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cathedral and return southwest along the same plateau path; the hole below the grace is kept as a separate quest interaction.", "tags": ["walk", "surface", "branch", "hazard", "backtrack", "cross_checked"] }
+    ,{ "id": "limgrave-tower-bridge-to-gateside", "from": "grace_limgrave_stormhill_limgrave_tower_bridge", "to": "grace_stormveil_castle_main_gateside_chamber", "mode": "Limgrave Tower Bridge return to Gateside Chamber", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "stormveil_courtyard_side_room_route", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "eip-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Backtrack through the Stormveil courtyard and ballista approach to the Gateside Chamber side room.", "tags": ["walk", "legacy", "branch", "hazard", "cross_checked"] }
+    ,{ "id": "gateside-to-limgrave-tower-bridge", "from": "grace_stormveil_castle_main_gateside_chamber", "to": "grace_limgrave_stormhill_limgrave_tower_bridge", "mode": "Gateside Chamber to Limgrave Tower Bridge", "cost": 6, "risk": 8, "direction": "forward", "transitionType": "stormveil_courtyard_side_room_route", "requires": [], "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "eip-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the side room and cross the courtyard route back toward Limgrave Tower Bridge; the castle gate lever is a local shortcut, not a teleport.", "tags": ["walk", "legacy", "branch", "hazard", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -16965,8 +16995,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 692,
-    "formalRouteEdgeCount": 772,
+    "formalNodeCount": 696,
+    "formalRouteEdgeCount": 780,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -1,0 +1,39 @@
+{
+  "snapshot_id": "base-liurnia-moonlight-stormveil-gateside-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "liurnia-ruined-labyrinth-mausoleum-compound-chain",
+      "claim": "Mausoleum Compound is a separate upper Uld Palace Ruins grace reached from the Ruined Labyrinth side by climbing the path near the walking mausoleum; it should be represented as a vertical route rather than merged with Ruined Labyrinth.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "eip-liurnia-cross-check", "url": "https://eip.gg/elden-ring/guides/liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "neoseeker-liurnia-north-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "moonlight-altar-three-grace-branches",
+      "claim": "Moonlight Altar is the plateau entry grace after the Astel/Dark Moon Ring gate. From it, Altar South lies south or southwest before Chelona's Rise, while Cathedral of Manus Celes is reached north/northeast by swinging around the optional Glintstone Dragon Adula encounter; the Cathedral grace is inside the building.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "eldenpedia-cathedral-manus-celes", "url": "https://eldenring.wiki.gg/wiki/Cathedral_of_Manus_Celes" },
+        { "source_id": "eip-moonlight-altar-cross-check", "url": "https://eip.gg/elden-ring/guides/moonlight-altar-walkthrough/" },
+        { "source_id": "vgkami-sites-of-grace-cross-check", "url": "https://vgkami.com/elden-ring-every-site-of-grace-location/" },
+        { "source_id": "gamerguides-altar-south-cross-check", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/database/sites-of-grace/moonlight-altar/altar-south" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "stormveil-gateside-side-route",
+      "claim": "Gateside Chamber is a distinct Stormveil side-room grace. The main gate opening leads to Stormveil Cliffside, while the Gateside grace is picked up on the courtyard/bridge return route near the castle gate; therefore it should not replace the direct Main Gate to Cliffside route or be collapsed into either node.",
+      "sources": [
+        { "source_id": "eldenpedia-stormveil-r97036", "url": "https://eldenring.wiki.gg/wiki/Stormveil_Castle" },
+        { "source_id": "powerpyx-stormveil-cross-check", "url": "https://www.powerpyx.com/elden-ring-stormveil-castle-walkthrough/" },
+        { "source_id": "eip-stormveil-cross-check", "url": "https://eip.gg/elden-ring/guides/stormveil-castle-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
