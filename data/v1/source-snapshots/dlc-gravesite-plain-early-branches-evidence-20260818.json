@@ -1,0 +1,38 @@
+{
+  "snapshot_id": "dlc-gravesite-plain-early-branches-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "scorched-ruins-early-route",
+      "claim": "Scorched Ruins is an early Gravesite Plain grace reached from the Realm of Shadow entry, and the northbound road from it continues to Three-Path Cross. The Furnace Golem is a local hazard rather than a required boss gate.",
+      "sources": [
+        { "source_id": "eldenpedia-gravesite-plain", "url": "https://eldenring.wiki.gg/wiki/Gravesite_Plain" },
+        { "source_id": "eip-gravesite-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/" },
+        { "source_id": "game8-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "greatbridge-north-from-three-path",
+      "claim": "Greatbridge, North is a separate northern Gravesite Plain grace on the road from Three-Path Cross toward Ellac Greatbridge and the destroyed village; it is not the same node as Castle Front on the opposite side of the bridge.",
+      "sources": [
+        { "source_id": "eldenpedia-gravesite-plain", "url": "https://eldenring.wiki.gg/wiki/Gravesite_Plain" },
+        { "source_id": "eip-gravesite-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/" },
+        { "source_id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "pillar-path-waypoint-before-dragon-pit",
+      "claim": "Pillar Path Waypoint is a distinct southern fork grace between Pillar Path Cross and Dragon's Pit. The Dragon's Pit entrance is reached by bearing south-southwest from the waypoint, so the route is split into two edges rather than jumping directly from Pillar Path Cross to the dungeon.",
+      "sources": [
+        { "source_id": "eldenpedia-gravesite-plain", "url": "https://eldenring.wiki.gg/wiki/Gravesite_Plain" },
+        { "source_id": "eldenpedia-dragons-pit", "url": "https://eldenring.wiki.gg/wiki/Dragon%27s_Pit" },
+        { "source_id": "eip-gravesite-cross-check", "url": "https://eip.gg/elden-ring/guides/gravesite-plain/" },
+        { "source_id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

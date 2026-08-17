@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.67-online-multiplane",
+  "version": "1.0.68-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -80,7 +80,8 @@
       "base-liurnia-lakeside-cliff-branches-evidence-20260818",
       "base-mountaintops-snowfield-surface-branches-evidence-20260818",
     "base-capital-outskirts-graces-evidence-20260818",
-    "dlc-scadu-altus-shadow-keep-vertical-graces-evidence-20260818"
+    "dlc-scadu-altus-shadow-keep-vertical-graces-evidence-20260818",
+    "dlc-gravesite-plain-early-branches-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -4275,6 +4276,21 @@
       "description": "Realm of Shadow arrival grace after the Cocoon of the Empyrean transition."
     },
     {
+      "id": "grace_gravesite_plain_main_scorched_ruins",
+      "label": "Scorched Ruins",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Scorched Ruins",
+      "worldEpoch": "shadow_realm",
+      "x": 140,
+      "y": 790,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check", "game8-dlc-cross-check"],
+      "description": "Early Gravesite Plain surface grace on the northbound road between the Realm of Shadow entry and Three-Path Cross."
+    },
+    {
       "id": "grace_shadow_realm_three_path_cross",
       "label": "Three-Path Cross",
       "kind": "grace",
@@ -4288,6 +4304,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check"],
       "description": "Central Gravesite Plain junction for Belurat and eastern surface branches."
+    },
+    {
+      "id": "grace_gravesite_plain_main_greatbridge_north",
+      "label": "Greatbridge, North",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Ellac Greatbridge north road",
+      "worldEpoch": "shadow_realm",
+      "x": 300,
+      "y": 660,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "description": "Northern Gravesite Plain grace reached by following the road north from Three-Path Cross toward the Ellac Greatbridge and the destroyed village."
     },
     {
       "id": "landmark_church_of_consolation",
@@ -4378,6 +4409,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check"],
       "description": "Separate Gravesite Plain surface branch toward the Pillar Path."
+    },
+    {
+      "id": "grace_gravesite_plain_main_pillar_path_waypoint",
+      "label": "Pillar Path Waypoint",
+      "kind": "grace",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Pillar Path southern fork",
+      "worldEpoch": "shadow_realm",
+      "x": 350,
+      "y": 930,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "description": "Southern Pillar Path fork grace between Pillar Path Cross and the Dragon's Pit entrance; it also anchors the Suppressing Pillar/Jagged Peak branch."
     },
     {
       "id": "grace_shadow_realm_cliffroad_terminus",
@@ -9696,19 +9742,34 @@
       "tags": ["walk", "surface", "quest_branch", "cross_checked"]
     },
     {
-      "id": "pillar-path-cross-to-dragons-pit",
+      "id": "pillar-path-cross-to-waypoint",
       "from": "grace_shadow_realm_pillar_path_cross",
-      "to": "grace_gravesite_plain_main_dragon_s_pit",
-      "mode": "Pillar Path to Dragon's Pit",
-      "cost": 7,
-      "risk": 5,
+      "to": "grace_gravesite_plain_main_pillar_path_waypoint",
+      "mode": "Pillar Path Cross to Pillar Path Waypoint",
+      "cost": 6,
+      "risk": 6,
       "direction": "forward",
-      "transitionType": "shadow_realm_surface_walk",
+      "transitionType": "pillar_path_surface_fork",
       "requires": [],
-      "sourceEvidence": ["eldenpedia-dragons-pit", "game8-jagged-peak-cross-check", "neoseeker-jagged-peak-cross-check"],
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eip-gravesite-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "South-southwest route from Pillar Path to the Dragon's Pit cave entrance.",
+      "note": "Follow the southeast Pillar Path road and take the southern fork to the waypoint grace before the Dragon's Pit branch.",
       "tags": ["walk", "surface", "branch", "cross_checked"]
+    },
+    {
+      "id": "pillar-waypoint-to-dragons-pit",
+      "from": "grace_gravesite_plain_main_pillar_path_waypoint",
+      "to": "grace_gravesite_plain_main_dragon_s_pit",
+      "mode": "Pillar Path Waypoint to Dragon's Pit",
+      "cost": 5,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "dragon_pit_surface_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-dragons-pit", "eldenpedia-gravesite-plain", "eip-gravesite-cross-check", "neoseeker-jagged-peak-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Bear south-southwest from the Pillar Path Waypoint to the Dragon's Pit cave entrance; the waypoint is not the same point as the dungeon grace.",
+      "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
     },
     {
       "id": "dragons-pit-to-ancient-dragon-man",
@@ -11832,6 +11893,51 @@
       "verificationState": "online_cross_checked",
       "note": "Main surface route to the central DLC junction.",
       "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "gravesite-to-scorched-ruins",
+      "from": "grace_shadow_realm_gravesite_plain",
+      "to": "grace_gravesite_plain_main_scorched_ruins",
+      "mode": "Gravesite Plain to Scorched Ruins",
+      "cost": 4,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "shadow_realm_surface_walk",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eip-gravesite-cross-check", "game8-dlc-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Head north from the arrival grace and turn toward the scorched ruins; the Furnace Golem is a local hazard, not a route gate.",
+      "tags": ["walk", "surface", "hazard", "cross_checked"]
+    },
+    {
+      "id": "scorched-ruins-to-three-path-cross",
+      "from": "grace_gravesite_plain_main_scorched_ruins",
+      "to": "grace_shadow_realm_three_path_cross",
+      "mode": "Scorched Ruins north road to Three-Path Cross",
+      "cost": 5,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "shadow_realm_surface_walk",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eip-gravesite-cross-check", "game8-dlc-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Follow the main road north through the Scorched Ruins to the central cross and NPC junction.",
+      "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "three-path-to-greatbridge-north",
+      "from": "grace_shadow_realm_three_path_cross",
+      "to": "grace_gravesite_plain_main_greatbridge_north",
+      "mode": "Three-Path Cross north road to Greatbridge, North",
+      "cost": 7,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "ellac_greatbridge_north_road",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eip-gravesite-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Take the north road beside the large tree, continue past the road fork and dogs, and activate the grace by the destroyed village.",
+      "tags": ["walk", "surface", "branch", "cross_checked"]
     },
     {
       "id": "gravesite-to-church-of-consolation",
@@ -16506,8 +16612,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 674,
-    "formalRouteEdgeCount": 743,
+    "formalNodeCount": 677,
+    "formalRouteEdgeCount": 747,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
