@@ -1,0 +1,30 @@
+{
+  "snapshot_id": "base-limgrave-weeping-roundtrip-surface-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "limgrave-opening-road-roundtrips",
+      "claim": "The opening Limgrave surface route connects First Step, Church of Elleh, Gatefront, Stormhill Shack and the Castleward approach by ordinary roads. V1 adds the documented return edges for this surface chain.",
+      "sources": [
+        { "source_id": "eldenpedia-limgrave-r97518", "url": "https://eldenring.wiki.gg/wiki/Limgrave" },
+        { "source_id": "eip-limgrave-cross-check", "url": "https://eip.gg/elden-ring/guides/limgrave-walkthrough/" },
+        { "source_id": "powerpyx-limgrave-cross-check", "url": "https://www.powerpyx.com/elden-ring-limgrave-walkthrough/" },
+        { "source_id": "game8-limgrave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369268" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "weeping-peninsula-castle-morne-roundtrips",
+      "claim": "Weeping Peninsula is reached across Bridge of Sacrifice, then the road continues to Castle Morne Rampart. Castle Morne's lift, lower platforms and rear route are represented as distinct vertical/legacy nodes with return edges; the Leonine boss gate is not made bidirectional.",
+      "sources": [
+        { "source_id": "eldenpedia-weeping-peninsula", "url": "https://eldenring.wiki.gg/wiki/Weeping_Peninsula" },
+        { "source_id": "eldenpedia-castle-morne", "url": "https://eldenring.wiki.gg/wiki/Castle_Morne" },
+        { "source_id": "eip-weeping-peninsula-cross-check", "url": "https://eip.gg/elden-ring/guides/weeping-peninsula-walkthrough/" },
+        { "source_id": "eip-castle-morne-cross-check", "url": "https://eip.gg/elden-ring/guides/castle-morne-walkthrough/" },
+        { "source_id": "game8-castle-morne-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369633" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
