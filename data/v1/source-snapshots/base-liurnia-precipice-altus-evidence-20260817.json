@@ -1,0 +1,52 @@
+{
+  "snapshot_id": "base-liurnia-precipice-altus-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Bellum Church, The Ravine, Ravine-Veiled Village, Ruin-Strewn Precipice, Ruin-Strewn Precipice Overlook, Magma Wyrm Makar and the Altus exit lift",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "bellum-to-ravine",
+      "from": "Bellum Church",
+      "to": "The Ravine",
+      "transition_type": "surface_ravine_descent",
+      "direction": "forward",
+      "claim": "The lower path from Bellum Church descends into the northern Liurnia ravine; the Ravine-Veiled Village lies farther along the ravine floor.",
+      "sources": ["eip-ravine-village-cross-check", "game8-liurnia-cross-check"]
+    },
+    {
+      "id": "ravine-to-precipice",
+      "from": "Ravine-Veiled Village",
+      "to": "Ruin-Strewn Precipice",
+      "transition_type": "vertical_legacy_entrance",
+      "direction": "forward",
+      "claim": "The village is near the first ladder into the Ruin-Strewn Precipice dungeon; the dungeon contains distinct Precipice and Overlook graces as the route climbs.",
+      "sources": ["eldenpedia-ruin-strewn-precipice", "game8-ruin-strewn-cross-check", "eip-ravine-village-cross-check"]
+    },
+    {
+      "id": "precipice-makar-gate",
+      "from": "Ruin-Strewn Precipice Overlook",
+      "to": "Magma Wyrm Makar",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "The Overlook grace is immediately before the highest cavern and Magma Wyrm Makar boss room.",
+      "sources": ["eldenpedia-ruin-strewn-precipice", "eldenpedia-magma-wyrm-makar", "game8-ruin-strewn-cross-check"]
+    },
+    {
+      "id": "makar-altus-exit",
+      "from": "Magma Wyrm Makar",
+      "to": "Altus Plateau",
+      "transition_type": "boss_completion_and_one_way_lift",
+      "direction": "forward",
+      "claim": "After defeating Makar, the post-boss grace is available and the elevator beyond the arena provides the alternate arrival to Altus Plateau.",
+      "sources": ["eldenpedia-ruin-strewn-precipice", "eldenpedia-magma-wyrm-makar", "game8-ruin-strewn-cross-check", "powerpyx-altus-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-ruin-strewn-precipice", "url": "https://eldenring.wiki.gg/wiki/Ruin-Strewn_Precipice" },
+    { "id": "eldenpedia-magma-wyrm-makar", "url": "https://eldenring.wiki.gg/wiki/Magma_Wyrm_Makar" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-ruin-strewn-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369657" },
+    { "id": "eip-ravine-village-cross-check", "url": "https://eip.gg/elden-ring/guides/ravine-veiled-village-walkthrough/" },
+    { "id": "powerpyx-altus-cross-check", "url": "https://www.powerpyx.com/elden-ring-altus-plateau-walkthrough/" }
+  ]
+}
