@@ -759,6 +759,11 @@ async function init() {
       ["Ordina, Liturgical Town (Consecrated Snowfield)", "grace_ordina_liturgical_town"],
       ["Volcano Manor (entrance)", "grace_volcano_manor_entrance"],
       ["Prison Town Church", "grace_prison_town_church"],
+      ["Guest Hall", "grace_volcano_manor_main_guest_hall"],
+      ["Subterranean Inquisition Chamber", "grace_volcano_manor_main_subterranean_inquisition_chamber"],
+      ["Abductor Virgin", "grace_volcano_manor_main_abductor_virgin"],
+      ["Academy Abductor Virgin", "abductor_virgin_academy_gate"],
+      ["Abductor Virgins", "abductor_virgins_volcano_gate"],
       ["Temple of Eiglay", "grace_temple_of_eiglay"],
       ["Haligtree Canopy", "grace_haligtree_canopy"],
       ["Haligtree Promenade (Loretta)", "grace_haligtree_promenade"],
@@ -767,6 +772,7 @@ async function init() {
     catalog.records.forEach((record) => {
       if (["Abandoned Coffin", "Erdtree-Gazing Hill", "Forest-Spanning Greatbridge", "Windmill Village", "Windmill Heights", "Bower of Bounty", "Road of Iniquity Side Path", "Rampartside Path", "Shaded Castle Ramparts", "Shaded Castle Inner Gate", "Castellan's Hall"].includes(record.name)) return;
       if (["Lower Capital Church", "West Capital Rampart", "Fortified Manor, First Floor", "Divine Bridge", "Isolated Divine Tower", "Forbidden Lands", "Divine Tower of East Altus: Gate", "Divine Tower of East Altus"].includes(record.name)) return;
+      if (["Guest Hall", "Subterranean Inquisition Chamber", "Abductor Virgin"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;

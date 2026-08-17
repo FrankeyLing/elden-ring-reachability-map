@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.28-online-multiplane",
+    "version": "1.0.29-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -40,7 +40,8 @@
       "base-limgrave-divine-tower-evidence-20260817",
       "base-leyndell-sewers-frenzied-flame-evidence-20260817",
       "base-altus-shaded-castle-evidence-20260817",
-      "base-leyndell-capital-main-divine-branches-evidence-20260817"
+      "base-leyndell-capital-main-divine-branches-evidence-20260817",
+      "base-volcano-manor-multi-entry-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -431,6 +432,16 @@
       "id": "fell_twins_defeated",
       "label": "Fell Twins defeated",
       "hint": "The East Altus Divine Tower branch has been cleared after the post-Morgott bridge ambush."
+    },
+    {
+      "id": "abductor_virgin_abduction_triggered",
+      "label": "Academy Abductor Virgin teleport triggered",
+      "hint": "The Abductor Virgin's grab/death transition has sent the player to Volcano Manor's underground entrance."
+    },
+    {
+      "id": "abductor_virgins_defeated",
+      "label": "Abductor Virgins defeated",
+      "hint": "The Volcano Manor subterranean duo boss has been cleared and its post-boss grace is available."
     }
   ],
   "sourceEvidence": [
@@ -640,6 +651,9 @@
     ,{ "id": "gamefaqs-leyndell-lower-church", "label": "GameFAQs / Lower Capital Church route", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/7-leyndell-royal-capital-part-1", "grade": "C" }
     ,{ "id": "eldenpedia-isolated-divine-tower", "label": "Eldenpedia / Isolated Divine Tower", "url": "https://eldenring.wiki.gg/wiki/Isolated_Divine_Tower", "grade": "A" }
     ,{ "id": "gamesradar-east-altus-tower-cross-check", "label": "GamesRadar / East Altus Divine Tower route", "url": "https://www.gamesradar.com/elden-ring-divine-tower/", "grade": "B" }
+    ,{ "id": "neoseeker-volcano-manor-cross-check", "label": "Neoseeker / Volcano Manor internal route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Volcano_Manor", "grade": "B" }
+    ,{ "id": "game8-abductor-virgin-cross-check", "label": "Game8 / Abductor Virgins route", "url": "https://game8.co/games/Elden-Ring/archives/376060", "grade": "B" }
+    ,{ "id": "gamespot-abduction-cross-check", "label": "GameSpot / Academy Abductor Virgin teleport", "url": "https://www.gamespot.com/articles/elden-ring-rya-quest-guide/1100-6501489/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -1166,6 +1180,81 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-volcano-cross-check"],
       "description": "击败神皮贵族后激活的 Temple of Eiglay 赐福。"
+    },
+    {
+      "id": "grace_volcano_manor_main_guest_hall",
+      "label": "Guest Hall",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Volcano Manor",
+      "floor": "Prison Town / Guest Hall",
+      "worldEpoch": "base_surface",
+      "x": 470,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "neoseeker-volcano-manor-cross-check"],
+      "description": "The central Prison Town grace on the main castle route; it gives a distinct approach to the Godskin Noble gate."
+    },
+    {
+      "id": "grace_volcano_manor_main_subterranean_inquisition_chamber",
+      "label": "Subterranean Inquisition Chamber",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Volcano Manor",
+      "floor": "Subterranean lava chamber",
+      "worldEpoch": "base_surface",
+      "x": 80,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check"],
+      "description": "Underground arrival grace from the Academy Abductor Virgin death teleport; it branches toward Guest Hall or the subterranean duo."
+    },
+    {
+      "id": "abductor_virgin_academy_gate",
+      "label": "Academy Abductor Virgin",
+      "kind": "teleport",
+      "layer": "legacy",
+      "region": "Academy of Raya Lucaria",
+      "floor": "Waterwheel bottom",
+      "worldEpoch": "base_surface",
+      "x": 20,
+      "y": 390,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["gamespot-abduction-cross-check", "game8-abductor-virgin-cross-check"],
+      "description": "Trigger node at the bottom of the Academy waterwheel; the route requires being killed by the grab attack to activate the Volcano Manor transition."
+    },
+    {
+      "id": "abductor_virgins_volcano_gate",
+      "label": "Abductor Virgins",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Volcano Manor",
+      "floor": "Subterranean Inquisition Chamber lower cave",
+      "worldEpoch": "base_surface",
+      "x": 220,
+      "y": 430,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check", "neoseeker-volcano-manor-cross-check"],
+      "description": "Optional subterranean duo boss branch below the Inquisition Chamber."
+    },
+    {
+      "id": "grace_volcano_manor_main_abductor_virgin",
+      "label": "Abductor Virgin",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Volcano Manor",
+      "floor": "Post-boss lower cave",
+      "worldEpoch": "base_surface",
+      "x": 340,
+      "y": 430,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check"],
+      "description": "Post-Abductor Virgins grace in the boss room; it remains a separate lower-layer endpoint from Guest Hall."
     },
     {
       "id": "epoch_ashen_capital",
@@ -7028,6 +7117,96 @@
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
     },
     {
+      "id": "schoolhouse-to-academy-abductor",
+      "from": "grace_schoolhouse_classroom",
+      "to": "abductor_virgin_academy_gate",
+      "mode": "Schoolhouse Classroom to Academy Abductor Virgin",
+      "cost": 8,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "waterwheel_descent",
+      "requires": [],
+      "sourceEvidence": ["gamespot-abduction-cross-check", "game8-abductor-virgin-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Ride the Academy waterwheel to its bottom Abductor Virgin trigger; this is a death-teleport setup node, not a normal boss gate.",
+      "tags": ["vertical", "teleport", "hazard", "branch", "cross_checked"]
+    },
+    {
+      "id": "academy-abductor-to-inquisition",
+      "from": "abductor_virgin_academy_gate",
+      "to": "grace_volcano_manor_main_subterranean_inquisition_chamber",
+      "mode": "Academy Abductor Virgin death teleport",
+      "cost": 2,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "death_teleport",
+      "requires": ["abductor_virgin_abduction_triggered"],
+      "sourceEvidence": ["gamespot-abduction-cross-check", "eldenpedia-volcano-r97173", "game8-abductor-virgin-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Abductor Virgin's grab attack and death send the player to the hidden Volcano Manor underground entrance; this is explicitly one-way.",
+      "tags": ["death", "teleport", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "inquisition-to-guest-hall",
+      "from": "grace_volcano_manor_main_subterranean_inquisition_chamber",
+      "to": "grace_volcano_manor_main_guest_hall",
+      "mode": "Inquisition Chamber to Guest Hall lava route",
+      "cost": 10,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "lava_waterfall_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "neoseeker-volcano-manor-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The underground chamber has a separate lava/waterfall route into the main manor; it is not merged with the Abductor boss branch.",
+      "tags": ["lava", "vertical", "branch", "one_way", "legacy", "cross_checked"]
+    },
+    {
+      "id": "inquisition-to-abductor-virgins",
+      "from": "grace_volcano_manor_main_subterranean_inquisition_chamber",
+      "to": "abductor_virgins_volcano_gate",
+      "mode": "Inquisition Chamber to Abductor Virgins",
+      "cost": 6,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "underground_boss_branch",
+      "requires": [],
+      "sourceEvidence": ["powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check", "neoseeker-volcano-manor-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Optional lower-cave duo branch below the Inquisition Chamber grace.",
+      "tags": ["boss", "branch", "underground", "cross_checked"]
+    },
+    {
+      "id": "abductor-virgins-to-grace",
+      "from": "abductor_virgins_volcano_gate",
+      "to": "grace_volcano_manor_main_abductor_virgin",
+      "mode": "Abductor Virgins completion",
+      "cost": 3,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["abductor_virgins_defeated"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The grace in the Abductor Virgin boss room is kept as a post-boss lower-layer endpoint.",
+      "tags": ["boss", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "guest-hall-to-godskin-noble",
+      "from": "grace_volcano_manor_main_guest_hall",
+      "to": "godskin_noble_volcano_gate",
+      "mode": "Guest Hall to Godskin Noble",
+      "cost": 7,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "legacy_boss_approach",
+      "requires": [],
+      "sourceEvidence": ["powerpyx-volcano-cross-check", "neoseeker-volcano-manor-cross-check", "game8-abductor-virgin-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Guest Hall route uses the cage elevators and upper path to reach the same Godskin Noble gate as the Prison Town approach.",
+      "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
       "id": "volcano-entrance-to-prison-church",
       "from": "grace_volcano_manor_entrance",
       "to": "grace_prison_town_church",
@@ -10303,8 +10482,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 318,
-    "formalRouteEdgeCount": 325,
+    "formalNodeCount": 323,
+    "formalRouteEdgeCount": 331,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

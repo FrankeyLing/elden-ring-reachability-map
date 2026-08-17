@@ -1,0 +1,40 @@
+{
+  "snapshot_id": "base-volcano-manor-multi-entry-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "academy-abductor-to-inquisition",
+      "claim": "The Abductor Virgin at the bottom of Raya Lucaria's waterwheel can trigger a death teleport to Volcano Manor's Subterranean Inquisition Chamber.",
+      "sources": [
+        { "source_id": "gamespot-abduction-cross-check", "url": "https://www.gamespot.com/articles/elden-ring-rya-quest-guide/1100-6501489/" },
+        { "source_id": "game8-abductor-virgin-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/376060" },
+        { "source_id": "eldenpedia-volcano-r97173", "url": "https://eldenring.wiki.gg/wiki/Volcano_Manor", "revision_id": 97173 }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "inquisition-branches",
+      "claim": "The Subterranean Inquisition Chamber is a real grace and branches into the lava route toward the main manor and the lower Abductor Virgins cave; these are separate planes/branches.",
+      "sources": [
+        { "source_id": "powerpyx-volcano-cross-check", "url": "https://www.powerpyx.com/elden-ring-volcano-manor-walkthrough/" },
+        { "source_id": "neoseeker-volcano-manor-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Volcano_Manor" },
+        { "source_id": "eldenpedia-volcano-r97173", "url": "https://eldenring.wiki.gg/wiki/Volcano_Manor", "revision_id": 97173 }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "guest-hall-to-godskin",
+      "claim": "Guest Hall is an explicit Volcano Manor grace on the central castle route and its cage-elevator/upper path can reach the Godskin Noble approach, distinct from the Prison Town Church approach.",
+      "sources": [
+        { "source_id": "powerpyx-volcano-cross-check", "url": "https://www.powerpyx.com/elden-ring-volcano-manor-walkthrough/" },
+        { "source_id": "neoseeker-volcano-manor-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Volcano_Manor" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The death teleport is represented as a selectable state transition; it is not a claim that the current save has triggered it.",
+    "No game process, save file, archive, memory or foreground window was accessed."
+  ]
+}
