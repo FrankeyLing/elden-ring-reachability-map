@@ -1,0 +1,30 @@
+{
+  "snapshot_id": "base-liurnia-lakeside-cliff-branches-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "liurnia-lake-albinauric-boilprawn-branch",
+      "claim": "Boilprawn Shack is north of Scenic Isle on the Liurnia lake shore; the Village of the Albinaurics is reached through the western lake shallows and a hidden lower ravine, with an optional Omenkiller at the village's far end.",
+      "sources": [
+        { "source_id": "eldenpedia-boilprawn-shack", "url": "https://eldenring.wiki.gg/wiki/Boilprawn_Shack" },
+        { "source_id": "eldenpedia-village-albinaurics", "url": "https://eldenring.wiki.gg/wiki/Village_of_the_Albinaurics" },
+        { "source_id": "powerpyx-liurnia-cross-check", "url": "https://www.powerpyx.com/elden-ring-liurnia-of-the-lakes-walkthrough/" },
+        { "source_id": "game8-liurnia-branches-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369315" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "liurnia-vertical-and-northern-branches",
+      "claim": "Jarburg is reached by descending tombstone ledges from the eastern Liurnia cliffs; Slumbering Wolf's Shack is the surface exit after Lakeside Crystal Cave; Church of Inhibition is reached from Bellum Church through the Frenzied Flame Village northern route and its Madness hazard.",
+      "sources": [
+        { "source_id": "eldenpedia-jarburg", "url": "https://eldenring.wiki.gg/wiki/Jarburg" },
+        { "source_id": "eldenpedia-slumbering-wolf-shack", "url": "https://eldenring.wiki.gg/wiki/Slumbering_Wolf%27s_Shack" },
+        { "source_id": "eldenpedia-church-inhibition", "url": "https://eldenring.wiki.gg/wiki/Church_of_Inhibition" },
+        { "source_id": "game8-church-inhibition-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369658" },
+        { "source_id": "neoseeker-liurnia-north-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

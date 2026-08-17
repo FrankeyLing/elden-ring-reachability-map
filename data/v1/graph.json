@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.63-online-multiplane",
+    "version": "1.0.64-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -76,7 +76,8 @@
       "base-limgrave-chapel-four-belfries-evidence-20260818",
       "base-roundtable-hold-invitation-evidence-20260818",
       "base-limgrave-early-surface-nodes-evidence-20260818",
-      "base-weeping-peninsula-surface-nodes-evidence-20260818"
+      "base-weeping-peninsula-surface-nodes-evidence-20260818",
+      "base-liurnia-lakeside-cliff-branches-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -912,6 +913,11 @@
       "id": "mad_pumpkin_head_waypoint_defeated",
       "label": "Mad Pumpkin Head (Waypoint Ruins) defeated",
       "hint": "The Waypoint Ruins cellar boss has been defeated and the cellar's NPC/reward state is available."
+    },
+    {
+      "id": "omenkiller_village_albinaurics_defeated",
+      "label": "Omenkiller (Village of the Albinaurics) defeated",
+      "hint": "The optional Omenkiller in the Village of the Albinaurics has been defeated."
     }
   ],
   "sourceEvidence": [
@@ -1346,6 +1352,17 @@
     ,{ "id": "neoseeker-stormhill-cross-check", "label": "Neoseeker - Stormhill / Warmaster's Shack route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Stormhill", "grade": "B" }
     ,{ "id": "game8-isolated-merchant-weeping-cross-check", "label": "Game8 - Isolated Merchant's Shack (Weeping Peninsula)", "url": "https://game8.co/games/Elden-Ring/archives/369371", "grade": "B" }
     ,{ "id": "neoseeker-weeping-cross-check", "label": "Neoseeker - Weeping Peninsula route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Weeping_Peninsula", "grade": "B" }
+    ,{ "id": "powerpyx-liurnia-cross-check", "label": "PowerPyx - Liurnia of the Lakes walkthrough", "url": "https://www.powerpyx.com/elden-ring-liurnia-of-the-lakes-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-village-albinaurics", "label": "Eldenpedia - Village of the Albinaurics", "url": "https://eldenring.wiki.gg/wiki/Village_of_the_Albinaurics", "grade": "A" }
+    ,{ "id": "eldenpedia-boilprawn-shack", "label": "Eldenpedia - Boilprawn Shack", "url": "https://eldenring.wiki.gg/wiki/Boilprawn_Shack", "grade": "A" }
+    ,{ "id": "eldenpedia-jarburg", "label": "Eldenpedia - Jarburg", "url": "https://eldenring.wiki.gg/wiki/Jarburg", "grade": "A" }
+    ,{ "id": "eldenpedia-church-inhibition", "label": "Eldenpedia - Church of Inhibition", "url": "https://eldenring.wiki.gg/wiki/Church_of_Inhibition", "grade": "A" }
+    ,{ "id": "eldenpedia-revengers-shack", "label": "Eldenpedia - Revenger's Shack", "url": "https://eldenring.wiki.gg/wiki/Revenger%27s_Shack", "grade": "A" }
+    ,{ "id": "eldenpedia-slumbering-wolf-shack", "label": "Eldenpedia - Slumbering Wolf's Shack", "url": "https://eldenring.wiki.gg/wiki/Slumbering_Wolf%27s_Shack", "grade": "A" }
+    ,{ "id": "game8-boilprawn-cross-check", "label": "Game8 - Boilprawn Shack location", "url": "https://game8.co/games/Elden-Ring/archives/374979", "grade": "B" }
+    ,{ "id": "game8-church-inhibition-cross-check", "label": "Game8 - Church of Inhibition route", "url": "https://game8.co/games/Elden-Ring/archives/369658", "grade": "B" }
+    ,{ "id": "game8-liurnia-branches-cross-check", "label": "Game8 - Liurnia interactive map and region guide", "url": "https://game8.co/games/Elden-Ring/archives/369315", "grade": "B" }
+    ,{ "id": "neoseeker-liurnia-north-cross-check", "label": "Neoseeker - Northern Liurnia route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Liurnia_of_the_Lakes_North", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8714,6 +8731,46 @@
     {
       "id": "grace_limgrave_weeping_peninsula_tombsward", "label": "Tombsward", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Western tombsward plateau", "worldEpoch": "weeping_peninsula", "x": 420, "y": 1130, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"], "description": "Surface grace on the Tombsward route, distinct from Tombsward Cave and Tombsward Catacombs below the peninsula."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_boilprawn_shack", "label": "Boilprawn Shack", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Central Liurnia lake shore", "worldEpoch": "liurnia_surface", "x": 760, "y": 850, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-boilprawn-shack", "eldenpedia-sites-of-grace-r83774", "game8-boilprawn-cross-check"], "description": "Lake-shore grace north of Scenic Isle and the Blackguard Big Boggart encounter."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "label": "Folly on the Lake", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Western Liurnia lake shallows", "worldEpoch": "liurnia_surface", "x": 620, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "description": "Western lake grace used as the approach toward the Village of the Albinaurics and the flooded shallows."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "label": "Village of the Albinaurics", "kind": "grace", "layer": "legacy", "region": "Liurnia of the Lakes", "floor": "Albinauric village ravine", "worldEpoch": "liurnia_surface", "x": 540, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-village-albinaurics", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Hidden ravine settlement below the lake plateau; the Omenkiller route is internal to this lower settlement layer."
+    },
+    {
+      "id": "omenkiller_village_albinaurics_gate", "label": "Omenkiller (Village of the Albinaurics)", "kind": "boss", "layer": "legacy", "region": "Village of the Albinaurics", "floor": "Village eastern end", "worldEpoch": "liurnia_surface", "x": 590, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check"], "description": "Optional Omenkiller gate at the far end of the village; it does not block the overworld descent into the settlement."
+    },
+    {
+      "id": "village_albinaurics_post_omenkiller_state", "label": "Village of the Albinaurics (post-Omenkiller state)", "kind": "state", "layer": "legacy", "region": "Village of the Albinaurics", "floor": "Village eastern end cleared state", "worldEpoch": "liurnia_surface", "x": 640, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check"], "description": "Cleared village state after the optional Omenkiller encounter."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_jarburg", "label": "Jarburg", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Jarburg cliff settlement", "worldEpoch": "liurnia_surface", "x": 1360, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-jarburg", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Lower cliff settlement reached by descending the tombstone ledges east of Liurnia; it is not on the same elevation as the eastern lake shore."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_revengers_shack", "label": "Revenger's Shack", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Western Liurnia shore", "worldEpoch": "liurnia_surface", "x": 590, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Western Liurnia shack grace and Edgar the Revenger invasion branch."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_main_slumbering_wolfs_shack", "label": "Slumbering Wolf's Shack", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Lakeside Crystal Cave rear exit", "worldEpoch": "liurnia_surface", "x": 380, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-slumbering-wolf-shack", "eldenpedia-lakeside-crystal-cave", "game8-liurnia-cross-check"], "description": "Surface grace at the rear of Lakeside Crystal Cave, where Latenna's shack branch begins after the cave boss."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "label": "Frenzied Flame Village Outskirts", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northern Bellum Highway plateau", "worldEpoch": "liurnia_surface", "x": 1100, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-bellum-highway", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check"], "description": "Northern plateau staging point below the Frenzied Flame Village and Church of Inhibition route."
+    },
+    {
+      "id": "grace_liurnia_of_the_lakes_bellum_highway_church_of_inhibition", "label": "Church of Inhibition", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northern plateau church", "worldEpoch": "liurnia_surface", "x": 1140, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check"], "description": "High northern church grace reached by the back slope of Frenzied Flame Village; the approach crosses a Madness hazard and can spawn Festering Fingerprint Vyke."
     }
   ],
   "edges": [
@@ -16218,6 +16275,25 @@
     ,{ "id": "crater-glade-to-tombsward", "from": "grace_limgrave_weeping_peninsula_beside_the_crater_pocked_glade", "to": "grace_limgrave_weeping_peninsula_tombsward", "mode": "Crater-pocked glade return to Tombsward", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "weeping_peninsula_central_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "powerpyx-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Return west across the same open plateau.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "fourth-church-to-isolated-merchant", "from": "grace_limgrave_weeping_peninsula_fourth_church_of_marika", "to": "grace_limgrave_weeping_peninsula_isolated_merchants_shack", "mode": "Fourth Church of Marika south to Isolated Merchant's Shack", "cost": 7, "risk": 5, "direction": "forward", "transitionType": "weeping_peninsula_west_coast_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check", "neoseeker-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Travel south/southwest from Fourth Church toward the far-western coastal shack.", "tags": ["walk", "surface", "branch", "cross_checked"] }
     ,{ "id": "isolated-merchant-to-fourth-church", "from": "grace_limgrave_weeping_peninsula_isolated_merchants_shack", "to": "grace_limgrave_weeping_peninsula_fourth_church_of_marika", "mode": "Isolated Merchant's Shack return to Fourth Church", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "weeping_peninsula_west_coast_route", "requires": [], "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check"], "verificationState": "online_cross_checked", "note": "Return north/northeast from the isolated coastal field to Fourth Church of Marika.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "scenic-isle-to-boilprawn", "from": "grace_liurnia_of_the_lakes_main_scenic_isle", "to": "grace_liurnia_of_the_lakes_main_boilprawn_shack", "mode": "Scenic Isle north to Boilprawn Shack", "cost": 6, "risk": 5, "direction": "forward", "transitionType": "liurnia_lake_shore_route", "requires": [], "sourceEvidence": ["eldenpedia-boilprawn-shack", "powerpyx-liurnia-cross-check", "game8-boilprawn-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the shallow northwestern lake route from Scenic Isle to the Boilprawn Shack grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "boilprawn-to-scenic-isle", "from": "grace_liurnia_of_the_lakes_main_boilprawn_shack", "to": "grace_liurnia_of_the_lakes_main_scenic_isle", "mode": "Boilprawn Shack return to Scenic Isle", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "liurnia_lake_shore_route", "requires": [], "sourceEvidence": ["eldenpedia-boilprawn-shack", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return south through the lake shallows to Scenic Isle.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "liurnia-shore-to-folly-on-lake", "from": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore", "to": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "mode": "Liurnia Lake Shore to Folly on the Lake", "cost": 6, "risk": 5, "direction": "forward", "transitionType": "liurnia_western_lake_route", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "powerpyx-liurnia-cross-check", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the western lake shallows to the Folly on the Lake grace, keeping the Albinauric ravine as a separate lower branch.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "folly-on-lake-to-liurnia-shore", "from": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "to": "grace_liurnia_of_the_lakes_main_liurnia_lake_shore", "mode": "Folly on the Lake return to Liurnia Lake Shore", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "liurnia_western_lake_route", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the open western lake route.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "folly-on-lake-to-albinaurics", "from": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "to": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "mode": "Folly on the Lake to Albinauric ravine", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "hidden_ravine_descent", "requires": [], "sourceEvidence": ["eldenpedia-village-albinaurics", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Move southwest through the dry Albinauric lake edge and descend into the hidden village ravine.", "tags": ["walk", "surface", "vertical", "legacy", "cross_checked"] }
+    ,{ "id": "albinaurics-to-folly-on-lake", "from": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "to": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "mode": "Albinauric ravine return to Folly on the Lake", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "hidden_ravine_ascent", "requires": [], "sourceEvidence": ["eldenpedia-village-albinaurics", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Climb out of the ravine to the western lake shallows.", "tags": ["walk", "vertical", "backtrack", "cross_checked"] }
+    ,{ "id": "albinaurics-to-omenkiller", "from": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "to": "omenkiller_village_albinaurics_gate", "mode": "Albinauric village eastern approach", "cost": 7, "risk": 8, "direction": "forward", "transitionType": "village_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the lower village to the Omenkiller arena; the boss is optional to overall Liurnia traversal.", "tags": ["walk", "boss", "legacy", "cross_checked"] }
+    ,{ "id": "omenkiller-to-albinaurics-state", "from": "omenkiller_village_albinaurics_gate", "to": "village_albinaurics_post_omenkiller_state", "mode": "Village of the Albinaurics Omenkiller completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["omenkiller_village_albinaurics_defeated"], "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Records the optional Omenkiller clear.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
+    ,{ "id": "albinaurics-state-to-village", "from": "village_albinaurics_post_omenkiller_state", "to": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "mode": "Albinauric village cleared return", "cost": 4, "risk": 5, "direction": "backtrack", "transitionType": "village_return", "requires": [], "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Return to the village grace after clearing the Omenkiller.", "tags": ["backtrack", "legacy", "cross_checked"] }
+    ,{ "id": "eastern-liurnia-to-jarburg", "from": "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore", "to": "grace_liurnia_of_the_lakes_main_jarburg", "mode": "Eastern Liurnia cliff descent to Jarburg", "cost": 8, "risk": 8, "direction": "one_way", "transitionType": "tombstone_cliff_descent", "requires": [], "sourceEvidence": ["eldenpedia-jarburg", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the protruding tombstone ledges from the eastern cliff; this is a vertical one-way approach, not a flat shoreline walk.", "tags": ["vertical", "one_way", "surface", "cross_checked"] }
+    ,{ "id": "jarburg-to-eastern-liurnia", "from": "grace_liurnia_of_the_lakes_main_jarburg", "to": "grace_liurnia_of_the_lakes_main_eastern_liurnia_lake_shore", "mode": "Jarburg cliff ascent return", "cost": 9, "risk": 9, "direction": "one_way", "transitionType": "tombstone_cliff_ascent", "requires": [], "sourceEvidence": ["eldenpedia-jarburg", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Climb back via the same tombstone ledges; the route carries high fall risk and is not represented as a normal road.", "tags": ["vertical", "one_way", "surface", "cross_checked"] }
+    ,{ "id": "lakeside-state-to-slumbering-wolf-grace", "from": "lakeside_crystal_cave_slumbering_wolf_exit", "to": "grace_liurnia_of_the_lakes_main_slumbering_wolfs_shack", "mode": "Lakeside Crystal Cave rear exit to Slumbering Wolf's Shack", "cost": 2, "risk": 4, "direction": "forward", "transitionType": "legacy_to_surface_exit", "requires": [], "sourceEvidence": ["eldenpedia-slumbering-wolf-shack", "eldenpedia-lakeside-crystal-cave", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "The cave exit node resolves to the formal Slumbering Wolf's Shack grace.", "tags": ["walk", "exit", "surface", "cross_checked"] }
+    ,{ "id": "slumbering-wolf-to-lakeside-exit", "from": "grace_liurnia_of_the_lakes_main_slumbering_wolfs_shack", "to": "lakeside_crystal_cave_slumbering_wolf_exit", "mode": "Slumbering Wolf's Shack return to cave exit", "cost": 2, "risk": 4, "direction": "backtrack", "transitionType": "surface_to_legacy_exit", "requires": [], "sourceEvidence": ["eldenpedia-slumbering-wolf-shack", "eldenpedia-lakeside-crystal-cave"], "verificationState": "online_cross_checked", "note": "Return to the rear cave mouth; the cave boss gate remains a separate stateful route.", "tags": ["walk", "backtrack", "surface", "legacy", "cross_checked"] }
+    ,{ "id": "bellum-church-to-frenzied-village-outskirts", "from": "grace_liurnia_of_the_lakes_bellum_highway_bellum_church", "to": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "mode": "Bellum Church north to Frenzied Flame Village Outskirts", "cost": 8, "risk": 9, "direction": "forward", "transitionType": "bellum_northern_plateau_route", "requires": [], "sourceEvidence": ["eldenpedia-bellum-highway", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the northern road into the Frenzied Flame Village approach; Madness hazard is represented by risk.", "tags": ["walk", "surface", "hazard", "cross_checked"] }
+    ,{ "id": "frenzied-village-to-bellum-church", "from": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "to": "grace_liurnia_of_the_lakes_bellum_highway_bellum_church", "mode": "Frenzied Flame Village return to Bellum Church", "cost": 8, "risk": 9, "direction": "backtrack", "transitionType": "bellum_northern_plateau_route", "requires": [], "sourceEvidence": ["eldenpedia-bellum-highway", "game8-church-inhibition-cross-check"], "verificationState": "online_cross_checked", "note": "Return south along the Bellum Highway approach.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
+    ,{ "id": "frenzied-village-to-church-inhibition", "from": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "to": "grace_liurnia_of_the_lakes_bellum_highway_church_of_inhibition", "mode": "Frenzied Flame Village rear slope to Church of Inhibition", "cost": 6, "risk": 10, "direction": "forward", "transitionType": "church_hill_ascent", "requires": [], "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Take the rear slope uphill to Church of Inhibition; the route crosses the Madness hazard zone and may trigger Festering Fingerprint Vyke.", "tags": ["walk", "vertical", "hazard", "surface", "cross_checked"] }
+    ,{ "id": "church-inhibition-to-frenzied-village", "from": "grace_liurnia_of_the_lakes_bellum_highway_church_of_inhibition", "to": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "mode": "Church of Inhibition return to Frenzied Flame Village", "cost": 6, "risk": 10, "direction": "backtrack", "transitionType": "church_hill_descent", "requires": [], "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the same northern plateau slope.", "tags": ["walk", "vertical", "hazard", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "folly-on-lake-to-revengers-shack", "from": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "to": "grace_liurnia_of_the_lakes_main_revengers_shack", "mode": "Folly on the Lake to Revenger's Shack", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "western_liurnia_surface_branch", "requires": [], "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the western Liurnia shore branch to the Revenger's Shack grace.", "tags": ["walk", "surface", "branch", "cross_checked"] }
+    ,{ "id": "revengers-shack-to-folly-on-lake", "from": "grace_liurnia_of_the_lakes_main_revengers_shack", "to": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "mode": "Revenger's Shack return to Folly on the Lake", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "western_liurnia_surface_branch", "requires": [], "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the western lake branch.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -16239,8 +16315,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 651,
-    "formalRouteEdgeCount": 700,
+    "formalNodeCount": 661,
+    "formalRouteEdgeCount": 719,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
