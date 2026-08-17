@@ -13,6 +13,17 @@
 
 `data/graph.json` 只用于验证界面交互和算法单测，正式构建必须对它保持零引用。当前正式入口是 [`data/v1/graph.json`](./data/v1/graph.json)、[`data/v1/entities/sites-of-grace.json`](./data/v1/entities/sites-of-grace.json) 与 [`data/v1/entities/er-guide-route-legs.json`](./data/v1/entities/er-guide-route-legs.json)；赐福目录和路线候选分别由 [`scripts/ingest-sites-of-grace.ps1`](./scripts/ingest-sites-of-grace.ps1) 与 [`scripts/ingest-er-guide-route-legs.ps1`](./scripts/ingest-er-guide-route-legs.ps1) 从固定在线 revision/commit 生成，目录与候选路段默认不可路由。当前执行 Phase 1A：在不接触前台游戏的 `GAMING_SAFE + ONLINE_INGEST` 通道中，从有许可、可追溯的在线文本/JSON Source Snapshot 建立 `Online Verified V1`；Phase 1B 才在游戏退出或合格独立快照可用后，从本地游戏文件校准坐标、楼层、状态和 Transition，逐项升级为 `local_game_verified`。
 
+## 当前 Online V1 数据层
+
+当前真实在线坐标视图按地图层读取固定快照，不读取游戏进程、存档、游戏目录或内存：
+
+- 806 个地图层；442 个非 dummy 赐福原始坐标；215 个 Boss 坐标。
+- 563 个命名地图点；31,144 个物品/掉落位置；15,099 个实体；21,824 个采集节点。
+- 362 条地图坐标转换证据，仅作为跨地图定位参考，全部保持 `routeable: false`。
+- 坐标视图可切换敌人、地图资产和全部实体；在线查询面板可检索各类坐标记录。
+
+正式拓扑当前仍是 Online Verified V1 的已取证切片，不得宣传为完整 1:1 游戏导航图；未有方向、楼层、条件和独立证据的在线点位不会自动成为路线边。
+
 ## 启动
 
 需要 Python 3.9+，不需要安装第三方依赖：
