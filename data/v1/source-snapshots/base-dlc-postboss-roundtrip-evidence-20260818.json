@@ -1,0 +1,47 @@
+{
+  "snapshot_id": "base-dlc-postboss-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "belurat-and-shadow-keep-postboss",
+      "claim": "Belurat's Theatre of the Divine Beast follows the Stagefront route, and Shadow Keep's Messmer's Dark Chamber is reached from the Storehouse Dark Chamber Entrance and exits back into the Storehouse. V1 adds boss-room exits while retaining the separate floor/layer nodes.",
+      "sources": [
+        { "source_id": "eldenpedia-belurat-tower-settlement", "url": "https://eldenring.wiki.gg/wiki/Belurat%2C_Tower_Settlement" },
+        { "source_id": "game8-belurat-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458536" },
+        { "source_id": "eip-belurat-cross-check", "url": "https://eip.gg/elden-ring/guides/belurat-tower-settlement/" },
+        { "source_id": "eldenpedia-shadow-keep", "url": "https://eldenring.wiki.gg/wiki/Shadow_Keep" },
+        { "source_id": "game8-messmer-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458685" },
+        { "source_id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "dlc-final-and-field-boss-returns",
+      "claim": "The Scadutree Base, Gate of Divinity and Rest of the Dread Dragon are post-boss states attached to the Scadutree Avatar, Promised Consort and Bayle routes. V1 adds conditional exits to the preceding sanctum, staircase and summit layers rather than flattening them into surface travel.",
+      "sources": [
+        { "source_id": "game8-scadutree-base-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460103" },
+        { "source_id": "game8-scadutree-avatar-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458844" },
+        { "source_id": "eldenpedia-enir-ilim", "url": "https://eldenring.wiki.gg/wiki/Enir-Ilim" },
+        { "source_id": "eldenpedia-radahn-consort", "url": "https://eldenring.wiki.gg/wiki/Radahn_Consort_of_Miquella" },
+        { "source_id": "game8-promised-radahn-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458928" },
+        { "source_id": "game8-bayle-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458839" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "midra-fissure-metyr-returns",
+      "claim": "Midra's Manse, Stone Coffin Fissure and Finger Ruins of Miyr each end in a post-boss grace with a route back to the preceding layer: Second Floor Chamber, Fissure Cross and Count Ymir's Throne. The map keeps the approach conditions and vertical hazards explicit.",
+      "sources": [
+        { "source_id": "eldenpedia-midra-manse", "url": "https://eldenring.wiki.gg/wiki/Midra%27s_Manse" },
+        { "source_id": "game8-midra-manse-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459949" },
+        { "source_id": "eldenpedia-stone-coffin-fissure", "url": "https://eldenring.wiki.gg/wiki/The_Fissure" },
+        { "source_id": "game8-stone-coffin-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459836" },
+        { "source_id": "eldenpedia-finger-miyr", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Miyr" },
+        { "source_id": "eldenpedia-metyr", "url": "https://eldenring.wiki.gg/wiki/Metyr%2C_Mother_of_Fingers" },
+        { "source_id": "game8-ymir-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458845" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
