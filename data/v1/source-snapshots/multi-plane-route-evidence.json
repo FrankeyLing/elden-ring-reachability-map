@@ -1,0 +1,41 @@
+{
+  "snapshot_id": "multi-plane-route-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "siofra-well-depths-to-bank",
+      "claim": "Siofra River is an underground region containing both Siofra River Well Depths and Siofra River Bank; independent walkthroughs describe descending through the well and using the far elevator to reach the bank section.",
+      "sources": [
+        { "source_id": "eldenpedia-siofra-r71937", "url": "https://eldenring.wiki.gg/wiki/Siofra_River", "revision_id": 71937 },
+        { "source_id": "game8-siofra-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379579" },
+        { "source_id": "pcgamer-siofra-cross-check", "url": "https://www.pcgamer.com/elden-ring-siofra-well-map-location/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "farum-beast-grave-to-dragon-temple",
+      "claim": "The Crumbling Beast Grave Depths route continues through the ruined Farum Azula structures toward the Dragon Temple area; the Dragon Temple Altar is a post-boss grace state.",
+      "sources": [
+        { "source_id": "eldenpedia-farum-r83238", "url": "https://eldenring.wiki.gg/wiki/Crumbling_Farum_Azula", "revision_id": 83238 },
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa", "url": "https://github.com/aether-auto/er-guide/tree/7f24d64d3631ef4d549f56b42d4c3e3817a269fa/data/regions" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "castle-front-to-ensis-moongazing",
+      "claim": "Castle Front is the primary access point to Castle Ensis; the route passes the checkpoint and Castle-Lord's Chamber, and the Ensis Moongazing Grounds grace becomes available after defeating the castle boss.",
+      "sources": [
+        { "source_id": "eldenpedia-castle-ensis-r73643", "url": "https://eldenring.wiki.gg/wiki/Castle_Ensis", "revision_id": 73643 },
+        { "source_id": "game8-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" },
+        { "source_id": "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa", "url": "https://github.com/aether-auto/er-guide/tree/7f24d64d3631ef4d549f56b42d4c3e3817a269fa/data/regions" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "Commercial walkthroughs are evidence references only; no article text, images or coordinates are copied.",
+    "The formal graph keeps pre-boss approach nodes separate from post-boss grace nodes."
+  ]
+}

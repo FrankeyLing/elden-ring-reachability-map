@@ -447,10 +447,18 @@ async function init() {
       ["Avenue Balcony", "grace_avenue_balcony"],
       ["Erdtree Sanctuary", "grace_erdtree_sanctuary"],
       ["Elden Throne", "grace_elden_throne"],
+      ["Siofra River Well Depths", "grace_siofra_well_depths"],
+      ["Siofra River Bank", "grace_siofra_river_bank"],
+      ["Crumbling Beast Grave Depths", "grace_crumbling_beast_grave_depths"],
+      ["Dragon Temple Altar", "grace_dragon_temple_altar"],
+      ["Castle Front", "grace_castle_front"],
+      ["Castle Ensis Checkpoint", "grace_castle_ensis_checkpoint"],
+      ["Castle-Lord's Chamber", "grace_castle_lord_chamber"],
+      ["Ensis Moongazing Grounds", "grace_ensis_moongazing_grounds"],
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if ((record.name === "Avenue Balcony" || record.name === "Erdtree Sanctuary" || record.name === "Elden Throne") && !record.subgroup) return;
+      if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds"].includes(record.name) && !record.subgroup) return;
       const groupKey = `${record.layer}|${record.region}`;
       const slot = regionSlots.get(groupKey) || 0;
       regionSlots.set(groupKey, slot + 1);
