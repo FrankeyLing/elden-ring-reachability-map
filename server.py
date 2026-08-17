@@ -15,6 +15,7 @@ DATA_FILE = ROOT / "data" / "v1" / "graph.json"
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
+ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
 ONLINE_INDEX_MANIFEST_FILE = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 )
@@ -81,6 +82,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/map-points":
             self.send_map_points(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/grace-positions":
+            self.send_grace_positions(parse_qs(parsed.query))
             return
         if parsed.path == "/api/catalog/online-items":
             self.send_online_items(parse_qs(parsed.query))
@@ -172,6 +176,58 @@ class AppHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def send_grace_positions(self, query: dict[str, list[str]]):
+        map_id = query.get("map", [""])[0].strip()
+        search = query.get("q", [""])[0].strip().casefold()
+        include_dummy = query.get("include_dummy", ["0"])[0].strip().casefold() in {"1", "true", "yes"}
+        try:
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), 500)
+        except ValueError:
+            limit = 500
+
+        def map_key(row):
+            return f"m{int(row[1]):02d}_{int(row[2]):02d}_{int(row[3]):02d}"
+
+        try:
+            payload = json.loads(ONLINE_GRACE_POSITION_FILE.read_bytes())
+            records = []
+            for row in payload["records"]:
+                row_map = map_key(row)
+                region_text = " / ".join(str(value or "") for value in (row[8], row[10]))
+                if row[11] and not include_dummy:
+                    continue
+                if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+                    continue
+                if search and search not in region_text.casefold():
+                    continue
+                records.append(
+                    {
+                        "source_index": row[0],
+                        "map": row_map,
+                        "area_no": row[1],
+                        "grid_x": row[2],
+                        "grid_z": row[3],
+                        "position": [row[4], row[5], row[6]],
+                        "sub_region": row[8],
+                        "major_region": row[10],
+                        "dummy": row[11],
+                    }
+                )
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/online-grace-position-query@1",
+                "query": {"q": search, "map": map_id, "include_dummy": include_dummy, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "note": "raw online grace positions; the source index has no reliable grace names, so names are intentionally not guessed",
+            }
+        )
 
     def send_online_items(self, query: dict[str, list[str]]):
         global ONLINE_ITEM_CACHE

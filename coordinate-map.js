@@ -22,21 +22,25 @@ function populateCoordinateMapSelect() {
 
 async function loadCoordinateItems() {
   state.onlineItemRecords = [];
+  state.onlineGracePositionRecords = [];
   state.onlineEntityRecords = [];
   state.onlineGatheringRecords = [];
   try {
     const map = encodeURIComponent(state.coordinateMapId);
-    const [itemResponse, entityResponse, gatheringResponse] = await Promise.all([
+    const [graceResponse, itemResponse, entityResponse, gatheringResponse] = await Promise.all([
+      fetch("/api/catalog/grace-positions?map=" + map + "&limit=500", { cache: "no-store" }),
       fetch("/api/catalog/online-items?map=" + map + "&limit=500", { cache: "no-store" }),
       fetch("/api/catalog/entities?map=" + map + "&kind=enemy&limit=500", { cache: "no-store" }),
       fetch("/api/catalog/gathering?map=" + map + "&limit=500", { cache: "no-store" }),
     ]);
-    if (!itemResponse.ok || !entityResponse.ok || !gatheringResponse.ok) {
-      throw new Error("online layer HTTP " + [itemResponse.status, entityResponse.status, gatheringResponse.status].join("/"));
+    if (!graceResponse.ok || !itemResponse.ok || !entityResponse.ok || !gatheringResponse.ok) {
+      throw new Error("online layer HTTP " + [graceResponse.status, itemResponse.status, entityResponse.status, gatheringResponse.status].join("/"));
     }
-    const [itemPayload, entityPayload, gatheringPayload] = await Promise.all([
-      itemResponse.json(), entityResponse.json(), gatheringResponse.json(),
+    const [gracePayload, itemPayload, entityPayload, gatheringPayload] = await Promise.all([
+      graceResponse.json(), itemResponse.json(), entityResponse.json(), gatheringResponse.json(),
     ]);
+    state.onlineGracePositionRecords = gracePayload.records || [];
+    state.coordinateGracePositionTotal = gracePayload.total_matches || state.onlineGracePositionRecords.length;
     state.onlineItemRecords = itemPayload.records || [];
     state.coordinateItemTotal = itemPayload.total_matches || state.onlineItemRecords.length;
     state.onlineEntityRecords = entityPayload.records || [];
@@ -45,6 +49,7 @@ async function loadCoordinateItems() {
     state.coordinateGatheringTotal = gatheringPayload.total_matches || state.onlineGatheringRecords.length;
   } catch (error) {
     state.coordinateItemTotal = 0;
+    state.coordinateGracePositionTotal = 0;
     state.coordinateEntityTotal = 0;
     state.coordinateGatheringTotal = 0;
     els.mapToast.textContent = "online POI layer load failed: " + error.message;
@@ -57,10 +62,12 @@ function renderCoordinateMap() {
   els.regionLabels.innerHTML = "";
   els.nodeLayer.innerHTML = "";
   const points = state.onlineMapPointRecords.filter((record) => record.mapKey === state.coordinateMapId);
+  const gracePositions = state.onlineGracePositionRecords;
   const items = state.onlineItemRecords;
   const entities = state.onlineEntityRecords;
   const gathering = state.onlineGatheringRecords;
-  const plotRecords = points.map((record) => ({ position: record.position, label: (record.names || []).join(" / "), kind: "point" }))
+  const plotRecords = gracePositions.map((record) => ({ position: record.position, label: "raw grace position #" + record.source_index + " · " + (record.major_region || record.sub_region || "unknown region"), kind: "grace-position" }))
+    .concat(points.map((record) => ({ position: record.position, label: (record.names || []).join(" / "), kind: "point" })))
     .concat(items.map((record) => ({ position: record.position, label: (record.items || []).map((item) => item.name || item.id).join(" / "), kind: "item" })))
     .concat(entities.map((record) => ({ position: record.position, label: record.name || record.model || record.entity_id, kind: "entity" })))
     .concat(gathering.map((record) => ({ position: record.position, label: record.name || record.model, kind: "gathering" })));
@@ -112,5 +119,5 @@ function renderCoordinateMap() {
     els.nodeLayer.appendChild(group);
   });
   const coverage = state.onlineIndex?.manifest?.coverage || {};
-  els.graphStats.textContent = state.coordinateMapId + " · " + points.length + " named points · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " items · " + entities.length + "/" + (state.coordinateEntityTotal || entities.length) + " enemies · " + gathering.length + "/" + (state.coordinateGatheringTotal || gathering.length) + " gathering nodes · " + (coverage.tileRegionRecords || 0) + " map layers";
+  els.graphStats.textContent = state.coordinateMapId + " · " + gracePositions.length + "/" + (state.coordinateGracePositionTotal || gracePositions.length) + " raw grace positions · " + points.length + " named points · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " items · " + entities.length + "/" + (state.coordinateEntityTotal || entities.length) + " enemies · " + gathering.length + "/" + (state.coordinateGatheringTotal || gathering.length) + " gathering nodes · " + (coverage.tileRegionRecords || 0) + " map layers";
 }

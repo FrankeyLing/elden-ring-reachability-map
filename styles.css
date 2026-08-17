@@ -207,6 +207,7 @@ code { color: #c0b58f; font-size: 9px; }
 .node-core.item { fill: #a8bd8e; }
 .node-core.entity { fill: #c77d7d; }
 .node-core.gathering { fill: #8bb4a6; }
+.node-core.grace-position { fill: #d0a85f; }
 .coordinate-axis { fill: #717b77; font-size: 8px; pointer-events: none; }
 .inspector-source { color: #7f8984; line-height: 1.6; font-size: 9px; margin: 8px 0 12px; border-left: 2px solid rgba(230, 200, 121, .35); padding-left: 8px; }
 .inspector-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
