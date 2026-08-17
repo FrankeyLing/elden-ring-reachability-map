@@ -637,6 +637,19 @@ async function init() {
       ["Cathedral of the Forsaken", "grace_leyndell_royal_capital_subterranean_shunning_grounds_cathedral_of_the_forsaken"],
       ["Leyndell Catacombs", "grace_leyndell_royal_capital_subterranean_shunning_grounds_leyndell_catacombs"],
       ["Frenzied Flame Proscription", "grace_leyndell_royal_capital_subterranean_shunning_grounds_frenzied_flame_proscription"],
+      ["Abandoned Coffin", "grace_altus_plateau_main_abandoned_coffin"],
+      ["Erdtree-Gazing Hill", "grace_altus_plateau_main_erdtree_gazing_hill"],
+      ["Forest-Spanning Greatbridge", "grace_altus_plateau_main_forest_spanning_greatbridge"],
+      ["Windmill Village", "grace_altus_plateau_main_windmill_village"],
+      ["Godskin Noble (Windmill Village)", "godskin_noble_altus_gate"],
+      ["Windmill Heights", "grace_altus_plateau_main_windmill_heights"],
+      ["Bower of Bounty", "grace_altus_plateau_main_bower_of_bounty"],
+      ["Road of Iniquity Side Path", "grace_altus_plateau_main_road_of_iniquity_side_path"],
+      ["Rampartside Path", "grace_altus_plateau_main_rampartside_path"],
+      ["Shaded Castle Ramparts", "grace_altus_plateau_main_shaded_castle_ramparts"],
+      ["Shaded Castle Inner Gate", "grace_altus_plateau_main_shaded_castle_inner_gate"],
+      ["Elemer of the Briar", "elemer_of_the_briar_gate"],
+      ["Castellan's Hall", "grace_altus_plateau_main_castellan_s_hall"],
       ["Bridge of Iniquity", "grace_altus_plateau_mt_gelmir_bridge_of_iniquity"],
       ["First Mt.Gelmir Campsite", "grace_altus_plateau_mt_gelmir_first_mt_gelmir_campsite"],
       ["Road of Iniquity", "grace_altus_plateau_mt_gelmir_road_of_iniquity"],
@@ -742,6 +755,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Abandoned Coffin", "Erdtree-Gazing Hill", "Forest-Spanning Greatbridge", "Windmill Village", "Windmill Heights", "Bower of Bounty", "Road of Iniquity Side Path", "Rampartside Path", "Shaded Castle Ramparts", "Shaded Castle Inner Gate", "Castellan's Hall"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;

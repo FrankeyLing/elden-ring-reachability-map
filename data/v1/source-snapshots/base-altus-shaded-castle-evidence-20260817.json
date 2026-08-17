@@ -1,0 +1,52 @@
+{
+  "snapshot_id": "base-altus-shaded-castle-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Abandoned Coffin, Erdtree-Gazing Hill, Altus Highway Junction, Forest-Spanning Greatbridge, Windmill Village, Bower of Bounty, Road of Iniquity Side Path, Rampartside Path and The Shaded Castle",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "southern-altus-sequence",
+      "from": "Abandoned Coffin",
+      "to": "Altus Highway Junction",
+      "transition_type": "altus_surface_backbone",
+      "direction": "forward",
+      "claim": "The southern Altus route continues from Abandoned Coffin to Erdtree-Gazing Hill and then east to Altus Highway Junction.",
+      "sources": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "powerpyx-altus-cross-check"]
+    },
+    {
+      "id": "greatbridge-windmill-branches",
+      "from": "Altus Highway Junction",
+      "to": "Windmill Village",
+      "transition_type": "surface_highway_waygate_branch",
+      "direction": "forward",
+      "claim": "The highway reaches Forest-Spanning Greatbridge; the bridge and surrounding forest branch toward Windmill Village, Bower of Bounty and Road of Iniquity Side Path.",
+      "sources": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-altus-cross-check"]
+    },
+    {
+      "id": "windmill-boss-state",
+      "from": "Windmill Village",
+      "to": "Windmill Heights",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Windmill Heights grace is modeled after the Godskin Noble encounter at the top of Windmill Village.",
+      "sources": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-altus-cross-check"]
+    },
+    {
+      "id": "shaded-castle-sequence",
+      "from": "Rampartside Path",
+      "to": "Castellan's Hall",
+      "transition_type": "surface_to_legacy_boss_route",
+      "direction": "forward",
+      "claim": "The Shaded Castle progression is Rampartside Path to Shaded Castle Ramparts, Inner Gate, Elemer of the Briar and the post-boss Castellan's Hall grace.",
+      "sources": ["eldenpedia-shaded-castle", "game8-shaded-castle-cross-check", "powerpyx-altus-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-altus-r65232", "url": "https://eldenring.wiki.gg/wiki/Altus_Plateau" },
+    { "id": "eldenpedia-shaded-castle", "url": "https://eldenring.wiki.gg/wiki/The_Shaded_Castle" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-altus-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/379636" },
+    { "id": "game8-shaded-castle-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370264" },
+    { "id": "powerpyx-altus-cross-check", "url": "https://www.powerpyx.com/elden-ring-altus-plateau-walkthrough/" }
+  ]
+}
