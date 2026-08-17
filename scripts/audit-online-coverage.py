@@ -181,6 +181,7 @@ def audit() -> dict:
     endpoint_exact = 0
     endpoint_ambiguous = 0
     endpoint_unmapped = []
+    exact_endpoint_without_path = []
     direct_edge_match = 0
     topology_path_match = 0
     for leg in legs["records"]:
@@ -194,6 +195,16 @@ def audit() -> dict:
                 direct_edge_match += 1
             if topology_reachable(*pair):
                 topology_path_match += 1
+            else:
+                exact_endpoint_without_path.append(
+                    {
+                        "catalog_id": leg["canonical_id"],
+                        "from": leg["from"],
+                        "to": leg["to"],
+                        "formal_from": pair[0],
+                        "formal_to": pair[1],
+                    }
+                )
         elif len(from_candidates) > 1 or len(to_candidates) > 1:
             endpoint_ambiguous += 1
         else:
@@ -231,6 +242,7 @@ def audit() -> dict:
             "endpoint_ambiguous": endpoint_ambiguous,
             "direct_or_reverse_formal_edge_matches": direct_edge_match,
             "formal_topology_path_matches": topology_path_match,
+            "exact_endpoint_without_topology_path": exact_endpoint_without_path,
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
         "safety": {
