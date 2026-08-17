@@ -748,7 +748,13 @@ async function init() {
       ["Siofra Well descent lift", "siofra_well_lift"],
       ["Worshippers' Woods", "grace_worshippers_woods"],
       ["Ancestral Woods", "grace_ancestral_woods"],
+      ["Mimic Tear", "mimic_tear_gate"],
+      ["Mimic Tear (post-boss grace)", "grace_nokron_mimic_tear"],
+      ["Night's Sacred Ground", "grace_nokron_nights_sacred_ground"],
+      ["Regal Ancestor Spirit", "regal_ancestor_spirit_gate"],
+      ["Regal Ancestor Spirit (post-boss return)", "grace_nokron_regal_ancestor_post_boss"],
       ["Aqueduct-Facing Cliffs", "grace_aqueduct_facing_cliffs"],
+      ["Great Waterfall Basin", "grace_siofra_great_waterfall_basin"],
       ["Caelid Highway South", "grace_caelid_highway_south"],
       ["Rotview Balcony", "grace_rotview_balcony"],
       ["Smoldering Church", "grace_smoldering_church"],
@@ -799,6 +805,7 @@ async function init() {
       if (["Haligtree Town", "Haligtree Town Plaza", "Haligtree Promenade", "Prayer Room", "Elphael Inner Wall", "Drainage Channel", "Haligtree Roots", "Malenia, Goddess of Rot"].includes(record.name)) return;
       if (["Tempest-Facing Balcony", "Dragon Temple", "Dragon Temple Transept", "Dragon Temple Lift", "Dragon Temple Rooftop", "Dragonlord Placidusax"].includes(record.name)) return;
       if (["Ainsel River Well Depths", "Ainsel River Sluice Gate", "Ainsel River Downstream", "Dragonkin Soldier of Nokstella"].includes(record.name)) return;
+      if (["Mimic Tear", "Night's Sacred Ground", "Aqueduct-Facing Cliffs"].includes(record.name)) return;
       if (["Underground Roadside", "Forsaken Depths", "Cathedral of the Forsaken", "Leyndell Catacombs", "Frenzied Flame Proscription"].includes(record.name)) return;
       if (["Limgrave Tower Bridge", "Divine Tower of Limgrave"].includes(record.name)) return;
       if (["Dragonbarrow West", "Farum Greatbridge", "Divine Tower of Caelid: Center", "Divine Tower of Caelid: Basement"].includes(record.name)) return;

@@ -1,0 +1,41 @@
+{
+  "snapshot_id": "base-nokron-aqueduct-deeproot-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "nokron-to-night-sacred-ground",
+      "claim": "After the Radahn-triggered Nokron entrance, the route reaches Mimic Tear, then Ancestral Woods and Night's Sacred Ground; the Mimic boss and its post-boss grace are separate nodes.",
+      "sources": [
+        { "source_id": "powerpyx-nokron-cross-check", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/" },
+        { "source_id": "game8-nokron-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370740" },
+        { "source_id": "eldenpedia-nokron-r66900", "url": "https://eldenring.wiki.gg/wiki/Nokron,_Eternal_City", "revision_id": 66900 }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "ancestral-to-aqueduct",
+      "claim": "Ancestral Woods has an optional Regal Ancestor Spirit branch and a separate cliff/jellyfish descent to Aqueduct-Facing Cliffs, which leads into Siofra Aqueduct.",
+      "sources": [
+        { "source_id": "powerpyx-nokron-cross-check", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/" },
+        { "source_id": "game8-nokron-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370740" },
+        { "source_id": "neoseeker-aqueduct-cross-check", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_Aqueduct" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "aqueduct-to-deeproot",
+      "claim": "The Valiant Gargoyles gate is followed by a post-boss Great Waterfall Basin grace and a separate one-way coffin transfer into Deeproot Depths.",
+      "sources": [
+        { "source_id": "eldenpedia-siofra-aqueduct-r48924", "url": "https://eldenring.wiki.gg/wiki/Siofra_Aqueduct", "revision_id": 48924 },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368945" },
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "Nokron, Siofra Aqueduct and Deeproot are kept as separate underground layers with explicit boss, puzzle and coffin transitions.",
+    "No game process, save, archive, memory or original XYZ coordinate was accessed."
+  ]
+}

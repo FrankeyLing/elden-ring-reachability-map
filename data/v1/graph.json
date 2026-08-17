@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.32-online-multiplane",
+    "version": "1.0.33-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -44,7 +44,8 @@
       "base-volcano-manor-multi-entry-evidence-20260817",
       "base-haligtree-elphael-mainline-evidence-20260817",
       "base-farum-azula-layered-mainline-evidence-20260817",
-      "base-ainsel-south-ranni-branch-evidence-20260817"
+      "base-ainsel-south-ranni-branch-evidence-20260817",
+      "base-nokron-aqueduct-deeproot-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -470,6 +471,16 @@
       "id": "dragonkin_soldier_defeated",
       "label": "Dragonkin Soldier of Nokstella defeated",
       "hint": "The southern Ainsel optional boss has been cleared and its post-boss grace is available."
+    },
+    {
+      "id": "mimic_tear_defeated",
+      "label": "Mimic Tear defeated",
+      "hint": "The Nokron city boss gate has been cleared and the Ancestral Woods route is open."
+    },
+    {
+      "id": "regal_ancestor_spirit_defeated",
+      "label": "Regal Ancestor Spirit defeated",
+      "hint": "The optional Hollowhorn Grounds encounter has been cleared and its post-boss return state is available."
     }
   ],
   "sourceEvidence": [
@@ -687,6 +698,7 @@
     ,{ "id": "gamefaqs-haligtree-cross-check", "label": "GameFAQs / Haligtree route guide", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/12-the-haligtree", "grade": "C" }
     ,{ "id": "eip-farum-cross-check", "label": "EIP Gaming / Crumbling Farum Azula route", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/", "grade": "B" }
     ,{ "id": "gamespot-placidusax-cross-check", "label": "GameSpot / Dragonlord Placidusax route", "url": "https://www.gamespot.com/articles/how-to-beat-elden-ring-dragonlord-placidusax/1100-6501885/", "grade": "B" }
+    ,{ "id": "powerpyx-nokron-cross-check", "label": "PowerPyx / Nokron walkthrough", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -1618,6 +1630,96 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-nokstella-r83146", "powerpyx-ainsel-cross-check", "game8-ranni-cross-check"],
       "description": "Ranni quest invader gate between Nokstella Waterfall Basin and the Lake of Rot lift."
+    },
+    {
+      "id": "mimic_tear_gate",
+      "label": "Mimic Tear",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Nokron, Eternal City",
+      "floor": "Nokron fog arena",
+      "worldEpoch": "nokron_underground",
+      "x": 480,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "description": "Mandatory early Nokron boss gate before the Ancestral Woods grace."
+    },
+    {
+      "id": "grace_nokron_mimic_tear",
+      "label": "Mimic Tear",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Nokron, Eternal City",
+      "floor": "Post-Mimic bridge",
+      "worldEpoch": "nokron_underground",
+      "x": 560,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "description": "Post-Mimic grace activated immediately after the boss arena, before the bridge to Ancestral Woods."
+    },
+    {
+      "id": "grace_nokron_nights_sacred_ground",
+      "label": "Night's Sacred Ground",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Nokron, Eternal City",
+      "floor": "Night's Sacred Ground",
+      "worldEpoch": "nokron_underground",
+      "x": 680,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "description": "Nokron quest branch grace near the Fingerslayer Blade and the return portal to Ancestral Woods."
+    },
+    {
+      "id": "regal_ancestor_spirit_gate",
+      "label": "Regal Ancestor Spirit",
+      "kind": "boss",
+      "layer": "underground",
+      "region": "Nokron, Eternal City",
+      "floor": "Hallowhorn Grounds",
+      "worldEpoch": "nokron_underground",
+      "x": 760,
+      "y": 430,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "description": "Optional six-flame/Hallowhorn Grounds boss branch from Ancestral Woods."
+    },
+    {
+      "id": "grace_nokron_regal_ancestor_post_boss",
+      "label": "Regal Ancestor Spirit (post-boss return)",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Nokron, Eternal City",
+      "floor": "Hallowhorn Grounds return state",
+      "worldEpoch": "nokron_underground",
+      "x": 850,
+      "y": 430,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "description": "Explicit post-Regal-Ancestor state; the teleport returns the player to the Nokron woods before the Aqueduct branch."
+    },
+    {
+      "id": "grace_siofra_great_waterfall_basin",
+      "label": "Great Waterfall Basin",
+      "kind": "grace",
+      "layer": "underground",
+      "region": "Siofra Aqueduct",
+      "floor": "Valiant Gargoyles post-boss waterfall",
+      "worldEpoch": "siofra_underground",
+      "x": 390,
+      "y": 540,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "neoseeker-aqueduct-cross-check", "powerpyx-deeproot-cross-check"],
+      "description": "Post-Valiant-Gargoyles grace beside the waterfall and coffin to Deeproot Depths."
     },
     {
       "id": "epoch_ashen_capital",
@@ -7962,7 +8064,7 @@
     {
       "id": "aqueduct-to-deeproot-coffin",
       "from": "siofra_aqueduct_valiant_gargoyle_gate",
-      "to": "deeproot_coffin",
+      "to": "grace_siofra_great_waterfall_basin",
       "mode": "coffin transfer",
       "cost": 2,
       "risk": 5,
@@ -7973,6 +8075,21 @@
       "verificationState": "online_cross_checked",
       "note": "The Aqueduct boss gate must be cleared before the coffin transition is considered reachable.",
       "tags": ["boss", "coffin", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "great-waterfall-to-deeproot-coffin",
+      "from": "grace_siofra_great_waterfall_basin",
+      "to": "deeproot_coffin",
+      "mode": "Great Waterfall Basin coffin",
+      "cost": 2,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "coffin",
+      "requires": ["valiant_gargoyles_defeated"],
+      "sourceEvidence": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The coffin is a one-way transfer from the post-Gargoyles waterfall grace to Deeproot Depths.",
+      "tags": ["coffin", "one_way", "conditional", "underground", "cross_checked"]
     },
     {
       "id": "deeproot-coffin-to-depths",
@@ -9957,7 +10074,7 @@
     {
       "id": "nokron-to-ancestral-woods",
       "from": "grace_nokron_eternal_city",
-      "to": "grace_ancestral_woods",
+      "to": "mimic_tear_gate",
       "mode": "Nokron upper route",
       "cost": 8,
       "risk": 4,
@@ -9983,6 +10100,96 @@
       "verificationState": "online_cross_checked",
       "note": "Keeps the aqueduct approach as its own named floor node.",
       "tags": ["vertical", "underground", "cross_checked"]
+    },
+    {
+      "id": "mimic-to-post-grace",
+      "from": "mimic_tear_gate",
+      "to": "grace_nokron_mimic_tear",
+      "mode": "Mimic Tear completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion",
+      "requires": ["mimic_tear_defeated"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The post-Mimic grace is a separate boss completion state before the bridge to Ancestral Woods.",
+      "tags": ["boss", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "mimic-grace-to-ancestral-woods",
+      "from": "grace_nokron_mimic_tear",
+      "to": "grace_ancestral_woods",
+      "mode": "Mimic Tear bridge to Ancestral Woods",
+      "cost": 7,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "underground_bridge",
+      "requires": ["mimic_tear_defeated"],
+      "sourceEvidence": ["powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The bridge and Torrent-enabled woods route begins after the Mimic gate; Ancestral Woods is not placed directly at the crater entrance.",
+      "tags": ["walk", "bridge", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "ancestral-woods-to-nights-sacred-ground",
+      "from": "grace_ancestral_woods",
+      "to": "grace_nokron_nights_sacred_ground",
+      "mode": "Ancestral Woods to Night's Sacred Ground",
+      "cost": 9,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "rooftop_legacy_route",
+      "requires": ["mimic_tear_defeated"],
+      "sourceEvidence": ["powerpyx-nokron-cross-check", "game8-nokron-cross-check", "eldenpedia-nokron-r66900"],
+      "verificationState": "online_cross_checked",
+      "note": "The lower rooftops and Silver Tear structures lead to the Night's Sacred Ground grace and Fingerslayer Blade route.",
+      "tags": ["walk", "rooftop", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "ancestral-woods-to-regal-ancestor",
+      "from": "grace_ancestral_woods",
+      "to": "regal_ancestor_spirit_gate",
+      "mode": "Ancestral Woods to Regal Ancestor Spirit",
+      "cost": 8,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "hollowhorn_puzzle_boss_branch",
+      "requires": ["mimic_tear_defeated"],
+      "sourceEvidence": ["powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Six flame pillars and the Hallowhorn Grounds activate this optional boss branch; it does not replace the Night's Sacred Ground main route.",
+      "tags": ["puzzle", "boss", "optional", "conditional", "underground", "cross_checked"]
+    },
+    {
+      "id": "regal-ancestor-to-return",
+      "from": "regal_ancestor_spirit_gate",
+      "to": "grace_nokron_regal_ancestor_post_boss",
+      "mode": "Regal Ancestor Spirit completion",
+      "cost": 3,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "boss_completion_teleport",
+      "requires": ["regal_ancestor_spirit_defeated"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The Hollowhorn teleport returns to Nokron after the optional boss; it is modeled separately from the ordinary woods route.",
+      "tags": ["boss", "teleport", "conditional", "optional", "cross_checked"]
+    },
+    {
+      "id": "nights-sacred-to-aqueduct-cliffs",
+      "from": "grace_nokron_nights_sacred_ground",
+      "to": "grace_aqueduct_facing_cliffs",
+      "mode": "Night's Sacred Ground to Aqueduct-Facing Cliffs",
+      "cost": 11,
+      "risk": 9,
+      "direction": "forward",
+      "transitionType": "jellyfish_cliff_descent",
+      "requires": ["mimic_tear_defeated"],
+      "sourceEvidence": ["powerpyx-nokron-cross-check", "game8-nokron-cross-check", "neoseeker-aqueduct-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The northeast cliff and jellyfish descent reaches the Aqueduct-facing grace; the Siofra Aqueduct is an independent lower layer.",
+      "tags": ["parkour", "vertical", "hazard", "conditional", "underground", "cross_checked"]
     },
     {
       "id": "aqueduct-cliffs-to-gargoyles",
@@ -11160,8 +11367,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 345,
-    "formalRouteEdgeCount": 352,
+    "formalNodeCount": 351,
+    "formalRouteEdgeCount": 359,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
