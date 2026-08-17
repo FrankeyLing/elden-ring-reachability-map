@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.82-online-multiplane",
+  "version": "1.0.83-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -95,7 +95,8 @@
       "base-mountaintops-roundtrip-surface-evidence-20260818",
       "base-limgrave-weeping-roundtrip-surface-evidence-20260818",
       "base-underground-ainsel-lake-roundtrip-evidence-20260818",
-      "base-siofra-river-roundtrip-evidence-20260818"
+      "base-siofra-river-roundtrip-evidence-20260818",
+      "base-deeproot-roundtrip-root-routes-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17115,6 +17116,8 @@
     ,{ "id": "hallowhorn-to-siofra-bank", "from": "hallowhorn_grounds_siofra", "to": "grace_siofra_river_bank", "mode": "Southern Hallowhorn Grounds return to Siofra River Bank", "cost": 4, "risk": 3, "direction": "backtrack", "transitionType": "hallowhorn_ground_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the southern Hallowhorn branch to Siofra River Bank.", "tags": ["walk", "branch", "underground", "backtrack", "cross_checked"] }
     ,{ "id": "below-the-well-to-siofra-bank", "from": "grace_siofra_river_below_the_well", "to": "grace_siofra_river_bank", "mode": "Below the Well return to Siofra River Bank", "cost": 10, "risk": 6, "direction": "backtrack", "transitionType": "northern_cliff_route_return", "requires": [], "sourceEvidence": ["eldenpedia-siofra-r71937", "gamefaqs-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the northern/eastern cliff route to the main River Bank grace.", "tags": ["walk", "vertical", "branch", "underground", "backtrack", "cross_checked"] }
     ,{ "id": "below-the-well-to-worshippers", "from": "grace_siofra_river_below_the_well", "to": "grace_worshippers_woods", "mode": "Below the Well return to Worshippers' Woods", "cost": 8, "risk": 6, "direction": "backtrack", "transitionType": "northern_cliff_route_return", "requires": [], "sourceEvidence": ["game8-siofra-cross-check", "gamefaqs-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Use the alternate northern cliff branch back toward Worshippers' Woods.", "tags": ["walk", "vertical", "branch", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "deeproot-to-great-waterfall-crest", "from": "grace_deeproot_depths", "to": "grace_deeproot_depths_main_great_waterfall_crest", "mode": "Deeproot Depths return to Great Waterfall Crest", "cost": 5, "risk": 4, "direction": "backtrack", "transitionType": "root_crossing_return", "requires": [], "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the lower root and water route to the Great Waterfall Crest arrival side.", "tags": ["walk", "vertical", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "nameless-city-to-deeproot", "from": "grace_deeproot_depths_main_the_nameless_eternal_city", "to": "grace_deeproot_depths", "mode": "Nameless Eternal City return to Deeproot Depths", "cost": 9, "risk": 3, "direction": "backtrack", "transitionType": "root_city_route_return", "requires": [], "sourceEvidence": ["eldenpedia-deeproot-r65395", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check"], "verificationState": "online_cross_checked", "note": "Return across the root and ruin route from the Nameless Eternal City to the lower Deeproot grace.", "tags": ["walk", "vertical", "underground", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17137,7 +17140,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 900,
+    "formalRouteEdgeCount": 902,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

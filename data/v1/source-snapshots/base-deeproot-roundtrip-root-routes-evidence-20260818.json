@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "base-deeproot-roundtrip-root-routes-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "deeproot-lower-crest-roundtrip",
+      "claim": "After the Valiant Gargoyle coffin arrival, Great Waterfall Crest connects into the lower Deeproot Depths by ordinary root and water routes. V1 adds the Deeproot return to the crest-side grace while keeping the coffin itself one-way.",
+      "sources": [
+        { "source_id": "eldenpedia-deeproot-r65395", "url": "https://eldenring.wiki.gg/wiki/Deeproot_Depths" },
+        { "source_id": "eip-deeproot-cross-check", "url": "https://eip.gg/elden-ring/guides/deeproot-depths-walkthrough/" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/366372" },
+        { "source_id": "powerpyx-deeproot-cross-check", "url": "https://www.powerpyx.com/elden-ring-deeproot-depths-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "deeproot-nameless-city-roundtrip",
+      "claim": "The Deeproot Depths grace and The Nameless Eternal City are connected by the same root-and-ruin route. V1 exposes the return edge; Fia's Champions, Fortissax's deathbed dream and the Ainsel coffin remain separate conditional/teleport transitions.",
+      "sources": [
+        { "source_id": "eldenpedia-deeproot-r65395", "url": "https://eldenring.wiki.gg/wiki/Deeproot_Depths" },
+        { "source_id": "eip-deeproot-cross-check", "url": "https://eip.gg/elden-ring/guides/deeproot-depths-walkthrough/" },
+        { "source_id": "game8-deeproot-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/366372" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
