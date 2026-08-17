@@ -1,0 +1,51 @@
+{
+  "snapshot_id": "base-haligtree-elphael-mainline-evidence-20260817",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-17",
+  "claims": [
+    {
+      "claim_id": "canopy-town-plaza-loretta",
+      "claim": "The Haligtree mainline proceeds from Haligtree Canopy through Haligtree Town and Haligtree Town Plaza before the Loretta, Knight of the Haligtree boss gate.",
+      "sources": [
+        { "source_id": "powerpyx-haligtree-cross-check", "url": "https://www.powerpyx.com/elden-ring-miquellas-haligtree-elphael-walkthrough/" },
+        { "source_id": "game8-haligtree-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369906" },
+        { "source_id": "eip-haligtree-cross-check", "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "promenade-to-elphael",
+      "claim": "After Loretta, Haligtree Promenade's tower elevator descends into Elphael and reaches Prayer Room, followed by the Inner Wall route.",
+      "sources": [
+        { "source_id": "powerpyx-haligtree-cross-check", "url": "https://www.powerpyx.com/elden-ring-miquellas-haligtree-elphael-walkthrough/" },
+        { "source_id": "gamefaqs-haligtree-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/12-the-haligtree" },
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "revision_id": 83774 }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "inner-wall-drainage-roots",
+      "claim": "Elphael Inner Wall leads through the Scarlet Rot waterfall/root crossing to Drainage Channel; Drainage Channel has an optional Ulcerated Tree Spirit branch and the lift route to Haligtree Roots.",
+      "sources": [
+        { "source_id": "powerpyx-haligtree-cross-check", "url": "https://www.powerpyx.com/elden-ring-miquellas-haligtree-elphael-walkthrough/" },
+        { "source_id": "gamefaqs-haligtree-cross-check", "url": "https://gamefaqs.gamespot.com/pc/265984-elden-ring/faqs/81456/12-the-haligtree" },
+        { "source_id": "eip-haligtree-cross-check", "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "roots-to-malenia",
+      "claim": "Haligtree Roots is the last grace before Malenia; after the boss, a separate post-boss grace can be activated on the west side of the arena.",
+      "sources": [
+        { "source_id": "powerpyx-haligtree-cross-check", "url": "https://www.powerpyx.com/elden-ring-miquellas-haligtree-elphael-walkthrough/" },
+        { "source_id": "game8-haligtree-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/369906" },
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace", "revision_id": 83774 }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ],
+  "notes": [
+    "The Haligtree and Elphael are represented as separate legacy layers with explicit elevators, roots, rot hazards and boss-state edges.",
+    "No original game coordinates or local game data were used."
+  ]
+}
