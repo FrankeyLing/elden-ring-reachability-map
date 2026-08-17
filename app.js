@@ -481,6 +481,23 @@ async function init() {
       ["Theatre of the Divine Beast", "grace_belurat_theatre_divine_beast"],
       ["Pillar Path Cross", "grace_shadow_realm_pillar_path_cross"],
       ["Cliffroad Terminus", "grace_shadow_realm_cliffroad_terminus"],
+      ["Highroad Cross", "grace_scadu_altus_highroad_cross"],
+      ["Moorth Ruins", "grace_scadu_altus_moorth_ruins"],
+      ["Bonny Village", "grace_scadu_altus_bonny_village"],
+      ["Bridge Leading to the Village", "grace_scadu_altus_bridge_leading_to_village"],
+      ["Church District Highroad", "grace_scadu_altus_church_district_highroad"],
+      ["Shadow Keep Main Gate", "grace_shadow_keep_main_gate"],
+      ["Main Gate Plaza", "grace_shadow_keep_main_gate_plaza"],
+      ["Golden Hippopotamus", "golden_hippopotamus_gate"],
+      ["Church District Entrance", "grace_shadow_keep_church_district_entrance"],
+      ["Sunken Chapel", "grace_shadow_keep_sunken_chapel"],
+      ["Tree-Worship Passage", "grace_shadow_keep_tree_worship_passage"],
+      ["Tree-Worship Sanctum", "grace_shadow_keep_tree_worship_sanctum"],
+      ["Storehouse, First Floor", "grace_shadow_keep_storehouse_first_floor"],
+      ["Storehouse, Fourth Floor", "grace_shadow_keep_storehouse_fourth_floor"],
+      ["Storehouse, Seventh Floor", "grace_shadow_keep_storehouse_seventh_floor"],
+      ["Messmer the Impaler", "messmer_gate"],
+      ["Messmer's Dark Chamber", "grace_shadow_keep_messmer_dark_chamber"],
       ["Queen's Bedchamber", "grace_queens_bedchamber"],
       ["Sir Gideon Ofnir, the All-Knowing", "gideon_ashen_gate"],
       ["Godfrey, First Elden Lord", "godfrey_ashen_gate"],
@@ -580,7 +597,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
-      if (["Crumbling Beast Grave", "Beside the Great Bridge", "Maliketh, the Black Blade", "Leyndell, Capital of Ash", "Gravesite Plain", "Three-Path Cross", "Church of Consolation", "Main Gate Cross", "Belurat, Tower Settlement", "Divine Beast Dancing Lion", "Theatre of the Divine Beast", "Pillar Path Cross", "Cliffroad Terminus", "Queen's Bedchamber", "Sir Gideon Ofnir, the All-Knowing", "Godfrey, First Elden Lord", "Radagon of the Golden Order", "Elden Beast", "Fractured Marika"].includes(record.name)) return;
+      if (["Crumbling Beast Grave", "Beside the Great Bridge", "Maliketh, the Black Blade", "Leyndell, Capital of Ash", "Gravesite Plain", "Three-Path Cross", "Church of Consolation", "Main Gate Cross", "Belurat, Tower Settlement", "Divine Beast Dancing Lion", "Theatre of the Divine Beast", "Pillar Path Cross", "Cliffroad Terminus", "Highroad Cross", "Moorth Ruins", "Bonny Village", "Bridge Leading to the Village", "Church District Highroad", "Shadow Keep Main Gate", "Main Gate Plaza", "Golden Hippopotamus", "Church District Entrance", "Sunken Chapel", "Tree-Worship Passage", "Tree-Worship Sanctum", "Storehouse, First Floor", "Storehouse, Fourth Floor", "Storehouse, Seventh Floor", "Messmer the Impaler", "Messmer's Dark Chamber", "Queen's Bedchamber", "Sir Gideon Ofnir, the All-Knowing", "Godfrey, First Elden Lord", "Radagon of the Golden Order", "Elden Beast", "Fractured Marika"].includes(record.name)) return;
       if (["Caelid Highway South", "Rotview Balcony", "Smoldering Church", "Caelem Ruins", "Impassable Greatbridge", "Redmane Castle Plaza", "Chamber Outside the Plaza", "Starscourge Radahn", "Southern Aeonia Swamp Bank", "Church of the Plague", "Bestial Sanctum", "Dragonbarrow Fork", "Fort Faroth"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;

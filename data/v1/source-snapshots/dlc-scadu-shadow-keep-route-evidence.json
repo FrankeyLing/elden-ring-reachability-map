@@ -1,0 +1,163 @@
+{
+  "snapshot_id": "dlc-scadu-shadow-keep-route-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Ensis north exit, Scadu Altus, Bonny Village, Church District and Shadow Keep Main Gate/Specimen Storehouse",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "ensis-to-highroad-cross",
+      "from": "Ensis Moongazing Grounds",
+      "to": "Highroad Cross",
+      "transition_type": "shadow_realm_north_exit",
+      "direction": "forward",
+      "claim": "After Rellana, the north exit from Castle Ensis opens the Scadu Altus route at Highroad Cross.",
+      "sources": ["eldenpedia-scadu-altus", "game8-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "highroad-to-moorth",
+      "from": "Highroad Cross",
+      "to": "Moorth Ruins",
+      "transition_type": "shadow_realm_surface_walk",
+      "direction": "forward",
+      "claim": "The Moorth Highway branches south from the Highroad near Highroad Cross and reaches Moorth Ruins.",
+      "sources": ["eldenpedia-scadu-altus", "game8-dlc-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "moorth-to-bonny",
+      "from": "Moorth Ruins",
+      "to": "Bonny Village",
+      "transition_type": "underground_tunnel_ladder",
+      "direction": "forward",
+      "claim": "A hole and underground tunnel beneath Moorth Ruins lead to the Bonny Village side of Scadu Altus; the route changes vertical layer and is kept directional until a reverse route is separately verified.",
+      "sources": ["eldenpedia-scadu-altus", "game8-church-district-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "bonny-to-church-highroad",
+      "from": "Bonny Village",
+      "to": "Church District Highroad",
+      "transition_type": "shadow_realm_surface_walk",
+      "direction": "forward",
+      "claim": "From Bonny Village, the route crosses the two bridges and follows the northern road to Church District Highroad.",
+      "sources": ["eldenpedia-scadu-altus", "game8-church-district-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "church-highroad-to-district-entrance",
+      "from": "Church District Highroad",
+      "to": "Church District Entrance",
+      "transition_type": "shadow_keep_east_entrance",
+      "direction": "forward",
+      "claim": "The road northwest from Church District Highroad passes through the tunnel at the eastern Shadow Keep entrance and reaches Church District Entrance.",
+      "sources": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "neoseeker-church-district-cross-check"]
+    },
+    {
+      "id": "district-entrance-to-sunken-chapel",
+      "from": "Church District Entrance",
+      "to": "Sunken Chapel",
+      "transition_type": "flooded_rooftop_mechanism",
+      "direction": "forward",
+      "claim": "The Church District rooftop route reaches the canal mechanism and the Sunken Chapel layer after the district water state is drained.",
+      "sources": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "neoseeker-church-district-cross-check"]
+    },
+    {
+      "id": "sunken-chapel-to-tree-worship-passage",
+      "from": "Sunken Chapel",
+      "to": "Tree-Worship Passage",
+      "transition_type": "church_district_elevator",
+      "direction": "forward",
+      "claim": "The drained Church District route uses the internal lift to reach Tree-Worship Passage.",
+      "sources": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "neoseeker-church-district-cross-check"]
+    },
+    {
+      "id": "tree-worship-passage-to-sanctum",
+      "from": "Tree-Worship Passage",
+      "to": "Tree-Worship Sanctum",
+      "transition_type": "church_district_walk",
+      "direction": "forward",
+      "claim": "The passage route continues across the bridge and stairs to Tree-Worship Sanctum.",
+      "sources": ["eldenpedia-shadow-keep", "game8-church-district-cross-check", "neoseeker-church-district-cross-check"]
+    },
+    {
+      "id": "highroad-to-shadow-keep-main",
+      "from": "Highroad Cross",
+      "to": "Shadow Keep Main Gate",
+      "transition_type": "shadow_keep_surface_approach",
+      "direction": "forward",
+      "claim": "The north road from Highroad Cross passes the military camp and Furnace Golem before reaching the Shadow Keep main entrance and lift.",
+      "sources": ["eldenpedia-scadu-altus", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "shadow-keep-main-to-hippo",
+      "from": "Shadow Keep Main Gate",
+      "to": "Golden Hippopotamus",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "The Golden Hippopotamus arena is directly in the main gate plaza route after entering Shadow Keep.",
+      "sources": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "hippo-to-main-gate-plaza",
+      "from": "Golden Hippopotamus",
+      "to": "Main Gate Plaza",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "The Main Gate Plaza grace is the post-Golden Hippopotamus continuation and opens the route into the keep's storehouse side.",
+      "sources": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "main-gate-plaza-to-storehouse",
+      "from": "Main Gate Plaza",
+      "to": "Storehouse, First Floor",
+      "transition_type": "legacy_vertical_route",
+      "direction": "forward",
+      "claim": "From Main Gate Plaza, the west doorway and stairs lead to the Specimen Storehouse First Floor.",
+      "sources": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "storehouse-first-to-fourth",
+      "from": "Storehouse, First Floor",
+      "to": "Storehouse, Fourth Floor",
+      "transition_type": "storehouse_vertical_route",
+      "direction": "forward",
+      "claim": "The Specimen Storehouse route climbs through its internal floors from the First Floor toward the Fourth Floor grace.",
+      "sources": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "storehouse-fourth-to-seventh",
+      "from": "Storehouse, Fourth Floor",
+      "to": "Storehouse, Seventh Floor",
+      "transition_type": "storehouse_vertical_route",
+      "direction": "forward",
+      "claim": "The upper storehouse progression continues from the Fourth Floor to the Seventh Floor approach.",
+      "sources": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "storehouse-seventh-to-messmer",
+      "from": "Storehouse, Seventh Floor",
+      "to": "Messmer the Impaler",
+      "transition_type": "legacy_boss_approach",
+      "direction": "forward",
+      "claim": "Messmer's boss room is reached through the upper Specimen Storehouse floors.",
+      "sources": ["eldenpedia-shadow-keep", "game8-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    },
+    {
+      "id": "messmer-to-dark-chamber",
+      "from": "Messmer the Impaler",
+      "to": "Messmer's Dark Chamber",
+      "transition_type": "boss_completion",
+      "direction": "forward",
+      "claim": "Messmer's Dark Chamber is the post-boss grace state after the Messmer encounter.",
+      "sources": ["eldenpedia-shadow-keep", "game8-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-scadu-altus", "url": "https://eldenring.wiki.gg/wiki/Scadu_Altus" },
+    { "id": "eldenpedia-shadow-keep", "url": "https://eldenring.wiki.gg/wiki/Shadow_Keep" },
+    { "id": "game8-shadow-keep-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459968" },
+    { "id": "game8-church-district-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/459782" },
+    { "id": "game8-messmer-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458685" },
+    { "id": "powerpyx-dlc-walkthrough-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-walkthrough/" },
+    { "id": "neoseeker-church-district-cross-check", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Shadow_Keep_-_Church_District" },
+    { "id": "eldenpedia-castle-ensis-r73643", "url": "https://eldenring.wiki.gg/wiki/Castle_Ensis", "revision_id": 73643 },
+    { "id": "game8-dlc-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458515" }
+  ]
+}
