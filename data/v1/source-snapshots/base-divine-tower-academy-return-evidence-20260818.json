@@ -1,0 +1,29 @@
+{
+  "snapshot_id": "base-divine-tower-academy-return-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "divine-tower-lift-return-branches",
+      "claim": "The West Altus, East Altus, Liurnia and Limgrave Divine Tower routes use an exterior gate/bridge plus a tower lift or sending gate. Their summit graces therefore receive explicit return edges to the corresponding gate or bridge node; the return is not treated as a new world connection.",
+      "sources": [
+        { "source_id": "eldenpedia-divine-tower-west-altus", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_West_Altus" },
+        { "source_id": "pcgamer-west-altus-tower-cross-check", "url": "https://www.pcgamer.com/elden-ring-west-altus-divine-tower/" },
+        { "source_id": "gamesradar-east-altus-tower-cross-check", "url": "https://www.gamesradar.com/elden-ring-divine-tower/" },
+        { "source_id": "eldenpedia-divine-tower-liurnia", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_Liurnia" },
+        { "source_id": "eldenpedia-divine-tower-limgrave", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_Limgrave" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "raya-library-to-debate-route",
+      "claim": "Raya Lucaria Grand Library is Rennala's boss-room grace. The academy walkthroughs document the opened return route toward the Debate Parlor, so the post-boss grace is not modeled as a terminal node.",
+      "sources": [
+        { "source_id": "eldenpedia-raya-library-r65940", "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria" },
+        { "source_id": "powerpyx-raya-cross-check", "url": "https://www.powerpyx.com/elden-ring-academy-of-raya-lucaria-walkthrough/" },
+        { "source_id": "vgkami-raya-library-return-cross-check", "url": "https://vgkami.com/elden-ring-a-complete-academy-of-raya-lucaria-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
