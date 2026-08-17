@@ -17,6 +17,10 @@ ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
+ONLINE_MAP_CONVERSION_FILES = (
+    ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-base-20260818.json",
+    ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-dlc-20260818.json",
+)
 ONLINE_INDEX_MANIFEST_FILE = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 )
@@ -89,6 +93,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/boss-positions":
             self.send_boss_positions(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/map-conversions":
+            self.send_map_conversions(parse_qs(parsed.query))
             return
         if parsed.path == "/api/catalog/online-items":
             self.send_online_items(parse_qs(parsed.query))
@@ -274,6 +281,61 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "records": records[:limit],
                 "routeable": False,
                 "note": "raw online Boss coordinates; formal candidates are identity hints and do not create boss-gated traversal edges",
+            }
+        )
+
+    def send_map_conversions(self, query: dict[str, list[str]]):
+        map_id = query.get("map", [""])[0].strip()
+        try:
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), 500)
+        except ValueError:
+            limit = 500
+
+        def map_key(area, grid_x, grid_z):
+            if area is None or grid_x is None or grid_z is None:
+                return None
+            return f"m{int(area):02d}_{int(grid_x):02d}_{int(grid_z):02d}"
+
+        try:
+            records = []
+            for path in ONLINE_MAP_CONVERSION_FILES:
+                payload = json.loads(path.read_bytes())
+                source_kind = "dlc" if "dlc" in path.name else "base"
+                for row in payload["records"]:
+                    source_map = map_key(row[1], row[2], row[3])
+                    destination_map = map_key(row[7], row[8], row[9])
+                    source_match = bool(source_map) and (not map_id or source_map == map_id or source_map.startswith(map_id + "_"))
+                    destination_match = bool(destination_map) and (not map_id or destination_map == map_id or destination_map.startswith(map_id + "_"))
+                    if not (source_match or destination_match):
+                        continue
+                    side = "source" if source_match else "destination"
+                    position = [row[4], row[5], row[6]] if side == "source" else [row[10], row[11], row[12]]
+                    records.append(
+                        {
+                            "source_index": row[0],
+                            "dataset": source_kind,
+                            "source_map": source_map,
+                            "source_position": [row[4], row[5], row[6]],
+                            "destination_map": destination_map,
+                            "destination_position": [row[10], row[11], row[12]],
+                            "current_map": map_id,
+                            "current_side": side,
+                            "position": position,
+                            "is_base_point": bool(row[13]),
+                        }
+                    )
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/online-map-conversion-query@1",
+                "query": {"map": map_id, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "note": "raw coordinate-conversion evidence only; it does not prove a walkable, one-way, elevator, coffin, portal, or boss-gated transition",
             }
         )
 
