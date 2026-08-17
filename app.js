@@ -646,6 +646,8 @@ async function init() {
       ["Wyndham Catacombs", "grace_altus_plateau_main_wyndham_catacombs"],
       ["Seethewater Cave", "grace_altus_plateau_main_seethewater_cave"],
       ["Volcano Cave", "grace_altus_plateau_main_volcano_cave"],
+      ["Altus Tunnel", "grace_altus_plateau_main_altus_tunnel"],
+      ["Sainted Hero's Grave", "grace_altus_plateau_main_sainted_hero_s_grave"],
       ["Seethewater Terminus", "grace_altus_plateau_mt_gelmir_seethewater_terminus"],
       ["Craftsman's Shack", "grace_altus_plateau_mt_gelmir_craftsman_s_shack"],
       ["Primeval Sorcerer Azur", "grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur"],
@@ -897,7 +899,7 @@ async function init() {
       if (["South of the Lookout Tower", "Fourth Church of Marika", "Church of Pilgrimage", "Earthbore Cave", "Tombsward Cave", "Tombsward Catacombs", "Impaler's Catacombs"].includes(record.name)) return;
       if (["Stillwater Cave", "Scenic Isle", "Lakeside Crystal Cave", "Converted Tower", "Road's End Catacombs", "Cliffbottom Catacombs"].includes(record.name)) return;
       if (["Academy Crystal Cave", "Raya Lucaria Crystal Tunnel", "Church of Vows", "Ruined Labyrinth", "Black Knife Catacombs"].includes(record.name)) return;
-      if (["Old Altus Tunnel", "Perfumer's Grotto", "Unsightly Catacombs", "Sage's Cave", "Auriza Hero's Grave", "Auriza Side Tomb", "Gelmir Hero's Grave", "Wyndham Catacombs", "Seethewater Cave", "Volcano Cave"].includes(record.name)) return;
+      if (["Old Altus Tunnel", "Perfumer's Grotto", "Unsightly Catacombs", "Sage's Cave", "Auriza Hero's Grave", "Auriza Side Tomb", "Gelmir Hero's Grave", "Wyndham Catacombs", "Seethewater Cave", "Volcano Cave", "Altus Tunnel", "Sainted Hero's Grave"].includes(record.name)) return;
       if (["Sealed Tunnel", "Divine Tower of West Altus: Gate", "Divine Tower of West Altus"].includes(record.name)) return;
       if (["Avenue Balcony", "Erdtree Sanctuary", "Elden Throne", "Siofra River Well Depths", "Siofra River Bank", "Worshippers' Woods", "Below the Well", "Deep Siofra Well", "Crumbling Beast Grave Depths", "Dragon Temple Altar", "Castle Front", "Castle Ensis Checkpoint", "Castle-Lord's Chamber", "Ensis Moongazing Grounds", "Ainsel River Main", "Nokstella, Eternal City", "Nokstella Waterfall Basin", "Lake of Rot Shoreside", "Grand Cloister", "Moonlight Altar", "Palace Approach Ledge-Road", "Dynasty Mausoleum Entrance", "Dynasty Mausoleum Midpoint", "Cocoon of the Empyrean", "Grand Lift of Rold", "Zamor Ruins", "Whiteridge Road", "Freezing Lake", "Giants' Gravepost", "Foot of the Forge", "Fire Giant", "Forge of the Giants", "Castle Sol Main Gate", "Church of the Eclipse", "Castle Sol Rooftop", "Consecrated Snowfield", "Inner Consecrated Snowfield", "The First Step", "Church of Elleh", "Gatefront", "Stormhill Shack", "Mistwood Outskirts", "Third Church of Marika", "Siofra River Well", "Ancestral Woods", "Aqueduct-Facing Cliffs", "Stormveil Main Gate", "Stormveil Cliffside", "Rampart Tower", "Liftside Chamber", "Secluded Cell", "Lake-Facing Cliffs", "Main Academy Gate", "Church of the Cuckoo", "Schoolhouse Classroom", "Debate Parlor", "Raya Lucaria Grand Library", "Grand Lift of Dectus", "Altus Plateau", "Altus Highway Junction", "Outer Wall Phantom Tree", "Outer Wall Battleground", "East Capital Rampart", "Nokron, Eternal City", "Deeproot Depths", "Prince of Death's Throne", "Ordina, Liturgical Town", "Volcano Manor", "Prison Town Church", "Temple of Eiglay", "Haligtree Canopy"].includes(record.name)) return;
       const groupKey = `${record.layer}|${record.region}`;

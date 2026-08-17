@@ -1,0 +1,27 @@
+{
+  "snapshot_id": "base-altus-tunnel-sainted-hero-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "altus-tunnel-crystalian-duo",
+      "claim": "Altus Tunnel is a crystal mine south of the Altus Plateau Minor Erdtree, begins with a lift to its grace, and ends at Spear and Ringblade Crystalians.",
+      "sources": [
+        {"source_id": "eldenpedia-altus-tunnel", "url": "https://eldenring.wiki.gg/wiki/Altus_Tunnel"},
+        {"source_id": "game8-altus-tunnel-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370254"},
+        {"source_id": "fextralife-altus-tunnel-cross-check", "url": "https://eldenring.wiki.fextralife.com/Altus%2BTunnel"}
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "sainted-hero-light-zamor",
+      "claim": "Sainted Hero's Grave is reached from Rampartside Path, begins at the bottom of an elevator, uses illuminated circles to handle shadow enemies and the Grave Warden, and ends at Ancient Hero of Zamor.",
+      "sources": [
+        {"source_id": "eldenpedia-sainted-hero-grave", "url": "https://eldenring.wiki.gg/wiki/Sainted_Hero%27s_Grave"},
+        {"source_id": "game8-sainted-hero-grave-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/370253"},
+        {"source_id": "eip-sainted-hero-grave-cross-check", "url": "https://eip.gg/elden-ring/guides/sainted-heros-grave-dungeon-walkthrough/"}
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

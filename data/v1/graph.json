@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.49-online-multiplane",
+    "version": "1.0.50-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -61,7 +61,8 @@
       "base-liurnia-optional-dungeons-evidence-20260818",
       "base-liurnia-academy-optional-dungeons-evidence-20260818",
       "base-altus-optional-dungeons-evidence-20260818",
-      "base-altus-gelmir-capital-dungeons-evidence-20260818"
+      "base-altus-gelmir-capital-dungeons-evidence-20260818",
+      "base-altus-tunnel-sainted-hero-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -497,6 +498,16 @@
       "id": "volcano_cave_demi_human_queen_margot_defeated",
       "label": "Demi-Human Queen Margot defeated",
       "hint": "The Volcano Cave boss gate has been cleared and the Jar Cannon reward route is complete."
+    },
+    {
+      "id": "altus_tunnel_crystalians_defeated",
+      "label": "Altus Tunnel Crystalian duo defeated",
+      "hint": "The Spear and Ringblade Crystalians at the end of Altus Tunnel have been cleared."
+    },
+    {
+      "id": "sainted_hero_ancient_zamor_defeated",
+      "label": "Ancient Hero of Zamor defeated",
+      "hint": "The Sainted Hero's Grave boss gate has been cleared."
     },
     {
       "id": "malenia_defeated",
@@ -1057,6 +1068,12 @@
     ,{ "id": "pushsquare-volcano-cave", "label": "Push Square - Volcano Cave walkthrough", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-volcano-cave", "grade": "B" }
     ,{ "id": "game8-volcano-cave-boss-cross-check", "label": "Game8 - Demi-Human Queen Margot", "url": "https://game8.co/games/Elden-Ring/archives/374831", "grade": "B" }
     ,{ "id": "neoseeker-volcano-cave-cross-check", "label": "Neoseeker - Volcano Cave walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Mt_Gelmir", "grade": "B" }
+    ,{ "id": "eldenpedia-altus-tunnel", "label": "Eldenpedia - Altus Tunnel", "url": "https://eldenring.wiki.gg/wiki/Altus_Tunnel", "grade": "A" }
+    ,{ "id": "game8-altus-tunnel-cross-check", "label": "Game8 - Altus Tunnel walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370254", "grade": "B" }
+    ,{ "id": "fextralife-altus-tunnel-cross-check", "label": "Fextralife - Altus Tunnel walkthrough", "url": "https://eldenring.wiki.fextralife.com/Altus%2BTunnel", "grade": "B" }
+    ,{ "id": "eldenpedia-sainted-hero-grave", "label": "Eldenpedia - Sainted Hero's Grave", "url": "https://eldenring.wiki.gg/wiki/Sainted_Hero%27s_Grave", "grade": "A" }
+    ,{ "id": "game8-sainted-hero-grave-cross-check", "label": "Game8 - Sainted Hero's Grave walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/370253", "grade": "B" }
+    ,{ "id": "eip-sainted-hero-grave-cross-check", "label": "EIP Gaming - Sainted Hero's Grave walkthrough", "url": "https://eip.gg/elden-ring/guides/sainted-heros-grave-dungeon-walkthrough/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -7853,6 +7870,38 @@
     {
       "id": "volcano_cave_post_boss_state", "label": "Volcano Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Volcano Cave", "floor": "Queen Margot chamber return state", "worldEpoch": "altus_surface", "x": 900, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check"], "description": "Cleared-state node for Demi-Human Queen Margot."
+    },
+    {
+      "id": "altus_tunnel_surface_entrance", "label": "Altus Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "South of Altus Minor Erdtree", "worldEpoch": "altus_surface", "x": 1160, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check"], "description": "Crystal mine entrance in the rock wall south of the Altus Plateau Minor Erdtree."
+    },
+    {
+      "id": "grace_altus_plateau_main_altus_tunnel", "label": "Altus Tunnel", "kind": "grace", "layer": "legacy", "region": "Altus Tunnel", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1220, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check"], "description": "Grace at the bottom of the mine entrance lift."
+    },
+    {
+      "id": "crystalian_duo_altus_tunnel_gate", "label": "Crystalian Spear and Ringblade (Altus Tunnel)", "kind": "boss", "layer": "legacy", "region": "Altus Tunnel", "floor": "Twin Crystalian chamber", "worldEpoch": "altus_surface", "x": 1280, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check"], "description": "Spear and Ringblade Crystalian duo boss gate."
+    },
+    {
+      "id": "altus_tunnel_post_boss_state", "label": "Altus Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Altus Tunnel", "floor": "Twin Crystalian chamber return state", "worldEpoch": "altus_surface", "x": 1340, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check"], "description": "Cleared-state node for the Altus Tunnel Crystalian duo and bell-bearing route."
+    },
+    {
+      "id": "sainted_hero_grave_surface_entrance", "label": "Sainted Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Rampartside Path cliff", "worldEpoch": "altus_surface", "x": 1020, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check"], "description": "Hero's Grave entrance reached from the Rampartside Path area."
+    },
+    {
+      "id": "grace_altus_plateau_main_sainted_hero_s_grave", "label": "Sainted Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1080, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "description": "Grace at the bottom of the crypt elevator."
+    },
+    {
+      "id": "ancient_hero_zamor_sainted_gate", "label": "Ancient Hero of Zamor (Sainted Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Illumination boss chamber", "worldEpoch": "altus_surface", "x": 1140, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check"], "description": "Ancient Hero of Zamor reached after the light/shadow Grave Warden route opens the boss door."
+    },
+    {
+      "id": "sainted_hero_grave_post_boss_state", "label": "Sainted Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Ancient Hero chamber return state", "worldEpoch": "altus_surface", "x": 1200, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "description": "Cleared-state node for the Ancient Hero of Zamor."
     }
   ],
   "edges": [
@@ -14898,6 +14947,30 @@
     },
     {
       "id": "volcano-queen-to-state", "from": "demi_human_queen_margot_volcano_gate", "to": "volcano_cave_post_boss_state", "mode": "Volcano Cave Queen Margot completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["volcano_cave_demi_human_queen_margot_defeated"], "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Jar Cannon reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "altus-highway-to-altus-tunnel-mouth", "from": "grace_altus_highway_junction", "to": "altus_tunnel_surface_entrance", "mode": "Altus Highway Junction to Altus Tunnel", "cost": 6, "risk": 6, "direction": "forward", "transitionType": "crystal_mine_entrance", "requires": [], "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the central Altus route south toward the Minor Erdtree and the crystal mine mouth.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "altus-tunnel-mouth-to-grace", "from": "altus_tunnel_surface_entrance", "to": "grace_altus_plateau_main_altus_tunnel", "mode": "Altus Tunnel entrance lift", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "The mine lift descends to the internal grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "altus-tunnel-to-crystalian-duo", "from": "grace_altus_plateau_main_altus_tunnel", "to": "crystalian_duo_altus_tunnel_gate", "mode": "Altus Tunnel crystal mine route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "crystal_mine_duo_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the mine platforms and use the lever to reach the Spear and Ringblade Crystalians.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "altus-crystalian-to-state", "from": "crystalian_duo_altus_tunnel_gate", "to": "altus_tunnel_post_boss_state", "mode": "Altus Tunnel Crystalian completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["altus_tunnel_crystalians_defeated"], "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Somberstone Miner's Bell Bearing route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "rampartside-to-sainted-hero-mouth", "from": "grace_altus_plateau_main_rampartside_path", "to": "sainted_hero_grave_surface_entrance", "mode": "Rampartside Path to Sainted Hero's Grave", "cost": 5, "risk": 7, "direction": "forward", "transitionType": "hero_grave_cliff_entrance", "requires": [], "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Use the side path and cliff approach to reach the crypt entrance.", "tags": ["walk", "surface", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "sainted-hero-mouth-to-grace", "from": "sainted_hero_grave_surface_entrance", "to": "grace_altus_plateau_main_sainted_hero_s_grave", "mode": "Sainted Hero's Grave entrance lift", "cost": 3, "risk": 7, "direction": "forward", "transitionType": "lift_descent", "requires": [], "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "The elevator descends to the crypt grace.", "tags": ["lift", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sainted-hero-to-zamor", "from": "grace_altus_plateau_main_sainted_hero_s_grave", "to": "ancient_hero_zamor_sainted_gate", "mode": "Sainted Hero's Grave light and shadow route", "cost": 15, "risk": 10, "direction": "forward", "transitionType": "illumination_hero_grave_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Use the illuminated circles to damage the shadow enemies, pull the Grave Warden into light, and open the final boss door.", "tags": ["light_gate", "vertical", "boss", "legacy", "cross_checked"]
+    },
+    {
+      "id": "sainted-zamor-to-state", "from": "ancient_hero_zamor_sainted_gate", "to": "sainted_hero_grave_post_boss_state", "mode": "Sainted Hero's Grave Ancient Hero completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["sainted_hero_ancient_zamor_defeated"], "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Ancient Dragon Knight Kristoff reward route.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -14920,8 +14993,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 508,
-    "formalRouteEdgeCount": 530,
+    "formalNodeCount": 516,
+    "formalRouteEdgeCount": 538,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
