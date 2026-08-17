@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.94-online-multiplane",
+  "version": "1.0.95-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -107,7 +107,8 @@
       "base-postboss-deeproot-roundtrip-evidence-20260818",
       "base-dlc-postboss-roundtrip-evidence-20260818",
       "base-siofra-sellia-gael-branch-evidence-20260818",
-      "base-ainsel-astel-grace-evidence-20260818"
+      "base-ainsel-astel-grace-evidence-20260818",
+      "base-farum-dragon-temple-grace-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -2314,6 +2315,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-farum-cross-check", "game8-farum-cross-check"],
       "description": "Lower transept grace immediately before the Godskin Duo stairs; kept distinct from Dragon Temple and post-boss Altar."
+    },
+    {
+      "id": "grace_crumbling_farum_azula_main_dragon_temple",
+      "label": "Dragon Temple",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Crumbling Farum Azula",
+      "floor": "Dragon Temple upper approach",
+      "worldEpoch": "crumbling_farum_azula",
+      "x": 515,
+      "y": 490,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"],
+      "description": "Independent Dragon Temple grace between the external floating-rock approach and the lower Transept route."
     },
     {
       "id": "godskin_duo_gate",
@@ -10774,10 +10790,25 @@
       "tags": ["parkour", "vertical", "hazard", "legacy", "cross_checked"]
     },
     {
-      "id": "dragon-temple-to-transept",
+      "id": "dragon-temple-approach-to-grace",
       "from": "farum_dragon_temple_approach",
+      "to": "grace_crumbling_farum_azula_main_dragon_temple",
+      "mode": "Dragon Temple external approach to grace",
+      "cost": 3,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "legacy_entrance",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The floating-rock approach reaches the independent Dragon Temple grace before the lower Transept drop.",
+      "tags": ["walk", "vertical", "legacy", "cross_checked"]
+    },
+    {
+      "id": "dragon-temple-to-transept",
+      "from": "grace_crumbling_farum_azula_main_dragon_temple",
       "to": "grace_farum_dragon_temple_transept",
-      "mode": "Dragon Temple to Transept",
+      "mode": "Dragon Temple drop to Transept",
       "cost": 7,
       "risk": 9,
       "direction": "forward",
@@ -10785,7 +10816,7 @@
       "requires": [],
       "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "The Banished Knight halls and lower stairs lead to the Transept grace immediately before the Godskin Duo room.",
+      "note": "Drop from the Dragon Temple grace to the lower platform, then follow the Banished Knight halls and stairs to the Transept grace before the Godskin Duo room.",
       "tags": ["walk", "vertical", "legacy", "cross_checked"]
     },
     {
@@ -17223,7 +17254,8 @@
     ,{ "id": "farum-depths-to-entry", "from": "grace_crumbling_beast_grave_depths", "to": "grace_crumbling_beast_grave", "mode": "Beast Grave Depths return to Farum entry", "cost": 3, "risk": 3, "direction": "backtrack", "transitionType": "legacy_vertical_route_return", "requires": [], "sourceEvidence": ["eldenpedia-farum-r83238", "powerpyx-farum-entry-cross-check", "game8-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the entry descent back to the Crumbling Beast Grave grace.", "tags": ["walk", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "tempest-balcony-to-beast-grave-depths", "from": "grace_farum_tempest_facing_balcony", "to": "grace_crumbling_beast_grave_depths", "mode": "Tempest-Facing Balcony return to Beast Grave Depths", "cost": 9, "risk": 4, "direction": "backtrack", "transitionType": "legacy_vertical_route_return", "requires": [], "sourceEvidence": ["eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the upper bridge and ruin route toward the Beast Grave Depths grace.", "tags": ["walk", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "dragon-approach-to-tempest-balcony", "from": "farum_dragon_temple_approach", "to": "grace_farum_tempest_facing_balcony", "mode": "Dragon Temple approach return to Tempest-Facing Balcony", "cost": 10, "risk": 8, "direction": "backtrack", "transitionType": "floating_rock_legacy_route_return", "requires": [], "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the floating rocks back out of the Dragon Temple approach to the Tempest-Facing Balcony.", "tags": ["parkour", "vertical", "hazard", "legacy", "backtrack", "cross_checked"] }
-    ,{ "id": "transept-to-dragon-approach", "from": "grace_farum_dragon_temple_transept", "to": "farum_dragon_temple_approach", "mode": "Dragon Temple Transept return to Dragon Temple approach", "cost": 7, "risk": 8, "direction": "backtrack", "transitionType": "legacy_internal_route_return", "requires": [], "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Transept through the same Banished Knight halls and lower stairs to the temple approach.", "tags": ["walk", "vertical", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "transept-to-dragon-approach", "from": "grace_farum_dragon_temple_transept", "to": "grace_crumbling_farum_azula_main_dragon_temple", "mode": "Dragon Temple Transept return to Dragon Temple grace", "cost": 7, "risk": 8, "direction": "backtrack", "transitionType": "legacy_internal_route_return", "requires": [], "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Climb back through the lower Banished Knight route to the Dragon Temple grace; the external floating-rock return remains a separate edge.", "tags": ["walk", "vertical", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "dragon-temple-grace-to-approach", "from": "grace_crumbling_farum_azula_main_dragon_temple", "to": "farum_dragon_temple_approach", "mode": "Dragon Temple grace return to external approach", "cost": 3, "risk": 7, "direction": "backtrack", "transitionType": "legacy_entrance_return", "requires": [], "sourceEvidence": ["eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the independent Dragon Temple grace to the external approach before crossing back toward Tempest-Facing Balcony.", "tags": ["walk", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "dragon-altar-to-transept", "from": "grace_dragon_temple_altar", "to": "grace_farum_dragon_temple_transept", "mode": "Dragon Temple Altar return to Transept", "cost": 5, "risk": 7, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["godskin_duo_defeated"], "sourceEvidence": ["eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "After the Godskin Duo is defeated, retrace the boss hall to the Transept grace; the optional Stonesword Key lift remains a separate branch.", "tags": ["walk", "boss", "legacy", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "rooftop-to-dragon-altar", "from": "grace_farum_dragon_temple_rooftop", "to": "grace_dragon_temple_altar", "mode": "Dragon Temple Rooftop return to Dragon Temple Altar", "cost": 8, "risk": 4, "direction": "backtrack", "transitionType": "legacy_mainline_route_return", "requires": ["godskin_duo_defeated"], "sourceEvidence": ["eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "game8-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the rooftop route to the post-Duo Dragon Temple Altar grace.", "tags": ["walk", "legacy", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "great-bridge-to-rooftop", "from": "grace_beside_great_bridge", "to": "grace_farum_dragon_temple_rooftop", "mode": "Beside the Great Bridge return to Dragon Temple Rooftop", "cost": 10, "risk": 8, "direction": "backtrack", "transitionType": "lightning_rooftop_route_return", "requires": ["godskin_duo_defeated"], "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"], "verificationState": "online_cross_checked", "note": "Use the same lift and lightning-ruin route to return from the Great Bridge side to the Dragon Temple Rooftop.", "tags": ["walk", "vertical", "hazard", "legacy", "backtrack", "conditional", "cross_checked"] }
@@ -17289,8 +17321,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 699,
-    "formalRouteEdgeCount": 1012,
+    "formalNodeCount": 700,
+    "formalRouteEdgeCount": 1014,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -1,0 +1,19 @@
+{
+  "snapshot_id": "base-farum-dragon-temple-grace-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "farum-dragon-temple-independent-grace",
+      "claim": "Dragon Temple is an independent Site of Grace in Crumbling Farum Azula, distinct from Dragon Temple Transept. The main route reaches Dragon Temple from the Tempest-Facing Balcony side, then uses a drop and lower interior route to reach Dragon Temple Transept before the Godskin Duo approach.",
+      "sources": [
+        { "source_id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+        { "source_id": "eldenpedia-farum-r83238", "url": "https://eldenring.wiki.gg/wiki/Crumbling_Farum_Azula" },
+        { "source_id": "powerpyx-farum-cross-check", "url": "https://www.powerpyx.com/elden-ring-crumbling-faram-azula-walkthrough/" },
+        { "source_id": "game8-farum-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/371005" },
+        { "source_id": "eip-farum-cross-check", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}
