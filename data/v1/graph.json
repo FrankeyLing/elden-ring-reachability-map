@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.56-online-multiplane",
+    "version": "1.0.57-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -69,7 +69,8 @@
       "base-mountaintops-optional-dungeons-evidence-20260818",
       "dlc-ruined-forge-starfall-past-evidence-20260818",
       "dlc-scadu-altus-remaining-optional-dungeons-evidence-20260818",
-      "base-weeping-peninsula-morne-tunnel-evidence-20260818"
+      "base-weeping-peninsula-morne-tunnel-evidence-20260818",
+      "base-limgrave-fort-haight-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -865,6 +866,11 @@
       "id": "scaly_misbegotten_morne_tunnel_defeated",
       "label": "Morne Tunnel Scaly Misbegotten defeated",
       "hint": "The Scaly Misbegotten boss at the bottom of Morne Tunnel has been cleared."
+    },
+    {
+      "id": "godrick_knight_fort_haight_defeated",
+      "label": "Fort Haight Godrick Knight defeated",
+      "hint": "The blood-obsessed Godrick Knight on Fort Haight's upper level has been cleared."
     }
   ],
   "sourceEvidence": [
@@ -1267,6 +1273,9 @@
     ,{ "id": "eldenpedia-morne-tunnel", "label": "Eldenpedia - Morne Tunnel", "url": "https://eldenring.wiki.gg/wiki/Morne_Tunnel", "grade": "A" }
     ,{ "id": "pushsquare-morne-tunnel-cross-check", "label": "Push Square - Morne Tunnel walkthrough", "url": "https://www.pushsquare.com/guides/elden-ring-how-to-complete-morne-tunnel", "grade": "B" }
     ,{ "id": "gamerguides-morne-tunnel-cross-check", "label": "Gamer Guides - Morne Tunnel", "url": "https://www.gamerguides.com/elden-ring/database/locations/weeping-peninsula/morne-tunnel", "grade": "B" }
+    ,{ "id": "eldenpedia-fort-haight", "label": "Eldenpedia - Fort Haight", "url": "https://eldenring.wiki.gg/wiki/Fort_Haight", "grade": "A" }
+    ,{ "id": "game8-fort-haight-cross-check", "label": "Game8 - Fort Haight location and checklist", "url": "https://game8.co/games/Elden-Ring/archives/369235", "grade": "B" }
+    ,{ "id": "ludo-fort-haight-cross-check", "label": "Ludo - Fort Haight walkthrough", "url": "https://www.ludo.guide/guide/elden-ring/limgrave/locations/how-to-find-and-complete-fort-haight-in-limgrave", "grade": "B" }
   ],
   "nodes": [
     {
@@ -8495,6 +8504,26 @@
     {
       "id": "morne_tunnel_post_boss_state", "label": "Morne Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Morne Tunnel", "floor": "Scaly Misbegotten chamber return state", "worldEpoch": "limgrave_surface", "x": 510, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check"], "description": "Cleared-state endpoint for the Rusted Anchor and the mine's remaining smithing materials."
+    },
+    {
+      "id": "grace_limgrave_main_fort_haight_west", "label": "Fort Haight West", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Fort Haight western staging ground", "worldEpoch": "limgrave_surface", "x": 270, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "description": "Grace southwest of Fort Haight, used as the staging point before the uphill fort approach."
+    },
+    {
+      "id": "fort_haight_surface_entrance", "label": "Fort Haight surface entrance", "kind": "entrance", "layer": "surface", "region": "Limgrave", "floor": "Hill approach / ballista line", "worldEpoch": "limgrave_surface", "x": 330, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "description": "Uphill approach from Fort Haight West through the ballista and soldier line to the fort gate."
+    },
+    {
+      "id": "godrick_knight_fort_haight_gate", "label": "Godrick Knight (Fort Haight)", "kind": "boss", "layer": "legacy", "region": "Fort Haight", "floor": "Upper fort level", "worldEpoch": "limgrave_surface", "x": 390, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "description": "Blood-obsessed Godrick Knight on the upper level; defeating it yields Bloody Slash but is not a hard gate to the tower chest."
+    },
+    {
+      "id": "fort_haight_upper_tower_reward", "label": "Fort Haight upper tower (Dectus Medallion left)", "kind": "state", "layer": "legacy", "region": "Fort Haight", "floor": "Southern tower chest", "worldEpoch": "limgrave_surface", "x": 450, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "description": "Upper-tower chest endpoint for Dectus Medallion (Left); the Knight can be bypassed with a risky run or distraction."
+    },
+    {
+      "id": "fort_haight_post_boss_state", "label": "Fort Haight (post-Godrick Knight state)", "kind": "state", "layer": "legacy", "region": "Fort Haight", "floor": "Upper fort cleared state", "worldEpoch": "limgrave_surface", "x": 510, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "description": "Cleared-state endpoint for Bloody Slash and Kenneth Haight's liberated-fort quest step."
     }
   ],
   "edges": [
@@ -15873,6 +15902,27 @@
     },
     {
       "id": "scaly-misbegotten-to-morne-state", "from": "scaly_misbegotten_morne_tunnel_gate", "to": "morne_tunnel_post_boss_state", "mode": "Morne Tunnel Scaly Misbegotten completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["scaly_misbegotten_morne_tunnel_defeated"], "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the Rusted Anchor.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
+    },
+    {
+      "id": "mistwood-to-fort-haight-west", "from": "grace_mistwood_outskirts", "to": "grace_limgrave_main_fort_haight_west", "mode": "Mistwood Outskirts to Fort Haight West", "cost": 8, "risk": 5, "direction": "forward", "transitionType": "limgrave_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the eastern Limgrave road past Mistwood toward the fort's western staging grace.", "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "third-church-to-fort-haight-west", "from": "grace_third_church_of_marika", "to": "grace_limgrave_main_fort_haight_west", "mode": "Third Church of Marika to Fort Haight West", "cost": 8, "risk": 6, "direction": "forward", "transitionType": "limgrave_surface_walk", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Use the southbound road from the Third Church and turn toward the fort's western cliff grace.", "tags": ["walk", "surface", "cross_checked"]
+    },
+    {
+      "id": "fort-haight-west-to-entrance", "from": "grace_limgrave_main_fort_haight_west", "to": "fort_haight_surface_entrance", "mode": "Fort Haight West uphill approach", "cost": 7, "risk": 9, "direction": "forward", "transitionType": "fort_hill_entrance", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Climb the ballista-covered hill and pass the soldiers to reach the fort perimeter.", "tags": ["walk", "surface", "hazard", "legacy_entrance", "cross_checked"]
+    },
+    {
+      "id": "fort-haight-entrance-to-knight", "from": "fort_haight_surface_entrance", "to": "godrick_knight_fort_haight_gate", "mode": "Fort Haight upper level to Godrick Knight", "cost": 9, "risk": 9, "direction": "forward", "transitionType": "fort_elite_approach", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Climb through the occupied fort to the blood-obsessed Godrick Knight on the upper level.", "tags": ["vertical", "elite", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fort-haight-entrance-to-tower", "from": "fort_haight_surface_entrance", "to": "fort_haight_upper_tower_reward", "mode": "Fort Haight tower chest bypass", "cost": 11, "risk": 10, "direction": "forward", "transitionType": "fort_upper_tower_bypass", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "A risky run, stealth route or distraction can reach the tower chest without treating the Godrick Knight as a hard gate.", "tags": ["vertical", "hazard", "optional_boss_bypass", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fort-haight-knight-to-tower", "from": "godrick_knight_fort_haight_gate", "to": "fort_haight_upper_tower_reward", "mode": "Fort Haight cleared knight to tower", "cost": 5, "risk": 4, "direction": "forward", "transitionType": "fort_reward_route", "requires": ["godrick_knight_fort_haight_defeated"], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "After the Knight is cleared, climb the southern tower ladder to the Dectus Medallion (Left) chest.", "tags": ["conditional", "vertical", "reward", "legacy", "cross_checked"]
+    },
+    {
+      "id": "fort-haight-knight-to-state", "from": "godrick_knight_fort_haight_gate", "to": "fort_haight_post_boss_state", "mode": "Fort Haight Godrick Knight completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "elite_completion_state", "requires": ["godrick_knight_fort_haight_defeated"], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Records Bloody Slash and the cleared-fort state used by Kenneth Haight's liberation request.", "tags": ["conditional", "state_change", "legacy", "cross_checked"]
     }
   ],
   "relations": [
@@ -15895,8 +15945,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 616,
-    "formalRouteEdgeCount": 641,
+    "formalNodeCount": 621,
+    "formalRouteEdgeCount": 648,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
