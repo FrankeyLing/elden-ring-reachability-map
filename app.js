@@ -617,6 +617,13 @@ async function init() {
       ["Seethewater Terminus", "grace_altus_plateau_mt_gelmir_seethewater_terminus"],
       ["Craftsman's Shack", "grace_altus_plateau_mt_gelmir_craftsman_s_shack"],
       ["Primeval Sorcerer Azur", "grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur"],
+      ["Aeonia Swamp Shore", "grace_caelid_swamp_of_aeonia_aeonia_swamp_shore"],
+      ["Heart of Aeonia", "grace_caelid_swamp_of_aeonia_heart_of_aeonia"],
+      ["Inner Aeonia", "grace_caelid_swamp_of_aeonia_inner_aeonia"],
+      ["Commander O'Neil", "commander_o_neil_gate"],
+      ["Sellia Under-Stair", "grace_caelid_main_sellia_under_stair"],
+      ["Sellia Backstreets", "grace_caelid_main_sellia_backstreets"],
+      ["Chair-Crypt of Sellia", "grace_caelid_main_chair_crypt_of_sellia"],
       ["Bridge of Iniquity", "grace_altus_plateau_mt_gelmir_bridge_of_iniquity"],
       ["First Mt.Gelmir Campsite", "grace_altus_plateau_mt_gelmir_first_mt_gelmir_campsite"],
       ["Road of Iniquity", "grace_altus_plateau_mt_gelmir_road_of_iniquity"],
@@ -722,6 +729,7 @@ async function init() {
     ]);
     const layerBase = { surface: 55, underground: 275, legacy: 445 };
     catalog.records.forEach((record) => {
+      if (["Aeonia Swamp Shore", "Heart of Aeonia", "Inner Aeonia", "Sellia Under-Stair", "Sellia Backstreets", "Chair-Crypt of Sellia"].includes(record.name)) return;
       if (["Ninth Mt. Gelmir Campsite", "Seethewater River", "Seethewater Terminus", "Craftsman's Shack", "Primeval Sorcerer Azur"].includes(record.name)) return;
       if (["The Ravine", "Ravine-Veiled Village", "Ruin-Strewn Precipice", "Ruin-Strewn Precipice Overlook", "Magma Wyrm Makar"].includes(record.name)) return;
       if (["Gate Town North", "Eastern Liurnia Lake Shore", "Study Hall Entrance", "Liurnia Tower Bridge", "Divine Tower of Liurnia", "East Raya Lucaria Gate", "Bellum Church"].includes(record.name)) return;

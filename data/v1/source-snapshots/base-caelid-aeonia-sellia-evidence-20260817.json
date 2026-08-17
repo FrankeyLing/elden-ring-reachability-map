@@ -1,0 +1,62 @@
+{
+  "snapshot_id": "base-caelid-aeonia-sellia-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Aeonia Swamp Shore, Heart of Aeonia, Inner Aeonia, Commander O'Neil, Sellia Under-Stair, Sellia Backstreets and Chair-Crypt of Sellia",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "southern-aeonia-to-inner",
+      "from": "Southern Aeonia Swamp Bank",
+      "to": "Inner Aeonia",
+      "transition_type": "scarlet_rot_surface_route",
+      "direction": "forward",
+      "claim": "The southern bank route enters the Aeonia swamp, passes the central Heart of Aeonia and reaches the Inner Aeonia checkpoint near the Commander O'Neil arena.",
+      "sources": ["eldenpedia-caelid-r68953", "game8-caelid-cross-check", "pcgamer-millicent-cross-check"]
+    },
+    {
+      "id": "inner-optional-oneil",
+      "from": "Inner Aeonia",
+      "to": "Commander O'Neil",
+      "transition_type": "optional_boss_branch",
+      "direction": "forward",
+      "claim": "Commander O'Neil is a boss encounter in the central Aeonia swamp; it is modeled as an optional branch so the physical road to Sellia is not incorrectly locked behind the fight.",
+      "sources": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check"]
+    },
+    {
+      "id": "sellia-barrier-route",
+      "from": "Sellia Under-Stair",
+      "to": "Sellia Backstreets",
+      "transition_type": "brazier_sealed_gateway",
+      "direction": "forward",
+      "claim": "Sellia Under-Stair is on the west side of town; Sellia Backstreets is beyond a sealed gateway that opens after lighting a town brazier.",
+      "sources": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check"]
+    },
+    {
+      "id": "sellia-chair-crypt-route",
+      "from": "Sellia Backstreets",
+      "to": "Chair-Crypt of Sellia",
+      "transition_type": "three_brazier_gate",
+      "direction": "forward",
+      "claim": "Lighting all three Sellia braziers breaks the seal that blocks the Chair-Crypt entrance.",
+      "sources": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check"]
+    },
+    {
+      "id": "sellia-to-plague-church",
+      "from": "Sellia Backstreets",
+      "to": "Church of the Plague",
+      "transition_type": "sellia_surface_road",
+      "direction": "forward",
+      "claim": "The road north from Sellia reaches the Church of the Plague and the Millicent quest branch.",
+      "sources": ["gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check", "powerpyx-caelid-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-caelid-r68953", "url": "https://eldenring.wiki.gg/wiki/Caelid" },
+    { "id": "eldenpedia-sellia-town", "url": "https://eldenring.wiki.gg/wiki/Sellia,_Town_of_Sorcery" },
+    { "id": "eldenpedia-sites-of-grace-r83774", "url": "https://eldenring.wiki.gg/wiki/Sites_of_grace" },
+    { "id": "game8-caelid-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/368933" },
+    { "id": "gamefaqs-sellia-route-cross-check", "url": "https://gamefaqs.gamespot.com/ps5/323053-elden-ring/faqs/80116/chapter-5-morgott-the-omen-king" },
+    { "id": "pcgamer-millicent-cross-check", "url": "https://www.pcgamer.com/elden-ring-millicent-quest/" },
+    { "id": "powerpyx-caelid-cross-check", "url": "https://www.powerpyx.com/elden-ring-caelid-walkthrough/" }
+  ]
+}
