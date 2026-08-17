@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "base-underground-ainsel-lake-roundtrip-evidence-20260818",
+  "snapshot_kind": "cross_source_claim_extract",
+  "captured_on": "2026-08-18",
+  "claims": [
+    {
+      "claim_id": "ainsel-main-nokstella-roundtrips",
+      "claim": "Ainsel River South connects the Well Depths, Sluice Gate and Downstream through tunnels and a lift. Ainsel River Main continues through the underground passage into Nokstella, and the Nokstella city level connects vertically to Waterfall Basin. V1 adds the documented returns for the tunnel and elevator legs.",
+      "sources": [
+        { "source_id": "eldenpedia-ainsel-r71938", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River" },
+        { "source_id": "eldenpedia-nokstella-r83146", "url": "https://eldenring.wiki.gg/wiki/Nokstella,_Eternal_City" },
+        { "source_id": "eip-ainsel-cross-check", "url": "https://eip.gg/elden-ring/guides/ainsel-river-main-dungeon-walkthrough/" },
+        { "source_id": "eip-nokstella-cross-check", "url": "https://eip.gg/elden-ring/guides/nokstella-eternal-city-walkthrough/" }
+      ],
+      "route_state": "online_cross_checked"
+    },
+    {
+      "claim_id": "lake-of-rot-grand-cloister-roundtrip",
+      "claim": "The Lake of Rot is traversed by hazardous platforms and shoreline routes toward Grand Cloister. V1 adds the Grand Cloister return to the Lake of Rot Shoreside grace while retaining the separate Baleful Shadow and Astel boss/quest transitions.",
+      "sources": [
+        { "source_id": "eldenpedia-lake-of-rot-r83258", "url": "https://eldenring.wiki.gg/wiki/Lake_of_Rot" },
+        { "source_id": "eip-lake-of-rot-cross-check", "url": "https://eip.gg/elden-ring/guides/lake-of-rot-grand-cloister-walkthrough/" },
+        { "source_id": "game8-ranni-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/367167" }
+      ],
+      "route_state": "online_cross_checked"
+    }
+  ]
+}

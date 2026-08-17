@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.80-online-multiplane",
+  "version": "1.0.81-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -93,7 +93,8 @@
       "dlc-shadow-keep-scaduview-roundtrip-evidence-20260818",
       "base-mt-gelmir-roundtrip-surface-evidence-20260818",
       "base-mountaintops-roundtrip-surface-evidence-20260818",
-      "base-limgrave-weeping-roundtrip-surface-evidence-20260818"
+      "base-limgrave-weeping-roundtrip-surface-evidence-20260818",
+      "base-underground-ainsel-lake-roundtrip-evidence-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -17102,6 +17103,11 @@
     ,{ "id": "gatefront-to-elleh", "from": "grace_gatefront", "to": "grace_church_elleh", "mode": "Gatefront return to Church of Elleh", "cost": 5, "risk": 3, "direction": "backtrack", "transitionType": "surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-limgrave-r97518", "powerpyx-limgrave-cross-check", "game8-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the Limgrave road to Church of Elleh.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "stormhill-to-gatefront", "from": "grace_stormhill_shack", "to": "grace_gatefront", "mode": "Stormhill Shack return to Gatefront", "cost": 6, "risk": 4, "direction": "backtrack", "transitionType": "stormhill_surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-cross-check"], "verificationState": "online_cross_checked", "note": "Return east along the Stormhill road to Gatefront.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "castleward-tunnel-to-stormhill", "from": "grace_limgrave_stormhill_castleward_tunnel", "to": "grace_stormhill_shack", "mode": "Castleward Tunnel return to Stormhill Shack", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "stormhill_surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-castleward-tunnel", "eldenpedia-sites-of-grace-r83774", "game8-stormveil-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the Castleward approach to the Stormhill road.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "ainsel-sluice-to-well-depths", "from": "grace_ainsel_river_main_ainsel_river_sluice_gate", "to": "grace_ainsel_river_main_ainsel_river_well_depths", "mode": "Ainsel Sluice Gate return to Well Depths", "cost": 8, "risk": 5, "direction": "backtrack", "transitionType": "underground_well_route_return", "requires": [], "sourceEvidence": ["powerpyx-ainsel-cross-check", "eldenpedia-ainsel-r71938"], "verificationState": "online_cross_checked", "note": "Return through the southern Ainsel tunnels to the Well Depths grace.", "tags": ["walk", "underground", "branch", "backtrack", "cross_checked"] }
+    ,{ "id": "ainsel-downstream-to-sluice", "from": "grace_ainsel_river_main_ainsel_river_downstream", "to": "grace_ainsel_river_main_ainsel_river_sluice_gate", "mode": "Ainsel Downstream lift return to Sluice Gate", "cost": 5, "risk": 4, "direction": "backtrack", "transitionType": "elevator_return", "requires": [], "sourceEvidence": ["powerpyx-ainsel-cross-check", "eldenpedia-ainsel-r71938"], "verificationState": "online_cross_checked", "note": "Ride the Ainsel lift back from the downstream route to the Sluice Gate.", "tags": ["elevator", "vertical", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "nokstella-to-ainsel-main", "from": "grace_nokstella_eternal_city", "to": "grace_ainsel_river_main", "mode": "Nokstella return to Ainsel River Main", "cost": 8, "risk": 2, "direction": "backtrack", "transitionType": "underground_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-ainsel-r71938", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the Ainsel River Main passage from the Nokstella city section.", "tags": ["walk", "underground", "backtrack", "cross_checked"] }
+    ,{ "id": "waterfall-basin-to-nokstella", "from": "grace_nokstella_waterfall_basin", "to": "grace_nokstella_eternal_city", "mode": "Nokstella Waterfall Basin lift return", "cost": 4, "risk": 1, "direction": "backtrack", "transitionType": "elevator_return", "requires": [], "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Ride the Nokstella elevator back to the Eternal City level.", "tags": ["elevator", "vertical", "backtrack", "cross_checked"] }
+    ,{ "id": "grand-cloister-to-lake-of-rot", "from": "grace_grand_cloister", "to": "grace_lake_of_rot_shoreside", "mode": "Grand Cloister return across Lake of Rot", "cost": 12, "risk": 6, "direction": "backtrack", "transitionType": "hazardous_crossing_return", "requires": [], "sourceEvidence": ["eldenpedia-lake-of-rot-r83258", "game8-ranni-cross-check", "powerpyx-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the rot-lake platforms and shoreline route to the Lake of Rot grace.", "tags": ["walk", "hazard", "vertical_region", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17124,7 +17130,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 698,
-    "formalRouteEdgeCount": 889,
+    "formalRouteEdgeCount": 894,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
