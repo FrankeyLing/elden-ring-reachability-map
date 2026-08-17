@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.13-online-multiplane",
+    "version": "1.0.14-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -25,7 +25,8 @@
       "dlc-shadow-keep-back-gate-scaduview-evidence-20260817",
       "dlc-rauh-enir-ilim-mainline-evidence-20260817",
       "dlc-jagged-abyssal-branches-evidence-20260817",
-      "dlc-southern-shore-dheo-evidence-20260817"
+      "dlc-southern-shore-dheo-evidence-20260817",
+      "dlc-manus-metyr-ymir-evidence-20260817"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -306,6 +307,26 @@
       "id": "o_mother_statue_open",
       "label": "O Mother statue passage opened",
       "hint": "The hidden Scaduview/Hinterland passage has been opened with the O Mother gesture."
+    },
+    {
+      "id": "finger_ruins_rhia_bell_rung",
+      "label": "Finger Ruins of Rhia bell rung",
+      "hint": "The first Ymir quest bell has been sounded at Finger Ruins of Rhia."
+    },
+    {
+      "id": "finger_ruins_dheo_bell_rung",
+      "label": "Finger Ruins of Dheo bell rung",
+      "hint": "The second Ymir quest bell has been sounded at Finger Ruins of Dheo."
+    },
+    {
+      "id": "finger_ruins_miyr_bell_rung",
+      "label": "Finger Ruins of Miyr bell rung",
+      "hint": "The third bell beneath Manus Metyr has been sounded and the Metyr encounter is open."
+    },
+    {
+      "id": "metyr_defeated",
+      "label": "Metyr, Mother of Fingers defeated",
+      "hint": "The route back to Ymir's throne after the Mother of Fingers encounter is available."
     }
   ],
   "sourceEvidence": [
@@ -454,7 +475,13 @@
     { "id": "gamespot-thiollier-cross-check", "label": "GameSpot / Thiollier and St. Trina route", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-thiollier-st-trina-elden-ring/2900-5501/", "grade": "B" },
     { "id": "neoseeker-stone-coffin-cross-check", "label": "Neoseeker / Stone Coffin Fissure walkthrough", "url": "https://www.neoseeker.com/elden-ring-shadow-of-the-erdtree/walkthrough/Stone_Coffin_Fissure", "grade": "B" },
     { "id": "game8-finger-dheo-cross-check", "label": "Game8 / Finger Ruins of Dheo guide", "url": "https://game8.co/games/Elden-Ring/archives/460097", "grade": "B" },
-    { "id": "eip-finger-dheo-cross-check", "label": "EIP Gaming / Finger Ruins of Dheo walkthrough", "url": "https://eip.gg/elden-ring/guides/finger-ruins-of-dheo/", "grade": "B" }
+    { "id": "eip-finger-dheo-cross-check", "label": "EIP Gaming / Finger Ruins of Dheo walkthrough", "url": "https://eip.gg/elden-ring/guides/finger-ruins-of-dheo/", "grade": "B" },
+    { "id": "eldenpedia-cathedral-manus-metyr", "label": "Eldenpedia / Cathedral of Manus Metyr", "url": "https://eldenring.wiki.gg/wiki/Cathedral_of_Manus_Metyr", "grade": "A" },
+    { "id": "eldenpedia-finger-miyr", "label": "Eldenpedia / Finger Ruins of Miyr", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Miyr", "grade": "A" },
+    { "id": "eldenpedia-metyr", "label": "Eldenpedia / Metyr, Mother of Fingers", "url": "https://eldenring.wiki.gg/wiki/Metyr%2C_Mother_of_Fingers", "grade": "A" },
+    { "id": "game8-ymir-cross-check", "label": "Game8 / Ymir quest and Cathedral route", "url": "https://game8.co/games/Elden-Ring/archives/458845", "grade": "B" },
+    { "id": "powerpyx-ymir-cross-check", "label": "PowerPyx / Ymir and Jolan questline", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-ymir-jolan-questline-walkthrough/", "grade": "B" },
+    { "id": "gamespot-ymir-cross-check", "label": "GameSpot / Ymir Finger Ruins guide", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-ymir-finger-ruins-elden-ring/2900-5500/", "grade": "B" }
   ],
   "nodes": [
     {
@@ -3681,9 +3708,204 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check"],
       "description": "Count Ymir's second Finger Ruins branch southeast of Hinterland Bridge."
+    },
+    {
+      "id": "finger_rhia_bell",
+      "label": "Finger Ruins of Rhia Bell",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Finger Ruins of Rhia",
+      "worldEpoch": "shadow_realm",
+      "x": 980,
+      "y": 820,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-finger-rhia", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"],
+      "description": "Ymir quest interaction landmark at the first Finger Ruins bell."
+    },
+    {
+      "id": "finger_dheo_bell",
+      "label": "Finger Ruins of Dheo Bell",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Shadow Keep",
+      "floor": "Scaduview Finger Ruins",
+      "worldEpoch": "shadow_realm",
+      "x": 2360,
+      "y": 820,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "game8-ymir-cross-check"],
+      "description": "Ymir quest interaction landmark at the second Finger Ruins bell."
+    },
+    {
+      "id": "grace_scadu_altus_main_cathedral_of_manus_metyr",
+      "label": "Cathedral of Manus Metyr",
+      "kind": "grace",
+      "layer": "legacy",
+      "region": "Scadu Altus",
+      "floor": "Manus Metyr cathedral",
+      "worldEpoch": "shadow_realm",
+      "x": 1540,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-sites-of-grace-r83774", "game8-ymir-cross-check"],
+      "description": "Cathedral grace and Ymir quest hub off the Church District Highroad."
+    },
+    {
+      "id": "ymir_throne_gate",
+      "label": "Count Ymir's Throne",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Scadu Altus",
+      "floor": "Manus Metyr cathedral throne room",
+      "worldEpoch": "shadow_realm",
+      "x": 1660,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"],
+      "description": "Quest-state gate that opens the route below the cathedral after the Rhia and Dheo bells."
+    },
+    {
+      "id": "finger_ruins_miyr",
+      "label": "Finger Ruins of Miyr",
+      "kind": "landmark",
+      "layer": "underground",
+      "region": "Scadu Altus",
+      "floor": "Below Manus Metyr",
+      "worldEpoch": "shadow_realm",
+      "x": 1780,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check"],
+      "description": "Third Finger Ruins below the cathedral, reached through the changed throne route."
+    },
+    {
+      "id": "metyr_gate",
+      "label": "Metyr, Mother of Fingers",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Scadu Altus",
+      "floor": "Finger Ruins of Miyr",
+      "worldEpoch": "shadow_realm",
+      "x": 1900,
+      "y": 620,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"],
+      "description": "Optional Ymir quest boss at the end of the third Finger Ruins bell route."
     }
   ],
   "edges": [
+    {
+      "id": "finger-rhia-to-bell",
+      "from": "grace_gravesite_plain_cerulean_coast_finger_ruins_of_rhia",
+      "to": "finger_rhia_bell",
+      "mode": "Ring Finger Ruins of Rhia bell",
+      "cost": 3,
+      "risk": 7,
+      "direction": "forward",
+      "transitionType": "quest_interaction",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-finger-rhia", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The bell interaction is modeled as a distinct quest landmark before the user enables its condition.",
+      "tags": ["quest", "interaction", "surface", "cross_checked"]
+    },
+    {
+      "id": "finger-dheo-to-bell",
+      "from": "finger_ruins_dheo",
+      "to": "finger_dheo_bell",
+      "mode": "Ring Finger Ruins of Dheo bell",
+      "cost": 3,
+      "risk": 8,
+      "direction": "forward",
+      "transitionType": "quest_interaction",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "game8-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The second bell interaction is kept separate from simply reaching the ruins.",
+      "tags": ["quest", "interaction", "surface", "cross_checked"]
+    },
+    {
+      "id": "church-highroad-to-manus-metyr",
+      "from": "grace_scadu_altus_church_district_highroad",
+      "to": "grace_scadu_altus_main_cathedral_of_manus_metyr",
+      "mode": "Church District Highroad to Manus Metyr",
+      "cost": 8,
+      "risk": 4,
+      "direction": "forward",
+      "transitionType": "scadu_altus_surface_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The cathedral is reached from an eastern Scadu Altus exit off the Church District Highroad.",
+      "tags": ["walk", "surface", "quest_branch", "cross_checked"]
+    },
+    {
+      "id": "manus-metyr-to-ymir-throne",
+      "from": "grace_scadu_altus_main_cathedral_of_manus_metyr",
+      "to": "ymir_throne_gate",
+      "mode": "Manus Metyr cathedral interior",
+      "cost": 3,
+      "risk": 2,
+      "direction": "forward",
+      "transitionType": "legacy_internal_route",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The throne is the quest-state junction for the third Finger Ruins route.",
+      "tags": ["walk", "legacy", "quest", "cross_checked"]
+    },
+    {
+      "id": "ymir-throne-to-miyr",
+      "from": "ymir_throne_gate",
+      "to": "finger_ruins_miyr",
+      "mode": "Open the route below Ymir's throne",
+      "cost": 5,
+      "risk": 5,
+      "direction": "forward",
+      "transitionType": "quest_state_underground_access",
+      "requires": ["finger_ruins_rhia_bell_rung", "finger_ruins_dheo_bell_rung"],
+      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Both earlier Finger Ruins bells are required before the throne opens the underground route.",
+      "tags": ["quest", "underground", "conditional", "one_way", "cross_checked"]
+    },
+    {
+      "id": "miyr-to-metyr",
+      "from": "finger_ruins_miyr",
+      "to": "metyr_gate",
+      "mode": "Ring the third bell and face Metyr",
+      "cost": 5,
+      "risk": 10,
+      "direction": "forward",
+      "transitionType": "quest_boss_approach",
+      "requires": ["finger_ruins_miyr_bell_rung"],
+      "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-metyr", "game8-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "The third bell is the explicit transition into the Metyr encounter.",
+      "tags": ["quest", "boss", "underground", "conditional", "cross_checked"]
+    },
+    {
+      "id": "metyr-to-ymir-throne-return",
+      "from": "metyr_gate",
+      "to": "ymir_throne_gate",
+      "mode": "Return to Ymir's throne",
+      "cost": 7,
+      "risk": 10,
+      "direction": "backward",
+      "transitionType": "boss_completion_quest_return",
+      "requires": ["metyr_defeated"],
+      "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Post-Metyr return is modeled as a separate directed edge because the quest state changes after the boss.",
+      "tags": ["boss", "quest", "conditional", "cross_checked"]
+    },
     {
       "id": "castle-front-to-ellac-cave",
       "from": "grace_castle_front",
@@ -6863,8 +7085,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 215,
-    "formalRouteEdgeCount": 211,
+    "formalNodeCount": 221,
+    "formalRouteEdgeCount": 218,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

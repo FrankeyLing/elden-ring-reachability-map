@@ -1,0 +1,82 @@
+{
+  "snapshot_id": "dlc-manus-metyr-ymir-evidence-20260817",
+  "captured_on": "2026-08-17",
+  "scope": "Cathedral of Manus Metyr, Count Ymir's throne, Finger Ruins of Rhia/Dheo/Miyr and Metyr",
+  "method": "Online source cross-check. Claims are paraphrased; no game process, save, archive, tile or private API was accessed.",
+  "claims": [
+    {
+      "id": "church-highroad-to-cathedral",
+      "from": "Church District Highroad",
+      "to": "Cathedral of Manus Metyr",
+      "transition_type": "scadu_altus_surface_route",
+      "direction": "forward",
+      "claim": "Cathedral of Manus Metyr is on eastern Scadu Altus and is reached from an exit off the Church District Highroad.",
+      "sources": ["eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"]
+    },
+    {
+      "id": "rhia-bell-interaction",
+      "from": "Finger Ruins of Rhia",
+      "to": "Finger Ruins of Rhia Bell",
+      "transition_type": "quest_interaction",
+      "direction": "forward",
+      "claim": "Ringing the first Finger Ruins bell is a distinct Count Ymir quest interaction, not merely reaching the ruins.",
+      "sources": ["eldenpedia-finger-rhia", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"]
+    },
+    {
+      "id": "dheo-bell-interaction",
+      "from": "Finger Ruins of Dheo",
+      "to": "Finger Ruins of Dheo Bell",
+      "transition_type": "quest_interaction",
+      "direction": "forward",
+      "claim": "Ringing the second Finger Ruins bell at Dheo advances Ymir's quest and is modeled as its own state-changing interaction.",
+      "sources": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "game8-ymir-cross-check"]
+    },
+    {
+      "id": "cathedral-to-throne",
+      "from": "Cathedral of Manus Metyr",
+      "to": "Count Ymir's Throne",
+      "transition_type": "legacy_internal_route",
+      "direction": "forward",
+      "claim": "Count Ymir and his throne are in the Cathedral's front hall/chamber and form the quest-state junction.",
+      "sources": ["eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"]
+    },
+    {
+      "id": "throne-to-miyr",
+      "from": "Count Ymir's Throne",
+      "to": "Finger Ruins of Miyr",
+      "transition_type": "quest_state_underground_access",
+      "direction": "forward",
+      "claim": "The route below the throne opens only after the Finger Ruins of Rhia and Dheo bells have been rung and Ymir's quest has advanced.",
+      "sources": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"]
+    },
+    {
+      "id": "miyr-third-bell-to-metyr",
+      "from": "Finger Ruins of Miyr",
+      "to": "Metyr, Mother of Fingers",
+      "transition_type": "quest_boss_approach",
+      "direction": "forward",
+      "claim": "The third bell beneath the cathedral leads to the optional Metyr, Mother of Fingers encounter.",
+      "sources": ["eldenpedia-finger-miyr", "eldenpedia-metyr", "game8-ymir-cross-check"]
+    },
+    {
+      "id": "metyr-return-to-ymir",
+      "from": "Metyr, Mother of Fingers",
+      "to": "Count Ymir's Throne",
+      "transition_type": "boss_completion_quest_return",
+      "direction": "backward",
+      "claim": "Metyr is below Manus Metyr and defeating her changes the state before the player returns to Ymir's throne.",
+      "sources": ["eldenpedia-metyr", "eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check"]
+    }
+  ],
+  "sources": [
+    { "id": "eldenpedia-cathedral-manus-metyr", "url": "https://eldenring.wiki.gg/wiki/Cathedral_of_Manus_Metyr" },
+    { "id": "eldenpedia-finger-miyr", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Miyr" },
+    { "id": "eldenpedia-metyr", "url": "https://eldenring.wiki.gg/wiki/Metyr%2C_Mother_of_Fingers" },
+    { "id": "game8-ymir-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/458845" },
+    { "id": "powerpyx-ymir-cross-check", "url": "https://www.powerpyx.com/elden-ring-shadow-of-the-erdtree-dlc-ymir-jolan-questline-walkthrough/" },
+    { "id": "gamespot-ymir-cross-check", "url": "https://www.gamespot.com/gallery/shadow-of-the-erdtree-ymir-finger-ruins-elden-ring/2900-5500/" },
+    { "id": "eldenpedia-finger-rhia", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Rhia" },
+    { "id": "eldenpedia-finger-dheo", "url": "https://eldenring.wiki.gg/wiki/Finger_Ruins_of_Dheo" },
+    { "id": "game8-finger-dheo-cross-check", "url": "https://game8.co/games/Elden-Ring/archives/460097" }
+  ]
+}
