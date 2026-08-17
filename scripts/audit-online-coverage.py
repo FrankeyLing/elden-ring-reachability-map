@@ -160,6 +160,20 @@ def audit() -> dict:
     bound_ids = {item["formal_id"] for item in bindings}
     formal_graces = [node for node in nodes if node.get("kind") == "grace"]
     route_edges = {(edge["from"], edge["to"]) for edge in graph["edges"]}
+    node_ids = set(node_by_id)
+    transition_contract = {
+        "edge_count": len(graph["edges"]),
+        "missing_source_evidence": [edge["id"] for edge in graph["edges"] if not edge.get("sourceEvidence")],
+        "missing_verification_state": [edge["id"] for edge in graph["edges"] if not edge.get("verificationState")],
+        "invalid_endpoints": [
+            edge["id"]
+            for edge in graph["edges"]
+            if edge.get("from") not in node_ids or edge.get("to") not in node_ids
+        ],
+        "semantic_relation_edge_ids": [edge["id"] for edge in graph["edges"] if edge.get("routeable") is False],
+    }
+    if any(transition_contract[key] for key in ("missing_source_evidence", "missing_verification_state", "invalid_endpoints", "semantic_relation_edge_ids")):
+        raise ValueError(f"formal transition contract failed: {transition_contract}")
     topology_adjacency: dict[str, set[str]] = {}
     for edge in graph["edges"]:
         topology_adjacency.setdefault(edge["from"], set()).add(edge["to"])
@@ -283,6 +297,7 @@ def audit() -> dict:
             "exact_endpoint_without_topology_path": exact_endpoint_without_path,
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
+        "transition_contract": transition_contract,
         "safety": {
             "game_process_accessed": False,
             "game_files_accessed": False,
