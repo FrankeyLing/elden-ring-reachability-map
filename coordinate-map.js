@@ -32,7 +32,7 @@ async function loadCoordinateItems() {
       fetch("/api/catalog/grace-positions?map=" + map + "&limit=500", { cache: "no-store" }),
       fetch("/api/catalog/boss-positions?map=" + map + "&limit=500", { cache: "no-store" }),
       fetch("/api/catalog/online-items?map=" + map + "&limit=500", { cache: "no-store" }),
-      fetch("/api/catalog/entities?map=" + map + "&kind=enemy&limit=500", { cache: "no-store" }),
+      fetch("/api/catalog/entities?map=" + map + "&kind=" + encodeURIComponent(state.coordinateEntityKind === "all" ? "" : state.coordinateEntityKind) + "&limit=500", { cache: "no-store" }),
       fetch("/api/catalog/gathering?map=" + map + "&limit=500", { cache: "no-store" }),
     ]);
     if (!graceResponse.ok || !bossResponse.ok || !itemResponse.ok || !entityResponse.ok || !gatheringResponse.ok) {
@@ -126,5 +126,5 @@ function renderCoordinateMap() {
     els.nodeLayer.appendChild(group);
   });
   const coverage = state.onlineIndex?.manifest?.coverage || {};
-  els.graphStats.textContent = state.coordinateMapId + " · " + gracePositions.length + "/" + (state.coordinateGracePositionTotal || gracePositions.length) + " raw grace positions · " + bosses.length + "/" + (state.coordinateBossPositionTotal || bosses.length) + " bosses · " + points.length + " named points · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " items · " + entities.length + "/" + (state.coordinateEntityTotal || entities.length) + " enemies · " + gathering.length + "/" + (state.coordinateGatheringTotal || gathering.length) + " gathering nodes · " + (coverage.tileRegionRecords || 0) + " map layers";
+  els.graphStats.textContent = state.coordinateMapId + " · " + gracePositions.length + "/" + (state.coordinateGracePositionTotal || gracePositions.length) + " raw grace positions · " + bosses.length + "/" + (state.coordinateBossPositionTotal || bosses.length) + " bosses · " + points.length + " named points · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " items · " + entities.length + "/" + (state.coordinateEntityTotal || entities.length) + " " + state.coordinateEntityKind + " entities · " + gathering.length + "/" + (state.coordinateGatheringTotal || gathering.length) + " gathering nodes · " + (coverage.tileRegionRecords || 0) + " map layers";
 }

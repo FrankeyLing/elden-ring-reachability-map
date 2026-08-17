@@ -6,6 +6,7 @@ const state = {
  data: null,
   mapMode: "topology",
   coordinateMapId: "m10_00_00",
+  coordinateEntityKind: "enemy",
   coordinateBounds: null,
  onlineIndex: null,
  onlineBossByNodeId: new Map(),
@@ -63,6 +64,7 @@ const els = {
   mapTransform: document.getElementById("map-transform"),
  copyRoute: document.getElementById("copy-route"),
   coordinateMapSelect: document.getElementById("coordinate-map-select"),
+  coordinateEntityKind: document.getElementById("coordinate-entity-kind"),
   mapModes: document.querySelectorAll(".map-mode"),
  onlinePoiKind: document.getElementById("online-poi-kind"),
   onlinePoiQuery: document.getElementById("online-poi-query"),
@@ -561,6 +563,7 @@ function wireEvents() {
     state.mapMode = button.dataset.mapMode;
     els.mapModes.forEach((item) => item.classList.toggle("active", item === button));
     els.coordinateMapSelect.hidden = state.mapMode !== "coordinates";
+    els.coordinateEntityKind.hidden = state.mapMode !== "coordinates";
     if (state.mapMode === "coordinates") {
       populateCoordinateMapSelect();
       renderCoordinateMap();
@@ -573,6 +576,10 @@ function wireEvents() {
   }));
   els.coordinateMapSelect.addEventListener("change", () => {
     state.coordinateMapId = els.coordinateMapSelect.value;
+    loadCoordinateItems();
+  });
+  els.coordinateEntityKind.addEventListener("change", () => {
+    state.coordinateEntityKind = els.coordinateEntityKind.value;
     loadCoordinateItems();
   });
  els.origin.addEventListener("change", () => { state.origin = els.origin.value; state.selectedNode = state.origin; planAndRender(); });

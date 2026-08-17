@@ -87,6 +87,11 @@
                 <button class="map-mode" data-map-mode="coordinates">真实坐标</button>
               </div>
               <select id="coordinate-map-select" class="coordinate-map-select" aria-label="选择真实地图层" hidden></select>
+              <select id="coordinate-entity-kind" class="coordinate-map-select" aria-label="选择在线实体类别" hidden>
+                <option value="enemy">敌人实体</option>
+                <option value="asset">地图资产</option>
+                <option value="all">全部实体</option>
+              </select>
               <div class="zoom-controls">
                 <button id="zoom-out" aria-label="缩小">−</button>
                 <button id="zoom-reset" aria-label="重置缩放">1:1</button>
