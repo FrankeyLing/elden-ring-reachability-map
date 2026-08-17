@@ -159,11 +159,30 @@ def audit() -> dict:
     bound_ids = {item["formal_id"] for item in bindings}
     formal_graces = [node for node in nodes if node.get("kind") == "grace"]
     route_edges = {(edge["from"], edge["to"]) for edge in graph["edges"]}
+    topology_adjacency: dict[str, set[str]] = {}
+    for edge in graph["edges"]:
+        topology_adjacency.setdefault(edge["from"], set()).add(edge["to"])
+
+    def topology_reachable(start: str, goal: str) -> bool:
+        if start == goal:
+            return True
+        seen = {start}
+        queue = [start]
+        while queue:
+            current = queue.pop()
+            for neighbor in topology_adjacency.get(current, set()):
+                if neighbor == goal:
+                    return True
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    queue.append(neighbor)
+        return False
 
     endpoint_exact = 0
     endpoint_ambiguous = 0
     endpoint_unmapped = []
     direct_edge_match = 0
+    topology_path_match = 0
     for leg in legs["records"]:
         from_candidates = candidates_for(label_index, leg["from"], leg["region_name"])
         to_candidates = candidates_for(label_index, leg["to"], leg["region_name"])
@@ -173,6 +192,8 @@ def audit() -> dict:
             reverse = (pair[1], pair[0])
             if pair in route_edges or reverse in route_edges:
                 direct_edge_match += 1
+            if topology_reachable(*pair):
+                topology_path_match += 1
         elif len(from_candidates) > 1 or len(to_candidates) > 1:
             endpoint_ambiguous += 1
         else:
@@ -209,6 +230,7 @@ def audit() -> dict:
             "endpoint_exact_matches": endpoint_exact,
             "endpoint_ambiguous": endpoint_ambiguous,
             "direct_or_reverse_formal_edge_matches": direct_edge_match,
+            "formal_topology_path_matches": topology_path_match,
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
         "safety": {
