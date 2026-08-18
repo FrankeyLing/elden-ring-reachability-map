@@ -26,6 +26,8 @@ ONLINE_MAP_POINT_FILES = tuple(
     for part in range(1, 4)
 )
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
+ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
+ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 
 # These are identity aliases only.  They do not create edges and are kept
 # explicit because the formal graph deliberately uses shorter route IDs,
@@ -213,6 +215,8 @@ def audit() -> dict:
     achievements = load("data/v1/entities/achievements.json")
     legs = load("data/v1/entities/er-guide-route-legs.json")
     route_profiles = load("data/v1/route-profiles.json")
+    online_index_manifest = json.loads(ONLINE_INDEX_MANIFEST_FILE.read_text(encoding="utf-8"))
+    online_map_key_index = json.loads(ONLINE_MAP_KEY_INDEX_FILE.read_text(encoding="utf-8"))
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
@@ -455,6 +459,61 @@ def audit() -> dict:
     }
     if online_snapshot_contract["unregistered"]:
         raise ValueError(f"online snapshot registration contract failed: {online_snapshot_contract}")
+    expected_online_map_key_sources = {
+        "tile-regions",
+        "map-points",
+        "grace-positions",
+        "boss-positions",
+        "map-conversions",
+        "items",
+        "entities",
+        "gathering",
+    }
+    map_key_artifact_path = "data/v1/source-snapshots/mapforgoblins-map-key-index-20260818.json"
+    online_map_key_contract = {
+        "schema": online_map_key_index.get("schema"),
+        "records": len(online_map_key_index.get("records", [])),
+        "declared_records": online_map_key_index.get("record_count"),
+        "duplicate_map_keys": sorted(
+            {
+                key
+                for key in [record.get("mapKey") for record in online_map_key_index.get("records", [])]
+                if key and [item.get("mapKey") for item in online_map_key_index.get("records", [])].count(key) > 1
+            }
+        ),
+        "invalid_map_keys": [
+            record.get("mapKey")
+            for record in online_map_key_index.get("records", [])
+            if not re.fullmatch(r"m\d+_\d+_\d+", str(record.get("mapKey", "")))
+        ],
+        "source_categories": sorted(online_map_key_index.get("source_categories", [])),
+        "missing_source_categories": sorted(
+            expected_online_map_key_sources - set(online_map_key_index.get("source_categories", []))
+        ),
+        "manifest_registered": any(
+            artifact.get("path") == map_key_artifact_path
+            for artifact in online_index_manifest.get("artifacts", [])
+        ),
+        "routeable": online_map_key_index.get("routeable"),
+        "safety": online_map_key_index.get("safetyBoundary", {}),
+    }
+    if (
+        online_map_key_contract["schema"] != "elden-ring-reachability-map/online-map-key-index@1"
+        or online_map_key_contract["records"] != online_map_key_contract["declared_records"]
+        or online_map_key_contract["records"] != 1037
+        or online_map_key_contract["duplicate_map_keys"]
+        or online_map_key_contract["invalid_map_keys"]
+        or online_map_key_contract["missing_source_categories"]
+        or not online_map_key_contract["manifest_registered"]
+        or online_map_key_contract["routeable"] is not False
+        or online_map_key_contract["safety"].get("gameProcessAccessed")
+        or online_map_key_contract["safety"].get("gameFilesAccessed")
+        or online_map_key_contract["safety"].get("runtimeInjection")
+        or online_map_key_contract["safety"].get("overlay")
+        or online_map_key_contract["safety"].get("saveAccess")
+        or online_map_key_contract["safety"].get("gameDirectoryAccess")
+    ):
+        raise ValueError(f"online map-key index contract failed: {online_map_key_contract}")
     transition_contract = {
         "edge_count": len(graph["edges"]),
         "missing_source_evidence": [edge["id"] for edge in graph["edges"] if not edge.get("sourceEvidence")],
@@ -832,6 +891,7 @@ def audit() -> dict:
         },
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,
+        "online_map_key_contract": online_map_key_contract,
         "online_text_location_contract": online_text_location_contract,
         "online_coordinate_contract": online_coordinate_contract,
         "safety": {

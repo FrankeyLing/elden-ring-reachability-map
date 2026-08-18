@@ -12,6 +12,12 @@
   },
   "artifacts": [
     {
+      "path": "data/v1/source-snapshots/mapforgoblins-map-key-index-20260818.json",
+      "role": "derived online map-layer selector index across all pinned coordinate snapshots",
+      "records": 1037,
+      "routeable": false
+    },
+    {
       "path": "data/v1/source-snapshots/mapforgoblins-grace-positions-20260818.json",
       "role": "online grace position evidence",
       "records": 444

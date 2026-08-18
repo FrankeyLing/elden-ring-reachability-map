@@ -842,13 +842,14 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
+    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/achievements", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
       fetch("/api/route-profiles", { cache: "no-store" }),
       fetch("/api/online-index", { cache: "no-store" }),
+      fetch("/api/online-map-keys", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-boss-positions-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part1-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part2-20260818.json", { cache: "no-store" }),
@@ -866,11 +867,13 @@ async function init() {
     state.routeProfiles = await routeProfileResponse.json();
     state.achievementCatalog = await achievementResponse.json();
     if (!onlineIndexResponse.ok) throw new Error(`online index HTTP ${onlineIndexResponse.status}`);
+    if (!onlineMapKeyResponse.ok) throw new Error(`online map keys HTTP ${onlineMapKeyResponse.status}`);
     if (!onlineBossResponse.ok) throw new Error(`online boss coordinates HTTP ${onlineBossResponse.status}`);
     if (!onlineMapPoint1Response.ok || !onlineMapPoint2Response.ok || !onlineMapPoint3Response.ok) throw new Error("online map point coordinates unavailable");
     if (!onlineTile1Response.ok || !onlineTile2Response.ok) throw new Error("online tile region index unavailable");
     state.onlineIndex = {
       manifest: await onlineIndexResponse.json(),
+      mapKeys: await onlineMapKeyResponse.json(),
       bosses: await onlineBossResponse.json(),
       mapPoints: await Promise.all([onlineMapPoint1Response.json(), onlineMapPoint2Response.json(), onlineMapPoint3Response.json()]),
       tiles: await Promise.all([onlineTile1Response.json(), onlineTile2Response.json()]),

@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.162-online-multiplane",
+    "version": "1.0.163-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -119,7 +119,8 @@
       "mapforgoblins-boss-positions-20260818",
       "mapforgoblins-map-points-part1-20260818",
       "mapforgoblins-map-points-part2-20260818",
-      "mapforgoblins-map-points-part3-20260818"
+      "mapforgoblins-map-points-part3-20260818",
+      "mapforgoblins-map-key-index-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",

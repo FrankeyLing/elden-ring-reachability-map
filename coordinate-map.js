@@ -3,12 +3,18 @@ function mapKeyFromParts(area, gridX, gridZ) {
   return "m" + pad(area) + "_" + pad(gridX) + "_" + pad(gridZ);
 }
 
+function normalizeCoordinateMapKey(value) {
+  const text = String(value ?? "").trim();
+  const match = text.match(/^(m\d+_\d+_\d+)(?:_\d+)+$/i);
+  return match ? match[1] : text;
+}
+
 function coordinateMapKeyForRecord(record, kind) {
-  if (record && record.mapKey) return String(record.mapKey).trim();
+  if (record && record.mapKey) return normalizeCoordinateMapKey(record.mapKey);
   if (kind === "map-points") return mapKeyFromParts(record.area_no, record.grid_x, record.grid_z);
   const rawMap = String(record.map || record.current_map || "").trim();
   const areaGrid = rawMap.match(/^area\s+(\d+)\s*\/\s*grid\s+(\d+)\s*,\s*(\d+)$/i);
-  return areaGrid ? mapKeyFromParts(areaGrid[1], areaGrid[2], areaGrid[3]) : rawMap;
+  return areaGrid ? mapKeyFromParts(areaGrid[1], areaGrid[2], areaGrid[3]) : normalizeCoordinateMapKey(rawMap);
 }
 
 function focusOnlineCoordinate(record, kind, label) {
@@ -35,8 +41,12 @@ function populateCoordinateMapSelect() {
     if (!options.has(record.mapKey)) options.set(record.mapKey, { mapKey: record.mapKey });
   });
   (state.onlineIndex?.bosses?.records || []).forEach((record) => {
-    const mapKey = String(record[2] || "").trim();
+    const mapKey = normalizeCoordinateMapKey(record[2]);
     if (mapKey && !options.has(mapKey)) options.set(mapKey, { mapKey });
+  });
+  (state.onlineIndex?.mapKeys?.records || []).forEach((record) => {
+    const mapKey = normalizeCoordinateMapKey(record.mapKey);
+    if (mapKey && !options.has(mapKey)) options.set(mapKey, record);
   });
   els.coordinateMapSelect.innerHTML = "";
   [...options.values()].sort((a, b) => a.mapKey.localeCompare(b.mapKey)).forEach((record) => {

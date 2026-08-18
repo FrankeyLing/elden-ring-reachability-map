@@ -25,6 +25,9 @@ ONLINE_MAP_CONVERSION_FILES = (
 ONLINE_INDEX_MANIFEST_FILE = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 )
+ONLINE_MAP_KEY_INDEX_FILE = (
+    ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
+)
 ONLINE_MAP_POINT_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-map-points-part{part}-20260818.json"
     for part in (1, 2, 3)
@@ -126,6 +129,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/online-index":
             self.send_json_file(ONLINE_INDEX_MANIFEST_FILE)
+            return
+        if parsed.path == "/api/online-map-keys":
+            self.send_json_file(ONLINE_MAP_KEY_INDEX_FILE)
             return
         if parsed.path == "/api/catalog/map-points":
             self.send_map_points(parse_qs(parsed.query))
