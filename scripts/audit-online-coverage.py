@@ -325,6 +325,47 @@ def audit() -> dict:
     for edge in graph["edges"]:
         topology_adjacency.setdefault(edge["from"], set()).add(edge["to"])
 
+    all_condition_ids = {condition["id"] for condition in graph["conditions"]}
+    condition_adjacency: dict[str, set[str]] = {}
+    for edge in graph["edges"]:
+        if edge.get("routeable") is False or not set(edge.get("requires", [])).issubset(all_condition_ids):
+            continue
+        condition_adjacency.setdefault(edge["from"], set()).add(edge["to"])
+
+    def shortest_grace_path(target_id: str):
+        best = None
+        for grace in formal_graces:
+            start = grace["id"]
+            seen = {start}
+            queue = [(start, 0)]
+            while queue:
+                current, hops = queue.pop(0)
+                if current == target_id:
+                    candidate = {"origin": start, "target": target_id, "hops": hops}
+                    if best is None or hops < best["hops"]:
+                        best = candidate
+                    break
+                for neighbor in condition_adjacency.get(current, set()):
+                    if neighbor not in seen:
+                        seen.add(neighbor)
+                        queue.append((neighbor, hops + 1))
+        return best
+
+    achievement_route_coverage = []
+    for record in achievements["records"]:
+        target_ids = list(dict.fromkeys(record.get("formal_target_ids", []) + record.get("location_target_ids", [])))
+        paths = [path for target_id in target_ids if (path := shortest_grace_path(target_id))]
+        achievement_route_coverage.append(
+            {
+                "achievement": record["canonical_id"],
+                "target_ids": target_ids,
+                "best_grace_path": min(paths, key=lambda path: path["hops"]) if paths else None,
+                "route_assessment": "formal_graph_path_exists_with_all_registered_conditions"
+                if paths
+                else "no_formal_grace_path_or_target_mapping",
+            }
+        )
+
     def topology_reachable(start: str, goal: str) -> bool:
         if start == goal:
             return True
@@ -456,6 +497,20 @@ def audit() -> dict:
                 if record.get("category") == "collection"
             },
             "online_item_placement_coverage": collection_item_coverage,
+            "formal_graph_grace_path_coverage": {
+                "condition_assumption": "all_registered_conditions_enabled; this is a coverage audit, not a current-player state",
+                "records_with_target_mapping": sum(bool(item["target_ids"]) for item in achievement_route_coverage),
+                "records_with_path": sum(bool(item["best_grace_path"]) for item in achievement_route_coverage),
+                "records_without_path": [
+                    item["achievement"]
+                    for item in achievement_route_coverage
+                    if item["target_ids"] and not item["best_grace_path"]
+                ],
+                "records_without_target_mapping": [
+                    item["achievement"] for item in achievement_route_coverage if not item["target_ids"]
+                ],
+                "records": achievement_route_coverage,
+            },
         },
         "route_leg_catalog": {
             "records": len(legs["records"]),

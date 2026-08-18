@@ -164,6 +164,37 @@ function edgeIsAvailable(edge) {
   return (edge.requires || []).every((condition) => state.conditions.has(condition));
 }
 
+function findBestGraceOrigin(targetId) {
+  const incoming = new Map();
+  state.data.edges.filter((edge) => edgeIsAvailable(edge)).forEach((edge) => {
+    if (!incoming.has(edge.to)) incoming.set(edge.to, []);
+    incoming.get(edge.to).push(edge);
+  });
+  const distances = new Map([[targetId, 0]]);
+  const unvisited = new Set(state.data.nodes.map((node) => node.id));
+  while (unvisited.size) {
+    let current = null;
+    let currentDistance = Number.POSITIVE_INFINITY;
+    for (const id of unvisited) {
+      const distance = distances.get(id) ?? Number.POSITIVE_INFINITY;
+      if (distance < currentDistance) {
+        current = id;
+        currentDistance = distance;
+      }
+    }
+    if (!current) break;
+    unvisited.delete(current);
+    incoming.get(current)?.forEach((edge) => {
+      if (!unvisited.has(edge.from)) return;
+      const candidate = currentDistance + Number(edge.cost) + Number(edge.risk || 0) * getPreferenceRiskWeight();
+      if (candidate < (distances.get(edge.from) ?? Number.POSITIVE_INFINITY)) distances.set(edge.from, candidate);
+    });
+  }
+  return [...state.nodes.values()]
+    .filter((node) => node.kind === "grace" && distances.has(node.id))
+    .sort((a, b) => distances.get(a.id) - distances.get(b.id))[0]?.id || null;
+}
+
 function getPreferenceRiskWeight() {
   if (state.preference === "fast") return 0.35;
   if (state.preference === "safe") return 5.5;
@@ -582,14 +613,20 @@ function renderOnlinePoiResults(payload, kind) {
       if (targetId) {
         row.classList.add("clickable");
         row.addEventListener("click", () => {
+          const originId = findBestGraceOrigin(targetId);
+          if (originId) {
+            state.origin = originId;
+            state.destination = targetId;
+            els.origin.value = originId;
+            els.destination.value = targetId;
+          }
           state.selectedNode = targetId;
           state.mapMode = "topology";
           els.coordinateMapSelect.hidden = true;
           els.coordinateEntityKind.hidden = true;
           els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "topology"));
-          renderGraph();
-          renderInspector();
-          els.mapToast.textContent = record.name + " · 已定位正式目标节点：" + nodeLabel(targetId);
+          planAndRender();
+          els.mapToast.textContent = record.name + " · 已定位正式目标节点：" + nodeLabel(targetId) + (originId ? " · 起点：" + nodeLabel(originId) : "");
         });
       }
     }
