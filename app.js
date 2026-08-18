@@ -489,6 +489,21 @@ function renderInspector() {
   const onlineEvidence = onlineBoss
     ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
     : "";
+  const candidateTargetGroups = [...new Map(
+    connections
+      .filter((edge) => edge.targetGroup)
+      .map((edge) => [edge.targetGroup.canonical_id, edge.targetGroup]),
+  ).values()];
+  const targetGroupMarkup = candidateTargetGroups.map((group) => {
+    const subroutes = group.subroutes || [];
+    const subrouteMarkup = subroutes.length
+      ? subroutes.map((subroute) => `<div class="target-group-route"><span>${nodeLabel(subroute.entry_node_id)} → ${nodeLabel(subroute.target_node_id)}</span><span>${subroute.path_edge_ids.length} edges${subroute.requires?.length ? ` · requires ${subroute.requires.join(", ")}` : ""}</span></div>`).join("")
+      : `<div class="target-group-route">No formal subroute; scope remains unresolved.</div>`;
+    const itemMarkup = group.online_item_snapshot
+      ? `<div class="target-group-items"><a href="/api/catalog/route-target-items" target="_blank" rel="noreferrer">Online item snapshot</a> · ${group.online_item_record_count} records · ${group.online_item_coordinate_count} coordinates · routeable=false</div>`
+      : "";
+    return `<div class="inspector-target-group"><div class="target-group-title">${group.label}</div><div class="target-group-meta">${group.scope} · routeable=false</div>${itemMarkup}${subrouteMarkup}</div>`;
+  }).join("");
   els.nodeInspector.innerHTML = `
     <div class="inspector-card">
       <div class="inspector-head">
@@ -500,6 +515,7 @@ function renderInspector() {
        ${onlineBinding}
        ${onlineTextLocation}
        ${onlineCoordinateAction}
+       ${targetGroupMarkup}
        <div class="inspector-source">验证：${node.verificationState || "unknown"} · 坐标：${node.coordinateType || "unknown"}<br>来源：${(node.sourceEvidence || []).map((id) => state.data.sourceEvidence?.find((item) => item.id === id)?.label || id).join("；") || "未登记"}</div>
       <div class="inspector-actions"><button data-set-origin="${node.id}">设为起点</button><button data-set-destination="${node.id}">设为终点</button></div>
       <div class="connection-list"><div class="connection-list-title">附近连接 / ${connections.length}</div>
