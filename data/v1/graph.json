@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.152-online-multiplane",
+  "version": "1.0.153-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -4663,8 +4663,9 @@
       "y": 730,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum", "eldenpedia-nameless-mausoleums"],
-      "description": "Boss-room route target inside the Western Nameless Mausoleum. The current Map for Goblins Boss snapshot has no matching Blackgaol Knight record, so no Boss XYZ is claimed."
+      "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 615, "recordId": 68464100, "name": "Blackgaol Knight", "map": "area 61 / grid 46,41", "position": [-129.9600067138672, 329.9700012207031, 54.68000030517578], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Boss-room route target inside the Western Nameless Mausoleum. The online named map point includes both the mausoleum and Blackgaol Knight names; it is retained as a boss-location anchor, not a local geometry survey."
     },
     {
       "id": "blackgaol_knight_post_state",
@@ -5513,8 +5514,9 @@
       "y": 780,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check"],
-      "description": "Boss-room route target inside the Northern Nameless Mausoleum. The current online Boss snapshot has no matching Red Bear record, so no Boss XYZ is claimed."
+      "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 635, "recordId": 69464501, "name": "Red Bear", "map": "area 61 / grid 46,45", "position": [86.63999938964844, 408.2200012207031, -42.5099983215332], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Boss-room route target inside the Northern Nameless Mausoleum. The online named map point includes both the mausoleum and Red Bear names; it is retained as a boss-location anchor, not a local geometry survey."
     },
     {
       "id": "red_bear_post_state",
@@ -6018,8 +6020,9 @@
       "y": 900,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums"],
-      "description": "Boss-room route target inside the Eastern Nameless Mausoleum. The current online Boss snapshot has no matching Rakshasa record, so no Boss XYZ is claimed."
+      "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 651, "recordId": 69514400, "name": "Rakshasa", "map": "area 61 / grid 51,44", "position": [-26.850000381469727, 170.3300018310547, 77.7699966430664], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Boss-room route target inside the Eastern Nameless Mausoleum. The online named map point includes both the mausoleum and Rakshasa names; it is retained as a boss-location anchor, not a local geometry survey."
     },
     {
       "id": "rakshasa_post_state",
@@ -6308,8 +6311,9 @@
       "y": 940,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum", "game8-southern-nameless-mausoleum-cross-check"],
-      "description": "Boss-room route target inside the Southern Nameless Mausoleum. The current online Boss snapshot has no matching Dancer of Ranah record, so no Boss XYZ is claimed."
+      "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Dancer of Ranah", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Boss-room route target inside the Southern Nameless Mausoleum. The online named map point includes both the mausoleum and Dancer of Ranah names; it is retained as a boss-location anchor, not a local geometry survey."
     },
     {
       "id": "dancer_of_ranah_post_state",
