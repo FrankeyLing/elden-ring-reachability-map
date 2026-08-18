@@ -28,6 +28,7 @@ ONLINE_MAP_POINT_FILES = tuple(
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
+ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
 UNRESOLVED_BOSS_LOCATION_NODES = {
     "elder_dragon_greyoll_gate",
     "mohg_omen_gate",
@@ -284,6 +285,7 @@ def audit() -> dict:
     catalog = load("data/v1/entities/sites-of-grace.json")
     achievements = load("data/v1/entities/achievements.json")
     legs = load("data/v1/entities/er-guide-route-legs.json")
+    route_target_groups = json.loads(ROUTE_TARGET_GROUPS_FILE.read_text(encoding="utf-8"))
     route_profiles = load("data/v1/route-profiles.json")
     online_index_manifest = json.loads(ONLINE_INDEX_MANIFEST_FILE.read_text(encoding="utf-8"))
     online_map_key_index = json.loads(ONLINE_MAP_KEY_INDEX_FILE.read_text(encoding="utf-8"))
@@ -1017,6 +1019,39 @@ def audit() -> dict:
     }
     if broad_route_endpoint_contract["actual"] != broad_route_endpoint_contract["expected"]:
         raise ValueError(f"broad route endpoint contract failed: {broad_route_endpoint_contract}")
+    target_group_records = route_target_groups.get("records", [])
+    target_group_contract = {
+        "declared_records": route_target_groups.get("record_count"),
+        "records": len(target_group_records),
+        "duplicate_ids": sorted(
+            item for item in {record.get("canonical_id") for record in target_group_records}
+            if item and sum(1 for record in target_group_records if record.get("canonical_id") == item) > 1
+        ),
+        "expected_broad_route_leg_ids": sorted(expected_broad_route_legs),
+        "actual_broad_route_leg_ids": sorted(record.get("route_leg_id") for record in target_group_records),
+        "invalid_formal_target_ids": sorted(
+            target_id
+            for record in target_group_records
+            for target_id in record.get("resolved_formal_target_ids", [])
+            if target_id not in node_by_id
+        ),
+        "routeable_records": [record.get("canonical_id") for record in target_group_records if record.get("routeable")],
+        "missing_source_evidence": [
+            record.get("canonical_id")
+            for record in target_group_records
+            if not set(record.get("source_evidence", [])).issubset(known_evidence_ids)
+        ],
+    }
+    if (
+        target_group_contract["declared_records"] != 8
+        or target_group_contract["records"] != 8
+        or target_group_contract["duplicate_ids"]
+        or target_group_contract["actual_broad_route_leg_ids"] != target_group_contract["expected_broad_route_leg_ids"]
+        or target_group_contract["invalid_formal_target_ids"]
+        or target_group_contract["routeable_records"]
+        or target_group_contract["missing_source_evidence"]
+    ):
+        raise ValueError(f"route target group contract failed: {target_group_contract}")
     route_endpoint_resolution_contract = {
         "expected_bindings": 17,
         "actual_bindings": endpoint_resolution_matches,
@@ -1102,6 +1137,7 @@ def audit() -> dict:
             "broad_route_endpoint_contract": broad_route_endpoint_contract,
             "endpoint_resolution_contract": route_endpoint_resolution_contract,
         },
+        "route_target_group_contract": target_group_contract,
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,
         "online_map_key_contract": online_map_key_contract,

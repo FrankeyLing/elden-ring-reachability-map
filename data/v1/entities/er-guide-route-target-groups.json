@@ -1,0 +1,99 @@
+{
+  "dataset_type": "route_target_group_catalog",
+  "verification_label": "Online Candidate — multi-area targets not yet routeable",
+  "source": {
+    "source_id": "er_guide",
+    "repository": "https://github.com/aether-auto/er-guide",
+    "commit": "7f24d64d3631ef4d549f56b42d4c3e3817a269fa",
+    "captured_on": "2026-08-18"
+  },
+  "record_count": 8,
+  "routeable_record_count": 0,
+  "records": [
+    {
+      "canonical_id": "er_guide_target_group_caelid-04",
+      "route_leg_id": "er_guide_leg_caelid-04",
+      "label": "Fort Gael / Caelid Wilds sweep",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["grace_fort_gael_north"],
+      "unresolved_scope": ["Caelid Wilds sweep"],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_caelid-06",
+      "route_leg_id": "er_guide_leg_caelid-06",
+      "label": "Caelid cleanup sweep",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": [],
+      "unresolved_scope": ["Caelid cleanup sweep"],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_dlc-scadu-altus-01",
+      "route_leg_id": "er_guide_leg_dlc-scadu-altus-01",
+      "label": "Moorth Ruins & Bonny Village",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["grace_scadu_altus_moorth_ruins", "grace_scadu_altus_bonny_village"],
+      "unresolved_scope": [],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_dlc-scadu-altus-02",
+      "route_leg_id": "er_guide_leg_dlc-scadu-altus-02",
+      "label": "Ruined Forge of Starfall Past & Recluses' River",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["ruined_forge_starfall_surface_entrance", "grace_scadu_altus_main_recluses_river_upstream", "grace_scadu_altus_main_recluses_river_downstream"],
+      "unresolved_scope": [],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_dlc-scadu-altus-04",
+      "route_leg_id": "er_guide_leg_dlc-scadu-altus-04",
+      "label": "Church District & Messmer the Impaler",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["grace_shadow_keep_church_district_entrance", "messmer_gate"],
+      "unresolved_scope": [],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_dlc-scadu-altus-05",
+      "route_leg_id": "er_guide_leg_dlc-scadu-altus-05",
+      "label": "Scaduview & Commander Gaius",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["grace_shadow_keep_scaduview", "commander_gaius_gate"],
+      "unresolved_scope": [],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_dlc-scadu-altus-07",
+      "route_leg_id": "er_guide_leg_dlc-scadu-altus-07",
+      "label": "Ruins of Unte & Nameless Mausoleums",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["landmark_ruins_of_unte", "landmark_northern_nameless_mausoleum", "landmark_southern_nameless_mausoleum", "landmark_eastern_nameless_mausoleum"],
+      "unresolved_scope": [],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    },
+    {
+      "canonical_id": "er_guide_target_group_dragonbarrow-02",
+      "route_leg_id": "er_guide_leg_dragonbarrow-02",
+      "label": "Fort Faroth / Elder Dragon Greyoll",
+      "scope": "multi_area_sweep",
+      "resolved_formal_target_ids": ["grace_fort_faroth", "elder_dragon_greyoll_gate"],
+      "unresolved_scope": [],
+      "routeable": false,
+      "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
+    }
+  ],
+  "notes": [
+    "Resolved targets are formal node references only; they do not create traversal edges.",
+    "A sweep label is retained as a group because its source leg covers multiple objectives or an open region, not one navigational endpoint.",
+    "The group remains non-routeable until each sub-target has independently verified entrance, layer, direction and state conditions."
+  ]
+}

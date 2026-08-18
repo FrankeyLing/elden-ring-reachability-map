@@ -842,11 +842,12 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
+    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/achievements", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
+      fetch("/api/catalog/route-target-groups", { cache: "no-store" }),
       fetch("/api/route-profiles", { cache: "no-store" }),
       fetch("/api/online-index", { cache: "no-store" }),
       fetch("/api/online-map-keys", { cache: "no-store" }),
@@ -862,6 +863,7 @@ async function init() {
     if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
     if (!achievementResponse.ok) throw new Error(`成就目录 HTTP ${achievementResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
+    if (!routeTargetGroupResponse.ok) throw new Error(`route target groups HTTP ${routeTargetGroupResponse.status}`);
     state.data = await graphResponse.json();
     els.datasetVersion.textContent = state.data.meta?.version || "Online Verified V1";
     state.routeProfiles = await routeProfileResponse.json();
@@ -932,6 +934,10 @@ async function init() {
     applyMapCoordinateSpace();
     const catalog = await catalogResponse.json();
     const routeLegCatalog = await routeLegResponse.json();
+    const routeTargetGroupCatalog = await routeTargetGroupResponse.json();
+    const routeTargetGroupByLegId = new Map(
+      (routeTargetGroupCatalog.records || []).map((group) => [group.route_leg_id, group]),
+    );
     const regionSlots = new Map();
     const sourceNameToNodeId = new Map([
       ["Avenue Balcony", "grace_avenue_balcony"],
@@ -1568,6 +1574,7 @@ async function init() {
       candidate: true,
       routeable: false,
       sourceEvidence: [leg.source_evidence],
+      targetGroup: routeTargetGroupByLegId.get(leg.canonical_id) || null,
       note: `${leg.from} → ${leg.to}；步骤类型：${(leg.step_types || []).join("、")}。需要独立来源核对后才能进入寻路器。`,
       tags: ["candidate", "source_only"],
     }));

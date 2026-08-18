@@ -15,6 +15,7 @@ DATA_FILE = ROOT / "data" / "v1" / "graph.json"
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ACHIEVEMENTS_FILE = ROOT / "data" / "v1" / "entities" / "achievements.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
+ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
@@ -123,6 +124,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/route-legs":
             self.send_json_file(ROUTE_LEGS_FILE)
+            return
+        if parsed.path == "/api/catalog/route-target-groups":
+            self.send_json_file(ROUTE_TARGET_GROUPS_FILE)
             return
         if parsed.path == "/api/route-profiles":
             self.send_json_file(ROUTE_PROFILES_FILE)
