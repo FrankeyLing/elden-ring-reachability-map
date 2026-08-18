@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.118-online-multiplane",
+  "version": "1.0.119-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1130,6 +1130,9 @@
     { "id": "eldenpedia-northern-nameless-mausoleum", "label": "Eldenpedia / Northern Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Northern_Nameless_Mausoleum", "grade": "A" },
     { "id": "game8-southern-nameless-mausoleum-cross-check", "label": "Game8 / Southern Nameless Mausoleum route", "url": "https://game8.co/games/Elden-Ring/archives/462520", "grade": "B" },
     { "id": "gamerguides-northern-nameless-mausoleum-cross-check", "label": "Gamer Guides / Northern Nameless Mausoleum route", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/database/locations/gravesite-plain/northern-nameless-mausoleum", "grade": "B" },
+    { "id": "eldenpedia-miquella-cross-castle-ensis", "label": "Eldenpedia / Miquella's Cross (Castle Ensis)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Castle_Ensis%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-belurat", "label": "Eldenpedia / Miquella's Cross (Belurat)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Belurat%2C_Tower_Settlement%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-moorth", "label": "Eldenpedia / Miquella's Cross (Moorth Ruins)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Moorth_Ruins%29", "grade": "A" },
     { "id": "eldenpedia-blackgaol-knight", "label": "Eldenpedia / Blackgaol Knight", "url": "https://eldenring.wiki.gg/wiki/Blackgaol_Knight", "grade": "A" },
     { "id": "eldenpedia-dancer-of-ranah", "label": "Eldenpedia / Dancer of Ranah", "url": "https://eldenring.wiki.gg/wiki/Dancer_of_Ranah", "grade": "A" },
     { "id": "eldenpedia-red-bear", "label": "Eldenpedia / Red Bear", "url": "https://eldenring.wiki.gg/wiki/Red_Bear", "grade": "A" },
@@ -1892,6 +1895,22 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-castle-ensis-r73643", "game8-dlc-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
       "description": "进入 Castle Ensis 后的检查站赐福。"
+    },
+    {
+      "id": "landmark_castle_ensis_miquella_cross",
+      "label": "Miquella's Cross (Castle Ensis)",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Castle Ensis Checkpoint / lowered gate",
+      "worldEpoch": "shadow_realm",
+      "x": 190,
+      "y": 95,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 623, "recordId": 68474401, "name": "Miquella's Cross", "map": "area 61 / grid 47,44", "position": [80.87000274658203, 359.42999267578125, 64.38999938964844], "coordinateSpace": "game_world_xyz" },
+      "description": "Castle Cross beside the lowered gate near Castle Ensis Checkpoint. It is a collectible landmark adjacent to, but not identical with, the checkpoint grace."
     },
     {
       "id": "grace_castle_lord_chamber",
@@ -4596,6 +4615,22 @@
       "description": "Grace outside the first Belurat Tower Settlement entrance."
     },
     {
+      "id": "landmark_belurat_miquella_cross",
+      "label": "Miquella's Cross (Belurat)",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Land of the Tower",
+      "floor": "Belurat hidden rubble room",
+      "worldEpoch": "shadow_realm",
+      "x": 520,
+      "y": 650,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz" },
+      "description": "Belurat Cross in the hidden room behind rubble east of the tower with giant spider scorpions; it is not the entrance grace itself."
+    },
+    {
       "id": "grace_belurat_tower_settlement",
       "label": "Belurat, Tower Settlement",
       "kind": "grace",
@@ -4729,6 +4764,22 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-scadu-altus", "eldenpedia-sites-of-grace-r83774", "game8-dlc-cross-check"],
       "description": "Scadu Altus northern-road junction after the Castle Ensis exit."
+    },
+    {
+      "id": "landmark_moorth_ruins_miquella_cross",
+      "label": "Miquella's Cross (Moorth Ruins)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Scadu Altus",
+      "floor": "Moorth Ruins northwestern edge",
+      "worldEpoch": "shadow_realm",
+      "x": 800,
+      "y": 850,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-moorth", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 636, "recordId": 69464700, "name": "Miquella's Cross", "map": "area 61 / grid 46,47", "position": [-95.73999786376953, 560.77001953125, -84.19999694824219], "coordinateSpace": "game_world_xyz" },
+      "description": "Moorth Ruins Cross on the northwestern edge of the ruins, adjacent to the Moorth Ruins grace but kept as a separate collectible landmark."
     },
     {
       "id": "grace_scadu_altus_moorth_ruins",
@@ -17924,6 +17975,12 @@
     ,{ "id": "northern-mausoleum-spring-to-temple-town", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "grace_land_of_the_tower_rauh_base_temple_town_ruins", "mode": "Northern Nameless Mausoleum Spiritspring return to Temple Town Ruins", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "rauh_surface_spiritspring_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "game8-rauh-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the sealed Spiritspring staging point to Temple Town Ruins before taking the lower Rauh road.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
     ,{ "id": "northern-mausoleum-spring-to-northern-mausoleum", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "landmark_northern_nameless_mausoleum", "mode": "Unsealed Spiritspring jumps to Northern Nameless Mausoleum", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Break the nearby cairn, then chain the Spiritspring jumps to the high plateau; without the condition this edge is unavailable.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "cross_checked"] }
     ,{ "id": "northern-nameless-mausoleum-to-spring", "from": "landmark_northern_nameless_mausoleum", "to": "northern_nameless_mausoleum_spiritspring_seal", "mode": "Northern Nameless Mausoleum return via Spiritspring", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump_return", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring chain to return from the high plateau; no normal road or elevator is invented.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "castle-ensis-checkpoint-to-cross", "from": "grace_castle_ensis_checkpoint", "to": "landmark_castle_ensis_miquella_cross", "mode": "Castle Ensis Checkpoint to Castle Cross", "cost": 3, "risk": 4, "direction": "forward", "transitionType": "castle_ensis_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643"], "verificationState": "online_cross_checked", "note": "Follow the checkpoint route to the lowered gate and Castle Cross; the cross is adjacent to, not identical with, the grace.", "tags": ["walk", "vertical", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "castle-cross-to-ensis-checkpoint", "from": "landmark_castle_ensis_miquella_cross", "to": "grace_castle_ensis_checkpoint", "mode": "Castle Cross return to Castle Ensis Checkpoint", "cost": 3, "risk": 4, "direction": "backtrack", "transitionType": "castle_ensis_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643"], "verificationState": "online_cross_checked", "note": "Return from the lowered gate to the Castle Ensis Checkpoint grace.", "tags": ["walk", "vertical", "legacy", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "belurat-to-miquella-cross", "from": "grace_belurat_tower_settlement", "to": "landmark_belurat_miquella_cross", "mode": "Belurat grace to hidden Miquella's Cross room", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "belurat_hidden_rubble_cross_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement"], "verificationState": "online_cross_checked", "note": "Use the elevator/stair route and climb over the rubble near the spider-scorpion tower to reach the hidden cross room.", "tags": ["walk", "vertical", "hidden", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-belurat", "from": "landmark_belurat_miquella_cross", "to": "grace_belurat_tower_settlement", "mode": "Hidden Miquella's Cross room return to Belurat grace", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "belurat_hidden_rubble_cross_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement"], "verificationState": "online_cross_checked", "note": "Retrace the rubble and vertical route back to the Belurat entrance grace.", "tags": ["walk", "vertical", "hidden", "legacy", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "moorth-grace-to-miquella-cross", "from": "grace_scadu_altus_moorth_ruins", "to": "landmark_moorth_ruins_miquella_cross", "mode": "Moorth Ruins grace to Miquella's Cross", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "moorth_ruins_cross_adjacent_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-moorth", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "Walk to the northwestern edge of Moorth Ruins where the cross stands beside the grace route.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "moorth-cross-to-grace", "from": "landmark_moorth_ruins_miquella_cross", "to": "grace_scadu_altus_moorth_ruins", "mode": "Miquella's Cross return to Moorth Ruins grace", "cost": 1, "risk": 1, "direction": "backtrack", "transitionType": "moorth_ruins_cross_adjacent_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-moorth", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "Return from the cross to the adjacent Moorth Ruins grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
     ,{ "id": "western-mausoleum-to-blackgaol", "from": "landmark_western_nameless_mausoleum", "to": "blackgaol_knight_gate", "mode": "Western Nameless Mausoleum entrance to Blackgaol Knight", "cost": 2, "risk": 8, "direction": "forward", "transitionType": "nameless_mausoleum_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Enter the Western Nameless Mausoleum arena; the Boss snapshot has no matching raw coordinate, so the Boss node remains an abstract topology target.", "tags": ["boss", "legacy", "landmark", "cross_checked"] }
     ,{ "id": "blackgaol-to-cleared-state", "from": "blackgaol_knight_gate", "to": "blackgaol_knight_post_state", "mode": "Blackgaol Knight completion", "cost": 2, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["blackgaol_knight_defeated"], "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state return route after Blackgaol Knight is defeated.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
     ,{ "id": "blackgaol-post-to-western-mausoleum", "from": "blackgaol_knight_post_state", "to": "landmark_western_nameless_mausoleum", "mode": "Blackgaol Knight cleared return to Western Nameless Mausoleum", "cost": 2, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["blackgaol_knight_defeated"], "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Leave the cleared arena and return to the mausoleum entrance landmark.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
@@ -17957,8 +18014,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 720,
-    "formalRouteEdgeCount": 1139,
+    "formalNodeCount": 723,
+    "formalRouteEdgeCount": 1145,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
