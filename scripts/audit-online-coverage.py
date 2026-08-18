@@ -85,6 +85,7 @@ ROUTE_ENDPOINT_ALIASES = {
     "fracturedmarika": "grace_fractured_marika",
     "smolderingchurch": "grace_smoldering_church",
     "churchoftheplague": "grace_church_of_plague",
+    "selliatownofsorcery": "grace_caelid_main_sellia_under_stair",
     "innerconsecratedsnowfield": "grace_inner_consecrated_snowfield",
     "ordinaliturgicaltown": "grace_ordina_liturgical_town",
     "apostatederelict": "grace_mountaintops_of_the_giants_apostate_derelict",

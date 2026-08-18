@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.108-online-multiplane",
+  "version": "1.0.109-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -4091,6 +4091,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "pcgamer-millicent-cross-check"],
       "description": "Quest branch grace above the Aeonia route."
+    },
+    {
+      "id": "landmark_gowrys_shack",
+      "label": "Gowry's Shack",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Caelid",
+      "floor": "Southern Aeonia east road",
+      "worldEpoch": "caelid_surface",
+      "x": 980,
+      "y": 690,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check", "gamefaqs-sellia-route-cross-check"],
+      "description": "Quest landmark on the eastern Aeonia road, kept separate from the Church of the Plague grace and Sellia town graces."
     },
     {
       "id": "grace_bestial_sanctum",
@@ -17432,6 +17447,10 @@
     ,{ "id": "fort-haight-post-to-entrance", "from": "fort_haight_post_boss_state", "to": "fort_haight_surface_entrance", "mode": "Fort Haight cleared knight return to fort entrance", "cost": 5, "risk": 6, "direction": "backtrack", "transitionType": "fort_boss_route_return", "requires": ["godrick_knight_fort_haight_defeated"], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared fort interior and return to its surface entrance; Kenneth Haight's quest state is separate from the physical exit.", "tags": ["boss", "surface", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "fort-haight-entrance-to-west-grace", "from": "fort_haight_surface_entrance", "to": "grace_limgrave_main_fort_haight_west", "mode": "Fort Haight entrance return to Fort Haight West", "cost": 7, "risk": 9, "direction": "backtrack", "transitionType": "fort_hill_route_return", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the ballista-covered hill from the fort perimeter to Fort Haight West; this is the reverse surface approach, not a fast-travel edge.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
     ,{ "id": "siofra-dragonkin-to-fast-travel-exit", "from": "siofra_dragonkin_post_boss_state", "to": "grace_worshippers_woods", "mode": "Siofra upper plateau map fast-travel exit", "cost": 1, "risk": 0, "direction": "one_way", "transitionType": "isolated_upper_plateau_fast_travel_exit", "requires": ["siofra_dragonkin_soldier_defeated", "map_fast_travel_available"], "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "eldenpedia-sending-gate-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check", "reddit-siofra-dragonkin-exit-cross-check"], "verificationState": "online_cross_checked", "note": "The sending gate is an entry transition, not a modeled reverse portal. After defeating the boss and leaving combat, use the map fast-travel system; Worshippers' Woods is the entry-grace representative and other activated destinations remain profile-level dynamic options.", "tags": ["fast_travel", "one_way", "boss", "conditional", "underground", "cross_checked"] }
+    ,{ "id": "church-of-plague-to-gowry", "from": "grace_church_of_plague", "to": "landmark_gowrys_shack", "mode": "Church of the Plague to Gowry's Shack surface route", "cost": 4, "risk": 5, "direction": "bidirectional", "transitionType": "surface_quest_landmark_walk", "requires": [], "sourceEvidence": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check", "gamefaqs-sellia-route-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the eastern Aeonia road from the Church of the Plague to Gowry's Shack; this is a surface route and not a fast-travel edge.", "tags": ["walk", "surface", "quest", "cross_checked"] }
+    ,{ "id": "gowry-to-church-of-plague", "from": "landmark_gowrys_shack", "to": "grace_church_of_plague", "mode": "Gowry's Shack to Church of the Plague surface route", "cost": 4, "risk": 5, "direction": "bidirectional", "transitionType": "surface_quest_landmark_walk", "requires": [], "sourceEvidence": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check", "gamefaqs-sellia-route-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the eastern Aeonia road from Gowry's Shack to the Church of the Plague grace.", "tags": ["walk", "surface", "quest", "backtrack", "cross_checked"] }
+    ,{ "id": "gowry-to-sellia-under-stair", "from": "landmark_gowrys_shack", "to": "grace_caelid_main_sellia_under_stair", "mode": "Gowry's Shack to Sellia, Town of Sorcery", "cost": 5, "risk": 6, "direction": "bidirectional", "transitionType": "surface_town_approach", "requires": [], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Continue east from Gowry's Shack into Sellia; the under-stair grace is the formal town-entry representative for this route leg.", "tags": ["walk", "surface", "town", "quest", "cross_checked"] }
+    ,{ "id": "sellia-under-stair-to-gowry", "from": "grace_caelid_main_sellia_under_stair", "to": "landmark_gowrys_shack", "mode": "Sellia, Town of Sorcery to Gowry's Shack", "cost": 5, "risk": 6, "direction": "bidirectional", "transitionType": "surface_town_approach", "requires": [], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Return west from Sellia to Gowry's Shack; the town grace is the formal endpoint representative, not a claim that the whole town is one coordinate.", "tags": ["walk", "surface", "town", "quest", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17453,8 +17472,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1091,
+    "formalNodeCount": 701,
+    "formalRouteEdgeCount": 1095,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
