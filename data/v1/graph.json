@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.145-online-multiplane",
+  "version": "1.0.146-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2613,7 +2613,8 @@
       "y": 420,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check"],
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 330, "recordId": 33341200, "name": "Onyx Lord", "map": "area 34 / grid 12,0", "position": [-49.45899963378906, 711.3560180664062, -195.9219970703125], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Onyx Lord boss gate at the end of the Sealed Tunnel."
     },
     {
@@ -8313,7 +8314,8 @@
       "y": 900,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check"],
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 259, "recordId": 31300200, "name": "Erdtree Burial Watchdog", "map": "area 30 / grid 2,0", "position": [102.27400207519531, 94.69999694824219, 73.35199737548828], "coordinateSpace": "game_world_xyz" },
       "description": "Lever-gated Erdtree Burial Watchdog boss gate at the end of Stormfoot Catacombs."
     },
     {
@@ -9089,7 +9091,7 @@
     },
     {
       "id": "cemetery_shade_black_knife_gate", "label": "Cemetery Shade (Black Knife Catacombs)", "kind": "boss", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Cemetery Shade chamber", "worldEpoch": "liurnia_surface", "x": 1620, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "description": "Main-route Cemetery Shade boss gate opened by the catacomb lever."
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 290, "recordId": 32300501, "name": "Cemetery Shade", "map": "area 30 / grid 5,0", "position": [-188.16799926757812, 406.2040100097656, 120.63899993896484], "coordinateSpace": "game_world_xyz" }, "description": "Main-route Cemetery Shade boss gate opened by the catacomb lever."
     },
     {
       "id": "black_knife_catacombs_cemetery_post_boss_state", "label": "Black Knife Catacombs (Cemetery Shade cleared)", "kind": "state", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Cemetery Shade chamber return state", "worldEpoch": "liurnia_surface", "x": 1680, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9217,7 +9219,7 @@
     },
     {
       "id": "red_wolf_champion_gelmir_gate", "label": "Red Wolf of the Champion (Gelmir Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Lava chariot route boss chamber", "worldEpoch": "altus_surface", "x": 620, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check"], "description": "Red Wolf of the Champion at the end of the chariot and lava route."
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 319, "recordId": 33300900, "name": "Red Wolf of the Champion", "map": "area 30 / grid 9,0", "position": [-146.71299743652344, 646.2429809570312, 104.80400085449219], "coordinateSpace": "game_world_xyz" }, "description": "Red Wolf of the Champion at the end of the chariot and lava route."
     },
     {
       "id": "gelmir_hero_grave_post_boss_state", "label": "Gelmir Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Red Wolf chamber return state", "worldEpoch": "altus_surface", "x": 680, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9233,7 +9235,7 @@
     },
     {
       "id": "erdtree_burial_watchdog_wyndham_gate", "label": "Erdtree Burial Watchdog (Wyndham Catacombs)", "kind": "boss", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Watchdog chamber", "worldEpoch": "altus_surface", "x": 720, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check"], "description": "Erdtree Burial Watchdog at the end of the flooded lower level."
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 317, "recordId": 33300700, "name": "Erdtree Burial Watchdog", "map": "area 30 / grid 7,0", "position": [-127.19999694824219, 820.6110229492188, 225.6280059814453], "coordinateSpace": "game_world_xyz" }, "description": "Erdtree Burial Watchdog at the end of the flooded lower level."
     },
     {
       "id": "wyndham_catacombs_post_boss_state", "label": "Wyndham Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Watchdog chamber return state", "worldEpoch": "altus_surface", "x": 780, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9265,7 +9267,7 @@
     },
     {
       "id": "demi_human_queen_margot_volcano_gate", "label": "Demi-Human Queen Margot (Volcano Cave)", "kind": "boss", "layer": "legacy", "region": "Volcano Cave", "floor": "Lowest cave chamber", "worldEpoch": "altus_surface", "x": 840, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check"], "description": "Demi-Human Queen Margot at the lowest chamber and Jar Cannon reward gate."
+      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 324, "recordId": 33310900, "name": "Demi-Human Queen Margot", "map": "area 31 / grid 9,0", "position": [-63.9119987487793, 1013.0339965820312, -75.06600189208984], "coordinateSpace": "game_world_xyz" }, "description": "Demi-Human Queen Margot at the lowest chamber and Jar Cannon reward gate."
     },
     {
       "id": "volcano_cave_post_boss_state", "label": "Volcano Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Volcano Cave", "floor": "Queen Margot chamber return state", "worldEpoch": "altus_surface", "x": 900, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9297,7 +9299,7 @@
     },
     {
       "id": "ancient_hero_zamor_sainted_gate", "label": "Ancient Hero of Zamor (Sainted Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Illumination boss chamber", "worldEpoch": "altus_surface", "x": 1140, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check"], "description": "Ancient Hero of Zamor reached after the light/shadow Grave Warden route opens the boss door."
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 379, "recordId": 35301700, "name": "Ancient Hero of Zamor", "map": "area 30 / grid 17,0", "position": [-7.060999870300293, 1451.6600341796875, -35.834999084472656], "coordinateSpace": "game_world_xyz" }, "description": "Ancient Hero of Zamor reached after the light/shadow Grave Warden route opens the boss door."
     },
     {
       "id": "sainted_hero_grave_post_boss_state", "label": "Sainted Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Ancient Hero chamber return state", "worldEpoch": "altus_surface", "x": 1200, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9527,7 +9529,7 @@
     },
     {
       "id": "putrid_grave_warden_snowfield_gate", "label": "Putrid Grave Warden Duelist (Snowfield Catacombs)", "kind": "boss", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Duelist boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1100, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check"], "description": "Putrid Grave Warden Duelist beyond the lever and frost catacomb route."
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 381, "recordId": 35301900, "name": "Putrid Grave Warden Duelist", "map": "area 30 / grid 19,0", "position": [70.93099975585938, 1374.7030029296875, -161.32400512695312], "coordinateSpace": "game_world_xyz" }, "description": "Putrid Grave Warden Duelist beyond the lever and frost catacomb route."
     },
     {
       "id": "snowfield_catacombs_post_boss_state", "label": "Consecrated Snowfield Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Duelist chamber return state", "worldEpoch": "consecrated_snowfield", "x": 1160, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9559,7 +9561,7 @@
     },
     {
       "id": "ancient_hero_zamor_giant_conquering_gate", "label": "Ancient Hero of Zamor (Giant-Conquering Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Zamor boss chamber", "worldEpoch": "mountaintops_surface", "x": 940, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check"], "description": "Ancient Hero of Zamor at the end of the shadow-light grave route."
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 145, "recordId": 301700, "name": "Ancient Hero of Zamor", "map": "area 60 / grid 50,53", "position": [-118.55999755859375, 1511.760009765625, 120.04000091552734], "coordinateSpace": "game_world_xyz" }, "description": "Ancient Hero of Zamor at the end of the shadow-light grave route."
     },
     {
       "id": "giant_conquering_hero_post_boss_state", "label": "Giant-Conquering Hero's Grave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Zamor chamber return state", "worldEpoch": "mountaintops_surface", "x": 1000, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
