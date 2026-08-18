@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.130-online-multiplane",
+  "version": "1.0.131-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -8222,7 +8222,8 @@
       "y": 900,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check"],
+      "sourceEvidence": ["eldenpedia-stormfoot-catacombs", "game8-stormfoot-catacombs-cross-check", "gamerguides-stormfoot-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 130, "recordId": 300200, "name": "Stormfoot Catacombs", "map": "area 30 / grid 2,0", "position": [42.64400100708008, 144.9149932861328, -11.157999992370605], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the start of the catacomb northwest of the Church of Elleh."
     },
     {
@@ -8462,7 +8463,8 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-murkwater-catacombs", "game8-murkwater-catacombs-cross-check", "gamerguides-murkwater-catacombs-cross-check"],
+      "sourceEvidence": ["eldenpedia-murkwater-catacombs", "game8-murkwater-catacombs-cross-check", "gamerguides-murkwater-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 132, "recordId": 300400, "name": "Murkwater Catacombs", "map": "area 30 / grid 4,0", "position": [89.22799682617188, 66.3499984741211, 64.97799682617188], "coordinateSpace": "game_world_xyz" },
       "description": "Grace inside the catacombs north of Murkwater River, reached from the riverbank via the spirit-spring descent."
     },
     {
@@ -8792,7 +8794,8 @@
       "y": 1120,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-tombsward-catacombs", "gamerguides-tombsward-catacombs-cross-check", "game8-limgrave-weeping-cross-check"],
+      "sourceEvidence": ["eldenpedia-tombsward-catacombs", "gamerguides-tombsward-catacombs-cross-check", "game8-limgrave-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 128, "recordId": 300000, "name": "Tombsward Catacombs", "map": "area 30 / grid 0,0", "position": [-95.66200256347656, 66.12999725341797, 107.31400299072266], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the start of the catacombs north of the Weeping Peninsula Minor Erdtree."
     },
     {
@@ -8837,7 +8840,8 @@
       "y": 1040,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-impalers-catacombs", "gamerguides-impalers-catacombs-cross-check", "ludo-impalers-catacombs-cross-check"],
+      "sourceEvidence": ["eldenpedia-impalers-catacombs", "gamerguides-impalers-catacombs-cross-check", "ludo-impalers-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 129, "recordId": 300100, "name": "Impaler's Catacombs", "map": "area 30 / grid 1,0", "position": [-26.735000610351562, 50.30699920654297, -50.34299850463867], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the entrance reached from Castle Morne Rampart through the plateau and jellyfish cliff route."
     },
     {
@@ -8912,7 +8916,9 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_road_s_end_catacombs", "label": "Road's End Catacombs", "kind": "grace", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 580, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check"], "description": "Grace near the start of the western Liurnia catacombs."
+      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 131, "recordId": 300300, "name": "Road's End Catacombs", "map": "area 30 / grid 3,0", "position": [-9.40999984741211, 223.82000732421875, -24.049999237060547], "coordinateSpace": "game_world_xyz" },
+      "description": "Grace near the start of the western Liurnia catacombs."
     },
     {
       "id": "spiritcaller_snail_roads_end_gate", "label": "Spiritcaller Snail (Road's End Catacombs)", "kind": "boss", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Spiritcaller Snail chamber", "worldEpoch": "liurnia_surface", "x": 640, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -8928,7 +8934,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_cliffbottom_catacombs", "label": "Cliffbottom Catacombs", "kind": "grace", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 1180, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Grace at the start of the lower eastern Liurnia catacombs."
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 134, "recordId": 300600, "name": "Cliffbottom Catacombs", "map": "area 30 / grid 6,0", "position": [75.45999908447266, 239.75, 69.66000366210938], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the start of the lower eastern Liurnia catacombs."
     },
     {
       "id": "erdtree_burial_watchdog_cliffbottom_gate", "label": "Erdtree Burial Watchdog (Cliffbottom Catacombs)", "kind": "boss", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Watchdog boss chamber", "worldEpoch": "liurnia_surface", "x": 1240, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -8984,7 +8990,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_black_knife_catacombs", "label": "Black Knife Catacombs", "kind": "grace", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 1560, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "description": "Grace at the entrance to the northeastern catacombs."
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 133, "recordId": 300500, "name": "Black Knife Catacombs", "map": "area 30 / grid 5,0", "position": [-73.18000030517578, 426.510009765625, 111.20999908447266], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the entrance to the northeastern catacombs."
     },
     {
       "id": "cemetery_shade_black_knife_gate", "label": "Cemetery Shade (Black Knife Catacombs)", "kind": "boss", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Cemetery Shade chamber", "worldEpoch": "liurnia_surface", "x": 1620, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9128,7 +9134,7 @@
     },
     {
       "id": "grace_altus_plateau_main_wyndham_catacombs", "label": "Wyndham Catacombs", "kind": "grace", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 660, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check"], "description": "Grace at the beginning of the lightning-trap catacombs."
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 135, "recordId": 300700, "name": "Wyndham Catacombs", "map": "area 30 / grid 7,0", "position": [-127.08000183105469, 835.8099975585938, 121.83000183105469], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the lightning-trap catacombs."
     },
     {
       "id": "erdtree_burial_watchdog_wyndham_gate", "label": "Erdtree Burial Watchdog (Wyndham Catacombs)", "kind": "boss", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Watchdog chamber", "worldEpoch": "altus_surface", "x": 720, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9192,7 +9198,7 @@
     },
     {
       "id": "grace_altus_plateau_main_sainted_hero_s_grave", "label": "Sainted Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1080, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check"], "description": "Grace at the bottom of the crypt elevator."
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 136, "recordId": 300800, "name": "Sainted Hero's Grave", "map": "area 30 / grid 8,0", "position": [47.060001373291016, 884.02001953125, 8.119999885559082], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the crypt elevator."
     },
     {
       "id": "ancient_hero_zamor_sainted_gate", "label": "Ancient Hero of Zamor (Sainted Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Illumination boss chamber", "worldEpoch": "altus_surface", "x": 1140, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9636,7 +9642,9 @@
     },
     {
       "id": "grace_limgrave_stranded_graveyard_stranded_graveyard", "label": "Stranded Graveyard", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Tutorial exit / stranded graveyard", "worldEpoch": "limgrave_surface", "x": 80, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "description": "Starting grace above the Cave of Knowledge pit; the western lift exits to The First Step."
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 117, "recordId": 180000, "name": "Stranded Graveyard", "map": "area 18 / grid 0,0", "position": [-88.4000015258789, 11.930000305175781, 43.86000061035156], "coordinateSpace": "game_world_xyz" },
+      "description": "Starting grace above the Cave of Knowledge pit; the western lift exits to The First Step."
     },
     {
       "id": "grace_limgrave_stranded_graveyard_cave_of_knowledge", "label": "Cave of Knowledge", "kind": "grace", "layer": "legacy", "region": "Cave of Knowledge", "floor": "Tutorial cave entrance", "worldEpoch": "limgrave_surface", "x": 140, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
