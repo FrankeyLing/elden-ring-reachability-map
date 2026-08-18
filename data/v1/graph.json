@@ -9723,7 +9723,7 @@
     },
     {
       "id": "fog_rift_fort_post_boss_state", "label": "Fog Rift Fort (post-boss state)", "kind": "state", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Garrew bridge return state", "worldEpoch": "shadow_realm", "x": 380, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Cleared-state endpoint for Garrew's shield and the upper fort item route."
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 637, "recordId": 69474500, "name": "Fog Rift Fort", "map": "area 61 / grid 47,45", "position": [-26.31999969482422, 330.0199890136719, -93.19000244140625], "coordinateSpace": "game_world_xyz", "coordinateRole": "state_location_anchor" }, "description": "Cleared-state endpoint for Garrew's shield and the upper fort item route; the online XYZ is the unique Fog Rift Fort map-point anchor, not a separate Boss coordinate."
     },
     {
       "id": "morne_tunnel_surface_entrance", "label": "Morne Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Weeping Peninsula", "floor": "Minor Erdtree eastern ravine", "worldEpoch": "limgrave_surface", "x": 330, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9759,7 +9759,7 @@
     },
     {
       "id": "fort_haight_post_boss_state", "label": "Fort Haight (post-Godrick Knight state)", "kind": "state", "layer": "legacy", "region": "Fort Haight", "floor": "Upper fort cleared state", "worldEpoch": "limgrave_surface", "x": 510, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "description": "Cleared-state endpoint for Bloody Slash and Kenneth Haight's liberated-fort quest step."
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 484, "recordId": 61463600, "name": "Fort Haight", "map": "area 60 / grid 46,36", "position": [-25.28499984741211, 31.305999755859375, -20.259000778198242], "coordinateSpace": "game_world_xyz", "coordinateRole": "state_location_anchor" }, "description": "Cleared-state endpoint for Bloody Slash and Kenneth Haight's liberated-fort quest step; the online XYZ is the unique Fort Haight map-point anchor, not a separate Boss coordinate."
     },
     {
       "id": "grace_scadu_altus_abyssal_woods_forsaken_graveyard", "label": "Forsaken Graveyard", "kind": "junction", "layer": "underground", "region": "Scadu Altus", "floor": "Darklight Catacombs exit / Abyssal Woods threshold", "worldEpoch": "shadow_realm", "x": 760, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",

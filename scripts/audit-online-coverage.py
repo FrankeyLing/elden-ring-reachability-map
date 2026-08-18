@@ -28,6 +28,12 @@ ONLINE_MAP_POINT_FILES = tuple(
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
+UNRESOLVED_BOSS_LOCATION_NODES = {
+    "elder_dragon_greyoll_gate",
+    "mohg_omen_gate",
+    "godrick_knight_fort_haight_gate",
+    "soldier_of_godrick_cave_knowledge_gate",
+}
 
 # These are identity aliases only.  They do not create edges and are kept
 # explicit because the formal graph deliberately uses shorter route IDs,
@@ -544,6 +550,28 @@ def audit() -> dict:
     }
     if online_text_location_contract["invalid_nodes"]:
         raise ValueError(f"online text location contract failed: {online_text_location_contract}")
+    unresolved_boss_nodes = {
+        node["id"]: node
+        for node in nodes
+        if node.get("kind") == "boss" and node.get("id") in UNRESOLVED_BOSS_LOCATION_NODES
+    }
+    unresolved_boss_location_contract = {
+        "expected_nodes": sorted(UNRESOLVED_BOSS_LOCATION_NODES),
+        "actual_nodes": sorted(unresolved_boss_nodes),
+        "invalid_nodes": [
+            node_id
+            for node_id, node in unresolved_boss_nodes.items()
+            if node.get("onlineCoordinate")
+            or not node.get("onlineTextLocation")
+            or node["onlineTextLocation"].get("coordinateAvailable") is not False
+            or node["onlineTextLocation"].get("anchorNodeId") not in node_by_id
+        ],
+    }
+    if (
+        unresolved_boss_location_contract["actual_nodes"] != unresolved_boss_location_contract["expected_nodes"]
+        or unresolved_boss_location_contract["invalid_nodes"]
+    ):
+        raise ValueError(f"unresolved boss location contract failed: {unresolved_boss_location_contract}")
     online_coordinate_nodes = [node for node in nodes if node.get("onlineCoordinate")]
     invalid_coordinate_nodes = [
         node["id"]
@@ -893,6 +921,7 @@ def audit() -> dict:
         "online_snapshot_contract": online_snapshot_contract,
         "online_map_key_contract": online_map_key_contract,
         "online_text_location_contract": online_text_location_contract,
+        "unresolved_boss_location_contract": unresolved_boss_location_contract,
         "online_coordinate_contract": online_coordinate_contract,
         "safety": {
             "game_process_accessed": False,
