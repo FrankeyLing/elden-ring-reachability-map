@@ -84,11 +84,24 @@
               </div>
               <div class="map-mode-tabs" role="tablist" aria-label="地图视图">
                 <button class="map-mode active" data-map-mode="topology">拓扑路线</button>
+                <button class="map-mode" data-map-mode="local-topology">LOCAL TOPOLOGY</button>
                 <button class="map-mode" data-map-mode="coordinates">真实坐标</button>
+                <button class="map-mode" data-map-mode="local-msbe">LOCAL MSBE XYZ</button>
+                <button class="map-mode" data-map-mode="local-abstract">LOCAL ABSTRACT ENTITIES</button>
+                <button class="map-mode" data-map-mode="local-native">LOCAL NATIVE TOPOLOGY</button>
                 <button class="map-mode" data-map-mode="named-coordinates">命名源 XYZ</button>
                 <button class="map-mode" data-map-mode="projected">在线投影</button>
               </div>
               <select id="coordinate-map-select" class="coordinate-map-select" aria-label="选择真实地图层" hidden></select>
+              <select id="local-msbe-map-select" class="coordinate-map-select" aria-label="Select local MSBE map" hidden></select>
+              <select id="local-msbe-layer-select" class="coordinate-map-select" aria-label="Select raw MSBE map studio layer" hidden></select>
+              <select id="local-msbe-kind" class="coordinate-map-select" aria-label="Select local MSBE layer" hidden>
+                <option value="all">All MSBE records</option>
+                <option value="parts">Parts</option>
+                <option value="regions">Regions</option>
+                <option value="events">Events</option>
+                <option value="transitions">Transitions</option>
+              </select>
               <select id="coordinate-entity-kind" class="coordinate-map-select" aria-label="选择在线实体类别" hidden>
                 <option value="enemy">敌人实体</option>
                 <option value="asset">地图资产</option>
@@ -199,7 +212,7 @@
         <span>DIRECTED EDGES · CONDITIONAL ACCESS · LAYER-AWARE ROUTING</span>
       </footer>
     </div>
-    <script src="coordinate-map.js"></script>
-    <script src="app.js"></script>
+    <script src="coordinate-map.js?v=20260818-native-abstract-topology"></script>
+    <script src="app.js?v=20260818-native-abstract-topology"></script>
   </body>
 </html>

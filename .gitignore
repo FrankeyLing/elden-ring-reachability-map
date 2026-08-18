@@ -12,3 +12,8 @@ private-artifacts/
 *.bhd
 *.sl2
 *.dcx
+
+# Heavy local research artifacts (evidence layer, regenerable from the external
+# snapshot via scripts/build-local-*.py). Frozen and archived outside the product
+# repo; only lightweight package files under data/v1/packages/ are published.
+data/v1/entities/local-*.json

@@ -15,8 +15,8 @@
     "steam_last_updated_local": "2026-08-11T19:30:41+08:00",
     "exe_file_version": "2.6.2.0",
     "exe_product_version": "2.6.2.0",
-    "regulation_version": null,
-    "version_status": "EXE and Steam manifest verified; Regulation/title-screen version still requires parser or in-game confirmation"
+    "regulation_version": "11611000",
+    "version_status": "EXE and Steam manifest verified; Regulation binder version 11611000 verified from the copied regulation.bin snapshot with the matching OBJ_ACT_PARAM_ST v3 parser; no frontend game verification performed"
   },
   "files": [
     {
@@ -67,12 +67,21 @@
     "uvx": "not found on PATH",
     "bun": "not found on PATH"
   },
+  "external_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/soulsmods/elden-ring-eventparam/master/index.md",
+      "captured_at": "2026-08-18T22:37:24.277+08:00",
+      "local_copy": "C:\\Users\\Frankey\\ZCodeProject\\local-snapshots\\elden-ring-20260818\\supporting\\soulsmods-elden-ring-eventparam-index-20260818.md",
+      "size_bytes": 1155224,
+      "sha256": "80B335DC3215E917FB153F50D333301304F19DC2BA3989E7536925ADD5C752DA",
+      "purpose": "external event-flag semantic cross-check; exact IDs only; no inferred names"
+    }
+  ],
   "status": {
     "phase0": "partially complete",
-    "phase1": "blocked pending Regulation parsing/version confirmation and a fixed MSB/ER archive parser",
+    "phase1": "active; Regulation version confirmed from the copied snapshot; fixed parser/tool provenance and full archive smoke-test evidence remain",
     "demo_data_authorized_as_truth": false,
     "next_required_evidence": [
-      "Regulation version or title-screen confirmation",
       "fixed parser/tool commits and licenses",
       "read-only extraction smoke test for one world tile, one underground map, one legacy dungeon and one DLC map"
     ]

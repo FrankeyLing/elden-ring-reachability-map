@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import base64
 import json
+import os
+import re
 import zlib
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -73,6 +75,54 @@ ONLINE_ENTITY_CACHE = None
 ONLINE_GATHERING_CACHE = None
 NAMED_GRACE_IDENTITY_BINDINGS = None
 BOSS_IDENTITY_BINDINGS = None
+LOCAL_MSBE_INDEX_FILE = ROOT / "data" / "v1" / "entities" / "local-msbe-map-index.json"
+LOCAL_MSBE_LAYER_FILE = ROOT / "data" / "v1" / "entities" / "local-msbe-layer-index.json"
+LOCAL_TOPOLOGY_FILE = ROOT / "data" / "v1" / "entities" / "local-explicit-topology.json"
+LOCAL_ABSTRACT_TOPOLOGY_FILE = ROOT / "data" / "v1" / "entities" / "local-abstract-entity-topology.json"
+LOCAL_ABSTRACT_TOPOLOGY_GRAPH_FILE = ROOT / "data" / "v1" / "entities" / "local-abstract-topology-graph.json"
+LOCAL_TRANSITION_AUDIT_FILE = ROOT / "data" / "v1" / "entities" / "local-transition-audit.json"
+LOCAL_FMG_INDEX_FILE = ROOT / "data" / "v1" / "entities" / "local-fmg-semantic-index.json"
+LOCAL_EMEVD_INDEX_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-semantic-index.json"
+LOCAL_EMEVD_GUARD_TRACE_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-guard-traces.json"
+LOCAL_EMEVD_GUARD_ATOM_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-guard-atoms.json"
+LOCAL_EMEVD_GUARD_EXPRESSION_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-guard-expressions.json"
+LOCAL_EMEVD_CONDITION_GROUP_SEMANTICS_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-condition-group-semantics.json"
+LOCAL_GUARDED_TRANSITION_CANDIDATE_FILE = ROOT / "data" / "v1" / "entities" / "local-guarded-transition-candidates.json"
+LOCAL_EMEVD_WARP_CANDIDATE_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-warp-candidates.json"
+LOCAL_OBJACT_PARAM_FILE = ROOT / "data" / "v1" / "entities" / "local-objact-param-index.json"
+LOCAL_NVA_FILE = ROOT / "data" / "v1" / "entities" / "local-nva-navmesh-index.json"
+LOCAL_NVA_CONNECTIVITY_FILE = ROOT / "data" / "v1" / "entities" / "local-nva-connectivity-candidates.json"
+LOCAL_NVA_BOUNDARY_PAIR_FILE = ROOT / "data" / "v1" / "entities" / "local-nva-boundary-pair-index.json"
+LOCAL_NVA_COVERAGE_FILE = ROOT / "data" / "v1" / "entities" / "local-nva-coverage-audit.json"
+LOCAL_MAP_COVERAGE_CLASSIFICATION_FILE = ROOT / "data" / "v1" / "entities" / "local-map-coverage-classification.json"
+LOCAL_NVMHKTBND_FILE = ROOT / "data" / "v1" / "entities" / "local-nvmhktbnd-index.json"
+LOCAL_NVMHKTBND_GEOMETRY_FILE = ROOT / "data" / "v1" / "entities" / "local-nvmhktbnd-hkx2-geometry-index.json"
+LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_FILE = ROOT / "data" / "v1" / "entities" / "local-native-topology-evidence-chain.json"
+LOCAL_NATIVE_TOPOLOGY_GRAPH_FILE = ROOT / "data" / "v1" / "entities" / "local-native-topology-graph.json"
+LOCAL_NATIVE_MSBE_MODEL_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "local-native-msbe-model-bindings.json"
+LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "local-msbe-native-endpoint-bindings.json"
+LOCAL_MSBE_SNAPSHOT_ROOT = Path(
+    os.environ.get(
+        "ELDEN_RING_LOCAL_SNAPSHOT_ROOT",
+        str(ROOT.parent.parent / "local-snapshots" / "elden-ring-20260818"),
+    )
+).resolve()
+LOCAL_MSBE_MAP_ROOT = LOCAL_MSBE_SNAPSHOT_ROOT / "extracted" / "parsed-mapstudio-all-extra2" / "maps"
+LOCAL_EMEVD_REFERENCE_ROOT = LOCAL_MSBE_SNAPSHOT_ROOT / "extracted" / "parsed-emevd-semantic" / "references"
+LOCAL_ABSTRACT_TOPOLOGY_CACHE = None
+LOCAL_ABSTRACT_TOPOLOGY_GRAPH_CACHE = None
+LOCAL_TRANSITION_AUDIT_CACHE = None
+LOCAL_MSBE_LAYER_CACHE = None
+LOCAL_NVA_CACHE = None
+LOCAL_MAP_COVERAGE_CLASSIFICATION_CACHE = None
+LOCAL_NVA_CONNECTIVITY_CACHE = None
+LOCAL_NVA_BOUNDARY_PAIR_CACHE = None
+LOCAL_NVMHKTBND_CACHE = None
+LOCAL_NVMHKTBND_GEOMETRY_CACHE = None
+LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE = None
+LOCAL_NATIVE_TOPOLOGY_GRAPH_CACHE = None
+LOCAL_NATIVE_MSBE_MODEL_BINDINGS_CACHE = None
+LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_CACHE = None
 
 
 def collection_item_evidence(record):
@@ -226,6 +276,129 @@ class AppHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/api/online-map-keys":
             self.send_json_file(ONLINE_MAP_KEY_INDEX_FILE)
             return
+        if parsed.path == "/api/local-msbe/index":
+            self.send_json_file(LOCAL_MSBE_INDEX_FILE)
+            return
+        if parsed.path == "/api/local-msbe/layers":
+            self.send_local_msbe_layers(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-nva/index":
+            self.send_json_file(LOCAL_NVA_FILE)
+            return
+        if parsed.path == "/api/local-nva/map":
+            self.send_local_nva_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-nva/connectivity":
+            self.send_json_file(LOCAL_NVA_CONNECTIVITY_FILE)
+            return
+        if parsed.path == "/api/local-nva/boundary-pairs":
+            self.send_json_file(LOCAL_NVA_BOUNDARY_PAIR_FILE)
+            return
+        if parsed.path == "/api/local-nva/boundary-pairs/map":
+            self.send_local_nva_boundary_pairs_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-nva/coverage":
+            self.send_json_file(LOCAL_NVA_COVERAGE_FILE)
+            return
+        if parsed.path == "/api/local-map-coverage/classification":
+            self.send_json_file(LOCAL_MAP_COVERAGE_CLASSIFICATION_FILE)
+            return
+        if parsed.path == "/api/local-map-coverage/classification/map":
+            self.send_local_map_coverage_classification_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-nvmhktbnd/index":
+            self.send_json_file(LOCAL_NVMHKTBND_FILE)
+            return
+        if parsed.path == "/api/local-nvmhktbnd/map":
+            self.send_local_nvmhktbnd_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-nvmhktbnd/hkx2-geometry":
+            self.send_json_file(LOCAL_NVMHKTBND_GEOMETRY_FILE)
+            return
+        if parsed.path == "/api/local-nvmhktbnd/hkx2-geometry/map":
+            self.send_local_nvmhktbnd_geometry_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-native-topology-evidence-chain":
+            self.send_json_file(LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_FILE)
+            return
+        if parsed.path == "/api/local-native-topology-evidence-chain/map":
+            self.send_local_native_topology_evidence_chain_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-native-topology-graph":
+            self.send_json_file(LOCAL_NATIVE_TOPOLOGY_GRAPH_FILE)
+            return
+        if parsed.path == "/api/local-native-topology-graph/map":
+            self.send_local_native_topology_graph_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-native-msbe-model-bindings":
+            self.send_json_file(LOCAL_NATIVE_MSBE_MODEL_BINDINGS_FILE)
+            return
+        if parsed.path == "/api/local-native-msbe-model-bindings/map":
+            self.send_local_native_msbe_model_bindings_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-msbe-native-endpoint-bindings":
+            self.send_json_file(LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_FILE)
+            return
+        if parsed.path == "/api/local-msbe-native-endpoint-bindings/map":
+            self.send_local_msbe_native_endpoint_bindings_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-nva/connectivity/map":
+            self.send_local_nva_connectivity_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-topology":
+            self.send_json_file(LOCAL_TOPOLOGY_FILE)
+            return
+        if parsed.path == "/api/local-abstract-topology":
+            self.send_json_file(LOCAL_ABSTRACT_TOPOLOGY_FILE)
+            return
+        if parsed.path == "/api/local-abstract-topology-graph":
+            self.send_json_file(LOCAL_ABSTRACT_TOPOLOGY_GRAPH_FILE)
+            return
+        if parsed.path == "/api/local-abstract-topology-graph/map":
+            self.send_local_abstract_topology_graph_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-abstract-topology/map":
+            self.send_local_abstract_topology_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-transition-audit":
+            self.send_json_file(LOCAL_TRANSITION_AUDIT_FILE)
+            return
+        if parsed.path == "/api/local-transition-audit/map":
+            self.send_local_transition_audit_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-fmg/index":
+            self.send_json_file(LOCAL_FMG_INDEX_FILE)
+            return
+        if parsed.path == "/api/local-msbe/map":
+            self.send_local_msbe_map(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/local-emevd/index":
+            self.send_json_file(LOCAL_EMEVD_INDEX_FILE)
+            return
+        if parsed.path == "/api/local-emevd/guard-traces":
+            self.send_json_file(LOCAL_EMEVD_GUARD_TRACE_FILE)
+            return
+        if parsed.path == "/api/local-emevd/guard-atoms":
+            self.send_json_file(LOCAL_EMEVD_GUARD_ATOM_FILE)
+            return
+        if parsed.path == "/api/local-emevd/guard-expressions":
+            self.send_json_file(LOCAL_EMEVD_GUARD_EXPRESSION_FILE)
+            return
+        if parsed.path == "/api/local-emevd/condition-group-semantics":
+            self.send_json_file(LOCAL_EMEVD_CONDITION_GROUP_SEMANTICS_FILE)
+            return
+        if parsed.path == "/api/local-emevd/warp-candidates":
+            self.send_json_file(LOCAL_EMEVD_WARP_CANDIDATE_FILE)
+            return
+        if parsed.path == "/api/local-emevd/objact-param":
+            self.send_json_file(LOCAL_OBJACT_PARAM_FILE)
+            return
+        if parsed.path == "/api/local-transition-audit/guarded-candidates":
+            self.send_json_file(LOCAL_GUARDED_TRANSITION_CANDIDATE_FILE)
+            return
+        if parsed.path == "/api/local-emevd/map":
+            self.send_local_emevd_map(parse_qs(parsed.query))
+            return
         if parsed.path == "/api/catalog/map-points":
             self.send_map_points(parse_qs(parsed.query))
             return
@@ -276,6 +449,739 @@ class AppHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
         self.wfile.write(payload)
+
+    def send_local_msbe_map(self, query: dict[str, list[str]]):
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local MSBE map_id"))
+            return
+        path = LOCAL_MSBE_MAP_ROOT / f"{map_id}.json"
+        if not path.is_file():
+            self.send_json_error(FileNotFoundError(f"local MSBE map not found: {map_id}"))
+            return
+        self.send_json_file(path)
+
+    def send_local_msbe_layers(self, query: dict[str, list[str]]):
+        global LOCAL_MSBE_LAYER_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if map_id and not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local MSBE layer map_id"))
+            return
+        if LOCAL_MSBE_LAYER_CACHE is None:
+            try:
+                LOCAL_MSBE_LAYER_CACHE = json.loads(
+                    LOCAL_MSBE_LAYER_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_MSBE_LAYER_CACHE
+        records = [row for row in data.get("records", []) if not map_id or row.get("map_id") == map_id]
+        map_coverage = [
+            row
+            for row in data.get("map_layer_coverage", [])
+            if not map_id or row.get("map_id") == map_id
+        ]
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-msbe-layer-index-query@1",
+                "map_id": map_id or None,
+                "records": records,
+                "map_layer_coverage": map_coverage,
+                "record_count": len(records),
+                "distinct_layer_values": len({row.get("map_studio_layer") for row in records}),
+                "model": data.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_msbe_verified",
+            }
+        )
+
+    def send_local_nva_map(self, query: dict[str, list[str]]):
+        global LOCAL_NVA_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local NVA map_id"))
+            return
+        if LOCAL_NVA_CACHE is None:
+            try:
+                LOCAL_NVA_CACHE = json.loads(LOCAL_NVA_FILE.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        record = next(
+            (row for row in LOCAL_NVA_CACHE.get("records", []) if row.get("map_id") == map_id),
+            None,
+        )
+        if record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-nva-navmesh-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "routeable": False,
+                    "verification_state": "local_nva_file_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-nva-navmesh-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "record": record,
+                "model": LOCAL_NVA_CACHE.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_nva_oodle_decoded_exact",
+            }
+        )
+
+    def send_local_map_coverage_classification_map(self, query: dict[str, list[str]]):
+        global LOCAL_MAP_COVERAGE_CLASSIFICATION_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local map coverage map_id"))
+            return
+        if LOCAL_MAP_COVERAGE_CLASSIFICATION_CACHE is None:
+            try:
+                LOCAL_MAP_COVERAGE_CLASSIFICATION_CACHE = json.loads(
+                    LOCAL_MAP_COVERAGE_CLASSIFICATION_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_MAP_COVERAGE_CLASSIFICATION_CACHE
+        record = next(
+            (row for row in data.get("records", []) if row.get("map_id") == map_id),
+            None,
+        )
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-map-coverage-classification-map@1",
+                "map_id": map_id,
+                "record_present": record is not None,
+                "record": record,
+                "model": data.get("model", {}),
+                "routeable": False,
+                "verification_state": (
+                    "local_map_coverage_classification_exact"
+                    if record is not None
+                    else "local_map_coverage_classification_absent"
+                ),
+            }
+        )
+
+    def send_local_nva_connectivity_map(self, query: dict[str, list[str]]):
+        global LOCAL_NVA_CONNECTIVITY_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local NVA connectivity map_id"))
+            return
+        if LOCAL_NVA_CONNECTIVITY_CACHE is None:
+            try:
+                LOCAL_NVA_CONNECTIVITY_CACHE = json.loads(
+                    LOCAL_NVA_CONNECTIVITY_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        record = next(
+            (row for row in LOCAL_NVA_CONNECTIVITY_CACHE.get("maps", []) if row.get("map_id") == map_id),
+            None,
+        )
+        if record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-nva-connectivity-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "routeable": False,
+                    "verification_state": "local_nva_connectivity_candidate_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-nva-connectivity-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "record": record,
+                "model": LOCAL_NVA_CONNECTIVITY_CACHE.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_nva_connectivity_candidate_exact",
+            }
+        )
+
+    def send_local_nva_boundary_pairs_map(self, query: dict[str, list[str]]):
+        global LOCAL_NVA_BOUNDARY_PAIR_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local NVA boundary-pair map_id"))
+            return
+        if LOCAL_NVA_BOUNDARY_PAIR_CACHE is None:
+            try:
+                LOCAL_NVA_BOUNDARY_PAIR_CACHE = json.loads(
+                    LOCAL_NVA_BOUNDARY_PAIR_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        record = next(
+            (
+                row
+                for row in LOCAL_NVA_BOUNDARY_PAIR_CACHE.get("maps", [])
+                if row.get("map_id") == map_id
+            ),
+            None,
+        )
+        if record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-nva-boundary-pair-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "routeable": False,
+                    "verification_state": "local_nva_boundary_pair_map_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-nva-boundary-pair-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "record": record,
+                "model": LOCAL_NVA_BOUNDARY_PAIR_CACHE.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_nva_boundary_pair_exact_with_hkx2_conflict_audit",
+            }
+        )
+
+    def send_local_nvmhktbnd_map(self, query: dict[str, list[str]]):
+        global LOCAL_NVMHKTBND_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local NVMHKT BND4 map_id"))
+            return
+        if LOCAL_NVMHKTBND_CACHE is None:
+            try:
+                LOCAL_NVMHKTBND_CACHE = json.loads(
+                    LOCAL_NVMHKTBND_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        record = next(
+            (row for row in LOCAL_NVMHKTBND_CACHE.get("records", []) if row.get("map_id") == map_id),
+            None,
+        )
+        if record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-nvmhktbnd-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "routeable": False,
+                    "verification_state": "local_nvmhktbnd_file_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-nvmhktbnd-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "record": record,
+                "model": LOCAL_NVMHKTBND_CACHE.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_nvmhktbnd_bnd4_tag0_indexed",
+            }
+        )
+
+    def send_local_nvmhktbnd_geometry_map(self, query: dict[str, list[str]]):
+        global LOCAL_NVMHKTBND_GEOMETRY_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local NVMHKT HKX2 geometry map_id"))
+            return
+        if LOCAL_NVMHKTBND_GEOMETRY_CACHE is None:
+            try:
+                LOCAL_NVMHKTBND_GEOMETRY_CACHE = json.loads(
+                    LOCAL_NVMHKTBND_GEOMETRY_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        record = next(
+            (
+                row
+                for row in LOCAL_NVMHKTBND_GEOMETRY_CACHE.get("records", [])
+                if row.get("MapId") == map_id
+            ),
+            None,
+        )
+        if record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-nvmhktbnd-hkx2-geometry-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "routeable": False,
+                    "verification_state": "local_nvmhktbnd_geometry_record_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-nvmhktbnd-hkx2-geometry-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "record": record,
+                "model": LOCAL_NVMHKTBND_GEOMETRY_CACHE.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_nvmhktbnd_hkx2_geometry_deserialized",
+            }
+        )
+
+    def send_local_native_topology_evidence_chain_map(self, query: dict[str, list[str]]):
+        global LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local native topology evidence map_id"))
+            return
+        if LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE is None:
+            try:
+                LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE = json.loads(
+                    LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        record = next(
+            (
+                row
+                for row in LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE.get("maps", [])
+                if row.get("map_id") == map_id
+            ),
+            None,
+        )
+        if record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-native-topology-evidence-chain-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "routeable": False,
+                    "verification_state": "local_native_topology_evidence_map_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-native-topology-evidence-chain-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "record": record,
+                "model": LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_native_nva_to_hkx2_evidence_chain_joined",
+            }
+        )
+
+    def send_local_native_topology_graph_map(self, query: dict[str, list[str]]):
+        global LOCAL_NATIVE_TOPOLOGY_GRAPH_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local native topology graph map_id"))
+            return
+        if LOCAL_NATIVE_TOPOLOGY_GRAPH_CACHE is None:
+            try:
+                LOCAL_NATIVE_TOPOLOGY_GRAPH_CACHE = json.loads(
+                    LOCAL_NATIVE_TOPOLOGY_GRAPH_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_NATIVE_TOPOLOGY_GRAPH_CACHE
+        map_record = next(
+            (row for row in data.get("maps", []) if row.get("map_id") == map_id),
+            None,
+        )
+        nodes = [row for row in data.get("nodes", []) if row.get("map_id") == map_id]
+        edges = [row for row in data.get("edges", []) if row.get("from_map_id") == map_id]
+        connector_edges = [
+            row for row in data.get("connector_edges", [])
+            if row.get("from_map_id") == map_id
+        ]
+        cross_layer_relations = [
+            row for row in data.get("cross_layer_relations", [])
+            if row.get("from_map_id") == map_id
+        ]
+        if map_record is None:
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-native-topology-graph-map@1",
+                    "map_id": map_id,
+                    "record_present": False,
+                    "nodes": [],
+                    "edges": [],
+                    "connector_edges": [],
+                    "cross_layer_relations": [],
+                    "routeable": False,
+                    "verification_state": "local_native_topology_graph_map_absent",
+                }
+            )
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-native-topology-graph-map@1",
+                "map_id": map_id,
+                "record_present": True,
+                "map": map_record,
+                "nodes": nodes,
+                "edges": edges,
+                "connector_edges": connector_edges,
+                "cross_layer_relations": cross_layer_relations,
+                "node_count": len(nodes),
+                "edge_count": len(edges),
+                "connector_edge_count": len(connector_edges),
+                "cross_layer_relation_count": len(cross_layer_relations),
+                "model": data.get("model", {}),
+                "routeable": False,
+                "verification_state": "local_native_nva_boundary_graph_exact",
+            }
+        )
+
+    def send_local_native_msbe_model_bindings_map(self, query: dict[str, list[str]]):
+        global LOCAL_NATIVE_MSBE_MODEL_BINDINGS_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local native MSBE model binding map_id"))
+            return
+        if LOCAL_NATIVE_MSBE_MODEL_BINDINGS_CACHE is None:
+            try:
+                LOCAL_NATIVE_MSBE_MODEL_BINDINGS_CACHE = json.loads(
+                    LOCAL_NATIVE_MSBE_MODEL_BINDINGS_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_NATIVE_MSBE_MODEL_BINDINGS_CACHE
+        records = [row for row in data.get("records", []) if row.get("map_id") == map_id]
+        map_record = next(
+            (row for row in data.get("maps", []) if row.get("map_id") == map_id),
+            None,
+        )
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-native-msbe-model-bindings-map@1",
+                "map_id": map_id,
+                "record_present": map_record is not None,
+                "map": map_record,
+                "records": records,
+                "record_count": len(records),
+                "model": data.get("model", {}),
+                "routeable": False,
+                "verification_state": (
+                    "local_native_to_msbe_model_identity_map_exact"
+                    if map_record is not None
+                    else "local_native_to_msbe_model_identity_map_absent"
+                ),
+            }
+        )
+
+    def send_local_msbe_native_endpoint_bindings_map(self, query: dict[str, list[str]]):
+        global LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local MSBE native endpoint binding map_id"))
+            return
+        if LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_CACHE is None:
+            try:
+                LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_CACHE = json.loads(
+                    LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_CACHE
+        records = [row for row in data.get("records", []) if row.get("map_id") == map_id]
+        map_record = next(
+            (row for row in data.get("maps", []) if row.get("map_id") == map_id),
+            None,
+        )
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-msbe-native-endpoint-bindings-map@1",
+                "map_id": map_id,
+                "record_present": map_record is not None,
+                "map": map_record,
+                "records": records,
+                "record_count": len(records),
+                "model": data.get("model", {}),
+                "routeable": False,
+                "verification_state": (
+                    "local_msbe_connect_collision_to_nva_candidates_map_exact"
+                    if map_record is not None
+                    else "local_msbe_connect_collision_to_nva_candidates_map_absent"
+                ),
+            }
+        )
+
+    def send_local_emevd_map(self, query: dict[str, list[str]]):
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"(?:common(?:_func)?|m\d+_\d+_\d+_\d+)", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local EMEVD map_id"))
+            return
+        path = LOCAL_EMEVD_REFERENCE_ROOT / f"{map_id}.json"
+        if not path.is_file():
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-local-emevd-semantic-references@1",
+                    "map_key": map_id,
+                    "reference_count": 0,
+                    "references": [],
+                    "verification_state": "local_emevd_file_absent",
+                }
+            )
+            return
+        self.send_json_file(path)
+
+    def send_local_abstract_topology_map(self, query: dict[str, list[str]]):
+        global LOCAL_ABSTRACT_TOPOLOGY_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local abstract topology map_id"))
+            return
+        if LOCAL_ABSTRACT_TOPOLOGY_CACHE is None:
+            try:
+                LOCAL_ABSTRACT_TOPOLOGY_CACHE = json.loads(
+                    LOCAL_ABSTRACT_TOPOLOGY_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_ABSTRACT_TOPOLOGY_CACHE
+        map_node_id = f"local_map_{map_id}"
+        map_node = next((node for node in data.get("nodes", []) if node.get("id") == map_node_id), None)
+        if map_node is None:
+            self.send_json_error(FileNotFoundError(f"local abstract topology map not found: {map_id}"))
+            return
+        candidate_nodes = [node for node in data.get("nodes", []) if node.get("map_id") == map_id]
+        candidate_ids = {node.get("id") for node in candidate_nodes}
+        structural_edges = [
+            edge for edge in data.get("structural_edges", []) if edge.get("from") == map_node_id
+        ]
+        relations = [
+            relation
+            for relation in data.get("relations", [])
+            if relation.get("from") in candidate_ids | {map_node_id}
+            or relation.get("to") in candidate_ids | {map_node_id}
+        ]
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-abstract-entity-topology-map@1",
+                "map_id": map_id,
+                "map": map_node,
+                "candidate_nodes": candidate_nodes,
+                "structural_edges": structural_edges,
+                "relations": relations,
+                "model": data.get("model", {}),
+                "verification_state": "local_msbe_verified",
+            }
+        )
+
+    def send_local_abstract_topology_graph_map(self, query: dict[str, list[str]]):
+        global LOCAL_ABSTRACT_TOPOLOGY_GRAPH_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local abstract topology graph map_id"))
+            return
+        if LOCAL_ABSTRACT_TOPOLOGY_GRAPH_CACHE is None:
+            try:
+                LOCAL_ABSTRACT_TOPOLOGY_GRAPH_CACHE = json.loads(
+                    LOCAL_ABSTRACT_TOPOLOGY_GRAPH_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_ABSTRACT_TOPOLOGY_GRAPH_CACHE
+        map_node_id = f"local_map_{map_id}"
+        map_node = next((node for node in data.get("nodes", []) if node.get("id") == map_node_id), None)
+        if map_node is None:
+            self.send_json_error(FileNotFoundError(f"local abstract topology graph map not found: {map_id}"))
+            return
+        map_nodes = [node for node in data.get("nodes", []) if node.get("map_id") == map_id]
+        node_ids = {node.get("id") for node in map_nodes} | {map_node_id}
+        edges = [
+            edge
+            for edge in data.get("edges", [])
+            if edge.get("from_map_id") == map_id
+            or edge.get("to_map_id") == map_id
+            or edge.get("from") in node_ids
+            or edge.get("to") in node_ids
+        ]
+        referenced_node_ids = {
+            node_id
+            for edge in edges
+            for node_id in (edge.get("from"), edge.get("to"))
+            if node_id
+        }
+        extra_nodes = [
+            node
+            for node in data.get("nodes", [])
+            if node.get("id") in referenced_node_ids and node.get("id") not in node_ids
+        ]
+        graph_nodes = map_nodes + extra_nodes
+        relations = [
+            relation
+            for relation in data.get("relations", [])
+            if relation.get("from") in node_ids or relation.get("to") in node_ids
+        ]
+        interaction_relations = [
+            relation
+            for relation in data.get("interaction_relations", [])
+            if relation.get("from") in node_ids or relation.get("to") in node_ids
+        ]
+        interaction_mechanism_pair_relations = [
+            relation
+            for relation in data.get("interaction_mechanism_pair_relations", [])
+            if relation.get("from") in node_ids or relation.get("to") in node_ids
+        ]
+        interaction_transport_relations = [
+            relation
+            for relation in data.get("interaction_transport_relations", [])
+            if relation.get("from") in node_ids or relation.get("to") in node_ids
+        ]
+        interaction_relation_unresolved = [
+            relation
+            for relation in data.get("interaction_relation_unresolved", [])
+            if relation.get("map_id") == map_id
+        ]
+        interaction_transport_unresolved = [
+            relation
+            for relation in data.get("interaction_transport_unresolved", [])
+            if relation.get("map_id") == map_id
+        ]
+        interaction_map_identity_relations = [
+            relation
+            for relation in data.get("interaction_map_identity_relations", [])
+            if relation.get("from_map_id") == map_id
+            or relation.get("to_map_id") == map_id
+            or relation.get("from") in node_ids
+            or relation.get("to") in node_ids
+        ]
+        interaction_map_identity_unresolved = [
+            relation
+            for relation in data.get("interaction_map_identity_unresolved", [])
+            if relation.get("map_id") == map_id
+        ]
+        native_identity_relations = [
+            relation
+            for relation in data.get("native_identity_relations", [])
+            if relation.get("from") in node_ids or relation.get("to") in node_ids
+        ]
+        native_identity_layer_relations = [
+            relation
+            for relation in data.get("native_identity_layer_relations", [])
+            if relation.get("from") in node_ids or relation.get("to") in node_ids
+        ]
+        objact_state_evidence = [
+            evidence
+            for evidence in data.get("objact_state_evidence", [])
+            if evidence.get("map_id") == map_id
+        ]
+        structural_edges = [
+            edge for edge in edges if edge.get("edge_family") == "native_msbe_map_declaration"
+        ]
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-abstract-topology-graph-map@1",
+                "map_id": map_id,
+                "map": map_node,
+                "candidate_nodes": [node for node in map_nodes if node.get("id") != map_node_id],
+                "nodes": graph_nodes,
+                "edges": edges,
+                "structural_edges": structural_edges,
+                "relations": relations,
+                "layer_relations": [
+                    relation
+                    for relation in data.get("layer_relations", [])
+                    if relation.get("from") in node_ids or relation.get("to") in node_ids
+                ],
+                "layer_membership_relations": [
+                    relation
+                    for relation in data.get("layer_membership_relations", [])
+                    if relation.get("from") in node_ids or relation.get("to") in node_ids
+                ],
+                "layer_coverage": [
+                    row
+                    for row in data.get("layer_coverage", [])
+                    if row.get("map_id") == map_id
+                ],
+                "interaction_relations": interaction_relations,
+                "interaction_mechanism_pair_relations": interaction_mechanism_pair_relations,
+                "interaction_relation_unresolved": interaction_relation_unresolved,
+                "interaction_transport_relations": interaction_transport_relations,
+                "interaction_transport_unresolved": interaction_transport_unresolved,
+                "interaction_map_identity_relations": interaction_map_identity_relations,
+                "interaction_map_identity_unresolved": interaction_map_identity_unresolved,
+                "native_identity_relations": native_identity_relations,
+                "native_identity_layer_relations": native_identity_layer_relations,
+                "objact_state_evidence": objact_state_evidence,
+                "status": data.get("status", {}),
+                "model": data.get("model", {}),
+                "verification_state": "local_msbe_verified_merged_abstract_topology",
+            }
+        )
+
+    def send_local_transition_audit_map(self, query: dict[str, list[str]]):
+        global LOCAL_TRANSITION_AUDIT_CACHE
+        map_id = query.get("map_id", [""])[0].strip()
+        if not re.fullmatch(r"m\d+_\d+_\d+_\d+", map_id, flags=re.IGNORECASE):
+            self.send_json_error(ValueError("invalid local transition audit map_id"))
+            return
+        if LOCAL_TRANSITION_AUDIT_CACHE is None:
+            try:
+                LOCAL_TRANSITION_AUDIT_CACHE = json.loads(
+                    LOCAL_TRANSITION_AUDIT_FILE.read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError) as exc:
+                self.send_json_error(exc)
+                return
+        data = LOCAL_TRANSITION_AUDIT_CACHE
+        endpoint_pairs = [
+            row
+            for row in data.get("endpoint_pairs", [])
+            if row.get("from", {}).get("map_id") == map_id
+            or row.get("to", {}).get("map_id") == map_id
+        ]
+        scripted_warp_bindings = [
+            row
+            for row in data.get("scripted_warp_bindings", [])
+            if row.get("from", {}).get("map_id") == map_id
+            or row.get("to", {}).get("map_id") == map_id
+        ]
+        scripted_map_warp_bindings = [
+            row
+            for row in data.get("scripted_map_warp_bindings", [])
+            if row.get("from", {}).get("map_id") == map_id
+            or row.get("to", {}).get("map_id") == map_id
+        ]
+        interaction_candidates = [
+            row for row in data.get("interaction_candidates", []) if row.get("map_id") == map_id
+        ]
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-local-transition-audit-map@1",
+                "map_id": map_id,
+                "endpoint_pairs": endpoint_pairs,
+                "scripted_warp_bindings": scripted_warp_bindings,
+                "scripted_map_warp_bindings": scripted_map_warp_bindings,
+                "interaction_candidates": interaction_candidates,
+                "model": data.get("model", {}),
+                "verification_state": "local_msbe_verified",
+            }
+        )
 
     def send_route_target_items(self, query: dict[str, list[str]]):
         snapshot = query.get("snapshot", [""])[0].strip()

@@ -7,6 +7,22 @@ const state = {
   mapMode: "topology",
   coordinateMapId: "m10_00_00",
   projectedMaster: "M00",
+  localMsbeMapId: "m10_00_00_00",
+  localMsbeKind: "all",
+  localMsbeLayer: "all",
+  localMsbeIndex: null,
+  localMsbeMap: null,
+  localAbstractMap: null,
+  localNativeTopologyMap: null,
+  localNativeModelBindingsMap: null,
+  localNativeEndpointBindingsMap: null,
+  localTransitionAuditMap: null,
+  localMsbeLayers: null,
+  localTopology: null,
+  localEmevdIndex: null,
+  localEmevdMap: null,
+  localEmevdGuardTraces: null,
+  localEmevdGuardExpressions: null,
   coordinateEntityKind: "enemy",
   coordinateBounds: null,
   coordinateFocus: null,
@@ -76,6 +92,9 @@ const els = {
   mapTransform: document.getElementById("map-transform"),
  copyRoute: document.getElementById("copy-route"),
   coordinateMapSelect: document.getElementById("coordinate-map-select"),
+  localMsbeMapSelect: document.getElementById("local-msbe-map-select"),
+  localMsbeLayerSelect: document.getElementById("local-msbe-layer-select"),
+  localMsbeKind: document.getElementById("local-msbe-kind"),
   coordinateEntityKind: document.getElementById("coordinate-entity-kind"),
   projectedMasterSelect: document.getElementById("projected-master-select"),
   mapModes: document.querySelectorAll(".map-mode"),
@@ -470,6 +489,22 @@ function renderGraph() {
     renderCoordinateMap();
     return;
   }
+  if (state.mapMode === "local-topology") {
+    renderLocalTopology();
+    return;
+  }
+  if (state.mapMode === "local-msbe") {
+    renderLocalMsbeMap();
+    return;
+  }
+  if (state.mapMode === "local-abstract") {
+    renderLocalAbstractMap();
+    return;
+  }
+  if (state.mapMode === "local-native") {
+    renderLocalNativeTopologyMap();
+    return;
+  }
   if (state.mapMode === "named-coordinates") {
     renderNamedCoordinateMap();
     return;
@@ -721,7 +756,7 @@ function planAndRender() {
 
 function setZoom(nextZoom) {
   state.zoom = Math.max(0.7, Math.min(1.7, nextZoom));
-  if (["coordinates", "named-coordinates", "projected"].includes(state.mapMode) && state.coordinateBounds) {
+  if (["coordinates", "local-topology", "local-msbe", "local-abstract", "local-native", "named-coordinates", "projected"].includes(state.mapMode) && state.coordinateBounds) {
     const bounds = state.coordinateBounds;
     const centerX = bounds.minX + bounds.width / 2;
     const centerY = bounds.minY + bounds.height / 2;
@@ -979,12 +1014,34 @@ function wireEvents() {
     els.mapModes.forEach((item) => item.classList.toggle("active", item === button));
     renderCoordinateLayerMeta();
     els.coordinateMapSelect.hidden = !["coordinates", "named-coordinates"].includes(state.mapMode);
+    els.localMsbeMapSelect.hidden = !["local-msbe", "local-abstract", "local-native"].includes(state.mapMode);
+    els.localMsbeLayerSelect.hidden = !["local-msbe", "local-abstract"].includes(state.mapMode);
+    els.localMsbeKind.hidden = state.mapMode !== "local-msbe";
     els.coordinateEntityKind.hidden = state.mapMode !== "coordinates";
     els.projectedMasterSelect.hidden = state.mapMode !== "projected";
     if (state.mapMode === "coordinates") {
       populateCoordinateMapSelect();
       renderCoordinateMap();
       loadCoordinateItems();
+    } else if (state.mapMode === "local-topology") {
+      state.coordinateBounds = null;
+      state.coordinateFocus = null;
+      loadLocalTopology();
+    } else if (state.mapMode === "local-msbe") {
+      state.coordinateBounds = null;
+      state.coordinateFocus = null;
+      populateLocalMsbeMapSelect();
+      loadLocalMsbeMap();
+    } else if (state.mapMode === "local-abstract") {
+      state.coordinateBounds = null;
+      state.coordinateFocus = null;
+      populateLocalMsbeMapSelect();
+      loadLocalAbstractMap();
+    } else if (state.mapMode === "local-native") {
+      state.coordinateBounds = null;
+      state.coordinateFocus = null;
+      populateLocalMsbeMapSelect();
+      loadLocalNativeTopologyMap();
     } else if (state.mapMode === "named-coordinates") {
       state.coordinateBounds = null;
       state.coordinateFocus = null;
@@ -1008,6 +1065,22 @@ function wireEvents() {
     state.coordinateFocus = null;
     if (state.mapMode === "named-coordinates") loadNamedCoordinateLayer();
     else loadCoordinateItems();
+  });
+  els.localMsbeMapSelect.addEventListener("change", () => {
+    state.localMsbeMapId = els.localMsbeMapSelect.value;
+    state.coordinateBounds = null;
+    if (state.mapMode === "local-abstract") loadLocalAbstractMap();
+    else if (state.mapMode === "local-native") loadLocalNativeTopologyMap();
+    else loadLocalMsbeMap();
+  });
+  els.localMsbeLayerSelect.addEventListener("change", () => {
+    state.localMsbeLayer = els.localMsbeLayerSelect.value;
+    if (state.mapMode === "local-abstract") renderLocalAbstractMap();
+    else if (state.mapMode === "local-msbe") renderLocalMsbeMap();
+  });
+  els.localMsbeKind.addEventListener("change", () => {
+    state.localMsbeKind = els.localMsbeKind.value;
+    renderLocalMsbeMap();
   });
   els.coordinateEntityKind.addEventListener("change", () => {
     state.coordinateEntityKind = els.coordinateEntityKind.value;
@@ -1077,7 +1150,7 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeAssessmentResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response, onlineNamedGraceResponse] = await Promise.all([
+    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeAssessmentResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response, onlineNamedGraceResponse, localMsbeIndexResponse, localEmevdIndexResponse] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/achievements", { cache: "no-store" }),
@@ -1094,6 +1167,8 @@ async function init() {
       fetch("/data/v1/source-snapshots/mapforgoblins-tile-regions-part1-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-tile-regions-part2-20260818.json", { cache: "no-store" }),
       fetch("/api/catalog/named-grace-positions?limit=1000", { cache: "no-store" }),
+      fetch("/api/local-msbe/index", { cache: "no-store" }),
+      fetch("/api/local-emevd/index", { cache: "no-store" }),
    ]);
     if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
@@ -1112,6 +1187,8 @@ async function init() {
     if (!onlineMapPoint1Response.ok || !onlineMapPoint2Response.ok || !onlineMapPoint3Response.ok) throw new Error("online map point coordinates unavailable");
     if (!onlineTile1Response.ok || !onlineTile2Response.ok) throw new Error("online tile region index unavailable");
     if (!onlineNamedGraceResponse.ok) throw new Error(`named grace source coordinates HTTP ${onlineNamedGraceResponse.status}`);
+    if (!localMsbeIndexResponse.ok) throw new Error(`local MSBE index HTTP ${localMsbeIndexResponse.status}`);
+    if (!localEmevdIndexResponse.ok) throw new Error(`local EMEVD index HTTP ${localEmevdIndexResponse.status}`);
     state.onlineIndex = {
       manifest: await onlineIndexResponse.json(),
       mapKeys: await onlineMapKeyResponse.json(),
@@ -1119,6 +1196,9 @@ async function init() {
       mapPoints: await Promise.all([onlineMapPoint1Response.json(), onlineMapPoint2Response.json(), onlineMapPoint3Response.json()]),
       tiles: await Promise.all([onlineTile1Response.json(), onlineTile2Response.json()]),
     };
+    state.localMsbeIndex = await localMsbeIndexResponse.json();
+    state.localEmevdIndex = await localEmevdIndexResponse.json();
+    populateLocalMsbeMapSelect();
     const namedGracePayload = await onlineNamedGraceResponse.json();
     state.onlineNamedGraceCatalogRecords = namedGracePayload.records || [];
     state.onlineNamedGraceByNodeId = new Map();
@@ -1838,7 +1918,7 @@ async function init() {
       sourceEvidence: [leg.source_evidence],
       targetGroup: routeTargetGroupByLegId.get(leg.canonical_id) || null,
       routeAssessment: routeAssessmentByLegId.get(leg.canonical_id) || null,
-      note: `${leg.from} → ${leg.to}；步骤类型：${(leg.step_types || []).join("、")}。需要独立来源核对后才能进入寻路器。`,
+      note: `${leg.from} → ${leg.to}；步骤类型：${(Array.isArray(leg.step_types) ? leg.step_types : leg.step_types ? [leg.step_types] : []).join("、")}。需要独立来源核对后才能进入寻路器。`,
       tags: ["candidate", "source_only"],
     }));
     state.nodes = new Map(state.data.nodes.map((node) => [node.id, node]));

@@ -234,6 +234,36 @@ code { color: #c0b58f; font-size: 9px; }
 .node-core.grace-position { fill: #d0a85f; }
 .node-core.boss { fill: #d46b73; }
 .node-core.conversion { fill: #73b9c9; }
+.node-core.local-msbe-core { fill: #99a5a7; }
+.node-core.local-msbe-core.asset { fill: #7e8b8f; }
+.node-core.local-msbe-core.collision { fill: #e9c979; }
+.node-core.local-msbe-core.connectcollision { fill: #e28f63; }
+.node-core.local-msbe-core.enemy { fill: #d46b73; }
+.node-core.local-msbe-core.dummyenemy { fill: #a86f9f; }
+.node-core.local-msbe-core.map-piece { fill: #889da7; }
+.node-core.local-msbe-core.transition { fill: #73b9c9; }
+.node-core.local-msbe-core.connection { fill: #73b9c9; }
+.node-core.local-msbe-core.treasure { fill: #a8bd8e; }
+.local-topology-edge { stroke: rgba(115, 185, 201, .28); stroke-width: 1; pointer-events: stroke; }
+.local-topology-edge.selected { stroke: #e9c979; stroke-width: 2.2; opacity: .9; }
+.local-abstract-relation { stroke: rgba(233,201,121,.32); stroke-width: 1.4; stroke-dasharray: 4 4; pointer-events: none; }
+.local-abstract-interaction { stroke: rgba(205,170,238,.38); stroke-width: 1.1; stroke-dasharray: 2 4; pointer-events: none; }
+.local-abstract-interaction-transport { stroke: #f08eb7; stroke-width: 1.6; stroke-dasharray: 5 2; pointer-events: none; opacity: .82; }
+.local-abstract-scripted-warp { stroke: #f1b46a; stroke-width: 1.8; stroke-dasharray: 6 3; pointer-events: none; opacity: .9; }
+.local-abstract-emevd-warp-evidence { stroke: #a8a2e8; stroke-width: 1.2; stroke-dasharray: 3 3; pointer-events: none; opacity: .75; }
+.local-abstract-exact-endpoint { stroke: #8bd4b5; stroke-width: 1.6; pointer-events: none; opacity: .85; }
+.local-native-edge { stroke: rgba(115, 185, 201, .34); stroke-width: 1.2; pointer-events: stroke; opacity: .82; }
+.local-native-core { fill: #73b9c9; stroke: rgba(10, 18, 24, .9); stroke-width: 1; }
+.local-native-node:hover .local-native-core { fill: #e9c979; stroke: #fff0b0; stroke-width: 1.5; }
+.local-abstract-core { stroke: rgba(10,18,24,.8); stroke-width: 1; }
+.local-abstract.map_connection_endpoint .local-abstract-core { fill: #73b9c9; }
+.local-abstract.interaction_event .local-abstract-core { fill: #e9c979; }
+.local-abstract.vertical_jump_region .local-abstract-core,
+.local-abstract.vertical_fall_region .local-abstract-core,
+.local-abstract.locked_vertical_jump_region .local-abstract-core,
+.local-abstract.locked_vertical_fall_region .local-abstract-core { fill: #d993c4; }
+.local-abstract.airflow_region .local-abstract-core { fill: #8bd4b5; }
+.node-core.local-topology-core { fill: #73b9c9; }
 .coordinate-axis { fill: #717b77; font-size: 8px; pointer-events: none; }
 .coordinate-focus-ring { fill: rgba(247, 224, 160, .08); stroke: #f7e0a0; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .coordinate-focus-core { fill: #fff2b7; stroke: #5b4b2b; stroke-width: 1; vector-effect: non-scaling-stroke; }
