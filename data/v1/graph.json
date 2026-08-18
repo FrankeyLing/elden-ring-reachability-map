@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.141-online-multiplane",
+  "version": "1.0.142-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2597,7 +2597,8 @@
       "y": 420,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check", "eldenpedia-divine-tower-west-altus"],
+      "sourceEvidence": ["eldenpedia-sealed-tunnel", "game8-sealed-tunnel-cross-check", "eldenpedia-divine-tower-west-altus", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 182, "recordId": 341201, "name": "Sealed Tunnel", "map": "area 34 / grid 12,0", "position": [-48.09000015258789, 699.8900146484375, -321.3800048828125], "coordinateSpace": "game_world_xyz" },
       "description": "The Sealed Tunnel grace beside the southern Capital Outskirts moat; illusory walls conceal the dungeon route."
     },
     {
@@ -2642,7 +2643,8 @@
       "y": 420,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-divine-tower-west-altus", "pcgamer-west-altus-tower-cross-check", "eldenpedia-rykard"],
+      "sourceEvidence": ["eldenpedia-divine-tower-west-altus", "pcgamer-west-altus-tower-cross-check", "eldenpedia-rykard", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 181, "recordId": 341200, "name": "Divine Tower of West Altus", "map": "area 60 / grid 43,50", "position": [-66.5999984741211, 808.77001953125, 35.72999954223633], "coordinateSpace": "game_world_xyz" },
       "description": "Summit grace above the tower lift; this is the activation branch for Rykard's Great Rune."
     },
     {
@@ -7693,7 +7695,8 @@
       "y": 690,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-isolated-merchant-shack-dragonbarrow", "eldenpedia-dragonbarrow", "redmaw-dragonbarrow-cross-check", "gamefaqs-dragonbarrow-cross-check"],
+      "sourceEvidence": ["eldenpedia-isolated-merchant-shack-dragonbarrow", "eldenpedia-dragonbarrow", "redmaw-dragonbarrow-cross-check", "gamefaqs-dragonbarrow-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 451, "recordId": 61413200, "name": "Isolated Merchant's Shack", "map": "area 60 / grid 41,32", "position": [6.860000133514404, 0.6600000262260437, 100.69999694824219], "coordinateSpace": "game_world_xyz" },
       "description": "Northwestern Dragonbarrow shack grace; the road from Dragonbarrow West reaches it without merging it into the Divine Tower route."
     },
     {
@@ -9832,7 +9835,7 @@
     },
     {
       "id": "grace_limgrave_weeping_peninsula_isolated_merchants_shack", "label": "Isolated Merchant's Shack", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Southwestern peninsula field", "worldEpoch": "weeping_peninsula", "x": 300, "y": 1220, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check", "neoseeker-weeping-cross-check"], "description": "Western-coast merchant shack grace reached south from Fourth Church of Marika; the merchant and coastal field are an optional surface branch."
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-isolated-merchant-weeping-cross-check", "neoseeker-weeping-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 568, "recordId": 64484100, "name": "Isolated Merchant's Shack", "map": "area 60 / grid 48,41", "position": [-86.4000015258789, 226.25999450683594, -81.70999908447266], "coordinateSpace": "game_world_xyz" }, "description": "Western-coast merchant shack grace reached south from Fourth Church of Marika; the merchant and coastal field are an optional surface branch."
     },
     {
       "id": "grace_limgrave_weeping_peninsula_tombsward", "label": "Tombsward", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Western tombsward plateau", "worldEpoch": "weeping_peninsula", "x": 420, "y": 1130, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9972,11 +9975,11 @@
     },
     {
       "id": "grace_limgrave_main_artist_s_shack", "label": "Artist's Shack", "aliases": ["Artist's Shack (Limgrave)"], "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Eastern Limgrave shack", "worldEpoch": "limgrave_surface", "x": 410, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-limgrave-cross-check"], "description": "Limgrave Artist's Shack between Agheel Lake North and Third Church of Marika; it is deliberately separate from the identically named Liurnia grace."
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-limgrave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 477, "recordId": 61443800, "name": "Artist's Shack", "map": "area 60 / grid 44,38", "position": [-10.862000465393066, 92.81300354003906, -20.381999969482422], "coordinateSpace": "game_world_xyz" }, "description": "Limgrave Artist's Shack between Agheel Lake North and Third Church of Marika; it is deliberately separate from the identically named Liurnia grace."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_artist_s_shack", "label": "Artist's Shack", "aliases": ["Artist's Shack (Liurnia)"], "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia cliff shack", "worldEpoch": "liurnia_surface", "x": 1180, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check"], "description": "Liurnia Artist's Shack on the eastern cliff north of Liurnia Highway North; it is deliberately separate from the Limgrave grace with the same display name."
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 519, "recordId": 62384500, "name": "Artist's Shack", "map": "area 60 / grid 38,45", "position": [87.44000244140625, 318.42999267578125, -110.69999694824219], "coordinateSpace": "game_world_xyz" }, "description": "Liurnia Artist's Shack on the eastern cliff north of Liurnia Highway North; it is deliberately separate from the Limgrave grace with the same display name."
     },
     {
       "id": "ghostflame_dragon_gravesite_gate", "label": "Ghostflame Dragon (Greatbridge North)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Greatbridge, North", "worldEpoch": "shadow_realm", "x": 350, "y": 690, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
