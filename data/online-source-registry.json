@@ -80,8 +80,8 @@
       "v1_role": ["coverage_gap_detection", "marker_category_reference", "projected_grace_anchors", "questline_ux_reference"],
       "import_status": "direct_fixed_git_generated_marker_snapshot_pending_rights_review",
       "revision": "6b7c3da11de11e53cb84bbb40f7c3fed5377549a",
-      "allowed_files": ["markers.js (selected grace records only)"],
-      "exclude": ["map tiles", "icons", "unselected generated markers", "automatic promotion to formal transitions", "distribution as a replacement for the upstream map"],
+      "allowed_files": ["markers.js (grace records only)"],
+      "exclude": ["map tiles", "icons", "automatic promotion to formal transitions", "distribution as a replacement for the upstream map"],
       "freshness": "recheck upstream revision and rights before any data import"
     },
     {

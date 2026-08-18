@@ -27,6 +27,10 @@ ONLINE_MAP_POINT_FILES = tuple(
 )
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_PROJECTED_GRACE_FILE = ROOT / "data" / "v1" / "source-snapshots" / "elden-ring-map-markers-20260818.json"
+ONLINE_PROJECTED_GRACE_FILES = (
+    ONLINE_PROJECTED_GRACE_FILE,
+    *(ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-map-markers-supplement-{part:02d}-20260818.json" for part in range(1, 6)),
+)
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
@@ -316,7 +320,11 @@ def audit() -> dict:
     route_profiles = load("data/v1/route-profiles.json")
     online_index_manifest = json.loads(ONLINE_INDEX_MANIFEST_FILE.read_text(encoding="utf-8"))
     online_map_key_index = json.loads(ONLINE_MAP_KEY_INDEX_FILE.read_text(encoding="utf-8"))
-    projected_graces = json.loads(ONLINE_PROJECTED_GRACE_FILE.read_text(encoding="utf-8"))
+    projected_grace_payloads = [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in ONLINE_PROJECTED_GRACE_FILES
+    ]
+    projected_graces = projected_grace_payloads[0]
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
@@ -329,15 +337,28 @@ def audit() -> dict:
     }
     known_evidence_ids = related_source_ids | graph_evidence_ids | {achievements.get("source", {}).get("source_id")}
     formal_grace_labels = {node.get("label"): node.get("id") for node in nodes if node.get("kind") == "grace"}
-    projected_records = projected_graces.get("records", [])
+    projected_records = [
+        record
+        for payload in projected_grace_payloads
+        for record in payload.get("records", [])
+    ]
     projected_formal_ids = [record.get("formal_id") for record in projected_records if record.get("formal_id")]
     projected_anchor_contract = {
         "schema": projected_graces.get("schema"),
-        "snapshot": projected_graces.get("snapshot"),
+        "snapshots": [payload.get("snapshot") for payload in projected_grace_payloads],
         "source_url": projected_graces.get("source", {}).get("url"),
         "coordinate_space": projected_graces.get("coordinate_space"),
         "record_count": len(projected_records),
-        "declared_record_count": projected_graces.get("record_count", len(projected_records)),
+        "part_record_counts": [len(payload.get("records", [])) for payload in projected_grace_payloads],
+        "invalid_payloads": [
+            payload.get("snapshot")
+            for payload in projected_grace_payloads
+            if payload.get("schema") != "elden-ring-reachability-map/projected-anchor-snapshot@1"
+            or payload.get("source", {}).get("url") != "https://raw.githubusercontent.com/jw-ofs/elden-ring-map/main/markers.js"
+            or payload.get("coordinate_space", {}).get("id") != "master_tile_pixel"
+            or payload.get("coordinate_space", {}).get("width") != 10496
+            or payload.get("coordinate_space", {}).get("height") != 10496
+        ],
         "duplicate_source_ids": sorted(
             source_id
             for source_id in {record.get("source_id") for record in projected_records}
@@ -357,12 +378,17 @@ def audit() -> dict:
     }
     if (
         projected_anchor_contract["schema"] != "elden-ring-reachability-map/projected-anchor-snapshot@1"
-        or projected_anchor_contract["snapshot"] != ONLINE_PROJECTED_GRACE_FILE.stem
+        or projected_anchor_contract["snapshots"] != [
+            ONLINE_PROJECTED_GRACE_FILE.stem,
+            *[path.stem for path in ONLINE_PROJECTED_GRACE_FILES[1:]],
+        ]
         or projected_anchor_contract["source_url"] != "https://raw.githubusercontent.com/jw-ofs/elden-ring-map/main/markers.js"
         or projected_anchor_contract["coordinate_space"].get("id") != "master_tile_pixel"
         or projected_anchor_contract["coordinate_space"].get("width") != 10496
         or projected_anchor_contract["coordinate_space"].get("height") != 10496
-        or projected_anchor_contract["record_count"] != 111
+        or projected_anchor_contract["record_count"] != 413
+        or projected_anchor_contract["part_record_counts"] != [111, 75, 75, 75, 75, 2]
+        or projected_anchor_contract["invalid_payloads"]
         or projected_anchor_contract["duplicate_source_ids"]
         or projected_anchor_contract["invalid_records"]
     ):

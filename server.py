@@ -31,6 +31,10 @@ ROUTE_TARGET_ITEM_SNAPSHOT_FILES = {
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
 ONLINE_PROJECTED_GRACE_FILE = ROOT / "data" / "v1" / "source-snapshots" / "elden-ring-map-markers-20260818.json"
+ONLINE_PROJECTED_GRACE_FILES = (
+    ONLINE_PROJECTED_GRACE_FILE,
+    *(ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-map-markers-supplement-{part:02d}-20260818.json" for part in range(1, 6)),
+)
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_MAP_CONVERSION_FILES = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-base-20260818.json",
@@ -391,20 +395,22 @@ class AppHandler(SimpleHTTPRequestHandler):
         except ValueError:
             limit = ONLINE_QUERY_MAX
         try:
-            payload = json.loads(ONLINE_PROJECTED_GRACE_FILE.read_bytes())
+            payloads = [json.loads(path.read_bytes()) for path in ONLINE_PROJECTED_GRACE_FILES]
+            payload = payloads[0]
             records = []
-            for record in payload["records"]:
-                if master and record.get("master") != master:
-                    continue
-                if formal_id and record.get("formal_id") != formal_id:
-                    continue
-                search_text = " / ".join(
-                    str(value or "")
-                    for value in (record.get("name"), record.get("description"), record.get("formal_id"))
-                )
-                if search and search not in search_text.casefold():
-                    continue
-                records.append(record)
+            for source_payload in payloads:
+                for record in source_payload["records"]:
+                    if master and record.get("master") != master:
+                        continue
+                    if formal_id and record.get("formal_id") != formal_id:
+                        continue
+                    search_text = " / ".join(
+                        str(value or "")
+                        for value in (record.get("name"), record.get("description"), record.get("formal_id"))
+                    )
+                    if search and search not in search_text.casefold():
+                        continue
+                    records.append(record)
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             self.send_json_error(exc)
             return
@@ -418,6 +424,7 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "routeable": False,
                 "source": payload["source"],
                 "coordinate_space": payload["coordinate_space"],
+                "snapshots": [source_payload["snapshot"] for source_payload in payloads],
                 "note": "projected online pins only; formal_id is an identity link, not a game-world XYZ coordinate or traversal edge",
             }
         )
