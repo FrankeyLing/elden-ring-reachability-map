@@ -26,6 +26,11 @@
           "status": "formal_path_exists"
         }
       ],
+      "online_item_snapshot": "er-guide-items-caelid-04-20260818",
+      "online_item_snapshot_path": "data/v1/source-snapshots/er-guide-items-caelid-04-20260818.json",
+      "online_item_record_count": 55,
+      "online_item_coordinate_count": 48,
+      "item_target_status": "all_source_ids_resolved_coordinates_partial",
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },

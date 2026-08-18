@@ -18,6 +18,7 @@ ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
 ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
 ROUTE_TARGET_ITEM_SNAPSHOT_FILES = {
+    "er-guide-items-caelid-04-20260818": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-04-20260818.json",
     "er-guide-items-caelid-06-20260818": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json",
     "er-guide-items-dlc-scadu-altus-01-20260818": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-01-20260818.json",
     "er-guide-items-dlc-scadu-altus-02-20260818": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-02-20260818.json",

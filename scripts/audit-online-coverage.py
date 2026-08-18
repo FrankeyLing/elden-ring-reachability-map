@@ -31,6 +31,7 @@ ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforg
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
 ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
 ER_GUIDE_ITEM_SNAPSHOT_FILES = {
+    "er_guide_leg_caelid-04": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-04-20260818.json",
     "er_guide_leg_caelid-06": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json",
     "er_guide_leg_dlc-scadu-altus-01": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-01-20260818.json",
     "er_guide_leg_dlc-scadu-altus-02": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-02-20260818.json",
@@ -40,6 +41,7 @@ ER_GUIDE_ITEM_SNAPSHOT_FILES = {
     "er_guide_leg_dragonbarrow-02": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dragonbarrow-02-20260818.json",
 }
 EXPECTED_ITEM_COORDINATE_COUNTS = {
+    "er_guide_leg_caelid-04": 48,
     "er_guide_leg_caelid-06": 8,
     "er_guide_leg_dlc-scadu-altus-01": 19,
     "er_guide_leg_dlc-scadu-altus-02": 14,
