@@ -577,7 +577,7 @@ function renderInspector() {
     : "";
   const namedGraceSource = state.onlineNamedGraceByNodeId.get(node.id);
   const namedGraceEvidence = namedGraceSource
-    ? `<div class="inspector-online">命名源 XYZ：${namedGraceSource.name} · ${namedGraceSource.map}<br>source_map_local_xyz X ${namedGraceSource.position[0]} / Y ${namedGraceSource.position[1]} / Z ${namedGraceSource.position[2]}<br>这是独立坐标系证据，不等同于 MapForGoblins XYZ。</div><button data-focus-named-coordinate>打开命名源 XYZ</button>`
+    ? `<div class="inspector-online">命名源 XYZ：${namedGraceSource.name} · ${namedGraceSource.map}<br>source_map_local_xyz X ${namedGraceSource.position[0]} / Y ${namedGraceSource.position[1]} / Z ${namedGraceSource.position[2]}<br>这是独立坐标系证据，不等同于 MapForGoblins XYZ。</div><button class="online-text-location-button" data-focus-named-coordinate>打开命名源 XYZ</button>`
     : "";
   const candidateAssessments = [...new Map(
     connections
