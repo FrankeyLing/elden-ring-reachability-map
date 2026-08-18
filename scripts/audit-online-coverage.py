@@ -157,6 +157,70 @@ ROUTE_ENDPOINT_ALIASES = {
     "roundtablehold": "grace_roundtable_hold_main_table_of_lost_grace",
 }
 
+# Some guide legs intentionally name a location rather than the exact
+# navigational endpoint.  Keep these decisions per leg and per direction:
+# entering a boss arena resolves to the boss gate, while leaving a completed
+# boss area resolves to the post-boss grace/state node.  These are audit
+# bindings only; they do not create traversal edges or claim a physical path.
+ROUTE_ENDPOINT_RESOLUTIONS = {
+    "er_guide_leg_ainsel-04": {
+        "to": "astel_naturalborn_gate",
+    },
+    "er_guide_leg_dlc-scadu-altus-02": {
+        "from": "grace_scadu_altus_main_fort_of_reprimand",
+    },
+    "er_guide_leg_farum-03": {
+        "to": "dragonlord_placidusax_gate",
+    },
+    "er_guide_leg_farum-04": {
+        "to": "maliketh_gate",
+    },
+    "er_guide_leg_limgrave-12": {
+        "from": "grace_limgrave_main_limgrave_tunnels",
+        "to": "grace_limgrave_main_limgrave_tunnels",
+    },
+    "er_guide_leg_liurnia-11": {
+        "from": "grace_liurnia_of_the_lakes_main_black_knife_catacombs",
+        "to": "grace_liurnia_of_the_lakes_main_black_knife_catacombs",
+    },
+    "er_guide_leg_liurnia-12": {
+        "from": "grace_liurnia_of_the_lakes_main_black_knife_catacombs",
+    },
+    "er_guide_leg_mtgelmir-03": {
+        "from": "grace_altus_plateau_main_gelmir_hero_s_grave",
+        "to": "grace_altus_plateau_main_wyndham_catacombs",
+    },
+    "er_guide_leg_nokron-02": {
+        "to": "mimic_tear_gate",
+    },
+    "er_guide_leg_nokron-03": {
+        "from": "grace_nokron_mimic_tear",
+    },
+    "er_guide_leg_weeping-03": {
+        "from": "grace_limgrave_weeping_peninsula_earthbore_cave",
+        "to": "grace_limgrave_weeping_peninsula_earthbore_cave",
+    },
+    "er_guide_leg_weeping-05": {
+        "from": "grace_limgrave_weeping_peninsula_morne_tunnel",
+        "to": "grace_limgrave_weeping_peninsula_morne_tunnel",
+    },
+}
+
+EXPECTED_ROUTE_ENDPOINT_RESOLUTION_LEGS = {
+    "er_guide_leg_ainsel-04",
+    "er_guide_leg_dlc-scadu-altus-02",
+    "er_guide_leg_farum-03",
+    "er_guide_leg_farum-04",
+    "er_guide_leg_limgrave-12",
+    "er_guide_leg_liurnia-11",
+    "er_guide_leg_liurnia-12",
+    "er_guide_leg_mtgelmir-03",
+    "er_guide_leg_nokron-02",
+    "er_guide_leg_nokron-03",
+    "er_guide_leg_weeping-03",
+    "er_guide_leg_weeping-05",
+}
+
 
 def load(relative: str):
     return json.loads((ROOT / relative).read_text(encoding="utf-8"))
@@ -856,8 +920,15 @@ def audit() -> dict:
     normal_profile_path_match = 0
     normal_profile_matches = []
 
-    def route_candidates(name: str, region: str = "") -> list[dict]:
-        nonlocal endpoint_alias_matches
+    endpoint_resolution_matches = 0
+
+    def route_candidates(name: str, region: str = "", leg: dict | None = None, direction: str = "") -> list[dict]:
+        nonlocal endpoint_alias_matches, endpoint_resolution_matches
+        if leg:
+            resolved_id = ROUTE_ENDPOINT_RESOLUTIONS.get(leg["canonical_id"], {}).get(direction)
+            if resolved_id in node_by_id:
+                endpoint_resolution_matches += 1
+                return [node_by_id[resolved_id]]
         name_key = norm(name)
         region_key = norm(region)
         # The guide reuses "Erdtree Sanctuary" for both capital epochs.  The
@@ -873,8 +944,8 @@ def audit() -> dict:
         return candidates_for(label_index, name, region)
 
     for leg in legs["records"]:
-        from_candidates = route_candidates(leg["from"], leg["region_name"])
-        to_candidates = route_candidates(leg["to"], leg["region_name"])
+        from_candidates = route_candidates(leg["from"], leg["region_name"], leg, "from")
+        to_candidates = route_candidates(leg["to"], leg["region_name"], leg, "to")
         if len(from_candidates) == 1 and len(to_candidates) == 1:
             endpoint_exact += 1
             pair = (from_candidates[0]["id"], to_candidates[0]["id"])
@@ -921,6 +992,7 @@ def audit() -> dict:
         "er_guide_leg_dlc-scadu-altus-03",
         "er_guide_leg_dlc-south-03",
         "er_guide_leg_dlc-west-05",
+        "er_guide_leg_mtgelmir-03",
     }
     physical_route_discontinuity_contract = {
         "actual": sorted(item["catalog_id"] for item in exact_endpoint_without_path),
@@ -933,6 +1005,7 @@ def audit() -> dict:
         "er_guide_leg_caelid-04",
         "er_guide_leg_caelid-06",
         "er_guide_leg_dlc-scadu-altus-01",
+        "er_guide_leg_dlc-scadu-altus-02",
         "er_guide_leg_dlc-scadu-altus-04",
         "er_guide_leg_dlc-scadu-altus-05",
         "er_guide_leg_dlc-scadu-altus-07",
@@ -944,6 +1017,17 @@ def audit() -> dict:
     }
     if broad_route_endpoint_contract["actual"] != broad_route_endpoint_contract["expected"]:
         raise ValueError(f"broad route endpoint contract failed: {broad_route_endpoint_contract}")
+    route_endpoint_resolution_contract = {
+        "expected_bindings": 17,
+        "actual_bindings": endpoint_resolution_matches,
+        "expected_leg_ids": sorted(EXPECTED_ROUTE_ENDPOINT_RESOLUTION_LEGS),
+        "resolved_leg_ids": sorted(ROUTE_ENDPOINT_RESOLUTIONS),
+    }
+    if (
+        route_endpoint_resolution_contract["actual_bindings"] != route_endpoint_resolution_contract["expected_bindings"]
+        or route_endpoint_resolution_contract["resolved_leg_ids"] != route_endpoint_resolution_contract["expected_leg_ids"]
+    ):
+        raise ValueError(f"route endpoint resolution contract failed: {route_endpoint_resolution_contract}")
 
     return {
         "graph": {
@@ -1006,6 +1090,7 @@ def audit() -> dict:
             "records": len(legs["records"]),
             "endpoint_exact_matches": endpoint_exact,
             "endpoint_alias_matches": endpoint_alias_matches,
+            "endpoint_resolution_matches": endpoint_resolution_matches,
             "endpoint_ambiguous": endpoint_ambiguous,
             "direct_or_reverse_formal_edge_matches": direct_edge_match,
             "formal_topology_path_matches": topology_path_match,
@@ -1015,6 +1100,7 @@ def audit() -> dict:
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
             "physical_route_discontinuity_contract": physical_route_discontinuity_contract,
             "broad_route_endpoint_contract": broad_route_endpoint_contract,
+            "endpoint_resolution_contract": route_endpoint_resolution_contract,
         },
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,
