@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.122-online-multiplane",
+  "version": "1.0.123-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1970,7 +1970,8 @@
       "y": 85,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-dlc-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+      "sourceEvidence": ["game8-dlc-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 407, "recordId": 38484400, "name": "Rellana, Twin Moon Knight", "map": "area 67 / grid 48,44", "position": [-52.13800048828125, 88.95500183105469, 75.77300262451172], "coordinateSpace": "game_world_xyz" },
       "description": "蕾拉娜 Boss 前的门节点；击败 Boss 后才能继续到达后方赐福。"
     },
     {
@@ -4910,7 +4911,8 @@
       "y": 600,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-belurat-cross-check"],
+      "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-belurat-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 402, "recordId": 38464600, "name": "Divine Beast Dancing Lion", "map": "area 41 / grid 46,46", "position": [-58.0, 88.95500183105469, -23.0], "coordinateSpace": "game_world_xyz" },
       "description": "Belurat legacy-dungeon boss gate."
     },
     {
@@ -5362,7 +5364,8 @@
       "y": 690,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-scaduview", "game8-gaius-cross-check", "eip-scaduview-cross-check"],
+      "sourceEvidence": ["eldenpedia-scaduview", "game8-gaius-cross-check", "eip-scaduview-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 415, "recordId": 39494800, "name": "Commander Gaius", "map": "area 67 / grid 49,48", "position": [76.13800048828125, 88.95500183105469, 13.773002624511719], "coordinateSpace": "game_world_xyz" },
       "description": "Mounted boss gate in the field behind Shadow Keep."
     },
     {
@@ -5573,7 +5576,8 @@
       "y": 320,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rauh", "game8-romina-cross-check", "neoseeker-rauh-west-cross-check"],
+      "sourceEvidence": ["eldenpedia-rauh", "game8-romina-cross-check", "neoseeker-rauh-west-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 397, "recordId": 38444500, "name": "Romina, Saint of the Bud", "map": "area 67 / grid 44,45", "position": [-50.0, 88.95500183105469, 160.0], "coordinateSpace": "game_world_xyz" },
       "description": "Main route boss gate that unlocks the Sealing Tree."
     },
     {
@@ -5798,7 +5802,8 @@
       "y": 780,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-jagged-peak-cross-check", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check"],
+      "sourceEvidence": ["game8-jagged-peak-cross-check", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 411, "recordId": 38543901, "name": "Ancient Dragon Senessax", "map": "area 41 / grid 54,39", "position": [-70.0, 88.95500183105469, 30.0], "coordinateSpace": "game_world_xyz" },
       "description": "Optional field-boss hazard on the ascent; the grace can be reached by bypassing it."
     },
     {
@@ -5843,7 +5848,8 @@
       "y": 780,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 410, "recordId": 38543900, "name": "Bayle the Dread", "map": "area 67 / grid 54,39", "position": [166.13800048828125, 88.95500183105469, -33.77301025390625], "coordinateSpace": "game_world_xyz" },
       "description": "Jagged Peak final boss gate."
     },
     {
@@ -6626,7 +6632,8 @@
       "y": 760,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "sourceEvidence": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 417, "recordId": 39504800, "name": "Scadutree Avatar", "map": "area 67 / grid 50,48", "position": [-43.13800048828125, 88.95500183105469, 175.77301025390625], "coordinateSpace": "game_world_xyz" },
       "description": "Optional remembrance boss at the Scadutree Base reached from Tree-Worship Sanctum."
     },
     {
@@ -9497,7 +9504,9 @@
     },
     {
       "id": "black_knight_edredd_fort_gate", "label": "Black Knight Edredd (Fort of Reprimand)", "kind": "boss", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Main hall", "worldEpoch": "shadow_realm", "x": 620, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "description": "Optional Black Knight boss in the fort main hall; drops Aspects of the Crucible: Wings."
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 413, "recordId": 39494301, "name": "Black Knight Edredd", "map": "area 41 / grid 49,43", "position": [33.0, 88.95500183105469, -100.0], "coordinateSpace": "game_world_xyz" },
+      "description": "Optional Black Knight boss in the fort main hall; drops Aspects of the Crucible: Wings."
     },
     {
       "id": "fort_reprimand_post_boss_state", "label": "Fort of Reprimand (post-Edredd state)", "kind": "state", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Main hall return state", "worldEpoch": "shadow_realm", "x": 680, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9529,7 +9538,9 @@
     },
     {
       "id": "black_knight_garrew_fog_rift_gate", "label": "Black Knight Garrew (Fog Rift Fort)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Lower fort bridge / courtyard", "worldEpoch": "shadow_realm", "x": 320, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Optional Garrew encounter inside the lower fort; defeating him yields the Black Steel Greatshield."
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 405, "recordId": 38474500, "name": "Black Knight Garrew", "map": "area 41 / grid 47,45", "position": [-30.0, 88.95500183105469, -130.0], "coordinateSpace": "game_world_xyz" },
+      "description": "Optional Garrew encounter inside the lower fort; defeating him yields the Black Steel Greatshield."
     },
     {
       "id": "fog_rift_fort_post_boss_state", "label": "Fog Rift Fort (post-boss state)", "kind": "state", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Garrew bridge return state", "worldEpoch": "shadow_realm", "x": 380, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
