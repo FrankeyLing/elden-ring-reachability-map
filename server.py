@@ -30,6 +30,7 @@ ROUTE_TARGET_ITEM_SNAPSHOT_FILES = {
 }
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
+ONLINE_PROJECTED_GRACE_FILE = ROOT / "data" / "v1" / "source-snapshots" / "elden-ring-map-markers-20260818.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_MAP_CONVERSION_FILES = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-base-20260818.json",
@@ -160,6 +161,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/grace-positions":
             self.send_grace_positions(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/projected-graces":
+            self.send_projected_graces(parse_qs(parsed.query))
             return
         if parsed.path == "/api/catalog/boss-positions":
             self.send_boss_positions(parse_qs(parsed.query))
@@ -375,6 +379,46 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "records": records[:limit],
                 "routeable": False,
                 "note": "raw online grace positions; the source index has no reliable grace names, so names are intentionally not guessed",
+            }
+        )
+
+    def send_projected_graces(self, query: dict[str, list[str]]):
+        master = query.get("master", [""])[0].strip().upper()
+        search = query.get("q", [""])[0].strip().casefold()
+        formal_id = query.get("formal_id", [""])[0].strip()
+        try:
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
+        except ValueError:
+            limit = ONLINE_QUERY_MAX
+        try:
+            payload = json.loads(ONLINE_PROJECTED_GRACE_FILE.read_bytes())
+            records = []
+            for record in payload["records"]:
+                if master and record.get("master") != master:
+                    continue
+                if formal_id and record.get("formal_id") != formal_id:
+                    continue
+                search_text = " / ".join(
+                    str(value or "")
+                    for value in (record.get("name"), record.get("description"), record.get("formal_id"))
+                )
+                if search and search not in search_text.casefold():
+                    continue
+                records.append(record)
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/projected-grace-query@1",
+                "query": {"q": search, "master": master, "formal_id": formal_id, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "source": payload["source"],
+                "coordinate_space": payload["coordinate_space"],
+                "note": "projected online pins only; formal_id is an identity link, not a game-world XYZ coordinate or traversal edge",
             }
         )
 

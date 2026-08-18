@@ -20,11 +20,17 @@ function coordinateMapKeyForRecord(record, kind) {
 function renderCoordinateLayerMeta() {
   const panel = els.coordinateLayerMeta;
   if (!panel) return;
-  if (state.mapMode !== "coordinates") {
+  if (!["coordinates", "projected"].includes(state.mapMode)) {
     panel.hidden = true;
     return;
   }
   const escape = (value) => String(value ?? "").replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character]));
+  if (state.mapMode === "projected") {
+    const total = state.projectedGraceTotal || state.onlineProjectedGraceRecords.length;
+    panel.innerHTML = `<strong>${escape(state.projectedMaster)}</strong> · 命名赐福投影<br>显示：${state.onlineProjectedGraceRecords.length}/${total} 个赐福锚点<div class="layer-meta-note">坐标空间：master_tile_pixel，px/py 为 10496×10496 主图像素；仅用于在线地图定位，routeable=false，不是游戏 XYZ。</div>`;
+    panel.hidden = false;
+    return;
+  }
   const tile = state.onlineTileRecords.find((record) => record.mapKey === state.coordinateMapId) || {};
   const indexRecord = (state.onlineIndex?.mapKeys?.records || []).find((record) => normalizeCoordinateMapKey(record.mapKey) === state.coordinateMapId) || {};
   const source = state.onlineIndex?.manifest?.source || {};
@@ -47,12 +53,103 @@ function focusOnlineCoordinate(record, kind, label) {
   state.coordinateFocus = { mapKey, position: position.map(Number), label: String(label || "online coordinate"), kind };
   els.coordinateMapSelect.hidden = false;
   els.coordinateEntityKind.hidden = false;
+  els.projectedMasterSelect.hidden = true;
   els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "coordinates"));
   populateCoordinateMapSelect();
   els.coordinateMapSelect.value = state.coordinateMapId;
   loadCoordinateItems();
   els.mapToast.textContent = state.coordinateFocus.label + " · located on " + mapKey + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
   return true;
+}
+
+function populateProjectedMasterSelect() {
+  els.projectedMasterSelect.value = state.projectedMaster;
+}
+
+async function loadProjectedGraces() {
+  state.onlineProjectedGraceRecords = [];
+  state.projectedGraceTotal = 0;
+  try {
+    const master = encodeURIComponent(state.projectedMaster);
+    const response = await fetch("/api/catalog/projected-graces?master=" + master + "&limit=1000", { cache: "no-store" });
+    if (!response.ok) throw new Error("projected grace layer HTTP " + response.status);
+    const payload = await response.json();
+    state.onlineProjectedGraceRecords = payload.records || [];
+    state.projectedGraceTotal = payload.total_matches || state.onlineProjectedGraceRecords.length;
+  } catch (error) {
+    els.mapToast.textContent = "在线投影层加载失败：" + error.message;
+  }
+  renderProjectedMap();
+}
+
+function focusProjectedCoordinate(record, label) {
+  const position = Array.isArray(record?.position) ? record.position : [];
+  if (!record?.master || position.length !== 2 || position.some((value) => !Number.isFinite(Number(value)))) return false;
+  state.mapMode = "projected";
+  state.projectedMaster = record.master;
+  state.projectedFocus = { master: record.master, position: position.map(Number), label: String(label || record.name || "projected grace") };
+  state.coordinateBounds = null;
+  els.coordinateMapSelect.hidden = true;
+  els.coordinateEntityKind.hidden = true;
+  els.projectedMasterSelect.hidden = false;
+  els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "projected"));
+  populateProjectedMasterSelect();
+  loadProjectedGraces();
+  els.mapToast.textContent = state.projectedFocus.label + " · " + record.master + " · px " + position[0] + " / py " + position[1];
+  return true;
+}
+
+function renderProjectedMap() {
+  els.edgeLayer.innerHTML = "";
+  els.regionLabels.innerHTML = "";
+  els.nodeLayer.innerHTML = "";
+  renderCoordinateLayerMeta();
+  const records = state.onlineProjectedGraceRecords.filter((record) => record.master === state.projectedMaster);
+  const width = 10496;
+  const height = 10496;
+  state.coordinateBounds = { minX: 0, minY: 0, width, height };
+  const map = document.getElementById("topology-map");
+  map.setAttribute("viewBox", "0 0 " + width + " " + height);
+  const grid = document.querySelector(".map-grid");
+  if (grid) {
+    grid.setAttribute("x", "0");
+    grid.setAttribute("y", "0");
+    grid.setAttribute("width", String(width));
+    grid.setAttribute("height", String(height));
+  }
+  setZoom(state.zoom);
+  const axis = svg("text", { x: 160, y: 220, class: "coordinate-axis" });
+  axis.textContent = state.projectedMaster + " · master tile pixels (px/py) · named grace anchors";
+  els.regionLabels.appendChild(axis);
+  records.forEach((record) => {
+    const x = Number(record.position?.[0]);
+    const y = Number(record.position?.[1]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+    const group = svg("g", { class: "coordinate-poi projected-grace", transform: "translate(" + x + " " + y + ")" });
+    const circle = svg("circle", { r: 42, class: "node-hit" });
+    const core = svg("circle", { r: 22, class: "node-core projected-grace" });
+    const title = svg("title");
+    title.textContent = record.name + " · " + record.master + " · px " + x + " / py " + y;
+    group.append(circle, core, title);
+    if (records.length <= 90 || record.formal_id) {
+      const label = svg("text", { x: 55, y: 5, class: "coordinate-poi-label" });
+      label.textContent = record.name;
+      group.appendChild(label);
+    }
+    group.addEventListener("click", () => renderProjectedAnchorInspector(record, record.name));
+    els.nodeLayer.appendChild(group);
+  });
+  const focus = state.projectedFocus;
+  if (focus && focus.master === state.projectedMaster) {
+    const x = Number(focus.position[0]);
+    const y = Number(focus.position[1]);
+    if (Number.isFinite(x) && Number.isFinite(y)) {
+      const focusGroup = svg("g", { class: "coordinate-focus", transform: "translate(" + x + " " + y + ")" });
+      focusGroup.append(svg("circle", { r: 100, class: "coordinate-focus-ring" }), svg("circle", { r: 10, class: "coordinate-focus-core" }));
+      els.nodeLayer.appendChild(focusGroup);
+    }
+  }
+  els.graphStats.textContent = state.projectedMaster + " · " + records.length + "/" + (state.projectedGraceTotal || records.length) + " named grace projected anchors · master_tile_pixel · routeable=false";
 }
 
 function populateCoordinateMapSelect() {

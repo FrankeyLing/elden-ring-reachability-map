@@ -6,9 +6,11 @@ const state = {
  data: null,
   mapMode: "topology",
   coordinateMapId: "m10_00_00",
+  projectedMaster: "M00",
   coordinateEntityKind: "enemy",
   coordinateBounds: null,
   coordinateFocus: null,
+  projectedFocus: null,
   onlineIndex: null,
   achievementCatalog: null,
  onlineBossByNodeId: new Map(),
@@ -21,12 +23,14 @@ const state = {
   onlineItemRecords: [],
   onlineEntityRecords: [],
   onlineGatheringRecords: [],
+  onlineProjectedGraceRecords: [],
   coordinateItemTotal: 0,
   coordinateGracePositionTotal: 0,
   coordinateBossPositionTotal: 0,
   coordinateMapConversionTotal: 0,
   coordinateEntityTotal: 0,
   coordinateGatheringTotal: 0,
+  projectedGraceTotal: 0,
  nodes: new Map(),
   layer: "all",
   origin: "grace_avenue_balcony",
@@ -69,6 +73,7 @@ const els = {
  copyRoute: document.getElementById("copy-route"),
   coordinateMapSelect: document.getElementById("coordinate-map-select"),
   coordinateEntityKind: document.getElementById("coordinate-entity-kind"),
+  projectedMasterSelect: document.getElementById("projected-master-select"),
   mapModes: document.querySelectorAll(".map-mode"),
  onlinePoiKind: document.getElementById("online-poi-kind"),
   onlinePoiQuery: document.getElementById("online-poi-query"),
@@ -460,6 +465,10 @@ function renderGraph() {
     renderCoordinateMap();
     return;
   }
+  if (state.mapMode === "projected") {
+    renderProjectedMap();
+    return;
+  }
   renderRegions();
   renderEdges();
   renderNodes();
@@ -480,6 +489,15 @@ function renderOnlineCoordinateInspector(record, kind, label) {
   els.nodeInspector.querySelector("[data-refocus-online-coordinate]").addEventListener("click", () => {
     focusOnlineCoordinate(record, kind, label);
   });
+}
+
+function renderProjectedAnchorInspector(record, label) {
+  if (!record) return;
+  const safe = (value) => String(value ?? "").replace(/[&<>\"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character]));
+  const position = Array.isArray(record.position) ? record.position : [];
+  const formal = record.formal_id && state.nodes.has(record.formal_id) ? nodeLabel(record.formal_id) : "未绑定正式节点";
+  els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || record.name || "Projected grace")}</div><div class="inspector-type">ONLINE PROJECTED · ROUTEABLE=false</div></div><div class="inspector-region">${safe(record.description || record.master)}</div></div><p class="inspector-description">公开在线地图的主图投影锚点。它用于命名定位和层间对照，不是游戏原始 XYZ，不会创建路线边。</p><div class="inspector-online">Source marker: ${safe(record.source_id)}<br>Layer: ${safe(record.master)} · Coordinate space: master_tile_pixel<br>px ${safe(position[0])} / py ${safe(position[1])}<br>Formal identity: ${safe(formal)}</div><button class="online-text-location-button" data-refocus-projected-anchor>Focus this projection</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
+  els.nodeInspector.querySelector("[data-refocus-projected-anchor]").addEventListener("click", () => focusProjectedCoordinate(record, label));
 }
 
 function renderInspector() {
@@ -579,6 +597,7 @@ function renderInspector() {
       renderCoordinateLayerMeta();
       els.coordinateMapSelect.hidden = true;
       els.coordinateEntityKind.hidden = true;
+      els.projectedMasterSelect.hidden = true;
       els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
       renderGraph();
       selectNode(focusLocationAnchorButton.dataset.focusLocationAnchor);
@@ -633,7 +652,7 @@ function planAndRender() {
 
 function setZoom(nextZoom) {
   state.zoom = Math.max(0.7, Math.min(1.7, nextZoom));
-  if (state.mapMode === "coordinates" && state.coordinateBounds) {
+  if (["coordinates", "projected"].includes(state.mapMode) && state.coordinateBounds) {
     const bounds = state.coordinateBounds;
     const centerX = bounds.minX + bounds.width / 2;
     const centerY = bounds.minY + bounds.height / 2;
@@ -646,8 +665,8 @@ function setZoom(nextZoom) {
 }
 
 function applyMapCoordinateSpace() {
-  const width = state.data?.meta?.coordinateSpace?.width || 1000;
-  const height = state.data?.meta?.coordinateSpace?.height || 600;
+  const width = state.mapMode === "projected" ? 10496 : state.data?.meta?.coordinateSpace?.width || 1000;
+  const height = state.mapMode === "projected" ? 10496 : state.data?.meta?.coordinateSpace?.height || 600;
   const map = document.getElementById("topology-map");
   map.setAttribute("viewBox", `0 0 ${width} ${height}`);
   const grid = document.querySelector(".map-grid");
@@ -682,6 +701,8 @@ function renderOnlinePoiResults(payload, kind) {
       title.textContent = (record.names || []).join(" / ") || ("map point " + record.id);
     } else if (kind === "grace-positions") {
       title.textContent = "raw grace position #" + record.source_index + " · " + (record.major_region || record.sub_region || "unknown region");
+    } else if (kind === "projected-graces") {
+      title.textContent = record.name || "projected grace";
     } else {
       title.textContent = record.name || record.model || (record.kind ? record.kind + " entity" : "online record");
     }
@@ -700,7 +721,9 @@ function renderOnlinePoiResults(payload, kind) {
         + (requirements ? " · 条件：" + requirements : "");
     } else {
       const position = record.position || [];
-      detail.textContent = (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+      detail.textContent = kind === "projected-graces"
+        ? record.master + " · px " + position[0] + " / py " + position[1] + (record.formal_id ? " · " + nodeLabel(record.formal_id) : " · 未绑定正式节点")
+        : (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
     }
     row.append(title, detail);
     if (kind === "achievements") {
@@ -754,6 +777,7 @@ function renderOnlinePoiResults(payload, kind) {
             renderCoordinateLayerMeta();
             els.coordinateMapSelect.hidden = true;
             els.coordinateEntityKind.hidden = true;
+            els.projectedMasterSelect.hidden = true;
             els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
             planAndRender();
             els.mapToast.textContent = record.name + " · " + evidence.item + "：文本地点证据，不声明 XYZ 坐标。";
@@ -787,6 +811,7 @@ function renderOnlinePoiResults(payload, kind) {
             renderCoordinateLayerMeta();
             els.coordinateMapSelect.hidden = true;
             els.coordinateEntityKind.hidden = true;
+            els.projectedMasterSelect.hidden = true;
             els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
             planAndRender();
             els.mapToast.textContent = record.name + " · " + (group.requirement || "collection requirement") + "：已打开正式位置锚点 " + nodeLabel(target) + "；不代表物品本身已成为可通行边。";
@@ -805,6 +830,7 @@ function renderOnlinePoiResults(payload, kind) {
           state.coordinateEntityKind = "all";
           els.coordinateMapSelect.hidden = false;
           els.coordinateEntityKind.hidden = false;
+          els.projectedMasterSelect.hidden = true;
           els.coordinateEntityKind.value = "all";
           els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "coordinates"));
           populateCoordinateMapSelect();
@@ -827,6 +853,7 @@ function renderOnlinePoiResults(payload, kind) {
           renderCoordinateLayerMeta();
           els.coordinateMapSelect.hidden = true;
           els.coordinateEntityKind.hidden = true;
+          els.projectedMasterSelect.hidden = true;
           els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "topology"));
           planAndRender();
           els.mapToast.textContent = record.name + " · 已定位正式目标节点：" + nodeLabel(targetId) + (originId ? " · 起点：" + nodeLabel(originId) : "");
@@ -838,6 +865,13 @@ function renderOnlinePoiResults(payload, kind) {
         const label = title.textContent || "online coordinate";
         if (!focusOnlineCoordinate(record, kind, label)) {
           els.mapToast.textContent = "该在线记录缺少可定位的地图层或 XYZ。";
+        }
+      });
+    } else if (kind === "projected-graces") {
+      row.classList.add("clickable");
+      row.addEventListener("click", () => {
+        if (!focusProjectedCoordinate(record, record.name)) {
+          els.mapToast.textContent = "该投影记录缺少有效 px/py。";
         }
       });
     }
@@ -871,13 +905,20 @@ function wireEvents() {
     renderCoordinateLayerMeta();
     els.coordinateMapSelect.hidden = state.mapMode !== "coordinates";
     els.coordinateEntityKind.hidden = state.mapMode !== "coordinates";
+    els.projectedMasterSelect.hidden = state.mapMode !== "projected";
     if (state.mapMode === "coordinates") {
       populateCoordinateMapSelect();
       renderCoordinateMap();
       loadCoordinateItems();
+    } else if (state.mapMode === "projected") {
+      state.coordinateBounds = null;
+      state.coordinateFocus = null;
+      populateProjectedMasterSelect();
+      loadProjectedGraces();
     } else {
       state.coordinateBounds = null;
       state.coordinateFocus = null;
+      state.projectedFocus = null;
       applyMapCoordinateSpace();
       renderGraph();
     }
@@ -890,6 +931,11 @@ function wireEvents() {
   els.coordinateEntityKind.addEventListener("change", () => {
     state.coordinateEntityKind = els.coordinateEntityKind.value;
     loadCoordinateItems();
+  });
+  els.projectedMasterSelect.addEventListener("change", () => {
+    state.projectedMaster = els.projectedMasterSelect.value;
+    state.projectedFocus = null;
+    loadProjectedGraces();
   });
  els.origin.addEventListener("change", () => { state.origin = els.origin.value; state.selectedNode = state.origin; planAndRender(); });
   els.destination.addEventListener("change", () => { state.destination = els.destination.value; state.selectedNode = state.destination; planAndRender(); });
