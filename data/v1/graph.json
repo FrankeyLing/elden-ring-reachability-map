@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.117-online-multiplane",
+  "version": "1.0.118-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -922,6 +922,26 @@
       "hint": "The sealed spirit spring near Temple Town Ruins has been opened, enabling the chained Torrent jumps to the Northern Nameless Mausoleum plateau."
     },
     {
+      "id": "blackgaol_knight_defeated",
+      "label": "Blackgaol Knight defeated",
+      "hint": "The Blackgaol Knight in the Western Nameless Mausoleum has been cleared."
+    },
+    {
+      "id": "dancer_of_ranah_defeated",
+      "label": "Dancer of Ranah defeated",
+      "hint": "The Dancer of Ranah in the Southern Nameless Mausoleum has been cleared."
+    },
+    {
+      "id": "red_bear_defeated",
+      "label": "Red Bear defeated",
+      "hint": "The Red Bear in the Northern Nameless Mausoleum has been cleared."
+    },
+    {
+      "id": "rakshasa_defeated",
+      "label": "Rakshasa defeated",
+      "hint": "Rakshasa in the Eastern Nameless Mausoleum has been cleared."
+    },
+    {
       "id": "scaly_misbegotten_morne_tunnel_defeated",
       "label": "Morne Tunnel Scaly Misbegotten defeated",
       "hint": "The Scaly Misbegotten boss at the bottom of Morne Tunnel has been cleared."
@@ -1110,6 +1130,10 @@
     { "id": "eldenpedia-northern-nameless-mausoleum", "label": "Eldenpedia / Northern Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Northern_Nameless_Mausoleum", "grade": "A" },
     { "id": "game8-southern-nameless-mausoleum-cross-check", "label": "Game8 / Southern Nameless Mausoleum route", "url": "https://game8.co/games/Elden-Ring/archives/462520", "grade": "B" },
     { "id": "gamerguides-northern-nameless-mausoleum-cross-check", "label": "Gamer Guides / Northern Nameless Mausoleum route", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/database/locations/gravesite-plain/northern-nameless-mausoleum", "grade": "B" },
+    { "id": "eldenpedia-blackgaol-knight", "label": "Eldenpedia / Blackgaol Knight", "url": "https://eldenring.wiki.gg/wiki/Blackgaol_Knight", "grade": "A" },
+    { "id": "eldenpedia-dancer-of-ranah", "label": "Eldenpedia / Dancer of Ranah", "url": "https://eldenring.wiki.gg/wiki/Dancer_of_Ranah", "grade": "A" },
+    { "id": "eldenpedia-red-bear", "label": "Eldenpedia / Red Bear", "url": "https://eldenring.wiki.gg/wiki/Red_Bear", "grade": "A" },
+    { "id": "eldenpedia-rakshasa", "label": "Eldenpedia / Rakshasa", "url": "https://eldenring.wiki.gg/wiki/Rakshasa", "grade": "A" },
     { "id": "eldenpedia-abyssal", "label": "Eldenpedia / Abyssal Woods", "url": "https://eldenring.wiki.gg/wiki/Abyssal_Woods", "grade": "A" },
     { "id": "eldenpedia-midra-manse", "label": "Eldenpedia / Midra's Manse", "url": "https://eldenring.wiki.gg/wiki/Midra%27s_Manse", "grade": "A" },
     { "id": "game8-jagged-peak-cross-check", "label": "Game8 / Jagged Peak map and route", "url": "https://game8.co/games/Elden-Ring/archives/458835", "grade": "B" },
@@ -4482,6 +4506,36 @@
       "description": "Western Gravesite Plain boss-landmark, located west of Scorched Ruins. The online XYZ sidecar is preserved separately from the abstract layout coordinate."
     },
     {
+      "id": "blackgaol_knight_gate",
+      "label": "Blackgaol Knight",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Western Nameless Mausoleum arena",
+      "worldEpoch": "shadow_realm",
+      "x": 90,
+      "y": 730,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum", "eldenpedia-nameless-mausoleums"],
+      "description": "Boss-room route target inside the Western Nameless Mausoleum. The current Map for Goblins Boss snapshot has no matching Blackgaol Knight record, so no Boss XYZ is claimed."
+    },
+    {
+      "id": "blackgaol_knight_post_state",
+      "label": "Western Nameless Mausoleum cleared",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Western Nameless Mausoleum arena exit",
+      "worldEpoch": "shadow_realm",
+      "x": 120,
+      "y": 730,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"],
+      "description": "Cleared-state return point after Blackgaol Knight; it is a state node, not a fabricated additional Site of Grace."
+    },
+    {
       "id": "grace_shadow_realm_three_path_cross",
       "label": "Three-Path Cross",
       "kind": "grace",
@@ -5099,6 +5153,36 @@
       "description": "Northern Nameless Mausoleum on the high plateau north of Rauh Base. The route is intentionally conditional on the nearby sealed Spiritspring being opened."
     },
     {
+      "id": "red_bear_gate",
+      "label": "Red Bear",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Northern Nameless Mausoleum arena",
+      "worldEpoch": "shadow_realm",
+      "x": 880,
+      "y": 780,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check"],
+      "description": "Boss-room route target inside the Northern Nameless Mausoleum. The current online Boss snapshot has no matching Red Bear record, so no Boss XYZ is claimed."
+    },
+    {
+      "id": "red_bear_post_state",
+      "label": "Northern Nameless Mausoleum cleared",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Northern Nameless Mausoleum arena exit",
+      "worldEpoch": "shadow_realm",
+      "x": 910,
+      "y": 780,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum"],
+      "description": "Cleared-state return point after Red Bear; no additional grace is fabricated."
+    },
+    {
       "id": "grace_land_of_the_tower_rauh_base_temple_town_ruins",
       "label": "Temple Town Ruins",
       "kind": "grace",
@@ -5566,6 +5650,36 @@
       "description": "The eastern of the four Nameless Mausoleums, reached from the Recluses' River canyon branch. The boss arena is not silently promoted to a route edge; this node represents the physical landmark and entrance."
     },
     {
+      "id": "rakshasa_gate",
+      "label": "Rakshasa",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Scadu Altus",
+      "floor": "Eastern Nameless Mausoleum arena",
+      "worldEpoch": "shadow_realm",
+      "x": 960,
+      "y": 900,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums"],
+      "description": "Boss-room route target inside the Eastern Nameless Mausoleum. The current online Boss snapshot has no matching Rakshasa record, so no Boss XYZ is claimed."
+    },
+    {
+      "id": "rakshasa_post_state",
+      "label": "Eastern Nameless Mausoleum cleared",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Scadu Altus",
+      "floor": "Eastern Nameless Mausoleum arena exit",
+      "worldEpoch": "shadow_realm",
+      "x": 990,
+      "y": 900,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum"],
+      "description": "Cleared-state return point after Rakshasa; no additional grace is fabricated."
+    },
+    {
       "id": "grace_scadu_altus_main_recluses_river_downstream",
       "label": "Recluses' River Downstream",
       "kind": "grace",
@@ -5820,6 +5934,36 @@
       "sourceEvidence": ["eldenpedia-southern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-cerulean-coast", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
       "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Southern Nameless Mausoleum", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz" },
       "description": "Southern Cerulean Coast boss-landmark reached through the coastal cave route from Cerulean Coast West; the online XYZ sidecar is not used as rendered map geometry."
+    },
+    {
+      "id": "dancer_of_ranah_gate",
+      "label": "Dancer of Ranah",
+      "kind": "boss",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Southern Nameless Mausoleum arena",
+      "worldEpoch": "shadow_realm",
+      "x": 650,
+      "y": 940,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum", "game8-southern-nameless-mausoleum-cross-check"],
+      "description": "Boss-room route target inside the Southern Nameless Mausoleum. The current online Boss snapshot has no matching Dancer of Ranah record, so no Boss XYZ is claimed."
+    },
+    {
+      "id": "dancer_of_ranah_post_state",
+      "label": "Southern Nameless Mausoleum cleared",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Southern Nameless Mausoleum arena exit",
+      "worldEpoch": "shadow_realm",
+      "x": 680,
+      "y": 940,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum"],
+      "description": "Cleared-state return point after Dancer of Ranah; no extra grace is fabricated."
     },
     {
       "id": "grace_gravesite_plain_cerulean_coast_cerulean_coast_cross",
@@ -17780,6 +17924,18 @@
     ,{ "id": "northern-mausoleum-spring-to-temple-town", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "grace_land_of_the_tower_rauh_base_temple_town_ruins", "mode": "Northern Nameless Mausoleum Spiritspring return to Temple Town Ruins", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "rauh_surface_spiritspring_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "game8-rauh-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the sealed Spiritspring staging point to Temple Town Ruins before taking the lower Rauh road.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
     ,{ "id": "northern-mausoleum-spring-to-northern-mausoleum", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "landmark_northern_nameless_mausoleum", "mode": "Unsealed Spiritspring jumps to Northern Nameless Mausoleum", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Break the nearby cairn, then chain the Spiritspring jumps to the high plateau; without the condition this edge is unavailable.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "cross_checked"] }
     ,{ "id": "northern-nameless-mausoleum-to-spring", "from": "landmark_northern_nameless_mausoleum", "to": "northern_nameless_mausoleum_spiritspring_seal", "mode": "Northern Nameless Mausoleum return via Spiritspring", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump_return", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring chain to return from the high plateau; no normal road or elevator is invented.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "western-mausoleum-to-blackgaol", "from": "landmark_western_nameless_mausoleum", "to": "blackgaol_knight_gate", "mode": "Western Nameless Mausoleum entrance to Blackgaol Knight", "cost": 2, "risk": 8, "direction": "forward", "transitionType": "nameless_mausoleum_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Enter the Western Nameless Mausoleum arena; the Boss snapshot has no matching raw coordinate, so the Boss node remains an abstract topology target.", "tags": ["boss", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "blackgaol-to-cleared-state", "from": "blackgaol_knight_gate", "to": "blackgaol_knight_post_state", "mode": "Blackgaol Knight completion", "cost": 2, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["blackgaol_knight_defeated"], "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state return route after Blackgaol Knight is defeated.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
+    ,{ "id": "blackgaol-post-to-western-mausoleum", "from": "blackgaol_knight_post_state", "to": "landmark_western_nameless_mausoleum", "mode": "Blackgaol Knight cleared return to Western Nameless Mausoleum", "cost": 2, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["blackgaol_knight_defeated"], "sourceEvidence": ["eldenpedia-blackgaol-knight", "eldenpedia-western-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Leave the cleared arena and return to the mausoleum entrance landmark.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "southern-mausoleum-to-dancer", "from": "landmark_southern_nameless_mausoleum", "to": "dancer_of_ranah_gate", "mode": "Southern Nameless Mausoleum entrance to Dancer of Ranah", "cost": 2, "risk": 8, "direction": "forward", "transitionType": "nameless_mausoleum_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum", "game8-southern-nameless-mausoleum-cross-check"], "verificationState": "online_cross_checked", "note": "Enter the Southern Nameless Mausoleum arena; no raw Boss XYZ is claimed because the current online Boss snapshot has no matching record.", "tags": ["boss", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "dancer-to-cleared-state", "from": "dancer_of_ranah_gate", "to": "dancer_of_ranah_post_state", "mode": "Dancer of Ranah completion", "cost": 2, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["dancer_of_ranah_defeated"], "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state return route after Dancer of Ranah is defeated.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
+    ,{ "id": "dancer-post-to-southern-mausoleum", "from": "dancer_of_ranah_post_state", "to": "landmark_southern_nameless_mausoleum", "mode": "Dancer of Ranah cleared return to Southern Nameless Mausoleum", "cost": 2, "risk": 8, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["dancer_of_ranah_defeated"], "sourceEvidence": ["eldenpedia-dancer-of-ranah", "eldenpedia-southern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Leave the cleared arena and return to the mausoleum entrance landmark.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "northern-mausoleum-to-red-bear", "from": "landmark_northern_nameless_mausoleum", "to": "red_bear_gate", "mode": "Northern Nameless Mausoleum entrance to Red Bear", "cost": 2, "risk": 9, "direction": "forward", "transitionType": "nameless_mausoleum_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check"], "verificationState": "online_cross_checked", "note": "Enter the Northern Nameless Mausoleum arena after the Spiritspring approach; no raw Boss XYZ is claimed.", "tags": ["boss", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "red-bear-to-cleared-state", "from": "red_bear_gate", "to": "red_bear_post_state", "mode": "Red Bear completion", "cost": 2, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["red_bear_defeated"], "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state return route after Red Bear is defeated.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
+    ,{ "id": "red-bear-post-to-northern-mausoleum", "from": "red_bear_post_state", "to": "landmark_northern_nameless_mausoleum", "mode": "Red Bear cleared return to Northern Nameless Mausoleum", "cost": 2, "risk": 9, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["red_bear_defeated"], "sourceEvidence": ["eldenpedia-red-bear", "eldenpedia-northern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Leave the cleared arena and return to the mausoleum entrance landmark.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "eastern-mausoleum-to-rakshasa", "from": "landmark_eastern_nameless_mausoleum", "to": "rakshasa_gate", "mode": "Eastern Nameless Mausoleum entrance to Rakshasa", "cost": 2, "risk": 9, "direction": "forward", "transitionType": "nameless_mausoleum_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums"], "verificationState": "online_cross_checked", "note": "Enter the Eastern Nameless Mausoleum arena; no raw Boss XYZ is claimed because the current online Boss snapshot has no matching record.", "tags": ["boss", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "rakshasa-to-cleared-state", "from": "rakshasa_gate", "to": "rakshasa_post_state", "mode": "Rakshasa completion", "cost": 2, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["rakshasa_defeated"], "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state return route after Rakshasa is defeated.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
+    ,{ "id": "rakshasa-post-to-eastern-mausoleum", "from": "rakshasa_post_state", "to": "landmark_eastern_nameless_mausoleum", "mode": "Rakshasa cleared return to Eastern Nameless Mausoleum", "cost": 2, "risk": 9, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["rakshasa_defeated"], "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Leave the cleared arena and return to the mausoleum entrance landmark.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17801,8 +17957,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 712,
-    "formalRouteEdgeCount": 1127,
+    "formalNodeCount": 720,
+    "formalRouteEdgeCount": 1139,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
