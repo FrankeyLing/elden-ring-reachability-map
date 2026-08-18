@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.134-online-multiplane",
+  "version": "1.0.135-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -8318,7 +8318,8 @@
       "y": 1035,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 171, "recordId": 320100, "name": "Limgrave Tunnels", "map": "area 60 / grid 43,37", "position": [-121.69999694824219, 67.55999755859375, -34.93000030517578], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the bottom of the entrance elevator in the Limgrave mining tunnel."
     },
     {
@@ -8363,7 +8364,8 @@
       "y": 940,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check"],
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 152, "recordId": 310300, "name": "Groveside Cave", "map": "area 31 / grid 3,0", "position": [-59.5629997253418, 110.81800079345703, -11.038999557495117], "coordinateSpace": "game_world_xyz" },
       "description": "Grace inside the cave west of the Church of Elleh and north of the early Limgrave road."
     },
     {
@@ -8408,7 +8410,8 @@
       "y": 1050,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 163, "recordId": 311500, "name": "Coastal Cave", "map": "area 31 / grid 15,0", "position": [48.106998443603516, -0.3319999873638153, -41.90700149536133], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the beach cave west of the Church of Elleh."
     },
     {
@@ -8544,7 +8547,8 @@
       "y": 960,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-murkwater-cave", "game8-patches-murkwater-cross-check", "gamerguides-patches-cross-check"],
+      "sourceEvidence": ["eldenpedia-murkwater-cave", "game8-patches-murkwater-cross-check", "gamerguides-patches-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 149, "recordId": 310000, "name": "Murkwater Cave", "map": "area 60 / grid 43,37", "position": [75.23999786376953, 62.93000030517578, 61.08000183105469], "coordinateSpace": "game_world_xyz" },
       "description": "Grace just inside the cave on the stream north of Lake Agheel, before the Patches encounter."
     },
     {
@@ -8589,7 +8593,8 @@
       "y": 850,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-deathtouched-catacombs", "gamerguides-deathtouched-cross-check", "eip-deathtouched-cross-check"],
+      "sourceEvidence": ["eldenpedia-deathtouched-catacombs", "gamerguides-deathtouched-cross-check", "eip-deathtouched-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 139, "recordId": 301100, "name": "Deathtouched Catacombs", "map": "area 30 / grid 11,0", "position": [-86.12000274658203, 192.7899932861328, 30.18000030517578], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the start of the catacombs west of Saintsbridge in northern Stormhill."
     },
     {
@@ -8649,7 +8654,8 @@
       "y": 930,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-highroad-cave", "gamerguides-highroad-cave-cross-check"],
+      "sourceEvidence": ["eldenpedia-highroad-cave", "gamerguides-highroad-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 164, "recordId": 311700, "name": "Highroad Cave", "map": "area 31 / grid 17,0", "position": [60.06999969482422, 96.44999694824219, 96.4000015258789], "coordinateSpace": "game_world_xyz" },
       "description": "Grace just inside the hidden Highroad Cave entrance."
     },
     {
@@ -8739,7 +8745,8 @@
       "y": 1120,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-earthbore-cave", "gamerguides-earthbore-cross-check", "neoseeker-earthbore-cross-check"],
+      "sourceEvidence": ["eldenpedia-earthbore-cave", "gamerguides-earthbore-cross-check", "neoseeker-earthbore-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 150, "recordId": 310100, "name": "Earthbore Cave", "map": "area 31 / grid 1,0", "position": [-103.19999694824219, -1.149999976158142, -40.209999084472656], "coordinateSpace": "game_world_xyz" },
       "description": "Grace just inside the northern Weeping Peninsula cave between the lookout tower and demi-human forest."
     },
     {
@@ -8784,7 +8791,8 @@
       "y": 1170,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-tombsward-cave-cross-check", "gamerguides-tombsward-cave-cross-check", "game8-limgrave-weeping-cross-check"],
+      "sourceEvidence": ["game8-tombsward-cave-cross-check", "gamerguides-tombsward-cave-cross-check", "game8-limgrave-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 151, "recordId": 310200, "name": "Tombsward Cave", "map": "area 60 / grid 42,33", "position": [-114.11000061035156, 6.659999847412109, 31.25], "coordinateSpace": "game_world_xyz" },
       "description": "Grace inside the poison cave southeast of the Fourth Church of Marika."
     },
     {
@@ -8915,7 +8923,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_stillwater_cave", "label": "Stillwater Cave", "kind": "grace", "layer": "legacy", "region": "Stillwater Cave", "floor": "Cave entrance", "worldEpoch": "liurnia_surface", "x": 710, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "description": "Grace near the poisonous cave mouth."
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 153, "recordId": 310400, "name": "Stillwater Cave", "map": "area 31 / grid 4,0", "position": [14.539999961853027, 237.30999755859375, -38.150001525878906], "coordinateSpace": "game_world_xyz" }, "description": "Grace near the poisonous cave mouth."
     },
     {
       "id": "cleanrot_knight_stillwater_gate", "label": "Cleanrot Knight (Stillwater Cave)", "kind": "boss", "layer": "legacy", "region": "Stillwater Cave", "floor": "Poison pool boss chamber", "worldEpoch": "liurnia_surface", "x": 770, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -8931,7 +8939,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_lakeside_crystal_cave", "label": "Lakeside Crystal Cave", "kind": "grace", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Crystal cave entrance", "worldEpoch": "liurnia_surface", "x": 820, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check"], "description": "Grace at the cave entrance south of Scenic Isle."
+      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 154, "recordId": 310500, "name": "Lakeside Crystal Cave", "map": "area 31 / grid 5,0", "position": [-116.12999725341797, 225.5800018310547, -4.210000038146973], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the cave entrance south of Scenic Isle."
     },
     {
       "id": "bloodhound_knight_lakeside_gate", "label": "Bloodhound Knight (Lakeside Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Bloodhound Knight chamber", "worldEpoch": "liurnia_surface", "x": 880, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -8985,7 +8993,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "label": "Academy Crystal Cave", "kind": "grace", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Cave entrance", "worldEpoch": "liurnia_surface", "x": 930, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "description": "Grace just inside the two-key Academy Crystal Cave."
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 155, "recordId": 310600, "name": "Academy Crystal Cave", "map": "area 31 / grid 6,0", "position": [72.95999908447266, 236.38999938964844, 120.51000213623047], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the two-key Academy Crystal Cave."
     },
     {
       "id": "crystalian_academy_cave_gate", "label": "Crystalian pair (Academy Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Crystalian boss chamber", "worldEpoch": "liurnia_surface", "x": 990, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9005,7 +9013,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "label": "Raya Lucaria Crystal Tunnel", "kind": "grace", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Mine entrance", "worldEpoch": "liurnia_surface", "x": 1310, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "description": "Grace inside the crystal mine."
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 172, "recordId": 320200, "name": "Raya Lucaria Crystal Tunnel", "map": "area 60 / grid 37,47", "position": [-111.9800033569336, 242.97999572753906, 16.290000915527344], "coordinateSpace": "game_world_xyz" }, "description": "Grace inside the crystal mine."
     },
     {
       "id": "crystalian_raya_lucaria_tunnel_gate", "label": "Crystalian (Raya Lucaria Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Crystalian chamber", "worldEpoch": "liurnia_surface", "x": 1370, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
