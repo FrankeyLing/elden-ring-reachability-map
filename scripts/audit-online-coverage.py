@@ -21,6 +21,10 @@ ONLINE_ITEM_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-item-index-part{part}-20260818.json"
     for part in range(1, 31)
 )
+ONLINE_MAP_POINT_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-map-points-part{part}-20260818.json"
+    for part in range(1, 4)
+)
 
 # These are identity aliases only.  They do not create edges and are kept
 # explicit because the formal graph deliberately uses shorter route IDs,
@@ -179,6 +183,16 @@ def decode_online_chunks(paths: tuple[Path, ...]) -> list:
         raise ValueError("online item snapshot chunks are incomplete or out of order")
     encoded = "".join(chunk["chunk"] for chunk in chunks)
     return json.loads(zlib.decompress(base64.b64decode(encoded)).decode("utf-8"))
+
+
+def load_online_map_point_records() -> dict[tuple[str, int, int], list]:
+    records = {}
+    for path in ONLINE_MAP_POINT_FILES:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        snapshot = path.stem
+        for row in payload["records"]:
+            records[(snapshot, int(row[0]), int(row[1]))] = row
+    return records
 
 
 def audit() -> dict:
@@ -430,27 +444,56 @@ def audit() -> dict:
     if any(transition_contract[key] for key in ("missing_source_evidence", "missing_verification_state", "invalid_endpoints", "semantic_relation_edge_ids")):
         raise ValueError(f"formal transition contract failed: {transition_contract}")
     online_coordinate_nodes = [node for node in nodes if node.get("onlineCoordinate")]
+    invalid_coordinate_nodes = [
+        node["id"]
+        for node in online_coordinate_nodes
+        if not all(
+            [
+                node["onlineCoordinate"].get("source"),
+                node["onlineCoordinate"].get("snapshot"),
+                node["onlineCoordinate"].get("sourceIndex") is not None,
+                node["onlineCoordinate"].get("recordId") is not None,
+                node["onlineCoordinate"].get("name"),
+                node["onlineCoordinate"].get("map"),
+                node["onlineCoordinate"].get("coordinateSpace") == "game_world_xyz",
+                isinstance(node["onlineCoordinate"].get("position"), list)
+                and len(node["onlineCoordinate"].get("position")) == 3,
+            ]
+        )
+    ]
+    map_point_records = load_online_map_point_records()
+    invalid_coordinate_bindings = []
+    checked_source_records = 0
+    for node in online_coordinate_nodes:
+        if node["id"] in invalid_coordinate_nodes:
+            continue
+        coordinate = node["onlineCoordinate"]
+        if coordinate.get("source") != "map_for_goblins":
+            continue
+        checked_source_records += 1
+        key = (
+            str(coordinate["snapshot"]),
+            int(coordinate["sourceIndex"]),
+            int(coordinate["recordId"]),
+        )
+        row = map_point_records.get(key)
+        if row is None:
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "source_record_not_found", "key": key})
+            continue
+        expected_map = f"area {row[3]} / grid {row[4]},{row[5]}"
+        if coordinate["position"] != row[6:9]:
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "position_mismatch", "recordId": row[1]})
+        elif coordinate["name"] not in (row[9] or []):
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "name_mismatch", "recordId": row[1]})
+        elif coordinate["map"] != expected_map:
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "map_layer_mismatch", "recordId": row[1], "expected": expected_map})
     online_coordinate_contract = {
         "node_count": len(online_coordinate_nodes),
-        "invalid_nodes": [
-            node["id"]
-            for node in online_coordinate_nodes
-            if not all(
-                [
-                    node["onlineCoordinate"].get("source"),
-                    node["onlineCoordinate"].get("snapshot"),
-                    node["onlineCoordinate"].get("sourceIndex") is not None,
-                    node["onlineCoordinate"].get("recordId") is not None,
-                    node["onlineCoordinate"].get("name"),
-                    node["onlineCoordinate"].get("map"),
-                    node["onlineCoordinate"].get("coordinateSpace") == "game_world_xyz",
-                    isinstance(node["onlineCoordinate"].get("position"), list)
-                    and len(node["onlineCoordinate"].get("position")) == 3,
-                ]
-            )
-        ],
+        "invalid_nodes": invalid_coordinate_nodes,
+        "source_records_checked": checked_source_records,
+        "invalid_bindings": invalid_coordinate_bindings,
     }
-    if online_coordinate_contract["invalid_nodes"]:
+    if online_coordinate_contract["invalid_nodes"] or online_coordinate_contract["invalid_bindings"]:
         raise ValueError(f"online coordinate contract failed: {online_coordinate_contract}")
     topology_adjacency: dict[str, set[str]] = {}
     for edge in graph["edges"]:

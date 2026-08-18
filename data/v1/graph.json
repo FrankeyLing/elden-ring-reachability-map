@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.128-online-multiplane",
+  "version": "1.0.129-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1940,7 +1940,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 623, "recordId": 68474401, "name": "Miquella's Cross", "map": "area 61 / grid 47,44", "position": [80.87000274658203, 359.42999267578125, 64.38999938964844], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 623, "recordId": 68474401, "name": "Miquella's Cross", "map": "area 61 / grid 47,44", "position": [80.87000274658203, 359.42999267578125, 64.38999938964844], "coordinateSpace": "game_world_xyz"},
       "description": "Castle Cross beside the lowered gate near Castle Ensis Checkpoint. It is a collectible landmark adjacent to, but not identical with, the checkpoint grace."
     },
     {
@@ -1971,7 +1971,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-dlc-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 407, "recordId": 38484400, "name": "Rellana, Twin Moon Knight", "map": "area 67 / grid 48,44", "position": [-52.13800048828125, 88.95500183105469, 75.77300262451172], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 407, "recordId": 38484400, "name": "Rellana, Twin Moon Knight", "map": "area 61 / grid 48,44", "position": [-52.13800048828125, 88.95500183105469, 75.77300262451172], "coordinateSpace": "game_world_xyz"},
       "description": "蕾拉娜 Boss 前的门节点；击败 Boss 后才能继续到达后方赐福。"
     },
     {
@@ -2302,7 +2302,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 115, "recordId": 150001, "name": "Prayer Room", "map": "area 56 / grid 15,0", "position": [54.93000030517578, 145.52000427246094, 493.8699951171875], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 115, "recordId": 150001, "name": "Prayer Room", "map": "area 15 / grid 0,0", "position": [54.93000030517578, 145.52000427246094, 493.8699951171875], "coordinateSpace": "game_world_xyz"},
       "description": "Post-Loretta grace at the Elphael entrance; the internal route continues counter-clockwise around the brace."
     },
     {
@@ -2498,7 +2498,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["powerpyx-farum-cross-check", "gamespot-placidusax-cross-check", "eip-farum-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 229, "recordId": 30130000, "name": "Dragonlord Placidusax", "map": "area 67 / grid 13,0", "position": [14.449999809265137, 1009.676025390625, 299.5039978027344], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 229, "recordId": 30130000, "name": "Dragonlord Placidusax", "map": "area 13 / grid 0,0", "position": [14.449999809265137, 1009.676025390625, 299.5039978027344], "coordinateSpace": "game_world_xyz"},
       "description": "Optional boss arena reached by the Lie Down time transition on the floating ruins below the Great Bridge."
     },
     {
@@ -2664,7 +2664,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-uhl-palace-ruins", "eldenpedia-ainsel-r71938", "gamespot-uhl-palace-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 600, "recordId": 66120100, "name": "Uhl Palace Ruins", "map": "area 47 / grid 1,0", "position": [162.9199981689453, -205.47000122070312, -169.22000122070312], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 600, "recordId": 66120100, "name": "Uhl Palace Ruins", "map": "area 12 / grid 1,0", "position": [162.9199981689453, -205.47000122070312, -169.22000122070312], "coordinateSpace": "game_world_xyz"},
       "description": "Upper Uhl Palace Ruins section at the Sluice Gate lift landing. The negative height in the sidecar is preserved as raw game XYZ; it is not used as the abstract layout y coordinate."
     },
     {
@@ -2680,7 +2680,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-uhl-palace-ruins", "eldenpedia-ainsel-r71938", "gamespot-uhl-palace-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 601, "recordId": 66120102, "name": "Uhl Palace Ruins", "map": "area 47 / grid 1,0", "position": [285.07000732421875, -80.54000091552734, 117.47000122070312], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 601, "recordId": 66120102, "name": "Uhl Palace Ruins", "map": "area 12 / grid 1,0", "position": [285.07000732421875, -80.54000091552734, 117.47000122070312], "coordinateSpace": "game_world_xyz"},
       "description": "Lower Uhl Palace Ruins section on the river route before Ainsel River Downstream; it is kept separate from the upper lift landing."
     },
     {
@@ -3206,7 +3206,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 226, "recordId": 30120500, "name": "Mohg, Lord of Blood", "map": "area 67 / grid 12,5", "position": [1568.2989501953125, -501.0268249511719, 1235.3060302734375], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 226, "recordId": 30120500, "name": "Mohg, Lord of Blood", "map": "area 12 / grid 5,0", "position": [1568.2989501953125, -501.0268249511719, 1235.3060302734375], "coordinateSpace": "game_world_xyz"},
       "description": "Mohg boss gate reached from the midpoint elevator."
     },
     {
@@ -3327,7 +3327,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fire-giant-r66845", "eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 377, "recordId": 35131300, "name": "Fire Giant", "map": "area 67 / grid 52,52", "position": [95.66899871826172, 1775.52001953125, 43.68199920654297], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 377, "recordId": 35131300, "name": "Fire Giant", "map": "area 60 / grid 52,52", "position": [95.66899871826172, 1775.52001953125, 43.68199920654297], "coordinateSpace": "game_world_xyz"},
       "description": "Main-story boss gate before the Forge of the Giants."
     },
     {
@@ -3388,7 +3388,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 392, "recordId": 35515700, "name": "Commander Niall", "map": "area 41 / grid 51,57", "position": [72.01799774169922, 1632.0, 225.24899291992188], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 392, "recordId": 35515700, "name": "Commander Niall", "map": "area 60 / grid 51,57", "position": [72.01799774169922, 1632.0, 225.24899291992188], "coordinateSpace": "game_world_xyz"},
       "description": "Boss gate protecting the Castle Sol rooftop route."
     },
     {
@@ -3584,7 +3584,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 205, "recordId": 30100000, "name": "Godrick the Grafted", "map": "area 67 / grid 10,0", "position": [-250.64599609375, 73.75599670410156, 375.2929992675781], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 205, "recordId": 30100000, "name": "Godrick the Grafted", "map": "area 10 / grid 0,0", "position": [-250.64599609375, 73.75599670410156, 375.2929992675781], "coordinateSpace": "game_world_xyz"},
       "description": "Stormveil boss gate and Liurnia world-exit transition."
     },
     {
@@ -3630,7 +3630,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-churches-r83204", "eldenpedia-thops", "nexus-map-for-goblins", "game8-liurnia-cross-check"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 525, "recordId": 62393900, "name": "Church of Irith", "map": "area 60 / grid 39,39", "position": [-30.40999984741211, 320.0400085449219, 106.70999908447266], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 525, "recordId": 62393900, "name": "Church of Irith", "map": "area 60 / grid 39,39", "position": [-30.40999984741211, 320.0400085449219, 106.70999908447266], "coordinateSpace": "game_world_xyz"},
       "description": "Church landmark beyond Stormveil's Liurnia exit; the online XYZ is retained as a sidecar while the displayed x/y remains an abstract V1 layout coordinate."
     },
     {
@@ -3706,7 +3706,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 233, "recordId": 30140001, "name": "Rennala, Queen of the Full Moon", "map": "area 67 / grid 14,0", "position": [70.6500015258789, -838.72900390625, -27.325000762939453], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 233, "recordId": 30140001, "name": "Rennala, Queen of the Full Moon", "map": "area 14 / grid 0,0", "position": [70.6500015258789, -838.72900390625, -27.325000762939453], "coordinateSpace": "game_world_xyz"},
       "description": "Rennala boss gate before the Grand Library post-boss state."
     },
     {
@@ -3722,7 +3722,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-raya-r97405", "eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 113, "recordId": 140000, "name": "Raya Lucaria Grand Library", "map": "area 51 / grid 14,0", "position": [41.25, 50.02000045776367, -140.24000549316406], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 113, "recordId": 140000, "name": "Raya Lucaria Grand Library", "map": "area 14 / grid 0,0", "position": [41.25, 50.02000045776367, -140.24000549316406], "coordinateSpace": "game_world_xyz"},
       "description": "Post-Rennala Academy grace."
     },
     {
@@ -3888,7 +3888,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["powerpyx-leyndell-cross-check", "game8-leyndell-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 209, "recordId": 30110500, "name": "Godfrey, First Elden Lord", "map": "area 67 / grid 11,5", "position": [72.25, 64.96299743652344, -416.0299987792969], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 209, "recordId": 30110500, "name": "Godfrey, First Elden Lord", "map": "area 11 / grid 5,0", "position": [72.25, 64.96299743652344, -416.0299987792969], "coordinateSpace": "game_world_xyz"},
       "description": "The first Leyndell story boss gate; this golden shade is distinct from Ashen Capital Godfrey / Hoarah Loux."
     },
     {
@@ -4399,7 +4399,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 231, "recordId": 30130002, "name": "Maliketh, the Black Blade", "map": "area 67 / grid 13,0", "position": [190.97500610351562, -62.53900146484375, 378.2279968261719], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 231, "recordId": 30130002, "name": "Maliketh, the Black Blade", "map": "area 13 / grid 0,0", "position": [190.97500610351562, -62.53900146484375, 378.2279968261719], "coordinateSpace": "game_world_xyz"},
       "description": "Main-story boss gate that triggers the Ashen Capital world transition."
     },
     {
@@ -4460,7 +4460,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 104, "recordId": 110001, "name": "Erdtree Sanctuary", "map": "area 62 / grid 11,0", "position": [-266.1400146484375, -21.8700008392334, -103.88999938964844], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 104, "recordId": 110001, "name": "Erdtree Sanctuary", "map": "area 11 / grid 0,0", "position": [-266.1400146484375, -21.8700008392334, -103.88999938964844], "coordinateSpace": "game_world_xyz"},
       "description": "Post-Gideon Erdtree Sanctuary state; separate from the Royal Capital pre-Maliketh node."
     },
     {
@@ -4506,7 +4506,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 103, "recordId": 110000, "name": "Elden Throne", "map": "area 60 / grid 11,0", "position": [-266.1400146484375, -21.8700008392334, -103.88999938964844], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 103, "recordId": 110000, "name": "Elden Throne", "map": "area 11 / grid 0,0", "position": [-266.1400146484375, -21.8700008392334, -103.88999938964844], "coordinateSpace": "game_world_xyz"},
       "description": "Ashen-state Elden Throne node before the final Erdtree entrance."
     },
     {
@@ -4597,7 +4597,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-western-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 615, "recordId": 68464100, "name": "Western Nameless Mausoleum", "map": "area 61 / grid 46,41", "position": [-129.9600067138672, 329.9700012207031, 54.68000030517578], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 615, "recordId": 68464100, "name": "Western Nameless Mausoleum", "map": "area 61 / grid 46,41", "position": [-129.9600067138672, 329.9700012207031, 54.68000030517578], "coordinateSpace": "game_world_xyz"},
       "description": "Western Gravesite Plain boss-landmark, located west of Scorched Ruins. The online XYZ sidecar is preserved separately from the abstract layout coordinate."
     },
     {
@@ -4643,7 +4643,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-three-path", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 611, "recordId": 68454200, "name": "Miquella's Cross", "map": "area 61 / grid 45,42", "position": [-101.2300033569336, 392.6199951171875, 97.11000061035156], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 611, "recordId": 68454200, "name": "Miquella's Cross", "map": "area 61 / grid 45,42", "position": [-101.2300033569336, 392.6199951171875, 97.11000061035156], "coordinateSpace": "game_world_xyz"},
       "description": "The Three-Path Cross landmark beside the corresponding grace; retained separately so the collectible point is not confused with the checkpoint."
     },
     {
@@ -4659,7 +4659,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-main-gate", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 616, "recordId": 68464200, "name": "Miquella's Cross", "map": "area 61 / grid 46,42", "position": [-7.730000019073486, 297.17999267578125, 94.36000061035156], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 616, "recordId": 68464200, "name": "Miquella's Cross", "map": "area 61 / grid 46,42", "position": [-7.730000019073486, 297.17999267578125, 94.36000061035156], "coordinateSpace": "game_world_xyz"},
       "description": "The Main Gate Cross west of Three-Path Cross, kept separate from its adjacent Main Gate Cross grace."
     },
     {
@@ -4675,7 +4675,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-pillar-path", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 628, "recordId": 68484300, "name": "Miquella's Cross", "map": "area 61 / grid 48,43", "position": [39.61000061035156, 313.6099853515625, -84.97000122070312], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 628, "recordId": 68484300, "name": "Miquella's Cross", "map": "area 61 / grid 48,43", "position": [39.61000061035156, 313.6099853515625, -84.97000122070312], "coordinateSpace": "game_world_xyz"},
       "description": "Pillar Path Cross on the eastern cliff branch, separate from the Pillar Path Cross grace."
     },
     {
@@ -4691,7 +4691,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-cerulean", "eldenpedia-cerulean-coast", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 624, "recordId": 68483700, "name": "Miquella's Cross", "map": "area 61 / grid 48,37", "position": [29.65999984741211, 60.11000061035156, -97.05000305175781], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 624, "recordId": 68483700, "name": "Miquella's Cross", "map": "area 61 / grid 48,37", "position": [29.65999984741211, 60.11000061035156, -97.05000305175781], "coordinateSpace": "game_world_xyz"},
       "description": "Cerulean Coast Cross adjacent to the coast-cross grace route."
     },
     {
@@ -4707,7 +4707,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-fissure", "eldenpedia-stone-coffin-fissure", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 126, "recordId": 220001, "name": "Miquella's Cross", "map": "area 22 / grid 0,0", "position": [-236.6300048828125, 215.6699981689453, -24.170000076293945], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 126, "recordId": 220001, "name": "Miquella's Cross", "map": "area 22 / grid 0,0", "position": [-236.6300048828125, 215.6699981689453, -24.170000076293945], "coordinateSpace": "game_world_xyz"},
       "description": "Fissure Cross inside Stone Coffin Fissure; it is an interior collectible landmark rather than the surface pit grace."
     },
     {
@@ -4723,7 +4723,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-highroad", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 640, "recordId": 69494300, "name": "Miquella's Cross", "map": "area 61 / grid 50,43", "position": [-25.639999389648438, 459.80999755859375, -61.04999923706055], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 640, "recordId": 69494300, "name": "Miquella's Cross", "map": "area 61 / grid 50,43", "position": [-25.639999389648438, 459.80999755859375, -61.04999923706055], "coordinateSpace": "game_world_xyz"},
       "description": "Highroad Cross near the northeast Castle Ensis approach, distinct from the Highroad Cross grace."
     },
     {
@@ -4739,7 +4739,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-index", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 639, "recordId": 69484500, "name": "Miquella's Cross", "map": "area 61 / grid 48,44", "position": [-28.030000686645508, 410.3800048828125, 134.3699951171875], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 639, "recordId": 69484500, "name": "Miquella's Cross", "map": "area 61 / grid 48,44", "position": [-28.030000686645508, 410.3800048828125, 134.3699951171875], "coordinateSpace": "game_world_xyz"},
       "description": "Scaduview Cross adjacent to the highland grace route; the landmark and grace remain separate nodes."
     },
     {
@@ -4755,7 +4755,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-ancient-rauh", "eldenpedia-rauh", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 642, "recordId": 69494400, "name": "Miquella's Cross", "map": "area 61 / grid 49,44", "position": [-47.88999938964844, 350.4800109863281, 119.66999816894531], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 642, "recordId": 69494400, "name": "Miquella's Cross", "map": "area 61 / grid 49,44", "position": [-47.88999938964844, 350.4800109863281, 119.66999816894531], "coordinateSpace": "game_world_xyz"},
       "description": "Ancient Ruins Cross beside the Rauh Ancient Ruins, East route."
     },
     {
@@ -4771,7 +4771,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-enir-ilim", "eldenpedia-enir-ilim", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz"},
       "description": "Enir-Ilim Cross near the Spiral Rise grace; this point belongs to the m20_01 Enir-Ilim map layer, not the Belurat m20_00 layer."
     },
     {
@@ -4787,7 +4787,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-storehouse", "eldenpedia-shadow-keep", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Miquella's Cross", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Miquella's Cross", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz"},
       "description": "Storehouse Cross near the Fourth Floor grace and hanging horned giant route; it is not the First Floor grace despite the map point's companion layer label."
     },
     {
@@ -4863,7 +4863,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 120, "recordId": 200001, "name": "Miquella's Cross", "map": "area 20 / grid 0,0", "position": [-32.25, 77.22000122070312, 264.5799865722656], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 120, "recordId": 200001, "name": "Miquella's Cross", "map": "area 20 / grid 0,0", "position": [-32.25, 77.22000122070312, 264.5799865722656], "coordinateSpace": "game_world_xyz"},
       "description": "Belurat Cross in the hidden room behind rubble east of the tower with giant spider scorpions; the m20_00 point is the Belurat map layer and is not the entrance grace itself."
     },
     {
@@ -4879,7 +4879,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "eldenpedia-sites-of-grace-r83774", "game8-belurat-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 119, "recordId": 200000, "name": "Belurat, Tower Settlement", "map": "area 20 / grid 0,0", "position": [-29.979999542236328, 5.110000133514404, 39.849998474121094], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 119, "recordId": 200000, "name": "Belurat, Tower Settlement", "map": "area 20 / grid 0,0", "position": [-29.979999542236328, 5.110000133514404, 39.849998474121094], "coordinateSpace": "game_world_xyz"},
       "description": "Belurat legacy-dungeon entry grace."
     },
     {
@@ -4925,7 +4925,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "game8-belurat-cross-check", "eip-belurat-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 402, "recordId": 38464600, "name": "Divine Beast Dancing Lion", "map": "area 41 / grid 46,46", "position": [-58.0, 88.95500183105469, -23.0], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 402, "recordId": 38464600, "name": "Divine Beast Dancing Lion", "map": "area 61 / grid 46,46", "position": [-58.0, 88.95500183105469, -23.0], "coordinateSpace": "game_world_xyz" },
       "description": "Belurat legacy-dungeon boss gate."
     },
     {
@@ -5140,7 +5140,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 246, "recordId": 30210000, "name": "Golden Hippopotamus", "map": "area 41 / grid 21,0", "position": [89.64599609375, 73.75599670410156, 171.29299926757812], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 246, "recordId": 30210000, "name": "Golden Hippopotamus", "map": "area 21 / grid 0,0", "position": [89.64599609375, 73.75599670410156, 171.29299926757812], "coordinateSpace": "game_world_xyz" },
       "description": "Main Gate Plaza boss gate before the Specimen Storehouse route."
     },
     {
@@ -5291,7 +5291,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-shadow-keep", "game8-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 247, "recordId": 30210100, "name": "Messmer the Impaler", "map": "area 67 / grid 21,1", "position": [113.0, 73.75599670410156, 399.0], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 247, "recordId": 30210100, "name": "Messmer the Impaler", "map": "area 21 / grid 1,0", "position": [113.0, 73.75599670410156, 399.0], "coordinateSpace": "game_world_xyz" },
       "description": "Main DLC boss gate at the top of the Specimen Storehouse."
     },
     {
@@ -5383,7 +5383,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-scaduview", "game8-gaius-cross-check", "eip-scaduview-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 415, "recordId": 39494800, "name": "Commander Gaius", "map": "area 67 / grid 49,48", "position": [76.13800048828125, 88.95500183105469, 13.773002624511719], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 415, "recordId": 39494800, "name": "Commander Gaius", "map": "area 61 / grid 49,48", "position": [76.13800048828125, 88.95500183105469, 13.773002624511719], "coordinateSpace": "game_world_xyz" },
       "description": "Mounted boss gate in the field behind Shadow Keep."
     },
     {
@@ -5597,7 +5597,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-rauh", "game8-romina-cross-check", "neoseeker-rauh-west-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 397, "recordId": 38444500, "name": "Romina, Saint of the Bud", "map": "area 67 / grid 44,45", "position": [-50.0, 88.95500183105469, 160.0], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 397, "recordId": 38444500, "name": "Romina, Saint of the Bud", "map": "area 61 / grid 44,45", "position": [-50.0, 88.95500183105469, 160.0], "coordinateSpace": "game_world_xyz" },
       "description": "Main route boss gate that unlocks the Sealing Tree."
     },
     {
@@ -5733,7 +5733,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-enir-ilim", "eldenpedia-sites-of-grace-r83774", "game8-promised-radahn-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 121, "recordId": 200100, "name": "Gate of Divinity", "map": "area 20 / grid 1,0", "position": [-181.22999572753906, 6.190000057220459, -50.769996643066406], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 121, "recordId": 200100, "name": "Gate of Divinity", "map": "area 20 / grid 1,0", "position": [-181.22999572753906, 6.190000057220459, -50.769996643066406], "coordinateSpace": "game_world_xyz"},
       "description": "Post-Promised Consort Radahn DLC ending state."
     },
     {
@@ -5749,7 +5749,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-dragons-pit", "eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 200, "recordId": 430100, "name": "Dragon's Pit", "map": "area 43 / grid 1,0", "position": [-99.91999816894531, 360.7099914550781, 16.549999237060547], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 200, "recordId": 430100, "name": "Dragon's Pit", "map": "area 43 / grid 1,0", "position": [-99.91999816894531, 360.7099914550781, 16.549999237060547], "coordinateSpace": "game_world_xyz"},
       "description": "Cave entrance at the end of Pillar Path and the first Jagged Peak branch node."
     },
     {
@@ -5810,7 +5810,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 629, "recordId": 68493900, "name": "Grand Altar of Dragon Communion", "map": "area 61 / grid 49,39", "position": [72.30999755859375, 80.45999908447266, -125.83999633789062], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 629, "recordId": 68493900, "name": "Grand Altar of Dragon Communion", "map": "area 61 / grid 49,39", "position": [72.30999755859375, 80.45999908447266, -125.83999633789062], "coordinateSpace": "game_world_xyz"},
       "description": "Southern optional branch at the Foot of the Jagged Peak."
     },
     {
@@ -5826,7 +5826,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-jagged-peak-cross-check", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 411, "recordId": 38543901, "name": "Ancient Dragon Senessax", "map": "area 41 / grid 54,39", "position": [-70.0, 88.95500183105469, 30.0], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 411, "recordId": 38543901, "name": "Ancient Dragon Senessax", "map": "area 61 / grid 54,39", "position": [-70.0, 88.95500183105469, 30.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional field-boss hazard on the ascent; the grace can be reached by bypassing it."
     },
     {
@@ -5872,7 +5872,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-bayle-cross-check", "neoseeker-jagged-peak-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 410, "recordId": 38543900, "name": "Bayle the Dread", "map": "area 67 / grid 54,39", "position": [166.13800048828125, 88.95500183105469, -33.77301025390625], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 410, "recordId": 38543900, "name": "Bayle the Dread", "map": "area 61 / grid 54,39", "position": [166.13800048828125, 88.95500183105469, -33.77301025390625], "coordinateSpace": "game_world_xyz"},
       "description": "Jagged Peak final boss gate."
     },
     {
@@ -5903,7 +5903,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ruins-of-unte", "eldenpedia-scadu-altus", "nexus-map-for-goblins", "bo3gg-darklight-cross-check"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 649, "recordId": 69504600, "name": "Ruins of Unte", "map": "area 61 / grid 50,46", "position": [-41.90999984741211, 260.6600036621094, 112.9000015258789], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 649, "recordId": 69504600, "name": "Ruins of Unte", "map": "area 61 / grid 50,46", "position": [-41.90999984741211, 260.6600036621094, 112.9000015258789], "coordinateSpace": "game_world_xyz"},
       "description": "Flooded township landmark between Castle Watering Hole and the upper Recluses' River. The XYZ sidecar is from the online map snapshot; the rendered x/y remains an abstract layout coordinate."
     },
     {
@@ -5949,7 +5949,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 651, "recordId": 69514400, "name": "Eastern Nameless Mausoleum", "map": "area 61 / grid 51,44", "position": [-26.850000381469727, 170.3300018310547, 77.7699966430664], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 651, "recordId": 69514400, "name": "Eastern Nameless Mausoleum", "map": "area 61 / grid 51,44", "position": [-26.850000381469727, 170.3300018310547, 77.7699966430664], "coordinateSpace": "game_world_xyz"},
       "description": "The eastern of the four Nameless Mausoleums, reached from the Recluses' River canyon branch. The boss arena is not silently promoted to a route edge; this node represents the physical landmark and entrance."
     },
     {
@@ -6010,7 +6010,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-sites-of-grace-r83774", "bo3gg-darklight-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 191, "recordId": 400200, "name": "Darklight Catacombs", "map": "area 40 / grid 2,0", "position": [-46.209999084472656, 80.01000213623047, 111.52999877929688], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 191, "recordId": 400200, "name": "Darklight Catacombs", "map": "area 40 / grid 2,0", "position": [-46.209999084472656, 80.01000213623047, 111.52999877929688], "coordinateSpace": "game_world_xyz"},
       "description": "Catacomb entrance grace on the only formal route into Abyssal Woods."
     },
     {
@@ -6146,7 +6146,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-midra-manse", "game8-midra-manse-cross-check", "vulkk-abyssal-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 250, "recordId": 30280000, "name": "Midra, Lord of Frenzied Flame", "map": "area 67 / grid 28,0", "position": [15.0, 73.75599670410156, -125.0], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 250, "recordId": 30280000, "name": "Midra, Lord of Frenzied Flame", "map": "area 28 / grid 0,0", "position": [15.0, 73.75599670410156, -125.0], "coordinateSpace": "game_world_xyz"},
       "description": "Midra's Manse boss gate."
     },
     {
@@ -6162,7 +6162,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-midra-manse", "eldenpedia-sites-of-grace-r83774", "game8-midra-manse-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 127, "recordId": 280000, "name": "Discussion Chamber", "map": "area 28 / grid 0,0", "position": [0.0, 16.010000228881836, -79.87000274658203], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 127, "recordId": 280000, "name": "Discussion Chamber", "map": "area 28 / grid 0,0", "position": [0.0, 16.010000228881836, -79.87000274658203], "coordinateSpace": "game_world_xyz"},
       "description": "Post-Midra grace in the Discussion Chamber."
     },
     {
@@ -6238,7 +6238,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-southern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-cerulean-coast", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Southern Nameless Mausoleum", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Southern Nameless Mausoleum", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz"},
       "description": "Southern Cerulean Coast boss-landmark reached through the coastal cave route from Cerulean Coast West; the online XYZ sidecar is not used as rendered map geometry."
     },
     {
@@ -6299,7 +6299,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-cerulean-coast", "eldenpedia-finger-rhia", "game8-cerulean-coast-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 632, "recordId": 68504000, "name": "Finger Ruins of Rhia", "map": "area 61 / grid 50,40", "position": [86.93000030517578, -76.7699966430664, -22.530000686645508], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 632, "recordId": 68504000, "name": "Finger Ruins of Rhia", "map": "area 61 / grid 50,40", "position": [86.93000030517578, -76.7699966430664, -22.530000686645508], "coordinateSpace": "game_world_xyz"},
       "description": "Eastern coast branch containing the first Finger Ruins bell area."
     },
     {
@@ -6330,7 +6330,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-stone-coffin-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 125, "recordId": 220000, "name": "Stone Coffin Fissure", "map": "area 22 / grid 0,0", "position": [-327.7099914550781, 311.07000732421875, 18.830001831054688], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 125, "recordId": 220000, "name": "Stone Coffin Fissure", "map": "area 22 / grid 0,0", "position": [-327.7099914550781, 311.07000732421875, 18.830001831054688], "coordinateSpace": "game_world_xyz"},
       "description": "Underground fissure entrance after the DLC world-state descent opens."
     },
     {
@@ -6391,7 +6391,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "game8-thiollier-cross-check", "neoseeker-stone-coffin-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 248, "recordId": 30220000, "name": "Putrescent Knight", "map": "area 67 / grid 22,0", "position": [-50.64599609375, 73.75599670410156, 71.29299926757812], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 248, "recordId": 30220000, "name": "Putrescent Knight", "map": "area 22 / grid 0,0", "position": [-50.64599609375, 73.75599670410156, 71.29299926757812], "coordinateSpace": "game_world_xyz"},
       "description": "Stone Coffin Fissure final boss gate."
     },
     {
@@ -6407,7 +6407,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-thiollier-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 125, "recordId": 220000, "name": "Garden of Deep Purple", "map": "area 22 / grid 0,0", "position": [-327.7099914550781, 311.07000732421875, 18.830001831054688], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 125, "recordId": 220000, "name": "Garden of Deep Purple", "map": "area 22 / grid 0,0", "position": [-327.7099914550781, 311.07000732421875, 18.830001831054688], "coordinateSpace": "game_world_xyz"},
       "description": "Post-Putrescent Knight grace and Saint Trina destination."
     },
     {
@@ -6483,7 +6483,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 657, "recordId": 69534600, "name": "Finger Ruins of Dheo", "map": "area 61 / grid 53,46", "position": [65.58999633789062, 321.2699890136719, -22.31999969482422], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 657, "recordId": 69534600, "name": "Finger Ruins of Dheo", "map": "area 61 / grid 53,46", "position": [65.58999633789062, 321.2699890136719, -22.31999969482422], "coordinateSpace": "game_world_xyz"},
       "description": "Count Ymir's second Finger Ruins branch southeast of Hinterland Bridge."
     },
     {
@@ -6529,7 +6529,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-sites-of-grace-r83774", "game8-ymir-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 652, "recordId": 69514500, "name": "Cathedral of Manus Metyr", "map": "area 61 / grid 51,45", "position": [-92.69000244140625, 472.010009765625, 21.479999542236328], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 652, "recordId": 69514500, "name": "Cathedral of Manus Metyr", "map": "area 61 / grid 51,45", "position": [-92.69000244140625, 472.010009765625, 21.479999542236328], "coordinateSpace": "game_world_xyz"},
       "description": "Cathedral grace and Ymir quest hub off the Church District Highroad."
     },
     {
@@ -6560,7 +6560,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 653, "recordId": 69514501, "name": "Finger Ruins of Miyr", "map": "area 61 / grid 51,45", "position": [-104.19999694824219, 447.55999755859375, 150.05999755859375], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 653, "recordId": 69514501, "name": "Finger Ruins of Miyr", "map": "area 61 / grid 51,45", "position": [-104.19999694824219, 447.55999755859375, 150.05999755859375], "coordinateSpace": "game_world_xyz"},
       "description": "Third Finger Ruins below the cathedral, reached through the changed throne route."
     },
     {
@@ -6576,7 +6576,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 249, "recordId": 30250000, "name": "Metyr, Mother of Fingers", "map": "area 67 / grid 25,0", "position": [-18.0, 73.75599670410156, 12.0], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 249, "recordId": 30250000, "name": "Metyr, Mother of Fingers", "map": "area 25 / grid 0,0", "position": [-18.0, 73.75599670410156, 12.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional Ymir quest boss at the end of the third Finger Ruins bell route."
     },
     {
@@ -6667,7 +6667,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-scadutree-base-cross-check", "game8-scadutree-avatar-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 417, "recordId": 39504800, "name": "Scadutree Avatar", "map": "area 67 / grid 50,48", "position": [-43.13800048828125, 88.95500183105469, 175.77301025390625], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 417, "recordId": 39504800, "name": "Scadutree Avatar", "map": "area 61 / grid 50,48", "position": [-43.13800048828125, 88.95500183105469, 175.77301025390625], "coordinateSpace": "game_world_xyz"},
       "description": "Optional remembrance boss at the Scadutree Base reached from Tree-Worship Sanctum."
     },
     {
@@ -6818,7 +6818,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-margit-cross-check", "eldenpedia-castleward-tunnel", "game8-stormveil-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 206, "recordId": 30100001, "name": "Margit, the Fell Omen", "map": "area 41 / grid 10,0", "position": [-58.624000549316406, -2.6010000705718994, -4.35099983215332], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 206, "recordId": 30100001, "name": "Margit, the Fell Omen", "map": "area 10 / grid 0,0", "position": [-58.624000549316406, -2.6010000705718994, -4.35099983215332], "coordinateSpace": "game_world_xyz"},
       "description": "Mandatory normal Stormveil approach boss gate."
     },
     {
@@ -7029,7 +7029,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-rykard", "eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 238, "recordId": 30160003, "name": "Rykard, Lord of Blasphemy", "map": "area 67 / grid 16,0", "position": [92.322998046875, -439.50799560546875, -81.46299743652344], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 238, "recordId": 30160003, "name": "Rykard, Lord of Blasphemy", "map": "area 16 / grid 0,0", "position": [92.322998046875, -439.50799560546875, -81.46299743652344], "coordinateSpace": "game_world_xyz"},
       "description": "God-Devouring Serpent/Rykard boss gate."
     },
     {
@@ -9333,7 +9333,7 @@
     {
       "id": "grace_shadow_realm_rivermouth_cave", "label": "Rivermouth Cave", "kind": "grace", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Cave entrance", "worldEpoch": "shadow_realm", "x": 400, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 199, "recordId": 430000, "name": "Rivermouth Cave", "map": "area 43 / grid 0,0", "position": [-82.44300079345703, 163.677001953125, 143.7989959716797], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 199, "recordId": 430000, "name": "Rivermouth Cave", "map": "area 43 / grid 0,0", "position": [-82.44300079345703, 163.677001953125, 143.7989959716797], "coordinateSpace": "game_world_xyz"},
       "description": "Grace just beyond the cave entrance."
     },
     {
@@ -9531,7 +9531,7 @@
     {
       "id": "grace_scadu_altus_main_fort_of_reprimand", "label": "Fort of Reprimand", "kind": "grace", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Fort battlements", "worldEpoch": "shadow_realm", "x": 560, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 641, "recordId": 69494301, "name": "Fort of Reprimand", "map": "area 61 / grid 49,43", "position": [55.95000076293945, 396.4800109863281, -72.16000366210938], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 641, "recordId": 69494301, "name": "Fort of Reprimand", "map": "area 61 / grid 49,43", "position": [55.95000076293945, 396.4800109863281, -72.16000366210938], "coordinateSpace": "game_world_xyz"},
       "description": "Interior fort grace discovered on the battlements after entering from the highway or rear route."
     },
     {
@@ -9545,7 +9545,7 @@
     {
       "id": "black_knight_edredd_fort_gate", "label": "Black Knight Edredd (Fort of Reprimand)", "kind": "boss", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Main hall", "worldEpoch": "shadow_realm", "x": 620, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 413, "recordId": 39494301, "name": "Black Knight Edredd", "map": "area 41 / grid 49,43", "position": [33.0, 88.95500183105469, -100.0], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 413, "recordId": 39494301, "name": "Black Knight Edredd", "map": "area 61 / grid 49,43", "position": [33.0, 88.95500183105469, -100.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional Black Knight boss in the fort main hall; drops Aspects of the Crucible: Wings."
     },
     {
@@ -9579,7 +9579,7 @@
     {
       "id": "black_knight_garrew_fog_rift_gate", "label": "Black Knight Garrew (Fog Rift Fort)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Lower fort bridge / courtyard", "worldEpoch": "shadow_realm", "x": 320, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 405, "recordId": 38474500, "name": "Black Knight Garrew", "map": "area 41 / grid 47,45", "position": [-30.0, 88.95500183105469, -130.0], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 405, "recordId": 38474500, "name": "Black Knight Garrew", "map": "area 61 / grid 47,45", "position": [-30.0, 88.95500183105469, -130.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional Garrew encounter inside the lower fort; defeating him yields the Black Steel Greatshield."
     },
     {
@@ -9685,7 +9685,7 @@
     {
       "id": "grace_roundtable_hold_main_table_of_lost_grace", "label": "Table of Lost Grace", "kind": "grace", "layer": "legacy", "region": "Roundtable Hold", "floor": "Roundtable Hold main hall", "worldEpoch": "roundtable_hold", "x": 140, "y": 840, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-sites-of-grace-r83774", "game8-roundtable-hold-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 106, "recordId": 111000, "name": "Table of Lost Grace", "map": "area 60 / grid 35,32", "position": [-341.6700134277344, 66.16000366210938, -47.779998779296875], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 106, "recordId": 111000, "name": "Table of Lost Grace", "map": "area 60 / grid 35,32", "position": [-341.6700134277344, 66.16000366210938, -47.779998779296875], "coordinateSpace": "game_world_xyz"},
       "description": "Isolated hub grace. Roundtable Hold is not present as a normal overworld landmass and is accessed by map fast travel after Melina's invitation."
     },
     {
@@ -9769,7 +9769,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-rose-church", "nexus-map-for-goblins", "game8-liurnia-branches-cross-check"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 504, "recordId": 62354400, "name": "Rose Church", "map": "area 60 / grid 35,44", "position": [-88.36000061035156, 241.83999633789062, -112.47000122070312], "coordinateSpace": "game_world_xyz" },
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 504, "recordId": 62354400, "name": "Rose Church", "map": "area 60 / grid 35,44", "position": [-88.36000061035156, 241.83999633789062, -112.47000122070312], "coordinateSpace": "game_world_xyz"},
       "description": "Rose Church island south of Raya Lucaria; Varré's quest location is kept as a surface landmark rather than fabricated as a Site of Grace."
     },
     {
@@ -9882,19 +9882,19 @@
     },
     {
       "id": "ghostflame_dragon_gravesite_gate", "label": "Ghostflame Dragon (Greatbridge North)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Greatbridge, North", "worldEpoch": "shadow_realm", "x": 350, "y": 690, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 399, "recordId": 38454400, "name": "Ghostflame Dragon", "map": "area 41 / grid 61,45,44", "position": [60.0, 88.95500183105469, -80.0], "coordinateSpace": "game_world_xyz" },
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 399, "recordId": 38454400, "name": "Ghostflame Dragon", "map": "area 61 / grid 45,44", "position": [60.0, 88.95500183105469, -80.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional field boss in the Gravesite Plain lake west of the Greatbridge, North grace. The coordinate is the online map-point record; the route node remains separate from the grace."
     },
     {
       "id": "ghostflame_dragon_gravesite_post_state", "label": "Greatbridge North Ghostflame Dragon cleared state", "kind": "state", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Greatbridge, North", "worldEpoch": "shadow_realm", "x": 390, "y": 690, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
       "description": "Cleared-state node for the Greatbridge North Ghostflame Dragon arena; no post-boss grace is fabricated."
     },
     {
       "id": "ghostflame_dragon_moorth_gate", "label": "Ghostflame Dragon (Moorth Highway)", "kind": "boss", "layer": "surface", "region": "Scadu Altus", "floor": "Ruined encampment south of Moorth Ruins", "worldEpoch": "shadow_realm", "x": 460, "y": 630, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 412, "recordId": 39494300, "name": "Ghostflame Dragon", "map": "area 41 / grid 61,49,43", "position": [-32.0, 88.95500183105469, 170.0], "coordinateSpace": "game_world_xyz" },
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 412, "recordId": 39494300, "name": "Ghostflame Dragon", "map": "area 61 / grid 49,43", "position": [-32.0, 88.95500183105469, 170.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional field boss at the ruined encampment south of Moorth Ruins, reachable from Moorth Highway, South. The online map point is retained as game-world XYZ evidence."
     },
     {
@@ -9904,8 +9904,8 @@
     },
     {
       "id": "ghostflame_dragon_cerulean_gate", "label": "Ghostflame Dragon (Cerulean Coast)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "South of Cerulean Coast", "worldEpoch": "shadow_realm", "x": 520, "y": 910, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 406, "recordId": 38483800, "name": "Ghostflame Dragon", "map": "area 41 / grid 61,48,38", "position": [-85.0, 88.95500183105469, 35.0], "coordinateSpace": "game_world_xyz" },
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 406, "recordId": 38483800, "name": "Ghostflame Dragon", "map": "area 61 / grid 48,38", "position": [-85.0, 88.95500183105469, 35.0], "coordinateSpace": "game_world_xyz"},
       "description": "Optional field boss south of the Cerulean Coast grace. The route is modeled as an approach from the grace, not as a Euclidean-nearest-point claim."
     },
     {
