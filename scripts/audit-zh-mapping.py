@@ -21,7 +21,8 @@ import re
 import sys
 from pathlib import Path
 
-REQUIRED_NODE_FIELDS = ("label", "region", "floor", "description")
+REQUIRED_NODE_FIELDS = ("label", "region")
+OPTIONAL_NODE_FIELDS = ("floor", "description")
 REQUIRED_EDGE_FIELDS = ("mode", "note")
 REQUIRED_CONDITION_FIELDS = ("label", "hint")
 
@@ -61,6 +62,15 @@ def main() -> int:
                 continue
             if entry["level"] not in ("already_zh", "uncovered") and not is_zh(entry["zh"]):
                 failures.append(f"node {node_id}.{field} level={entry['level']} has no Chinese text: {entry['zh']!r}")
+        for field in OPTIONAL_NODE_FIELDS:
+            if not str(node.get(field, "")).strip():
+                continue  # optional fields may be empty
+            entry = mapping_nodes.get(node_id, {}).get(field)
+            if entry is None:
+                failures.append(f"node {node_id} missing mapping entry for {field}")
+                continue
+            if entry["level"] not in ("already_zh", "uncovered") and not is_zh(entry["zh"]):
+                failures.append(f"node {node_id}.{field} level={entry['level']} has no Chinese text")
     for edge_id, edge in edges.items():
         for field in REQUIRED_EDGE_FIELDS:
             entry = mapping_edges.get(edge_id, {}).get(field)

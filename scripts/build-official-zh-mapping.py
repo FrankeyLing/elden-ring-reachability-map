@@ -62,7 +62,9 @@ def is_zh(text: str) -> bool:
 
 
 def norm(text: str) -> str:
-    return re.sub(r"\s+", " ", text.strip().lower())
+    # strip punctuation so "Ordina, Liturgical Town" == "Ordina Liturgical Town"
+    cleaned = re.sub(r"[,.;:'\"]", "", text or "")
+    return re.sub(r"\s+", " ", cleaned.strip().lower())
 
 
 def wordset(text: str) -> tuple[str, ...]:

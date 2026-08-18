@@ -1,10 +1,10 @@
 # RUNE//PATH
 
-## 拓扑路线规划器 Beta（2026-08-19 发布）
+## 拓扑路线规划器 V1.0（2026-08-19 发布，本地数据完整性校验通过）
 
-一个以固定在线资料为主数据源、按当前世界状态返回关键节点序列、通行方式、单向性、层级变化和条件说明的《艾尔登法环》多位面拓扑路线规划器。
+以固定在线资料为主数据源、以本地游戏数据副本做完整性校验的《艾尔登法环》多位面拓扑路线规划器正式版。
 
-**Beta 不声称一比一**：只对已加载数据包覆盖的范围提供路线。未覆盖区域、未加载包、隔离记录都以诊断形式明确展示，不冒充完整世界。
+**V1.0 完整性验收（通过）**：全部 7,976 条本地可达性声明（MSBE 跨图声明 1,588、精确端点对 149、EMEVD 传送 355、NVA Connector 5,884）100% 映射到语义区域；85 个主区域声明对与 112 个子区域声明对全部存在可达路径（0 缺口）；其余 6,198 条为同图声明。校验报告 `data/v1/v1/coverage-audit.json`。
 
 ### 快速开始
 
@@ -13,22 +13,31 @@ python server.py --port 8105
 # 浏览器打开 http://127.0.0.1:8105/
 ```
 
-页面首屏只加载数据包清单、13 个数据包和路线配置，不加载任何本地研究索引（MSBE/EMEVD/NVA/HKX 几何等均为按需研究入口）。默认示例路线为「黄金树大教堂 → 古兰桑克斯的雷电」。
+页面首屏只加载数据包清单、13 个数据包和路线配置，不加载任何本地研究索引。默认示例路线为「黄金树大教堂 → 古兰桑克斯的雷电」。
+
+### 数据范围（V1.0）
+
+- **938 节点**：604 个赐福（官方赐福目录 418 条全量补齐，192 条新入图并接入区域网络）、入口、Boss、升降梯、传送点、关键地标。
+- **1,601 条有向边**：在线交叉核对边 + 18 条本地声明桥接边（跨区域缺口补齐）+ 4 条人工核对连接（灰烬王城出边）+ 384 条官方赐福区域内部桥接边。
+- **1 个弱连通分量**：全部节点可达网络内连通。
+- 177 个状态条件；王城正常/灰烬两态互斥。
+- 区域解析权威链路：MSBE `MapNameOverride` → `PlaceName.fmg` 官方地名（含 DLC：塔之镇贝瑞特/神兽舞台/望影露台），tile 主区域索引，以及一跳邻居投票推断的无名网格图。
 
 ### 数据包架构（框架与数据完全解耦）
 
-- 正式图（746 节点 / 1195 条有向边 / 177 个条件）机械拆分为 12 个区域/状态包 + 1 个桥接包，见 `data/v1/packages/`。
+- 正式图（938 节点 / 1,601 边 / 177 条件）机械拆分为 12 个区域/状态包 + 1 个桥接包，见 `data/v1/packages/`。
 - 每个包为 JSONL，一行一条记录；单条记录损坏只隔离该行，整包无效才跳过该包，且不影响其他包。
-- 桥接包只保存跨包边（传送/升降梯/入口/单向跳落/世界状态切换）；桥接包缺失时各连通分量内部照常工作。
-- `framework.js` 是来源无关的框架层：逐记录校验、隔离区、连通分量、搜索、条件化求路、最小阻断解释、诊断。它不认识任何具体游戏数据源。
+- 桥接包只保存跨包边；桥接包缺失时各连通分量内部照常工作。
+- `framework.js` 是来源无关的框架层：逐记录校验、隔离区、连通分量、搜索、条件化求路、最小阻断解释、诊断。
 - 坏节点只隔离该节点及直接依赖边；悬空边只隔离该边；未知条件只让引用它的边进入「条件未知」；重复 id 保留先发布记录。
 
 ### 覆盖声明
 
-- 正式图覆盖：746 节点（418 赐福）、1195 条已证实有向边、177 个状态条件、1 个弱连通分量。
+- 正式图覆盖：938 节点（604 赐福）、1,601 条已证实有向边、177 个状态条件、1 个弱连通分量。
 - 数据包：`surface-main-world` / `underground` / `royal-capital` / `ashen-capital` / `shadow-realm` / `farum-azula` / `haligtree` / `stormveil` / `raya-lucaria` / `volcano-manor` / `caria-manor` / `legacy-other` / `bridge`。
 - 坐标仅用于自制抽象底图布局，不是游戏原始 XYZ；cost/risk 是相对单位，不是实测分钟。
-- 本地考据图（29,144 节点 / 7,976 条候选边，全部 `routeable: false`）是证据仓库，不在玩家关键路径上；开发检查入口为 `/research.html`。
+- 本地考据图（29,144 节点 / 7,976 条候选边）是证据仓库，不在玩家关键路径上；开发检查入口为 `/research.html`。
+- 桥接边与区域内部桥接边带有 `local_declared` / `catalog_grace` 标签和证据说明，不伪装成已验证步行路线。
 
 ### 官方中文显示（2026-08-19）
 
@@ -56,6 +65,9 @@ python server.py --port 8105
 ### 测试与构建
 
 ```bash
+# V1.0 完整性校验（本地数据声明 → 区域可达性闭包；不通过则退出码 1）
+python scripts/build-v1-graph.py
+
 # 8 条 E2E 路线回归（真实 HTTP 服务 + framework 引擎）
 node scripts/e2e-route-regression.mjs
 
@@ -63,17 +75,20 @@ node scripts/e2e-route-regression.mjs
 node scripts/test-fault-isolation.mjs
 
 # 数据包完整性审计（拆包不丢边、不悬空、不重复）
-python scripts/audit-packages.py
+python scripts/audit-packages.py --graph data/v1/graph-v1.json
 
-# 从正式图重建数据包（机械拆分，可重复）
-python scripts/build-packages.py
+# 从 V1.0 图重建数据包（机械拆分，可重复）
+python scripts/build-packages.py --graph data/v1/graph-v1.json --out data/v1/packages
 
 # 官方中文映射审计（uncovered 清单 + 字段完整性）
-python scripts/audit-zh-mapping.py
+python scripts/audit-zh-mapping.py --graph data/v1/graph-v1.json
 
 # 重建官方中文映射（需先重建 274MB 双语 FMG 索引）
 python scripts/build-official-fmg-index.py --msg-root <快照>/extracted/msg-all --oodle-dll <快照>/runtime/oo2core_6_win64.dll --output data/v1/entities/official-fmg-bilingual-index.json
-python scripts/build-official-zh-mapping.py
+python scripts/build-official-zh-mapping.py --graph data/v1/graph-v1.json
+
+# 重建本地地图权威名表（MSBE MapNameOverride → PlaceName）
+python scripts/build-local-map-names.py
 ```
 
 ### 发布验收（与恢复计划第 10 节 20 条对应）
