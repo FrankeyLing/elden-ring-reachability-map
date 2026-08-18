@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.129-online-multiplane",
+  "version": "1.0.130-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1804,7 +1804,8 @@
       "y": 400,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check", "gamespot-siofra-cross-check"],
+      "sourceEvidence": ["game8-deep-siofra-well-cross-check", "neoseeker-siofra-cross-check", "gamespot-siofra-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 572, "recordId": 64494000, "name": "Deep Siofra Well", "map": "area 60 / grid 49,40", "position": [-112.5, 116.94999694824219, -12.140000343322754], "coordinateSpace": "game_world_xyz" },
       "description": "Caelid's northern ravine grace, reachable only through the northern Siofra lift."
     },
     {
@@ -3236,7 +3237,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-grand-lift-rold-r42274", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"],
+      "sourceEvidence": ["eldenpedia-grand-lift-rold-r42274", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 586, "recordId": 65495301, "name": "Grand Lift of Rold", "map": "area 60 / grid 49,53", "position": [-20.1299991607666, 1568.6400146484375, -27.700000762939453], "coordinateSpace": "game_world_xyz" },
       "description": "Two-output lift node: normal Mountaintops route and Secret Medallion Snowfield route."
     },
     {
@@ -3251,7 +3253,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-zamor-r44298", "game8-mountaintops-cross-check"],
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-zamor-r44298", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 585, "recordId": 65495300, "name": "Zamor Ruins", "map": "area 60 / grid 49,53", "position": [102.37000274658203, 1578.199951171875, -59.47999954223633], "coordinateSpace": "game_world_xyz" },
       "description": "First major grace after the normal Rold lift arrival."
     },
     {
@@ -3342,7 +3345,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-forge-giants-r35883", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"],
+      "sourceEvidence": ["eldenpedia-forge-giants-r35883", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 598, "recordId": 65545300, "name": "Forge of the Giants", "map": "area 60 / grid 54,53", "position": [-85.93000030517578, 1959.9100341796875, -35.38999938964844], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Fire Giant grace and world-transition landmark."
     },
     {
@@ -4263,7 +4267,8 @@
       "y": 590,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "pcgamer-millicent-cross-check"],
+      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "pcgamer-millicent-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 574, "recordId": 64503900, "name": "Church of the Plague", "map": "area 60 / grid 50,39", "position": [17.510000228881836, 160.86000061035156, -125.93000030517578], "coordinateSpace": "game_world_xyz" },
       "description": "Quest branch grace above the Aeonia route."
     },
     {
@@ -4293,7 +4298,8 @@
       "y": 700,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "powerpyx-dragonbarrow-cross-check"],
+      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "powerpyx-dragonbarrow-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 580, "recordId": 64514300, "name": "Bestial Sanctum", "map": "area 60 / grid 51,43", "position": [-64.3499984741211, 344.2699890136719, 25.850000381469727], "coordinateSpace": "game_world_xyz" },
       "description": "Sending-gate arrival in Dragonbarrow."
     },
     {
@@ -4323,7 +4329,8 @@
       "y": 700,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-faroth-r39788", "eldenpedia-sites-of-grace-r83774", "powerpyx-dectus-right-cross-check"],
+      "sourceEvidence": ["eldenpedia-fort-faroth-r39788", "eldenpedia-sites-of-grace-r83774", "powerpyx-dectus-right-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 578, "recordId": 64513900, "name": "Fort Faroth", "map": "area 60 / grid 51,39", "position": [-55.220001220703125, 267.04998779296875, 105.83999633789062], "coordinateSpace": "game_world_xyz" },
       "description": "Fort containing the Dectus Medallion right half."
     },
     {
@@ -7614,7 +7621,8 @@
       "y": 650,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-lennes-rise", "eldenpedia-dragonbarrow", "gamefaqs-dragonbarrow-cross-check"],
+      "sourceEvidence": ["eldenpedia-lennes-rise", "eldenpedia-dragonbarrow", "gamefaqs-dragonbarrow-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 581, "recordId": 64524100, "name": "Lenne's Rise", "map": "area 60 / grid 52,41", "position": [65.12000274658203, 221.00999450683594, -22.299999237060547], "coordinateSpace": "game_world_xyz" },
       "description": "Eastern Dragonbarrow grace beside the rise and spirit-spring route; it is connected to Dragonbarrow Fork by the lower road and bridges."
     },
     {
@@ -9810,7 +9818,9 @@
     },
     {
       "id": "grace_mountaintops_of_the_giants_first_church_of_marika", "label": "First Church of Marika", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Freezing Lake southeastern shore", "worldEpoch": "mountaintops_surface", "x": 1160, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Church grace on the southeastern Freezing Lake route, separate from Church of Repose and Foot of the Forge."
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 599, "recordId": 65545500, "name": "First Church of Marika", "map": "area 60 / grid 54,55", "position": [-31.059999465942383, 1625.0899658203125, 72.97000122070312], "coordinateSpace": "game_world_xyz" },
+      "description": "Church grace on the southeastern Freezing Lake route, separate from Church of Repose and Foot of the Forge."
     },
     {
       "id": "grace_mountaintops_of_the_giants_church_of_repose", "label": "Church of Repose", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Flame Peak eastern approach", "worldEpoch": "mountaintops_surface", "x": 1320, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9822,7 +9832,9 @@
     },
     {
       "id": "grace_mountaintops_of_the_giants_apostate_derelict", "label": "Apostate Derelict", "kind": "grace", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Northwestern Snowfield church", "worldEpoch": "consecrated_snowfield", "x": 570, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-consecrated-snowfield-r65359", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Northwestern Snowfield church grace northwest of Ordina, with the Latenna-related reward branch."
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-r65359", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 583, "recordId": 65475800, "name": "Apostate Derelict", "map": "area 60 / grid 47,58", "position": [48.130001068115234, 1289.6199951171875, -27.06999969482422], "coordinateSpace": "game_world_xyz" },
+      "description": "Northwestern Snowfield church grace northwest of Ordina, with the Latenna-related reward branch."
     },
     {
       "id": "grace_altus_plateau_capital_outskirts_capital_rampart", "label": "Capital Rampart", "kind": "grace", "layer": "legacy", "region": "Leyndell, Royal Capital", "floor": "Capital outer gate rampart", "worldEpoch": "royal_capital_pre_maliketh", "x": 1535, "y": 850, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
