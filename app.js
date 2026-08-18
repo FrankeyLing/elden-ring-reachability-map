@@ -604,8 +604,10 @@ function renderOnlinePoiResults(payload, kind) {
       const targets = targetIds.map((id) => nodeLabel(id)).join(" / ") || "未绑定正式目标节点";
       const requirements = (record.external_requirements || []).join("；");
       const prerequisiteTargets = (record.prerequisite_target_ids || []).map((id) => nodeLabel(id)).join(" / ");
+      const itemEvidence = record.online_item_evidence || [];
       detail.textContent = record.category + " · " + record.coverage_state + " · " + targets
         + (prerequisiteTargets ? " · 前置节点：" + prerequisiteTargets : "")
+        + (itemEvidence.length ? " · 在线物品定位：" + itemEvidence.length + "/" + (record.required_item_names || []).length : "")
         + (requirements ? " · 条件：" + requirements : "");
     } else {
       const position = record.position || [];
@@ -613,8 +615,25 @@ function renderOnlinePoiResults(payload, kind) {
     }
     row.append(title, detail);
     if (kind === "achievements") {
+      const itemEvidence = record.online_item_evidence || [];
       const targetId = [...(record.formal_target_ids || []), ...(record.location_target_ids || [])].find((id) => state.nodes.has(id));
-      if (targetId) {
+      if (record.category === "collection" && itemEvidence.length) {
+        row.classList.add("clickable");
+        row.addEventListener("click", () => {
+          const evidence = itemEvidence[0];
+          state.mapMode = "coordinates";
+          state.coordinateMapId = evidence.map;
+          state.coordinateEntityKind = "all";
+          els.coordinateMapSelect.hidden = false;
+          els.coordinateEntityKind.hidden = false;
+          els.coordinateEntityKind.value = "all";
+          els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "coordinates"));
+          populateCoordinateMapSelect();
+          els.coordinateMapSelect.value = state.coordinateMapId;
+          loadCoordinateItems();
+          els.mapToast.textContent = record.name + " · 已定位在线物品坐标：" + evidence.map + " · " + evidence.matched_requirements.join(" / ");
+        });
+      } else if (targetId) {
         row.classList.add("clickable");
         row.addEventListener("click", () => {
           const originId = findBestGraceOrigin(targetId, new Set([targetId]));

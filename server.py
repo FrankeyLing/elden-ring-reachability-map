@@ -46,6 +46,44 @@ ONLINE_ENTITY_CACHE = None
 ONLINE_GATHERING_CACHE = None
 
 
+def collection_item_evidence(record):
+    """Return fixed online item positions for a collection record without creating route edges."""
+    global ONLINE_ITEM_CACHE
+    if record.get("category") != "collection":
+        return []
+    if ONLINE_ITEM_CACHE is None:
+        ONLINE_ITEM_CACHE = decode_online_chunks(ONLINE_ITEM_FILES)
+    aliases = record.get("online_name_aliases", {})
+    name_to_requirement = {}
+    for required_name in record.get("required_item_names", []):
+        for candidate in [required_name, *aliases.get(required_name, [])]:
+            name_to_requirement[str(candidate).casefold()] = required_name
+    evidence = []
+    for index, row in enumerate(ONLINE_ITEM_CACHE):
+        matched_requirements = sorted(
+            {
+                name_to_requirement[str(item.get("name")).casefold()]
+                for item in row[4]
+                if item.get("name") and str(item.get("name")).casefold() in name_to_requirement
+            }
+        )
+        if not matched_requirements:
+            continue
+        evidence.append(
+            {
+                "source_index": index,
+                "map": row[0],
+                "position": [row[1], row[2], row[3]],
+                "items": row[4],
+                "matched_requirements": matched_requirements,
+                "category": row[5],
+                "source": row[6],
+                "guaranteed": row[7],
+            }
+        )
+    return evidence
+
+
 def decode_online_chunks(paths):
     chunks = [json.loads(path.read_bytes()) for path in paths]
     chunks.sort(key=lambda payload: payload["part"])
@@ -220,7 +258,14 @@ class AppHandler(SimpleHTTPRequestHandler):
                 if coverage_state and str(record.get("coverage_state", "")).casefold() != coverage_state:
                     continue
                 records.append(record)
-        except (OSError, KeyError, TypeError, json.JSONDecodeError) as exc:
+            enriched_records = []
+            for record in records:
+                enriched = dict(record)
+                if enriched.get("category") == "collection":
+                    enriched["online_item_evidence"] = collection_item_evidence(enriched)
+                enriched_records.append(enriched)
+            records = enriched_records
+        except (OSError, KeyError, TypeError, ValueError, zlib.error, json.JSONDecodeError) as exc:
             self.send_json_error(exc)
             return
         self.send_json_payload(
@@ -232,6 +277,11 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "records": records[:limit],
                 "routeable": False,
                 "source": payload["source"],
+                "online_item_evidence_source": {
+                    "source_id": "map_for_goblins",
+                    "commit": "324a895ba51d6091534578c2ce194d0c6720edc2",
+                    "captured_on": "2026-08-18",
+                },
                 "note": "achievement targets are checklist evidence; they never become traversal edges automatically",
             }
         )
