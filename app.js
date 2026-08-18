@@ -133,6 +133,7 @@ const SEARCH_ALIASES = {
 
 const state = {
   store: window.RouteFramework.createStore(),
+  zhMap: null,          // official Chinese mapping (data/v1/zh-cn/official-zh-mapping.json)
   origin: null,
   destination: null,
   conditions: new Set(),
@@ -145,6 +146,77 @@ const state = {
   selectedNode: null,
   loaded: false,
 };
+
+/* ---- official Chinese display helpers ---- */
+
+/* Returns the official-Chinese display text for a mapping entry.
+ * official / composite / partial levels display Chinese (partial keeps the
+ * English remainder); already_zh and uncovered fall back to the raw value. */
+function zhText(entry, fallback) {
+  if (!entry) return fallback;
+  if (entry.level === "official" || entry.level === "official_bracket_main"
+    || entry.level === "official_slash_parts" || entry.level === "official_comma_parts"
+    || entry.level === "official_to_parts" || entry.level === "official_patch"
+    || entry.level === "composite" || entry.level === "partial") {
+    return entry.zh;
+  }
+  return fallback;
+}
+
+function nodeLabelZh(id) {
+  const raw = state.store.node(id)?.label || id;
+  return zhText(state.zhMap?.nodes?.[id]?.label, raw);
+}
+
+function regionZh(id) {
+  const raw = state.store.node(id)?.region || "";
+  return zhText(state.zhMap?.nodes?.[id]?.region, raw);
+}
+
+function floorZh(id) {
+  const raw = state.store.node(id)?.floor || "";
+  return zhText(state.zhMap?.nodes?.[id]?.floor, raw);
+}
+
+function descriptionZh(id) {
+  const raw = state.store.node(id)?.description || "";
+  return zhText(state.zhMap?.nodes?.[id]?.description, raw);
+}
+
+function modeZh(edge) {
+  const raw = edge.mode || edge.transitionType || "";
+  return zhText(state.zhMap?.edges?.[edge.id]?.mode, raw);
+}
+
+function noteZh(edge) {
+  const raw = edge.note || "";
+  return zhText(state.zhMap?.edges?.[edge.id]?.note, raw);
+}
+
+function conditionLabelZh(id) {
+  const raw = state.store.condition(id)?.label || id;
+  return zhText(state.zhMap?.conditions?.[id]?.label, raw);
+}
+
+function conditionHintZh(id) {
+  const raw = state.store.condition(id)?.hint || "";
+  return zhText(state.zhMap?.conditions?.[id]?.hint, raw);
+}
+
+/* Registers the official Chinese names as search aliases so players can type
+ * 中文 directly (alias: zh name -> the node's English label/id keywords). */
+function registerZhSearchAliases() {
+  const aliases = {};
+  if (!state.zhMap) return;
+  for (const [nodeId, fields] of Object.entries(state.zhMap.nodes || {})) {
+    const entry = fields?.label;
+    if (!entry || entry.level === "already_zh" || entry.level === "uncovered") continue;
+    const node = state.store.node(nodeId);
+    if (!node) continue;
+    aliases[entry.zh] = [node.label, nodeId];
+  }
+  state.store.registerAliases(aliases);
+}
 
 const els = {
   datasetVersion: document.getElementById("dataset-version"),
@@ -221,10 +293,10 @@ function attachCombobox(input, onSelect) {
     for (const [kind, members] of groups) {
       html += `<div class="combobox-group">${KIND_LABELS[kind] || kind} · ${members.length}</div>`;
       for (const item of members) {
-        const layers = item.layer ? ` · ${item.layer}` : "";
+        const layers = item.layer ? ` · ${layerZh(item.layer)}` : "";
         html += `<div class="combobox-item" data-id="${escapeHtml(item.id)}">
-          <span class="combobox-item-label">${escapeHtml(item.label)}</span>
-          <span class="combobox-item-meta">${escapeHtml(item.region || "")}${layers}</span>
+          <span class="combobox-item-label">${escapeHtml(nodeLabelZh(item.id))}</span>
+          <span class="combobox-item-meta">${escapeHtml(regionZh(item.id))}${layers}</span>
         </div>`;
       }
     }
@@ -307,7 +379,13 @@ function text(value) {
 /* ---------------- graph store helpers ---------------- */
 
 function nodeLabel(id) {
-  return state.store.node(id)?.label || id;
+  return nodeLabelZh(id);
+}
+
+function layerZh(layer) {
+  const raw = layer || "";
+  const entry = state.zhMap?.layers?.[raw]?.label;
+  return entry && entry.level !== "already_zh" && entry.level !== "uncovered" ? entry.zh : raw;
 }
 
 function activeRouteProfile() {
@@ -358,7 +436,7 @@ function renderConditions() {
     });
     const copy = document.createElement("span");
     copy.className = "condition-copy";
-    copy.innerHTML = `<span class="condition-label">${escapeHtml(condition.label)}</span><span class="condition-hint">${escapeHtml(condition.hint || "")}</span>`;
+    copy.innerHTML = `<span class="condition-label">${escapeHtml(conditionLabelZh(condition.id))}</span><span class="condition-hint">${escapeHtml(conditionHintZh(condition.id))}</span>`;
     label.append(input, copy);
     els.conditions.appendChild(label);
   }
@@ -415,7 +493,7 @@ function renderRouteCard(route) {
   els.routeContent.classList.remove("hidden");
   const originNode = state.store.node(route.nodes[0]);
   const destinationNode = state.store.node(route.nodes[route.nodes.length - 1]);
-  els.routeTitle.textContent = `${originNode?.label || route.nodes[0]} → ${destinationNode?.label || route.nodes.at(-1)}`;
+  els.routeTitle.textContent = `${nodeLabelZh(route.nodes[0])} → ${nodeLabelZh(route.nodes.at(-1))}`;
   els.routeTime.textContent = route.time;
   els.routeRisk.textContent = route.risk;
   els.routeHops.textContent = route.edges.length;
@@ -433,7 +511,7 @@ function renderRouteCard(route) {
       ? ` · ${fromNode?.layer || "?"} → ${toNode?.layer || "?"}`
       : "";
     const requires = (edge.requires || [])
-      .map((id) => state.store.condition(id)?.label || id)
+      .map((id) => conditionLabelZh(id))
       .filter(Boolean);
     const requiresText = requires.length ? `要求：${requires.join("；")}` : "无条件";
     const packageMeta = edge.packageId === "dynamic"
@@ -443,8 +521,8 @@ function renderRouteCard(route) {
     html += `<div class="route-step">
       <div class="route-step-index">${index + 1}</div>
       <div class="route-step-body">
-        <div class="route-step-title">${escapeHtml(fromNode?.label || edge.from)} <span class="route-step-arrow">→</span> ${escapeHtml(toNode?.label || edge.to)}</div>
-        <div class="route-step-meta">${escapeHtml(edge.mode || edge.transitionType || "通行")}${layerChange}</div>
+        <div class="route-step-title">${escapeHtml(nodeLabelZh(edge.from))} <span class="route-step-arrow">→</span> ${escapeHtml(nodeLabelZh(edge.to))}</div>
+        <div class="route-step-meta">${escapeHtml(modeZh(edge))}${layerChange}</div>
         <div class="route-step-detail">${escapeHtml(requiresText)}</div>
         <div class="route-step-provenance">
           <span class="prov-chip ${oneWay ? "prov-oneway" : ""}">${escapeHtml(provLabel)}</span>
@@ -470,15 +548,17 @@ function renderBlockedCard(blocked) {
   els.routeRisk.textContent = "—";
   els.routeHops.textContent = "—";
   els.pathTrack.innerHTML = `<div class="blocked-card">
-    <div class="blocked-title">${escapeHtml(blocked.message || "当前无法规划路线")}</div>
+    <div class="blocked-title">「${escapeHtml(nodeLabelZh(state.origin))}」到「${escapeHtml(nodeLabelZh(state.destination))}」当前无法规划路线。</div>
     ${blocked.missingConditions?.length ? `
+      <div class="blocked-conditions-title">满足以下条件后可达：</div>
       <div class="blocked-conditions">${blocked.missingConditions.map((condition) => `
         <div class="blocked-condition">
-          <div class="blocked-condition-label">${escapeHtml(condition.label)}</div>
-          <div class="blocked-condition-hint">${escapeHtml(condition.hint || "")}</div>
+          <div class="blocked-condition-label">${escapeHtml(conditionLabelZh(condition.id))}</div>
+          <div class="blocked-condition-hint">${escapeHtml(conditionHintZh(condition.id))}</div>
         </div>`).join("")}
       </div>
       <div class="blocked-tip">勾选以上条件后重新规划；未列出的其他区域条件与这条路线无关。</div>` : ""}
+    ${blocked.category === "cross-component" ? `<div class="blocked-tip">${escapeHtml(blocked.message || "")}</div>` : ""}
   </div>`;
   els.routeNotice.textContent = "本次查询在满足上述条件前不可达；这是数据状态，不是系统错误。";
 }
@@ -499,8 +579,9 @@ function renderRegions() {
   els.regionLabels.innerHTML = "";
   const groups = new Map();
   for (const node of state.store.activeNodeList()) {
-    if (!groups.has(node.region)) groups.set(node.region, []);
-    groups.get(node.region).push(node);
+    const region = regionZh(node.id) || node.region || "";
+    if (!groups.has(region)) groups.set(region, []);
+    groups.get(region).push(node);
   }
   [...groups.entries()].forEach(([region, nodes], index) => {
     const x = Math.min(...nodes.map((node) => node.x)) - 16;
@@ -533,7 +614,7 @@ function renderEdges() {
       "data-edge-id": edge.id,
     });
     line.addEventListener("mouseenter", () => {
-      els.mapToast.textContent = `${from.label} → ${to.label} · ${edge.mode}${unknown ? " · 条件未知" : available ? "" : " · 条件未满足"}`;
+      els.mapToast.textContent = `${nodeLabelZh(edge.from)} → ${nodeLabelZh(edge.to)} · ${modeZh(edge)}${unknown ? " · 条件未知" : available ? "" : " · 条件未满足"}`;
     });
     line.addEventListener("mouseleave", () => { els.mapToast.textContent = "点击节点查看详情"; });
     els.edgeLayer.appendChild(line);
@@ -541,7 +622,7 @@ function renderEdges() {
       const labelX = (from.x + to.x) / 2;
       const labelY = (from.y + to.y) / 2 - 5;
       const label = svg("text", { x: labelX, y: labelY, class: `edge-label ${isRoute ? "route-label" : ""}` });
-      label.textContent = available ? edge.mode : unknown ? `未知 · ${edge.mode}` : `锁定 · ${edge.mode}`;
+      label.textContent = available ? modeZh(edge) : unknown ? `未知 · ${modeZh(edge)}` : `锁定 · ${modeZh(edge)}`;
       els.edgeLayer.appendChild(label);
     }
   }
@@ -576,9 +657,9 @@ function renderNodes() {
     const ring = svg("circle", { r: node.kind === "target" ? 9 : 7, class: "node-ring" });
     const core = svg("circle", { r: node.kind === "target" ? 4 : 3, class: "node-core", fill: nodeCoreColor(node.kind) });
     const label = svg("text", { x: 12, y: 4, class: "node-label" });
-    label.textContent = node.label;
+    label.textContent = nodeLabelZh(node.id);
     const region = svg("text", { x: 12, y: 15, class: "node-region" });
-    region.textContent = `${node.layer.toUpperCase()} · ${node.region}`;
+    region.textContent = `${layerZh(node.layer).toUpperCase()} · ${regionZh(node.id)}`;
     group.append(hit, ring, core, label, region);
     if (node.id === state.origin || node.id === state.destination) {
       const marker = svg("text", { x: -4, y: -13, class: "node-status" });
@@ -586,7 +667,7 @@ function renderNodes() {
       group.appendChild(marker);
     }
     group.addEventListener("click", () => selectNode(node.id));
-    group.addEventListener("mouseenter", () => { els.mapToast.textContent = `${node.label} · ${node.region}`; });
+    group.addEventListener("mouseenter", () => { els.mapToast.textContent = `${nodeLabelZh(node.id)} · ${regionZh(node.id)}`; });
     group.addEventListener("mouseleave", () => { els.mapToast.textContent = "点击节点查看详情"; });
     els.nodeLayer.appendChild(group);
   }
@@ -603,22 +684,22 @@ function renderInspector() {
   const outgoingHtml = outgoing.length ? outgoing.map((edge) => {
     const available = edgeAvailable(edge);
     return `<div class="inspector-edge ${available ? "" : "inspector-edge-blocked"}">
-      <span>→ ${escapeHtml(nodeLabel(edge.to))}</span>
-      <span class="inspector-edge-mode">${escapeHtml(edge.mode || edge.transitionType || "")}${available ? "" : " · 锁定"}</span>
+      <span>→ ${escapeHtml(nodeLabelZh(edge.to))}</span>
+      <span class="inspector-edge-mode">${escapeHtml(modeZh(edge))}${available ? "" : " · 锁定"}</span>
     </div>`;
   }).join("") : `<div class="inspector-edge">（无可通行出边）</div>`;
   const incomingHtml = incoming.length ? incoming.map((edge) => {
-    return `<div class="inspector-edge"><span>← ${escapeHtml(nodeLabel(edge.from))}</span><span class="inspector-edge-mode">${escapeHtml(edge.mode || "")}</span></div>`;
+    return `<div class="inspector-edge"><span>← ${escapeHtml(nodeLabelZh(edge.from))}</span><span class="inspector-edge-mode">${escapeHtml(modeZh(edge))}</span></div>`;
   }).join("") : "";
   els.nodeInspector.innerHTML = `<div class="inspector-card">
     <div class="inspector-head">
       <div>
-        <div class="inspector-title">${escapeHtml(node.label)}</div>
-        <div class="inspector-type">${escapeHtml(KIND_LABELS[node.kind] || node.kind)} · ${escapeHtml(node.layer || "?")} · 包 ${escapeHtml(node.packageId || "?")}</div>
+        <div class="inspector-title">${escapeHtml(nodeLabelZh(node.id))}</div>
+        <div class="inspector-type">${escapeHtml(KIND_LABELS[node.kind] || node.kind)} · ${escapeHtml(layerZh(node.layer))} · 包 ${escapeHtml(node.packageId || "?")}</div>
       </div>
-      <div class="inspector-region">${escapeHtml(node.region || "")}${node.floor ? ` · ${escapeHtml(node.floor)}` : ""}</div>
+      <div class="inspector-region">${escapeHtml(regionZh(node.id))}${floorZh(node.id) ? ` · ${escapeHtml(floorZh(node.id))}` : ""}</div>
     </div>
-    <p class="inspector-description">${escapeHtml(node.description || "")}</p>
+    <p class="inspector-description">${escapeHtml(descriptionZh(node.id))}</p>
     <div class="inspector-section-title">出边（${outgoing.length}）</div>
     ${outgoingHtml}
     ${incomingHtml ? `<div class="inspector-section-title">入边（${incoming.length}）</div>${incomingHtml}` : ""}
@@ -787,6 +868,20 @@ async function loadPackages() {
   return manifestPayload;
 }
 
+async function loadZhMapping() {
+  /* Official Chinese display mapping; failure only degrades to English, it
+   * never blocks the route planner. */
+  try {
+    const response = await fetch("/data/v1/zh-cn/official-zh-mapping.json", { cache: "no-store" });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    if (payload?.schema !== "elden-ring-official-zh-mapping@2") return null;
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
 async function init() {
   wireEvents();
   try {
@@ -794,6 +889,8 @@ async function init() {
     state.loaded = true;
     els.loadingState.classList.add("hidden");
     state.store.registerAliases(SEARCH_ALIASES);
+    state.zhMap = await loadZhMapping();
+    if (state.zhMap) registerZhSearchAliases();
 
     const defaults = state.store.defaults;
     state.origin = defaults.origin || state.store.activeNodeList()[0]?.id;
@@ -916,7 +1013,7 @@ function routeText(route) {
     const from = nodeLabel(edge.from);
     const to = nodeLabel(edge.to);
     const direction = edge.direction === "one_way" || edge.direction === "one_way_drop" ? "（单向）" : "";
-    return `${index + 1}. ${from} → ${to}${direction} · ${edge.mode || edge.transitionType || ""}`;
+    return `${index + 1}. ${from} → ${to}${direction} · ${modeZh(edge)}`;
   });
   return `RUNE//PATH 路线（${route.edges.length} 段）\n${lines.join("\n")}`;
 }

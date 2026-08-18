@@ -1,0 +1,72 @@
+{
+  "schema": "elden-ring-zh-manual-patch@2",
+  "policy": "补丁的 zh 由 zh_template 渲染：{0}、{1} 等占位符替换为 sources 中官方 FMG 条目的逐字中文；模板中其余文本（英文状态后缀）必须逐字出现在原英文字段中，禁止任何自译。",
+  "conditions": {
+    "maliketh_defeated": {
+      "label": {"zh_template": "{0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 902110001}]}
+    },
+    "gideon_defeated": {
+      "label": {"zh_template": "{0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 132400}]}
+    },
+    "godfrey_ashen_defeated": {
+      "label": {"zh_template": "{0} / {1} defeated", "sources": [
+        {"fmg": "NpcName.fmg", "id": 904720000},
+        {"fmg": "NpcName.fmg", "id": 904720001}
+      ]}
+    },
+    "radagon_elden_beast_defeated": {
+      "label": {"zh_template": "{0} and {1} defeated", "sources": [
+        {"fmg": "NpcName.fmg", "id": 902190000},
+        {"fmg": "NpcName.fmg", "id": 902200000}
+      ]}
+    },
+    "astel_defeated": {
+      "label": {"zh_template": "{0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 904620001}]}
+    },
+    "valiant_gargoyles_defeated": {
+      "label": {"zh_template": "{0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 904770000}]}
+    },
+    "dectus_medallion_complete": {
+      "label": {"zh_template": "{0} complete", "sources": [{"fmg": "GoodsName.fmg", "id": 8105}]}
+    },
+    "haligtree_secret_medallion_complete": {
+      "label": {"zh_template": "{0} complete", "sources": [{"fmg": "GoodsName.fmg", "id": 8175}]}
+    },
+    "golden_lineage_evergaol_one_stonesword_key": {
+      "label": {"zh_template": "{0} for {1}", "sources": [
+        {"fmg": "GoodsName.fmg", "id": 8000},
+        {"fmg": "PlaceName.fmg", "id": 6300900}
+      ]}
+    },
+    "sellia_barrier_open": {
+      "label": {"zh_template": "{0} barrier opened", "sources": [{"fmg": "PlaceName.fmg", "id": 6403300}]}
+    },
+    "sellia_all_braziers_lit": {
+      "label": {"zh_template": "{0} braziers lit", "sources": [{"fmg": "PlaceName.fmg", "id": 6403300}]}
+    },
+    "siofra_dragonkin_soldier_defeated": {
+      "label": {"zh_template": "{0} {1} defeated", "sources": [
+        {"fmg": "PlaceName.fmg", "id": 12070},
+        {"fmg": "NpcName.fmg", "id": 904650600}
+      ]}
+    },
+    "abductor_virgin_abduction_triggered": {
+      "label": {"zh_template": "Academy {0} teleport triggered", "sources": [{"fmg": "PlaceName.fmg", "id": 160006}]}
+    },
+    "wyndham_erdtree_watchdog_defeated": {
+      "label": {"zh_template": "Wyndham {0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 904260300}]}
+    },
+    "placidusax_lie_down_triggered": {
+      "label": {"zh_template": "{0} arena transition triggered", "sources": [{"fmg": "NpcName.fmg", "id": 904520000}]}
+    },
+    "ranni_quest_started": {
+      "label": {"zh_template": "{0} quest started", "sources": [{"fmg": "NpcName.fmg", "id": 110600}]}
+    },
+    "spiritcaller_godskin_apostle_defeated": {
+      "label": {"zh_template": "Spiritcaller's Cave {0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 903560000}]}
+    },
+    "spiritcaller_godskin_noble_defeated": {
+      "label": {"zh_template": "Spiritcaller's Cave {0} defeated", "sources": [{"fmg": "NpcName.fmg", "id": 903570000}]}
+    }
+  }
+}

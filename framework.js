@@ -431,10 +431,13 @@
           if (this._aliases?.has(token)) {
             for (const value of this._aliases.get(token)) candidates.add(value);
           }
-          /* substring alias support: 搜索"史东薇尔正门"也能命中别名"史东薇尔" */
+          /* substring alias support (both directions):
+           *  - token inside an alias key: "玛利喀斯" ⊂ "「黑剑」玛利喀斯"
+           *  - alias key inside the token: "史东薇尔正门" ⊃ "史东薇尔" */
           if (this._aliases) {
             for (const [key, values] of this._aliases) {
-              if (key.length > 1 && token.includes(key)) {
+              if (key.length < 2 || token.length < 2) continue;
+              if (key.includes(token) || token.includes(key)) {
                 for (const value of values) candidates.add(value);
               }
             }

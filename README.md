@@ -30,6 +30,16 @@ python server.py --port 8105
 - 坐标仅用于自制抽象底图布局，不是游戏原始 XYZ；cost/risk 是相对单位，不是实测分钟。
 - 本地考据图（29,144 节点 / 7,976 条候选边，全部 `routeable: false`）是证据仓库，不在玩家关键路径上；开发检查入口为 `/research.html`。
 
+### 官方中文显示（2026-08-19）
+
+页面默认显示 FromSoftware 官方简体中文字段（`data/v1/zh-cn/official-zh-mapping.json`）：
+
+- 官方文本来源：从外部游戏快照的 `msg/{engus,zhocn}` 消息包全量提取的 894,467 条双语 FMG 记录（`scripts/build-official-fmg-index.py` 可重建 274MB 中间索引，不提交仓库）。
+- 映射规则（`scripts/build-official-zh-mapping.py`）：整字段官方匹配 → 官方中文；官方主名 + 官方白名单后缀（升降机/棺木/传送门/赐福等）→ 组合；主名官方 + 无官方后缀 → 部分中文 + 英文残留；无任何官方文本 → 保留英文并列入审计 uncovered 清单（禁止自译）。
+- 人工核对补丁（`scripts/zh-patch-manual.json`）：18 个高频条件名逐字引用官方 NpcName/PlaceName/GoodsName 条目，构建时校验每个补丁的官方来源与模板静态词必须逐字来自原英文字段。
+- 覆盖：节点 region 100%、label 98.7%（736/746）、条件 label 94.4%（167/177）；10 个自定义拓扑节点与 10 个自定义条件在官方文本中不存在名称，显式保留英文。
+- 搜索支持官方中文（含双向子串：搜"玛利喀斯"命中"「黑剑」玛利喀斯"，搜"史东薇尔正门"命中"史东薇尔"）。
+
 ### 固定 E2E 路线（阶段七回归）
 
 | # | 路线 | 段数 | 关键语义 |
@@ -57,6 +67,13 @@ python scripts/audit-packages.py
 
 # 从正式图重建数据包（机械拆分，可重复）
 python scripts/build-packages.py
+
+# 官方中文映射审计（uncovered 清单 + 字段完整性）
+python scripts/audit-zh-mapping.py
+
+# 重建官方中文映射（需先重建 274MB 双语 FMG 索引）
+python scripts/build-official-fmg-index.py --msg-root <快照>/extracted/msg-all --oodle-dll <快照>/runtime/oo2core_6_win64.dll --output data/v1/entities/official-fmg-bilingual-index.json
+python scripts/build-official-zh-mapping.py
 ```
 
 ### 发布验收（与恢复计划第 10 节 20 条对应）
