@@ -17,6 +17,10 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+ONLINE_ITEM_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-item-index-part{part}-20260818.json"
+    for part in range(1, 31)
+)
 
 # These are identity aliases only.  They do not create edges and are kept
 # explicit because the formal graph deliberately uses shorter route IDs,
@@ -150,6 +154,19 @@ def candidates_for(label_index: dict[str, list[dict]], name: str, region: str = 
     return candidates
 
 
+def decode_online_chunks(paths: tuple[Path, ...]) -> list:
+    import base64
+    import zlib
+
+    chunks = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
+    chunks.sort(key=lambda payload: payload["part"])
+    expected_parts = chunks[0]["parts"] if chunks else 0
+    if not chunks or expected_parts != len(chunks) or [chunk["part"] for chunk in chunks] != list(range(1, expected_parts + 1)):
+        raise ValueError("online item snapshot chunks are incomplete or out of order")
+    encoded = "".join(chunk["chunk"] for chunk in chunks)
+    return json.loads(zlib.decompress(base64.b64decode(encoded)).decode("utf-8"))
+
+
 def audit() -> dict:
     graph = load("data/v1/graph.json")
     catalog = load("data/v1/entities/sites-of-grace.json")
@@ -158,6 +175,7 @@ def audit() -> dict:
     route_profiles = load("data/v1/route-profiles.json")
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
+    related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
     achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
     achievement_contract = {
         "records": len(achievements["records"]),
@@ -172,6 +190,18 @@ def audit() -> dict:
             for target_id in record.get("formal_target_ids", [])
             if target_id not in node_by_id
         ],
+        "invalid_location_target_ids": [
+            {"achievement": record.get("canonical_id"), "target_id": target_id}
+            for record in achievements["records"]
+            for target_id in record.get("location_target_ids", [])
+            if target_id not in node_by_id
+        ],
+        "missing_location_source_evidence": [
+            record.get("canonical_id")
+            for record in achievements["records"]
+            if record.get("location_target_ids")
+            and record.get("location_source_evidence") not in related_source_ids
+        ],
         "routeable_records": [
             record.get("canonical_id") for record in achievements["records"] if record.get("routeable") is not False
         ],
@@ -183,10 +213,39 @@ def audit() -> dict:
         or achievement_contract["duplicate_canonical_ids"]
         or achievement_contract["missing_source_evidence"]
         or achievement_contract["invalid_formal_target_ids"]
+        or achievement_contract["invalid_location_target_ids"]
+        or achievement_contract["missing_location_source_evidence"]
         or achievement_contract["routeable_records"]
         or not achievement_contract["source_revision"]
     ):
         raise ValueError(f"achievement catalog contract failed: {achievement_contract}")
+    online_item_records = decode_online_chunks(ONLINE_ITEM_FILES)
+    online_item_name_counts: Counter[str] = Counter(
+        str(item.get("name"))
+        for row in online_item_records
+        for item in row[4]
+        if item.get("name")
+    )
+    collection_item_coverage = {}
+    for record in achievements["records"]:
+        if record.get("category") != "collection":
+            continue
+        aliases = record.get("online_name_aliases", {})
+        matched = {}
+        unmatched = []
+        for required_name in record.get("required_item_names", []):
+            candidates = [required_name, *aliases.get(required_name, [])]
+            source_matches = {name: online_item_name_counts[name] for name in candidates if online_item_name_counts[name]}
+            if source_matches:
+                matched[required_name] = source_matches
+            else:
+                unmatched.append(required_name)
+        collection_item_coverage[record["canonical_id"]] = {
+            "required_count": len(record.get("required_item_names", [])),
+            "matched_count": len(matched),
+            "unmatched": unmatched,
+            "matched_source_names": matched,
+        }
     label_index: dict[str, list[dict]] = {}
     for node in nodes:
         label_index.setdefault(norm(node.get("label")), []).append(node)
@@ -387,6 +446,7 @@ def audit() -> dict:
         "p0_achievement_catalog": {
             **achievement_contract,
             "formal_target_bound_records": sum(bool(record.get("formal_target_ids")) for record in achievements["records"]),
+            "location_target_bound_records": sum(bool(record.get("location_target_ids")) for record in achievements["records"]),
             "unbound_records": [
                 record["canonical_id"] for record in achievements["records"] if not record.get("formal_target_ids")
             ],
@@ -395,6 +455,7 @@ def audit() -> dict:
                 for record in achievements["records"]
                 if record.get("category") == "collection"
             },
+            "online_item_placement_coverage": collection_item_coverage,
         },
         "route_leg_catalog": {
             "records": len(legs["records"]),

@@ -569,7 +569,8 @@ function renderOnlinePoiResults(payload, kind) {
     }
     const detail = document.createElement("span");
     if (kind === "achievements") {
-      const targets = (record.formal_target_ids || []).map((id) => nodeLabel(id)).join(" / ") || "未绑定正式目标节点";
+      const targetIds = [...new Set([...(record.formal_target_ids || []), ...(record.location_target_ids || [])])];
+      const targets = targetIds.map((id) => nodeLabel(id)).join(" / ") || "未绑定正式目标节点";
       detail.textContent = record.category + " · " + record.coverage_state + " · " + targets;
     } else {
       const position = record.position || [];
@@ -577,7 +578,7 @@ function renderOnlinePoiResults(payload, kind) {
     }
     row.append(title, detail);
     if (kind === "achievements") {
-      const targetId = (record.formal_target_ids || []).find((id) => state.nodes.has(id));
+      const targetId = [...(record.formal_target_ids || []), ...(record.location_target_ids || [])].find((id) => state.nodes.has(id));
       if (targetId) {
         row.classList.add("clickable");
         row.addEventListener("click", () => {
