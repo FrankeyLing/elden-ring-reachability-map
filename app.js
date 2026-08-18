@@ -90,6 +90,29 @@ function text(value) {
   return value == null ? "" : String(value);
 }
 
+function onlineNameKey(value) {
+  return String(value || "").toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "");
+}
+
+function findOnlineMapPointForRouteName(name, regionName) {
+  const raw = String(name || "");
+  const variants = new Set([raw, raw.replace(/\s*\([^)]*\)\s*$/, "")]);
+  const inner = raw.match(/\(([^)]+)\)/);
+  if (inner) variants.add(inner[1]);
+  const keys = [...variants].map(onlineNameKey).filter(Boolean);
+  const matches = state.onlineMapPointRecords.filter((record) =>
+    (record.names || []).some((label) => keys.includes(onlineNameKey(label)))
+  );
+  const regionKey = onlineNameKey(regionName);
+  const regional = matches.filter((record) => {
+    const tile = state.onlineTileRecords.find((item) => item.mapKey === record.mapKey);
+    const tileText = onlineNameKey((tile?.subRegion || "") + " " + (tile?.majorRegion || ""));
+    return regionKey && tileText && (tileText.includes(regionKey) || regionKey.includes(tileText));
+  });
+  const narrowed = regional.length ? regional : matches;
+  return narrowed.length === 1 ? narrowed[0] : null;
+}
+
 function nodeLabel(id) {
   return state.nodes.get(id)?.label || id;
 }
@@ -410,7 +433,7 @@ function renderInspector() {
   const outgoing = allEdges.filter((edge) => edge.from === node.id).slice(0, 4);
   const incoming = allEdges.filter((edge) => edge.to === node.id).slice(0, 3);
   const connections = [...outgoing, ...incoming];
-  const onlineBoss = state.onlineBossByNodeId.get(node.id) || state.onlineMapPointByNodeId.get(node.id);
+  const onlineBoss = state.onlineBossByNodeId.get(node.id) || state.onlineMapPointByNodeId.get(node.id) || node.onlineCoordinate;
   const onlineEvidence = onlineBoss
     ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
     : "";
@@ -1324,6 +1347,7 @@ async function init() {
       regionSlots.set(key, slot + 1);
       const groupIndex = [...regionSlots.keys()].indexOf(key);
       const id = `candidate_endpoint_${`${regionName} ${name}`.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}`;
+      const onlinePoint = findOnlineMapPointForRouteName(name, regionName);
       state.data.nodes.push({
         id,
         label: name,
@@ -1334,9 +1358,15 @@ async function init() {
         worldEpoch: "unknown",
         x: 45 + (groupIndex % 5) * 190 + (slot % 7) * 20,
         y: layerBase[layer] + Math.floor(slot / 7) * 18 + (groupIndex % 3) * 7,
-        coordinateType: "unplaced_route_candidate",
+        coordinateType: onlinePoint ? "online_named_map_point_candidate" : "unplaced_route_candidate",
         verificationState: "online_single",
         sourceEvidence: ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
+        onlineCoordinate: onlinePoint ? {
+          name: (onlinePoint.names || []).join(" / "),
+          map: onlinePoint.mapKey,
+          position: onlinePoint.position,
+          sourceIndex: onlinePoint.sourceIndex,
+        } : null,
         isCatalog: true,
         description: `${regionName} 的在线路线候选端点；尚未获得游戏原始坐标或正式 Transition。`,
       });
