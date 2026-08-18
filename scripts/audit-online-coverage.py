@@ -455,6 +455,23 @@ def audit() -> dict:
     }
     if any(transition_contract[key] for key in ("missing_source_evidence", "missing_verification_state", "invalid_endpoints", "semantic_relation_edge_ids")):
         raise ValueError(f"formal transition contract failed: {transition_contract}")
+    online_text_location_nodes = [node for node in nodes if node.get("onlineTextLocation")]
+    invalid_online_text_locations = []
+    for node in online_text_location_nodes:
+        evidence = node["onlineTextLocation"]
+        if (
+            evidence.get("coordinateAvailable") is not False
+            or evidence.get("anchorNodeId") not in node_ids
+            or not evidence.get("locationClaim")
+            or not evidence.get("reason")
+        ):
+            invalid_online_text_locations.append(node["id"])
+    online_text_location_contract = {
+        "node_count": len(online_text_location_nodes),
+        "invalid_nodes": invalid_online_text_locations,
+    }
+    if online_text_location_contract["invalid_nodes"]:
+        raise ValueError(f"online text location contract failed: {online_text_location_contract}")
     online_coordinate_nodes = [node for node in nodes if node.get("onlineCoordinate")]
     invalid_coordinate_nodes = [
         node["id"]
@@ -801,6 +818,7 @@ def audit() -> dict:
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
         "transition_contract": transition_contract,
+        "online_text_location_contract": online_text_location_contract,
         "online_coordinate_contract": online_coordinate_contract,
         "safety": {
             "game_process_accessed": False,

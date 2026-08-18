@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.160-online-multiplane",
+  "version": "1.0.161-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -4396,6 +4396,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-dragonbarrow", "game8-greyoll-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "onlineTextLocation": { "coordinateAvailable": false, "anchorNodeId": "grace_fort_faroth", "locationClaim": "Stationary field boss south of Fort Faroth in Greyoll's Dragonbarrow.", "reason": "The fixed MapForGoblins Boss-position snapshot contains no Greyoll record; only a text location and Fort Faroth anchor are promoted." },
       "description": "Stationary field boss immediately outside and south of Fort Faroth; no MapForGoblins XYZ is claimed because the fixed boss snapshot does not contain a Greyoll record."
     },
     {
@@ -8060,6 +8061,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-mohg-omen", "eldenpedia-leyndell-sewers", "game8-shunning-grounds-cross-check"],
+      "onlineTextLocation": { "coordinateAvailable": false, "anchorNodeId": "grace_leyndell_royal_capital_subterranean_shunning_grounds_forsaken_depths", "locationClaim": "Chapel beyond the Forsaken Depths grace in the Subterranean Shunning-Grounds.", "reason": "The fixed online Boss-position snapshot has no Mohg, the Omen record; the route and chapel location remain text/topology evidence only." },
       "description": "Mohg, the Omen boss gate below Leyndell."
     },
     {
@@ -9746,7 +9748,7 @@
     },
     {
       "id": "godrick_knight_fort_haight_gate", "label": "Godrick Knight (Fort Haight)", "kind": "boss", "layer": "legacy", "region": "Fort Haight", "floor": "Upper fort level", "worldEpoch": "limgrave_surface", "x": 390, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "description": "Blood-obsessed Godrick Knight on the upper level; defeating it yields Bloody Slash but is not a hard gate to the tower chest."
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "onlineTextLocation": { "coordinateAvailable": false, "anchorNodeId": "fort_haight_surface_entrance", "locationClaim": "Blood-obsessed Godrick Knight on Fort Haight's upper level.", "reason": "The fixed online map-point and Boss-position snapshots contain Fort Haight but no uniquely named Godrick Knight coordinate." }, "description": "Blood-obsessed Godrick Knight on the upper level; defeating it yields Bloody Slash but is not a hard gate to the tower chest."
     },
     {
       "id": "fort_haight_upper_tower_reward", "label": "Fort Haight upper tower (Dectus Medallion left)", "kind": "state", "layer": "legacy", "region": "Fort Haight", "floor": "Southern tower chest", "worldEpoch": "limgrave_surface", "x": 450, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9772,7 +9774,7 @@
     },
     {
       "id": "soldier_of_godrick_cave_knowledge_gate", "label": "Soldier of Godrick (Cave of Knowledge)", "kind": "boss", "layer": "legacy", "region": "Cave of Knowledge", "floor": "Tutorial boss chamber", "worldEpoch": "limgrave_surface", "x": 200, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "description": "Tutorial boss at the end of Cave of Knowledge; the encounter is optional because the player can use the outer lift instead."
+      "sourceEvidence": ["eldenpedia-game-start-cave-knowledge", "neoseeker-stranded-graveyard-cross-check", "game8-stranded-graveyard-cross-check"], "onlineTextLocation": { "coordinateAvailable": false, "anchorNodeId": "grace_limgrave_stranded_graveyard_cave_of_knowledge", "locationClaim": "Tutorial boss at the end of the Cave of Knowledge.", "reason": "The fixed online snapshots contain the Cave of Knowledge location anchor but no uniquely named Soldier of Godrick Boss-position record." }, "description": "Tutorial boss at the end of Cave of Knowledge; the encounter is optional because the player can use the outer lift instead."
     },
     {
       "id": "cave_of_knowledge_post_boss_state", "label": "Cave of Knowledge (post-boss return state)", "kind": "state", "layer": "legacy", "region": "Cave of Knowledge", "floor": "Tutorial return ledge", "worldEpoch": "limgrave_surface", "x": 260, "y": 140, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",

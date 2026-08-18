@@ -480,6 +480,9 @@ function renderInspector() {
   const onlineBinding = node.onlineCoordinate
     ? `<div class="inspector-online">Coordinate binding: ${node.onlineCoordinate.bindingBasis || "formal_candidate"} / role: ${node.onlineCoordinate.coordinateRole || "formal_node_anchor"}</div>`
     : "";
+  const onlineTextLocation = node.onlineTextLocation
+    ? `<div class="inspector-online">Online text location: ${node.onlineTextLocation.locationClaim}<br>Coordinate available: false<br>Reason: ${node.onlineTextLocation.reason}</div><button data-focus-location-anchor="${node.onlineTextLocation.anchorNodeId}">Open location anchor</button>`
+    : "";
   const onlineCoordinateAction = onlineBoss && Array.isArray(onlineBoss.position)
     ? `<button data-focus-coordinate>定位在线坐标</button>`
     : "";
@@ -495,6 +498,7 @@ function renderInspector() {
       <p class="inspector-description">${node.description}</p>
        ${onlineEvidence}
        ${onlineBinding}
+       ${onlineTextLocation}
        ${onlineCoordinateAction}
        <div class="inspector-source">验证：${node.verificationState || "unknown"} · 坐标：${node.coordinateType || "unknown"}<br>来源：${(node.sourceEvidence || []).map((id) => state.data.sourceEvidence?.find((item) => item.id === id)?.label || id).join("；") || "未登记"}</div>
       <div class="inspector-actions"><button data-set-origin="${node.id}">设为起点</button><button data-set-destination="${node.id}">设为终点</button></div>
@@ -520,6 +524,12 @@ function renderInspector() {
   if (focusCoordinateButton) {
     focusCoordinateButton.addEventListener("click", () => {
       focusOnlineCoordinate(onlineBoss, "boss-positions", node.label);
+    });
+  }
+  const focusLocationAnchorButton = els.nodeInspector.querySelector("[data-focus-location-anchor]");
+  if (focusLocationAnchorButton) {
+    focusLocationAnchorButton.addEventListener("click", () => {
+      selectNode(focusLocationAnchorButton.dataset.focusLocationAnchor);
     });
   }
 }
