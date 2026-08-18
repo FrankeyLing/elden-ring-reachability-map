@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.142-online-multiplane",
+  "version": "1.0.143-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -3982,7 +3982,8 @@
       "y": 650,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-leyndell-cross-check", "gamesradar-east-altus-tower-cross-check"],
+      "sourceEvidence": ["powerpyx-leyndell-cross-check", "gamesradar-east-altus-tower-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 251, "recordId": 30341400, "name": "Fell Twins", "map": "area 34 / grid 14,0", "position": [526.3870239257812, -373.4849853515625, -312.85699462890625], "coordinateSpace": "game_world_xyz" },
       "description": "Optional post-Morgott bridge branch boss before the East Altus Divine Tower."
     },
     {
@@ -7482,7 +7483,8 @@
       "y": 120,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["gamespot-fallingstar-cross-check", "powerpyx-mt-gelmir-cross-check"],
+      "sourceEvidence": ["gamespot-fallingstar-cross-check", "powerpyx-mt-gelmir-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 332, "recordId": 33365400, "name": "Full-Grown Fallingstar Beast", "map": "area 60 / grid 36,54", "position": [100.82411193847656, 1048.6734619140625, -32.65999984741211], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Full-Grown Fallingstar Beast arena above the Ninth Mt. Gelmir Campsite."
     },
     {
@@ -7788,7 +7790,8 @@
       "y": 735,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 354, "recordId": 34311000, "name": "Beastmen of Farum Azula", "map": "area 31 / grid 10,0", "position": [36.145999908447266, 104.70800018310547, 21.160999298095703], "coordinateSpace": "game_world_xyz" },
       "description": "Two-Beastmen optional boss gate at the end of Dragonbarrow Cave."
     },
     {
@@ -7834,7 +7837,8 @@
       "y": 690,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check"],
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 355, "recordId": 34311100, "name": "Putrid Crystalian Trio", "map": "area 31 / grid 11,0", "position": [-144.10299682617188, 127.07099914550781, 138.60899353027344], "coordinateSpace": "game_world_xyz" },
       "description": "Putrid Crystalian staff, ringblade and spear trio at the end of Sellia Hideaway."
     },
     {
@@ -7895,7 +7899,8 @@
       "y": 520,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"],
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 358, "recordId": 34320700, "name": "Magma Wyrm", "map": "area 32 / grid 7,0", "position": [-20.45599937438965, 89.59700012207031, 158.6790008544922], "coordinateSpace": "game_world_xyz" },
       "description": "Magma Wyrm boss gate in the Caelid-side tunnel; the Moonveil route terminates here before the rear exit opens."
     },
     {
@@ -7955,7 +7960,8 @@
       "y": 880,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-divine-tower-caelid-cross-check", "pcgamer-caelid-divine-tower"],
+      "sourceEvidence": ["game8-divine-tower-caelid-cross-check", "pcgamer-caelid-divine-tower", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 360, "recordId": 34341300, "name": "Godskin Apostle", "map": "area 34 / grid 13,0", "position": [78.10800170898438, 36.310001373291016, -97.6520004272461], "coordinateSpace": "game_world_xyz" },
       "description": "Optional basement Godskin Apostle boss gate."
     },
     {
@@ -8367,7 +8373,8 @@
       "y": 1035,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 269, "recordId": 31320100, "name": "Stonedigger Troll", "map": "area 32 / grid 1,0", "position": [27.70400047302246, -30.433000564575195, -0.7929999828338623], "coordinateSpace": "game_world_xyz" },
       "description": "Stonedigger Troll boss gate reached from the grace via the hidden lower platform route."
     },
     {
@@ -8552,7 +8559,8 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-murkwater-catacombs", "game8-murkwater-catacombs-cross-check", "gamerguides-murkwater-catacombs-cross-check"],
+      "sourceEvidence": ["eldenpedia-murkwater-catacombs", "game8-murkwater-catacombs-cross-check", "gamerguides-murkwater-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 260, "recordId": 31300400, "name": "Grave Warden Duelist", "map": "area 30 / grid 4,0", "position": [-16.757999420166016, 46.104000091552734, 92.3479995727539], "coordinateSpace": "game_world_xyz" },
       "description": "Lever-gated Grave Warden Duelist boss gate at the end of Murkwater Catacombs."
     },
     {
@@ -8598,7 +8606,8 @@
       "y": 960,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-murkwater-cave", "game8-patches-murkwater-cross-check", "gamerguides-patches-cross-check"],
+      "sourceEvidence": ["eldenpedia-murkwater-cave", "game8-patches-murkwater-cross-check", "gamerguides-patches-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 262, "recordId": 31310000, "name": "Patches", "map": "area 31 / grid 0,0", "position": [-146.91400146484375, -39.933998107910156, -144.9250030517578], "coordinateSpace": "game_world_xyz" },
       "description": "Patches encounter triggered by opening the chest; the encounter can resolve by sparing him at half health or by defeating him."
     },
     {
@@ -8644,7 +8653,8 @@
       "y": 850,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-deathtouched-catacombs", "gamerguides-deathtouched-cross-check", "eip-deathtouched-cross-check"],
+      "sourceEvidence": ["eldenpedia-deathtouched-catacombs", "gamerguides-deathtouched-cross-check", "eip-deathtouched-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 261, "recordId": 31301100, "name": "Black Knife Assassin", "map": "area 30 / grid 11,0", "position": [-210.27999877929688, 177.48399353027344, 21.41699981689453], "coordinateSpace": "game_world_xyz" },
       "description": "Black Knife Assassin boss gate in the farthest catacomb chamber beside the Deathroot."
     },
     {
@@ -8799,7 +8809,8 @@
       "y": 1120,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-earthbore-cave", "gamerguides-earthbore-cross-check", "neoseeker-earthbore-cross-check"],
+      "sourceEvidence": ["eldenpedia-earthbore-cave", "gamerguides-earthbore-cross-check", "neoseeker-earthbore-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 263, "recordId": 31310100, "name": "Runebear", "map": "area 31 / grid 1,0", "position": [-146.91400146484375, -39.933998107910156, -144.9250030517578], "coordinateSpace": "game_world_xyz" },
       "description": "Runebear boss gate at the end of the rat-filled Earthbore Cave route."
     },
     {
@@ -8891,7 +8902,8 @@
       "y": 1120,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-tombsward-catacombs", "gamerguides-tombsward-catacombs-cross-check", "game8-limgrave-weeping-cross-check"],
+      "sourceEvidence": ["eldenpedia-tombsward-catacombs", "gamerguides-tombsward-catacombs-cross-check", "game8-limgrave-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 257, "recordId": 31300000, "name": "Cemetery Shade", "map": "area 30 / grid 0,0", "position": [1.875, 46.7239990234375, 65.5739974975586], "coordinateSpace": "game_world_xyz" },
       "description": "Cemetery Shade boss gate after the catacomb fire-trap and lever route."
     },
     {
@@ -8937,7 +8949,8 @@
       "y": 1040,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-impalers-catacombs", "gamerguides-impalers-catacombs-cross-check", "ludo-impalers-catacombs-cross-check"],
+      "sourceEvidence": ["eldenpedia-impalers-catacombs", "gamerguides-impalers-catacombs-cross-check", "ludo-impalers-catacombs-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 258, "recordId": 31300100, "name": "Erdtree Burial Watchdog", "map": "area 30 / grid 1,0", "position": [-34.55699920654297, 23.118999481201172, -155.67100524902344], "coordinateSpace": "game_world_xyz" },
       "description": "Lever-gated Erdtree Burial Watchdog boss gate after the trap-floor and water-chamber descent."
     },
     {
@@ -9019,7 +9032,7 @@
     },
     {
       "id": "erdtree_burial_watchdog_cliffbottom_gate", "label": "Erdtree Burial Watchdog (Cliffbottom Catacombs)", "kind": "boss", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Watchdog boss chamber", "worldEpoch": "liurnia_surface", "x": 1240, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Three-headed staff-wielding Erdtree Burial Watchdog boss gate."
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 291, "recordId": 32300600, "name": "Erdtree Burial Watchdog", "map": "area 30 / grid 6,0", "position": [20.858999252319336, 194.31900024414062, -18.72100067138672], "coordinateSpace": "game_world_xyz" }, "description": "Three-headed staff-wielding Erdtree Burial Watchdog boss gate."
     },
     {
       "id": "cliffbottom_catacombs_post_boss_state", "label": "Cliffbottom Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Watchdog chamber return state", "worldEpoch": "liurnia_surface", "x": 1300, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9083,7 +9096,7 @@
     },
     {
       "id": "black_knife_assassin_black_catacombs_gate", "label": "Black Knife Assassin (Black Knife Catacombs)", "kind": "boss", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Hidden Assassin chapel", "worldEpoch": "liurnia_surface", "x": 1620, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check"], "description": "Secondary boss gate revealed by riding a guillotine blade and striking the illusory wall."
+      "sourceEvidence": ["eldenpedia-black-knife-catacombs", "game8-black-knife-catacombs-cross-check", "gamerguides-black-knife-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 289, "recordId": 32300500, "name": "Black Knife Assassin", "map": "area 30 / grid 5,0", "position": [-240.84500122070312, 411.5, 16.746000289916992], "coordinateSpace": "game_world_xyz" }, "description": "Secondary boss gate revealed by riding a guillotine blade and striking the illusory wall."
     },
     {
       "id": "black_knife_catacombs_assassin_post_boss_state", "label": "Black Knife Catacombs (Assassin cleared)", "kind": "state", "layer": "legacy", "region": "Black Knife Catacombs", "floor": "Hidden Assassin chapel return state", "worldEpoch": "liurnia_surface", "x": 1680, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9099,7 +9112,7 @@
     },
     {
       "id": "stonedigger_troll_old_altus_gate", "label": "Stonedigger Troll (Old Altus Tunnel)", "kind": "boss", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Troll cavern", "worldEpoch": "altus_surface", "x": 770, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "description": "Stonedigger Troll boss gate amid explosive barrels."
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 328, "recordId": 33320400, "name": "Stonedigger Troll", "map": "area 32 / grid 4,0", "position": [-298.135986328125, 677.5150146484375, -147.7100067138672], "coordinateSpace": "game_world_xyz" }, "description": "Stonedigger Troll boss gate amid explosive barrels."
     },
     {
       "id": "old_altus_tunnel_post_boss_state", "label": "Old Altus Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Troll cavern return state", "worldEpoch": "altus_surface", "x": 830, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9155,7 +9168,7 @@
     },
     {
       "id": "black_knife_assassin_sages_cave_gate", "label": "Black Knife Assassin (Sage's Cave)", "kind": "boss", "layer": "legacy", "region": "Sage's Cave", "floor": "Invisible water chamber", "worldEpoch": "altus_surface", "x": 880, "y": 580, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Invisible Black Knife Assassin boss gate in the deepest water chamber."
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 326, "recordId": 33311900, "name": "Black Knife Assassin", "map": "area 31 / grid 19,0", "position": [130.98500061035156, 623.4730224609375, -12.699999809265137], "coordinateSpace": "game_world_xyz" }, "description": "Invisible Black Knife Assassin boss gate in the deepest water chamber."
     },
     {
       "id": "sages_cave_assassin_post_boss_state", "label": "Sage's Cave (Assassin cleared)", "kind": "state", "layer": "legacy", "region": "Sage's Cave", "floor": "Assassin water chamber return state", "worldEpoch": "altus_surface", "x": 940, "y": 580, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9187,7 +9200,7 @@
     },
     {
       "id": "grave_warden_duelist_auriza_side_gate", "label": "Grave Warden Duelist (Auriza Side Tomb)", "kind": "boss", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Duelist chamber", "worldEpoch": "altus_surface", "x": 1100, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check"], "description": "The side tomb's Grave Warden Duelist boss gate."
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 322, "recordId": 33301300, "name": "Grave Warden Duelist", "map": "area 30 / grid 13,0", "position": [4.3460001945495605, 954.4030151367188, 78.96299743652344], "coordinateSpace": "game_world_xyz" }, "description": "The side tomb's Grave Warden Duelist boss gate."
     },
     {
       "id": "auriza_side_tomb_post_boss_state", "label": "Auriza Side Tomb (post-boss state)", "kind": "state", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Duelist chamber return state", "worldEpoch": "altus_surface", "x": 1160, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9315,7 +9328,7 @@
     },
     {
       "id": "cemetery_shade_caelid_gate", "label": "Cemetery Shade (Caelid Catacombs)", "kind": "boss", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Cemetery Shade chamber", "worldEpoch": "caelid_surface", "x": 680, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check"], "description": "Cemetery Shade at the end of the catacomb route."
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 352, "recordId": 34301500, "name": "Cemetery Shade", "map": "area 30 / grid 15,0", "position": [125.70899963378906, 24.20400047302246, 258.0260009765625], "coordinateSpace": "game_world_xyz" }, "description": "Cemetery Shade at the end of the catacomb route."
     },
     {
       "id": "caelid_catacombs_post_boss_state", "label": "Caelid Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Cemetery Shade chamber return state", "worldEpoch": "caelid_surface", "x": 740, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9351,7 +9364,7 @@
     },
     {
       "id": "minor_erdtree_watchdogs_caelid_gate", "label": "Erdtree Burial Watchdogs (Minor Erdtree Catacombs)", "kind": "boss", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Twin Watchdog chamber", "worldEpoch": "caelid_surface", "x": 820, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Sword and Scepter Erdtree Burial Watchdog pair."
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 351, "recordId": 34301400, "name": "Erdtree Burial Watchdogs", "map": "area 30 / grid 14,0", "position": [-123.39600372314453, 73.29499816894531, -33.95100021362305], "coordinateSpace": "game_world_xyz" }, "description": "Sword and Scepter Erdtree Burial Watchdog pair."
     },
     {
       "id": "minor_erdtree_catacombs_post_boss_state", "label": "Minor Erdtree Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Twin Watchdog chamber return state", "worldEpoch": "caelid_surface", "x": 880, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
