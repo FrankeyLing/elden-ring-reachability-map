@@ -511,7 +511,9 @@ function renderOnlineCoordinateInspector(record, kind, label) {
 function onlineFormalBindingIds(record, kind) {
   const candidates = kind === "projected-graces"
     ? [record.formal_id]
-    : (Array.isArray(record.formal_candidates) ? record.formal_candidates : []);
+    : record.formal_binding?.formal_id
+      ? [record.formal_binding.formal_id]
+      : (Array.isArray(record.formal_candidates) ? record.formal_candidates : []);
   return [...new Set(candidates.filter((id) => id && state.nodes.has(id)))];
 }
 
@@ -1085,7 +1087,7 @@ async function init() {
       fetch("/api/route-profiles", { cache: "no-store" }),
       fetch("/api/online-index", { cache: "no-store" }),
       fetch("/api/online-map-keys", { cache: "no-store" }),
-      fetch("/data/v1/source-snapshots/mapforgoblins-boss-positions-20260818.json", { cache: "no-store" }),
+      fetch("/api/catalog/boss-positions?limit=1000", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part1-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part2-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part3-20260818.json", { cache: "no-store" }),
@@ -1122,7 +1124,10 @@ async function init() {
     state.onlineNamedGraceByNodeId = new Map();
     const namedGraceCandidates = new Map();
     state.onlineNamedGraceCatalogRecords.forEach((record) => {
-      (record.formal_candidates || []).filter((id) => state.data.nodes.some((node) => node.id === id)).forEach((id) => {
+      const identityIds = record.formal_binding?.formal_id
+        ? [record.formal_binding.formal_id]
+        : (record.formal_candidates || []);
+      identityIds.filter((id) => state.data.nodes.some((node) => node.id === id)).forEach((id) => {
         if (!namedGraceCandidates.has(id)) namedGraceCandidates.set(id, []);
         namedGraceCandidates.get(id).push(record);
       });
@@ -1132,13 +1137,15 @@ async function init() {
     });
     state.onlineBossByNodeId = new Map();
     state.onlineIndex.bosses.records.forEach((record) => {
-      const formalCandidates = record[13] || [];
+      const formalCandidates = record.formal_binding?.formal_id
+        ? [record.formal_binding.formal_id]
+        : (record.formal_candidates || []);
       if (formalCandidates.length === 1) {
         state.onlineBossByNodeId.set(formalCandidates[0], {
-          name: record[1],
-          map: record[2],
-          position: [record[6], record[7], record[8]],
-          sourceIndex: record[0],
+          name: record.name,
+          map: record.map,
+          position: record.position,
+          sourceIndex: record.source_index,
         });
       }
     });

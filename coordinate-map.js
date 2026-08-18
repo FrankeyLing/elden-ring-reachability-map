@@ -170,7 +170,7 @@ function populateCoordinateMapSelect() {
     if (mapKey && !options.has(mapKey)) options.set(mapKey, { mapKey });
   });
   (state.onlineIndex?.bosses?.records || []).forEach((record) => {
-    const mapKey = normalizeCoordinateMapKey(record[2]);
+    const mapKey = normalizeCoordinateMapKey(record.map || record[2]);
     if (mapKey && !options.has(mapKey)) options.set(mapKey, { mapKey });
   });
   (state.onlineIndex?.mapKeys?.records || []).forEach((record) => {

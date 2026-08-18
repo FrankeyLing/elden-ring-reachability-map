@@ -41,6 +41,7 @@ ONLINE_NAMED_GRACE_FILES = tuple(
 )
 NAMED_GRACE_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "named-grace-identity-bindings.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
+BOSS_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "boss-identity-bindings.json"
 ONLINE_MAP_CONVERSION_FILES = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-base-20260818.json",
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-dlc-20260818.json",
@@ -71,6 +72,7 @@ ONLINE_ITEM_CACHE = None
 ONLINE_ENTITY_CACHE = None
 ONLINE_GATHERING_CACHE = None
 NAMED_GRACE_IDENTITY_BINDINGS = None
+BOSS_IDENTITY_BINDINGS = None
 
 
 def collection_item_evidence(record):
@@ -135,6 +137,35 @@ def load_named_grace_identity_bindings():
 def enrich_named_grace_record(record, bindings):
     enriched = dict(record)
     binding = bindings.get(int(record["flag_id"]))
+    if not binding:
+        return enriched
+    candidates = list(enriched.get("formal_candidates") or [])
+    if binding["formal_id"] not in candidates:
+        candidates.append(binding["formal_id"])
+    enriched["formal_candidates"] = candidates
+    enriched["formal_binding"] = {
+        "formal_id": binding["formal_id"],
+        "binding_basis": binding["binding_basis"],
+        "identity_only": True,
+        "routeable": False,
+    }
+    return enriched
+
+
+def load_boss_identity_bindings():
+    global BOSS_IDENTITY_BINDINGS
+    if BOSS_IDENTITY_BINDINGS is None:
+        payload = json.loads(BOSS_IDENTITY_BINDINGS_FILE.read_bytes())
+        BOSS_IDENTITY_BINDINGS = {
+            int(record["source_index"]): record
+            for record in payload.get("records", [])
+        }
+    return BOSS_IDENTITY_BINDINGS
+
+
+def enrich_boss_record(record, bindings):
+    enriched = dict(record)
+    binding = bindings.get(int(record["source_index"]))
     if not binding:
         return enriched
     candidates = list(enriched.get("formal_candidates") or [])
@@ -517,12 +548,14 @@ class AppHandler(SimpleHTTPRequestHandler):
     def send_boss_positions(self, query: dict[str, list[str]]):
         map_id = query.get("map", [""])[0].strip()
         search = query.get("q", [""])[0].strip().casefold()
+        formal_id = query.get("formal_id", [""])[0].strip()
         try:
             limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = ONLINE_QUERY_MAX
         try:
             payload = json.loads(ONLINE_BOSS_POSITION_FILE.read_bytes())
+            bindings = load_boss_identity_bindings()
             records = []
             for row in payload["records"]:
                 row_map = str(row[2] or "")
@@ -530,7 +563,7 @@ class AppHandler(SimpleHTTPRequestHandler):
                     continue
                 if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
                     continue
-                records.append(
+                record = enrich_boss_record(
                     {
                         "source_index": row[0],
                         "name": row[1],
@@ -540,21 +573,28 @@ class AppHandler(SimpleHTTPRequestHandler):
                         "grid_z": row[5],
                         "position": [row[6], row[7], row[8]],
                         "model": row[9],
+                        "npc_param_id": row[10],
                         "formal_candidates": row[13] or [],
-                    }
+                    },
+                    bindings,
                 )
+                if formal_id and formal_id not in (record.get("formal_candidates") or []):
+                    continue
+                records.append(record)
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             self.send_json_error(exc)
             return
         self.send_json_payload(
             {
                 "schema": "elden-ring-reachability-map/online-boss-position-query@1",
-                "query": {"q": search, "map": map_id, "limit": limit},
+                "query": {"q": search, "map": map_id, "formal_id": formal_id, "limit": limit},
                 "record_count": len(records[:limit]),
                 "total_matches": len(records),
                 "records": records[:limit],
                 "routeable": False,
-                "note": "raw online Boss coordinates; formal candidates are identity hints and do not create boss-gated traversal edges",
+                "identity_binding_snapshot": "boss-identity-bindings@1",
+                "identity_binding_count": len(bindings),
+                "note": "raw online Boss coordinates; formal candidates and formal_binding are identity evidence only and do not create boss-gated traversal edges",
             }
         )
 

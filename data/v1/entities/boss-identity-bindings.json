@@ -1,0 +1,34 @@
+{
+  "schema": "elden-ring-reachability-map/boss-identity-bindings@1",
+  "captured_at": "2026-08-18",
+  "source_snapshot": "mapforgoblins-boss-positions-20260818",
+  "binding_policy": "manual_name_region_map_alias",
+  "routeable": false,
+  "notes": [
+    "These records bind an online Boss-position record to an already-existing formal Boss node.",
+    "A binding is an identity and coordinate-evidence link only; it never creates or modifies a traversal edge.",
+    "The sourceIndex, npcParamId, mapId and encounter name were checked together."
+  ],
+  "records": [
+    { "source_index": 4, "name": "Morgott, the Omen King", "map": "m11_00_00_00", "npc_param_id": 21300534, "formal_id": "morgott_arena_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 5, "name": "Godfrey, First Elden Lord", "map": "m11_05_00_00", "npc_param_id": 47210070, "formal_id": "godfrey_ashen_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 30, "name": "Loretta, Knight of the Haligtree", "map": "m15_00_00_00", "npc_param_id": 32520054, "formal_id": "loretta_haligtree_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 31, "name": "Malenia, Blade of Miquella", "map": "m15_00_00_00", "npc_param_id": 21200056, "formal_id": "malenia_haligtree_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 33, "name": "Godskin Noble", "map": "m16_00_00_00", "npc_param_id": 35700038, "formal_id": "godskin_noble_volcano_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 36, "name": "Elden Beast", "map": "m19_00_00_00", "npc_param_id": 22000078, "formal_id": "radagon_elden_beast_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 89, "name": "Crystalian Trio", "map": "m31_06_00_00", "npc_param_id": 33500920, "formal_id": "crystalian_academy_cave_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 90, "name": "Crystalian Duo", "map": "m32_02_00_00", "npc_param_id": 33501920, "formal_id": "crystalian_raya_lucaria_tunnel_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 91, "name": "Alecto, Black Knife Ringleader", "map": "m60_33_42_00", "npc_param_id": 21002922, "formal_id": "black_knife_ringleader_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 114, "name": "Crucible Knight Ordovis", "map": "m30_10_00_00", "npc_param_id": 25000933, "formal_id": "crucible_knight_ordovis_auriza_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 115, "name": "Perfumer Tricia & Misbegotten Warrior", "map": "m30_12_00_00", "npc_param_id": 34600930, "formal_id": "perfumer_tricia_unsightly_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 117, "name": "Kindred of Rot", "map": "m31_07_00_00", "npc_param_id": 38100932, "formal_id": "kindred_rot_seethewater_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 119, "name": "Miranda & Omenkiller", "map": "m31_18_00_00", "npc_param_id": 44800930, "formal_id": "omenkiller_perfumer_grotto_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 123, "name": "Crystalian Duo", "map": "m32_05_00_00", "npc_param_id": 33500930, "formal_id": "crystalian_duo_altus_tunnel_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 131, "name": "Godefroy the Grafted", "map": "m60_39_50_00", "npc_param_id": 47500030, "formal_id": "godefroy_golden_lineage_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 141, "name": "Valiant Gargoyle", "map": "m60_42_51_00", "npc_param_id": 47700033, "formal_id": "siofra_aqueduct_valiant_gargoyle_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 144, "name": "Starscourge Radahn", "map": "m60_52_38_00", "npc_param_id": 47300045, "formal_id": "radahn_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 150, "name": "Cleanrot Knight Duo", "map": "m31_20_00_00", "npc_param_id": 38000940, "formal_id": "cleanrot_knights_abandoned_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 151, "name": "Crazed Duelist", "map": "m31_21_00_00", "npc_param_id": 34000940, "formal_id": "frenzied_duelist_gaol_gate", "binding_basis": "manual_name_region_map_alias" },
+    { "source_index": 201, "name": "Rellana, Twin Moon Knight", "map": "m61_48_44_00", "npc_param_id": 53000082, "formal_id": "rellana_arena_gate", "binding_basis": "manual_name_region_map_alias" }
+  ]
+}

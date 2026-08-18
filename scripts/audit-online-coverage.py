@@ -36,6 +36,7 @@ ONLINE_NAMED_GRACE_FILES = tuple(
     for part in range(1, 6)
 )
 NAMED_GRACE_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "named-grace-identity-bindings.json"
+BOSS_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "boss-identity-bindings.json"
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
@@ -335,6 +336,7 @@ def audit() -> dict:
         for path in ONLINE_NAMED_GRACE_FILES
     ]
     named_grace_identity_bindings = json.loads(NAMED_GRACE_IDENTITY_BINDINGS_FILE.read_text(encoding="utf-8"))
+    boss_identity_bindings = json.loads(BOSS_IDENTITY_BINDINGS_FILE.read_text(encoding="utf-8"))
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
@@ -496,6 +498,58 @@ def audit() -> dict:
         or named_grace_identity_contract["invalid_records"]
     ):
         raise ValueError(f"named grace coordinate contract failed: {named_grace_contract}; identity bindings: {named_grace_identity_contract}")
+    boss_source_payload = json.loads(ONLINE_BOSS_POSITION_FILE.read_text(encoding="utf-8"))
+    boss_source_records = boss_source_payload.get("records", [])
+    boss_binding_records = boss_identity_bindings.get("records", [])
+    boss_source_by_index = {int(row[0]): row for row in boss_source_records}
+    boss_identity_contract = {
+        "schema": boss_identity_bindings.get("schema"),
+        "record_count": len(boss_binding_records),
+        "duplicate_source_indexes": sorted(
+            source_index
+            for source_index in {record.get("source_index") for record in boss_binding_records}
+            if source_index is not None
+            and [item.get("source_index") for item in boss_binding_records].count(source_index) > 1
+        ),
+        "invalid_records": [],
+    }
+    for binding in boss_binding_records:
+        source = boss_source_by_index.get(binding.get("source_index"))
+        formal = node_by_id.get(binding.get("formal_id"))
+        invalid = (
+            source is None
+            or binding.get("name") != source[1]
+            or binding.get("map") != source[2]
+            or int(binding.get("npc_param_id", -1)) != int(source[10])
+            or formal is None
+            or formal.get("kind") != "boss"
+            or binding.get("binding_basis") != "manual_name_region_map_alias"
+            or binding.get("formal_id") in ((source[13] or []) if source is not None else [])
+        )
+        if invalid:
+            boss_identity_contract["invalid_records"].append(binding.get("source_index"))
+    effective_boss_candidate_records = []
+    binding_by_source_index = {record.get("source_index"): record for record in boss_binding_records}
+    for source in boss_source_records:
+        candidates = list(source[13] or [])
+        binding = binding_by_source_index.get(source[0])
+        if binding and binding["formal_id"] not in candidates:
+            candidates.append(binding["formal_id"])
+        effective_boss_candidate_records.append(candidates)
+    boss_identity_contract["raw_formal_candidate_count"] = len({candidate for row in boss_source_records for candidate in (row[13] or [])})
+    boss_identity_contract["raw_unbound_source_records"] = sum(not (row[13] or []) for row in boss_source_records)
+    boss_identity_contract["effective_formal_candidate_count"] = len({candidate for row in effective_boss_candidate_records for candidate in row})
+    boss_identity_contract["unbound_source_records"] = sum(not candidates for candidates in effective_boss_candidate_records)
+    if (
+        boss_identity_contract["schema"] != "elden-ring-reachability-map/boss-identity-bindings@1"
+        or boss_identity_contract["record_count"] != 20
+        or boss_identity_contract["duplicate_source_indexes"]
+        or boss_identity_contract["invalid_records"]
+        or boss_identity_contract["effective_formal_candidate_count"] != 121
+        or boss_identity_contract["raw_unbound_source_records"] != 113
+        or boss_identity_contract["unbound_source_records"] != 96
+    ):
+        raise ValueError(f"boss identity contract failed: {boss_identity_contract}")
     graph_condition_ids = {condition["id"] for condition in graph.get("conditions", [])}
     achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
     required_items_by_achievement = {
@@ -1483,6 +1537,7 @@ def audit() -> dict:
         "projected_anchor_contract": projected_anchor_contract,
         "named_grace_coordinate_contract": named_grace_contract,
         "named_grace_identity_contract": named_grace_identity_contract,
+        "boss_identity_contract": boss_identity_contract,
         "map_point_candidate_contract": map_point_candidate_contract,
         "online_text_location_contract": online_text_location_contract,
         "unresolved_boss_location_contract": unresolved_boss_location_contract,
