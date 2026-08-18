@@ -442,6 +442,19 @@ def audit() -> dict:
     formal_graces = [node for node in nodes if node.get("kind") == "grace"]
     route_edges = {(edge["from"], edge["to"]) for edge in graph["edges"]}
     node_ids = set(node_by_id)
+    registered_snapshot_ids = set(graph.get("meta", {}).get("sourceSnapshots", []))
+    coordinate_snapshot_ids = {
+        node["onlineCoordinate"].get("snapshot")
+        for node in nodes
+        if node.get("onlineCoordinate") and node["onlineCoordinate"].get("snapshot")
+    }
+    online_snapshot_contract = {
+        "referenced": sorted(coordinate_snapshot_ids),
+        "registered": sorted(coordinate_snapshot_ids & registered_snapshot_ids),
+        "unregistered": sorted(coordinate_snapshot_ids - registered_snapshot_ids),
+    }
+    if online_snapshot_contract["unregistered"]:
+        raise ValueError(f"online snapshot registration contract failed: {online_snapshot_contract}")
     transition_contract = {
         "edge_count": len(graph["edges"]),
         "missing_source_evidence": [edge["id"] for edge in graph["edges"] if not edge.get("sourceEvidence")],
@@ -818,6 +831,7 @@ def audit() -> dict:
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
         "transition_contract": transition_contract,
+        "online_snapshot_contract": online_snapshot_contract,
         "online_text_location_contract": online_text_location_contract,
         "online_coordinate_contract": online_coordinate_contract,
         "safety": {
