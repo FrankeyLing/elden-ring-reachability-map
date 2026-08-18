@@ -917,6 +917,19 @@ def audit() -> dict:
                 }
             )
 
+    expected_physical_route_discontinuities = {
+        "er_guide_leg_dlc-scadu-altus-03",
+        "er_guide_leg_dlc-south-03",
+        "er_guide_leg_dlc-west-05",
+    }
+    physical_route_discontinuity_contract = {
+        "actual": sorted(item["catalog_id"] for item in exact_endpoint_without_path),
+        "expected": sorted(expected_physical_route_discontinuities),
+        "normal_fast_travel_profiles": sorted(item["catalog_id"] for item in normal_profile_matches),
+    }
+    if physical_route_discontinuity_contract["actual"] != physical_route_discontinuity_contract["expected"]:
+        raise ValueError(f"physical route discontinuity contract failed: {physical_route_discontinuity_contract}")
+
     return {
         "graph": {
             "version": graph["meta"]["version"],
@@ -985,6 +998,7 @@ def audit() -> dict:
             "normal_fast_travel_matches": normal_profile_matches,
             "exact_endpoint_without_topology_path": exact_endpoint_without_path,
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
+            "physical_route_discontinuity_contract": physical_route_discontinuity_contract,
         },
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,
