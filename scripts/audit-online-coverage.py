@@ -79,6 +79,7 @@ EXPLICIT_ALIASES = {
 # single formal node intentionally remain unmapped.
 ROUTE_ENDPOINT_ALIASES = {
     "rennasrisesendinggate": "renna_rise_waygate",
+    "rennasrise": "renna_rise_waygate",
     "ainselrivermain": "grace_ainsel_river_main",
     "nokstellaeternalcity": "grace_nokstella_eternal_city",
     "fracturedmarika": "grace_fractured_marika",
@@ -101,7 +102,10 @@ ROUTE_ENDPOINT_ALIASES = {
     "dragonbarrowwest": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
     "fortfaroth": "grace_fort_faroth",
     "farumgreatbridge": "grace_caelid_greyoll_s_dragonbarrow_farum_greatbridge",
+    "divinetowerofcaelid": "grace_caelid_greyoll_s_dragonbarrow_divine_tower_of_caelid_center",
     "forgeofthegiants": "grace_forge_of_giants",
+    "crumblingbeastgravedepths": "grace_crumbling_beast_grave_depths",
+    "dragontemplealtar": "grace_dragon_temple_altar",
     "haligtreecanopy": "grace_haligtree_canopy",
     "haligtreepromenade": "grace_haligtree_promenade",
     "haligtreeroots": "grace_elphael_haligtree_roots",
@@ -122,11 +126,15 @@ ROUTE_ENDPOINT_ALIASES = {
     "prisontownchurch": "grace_prison_town_church",
     "templeofeiglay": "grace_temple_of_eiglay",
     "starfallcrater": "starfall_crater_entrance",
+    "starfallcratermistwoodlimgrave": "starfall_crater_entrance",
+    "nokroneternalcity": "grace_nokron_eternal_city",
     "aqueductfacingcliffs": "grace_aqueduct_facing_cliffs",
-    "siofrariverwelldepths": "grace_siofra_river_siofra_river_well_depths",
+    "siofrariverwelldepths": "grace_siofra_well_depths",
     "siofrariverbank": "grace_siofra_river_bank",
     "hallowhorngrounds": "hallowhorn_grounds_siofra",
     "worshipperswoods": "grace_worshippers_woods",
+    "siofraaqueduct": "siofra_hidden_waygate",
+    "siofraaqueductdeeprootcoffin": "deeproot_coffin",
     "roundtablehold": "grace_roundtable_hold_main_table_of_lost_grace",
 }
 
