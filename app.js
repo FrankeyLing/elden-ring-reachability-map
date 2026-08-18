@@ -862,6 +862,7 @@ async function init() {
     if (!achievementResponse.ok) throw new Error(`成就目录 HTTP ${achievementResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     state.data = await graphResponse.json();
+    els.datasetVersion.textContent = state.data.meta?.version || "Online Verified V1";
     state.routeProfiles = await routeProfileResponse.json();
     state.achievementCatalog = await achievementResponse.json();
     if (!onlineIndexResponse.ok) throw new Error(`online index HTTP ${onlineIndexResponse.status}`);
