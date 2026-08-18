@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.107-online-multiplane",
+  "version": "1.0.108-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -112,7 +112,8 @@
       "base-limgrave-weeping-return-coverage-evidence-20260818",
       "base-divine-tower-academy-return-evidence-20260818",
       "base-capital-ranni-scadu-return-evidence-20260818",
-      "base-special-postboss-return-evidence-20260818"
+      "base-special-postboss-return-evidence-20260818",
+      "reddit-siofra-dragonkin-exit-20260818"
     ]
   },
   "defaultOrigin": "grace_avenue_balcony",
@@ -1187,6 +1188,7 @@
     ,{ "id": "game8-deep-siofra-well-cross-check", "label": "Game8 · Deep Siofra Well route", "url": "https://game8.co/games/Elden-Ring/archives/370641", "grade": "B" }
     ,{ "id": "eldenpedia-dragonkin-cross-check", "label": "Eldenpedia · Dragonkin Soldier", "url": "https://eldenring.wiki.gg/wiki/Dragonkin_Soldier", "grade": "A" }
     ,{ "id": "eldenpedia-sending-gate-cross-check", "label": "Eldenpedia · Sending Gate", "url": "https://eldenring.wiki.gg/wiki/Sending_Gate", "grade": "A" }
+    ,{ "id": "reddit-siofra-dragonkin-exit-cross-check", "label": "Reddit community / Siofra Dragonkin exit corroboration", "url": "https://www.reddit.com/r/Eldenring/comments/t32suz/where_do_i_go_after_dragonkin_soldier/", "grade": "C" }
     ,{ "id": "eldenpedia-ainsel-well", "label": "Eldenpedia · Ainsel River Well", "url": "https://eldenring.wiki.gg/wiki/Ainsel_River_Well", "grade": "A" }
     ,{ "id": "game8-ainsel-well-cross-check", "label": "Game8 · Ainsel River Well route", "url": "https://game8.co/games/Elden-Ring/archives/382717", "grade": "B" }
     ,{ "id": "gamerguides-ainsel-well-cross-check", "label": "Gamer Guides · Ainsel River Well", "url": "https://www.gamerguides.com/elden-ring/database/locations/liurnia-of-the-lakes/ainsel-river-well", "grade": "C" }
@@ -1763,7 +1765,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
-      "description": "Boss-cleared state for the isolated upper Siofra plateau; no nonexistent Site of Grace is fabricated."
+      "description": "Boss-cleared state for the isolated upper Siofra plateau; no nonexistent Site of Grace or reverse Waygate is fabricated. After the boss condition is met, the only modeled exit is map fast travel to the entry-grace representative."
     },
     {
       "id": "grace_crumbling_beast_grave_depths",
@@ -17429,6 +17431,7 @@
     ,{ "id": "fort-haight-tower-to-entrance", "from": "fort_haight_upper_tower_reward", "to": "fort_haight_surface_entrance", "mode": "Fort Haight tower chest return to fort entrance", "cost": 5, "risk": 7, "direction": "backtrack", "transitionType": "fort_reward_route_return", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Descend from the southern tower chest to the fort perimeter; the Dectus Medallion pickup does not create a one-way trap.", "tags": ["reward", "vertical", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "fort-haight-post-to-entrance", "from": "fort_haight_post_boss_state", "to": "fort_haight_surface_entrance", "mode": "Fort Haight cleared knight return to fort entrance", "cost": 5, "risk": 6, "direction": "backtrack", "transitionType": "fort_boss_route_return", "requires": ["godrick_knight_fort_haight_defeated"], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared fort interior and return to its surface entrance; Kenneth Haight's quest state is separate from the physical exit.", "tags": ["boss", "surface", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "fort-haight-entrance-to-west-grace", "from": "fort_haight_surface_entrance", "to": "grace_limgrave_main_fort_haight_west", "mode": "Fort Haight entrance return to Fort Haight West", "cost": 7, "risk": 9, "direction": "backtrack", "transitionType": "fort_hill_route_return", "requires": [], "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the ballista-covered hill from the fort perimeter to Fort Haight West; this is the reverse surface approach, not a fast-travel edge.", "tags": ["walk", "surface", "hazard", "backtrack", "cross_checked"] }
+    ,{ "id": "siofra-dragonkin-to-fast-travel-exit", "from": "siofra_dragonkin_post_boss_state", "to": "grace_worshippers_woods", "mode": "Siofra upper plateau map fast-travel exit", "cost": 1, "risk": 0, "direction": "one_way", "transitionType": "isolated_upper_plateau_fast_travel_exit", "requires": ["siofra_dragonkin_soldier_defeated", "map_fast_travel_available"], "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "eldenpedia-sending-gate-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check", "reddit-siofra-dragonkin-exit-cross-check"], "verificationState": "online_cross_checked", "note": "The sending gate is an entry transition, not a modeled reverse portal. After defeating the boss and leaving combat, use the map fast-travel system; Worshippers' Woods is the entry-grace representative and other activated destinations remain profile-level dynamic options.", "tags": ["fast_travel", "one_way", "boss", "conditional", "underground", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17451,7 +17454,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1090,
+    "formalRouteEdgeCount": 1091,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
