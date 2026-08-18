@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.155-online-multiplane",
+  "version": "1.0.156-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -3855,8 +3855,9 @@
       "y": 850,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-outer-wall-r100441", "powerpyx-leyndell-cross-check", "game8-leyndell-cross-check"],
-      "description": "Capital entry boss gate."
+      "sourceEvidence": ["eldenpedia-outer-wall-r100441", "powerpyx-leyndell-cross-check", "game8-leyndell-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 254, "recordId": 30455200, "name": "Gnarrl, Draconic Sentinel", "map": "area 60 / grid 45,52", "position": [27.69300079345703, 1023.7589721679688, 56.92100143432617], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Capital entry boss gate. The online source names this instance Gnarrl, Draconic Sentinel; the XYZ is the exact-name map point, not a local fog-wall geometry survey."
     },
     {
       "id": "grace_east_capital_rampart",
@@ -8867,7 +8868,7 @@
     },
     {
       "id": "miranda_tombsward_cave_gate",
-      "label": "Miranda the Blighted Bloom (Tombsward Cave)",
+      "label": "Miranda Blossom (Tombsward Cave)",
       "kind": "boss",
       "layer": "legacy",
       "region": "Tombsward Cave",
@@ -8877,8 +8878,9 @@
       "y": 1170,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-tombsward-cave-cross-check", "gamerguides-tombsward-cave-cross-check", "game8-limgrave-weeping-cross-check"],
-      "description": "Miranda the Blighted Bloom boss gate in the poison-filled chamber."
+      "sourceEvidence": ["game8-tombsward-cave-cross-check", "gamerguides-tombsward-cave-cross-check", "game8-limgrave-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 151, "recordId": 310200, "name": "Miranda Blossom", "map": "area 60 / grid 42,33", "position": [-114.11000061035156, 6.659999847412109, 31.25], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Miranda Blossom boss gate in the poison-filled chamber. The online XYZ is the exact-name Miranda Blossom map point, not a local fog-wall geometry survey."
     },
     {
       "id": "tombsward_cave_post_boss_state",
@@ -9068,8 +9070,8 @@
       "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 155, "recordId": 310600, "name": "Academy Crystal Cave", "map": "area 31 / grid 6,0", "position": [72.95999908447266, 236.38999938964844, 120.51000213623047], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the two-key Academy Crystal Cave."
     },
     {
-      "id": "crystalian_academy_cave_gate", "label": "Crystalian pair (Academy Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Crystalian boss chamber", "worldEpoch": "liurnia_surface", "x": 990, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "description": "Spear and staff Crystalian boss gate."
+      "id": "crystalian_academy_cave_gate", "label": "Crystalian trio (Academy Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Crystalian boss chamber", "worldEpoch": "liurnia_surface", "x": 990, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 155, "recordId": 310600, "name": "Crystalian Trio", "map": "area 31 / grid 6,0", "position": [72.95999908447266, 236.38999938964844, 120.51000213623047], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Crystalian trio boss gate. The online XYZ is the exact-name trio map point, not a local fog-wall geometry survey."
     },
     {
       "id": "academy_crystal_cave_post_boss_state", "label": "Academy Crystal Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Crystalian chamber return state", "worldEpoch": "liurnia_surface", "x": 1050, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9088,8 +9090,8 @@
       "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 172, "recordId": 320200, "name": "Raya Lucaria Crystal Tunnel", "map": "area 60 / grid 37,47", "position": [-111.9800033569336, 242.97999572753906, 16.290000915527344], "coordinateSpace": "game_world_xyz" }, "description": "Grace inside the crystal mine."
     },
     {
-      "id": "crystalian_raya_lucaria_tunnel_gate", "label": "Crystalian (Raya Lucaria Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Crystalian chamber", "worldEpoch": "liurnia_surface", "x": 1370, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "description": "Ringblade Crystalian boss gate at the bottom of the tunnel."
+      "id": "crystalian_raya_lucaria_tunnel_gate", "label": "Crystalian duo (Raya Lucaria Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Crystalian chamber", "worldEpoch": "liurnia_surface", "x": 1370, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 172, "recordId": 320200, "name": "Crystalian Duo", "map": "area 60 / grid 37,47", "position": [-111.9800033569336, 242.97999572753906, 16.290000915527344], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Crystalian duo boss gate at the bottom of the tunnel. The online XYZ is the exact-name duo map point, not a local fog-wall geometry survey."
     },
     {
       "id": "raya_lucaria_crystal_tunnel_post_boss_state", "label": "Raya Lucaria Crystal Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Crystalian chamber return state", "worldEpoch": "liurnia_surface", "x": 1430, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9301,7 +9303,7 @@
     },
     {
       "id": "crystalian_duo_altus_tunnel_gate", "label": "Crystalian Spear and Ringblade (Altus Tunnel)", "kind": "boss", "layer": "legacy", "region": "Altus Tunnel", "floor": "Twin Crystalian chamber", "worldEpoch": "altus_surface", "x": 1280, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check"], "description": "Spear and Ringblade Crystalian duo boss gate."
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 174, "recordId": 320500, "name": "Crystalian Duo", "map": "area 32 / grid 5,0", "position": [-52.2599983215332, 814.0, 40.720001220703125], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Spear and Ringblade Crystalian duo boss gate. The online XYZ is the exact-name duo map point, not a local fog-wall geometry survey."
     },
     {
       "id": "altus_tunnel_post_boss_state", "label": "Altus Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Altus Tunnel", "floor": "Twin Crystalian chamber return state", "worldEpoch": "altus_surface", "x": 1340, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -17488,7 +17490,7 @@
       "id": "academy-crystal-mouth-to-grace", "from": "academy_crystal_cave_surface_entrance", "to": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "mode": "Academy Crystal Cave entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "cave_entry", "requires": [], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "The opened seal leads to the internal grace.", "tags": ["walk", "legacy", "cross_checked"]
     },
     {
-      "id": "academy-crystal-to-crystalian-pair", "from": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "to": "crystalian_academy_cave_gate", "mode": "Academy Crystal Cave internal route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "scholar_crystal_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Scholars, rats and crystal chambers lead to the spear/staff Crystalian pair.", "tags": ["walk", "boss", "legacy", "cross_checked"]
+      "id": "academy-crystal-to-crystalian-pair", "from": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "to": "crystalian_academy_cave_gate", "mode": "Academy Crystal Cave internal route", "cost": 11, "risk": 9, "direction": "forward", "transitionType": "scholar_crystal_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Scholars, rats and crystal chambers lead to the Crystalian trio.", "tags": ["walk", "boss", "legacy", "cross_checked"]
     },
     {
       "id": "academy-crystalian-to-state", "from": "crystalian_academy_cave_gate", "to": "academy_crystal_cave_post_boss_state", "mode": "Academy Crystal Cave Crystalian completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["crystalian_academy_cave_defeated"], "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state before the belfry lift.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
@@ -17503,7 +17505,7 @@
       "id": "crystal-tunnel-mouth-to-grace", "from": "raya_lucaria_crystal_tunnel_surface_entrance", "to": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "mode": "Raya Lucaria Crystal Tunnel entrance passage", "cost": 3, "risk": 6, "direction": "forward", "transitionType": "mine_entry", "requires": [], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "The lake-shore mouth leads to the internal mine grace.", "tags": ["walk", "legacy", "cross_checked"]
     },
     {
-      "id": "crystal-tunnel-to-crystalian", "from": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "to": "crystalian_raya_lucaria_tunnel_gate", "mode": "Raya Lucaria Crystal Tunnel internal route", "cost": 11, "risk": 8, "direction": "forward", "transitionType": "crystal_mine_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Descend through the glintstone mine to the ringblade Crystalian.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
+      "id": "crystal-tunnel-to-crystalian", "from": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "to": "crystalian_raya_lucaria_tunnel_gate", "mode": "Raya Lucaria Crystal Tunnel internal route", "cost": 11, "risk": 8, "direction": "forward", "transitionType": "crystal_mine_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Descend through the glintstone mine to the Crystalian duo.", "tags": ["walk", "vertical", "boss", "legacy", "cross_checked"]
     },
     {
       "id": "raya-crystalian-to-state", "from": "crystalian_raya_lucaria_tunnel_gate", "to": "raya_lucaria_crystal_tunnel_post_boss_state", "mode": "Raya Lucaria Crystal Tunnel Crystalian completion", "cost": 3, "risk": 9, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["crystalian_raya_lucaria_tunnel_defeated"], "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check"], "verificationState": "online_cross_checked", "note": "Explicit cleared state for the tunnel Crystalian and miner bell reward.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"]
