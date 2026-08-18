@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.123-online-multiplane",
+  "version": "1.0.124-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2496,7 +2496,8 @@
       "y": 560,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-farum-cross-check", "gamespot-placidusax-cross-check", "eip-farum-cross-check"],
+      "sourceEvidence": ["powerpyx-farum-cross-check", "gamespot-placidusax-cross-check", "eip-farum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 229, "recordId": 30130000, "name": "Dragonlord Placidusax", "map": "area 67 / grid 13,0", "position": [14.449999809265137, 1009.676025390625, 299.5039978027344], "coordinateSpace": "game_world_xyz" },
       "description": "Optional boss arena reached by the Lie Down time transition on the floating ruins below the Great Bridge."
     },
     {
@@ -3203,7 +3204,8 @@
       "y": 535,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check"],
+      "sourceEvidence": ["eldenpedia-mohgwyn-r83796", "powerpyx-mohgwyn-cross-check", "game8-mohgwyn-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 226, "recordId": 30120500, "name": "Mohg, Lord of Blood", "map": "area 67 / grid 12,5", "position": [1568.2989501953125, -501.0268249511719, 1235.3060302734375], "coordinateSpace": "game_world_xyz" },
       "description": "Mohg boss gate reached from the midpoint elevator."
     },
     {
@@ -3323,7 +3325,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fire-giant-r66845", "eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check"],
+      "sourceEvidence": ["eldenpedia-fire-giant-r66845", "eldenpedia-mountaintops-r99043", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 377, "recordId": 35131300, "name": "Fire Giant", "map": "area 67 / grid 52,52", "position": [95.66899871826172, 1775.52001953125, 43.68199920654297], "coordinateSpace": "game_world_xyz" },
       "description": "Main-story boss gate before the Forge of the Giants."
     },
     {
@@ -3383,7 +3386,8 @@
       "y": 735,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"],
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 392, "recordId": 35515700, "name": "Commander Niall", "map": "area 41 / grid 51,57", "position": [72.01799774169922, 1632.0, 225.24899291992188], "coordinateSpace": "game_world_xyz" },
       "description": "Boss gate protecting the Castle Sol rooftop route."
     },
     {
@@ -3578,7 +3582,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check"],
+      "sourceEvidence": ["eldenpedia-stormveil-r97036", "powerpyx-stormveil-cross-check", "game8-stormveil-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 205, "recordId": 30100000, "name": "Godrick the Grafted", "map": "area 67 / grid 10,0", "position": [-250.64599609375, 73.75599670410156, 375.2929992675781], "coordinateSpace": "game_world_xyz" },
       "description": "Stormveil boss gate and Liurnia world-exit transition."
     },
     {
@@ -3699,7 +3704,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"],
+      "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 233, "recordId": 30140001, "name": "Rennala, Queen of the Full Moon", "map": "area 67 / grid 14,0", "position": [70.6500015258789, -838.72900390625, -27.325000762939453], "coordinateSpace": "game_world_xyz" },
       "description": "Rennala boss gate before the Grand Library post-boss state."
     },
     {
@@ -3879,7 +3885,8 @@
       "y": 170,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-leyndell-cross-check", "game8-leyndell-cross-check"],
+      "sourceEvidence": ["powerpyx-leyndell-cross-check", "game8-leyndell-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 209, "recordId": 30110500, "name": "Godfrey, First Elden Lord", "map": "area 67 / grid 11,5", "position": [72.25, 64.96299743652344, -416.0299987792969], "coordinateSpace": "game_world_xyz" },
       "description": "The first Leyndell story boss gate; this golden shade is distinct from Ashen Capital Godfrey / Hoarah Loux."
     },
     {
@@ -4389,7 +4396,8 @@
       "y": 445,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-farum-r83238", "powerpyx-farum-cross-check"],
+      "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-farum-r83238", "powerpyx-farum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 231, "recordId": 30130002, "name": "Maliketh, the Black Blade", "map": "area 67 / grid 13,0", "position": [190.97500610351562, -62.53900146484375, 378.2279968261719], "coordinateSpace": "game_world_xyz" },
       "description": "Main-story boss gate that triggers the Ashen Capital world transition."
     },
     {
@@ -6783,7 +6791,8 @@
       "y": 300,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-margit-cross-check", "eldenpedia-castleward-tunnel", "game8-stormveil-cross-check"],
+      "sourceEvidence": ["eldenpedia-margit-cross-check", "eldenpedia-castleward-tunnel", "game8-stormveil-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 206, "recordId": 30100001, "name": "Margit, the Fell Omen", "map": "area 41 / grid 10,0", "position": [-58.624000549316406, -2.6010000705718994, -4.35099983215332], "coordinateSpace": "game_world_xyz" },
       "description": "Mandatory normal Stormveil approach boss gate."
     },
     {
@@ -6993,7 +7002,8 @@
       "y": 360,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rykard", "eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check"],
+      "sourceEvidence": ["eldenpedia-rykard", "eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 238, "recordId": 30160003, "name": "Rykard, Lord of Blasphemy", "map": "area 67 / grid 16,0", "position": [92.322998046875, -439.50799560546875, -81.46299743652344], "coordinateSpace": "game_world_xyz" },
       "description": "God-Devouring Serpent/Rykard boss gate."
     },
     {
