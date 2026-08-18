@@ -762,6 +762,39 @@ function renderOnlinePoiResults(payload, kind) {
         });
         row.appendChild(locationList);
       }
+      const targetGroups = record.location_target_groups || [];
+      if (targetGroups.length) {
+        const groupList = document.createElement("div");
+        groupList.className = "online-text-location-list";
+        targetGroups.forEach((group) => {
+          const target = (group.target_ids || []).find((id) => state.nodes.has(id));
+          if (!target) return;
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "online-text-location-button";
+          button.textContent = (group.requirement || "collection requirement") + " → " + nodeLabel(target) + " · formal location anchor";
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const originId = findBestGraceOrigin(target, new Set([target]));
+            if (originId) {
+              state.origin = originId;
+              state.destination = target;
+              els.origin.value = originId;
+              els.destination.value = target;
+            }
+            state.selectedNode = target;
+            state.mapMode = "topology";
+            renderCoordinateLayerMeta();
+            els.coordinateMapSelect.hidden = true;
+            els.coordinateEntityKind.hidden = true;
+            els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
+            planAndRender();
+            els.mapToast.textContent = record.name + " · " + (group.requirement || "collection requirement") + "：已打开正式位置锚点 " + nodeLabel(target) + "；不代表物品本身已成为可通行边。";
+          });
+          groupList.appendChild(button);
+        });
+        if (groupList.childElementCount) row.appendChild(groupList);
+      }
       if (record.category === "collection" && itemEvidence.length) {
         row.classList.add("clickable");
         row.addEventListener("click", () => {

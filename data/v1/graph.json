@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.170-online-multiplane",
+    "version": "1.0.171-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -271,6 +271,21 @@
       "id": "academy_glintstone_key",
       "label": "Academy Glintstone Key available",
       "hint": "The Academy gate route is kept closed until an Academy Glintstone Key is available."
+    },
+    {
+      "id": "golden_lineage_evergaol_one_stonesword_key",
+      "label": "One Stonesword Key for Golden Lineage Evergaol",
+      "hint": "The Golden Lineage Evergaol entrance remains locked until one Stonesword Key is available."
+    },
+    {
+      "id": "godefroy_golden_lineage_defeated",
+      "label": "Godefroy the Grafted defeated",
+      "hint": "The Golden Lineage Evergaol return state is available after the optional boss is defeated."
+    },
+    {
+      "id": "black_knife_ringleader_defeated",
+      "label": "Alecto, Black Knife Ringleader defeated",
+      "hint": "The Ringleader's Evergaol return state is available after Alecto is defeated."
     },
     {
       "id": "red_wolf_defeated",
@@ -1511,6 +1526,12 @@
     ,{ "id": "neoseeker-liurnia-central-east-cross-check", "label": "Neoseeker - Central Liurnia East route", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Central_Liurnia_of_the_Lakes_East", "grade": "B" }
     ,{ "id": "game8-hermit-merchant-cross-check", "label": "Game8 - Hermit Merchant's Shack", "url": "https://game8.co/games/Elden-Ring/archives/370263", "grade": "B" }
     ,{ "id": "game8-minor-erdtree-church-cross-check", "label": "Game8 - Minor Erdtree Church", "url": "https://game8.co/games/Elden-Ring/archives/370260", "grade": "B" }
+    ,{ "id": "eldenpedia-golden-lineage-evergaol", "label": "Eldenpedia - Golden Lineage Evergaol", "url": "https://eldenring.wiki.gg/wiki/Golden_Lineage_Evergaol", "grade": "A" }
+    ,{ "id": "game8-golden-lineage-evergaol-cross-check", "label": "Game8 - Golden Lineage Evergaol location", "url": "https://game8.co/games/Elden-Ring/archives/370248", "grade": "B" }
+    ,{ "id": "gamerguides-golden-lineage-evergaol-cross-check", "label": "Gamer Guides - Golden Lineage Evergaol route", "url": "https://www.gamerguides.com/elden-ring/database/locations/altus-plateau/golden-lineage-evergaol", "grade": "B" }
+    ,{ "id": "eldenpedia-ringleaders-evergaol", "label": "Eldenpedia - Ringleader's Evergaol", "url": "https://eldenring.wiki.gg/wiki/Ringleader%27s_Evergaol", "grade": "A" }
+    ,{ "id": "eldenpedia-legendary-ashen-remains", "label": "Eldenpedia - Legendary Ashen Remains", "url": "https://eldenring.wiki.gg/wiki/Legendary_Ashen_Remains_%28Achievement/Trophy%29", "grade": "A" }
+    ,{ "id": "eldenpedia-legendary-talismans", "label": "Eldenpedia - Legendary Talismans", "url": "https://eldenring.wiki.gg/wiki/Legendary_Talismans_%28Achievement/Trophy%29", "grade": "A" }
   ],
   "nodes": [
     {
@@ -10057,6 +10078,68 @@
       "id": "ghostflame_dragon_cerulean_post_state", "label": "Cerulean Coast Ghostflame Dragon cleared state", "kind": "state", "layer": "surface", "region": "Gravesite Plain", "floor": "South of Cerulean Coast", "worldEpoch": "shadow_realm", "x": 560, "y": 910, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
       "description": "Cleared-state node for the Cerulean Coast Ghostflame Dragon arena; no extra grace is invented."
+    },
+    {
+      "id": "black_knife_ringleader_gate",
+      "label": "Alecto, Black Knife Ringleader",
+      "kind": "boss",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Ringleader's Evergaol arena",
+      "worldEpoch": "moonlight_altar",
+      "x": 875,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ringleaders-evergaol", "eldenpedia-legendary-ashen-remains", "mapforgoblins-boss-positions-20260818"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 91, "recordId": 21002922, "name": "Alecto, Black Knife Ringleader", "map": "m60_33_42_00", "position": [-40.589, 346.7, 86.259], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Ringleader's Evergaol at the north-western tip of Moonlight Altar; Alecto drops Black Knife Tiche. The online XYZ is retained as a coordinate evidence sidecar, not as a flat-distance route."
+    },
+    {
+      "id": "black_knife_ringleader_post_state",
+      "label": "Ringleader's Evergaol cleared state",
+      "kind": "state",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Ringleader's Evergaol arena",
+      "worldEpoch": "moonlight_altar",
+      "x": 915,
+      "y": 360,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ringleaders-evergaol", "eldenpedia-legendary-ashen-remains"],
+      "description": "Cleared-state node after Alecto; Black Knife Tiche remains an achievement reward outcome."
+    },
+    {
+      "id": "godefroy_golden_lineage_gate",
+      "label": "Godefroy the Grafted",
+      "kind": "boss",
+      "layer": "surface",
+      "region": "Altus Plateau",
+      "floor": "Golden Lineage Evergaol arena",
+      "worldEpoch": "altus_surface",
+      "x": 700,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-golden-lineage-evergaol", "game8-golden-lineage-evergaol-cross-check", "gamerguides-golden-lineage-evergaol-cross-check", "mapforgoblins-boss-positions-20260818"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 131, "recordId": 47500030, "name": "Godefroy the Grafted", "map": "m60_39_50_00", "position": [-45.619, 709.59, -86.067], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Golden Lineage Evergaol at the south-western edge of Altus Plateau; one Stonesword Key is required and Godefroy drops Godfrey Icon."
+    },
+    {
+      "id": "godefroy_golden_lineage_post_state",
+      "label": "Golden Lineage Evergaol cleared state",
+      "kind": "state",
+      "layer": "surface",
+      "region": "Altus Plateau",
+      "floor": "Golden Lineage Evergaol arena",
+      "worldEpoch": "altus_surface",
+      "x": 740,
+      "y": 210,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-golden-lineage-evergaol", "eldenpedia-legendary-talismans"],
+      "description": "Cleared-state node after Godefroy; the Godfrey Icon reward is represented by the achievement location group."
     }
   ],
   "edges": [
@@ -18571,6 +18654,12 @@
     ,{ "id": "finger-rhia-bell-to-ruins", "from": "finger_rhia_bell", "to": "grace_gravesite_plain_cerulean_coast_finger_ruins_of_rhia", "mode": "Finger Ruins of Rhia bell return", "cost": 3, "risk": 7, "direction": "backtrack", "transitionType": "quest_interaction_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-rhia", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the first bell interaction and retrace the short approach to the Finger Ruins of Rhia grace.", "tags": ["walk", "quest", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "finger-dheo-bell-to-ruins", "from": "finger_dheo_bell", "to": "finger_ruins_dheo", "mode": "Finger Ruins of Dheo bell return", "cost": 3, "risk": 8, "direction": "backtrack", "transitionType": "quest_interaction_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "game8-ymir-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the second bell interaction and retrace the short approach to the Finger Ruins of Dheo landmark.", "tags": ["walk", "quest", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "lamenter-post-to-grace", "from": "lamenter_post_state", "to": "grace_gravesite_plain_charo_s_hidden_grave_lamenter_s_gaol", "mode": "Lamenter's Gaol post-boss return", "cost": 5, "risk": 9, "direction": "backtrack", "transitionType": "boss_completion_state_return", "requires": ["lamenter_defeated"], "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"], "verificationState": "online_cross_checked", "note": "After Lamenter is defeated, retrace the cleared gaol route to the Lamenter's Gaol grace; no new exit or post-boss grace is fabricated.", "tags": ["boss", "legacy", "backtrack", "conditional", "optional", "cross_checked"] }
+    ,{ "id": "moonlight-altar-to-ringleader", "from": "grace_moonlight_altar", "to": "black_knife_ringleader_gate", "mode": "Moonlight Altar to Ringleader's Evergaol", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "evergaol_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-ringleaders-evergaol", "eldenpedia-legendary-ashen-remains", "eip-moonlight-altar-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the Moonlight Altar plateau to the north-western Ringleader's Evergaol; the boss arena is modeled separately from the grace.", "tags": ["walk", "boss", "surface", "cross_checked"] }
+    ,{ "id": "ringleader-to-cleared-state", "from": "black_knife_ringleader_gate", "to": "black_knife_ringleader_post_state", "mode": "Alecto completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["black_knife_ringleader_defeated"], "sourceEvidence": ["eldenpedia-ringleaders-evergaol", "eldenpedia-legendary-ashen-remains"], "verificationState": "online_cross_checked", "note": "Alecto's cleared state unlocks the Black Knife Tiche reward outcome.", "tags": ["boss", "conditional", "state_change", "cross_checked"] }
+    ,{ "id": "ringleader-cleared-to-moonlight-altar", "from": "black_knife_ringleader_post_state", "to": "grace_moonlight_altar", "mode": "Ringleader's Evergaol cleared return", "cost": 5, "risk": 8, "direction": "backtrack", "transitionType": "evergaol_return", "requires": ["black_knife_ringleader_defeated"], "sourceEvidence": ["eldenpedia-ringleaders-evergaol", "eip-moonlight-altar-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared Evergaol and return to the Moonlight Altar grace; no post-boss grace is fabricated.", "tags": ["boss", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "erdtree-hill-to-golden-lineage", "from": "grace_altus_plateau_main_erdtree_gazing_hill", "to": "godefroy_golden_lineage_gate", "mode": "Erdtree-Gazing Hill to Golden Lineage Evergaol", "cost": 6, "risk": 7, "direction": "forward", "transitionType": "stonesword_key_evergaol_approach", "requires": ["golden_lineage_evergaol_one_stonesword_key"], "sourceEvidence": ["eldenpedia-golden-lineage-evergaol", "game8-golden-lineage-evergaol-cross-check", "gamerguides-golden-lineage-evergaol-cross-check"], "verificationState": "online_cross_checked", "note": "Ride south from Erdtree-Gazing Hill through the natural tunnel to the Golden Lineage Evergaol; the Stonesword Key gate remains explicit.", "tags": ["walk", "boss", "key_gate", "surface", "conditional", "cross_checked"] }
+    ,{ "id": "godefroy-to-cleared-state", "from": "godefroy_golden_lineage_gate", "to": "godefroy_golden_lineage_post_state", "mode": "Godefroy completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["godefroy_golden_lineage_defeated"], "sourceEvidence": ["eldenpedia-golden-lineage-evergaol", "eldenpedia-legendary-talismans"], "verificationState": "online_cross_checked", "note": "Godefroy's cleared state unlocks the Godfrey Icon reward outcome.", "tags": ["boss", "conditional", "state_change", "cross_checked"] }
+    ,{ "id": "godefroy-cleared-to-erdtree-hill", "from": "godefroy_golden_lineage_post_state", "to": "grace_altus_plateau_main_erdtree_gazing_hill", "mode": "Golden Lineage Evergaol cleared return", "cost": 6, "risk": 7, "direction": "backtrack", "transitionType": "evergaol_return", "requires": ["godefroy_golden_lineage_defeated"], "sourceEvidence": ["eldenpedia-golden-lineage-evergaol", "gamerguides-golden-lineage-evergaol-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared Evergaol through the natural tunnel and return to Erdtree-Gazing Hill.", "tags": ["boss", "backtrack", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -18592,8 +18681,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 741,
-    "formalRouteEdgeCount": 1187,
+    "formalNodeCount": 745,
+    "formalRouteEdgeCount": 1193,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
