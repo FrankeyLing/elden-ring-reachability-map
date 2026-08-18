@@ -45,6 +45,18 @@ python server.py
 
 然后访问：<http://127.0.0.1:8090>
 
+游戏运行期间可使用项目自带的隐藏后台启动器：
+
+```powershell
+.\scripts\start-gaming-safe.ps1
+```
+
+它只绑定 `127.0.0.1`，不打开浏览器、不发通知、不访问游戏进程/目录/存档、不安装 Overlay 或输入钩子；停止时使用：
+
+```powershell
+.\scripts\stop-gaming-safe.ps1
+```
+
 指定监听地址或端口：
 
 ```powershell

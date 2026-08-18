@@ -5,6 +5,7 @@ __pycache__/
 # Never commit original game archives, unpacked files, saves, or private source snapshots.
 game-install/
 source-snapshots/
+.runtime/
 raw-extract/
 private-artifacts/
 *.bdt
