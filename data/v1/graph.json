@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.164-online-multiplane",
+    "version": "1.0.165-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -15791,6 +15791,21 @@
       "tags": ["walk", "surface", "branch", "cross_checked"]
     },
     {
+      "id": "ranni-rise-to-behind-caria",
+      "from": "grace_liurnia_of_the_lakes_main_ranni_s_rise",
+      "to": "grace_liurnia_of_the_lakes_main_behind_caria_manor",
+      "mode": "Ranni's Rise return to Three Sisters",
+      "cost": 7,
+      "risk": 5,
+      "direction": "backtrack",
+      "transitionType": "three_sisters_surface_walk_return",
+      "requires": [],
+      "sourceEvidence": ["eldenpedia-three-sisters", "powerpyx-caria-manor-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Leave Ranni's Rise through its tower approach and return to the Behind Caria Manor route; this does not imply a teleport or a direct Bellum Highway shortcut.",
+      "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"]
+    },
+    {
       "id": "ranni-rise-to-ranni-chamber",
       "from": "grace_liurnia_of_the_lakes_main_ranni_s_rise",
       "to": "grace_liurnia_of_the_lakes_main_ranni_s_chamber",
@@ -18302,6 +18317,8 @@
     ,{ "id": "caria-lower-to-main-gate", "from": "grace_liurnia_of_the_lakes_main_manor_lower_level", "to": "grace_liurnia_of_the_lakes_main_main_caria_manor_gate", "mode": "Caria Manor Lower Level return to Main Gate", "cost": 7, "risk": 5, "direction": "backtrack", "transitionType": "legacy_internal_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-caria-manor", "powerpyx-caria-manor-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the lower manor entrance route to the Main Gate grace.", "tags": ["walk", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "caria-upper-to-lower", "from": "grace_liurnia_of_the_lakes_main_manor_upper_level", "to": "grace_liurnia_of_the_lakes_main_manor_lower_level", "mode": "Caria Manor Upper Level return to Lower Level", "cost": 8, "risk": 5, "direction": "backtrack", "transitionType": "legacy_walk_and_lift_return", "requires": [], "sourceEvidence": ["eldenpedia-caria-manor", "powerpyx-caria-manor-cross-check"], "verificationState": "online_cross_checked", "note": "Use the manor lift and stairs to return from the upper grace to the Lower Level.", "tags": ["lift", "vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "behind-caria-to-royal-moongazing", "from": "grace_liurnia_of_the_lakes_main_behind_caria_manor", "to": "grace_liurnia_of_the_lakes_main_royal_moongazing_grounds", "mode": "Behind Caria Manor return to Royal Moongazing Grounds", "cost": 7, "risk": 4, "direction": "backtrack", "transitionType": "legacy_to_surface_exit_return", "requires": ["royal_knight_loretta_caria_defeated"], "sourceEvidence": ["eldenpedia-caria-manor", "eldenpedia-sites-of-grace-r83774", "powerpyx-caria-manor-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the opened post-Loretta exit route to the Royal Moongazing Grounds grace.", "tags": ["walk", "surface", "conditional", "backtrack", "cross_checked"] }
+    ,{ "id": "royal-moongazing-to-loretta-gate", "from": "grace_liurnia_of_the_lakes_main_royal_moongazing_grounds", "to": "royal_knight_loretta_caria_gate", "mode": "Royal Moongazing Grounds return to Loretta arena gate", "cost": 3, "risk": 9, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["royal_knight_loretta_caria_defeated"], "sourceEvidence": ["eldenpedia-caria-manor", "eldenpedia-sites-of-grace-r83774", "powerpyx-caria-manor-cross-check"], "verificationState": "online_cross_checked", "note": "After Loretta is defeated, cross back from the Royal Moongazing Grounds to the opened manor-side boss gate.", "tags": ["boss", "conditional", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "loretta-gate-to-caria-upper", "from": "royal_knight_loretta_caria_gate", "to": "grace_liurnia_of_the_lakes_main_manor_upper_level", "mode": "Loretta arena gate return to Caria Manor upper level", "cost": 6, "risk": 8, "direction": "backtrack", "transitionType": "legacy_boss_approach_return", "requires": ["royal_knight_loretta_caria_defeated"], "sourceEvidence": ["eldenpedia-caria-manor", "powerpyx-caria-manor-cross-check"], "verificationState": "online_cross_checked", "note": "The cleared Loretta gate returns to the upper manor walkway, allowing the existing stairs and lift route back to the main entrance.", "tags": ["boss", "conditional", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "caelid-highway-to-mistwood", "from": "grace_caelid_highway_south", "to": "grace_mistwood_outskirts", "mode": "Caelid Highway South return to Mistwood Outskirts", "cost": 10, "risk": 4, "direction": "backtrack", "transitionType": "surface_region_crossing_return", "requires": [], "sourceEvidence": ["eldenpedia-caelid-r68953", "powerpyx-caelid-cross-check", "game8-redmane-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the regional road to the Mistwood approach.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "rotview-to-caelid-highway", "from": "grace_rotview_balcony", "to": "grace_caelid_highway_south", "mode": "Rotview Balcony return to Caelid Highway South", "cost": 7, "risk": 4, "direction": "backtrack", "transitionType": "surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "game8-redmane-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the main Caelid road to the highway grace.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
     ,{ "id": "smoldering-church-to-rotview", "from": "grace_smoldering_church", "to": "grace_rotview_balcony", "mode": "Smoldering Church return to Rotview Balcony", "cost": 8, "risk": 5, "direction": "backtrack", "transitionType": "surface_walk_return", "requires": [], "sourceEvidence": ["eldenpedia-caelid-r68953", "powerpyx-caelid-cross-check", "game8-redmane-cross-check"], "verificationState": "online_cross_checked", "note": "Return north along the Caelid road to Rotview Balcony.", "tags": ["walk", "surface", "backtrack", "cross_checked"] }
@@ -18573,7 +18590,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 741,
-    "formalRouteEdgeCount": 1179,
+  "formalRouteEdgeCount": 1182,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
