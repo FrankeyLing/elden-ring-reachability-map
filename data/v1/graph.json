@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.112-online-multiplane",
+  "version": "1.0.113-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -174,6 +174,11 @@
       "id": "radahn_defeated",
       "label": "已击败碎星拉塔恩",
       "hint": "拉塔恩战后，宁姆格福才出现通往诺克隆的陨石坑入口。"
+    },
+    {
+      "id": "elder_dragon_greyoll_defeated",
+      "label": "Elder Dragon Greyoll defeated",
+      "hint": "Greyoll's field-boss return state is available after the stationary dragon outside Fort Faroth is defeated."
     },
     {
       "id": "ordina_portal_unlocked",
@@ -1159,6 +1164,7 @@
     { "id": "nexus-map-for-goblins", "label": "Nexus Mods / Map for Goblins", "url": "https://www.nexusmods.com/eldenring/mods/3091", "grade": "B" },
     { "id": "gamefaqs-sellia-route-cross-check", "label": "GameFAQs / Caelid Sellia and Millicent route", "url": "https://gamefaqs.gamespot.com/ps5/323053-elden-ring/faqs/80116/chapter-5-morgott-the-omen-king", "grade": "B" },
     { "id": "eldenpedia-dragonbarrow", "label": "Eldenpedia / Greyoll's Dragonbarrow", "url": "https://eldenring.wiki.gg/wiki/Dragonbarrow", "grade": "A" },
+    { "id": "game8-greyoll-cross-check", "label": "Game8 / Elder Dragon Greyoll guide", "url": "https://game8.co/games/Elden-Ring/archives/376353", "grade": "B" },
     { "id": "pcgamer-caelid-divine-tower", "label": "PC Gamer / Divine Tower of Caelid route", "url": "https://www.pcgamer.com/elden-ring-caelid-divine-tower/", "grade": "B" },
     { "id": "game8-divine-tower-caelid-cross-check", "label": "Game8 / Divine Tower of Caelid walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/369953", "grade": "B" },
     { "id": "eldenpedia-divine-tower-limgrave", "label": "Eldenpedia / Divine Tower of Limgrave", "url": "https://eldenring.wiki.gg/wiki/Divine_Tower_of_Limgrave", "grade": "A" },
@@ -4189,6 +4195,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-fort-faroth-r39788", "eldenpedia-sites-of-grace-r83774", "powerpyx-dectus-right-cross-check"],
       "description": "Fort containing the Dectus Medallion right half."
+    },
+    {
+      "id": "elder_dragon_greyoll_gate",
+      "label": "Elder Dragon Greyoll",
+      "kind": "boss",
+      "layer": "surface",
+      "region": "Greyoll's Dragonbarrow",
+      "floor": "Dragon field south of Fort Faroth",
+      "worldEpoch": "dragonbarrow_surface",
+      "x": 650,
+      "y": 750,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-dragonbarrow", "game8-greyoll-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "description": "Stationary field boss immediately outside and south of Fort Faroth; no MapForGoblins XYZ is claimed because the fixed boss snapshot does not contain a Greyoll record."
     },
     {
       "id": "item_dectus_medallion_right",
@@ -17535,6 +17556,8 @@
     ,{ "id": "fractured-marika-to-endings", "from": "grace_fractured_marika", "to": "ending_selection_state", "mode": "Touch Fractured Marika and select an ending", "cost": 1, "risk": 0, "direction": "forward", "transitionType": "ending_interaction", "requires": ["radagon_elden_beast_defeated"], "sourceEvidence": ["eldenpedia-endings", "game8-elden-lord-ending-cross-check", "gamefaqs-endings-cross-check"], "verificationState": "online_cross_checked", "note": "This is an end-state interaction after the final boss, not a movement edge; the selected ending remains conditional on quest and mending-rune state.", "tags": ["ending", "interaction", "final", "conditional", "cross_checked"] }
     ,{ "id": "chamber-to-redmane-exit-waygate", "from": "grace_chamber_outside_plaza", "to": "redmane_castle_exit_waygate", "mode": "Chamber Outside the Plaza to Redmane exit gate", "cost": 2, "risk": 3, "direction": "forward", "transitionType": "redmane_festival_exit_approach", "requires": ["radahn_festival_active"], "sourceEvidence": ["eldenpedia-sending-gate-cross-check", "eldenpedia-redmane-r16802", "game8-redmane-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the castle-side route to the southwest sending gate while the Radahn Festival state is active.", "tags": ["walk", "teleport", "legacy", "conditional", "cross_checked"] }
     ,{ "id": "redmane-exit-waygate-to-impassable", "from": "redmane_castle_exit_waygate", "to": "grace_impassable_greatbridge", "mode": "Redmane exit sending gate to Impassable Greatbridge", "cost": 1, "risk": 0, "direction": "one_way", "transitionType": "redmane_festival_exit_waygate", "requires": ["radahn_festival_active"], "sourceEvidence": ["eldenpedia-sending-gate-cross-check", "eldenpedia-redmane-r16802", "game8-redmane-cross-check"], "verificationState": "online_cross_checked", "note": "Teleport back to the Caelid-side Impassable Greatbridge grace; the reverse gate is represented by the existing impassable-to-redmane-plaza edge.", "tags": ["teleport", "one_way", "conditional", "surface", "cross_checked"] }
+    ,{ "id": "fort-faroth-to-greyoll", "from": "grace_fort_faroth", "to": "elder_dragon_greyoll_gate", "mode": "Fort Faroth to Elder Dragon Greyoll", "cost": 4, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-dragonbarrow", "game8-greyoll-cross-check", "neoseeker-dragonbarrow-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Fort Faroth grace and cross the short Dragonbarrow field route to Greyoll south of the fort.", "tags": ["walk", "surface", "boss", "cross_checked"] }
+    ,{ "id": "greyoll-to-fort-faroth", "from": "elder_dragon_greyoll_gate", "to": "grace_fort_faroth", "mode": "Elder Dragon Greyoll cleared return to Fort Faroth", "cost": 4, "risk": 8, "direction": "backtrack", "transitionType": "field_boss_return", "requires": ["elder_dragon_greyoll_defeated"], "sourceEvidence": ["eldenpedia-dragonbarrow", "game8-greyoll-cross-check", "neoseeker-dragonbarrow-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Return to Fort Faroth after clearing the field boss; no post-boss grace is fabricated.", "tags": ["walk", "surface", "boss", "backtrack", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17556,8 +17579,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 705,
-    "formalRouteEdgeCount": 1110,
+    "formalNodeCount": 706,
+    "formalRouteEdgeCount": 1112,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
