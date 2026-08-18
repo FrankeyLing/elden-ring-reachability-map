@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.126-online-multiplane",
+  "version": "1.0.127-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2301,7 +2301,8 @@
       "y": 365,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 115, "recordId": 150001, "name": "Prayer Room", "map": "area 56 / grid 15,0", "position": [54.93000030517578, 145.52000427246094, 493.8699951171875], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Loretta grace at the Elphael entrance; the internal route continues counter-clockwise around the brace."
     },
     {
@@ -3720,7 +3721,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-raya-r97405", "eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check"],
+      "sourceEvidence": ["eldenpedia-raya-r97405", "eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 113, "recordId": 140000, "name": "Raya Lucaria Grand Library", "map": "area 51 / grid 14,0", "position": [41.25, 50.02000045776367, -140.24000549316406], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Rennala Academy grace."
     },
     {
@@ -4457,7 +4459,8 @@
       "y": 470,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check"],
+      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 104, "recordId": 110001, "name": "Erdtree Sanctuary", "map": "area 62 / grid 11,0", "position": [-266.1400146484375, -21.8700008392334, -103.88999938964844], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Gideon Erdtree Sanctuary state; separate from the Royal Capital pre-Maliketh node."
     },
     {
@@ -4502,7 +4505,8 @@
       "y": 470,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check"],
+      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 103, "recordId": 110000, "name": "Elden Throne", "map": "area 60 / grid 11,0", "position": [-266.1400146484375, -21.8700008392334, -103.88999938964844], "coordinateSpace": "game_world_xyz" },
       "description": "Ashen-state Elden Throne node before the final Erdtree entrance."
     },
     {
@@ -4874,7 +4878,8 @@
       "y": 650,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "eldenpedia-sites-of-grace-r83774", "game8-belurat-cross-check"],
+      "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "eldenpedia-sites-of-grace-r83774", "game8-belurat-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 119, "recordId": 200000, "name": "Belurat, Tower Settlement", "map": "area 20 / grid 0,0", "position": [-29.979999542236328, 5.110000133514404, 39.849998474121094], "coordinateSpace": "game_world_xyz" },
       "description": "Belurat legacy-dungeon entry grace."
     },
     {
@@ -4935,7 +4940,8 @@
       "y": 600,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "eldenpedia-sites-of-grace-r83774", "game8-belurat-cross-check"],
+      "sourceEvidence": ["eldenpedia-belurat-tower-settlement", "eldenpedia-sites-of-grace-r83774", "game8-belurat-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 119, "recordId": 200000, "name": "Theatre of the Divine Beast", "map": "area 20 / grid 0,0", "position": [-29.979999542236328, 5.110000133514404, 39.849998474121094], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Divine Beast Dancing Lion grace state."
     },
     {
@@ -5722,7 +5728,8 @@
       "y": 230,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-enir-ilim", "eldenpedia-sites-of-grace-r83774", "game8-promised-radahn-cross-check"],
+      "sourceEvidence": ["eldenpedia-enir-ilim", "eldenpedia-sites-of-grace-r83774", "game8-promised-radahn-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 121, "recordId": 200100, "name": "Gate of Divinity", "map": "area 20 / grid 1,0", "position": [-181.22999572753906, 6.190000057220459, -50.769996643066406], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Promised Consort Radahn DLC ending state."
     },
     {
@@ -6147,7 +6154,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-midra-manse", "eldenpedia-sites-of-grace-r83774", "game8-midra-manse-cross-check"],
+      "sourceEvidence": ["eldenpedia-midra-manse", "eldenpedia-sites-of-grace-r83774", "game8-midra-manse-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 127, "recordId": 280000, "name": "Discussion Chamber", "map": "area 28 / grid 0,0", "position": [0.0, 16.010000228881836, -79.87000274658203], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Midra grace in the Discussion Chamber."
     },
     {
@@ -6314,7 +6322,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-stone-coffin-cross-check"],
+      "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-stone-coffin-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 125, "recordId": 220000, "name": "Stone Coffin Fissure", "map": "area 22 / grid 0,0", "position": [-327.7099914550781, 311.07000732421875, 18.830001831054688], "coordinateSpace": "game_world_xyz" },
       "description": "Underground fissure entrance after the DLC world-state descent opens."
     },
     {
@@ -6390,7 +6399,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-thiollier-cross-check"],
+      "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "eldenpedia-sites-of-grace-r83774", "game8-thiollier-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 125, "recordId": 220000, "name": "Garden of Deep Purple", "map": "area 22 / grid 0,0", "position": [-327.7099914550781, 311.07000732421875, 18.830001831054688], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Putrescent Knight grace and Saint Trina destination."
     },
     {
@@ -9662,7 +9672,9 @@
     },
     {
       "id": "grace_roundtable_hold_main_table_of_lost_grace", "label": "Table of Lost Grace", "kind": "grace", "layer": "legacy", "region": "Roundtable Hold", "floor": "Roundtable Hold main hall", "worldEpoch": "roundtable_hold", "x": 140, "y": 840, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-sites-of-grace-r83774", "game8-roundtable-hold-cross-check"], "description": "Isolated hub grace. Roundtable Hold is not present as a normal overworld landmass and is accessed by map fast travel after Melina's invitation."
+      "sourceEvidence": ["eldenpedia-roundtable-hold", "eldenpedia-sites-of-grace-r83774", "game8-roundtable-hold-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 106, "recordId": 111000, "name": "Table of Lost Grace", "map": "area 60 / grid 35,32", "position": [-341.6700134277344, 66.16000366210938, -47.779998779296875], "coordinateSpace": "game_world_xyz" },
+      "description": "Isolated hub grace. Roundtable Hold is not present as a normal overworld landmass and is accessed by map fast travel after Melina's invitation."
     },
     {
       "id": "grace_limgrave_main_agheel_lake_north", "label": "Agheel Lake North", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Northern Agheel Lake", "worldEpoch": "limgrave_surface", "x": 290, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
