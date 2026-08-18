@@ -74,6 +74,7 @@ const els = {
   onlinePoiQuery: document.getElementById("online-poi-query"),
   onlinePoiSearch: document.getElementById("online-poi-search"),
   onlinePoiResults: document.getElementById("online-poi-results"),
+  coordinateLayerMeta: document.getElementById("coordinate-layer-meta"),
 };
 
 const preferenceHints = {
@@ -806,6 +807,7 @@ function wireEvents() {
   els.mapModes.forEach((button) => button.addEventListener("click", () => {
     state.mapMode = button.dataset.mapMode;
     els.mapModes.forEach((item) => item.classList.toggle("active", item === button));
+    renderCoordinateLayerMeta();
     els.coordinateMapSelect.hidden = state.mapMode !== "coordinates";
     els.coordinateEntityKind.hidden = state.mapMode !== "coordinates";
     if (state.mapMode === "coordinates") {
@@ -972,6 +974,7 @@ async function init() {
       subRegion: record[3],
       majorRegion: record[4],
       graceCount: record[5],
+      dominance: record[6],
     })));
     populateCoordinateMapSelect();
     const fastTravelRule = state.routeProfiles.fastTravelRule;

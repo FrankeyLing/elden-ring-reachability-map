@@ -17,6 +17,27 @@ function coordinateMapKeyForRecord(record, kind) {
   return areaGrid ? mapKeyFromParts(areaGrid[1], areaGrid[2], areaGrid[3]) : normalizeCoordinateMapKey(rawMap);
 }
 
+function renderCoordinateLayerMeta() {
+  const panel = els.coordinateLayerMeta;
+  if (!panel) return;
+  if (state.mapMode !== "coordinates") {
+    panel.hidden = true;
+    return;
+  }
+  const escape = (value) => String(value ?? "").replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character]));
+  const tile = state.onlineTileRecords.find((record) => record.mapKey === state.coordinateMapId) || {};
+  const indexRecord = (state.onlineIndex?.mapKeys?.records || []).find((record) => normalizeCoordinateMapKey(record.mapKey) === state.coordinateMapId) || {};
+  const source = state.onlineIndex?.manifest?.source || {};
+  const sourceKinds = (indexRecord.sourceKinds || []).join(", ") || "raw coordinate snapshots";
+  const region = tile.subRegion || indexRecord.subRegion || "unclassified online layer";
+  const majorRegion = tile.majorRegion || indexRecord.majorRegion || "—";
+  const recordCount = indexRecord.recordCount ?? "—";
+  const graceCount = tile.graceCount ?? "—";
+  const dominance = tile.dominance == null ? "—" : tile.dominance;
+  panel.innerHTML = `<strong>${escape(state.coordinateMapId)}</strong> · ${escape(region)}<br>位面/父区：${escape(majorRegion)} · 赐福索引：${escape(graceCount)} · 原始记录：${escape(recordCount)}<br>来源层：${escape(sourceKinds)}<div class="layer-meta-note">XYZ 点云覆盖，不加载图片/瓦片；坐标仅作在线证据，routeable=false。MapForGoblins ${escape(source.commit || "pinned snapshot")} · dominance=${escape(dominance)}</div>`;
+  panel.hidden = false;
+}
+
 function focusOnlineCoordinate(record, kind, label) {
   const mapKey = coordinateMapKeyForRecord(record, kind);
   const position = Array.isArray(record.position) ? record.position : [];
@@ -69,12 +90,12 @@ async function loadCoordinateItems() {
   try {
     const map = encodeURIComponent(state.coordinateMapId);
     const [graceResponse, bossResponse, conversionResponse, itemResponse, entityResponse, gatheringResponse] = await Promise.all([
-      fetch("/api/catalog/grace-positions?map=" + map + "&limit=500", { cache: "no-store" }),
-      fetch("/api/catalog/boss-positions?map=" + map + "&limit=500", { cache: "no-store" }),
-      fetch("/api/catalog/map-conversions?map=" + map + "&limit=500", { cache: "no-store" }),
-      fetch("/api/catalog/online-items?map=" + map + "&limit=500", { cache: "no-store" }),
-      fetch("/api/catalog/entities?map=" + map + "&kind=" + encodeURIComponent(state.coordinateEntityKind === "all" ? "" : state.coordinateEntityKind) + "&limit=500", { cache: "no-store" }),
-      fetch("/api/catalog/gathering?map=" + map + "&limit=500", { cache: "no-store" }),
+      fetch("/api/catalog/grace-positions?map=" + map + "&limit=1000", { cache: "no-store" }),
+      fetch("/api/catalog/boss-positions?map=" + map + "&limit=1000", { cache: "no-store" }),
+      fetch("/api/catalog/map-conversions?map=" + map + "&limit=1000", { cache: "no-store" }),
+      fetch("/api/catalog/online-items?map=" + map + "&limit=1000", { cache: "no-store" }),
+      fetch("/api/catalog/entities?map=" + map + "&kind=" + encodeURIComponent(state.coordinateEntityKind === "all" ? "" : state.coordinateEntityKind) + "&limit=1000", { cache: "no-store" }),
+      fetch("/api/catalog/gathering?map=" + map + "&limit=1000", { cache: "no-store" }),
     ]);
     if (!graceResponse.ok || !bossResponse.ok || !conversionResponse.ok || !itemResponse.ok || !entityResponse.ok || !gatheringResponse.ok) {
       throw new Error("online layer HTTP " + [graceResponse.status, bossResponse.status, conversionResponse.status, itemResponse.status, entityResponse.status, gatheringResponse.status].join("/"));
@@ -110,6 +131,7 @@ function renderCoordinateMap() {
   els.edgeLayer.innerHTML = "";
   els.regionLabels.innerHTML = "";
   els.nodeLayer.innerHTML = "";
+  renderCoordinateLayerMeta();
   const points = state.onlineMapPointRecords.filter((record) => record.mapKey === state.coordinateMapId);
   const gracePositions = state.onlineGracePositionRecords;
   const bosses = state.onlineBossPositionRecords;

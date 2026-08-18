@@ -11,6 +11,7 @@ from urllib.parse import parse_qs, urlparse
 
 
 ROOT = Path(__file__).resolve().parent
+ONLINE_QUERY_MAX = 1000
 DATA_FILE = ROOT / "data" / "v1" / "graph.json"
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ACHIEVEMENTS_FILE = ROOT / "data" / "v1" / "entities" / "achievements.json"
@@ -211,7 +212,7 @@ class AppHandler(SimpleHTTPRequestHandler):
         search = query.get("q", [""])[0].strip().casefold()
         formal_id = query.get("formal_id", [""])[0].strip()
         try:
-            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = 100
 
@@ -270,7 +271,7 @@ class AppHandler(SimpleHTTPRequestHandler):
         category = query.get("category", [""])[0].strip().casefold()
         coverage_state = query.get("coverage", [""])[0].strip().casefold()
         try:
-            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = 100
         try:
@@ -330,9 +331,9 @@ class AppHandler(SimpleHTTPRequestHandler):
         search = query.get("q", [""])[0].strip().casefold()
         include_dummy = query.get("include_dummy", ["0"])[0].strip().casefold() in {"1", "true", "yes"}
         try:
-            limit = min(max(int(query.get("limit", ["500"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
-            limit = 500
+            limit = ONLINE_QUERY_MAX
 
         def map_key(row):
             return f"m{int(row[1]):02d}_{int(row[2]):02d}_{int(row[3]):02d}"
@@ -381,9 +382,9 @@ class AppHandler(SimpleHTTPRequestHandler):
         map_id = query.get("map", [""])[0].strip()
         search = query.get("q", [""])[0].strip().casefold()
         try:
-            limit = min(max(int(query.get("limit", ["500"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
-            limit = 500
+            limit = ONLINE_QUERY_MAX
         try:
             payload = json.loads(ONLINE_BOSS_POSITION_FILE.read_bytes())
             records = []
@@ -424,9 +425,9 @@ class AppHandler(SimpleHTTPRequestHandler):
     def send_map_conversions(self, query: dict[str, list[str]]):
         map_id = query.get("map", [""])[0].strip()
         try:
-            limit = min(max(int(query.get("limit", ["500"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
-            limit = 500
+            limit = ONLINE_QUERY_MAX
 
         def map_key(area, grid_x, grid_z):
             if area is None or grid_x is None or grid_z is None:
@@ -483,7 +484,7 @@ class AppHandler(SimpleHTTPRequestHandler):
         map_id = query.get("map", [""])[0].strip()
         source = query.get("source", [""])[0].strip().casefold()
         try:
-            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = 100
 
@@ -547,7 +548,7 @@ class AppHandler(SimpleHTTPRequestHandler):
         map_id = query.get("map", [""])[0].strip()
         kind = query.get("kind", [""])[0].strip().casefold()
         try:
-            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = 100
         try:
@@ -595,7 +596,7 @@ class AppHandler(SimpleHTTPRequestHandler):
         search = query.get("q", [""])[0].strip().casefold()
         map_id = query.get("map", [""])[0].strip()
         try:
-            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = 100
         try:
