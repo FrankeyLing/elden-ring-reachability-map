@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.136-online-multiplane",
+  "version": "1.0.137-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2520,7 +2520,8 @@
       "y": 560,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-farum-cross-check", "gamespot-placidusax-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-farum-cross-check", "gamespot-placidusax-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 229, "recordId": 30130000, "name": "Dragonlord Placidusax", "map": "area 13 / grid 0,0", "position": [14.449999809265137, 1009.676025390625, 299.5039978027344], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Placidusax grace/state, distinct from Beside the Great Bridge and Maliketh's approach."
     },
     {
@@ -7285,7 +7286,8 @@
       "y": 760,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-carian-study-hall", "eldenpedia-sites-of-grace-r83774", "game8-study-hall-cross-check"],
+      "sourceEvidence": ["eldenpedia-carian-study-hall", "eldenpedia-sites-of-grace-r83774", "game8-study-hall-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 179, "recordId": 341100, "name": "Study Hall Entrance", "map": "area 34 / grid 11,0", "position": [-0.47999998927116394, -132.7899932861328, 1.909999966621399], "coordinateSpace": "game_world_xyz" },
       "description": "Initial grace inside the eastern-coast Study Hall; the inverted route is state-gated."
     },
     {
@@ -7315,7 +7317,8 @@
       "y": 640,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-divine-tower-liurnia", "eldenpedia-sites-of-grace-r83774", "game8-study-hall-cross-check"],
+      "sourceEvidence": ["eldenpedia-divine-tower-liurnia", "eldenpedia-sites-of-grace-r83774", "game8-study-hall-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 180, "recordId": 341101, "name": "Divine Tower of Liurnia", "map": "area 34 / grid 11,0", "position": [427.9700012207031, -0.8299999833106995, 75.4800033569336], "coordinateSpace": "game_world_xyz" },
       "description": "Tower grace reached after crossing the bridge and using the Divine Tower lift."
     },
     {
@@ -7390,7 +7393,8 @@
       "y": 1030,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ruin-strewn-precipice", "eldenpedia-sites-of-grace-r83774", "game8-ruin-strewn-cross-check"],
+      "sourceEvidence": ["eldenpedia-ruin-strewn-precipice", "eldenpedia-sites-of-grace-r83774", "game8-ruin-strewn-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 188, "recordId": 392000, "name": "Ruin-Strewn Precipice", "map": "area 39 / grid 20,0", "position": [96.3499984741211, 238.3800048828125, -1322.3499755859375], "coordinateSpace": "game_world_xyz" },
       "description": "First internal dungeon grace after the village ladders and mining shafts."
     },
     {
@@ -7752,7 +7756,8 @@
       "y": 735,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check"],
+      "sourceEvidence": ["eldenpedia-dragonbarrow-cave", "game8-dragonbarrow-cave-cross-check", "neoseeker-dragonbarrow-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 160, "recordId": 311000, "name": "Dragonbarrow Cave", "map": "area 31 / grid 10,0", "position": [2.75, 160.52000427246094, 84.72000122070312], "coordinateSpace": "game_world_xyz" },
       "description": "Cave grace on the lower path east of Dragonbarrow Fork, beneath the Dragonbarrow Minor Erdtree."
     },
     {
@@ -7843,7 +7848,8 @@
       "y": 520,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"],
+      "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 175, "recordId": 320700, "name": "Gael Tunnel", "map": "area 32 / grid 7,0", "position": [61.209999084472656, 150.6300048828125, 40.33000183105469], "coordinateSpace": "game_world_xyz" },
       "description": "Caelid-side Gael Tunnel grace at the bottom of the vertical mine shaft."
     },
     {
@@ -9067,7 +9073,7 @@
     },
     {
       "id": "grace_altus_plateau_main_old_altus_tunnel", "label": "Old Altus Tunnel", "kind": "grace", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Lift landing", "worldEpoch": "altus_surface", "x": 710, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check"], "description": "Grace at the bottom of the entrance lift."
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-altus-old-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 173, "recordId": 320400, "name": "Old Altus Tunnel", "map": "area 60 / grid 38,53", "position": [87.73999786376953, 732.3300170898438, -114.48999786376953], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the entrance lift."
     },
     {
       "id": "stonedigger_troll_old_altus_gate", "label": "Stonedigger Troll (Old Altus Tunnel)", "kind": "boss", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Troll cavern", "worldEpoch": "altus_surface", "x": 770, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9083,7 +9089,7 @@
     },
     {
       "id": "grace_altus_plateau_main_perfumer_s_grotto", "label": "Perfumer's Grotto", "kind": "grace", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Grotto entrance", "worldEpoch": "altus_surface", "x": 1410, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check"], "description": "Grace just inside the perfumer grotto."
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 165, "recordId": 311800, "name": "Perfumer's Grotto", "map": "area 31 / grid 18,0", "position": [49.47999954223633, 838.1300048828125, 23.110000610351562], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the perfumer grotto."
     },
     {
       "id": "omenkiller_perfumer_grotto_gate", "label": "Omenkiller and Miranda (Perfumer's Grotto)", "kind": "boss", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Omenkiller boss chamber", "worldEpoch": "altus_surface", "x": 1470, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9099,7 +9105,7 @@
     },
     {
       "id": "grace_altus_plateau_main_unsightly_catacombs", "label": "Unsightly Catacombs", "kind": "grace", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 790, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "description": "Grace inside the catacombs below Perfumer's Ruins."
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 140, "recordId": 301200, "name": "Unsightly Catacombs", "map": "area 30 / grid 12,0", "position": [-39.029998779296875, 653.6199951171875, 105.44000244140625], "coordinateSpace": "game_world_xyz" }, "description": "Grace inside the catacombs below Perfumer's Ruins."
     },
     {
       "id": "perfumer_tricia_unsightly_gate", "label": "Perfumer Tricia and Misbegotten Warrior", "kind": "boss", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Duo boss chamber", "worldEpoch": "altus_surface", "x": 850, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9115,7 +9121,7 @@
     },
     {
       "id": "grace_altus_plateau_main_sage_s_cave", "label": "Sage's Cave", "kind": "grace", "layer": "legacy", "region": "Sage's Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Grace just inside the cave of Those Who Live in Death."
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 166, "recordId": 311900, "name": "Sage's Cave", "map": "area 31 / grid 19,0", "position": [101.29000091552734, 654.72998046875, -55.790000915527344], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the cave of Those Who Live in Death."
     },
     {
       "id": "necromancer_garris_gate", "label": "Necromancer Garris (Sage's Cave)", "kind": "boss", "layer": "legacy", "region": "Sage's Cave", "floor": "Hidden Garris chamber", "worldEpoch": "altus_surface", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9139,7 +9145,7 @@
     },
     {
       "id": "grace_altus_plateau_main_auriza_hero_s_grave", "label": "Auriza Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Auriza Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1040, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check"], "description": "Grace at the bottom of the starting lift."
+      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 138, "recordId": 301000, "name": "Auriza Hero's Grave", "map": "area 30 / grid 10,0", "position": [62.540000915527344, 952.8200073242188, 137.72000122070312], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the starting lift."
     },
     {
       "id": "crucible_knight_ordovis_auriza_gate", "label": "Crucible Knight Ordovis duo (Auriza Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Auriza Hero's Grave", "floor": "Twin Crucible Knight chamber", "worldEpoch": "altus_surface", "x": 1100, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9155,7 +9161,7 @@
     },
     {
       "id": "grace_altus_plateau_main_auriza_side_tomb", "label": "Auriza Side Tomb", "kind": "grace", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 1040, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check"], "description": "Grace at the beginning of the trapped-chest catacomb."
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 141, "recordId": 301300, "name": "Auriza Side Tomb", "map": "area 30 / grid 13,0", "position": [102.75, 969.7100219726562, 25.770000457763672], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the trapped-chest catacomb."
     },
     {
       "id": "grave_warden_duelist_auriza_side_gate", "label": "Grave Warden Duelist (Auriza Side Tomb)", "kind": "boss", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Duelist chamber", "worldEpoch": "altus_surface", "x": 1100, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
