@@ -463,6 +463,7 @@ def audit() -> dict:
     ]
     map_point_records = load_online_map_point_records()
     invalid_coordinate_bindings = []
+    unresolved_formal_candidates = []
     checked_source_records = 0
     for node in online_coordinate_nodes:
         if node["id"] in invalid_coordinate_nodes:
@@ -480,6 +481,18 @@ def audit() -> dict:
         if row is None:
             invalid_coordinate_bindings.append({"node": node["id"], "reason": "source_record_not_found", "key": key})
             continue
+        formal_candidates = row[10] or []
+        if node["id"] not in formal_candidates:
+            candidate_issue = {
+                "node": node["id"],
+                "reason": "formal_candidate_mismatch" if formal_candidates else "no_formal_candidate",
+                "recordId": row[1],
+                "formalCandidates": formal_candidates,
+            }
+            if node.get("kind") in {"grace", "boss", "entrance"} and formal_candidates:
+                invalid_coordinate_bindings.append(candidate_issue)
+                continue
+            unresolved_formal_candidates.append(candidate_issue)
         expected_map = f"area {row[3]} / grid {row[4]},{row[5]}"
         if coordinate["position"] != row[6:9]:
             invalid_coordinate_bindings.append({"node": node["id"], "reason": "position_mismatch", "recordId": row[1]})
@@ -492,6 +505,7 @@ def audit() -> dict:
         "invalid_nodes": invalid_coordinate_nodes,
         "source_records_checked": checked_source_records,
         "invalid_bindings": invalid_coordinate_bindings,
+        "unresolved_formal_candidates": unresolved_formal_candidates,
     }
     if online_coordinate_contract["invalid_nodes"] or online_coordinate_contract["invalid_bindings"]:
         raise ValueError(f"online coordinate contract failed: {online_coordinate_contract}")
