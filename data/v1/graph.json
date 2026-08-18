@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.147-online-multiplane",
+  "version": "1.0.148-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2353,7 +2353,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-haligtree-cross-check", "gamefaqs-haligtree-cross-check"],
+      "sourceEvidence": ["powerpyx-haligtree-cross-check", "gamefaqs-haligtree-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 380, "recordId": 35301800, "name": "Ulcerated Tree Spirit", "map": "area 30 / grid 18,0", "position": [-139.24200439453125, 1477.4189453125, 158.03900146484375], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Ulcerated Tree Spirit branch in the rot basin near Drainage Channel; it is not the Malenia route gate."
     },
     {
