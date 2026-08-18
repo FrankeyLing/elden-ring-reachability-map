@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.157-online-multiplane",
+  "version": "1.0.160-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -4549,8 +4549,9 @@
       "y": 470,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"],
-      "description": "Penultimate main-story boss gate in the Ashen Capital."
+      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 5, "recordId": 47210070, "name": "Godfrey, First Elden Lord", "map": "m11_05_00_00", "position": [39.23, 5.83, -425.13], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_shared_encounter", "coordinateRole": "shared_boss_encounter_anchor", "sharedCoordinateGroup": "godfrey_hoarah_loux_encounter" },
+      "description": "Penultimate main-story boss gate in the Ashen Capital. The online m11_05 Boss-position record names the first phase Godfrey; this shared coordinate represents the same Godfrey/Hoarah Loux two-phase arena, not the separate Royal Capital golden shade."
     },
     {
       "id": "grace_ashen_elden_throne",
@@ -8180,8 +8181,9 @@
       "y": 80,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check"],
-      "description": "Godskin Apostle boss gate at the top of Windmill Village; the current Map for Goblins record is withheld because it labels this location as Godskin Noble."
+      "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 140, "recordId": 35600030, "name": "Godskin Apostle", "map": "m60_42_55_00", "position": [-35.54, 968.164, -38.939], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Godskin Apostle boss gate at the top of Windmill Village. The exact-name Boss-position record shares map area/grid m60_42_55 with the online Dominula, Windmill Village point; repeated formal candidates are retained as source ambiguity, not used as a route edge."
     },
     {
       "id": "grace_altus_plateau_main_windmill_heights",
@@ -9598,7 +9600,7 @@
     },
     {
       "id": "giants_mountaintop_watchdog_gate", "label": "Ulcerated Tree Spirit (Giants' Mountaintop Catacombs)", "kind": "boss", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Ulcerated Tree Spirit chamber", "worldEpoch": "mountaintops_surface", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check"], "description": "Ulcerated Tree Spirit at the end of the deep elevator route; the map ID remains a compatibility alias for earlier Watchdog data."
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 146, "recordId": 301800, "name": "Ulcerated Tree Spirit", "map": "area 60 / grid 50,53", "position": [26.15999984741211, 1577.7099609375, 109.33999633789062], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Ulcerated Tree Spirit at the end of the deep elevator route. The exact-name online map point shares the Giants' Mountaintop Catacombs source record; its repeated Elphael formal candidate is retained as ambiguity, not used as a route edge."
     },
     {
       "id": "giants_mountaintop_catacombs_post_boss_state", "label": "Giants' Mountaintop Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Ulcerated Tree Spirit chamber return state", "worldEpoch": "mountaintops_surface", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9614,11 +9616,11 @@
     },
     {
       "id": "spiritcaller_godskin_apostle_gate", "label": "Spiritcaller Snail summon - Godskin Apostle phase", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "First sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 620, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Summoned Apostle phase of the Spiritcaller Snail encounter; this is not an independent cave boss or a separately coordinate-bound room."
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 178, "recordId": 41402950, "name": "Spiritcaller Snail", "map": "m31_22_00_00", "position": [-47.503, 1579.171, -113.57], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_shared_encounter", "coordinateRole": "shared_boss_encounter_anchor", "sharedCoordinateGroup": "spiritcaller_snail_encounter" }, "description": "Summoned Apostle phase of the Spiritcaller Snail encounter; this is not an independent cave boss or a separately coordinate-bound room. Both summon phases share the exact online Spiritcaller Snail boss-position record."
     },
     {
       "id": "spiritcaller_godskin_noble_gate", "label": "Spiritcaller Snail summon - Godskin Noble phase", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Second sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 680, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Summoned Noble phase after the Apostle; both phases belong to the single hidden Spiritcaller Snail encounter and are not separately coordinate-bound rooms."
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 178, "recordId": 41402950, "name": "Spiritcaller Snail", "map": "m31_22_00_00", "position": [-47.503, 1579.171, -113.57], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_shared_encounter", "coordinateRole": "shared_boss_encounter_anchor", "sharedCoordinateGroup": "spiritcaller_snail_encounter" }, "description": "Summoned Noble phase after the Apostle; both phases belong to the single hidden Spiritcaller Snail encounter and are not separately coordinate-bound rooms. Both summon phases share the exact online Spiritcaller Snail boss-position record."
     },
     {
       "id": "spiritcallers_cave_post_boss_state", "label": "Spiritcaller's Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Spiritcaller reward chamber", "worldEpoch": "mountaintops_surface", "x": 740, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",

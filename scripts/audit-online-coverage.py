@@ -478,7 +478,8 @@ def audit() -> dict:
     invalid_coordinate_bindings = []
     unresolved_formal_candidates = []
     manual_bindings = []
-    manual_binding_roles = {"landmark_anchor", "boss_arena_anchor", "named_dungeon_location_anchor"}
+    shared_coordinate_groups = {}
+    manual_binding_roles = {"landmark_anchor", "boss_arena_anchor", "shared_boss_encounter_anchor", "named_dungeon_location_anchor"}
     checked_source_records = 0
     for node in online_coordinate_nodes:
         if node["id"] in invalid_coordinate_nodes:
@@ -492,6 +493,11 @@ def audit() -> dict:
             int(coordinate["sourceIndex"]),
             int(coordinate["recordId"]),
         )
+        shared_group = coordinate.get("sharedCoordinateGroup")
+        if shared_group:
+            shared_coordinate_groups.setdefault(str(shared_group), []).append(
+                {"node": node["id"], "key": list(key)}
+            )
         source_snapshot = str(coordinate["snapshot"])
         if source_snapshot == ONLINE_BOSS_POSITION_FILE.stem:
             row = boss_position_records.get(key)
@@ -520,7 +526,7 @@ def audit() -> dict:
             }
             binding_basis = coordinate.get("bindingBasis")
             manual_name_match = coordinate.get("name") in source_names
-            if binding_basis in {"manual_exact_name_region", "manual_source_alias_region"} and manual_name_match:
+            if binding_basis in {"manual_exact_name_region", "manual_source_alias_region", "manual_shared_encounter"} and manual_name_match:
                 if coordinate.get("coordinateRole") not in manual_binding_roles:
                     invalid_coordinate_bindings.append(
                         {
@@ -550,6 +556,16 @@ def audit() -> dict:
             invalid_coordinate_bindings.append({"node": node["id"], "reason": "name_mismatch", "recordId": key[2], "sourceKind": source_kind})
         elif coordinate["map"] != expected_map:
             invalid_coordinate_bindings.append({"node": node["id"], "reason": "map_layer_mismatch", "recordId": key[2], "sourceKind": source_kind, "expected": expected_map})
+    for group, entries in shared_coordinate_groups.items():
+        source_keys = {tuple(entry["key"]) for entry in entries}
+        if len(source_keys) > 1:
+            invalid_coordinate_bindings.append(
+                {
+                    "reason": "shared_coordinate_group_mismatch",
+                    "sharedCoordinateGroup": group,
+                    "entries": entries,
+                }
+            )
     online_coordinate_contract = {
         "node_count": len(online_coordinate_nodes),
         "invalid_nodes": invalid_coordinate_nodes,
@@ -557,6 +573,7 @@ def audit() -> dict:
         "invalid_bindings": invalid_coordinate_bindings,
         "manual_bindings": manual_bindings,
         "unresolved_formal_candidates": unresolved_formal_candidates,
+        "shared_coordinate_groups": shared_coordinate_groups,
     }
     if online_coordinate_contract["invalid_nodes"] or online_coordinate_contract["invalid_bindings"]:
         raise ValueError(f"online coordinate contract failed: {online_coordinate_contract}")
