@@ -134,7 +134,8 @@ function activeRouteProfile() {
 }
 
 function isGraceNode(id) {
-  return state.nodes.get(id)?.kind === "grace";
+  const node = state.nodes.get(id);
+  return node?.kind === "grace" || node?.isGraceAnchor === true;
 }
 
 function fastTravelEdgesFrom(nodeId) {
@@ -143,7 +144,7 @@ function fastTravelEdgesFrom(nodeId) {
   if (!profile.dynamicFastTravel || !rule || !state.conditions.has(rule.id) || !isGraceNode(nodeId)) return [];
 
   return [...state.nodes.values()]
-    .filter((node) => node.kind === "grace" && node.id !== nodeId)
+    .filter((node) => isGraceNode(node.id) && node.id !== nodeId)
     .map((node) => ({
       id: `dynamic-fast-travel:${nodeId}:${node.id}`,
       from: nodeId,
@@ -210,7 +211,7 @@ function findBestGraceOrigin(targetId, excludedGraceIds = new Set()) {
     });
   }
   return [...state.nodes.values()]
-    .filter((node) => node.kind === "grace" && !excludedGraceIds.has(node.id) && distances.has(node.id))
+    .filter((node) => isGraceNode(node.id) && !excludedGraceIds.has(node.id) && distances.has(node.id))
     .sort((a, b) => distances.get(a.id) - distances.get(b.id))[0]?.id || null;
 }
 

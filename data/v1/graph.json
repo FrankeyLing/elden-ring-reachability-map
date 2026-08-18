@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.172-online-multiplane",
+    "version": "1.0.173-online-grace-bindings",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -7387,6 +7387,7 @@
       "id": "grace_liurnia_of_the_lakes_main_liurnia_tower_bridge",
       "label": "Liurnia Tower Bridge",
       "kind": "junction",
+      "isGraceAnchor": true,
       "layer": "surface",
       "region": "Liurnia of the Lakes",
       "floor": "Study Hall to Divine Tower bridge",
@@ -7418,6 +7419,7 @@
       "id": "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate",
       "label": "East Raya Lucaria Gate",
       "kind": "junction",
+      "isGraceAnchor": true,
       "layer": "surface",
       "region": "Bellum Highway",
       "floor": "Raya Lucaria east road",
@@ -8049,6 +8051,7 @@
       "id": "grace_limgrave_stormhill_limgrave_tower_bridge",
       "label": "Limgrave Tower Bridge",
       "kind": "junction",
+      "isGraceAnchor": true,
       "layer": "surface",
       "region": "Stormveil Castle",
       "floor": "Eastern bridge approach",
@@ -8159,6 +8162,7 @@
       "id": "grace_leyndell_royal_capital_subterranean_shunning_grounds_frenzied_flame_proscription",
       "label": "Frenzied Flame Proscription",
       "kind": "teleport",
+      "isGraceAnchor": true,
       "layer": "underground",
       "region": "Subterranean Shunning-Grounds",
       "floor": "Frenzied Flame bottom",
@@ -8204,6 +8208,7 @@
       "id": "grace_altus_plateau_main_forest_spanning_greatbridge",
       "label": "Forest-Spanning Greatbridge",
       "kind": "junction",
+      "isGraceAnchor": true,
       "layer": "surface",
       "region": "Altus Plateau",
       "floor": "Collapsed greatbridge",
@@ -9818,7 +9823,7 @@
       "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 484, "recordId": 61463600, "name": "Fort Haight", "map": "area 60 / grid 46,36", "position": [-25.28499984741211, 31.305999755859375, -20.259000778198242], "coordinateSpace": "game_world_xyz", "coordinateRole": "state_location_anchor" }, "description": "Cleared-state endpoint for Bloody Slash and Kenneth Haight's liberated-fort quest step; the online XYZ is the unique Fort Haight map-point anchor, not a separate Boss coordinate."
     },
     {
-      "id": "grace_scadu_altus_abyssal_woods_forsaken_graveyard", "label": "Forsaken Graveyard", "kind": "junction", "layer": "underground", "region": "Scadu Altus", "floor": "Darklight Catacombs exit / Abyssal Woods threshold", "worldEpoch": "shadow_realm", "x": 760, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "id": "grace_scadu_altus_abyssal_woods_forsaken_graveyard", "label": "Forsaken Graveyard", "kind": "junction", "isGraceAnchor": true, "layer": "underground", "region": "Scadu Altus", "floor": "Darklight Catacombs exit / Abyssal Woods threshold", "worldEpoch": "shadow_realm", "x": 760, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"], "description": "The graveyard immediately beyond Jori's arena and before the forbidden forest entrance."
     },
     {

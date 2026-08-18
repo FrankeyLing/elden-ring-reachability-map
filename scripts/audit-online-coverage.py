@@ -749,6 +749,12 @@ def audit() -> dict:
         != catalog_anomaly_contract["expected_formal_graces_without_catalog_binding"]
     ):
         raise ValueError(f"sites-of-grace catalog anomaly contract failed: {catalog_anomaly_contract}")
+    grace_anchor_contract = {
+        "expected_ids": sorted(expected_catalog_kind_mismatch),
+        "actual_ids": sorted(node["id"] for node in nodes if node.get("isGraceAnchor") is True),
+    }
+    if grace_anchor_contract["actual_ids"] != grace_anchor_contract["expected_ids"]:
+        raise ValueError(f"grace anchor contract failed: {grace_anchor_contract}")
     route_edges = {(edge["from"], edge["to"]) for edge in graph["edges"]}
     edge_by_id = {edge["id"]: edge for edge in graph["edges"]}
     node_ids = set(node_by_id)
@@ -1414,6 +1420,7 @@ def audit() -> dict:
                 node["id"] for node in formal_graces if node["id"] not in bound_ids
             ],
             "catalog_anomaly_contract": catalog_anomaly_contract,
+            "grace_anchor_contract": grace_anchor_contract,
         },
         "p0_achievement_catalog": {
             **achievement_contract,
