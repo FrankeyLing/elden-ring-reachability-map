@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.143-online-multiplane",
+  "version": "1.0.144-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -8160,7 +8160,8 @@
       "y": 80,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check"],
+      "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 299, "recordId": 32341100, "name": "Godskin Noble", "map": "area 34 / grid 11,0", "position": [402.4339904785156, 90.58502960205078, 71.28399658203125], "coordinateSpace": "game_world_xyz" },
       "description": "Godskin Noble boss gate at the top of Windmill Village."
     },
     {
@@ -9412,7 +9413,7 @@
     },
     {
       "id": "demi_human_swordmaster_onze_gate", "label": "Demi-Human Swordmaster Onze (Belurat Gaol)", "kind": "boss", "layer": "legacy", "region": "Belurat Gaol", "floor": "Bottom lake boss chamber", "worldEpoch": "shadow_realm", "x": 390, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check"], "description": "Boss chamber at the bottom of the hanging-jar and platforming route."
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 192, "recordId": 410000, "name": "Demi-Human Swordmaster Onze", "map": "area 41 / grid 0,0", "position": [-100.72000122070312, 259.7699890136719, -106.43000030517578], "coordinateSpace": "game_world_xyz" }, "description": "Boss chamber at the bottom of the hanging-jar and platforming route."
     },
     {
       "id": "belurat_gaol_post_boss_state", "label": "Belurat Gaol (post-boss state)", "kind": "state", "layer": "legacy", "region": "Belurat Gaol", "floor": "Onze chamber return state", "worldEpoch": "shadow_realm", "x": 450, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9428,7 +9429,7 @@
     },
     {
       "id": "death_knight_fog_rift_gate", "label": "Death Knight (Fog Rift Catacombs)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Deepest elevator boss chamber", "worldEpoch": "shadow_realm", "x": 240, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check"], "description": "Death Knight behind the final elevator and fog door."
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 189, "recordId": 400000, "name": "Death Knight", "map": "area 40 / grid 0,0", "position": [-92.01000213623047, 259.0199890136719, -68.97000122070312], "coordinateSpace": "game_world_xyz" }, "description": "Death Knight behind the final elevator and fog door."
     },
     {
       "id": "fog_rift_catacombs_post_boss_state", "label": "Fog Rift Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Death Knight chamber return state", "worldEpoch": "shadow_realm", "x": 300, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9446,7 +9447,7 @@
     },
     {
       "id": "chief_bloodfiend_rivermouth_gate", "label": "Chief Bloodfiend (Rivermouth Cave)", "kind": "boss", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Blood pool boss chamber", "worldEpoch": "shadow_realm", "x": 460, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "description": "Chief Bloodfiend beyond the Bloodfiend ritual pool."
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 199, "recordId": 430000, "name": "Chief Bloodfiend", "map": "area 43 / grid 0,0", "position": [-82.44300079345703, 163.677001953125, 143.7989959716797], "coordinateSpace": "game_world_xyz" }, "description": "Chief Bloodfiend beyond the Bloodfiend ritual pool."
     },
     {
       "id": "rivermouth_cave_post_boss_state", "label": "Rivermouth Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Chief Bloodfiend chamber return state", "worldEpoch": "shadow_realm", "x": 520, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9462,7 +9463,7 @@
     },
     {
       "id": "death_knight_scorpion_river_gate", "label": "Death Knight (Scorpion River Catacombs)", "kind": "boss", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Deepest elevator boss chamber", "worldEpoch": "shadow_realm", "x": 880, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "description": "Death Knight at the end of the death-blight and spike-trap route."
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 190, "recordId": 400100, "name": "Death Knight", "map": "area 40 / grid 1,0", "position": [-62.70000076293945, 295.04998779296875, 58.2599983215332], "coordinateSpace": "game_world_xyz" }, "description": "Death Knight at the end of the death-blight and spike-trap route."
     },
     {
       "id": "scorpion_river_catacombs_post_boss_state", "label": "Scorpion River Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Death Knight chamber return state", "worldEpoch": "shadow_realm", "x": 940, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9670,7 +9671,7 @@
     },
     {
       "id": "curseblade_labirith_bonny_gate", "label": "Curseblade Labirith (Bonny Gaol)", "kind": "boss", "layer": "legacy", "region": "Bonny Gaol", "floor": "Gaol boss chamber", "worldEpoch": "shadow_realm", "x": 740, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-bonny-gaol", "pushsquare-bonny-labirith-cross-check", "segmentnext-bonny-gaol-cross-check"], "description": "Curseblade Labirith at the end of the gaol; reward is the Curseblade Meera spirit ash."
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "pushsquare-bonny-labirith-cross-check", "segmentnext-bonny-gaol-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 193, "recordId": 410100, "name": "Curseblade Labirith", "map": "area 41 / grid 1,0", "position": [-45.36000061035156, 304.6000061035156, -25.5], "coordinateSpace": "game_world_xyz" }, "description": "Curseblade Labirith at the end of the gaol; reward is the Curseblade Meera spirit ash."
     },
     {
       "id": "bonny_gaol_post_boss_state", "label": "Bonny Gaol (post-boss state)", "kind": "state", "layer": "legacy", "region": "Bonny Gaol", "floor": "Labirith chamber return state", "worldEpoch": "shadow_realm", "x": 800, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9816,7 +9817,7 @@
     },
     {
       "id": "tibia_mariner_summonwater_gate", "label": "Tibia Mariner (Summonwater Village)", "kind": "boss", "layer": "surface", "region": "Summonwater Village", "floor": "Flooded village basin", "worldEpoch": "limgrave_surface", "x": 570, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check"], "description": "Optional field boss reached east from the Summonwater Village Outskirts grace; the village route itself is not sealed by this boss."
+      "sourceEvidence": ["eldenpedia-summonwater-village", "game8-summonwater-cross-check", "gamerguides-summonwater-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 286, "recordId": 31453900, "name": "Tibia Mariner", "map": "area 60 / grid 45,39", "position": [-60.04999923706055, 92.19000244140625, 4.295000076293945], "coordinateSpace": "game_world_xyz" }, "description": "Optional field boss reached east from the Summonwater Village Outskirts grace; the village route itself is not sealed by this boss."
     },
     {
       "id": "summonwater_village_post_boss_state", "label": "Summonwater Village (post-Tibia Mariner state)", "kind": "state", "layer": "surface", "region": "Summonwater Village", "floor": "Flooded village cleared state", "worldEpoch": "limgrave_surface", "x": 620, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9884,7 +9885,7 @@
     },
     {
       "id": "omenkiller_village_albinaurics_gate", "label": "Omenkiller (Village of the Albinaurics)", "kind": "boss", "layer": "legacy", "region": "Village of the Albinaurics", "floor": "Village eastern end", "worldEpoch": "liurnia_surface", "x": 590, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check"], "description": "Optional Omenkiller gate at the far end of the village; it does not block the overworld descent into the settlement."
+      "sourceEvidence": ["eldenpedia-village-albinaurics", "game8-liurnia-branches-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 303, "recordId": 32354200, "name": "Omenkiller", "map": "area 60 / grid 35,42", "position": [-132.50900268554688, 269.1549987792969, -92.67900085449219], "coordinateSpace": "game_world_xyz" }, "description": "Optional Omenkiller gate at the far end of the village; it does not block the overworld descent into the settlement."
     },
     {
       "id": "village_albinaurics_post_omenkiller_state", "label": "Village of the Albinaurics (post-Omenkiller state)", "kind": "state", "layer": "legacy", "region": "Village of the Albinaurics", "floor": "Village eastern end cleared state", "worldEpoch": "liurnia_surface", "x": 640, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
