@@ -466,7 +466,15 @@ def audit() -> dict:
 
     def route_candidates(name: str, region: str = "") -> list[dict]:
         nonlocal endpoint_alias_matches
-        alias_id = ROUTE_ENDPOINT_ALIASES.get(norm(name))
+        name_key = norm(name)
+        region_key = norm(region)
+        # The guide reuses "Erdtree Sanctuary" for both capital epochs.  The
+        # Ashen Capital record must resolve to its own floor node; otherwise a
+        # valid post-Maliketh route is falsely compared against pre-Maliketh.
+        if name_key == "erdtreesanctuary" and "ashen" in region_key:
+            alias_id = "grace_ashen_erdtree_sanctuary"
+        else:
+            alias_id = ROUTE_ENDPOINT_ALIASES.get(name_key)
         if alias_id in node_by_id:
             endpoint_alias_matches += 1
             return [node_by_id[alias_id]]
