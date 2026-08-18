@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.153-online-multiplane",
+  "version": "1.0.154-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -115,6 +115,8 @@
       "base-capital-ranni-scadu-return-evidence-20260818",
       "base-special-postboss-return-evidence-20260818",
       "reddit-siofra-dragonkin-exit-20260818",
+      "mapforgoblins-map-points-part1-20260818",
+      "mapforgoblins-map-points-part2-20260818",
       "mapforgoblins-map-points-part3-20260818"
     ]
   },
@@ -4262,8 +4264,9 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-redmane-r16802", "eldenpedia-radahn-r97504", "game8-redmane-cross-check"],
-      "description": "Final portal and boss gate for the festival route."
+      "sourceEvidence": ["eldenpedia-redmane-r16802", "eldenpedia-radahn-r97504", "game8-redmane-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 350, "recordId": 34130900, "name": "Starscourge Radahn", "map": "area 60 / grid 52,38", "position": [-23.687999725341797, 34.595001220703125, 156.30799865722656], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Final portal and boss gate for the festival route. The online XYZ is the exact-name Starscourge Radahn map point, not a local fog-wall geometry survey."
     },
     {
       "id": "grace_starscourge_radahn",
@@ -4571,8 +4574,9 @@
       "y": 530,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-radagon-final", "eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"],
-      "description": "Back-to-back final boss encounter: Radagon first, Elden Beast second."
+      "sourceEvidence": ["eldenpedia-radagon-final", "eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 240, "recordId": 30190000, "name": "Elden Beast", "map": "area 19 / grid 0,0", "position": [213.86000061035156, -719.9849853515625, -686.6859741210938], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Back-to-back final boss encounter: Radagon first, Elden Beast second. The online XYZ is the shared final-arena Elden Beast map point; the source names the second phase, while the graph node models the complete two-phase arena."
     },
     {
       "id": "grace_fractured_marika",
@@ -5772,8 +5776,9 @@
       "y": 230,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-enir-ilim", "eldenpedia-radahn-consort", "game8-promised-radahn-cross-check"],
-      "description": "DLC final boss gate at the Gate of Divinity."
+      "sourceEvidence": ["eldenpedia-enir-ilim", "eldenpedia-radahn-consort", "game8-promised-radahn-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 243, "recordId": 30200100, "name": "Radahn, Consort of Miquella", "map": "area 20 / grid 1,0", "position": [-270.64599609375, 73.75599670410156, -152.29299926757812], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "DLC final boss gate at the Gate of Divinity. The online XYZ is the exact-name Radahn, Consort of Miquella map point, not a local fog-wall geometry survey."
     },
     {
       "id": "grace_enir_ilim_gate_of_divinity",
@@ -9139,7 +9144,7 @@
     },
     {
       "id": "omenkiller_perfumer_grotto_gate", "label": "Omenkiller and Miranda (Perfumer's Grotto)", "kind": "boss", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Omenkiller boss chamber", "worldEpoch": "altus_surface", "x": 1470, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check"], "description": "Omenkiller supported by Miranda the Blighted Bloom."
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 325, "recordId": 33311800, "name": "Miranda & Omenkiller", "map": "area 31 / grid 18,0", "position": [-85.1780014038086, 790.6309814453125, 183.11399841308594], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Omenkiller supported by Miranda the Blighted Bloom. The online XYZ is the exact-name duo map point, not a local fog-wall geometry survey."
     },
     {
       "id": "perfumer_grotto_post_boss_state", "label": "Perfumer's Grotto (post-boss state)", "kind": "state", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Boss chamber return state", "worldEpoch": "altus_surface", "x": 1530, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9155,7 +9160,7 @@
     },
     {
       "id": "perfumer_tricia_unsightly_gate", "label": "Perfumer Tricia and Misbegotten Warrior", "kind": "boss", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Duo boss chamber", "worldEpoch": "altus_surface", "x": 850, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "description": "Perfumer Tricia and Misbegotten Warrior duo gate."
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 321, "recordId": 33301200, "name": "Perfumer Tricia & Misbegotten Warrior", "map": "area 30 / grid 12,0", "position": [8.086999893188477, 618.302978515625, 242.75], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Perfumer Tricia and Misbegotten Warrior duo gate. The online XYZ is the exact-name duo map point, not a local fog-wall geometry survey."
     },
     {
       "id": "unsightly_catacombs_post_boss_state", "label": "Unsightly Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Duo boss chamber return state", "worldEpoch": "altus_surface", "x": 910, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9259,7 +9264,7 @@
     },
     {
       "id": "kindred_rot_seethewater_gate", "label": "Kindred of Rot duo (Seethewater Cave)", "kind": "boss", "layer": "legacy", "region": "Seethewater Cave", "floor": "Rot-infested lower chamber", "worldEpoch": "altus_surface", "x": 580, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check"], "description": "Twin Kindred of Rot boss gate at the cave's end."
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 323, "recordId": 33310700, "name": "Kindred of Rot", "map": "area 31 / grid 7,0", "position": [-122.64199829101562, 719.5980224609375, 255.96600341796875], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Twin Kindred of Rot boss gate at the cave's end. The online XYZ is the exact-name Kindred of Rot map point, not a local fog-wall geometry survey."
     },
     {
       "id": "seethewater_cave_post_boss_state", "label": "Seethewater Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Seethewater Cave", "floor": "Kindred of Rot chamber return state", "worldEpoch": "altus_surface", "x": 640, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9323,7 +9328,7 @@
     },
     {
       "id": "cleanrot_knights_abandoned_gate", "label": "Cleanrot Knight pair (Abandoned Cave)", "kind": "boss", "layer": "legacy", "region": "Abandoned Cave", "floor": "Scarlet-rot boss chamber", "worldEpoch": "caelid_surface", "x": 470, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Spear and Sickle Cleanrot Knight duo behind the scarlet-rot approach."
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 356, "recordId": 34312000, "name": "Cleanrot Knight Duo", "map": "area 31 / grid 20,0", "position": [173.7310028076172, 86.96900177001953, 147.63999938964844], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" }, "description": "Spear and Sickle Cleanrot Knight duo behind the scarlet-rot approach. The online XYZ is the exact-name duo map point, not a local fog-wall geometry survey."
     },
     {
       "id": "abandoned_cave_post_boss_state", "label": "Abandoned Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Abandoned Cave", "floor": "Cleanrot Knight chamber return state", "worldEpoch": "caelid_surface", "x": 530, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
