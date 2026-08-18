@@ -492,6 +492,12 @@ function renderOnlineCoordinateInspector(record, kind, label) {
   const map = record.map || record.current_map || record.source_map || "unknown map";
   const sourceIndex = record.source_index ?? record.id ?? "n/a";
   els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || "Online coordinate")}</div><div class="inspector-type">ONLINE ${safe(kind).toUpperCase()} · ROUTEABLE=false</div></div><div class="inspector-region">${safe(map)}</div></div><p class="inspector-description">Pinned online coordinate evidence only. It does not create a physical route edge or assert pickup/encounter state.</p><div class="inspector-online">Source record: ${safe(sourceIndex)}<br>Map: ${safe(map)}<br>X ${safe(position[0])} / Y ${safe(position[1])} / Z ${safe(position[2])}</div><button class="online-text-location-button" data-refocus-online-coordinate>Focus this coordinate</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
+  if (kind === "named-grace-positions") {
+    const frameNote = document.createElement("div");
+    frameNote.className = "inspector-online";
+    frameNote.textContent = "Coordinate frame: source_map_local_xyz; do not compare directly with MapForGoblins XYZ.";
+    els.nodeInspector.querySelector(".inspector-description").prepend(frameNote);
+  }
   els.nodeInspector.querySelector("[data-refocus-online-coordinate]").addEventListener("click", () => {
     focusOnlineCoordinate(record, kind, label);
   });
