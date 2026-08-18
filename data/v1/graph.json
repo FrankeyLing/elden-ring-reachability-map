@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.132-online-multiplane",
+  "version": "1.0.133-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -3478,7 +3478,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-cross-check"],
+      "sourceEvidence": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 461, "recordId": 61423600, "name": "Church of Elleh", "map": "area 60 / grid 42,36", "position": [-40.73400115966797, 90.97100067138672, 79.33799743652344], "coordinateSpace": "game_world_xyz" },
       "description": "Early Limgrave grace on the route toward Gatefront."
     },
     {
@@ -3508,7 +3509,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-cross-check"],
+      "sourceEvidence": ["eldenpedia-limgrave-r97518", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 456, "recordId": 61413800, "name": "Stormhill Shack", "map": "area 60 / grid 41,38", "position": [33.619998931884766, 204.67999267578125, 10.40999984741211], "coordinateSpace": "game_world_xyz" },
       "description": "Stormveil approach landmark and branch point."
     },
     {
@@ -3752,7 +3754,8 @@
       "y": 850,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-dectus-r37956", "eldenpedia-sites-of-grace-r83774"],
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-dectus-r37956", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 537, "recordId": 63385000, "name": "Grand Lift of Dectus", "map": "area 60 / grid 38,50", "position": [48.130001068115234, 759.4600219726562, -25.729999542236328], "coordinateSpace": "game_world_xyz" },
       "description": "Liurnia-side lift node for the Altus Plateau transition."
     },
     {
@@ -3933,7 +3936,8 @@
       "y": 650,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-isolated-divine-tower", "eip-leyndell-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-isolated-divine-tower", "eip-leyndell-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 185, "recordId": 341500, "name": "Isolated Divine Tower", "map": "area 60 / grid 51,46", "position": [-21.149999618530273, 111.02999877929688, -80.05000305175781], "coordinateSpace": "game_world_xyz" },
       "description": "Waygate destination from Divine Bridge; the tower is the Malenia Great Rune activation branch, not a walkable Caelid surface continuation."
     },
     {
@@ -3993,7 +3997,8 @@
       "y": 650,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-leyndell-cross-check", "gamesradar-east-altus-tower-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-leyndell-cross-check", "gamesradar-east-altus-tower-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 184, "recordId": 341400, "name": "Divine Tower of East Altus", "map": "area 34 / grid 14,0", "position": [649.3900146484375, 30.34000015258789, -532.8900146484375], "coordinateSpace": "game_world_xyz" },
       "description": "Tower-top grace reached by elevator from the East Altus gate; the tower can restore Morgott and Mohg Great Runes."
     },
     {
@@ -4023,7 +4028,8 @@
       "y": 1080,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-limgrave-r97518", "game8-siofra-cross-check", "eldenpedia-sites-of-grace-r83774"],
+      "sourceEvidence": ["eldenpedia-limgrave-r97518", "game8-siofra-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 485, "recordId": 61463800, "name": "Third Church of Marika", "map": "area 60 / grid 46,38", "position": [-101.58300018310547, 3.4830000400543213, 71.81300354003906], "coordinateSpace": "game_world_xyz" },
       "description": "Surface landmark immediately north of the Siofra Well route."
     },
     {
@@ -4144,7 +4150,8 @@
       "y": 410,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "powerpyx-caelid-cross-check"],
+      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "powerpyx-caelid-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 558, "recordId": 64464000, "name": "Smoldering Church", "map": "area 60 / grid 46,40", "position": [-72.55000305175781, 151.6199951171875, 15.329999923706055], "coordinateSpace": "game_world_xyz" },
       "description": "Caelid road landmark before the central swamp branches."
     },
     {
@@ -4159,7 +4166,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "game8-redmane-cross-check"],
+      "sourceEvidence": ["eldenpedia-caelid-r68953", "eldenpedia-sites-of-grace-r83774", "game8-redmane-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 564, "recordId": 64474002, "name": "Caelem Ruins", "map": "area 60 / grid 47,40", "position": [75.94999694824219, 150.85000610351562, -103.44999694824219], "coordinateSpace": "game_world_xyz" },
       "description": "Southern road node toward Impassable Greatbridge."
     },
     {
@@ -7709,7 +7717,8 @@
       "y": 560,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-cathedral-dragon-communion-cross-check", "game8-caelid-walkthrough-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-cathedral-dragon-communion-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 565, "recordId": 64483600, "name": "Cathedral of Dragon Communion", "map": "area 60 / grid 48,36", "position": [27.469999313354492, 127.7300033569336, 96.29000091552734], "coordinateSpace": "game_world_xyz" },
       "description": "Southern branch off Caelid Highway South, at the peninsula used for Dragon Communion."
     },
     {
@@ -7769,7 +7778,8 @@
       "y": 690,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check"],
+      "sourceEvidence": ["eldenpedia-sellia-hideaway", "game8-sellia-hideaway-cross-check", "eip-sellia-hideaway-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 161, "recordId": 311100, "name": "Sellia Hideaway", "map": "area 31 / grid 11,0", "position": [127.06999969482422, 207.58999633789062, 63.939998626708984], "coordinateSpace": "game_world_xyz" },
       "description": "Hidden grace behind the illusory wall in the cemetery northeast of the Church of the Plague."
     },
     {
@@ -7934,7 +7944,8 @@
       "y": 760,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "eldenpedia-sites-of-grace-r83774", "game8-divine-tower-limgrave-cross-check"],
+      "sourceEvidence": ["eldenpedia-divine-tower-limgrave", "eldenpedia-sites-of-grace-r83774", "game8-divine-tower-limgrave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 178, "recordId": 341000, "name": "Divine Tower of Limgrave", "map": "area 34 / grid 10,0", "position": [907.9099731445312, 49.5, 593.010009765625], "coordinateSpace": "game_world_xyz" },
       "description": "Tower grace reached through the broken bridge sending gate and internal lift."
     },
     {
@@ -9898,7 +9909,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "label": "Cathedral of Manus Celes", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Cathedral of Manus Celes interior", "worldEpoch": "moonlight_altar", "x": 930, "y": 330, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-cathedral-manus-celes", "eip-moonlight-altar-cross-check"], "description": "Interior cathedral grace northeast of Moonlight Altar; the hole and Ranni interaction below are modeled as a separate quest interaction, not as a prerequisite for reaching the grace."
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-cathedral-manus-celes", "eip-moonlight-altar-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 503, "recordId": 62354201, "name": "Cathedral of Manus Celes", "map": "area 60 / grid 35,42", "position": [-47.91999816894531, 408.010009765625, -23.459999084472656], "coordinateSpace": "game_world_xyz" }, "description": "Interior cathedral grace northeast of Moonlight Altar; the hole and Ranni interaction below are modeled as a separate quest interaction, not as a prerequisite for reaching the grace."
     },
     {
       "id": "grace_stormveil_castle_main_gateside_chamber", "label": "Gateside Chamber", "kind": "grace", "layer": "legacy", "region": "Stormveil Castle", "floor": "Castle gate courtyard side room", "worldEpoch": "stormveil_pre_godrick", "x": 500, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
