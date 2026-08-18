@@ -450,6 +450,43 @@ def audit() -> dict:
 
     bound_ids = {item["formal_id"] for item in bindings}
     formal_graces = [node for node in nodes if node.get("kind") == "grace"]
+    expected_catalog_unmapped = {
+        "grace_mountaintops_of_the_giants_flame_peak_fire_giant",
+        "grace_stormveil_castle_main_godrick_the_grafted",
+    }
+    expected_catalog_kind_mismatch = {
+        "grace_altus_plateau_main_forest_spanning_greatbridge",
+        "grace_leyndell_royal_capital_subterranean_shunning_grounds_frenzied_flame_proscription",
+        "grace_limgrave_stormhill_limgrave_tower_bridge",
+        "grace_liurnia_of_the_lakes_main_liurnia_tower_bridge",
+        "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate",
+        "grace_scadu_altus_abyssal_woods_forsaken_graveyard",
+    }
+    expected_unlisted_formal_graces = {
+        "grace_siofra_ancestor_spirit_post_boss",
+        "grace_nokron_regal_ancestor_post_boss",
+        "grace_siofra_great_waterfall_basin",
+        "grace_lichdragon_fortissax_post_boss",
+    }
+    catalog_anomaly_contract = {
+        "unmapped_catalog_ids": sorted(item["catalog_id"] for item in unmapped),
+        "formal_kind_mismatch_ids": sorted(
+            item["catalog_id"] for item in bindings if item["formal_kind"] != "grace"
+        ),
+        "formal_graces_without_catalog_binding": sorted(
+            node["id"] for node in formal_graces if node["id"] not in bound_ids
+        ),
+        "expected_unmapped_catalog_ids": sorted(expected_catalog_unmapped),
+        "expected_formal_kind_mismatch_ids": sorted(expected_catalog_kind_mismatch),
+        "expected_formal_graces_without_catalog_binding": sorted(expected_unlisted_formal_graces),
+    }
+    if (
+        catalog_anomaly_contract["unmapped_catalog_ids"] != catalog_anomaly_contract["expected_unmapped_catalog_ids"]
+        or catalog_anomaly_contract["formal_kind_mismatch_ids"] != catalog_anomaly_contract["expected_formal_kind_mismatch_ids"]
+        or catalog_anomaly_contract["formal_graces_without_catalog_binding"]
+        != catalog_anomaly_contract["expected_formal_graces_without_catalog_binding"]
+    ):
+        raise ValueError(f"sites-of-grace catalog anomaly contract failed: {catalog_anomaly_contract}")
     route_edges = {(edge["from"], edge["to"]) for edge in graph["edges"]}
     node_ids = set(node_by_id)
     registered_snapshot_ids = set(graph.get("meta", {}).get("sourceSnapshots", []))
@@ -868,6 +905,7 @@ def audit() -> dict:
             "formal_graces_without_catalog_binding": [
                 node["id"] for node in formal_graces if node["id"] not in bound_ids
             ],
+            "catalog_anomaly_contract": catalog_anomaly_contract,
         },
         "p0_achievement_catalog": {
             **achievement_contract,
