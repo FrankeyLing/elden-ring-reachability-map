@@ -13,6 +13,7 @@ from urllib.parse import parse_qs, urlparse
 ROOT = Path(__file__).resolve().parent
 DATA_FILE = ROOT / "data" / "v1" / "graph.json"
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
+ACHIEVEMENTS_FILE = ROOT / "data" / "v1" / "entities" / "achievements.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
@@ -75,6 +76,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/sites-of-grace":
             self.send_json_file(CATALOG_FILE)
+            return
+        if parsed.path == "/api/catalog/achievements":
+            self.send_achievements(parse_qs(parsed.query))
             return
         if parsed.path == "/api/catalog/route-legs":
             self.send_json_file(ROUTE_LEGS_FILE)
@@ -187,6 +191,45 @@ class AppHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def send_achievements(self, query: dict[str, list[str]]):
+        search = query.get("q", [""])[0].strip().casefold()
+        category = query.get("category", [""])[0].strip().casefold()
+        coverage_state = query.get("coverage", [""])[0].strip().casefold()
+        try:
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), 500)
+        except ValueError:
+            limit = 100
+        try:
+            payload = json.loads(ACHIEVEMENTS_FILE.read_bytes())
+            records = []
+            for record in payload["records"]:
+                search_text = " / ".join(
+                    str(value or "")
+                    for value in (record.get("canonical_id"), record.get("name"), record.get("description"))
+                )
+                if search and search not in search_text.casefold():
+                    continue
+                if category and str(record.get("category", "")).casefold() != category:
+                    continue
+                if coverage_state and str(record.get("coverage_state", "")).casefold() != coverage_state:
+                    continue
+                records.append(record)
+        except (OSError, KeyError, TypeError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/achievement-query@1",
+                "query": {"q": search, "category": category, "coverage": coverage_state, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "source": payload["source"],
+                "note": "achievement targets are checklist evidence; they never become traversal edges automatically",
+            }
+        )
 
     def send_grace_positions(self, query: dict[str, list[str]]):
         map_id = query.get("map", [""])[0].strip()

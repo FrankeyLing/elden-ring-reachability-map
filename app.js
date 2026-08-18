@@ -8,7 +8,8 @@ const state = {
   coordinateMapId: "m10_00_00",
   coordinateEntityKind: "enemy",
   coordinateBounds: null,
- onlineIndex: null,
+  onlineIndex: null,
+  achievementCatalog: null,
  onlineBossByNodeId: new Map(),
  onlineMapPointByNodeId: new Map(),
   onlineMapPointRecords: [],
@@ -421,7 +422,7 @@ function renderGraph() {
   renderNodes();
   const coverage = state.onlineIndex?.manifest?.coverage;
  const onlineStats = coverage
-    ? ` · 在线坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.namedMapPointRecords} 地图点 / ${coverage.itemPlacementRecords} 物品 / ${coverage.entityRecords} 实体 / ${coverage.gatheringRecords} 采集节点 / ${coverage.tileRegionRecords} 地图层`
+    ? ` · 在线 P0 成就 ${state.achievementCatalog?.total_matches || state.achievementCatalog?.record_count || 0} / 坐标 ${coverage.gracePositionNonDummy} 赐福 / ${coverage.bossRecords} Boss / ${coverage.namedMapPointRecords} 地图点 / ${coverage.itemPlacementRecords} 物品 / ${coverage.entityRecords} 实体 / ${coverage.gatheringRecords} 采集节点 / ${coverage.tileRegionRecords} 地图层`
    : "";
   els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段${onlineStats} · ${state.data.meta.verificationLabel || "V1"}`;
 }
@@ -547,13 +548,17 @@ function renderOnlinePoiResults(payload, kind) {
   }
   const summary = document.createElement("div");
   summary.className = "online-poi-summary";
-  summary.textContent = "匹配 " + payload.total_matches + " 条，显示 " + payload.record_count + " 条；仅为坐标证据。";
+  summary.textContent = kind === "achievements"
+    ? "匹配 " + payload.total_matches + " 项，显示 " + payload.record_count + " 项；成就目标不会自动变成路线边。"
+    : "匹配 " + payload.total_matches + " 条，显示 " + payload.record_count + " 条；仅为坐标证据。";
   els.onlinePoiResults.appendChild(summary);
   payload.records.forEach((record) => {
     const row = document.createElement("div");
     row.className = "online-poi-result";
     const title = document.createElement("strong");
-    if (kind === "items") {
+    if (kind === "achievements") {
+      title.textContent = record.name || record.canonical_id;
+    } else if (kind === "items") {
       title.textContent = (record.items || []).map((item) => item.name || item.id).join(" / ") || "unnamed item";
     } else if (kind === "map-points") {
       title.textContent = (record.names || []).join(" / ") || ("map point " + record.id);
@@ -563,9 +568,30 @@ function renderOnlinePoiResults(payload, kind) {
       title.textContent = record.name || record.model || (record.kind ? record.kind + " entity" : "online record");
     }
     const detail = document.createElement("span");
-    const position = record.position || [];
-    detail.textContent = (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+    if (kind === "achievements") {
+      const targets = (record.formal_target_ids || []).map((id) => nodeLabel(id)).join(" / ") || "未绑定正式目标节点";
+      detail.textContent = record.category + " · " + record.coverage_state + " · " + targets;
+    } else {
+      const position = record.position || [];
+      detail.textContent = (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+    }
     row.append(title, detail);
+    if (kind === "achievements") {
+      const targetId = (record.formal_target_ids || []).find((id) => state.nodes.has(id));
+      if (targetId) {
+        row.classList.add("clickable");
+        row.addEventListener("click", () => {
+          state.selectedNode = targetId;
+          state.mapMode = "topology";
+          els.coordinateMapSelect.hidden = true;
+          els.coordinateEntityKind.hidden = true;
+          els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "topology"));
+          renderGraph();
+          renderInspector();
+          els.mapToast.textContent = record.name + " · 已定位正式目标节点：" + nodeLabel(targetId);
+        });
+      }
+    }
     els.onlinePoiResults.appendChild(row);
   });
 }
@@ -672,9 +698,10 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
+    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeProfileResponse, onlineIndexResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
+      fetch("/api/catalog/achievements", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
       fetch("/api/route-profiles", { cache: "no-store" }),
       fetch("/api/online-index", { cache: "no-store" }),
@@ -688,9 +715,11 @@ async function init() {
     if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
     if (!catalogResponse.ok) throw new Error(`赐福目录 HTTP ${catalogResponse.status}`);
+    if (!achievementResponse.ok) throw new Error(`成就目录 HTTP ${achievementResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     state.data = await graphResponse.json();
     state.routeProfiles = await routeProfileResponse.json();
+    state.achievementCatalog = await achievementResponse.json();
     if (!onlineIndexResponse.ok) throw new Error(`online index HTTP ${onlineIndexResponse.status}`);
     if (!onlineBossResponse.ok) throw new Error(`online boss coordinates HTTP ${onlineBossResponse.status}`);
     if (!onlineMapPoint1Response.ok || !onlineMapPoint2Response.ok || !onlineMapPoint3Response.ok) throw new Error("online map point coordinates unavailable");

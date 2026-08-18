@@ -153,10 +153,40 @@ def candidates_for(label_index: dict[str, list[dict]], name: str, region: str = 
 def audit() -> dict:
     graph = load("data/v1/graph.json")
     catalog = load("data/v1/entities/sites-of-grace.json")
+    achievements = load("data/v1/entities/achievements.json")
     legs = load("data/v1/entities/er-guide-route-legs.json")
     route_profiles = load("data/v1/route-profiles.json")
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
+    achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
+    achievement_contract = {
+        "records": len(achievements["records"]),
+        "declared_records": achievements.get("record_count"),
+        "duplicate_canonical_ids": sorted({item for item in achievement_ids if achievement_ids.count(item) > 1}),
+        "missing_source_evidence": [
+            record.get("canonical_id") for record in achievements["records"] if not record.get("source_evidence")
+        ],
+        "invalid_formal_target_ids": [
+            {"achievement": record.get("canonical_id"), "target_id": target_id}
+            for record in achievements["records"]
+            for target_id in record.get("formal_target_ids", [])
+            if target_id not in node_by_id
+        ],
+        "routeable_records": [
+            record.get("canonical_id") for record in achievements["records"] if record.get("routeable") is not False
+        ],
+        "source_revision": achievements.get("source", {}).get("revision_id"),
+    }
+    if (
+        achievement_contract["records"] != 42
+        or achievement_contract["declared_records"] != 42
+        or achievement_contract["duplicate_canonical_ids"]
+        or achievement_contract["missing_source_evidence"]
+        or achievement_contract["invalid_formal_target_ids"]
+        or achievement_contract["routeable_records"]
+        or not achievement_contract["source_revision"]
+    ):
+        raise ValueError(f"achievement catalog contract failed: {achievement_contract}")
     label_index: dict[str, list[dict]] = {}
     for node in nodes:
         label_index.setdefault(norm(node.get("label")), []).append(node)
@@ -353,6 +383,18 @@ def audit() -> dict:
             "formal_graces_without_catalog_binding": [
                 node["id"] for node in formal_graces if node["id"] not in bound_ids
             ],
+        },
+        "p0_achievement_catalog": {
+            **achievement_contract,
+            "formal_target_bound_records": sum(bool(record.get("formal_target_ids")) for record in achievements["records"]),
+            "unbound_records": [
+                record["canonical_id"] for record in achievements["records"] if not record.get("formal_target_ids")
+            ],
+            "collection_requirement_counts": {
+                record["canonical_id"]: len(record.get("required_item_names", []))
+                for record in achievements["records"]
+                if record.get("category") == "collection"
+            },
         },
         "route_leg_catalog": {
             "records": len(legs["records"]),
