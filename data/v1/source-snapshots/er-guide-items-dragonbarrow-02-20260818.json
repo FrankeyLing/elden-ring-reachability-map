@@ -1,0 +1,31 @@
+{
+  "schema": "elden-ring-reachability-map/er-guide-item-snapshot@1",
+  "source": {
+    "source_id": "er_guide",
+    "repository": "https://github.com/aether-auto/er-guide",
+    "commit": "7f24d64d3631ef4d549f56b42d4c3e3817a269fa",
+    "path": "data/items.json",
+    "captured_on": "2026-08-18"
+  },
+  "route_leg_id": "er_guide_leg_dragonbarrow-02",
+  "route_target_group_id": "er_guide_target_group_dragonbarrow-02",
+  "record_count": 8,
+  "coordinate_record_count": 7,
+  "routeable": false,
+  "coordinate_space": "er_guide_leaflet_lat_lng",
+  "records": [
+    {"id":"crystal-tear-opaline-hardtear","name":"Opaline Hardtear","category":"crystal-tear","map":{"code":"overworld","markerId":5929,"lat":-167.703125,"lng":156.090256},"wikiUrl":"https://eldenring.wiki.gg/wiki/Opaline_Hardtear"},
+    {"id":"crystal-tear-stonebarb-cracked-tear","name":"Stonebarb Cracked Tear","category":"crystal-tear","map":{"code":"overworld","markerId":5927,"lat":-167.09375,"lng":155.488582},"wikiUrl":"https://eldenring.wiki.gg/wiki/Stonebarb_Cracked_Tear"},
+    {"id":"golden-seed-10","name":"Golden Seed #10","category":"golden-seed","map":{"code":"overworld","markerId":2826,"lat":-152.867187,"lng":158.840353},"wikiUrl":"https://eldenring.wiki.gg/wiki/Golden_Seed"},
+    {"id":"incantation-greyoll-s-roar","name":"Greyoll's Roar","category":"incantation","map":null,"wikiUrl":"https://eldenring.wiki.gg/wiki/Greyoll's_Roar"},
+    {"id":"key-item-dectus-medallion-right","name":"Dectus Medallion (Right)","category":"key-item","map":{"code":"overworld","markerId":2359,"lat":-172.445312,"lng":156.144696},"wikiUrl":"https://eldenring.wiki.gg/wiki/Dectus_Medallion_(Right)"},
+    {"id":"talisman-bull-goat-s-talisman","name":"Bull-Goat's Talisman","category":"talisman","map":{"code":"overworld","markerId":2963,"lat":-165.726562,"lng":156.012116},"wikiUrl":"https://eldenring.wiki.gg/wiki/Bull-Goat's_Talisman"},
+    {"id":"talisman-flamedrake-talisman-2","name":"Flamedrake Talisman +2","category":"talisman","map":{"code":"overworld","markerId":2970,"lat":-165.195312,"lng":157.535826},"wikiUrl":"https://eldenring.wiki.gg/wiki/Flamedrake_Talisman_%2B2"},
+    {"id":"talisman-radagon-s-soreseal","name":"Radagon's Soreseal","category":"talisman","map":{"code":"overworld","markerId":2960,"lat":-173.132812,"lng":155.863393},"wikiUrl":"https://eldenring.wiki.gg/wiki/Radagon's_Soreseal"}
+  ],
+  "notes": [
+    "The upstream item IDs are all resolved against the pinned er-guide item database.",
+    "Greyoll's Roar has no upstream map object because it is obtained through the Dragon Communion exchange; it remains text-only.",
+    "The upstream Leaflet latitude/longitude values are not game-world XYZ and never create traversal edges."
+  ]
+}

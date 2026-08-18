@@ -30,7 +30,14 @@ ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapfor
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
 ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
-CAELID_CLEANUP_ITEM_SNAPSHOT_FILE = ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json"
+ER_GUIDE_ITEM_SNAPSHOT_FILES = {
+    "er_guide_leg_caelid-06": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json",
+    "er_guide_leg_dragonbarrow-02": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dragonbarrow-02-20260818.json",
+}
+EXPECTED_ITEM_COORDINATE_COUNTS = {
+    "er_guide_leg_caelid-06": 8,
+    "er_guide_leg_dragonbarrow-02": 7,
+}
 UNRESOLVED_BOSS_LOCATION_NODES = {
     "elder_dragon_greyoll_gate",
     "mohg_omen_gate",
@@ -289,7 +296,10 @@ def audit() -> dict:
     legs = load("data/v1/entities/er-guide-route-legs.json")
     route_target_groups = json.loads(ROUTE_TARGET_GROUPS_FILE.read_text(encoding="utf-8"))
     route_assessments = json.loads(ROUTE_ASSESSMENTS_FILE.read_text(encoding="utf-8"))
-    caelid_item_snapshot = json.loads(CAELID_CLEANUP_ITEM_SNAPSHOT_FILE.read_text(encoding="utf-8"))
+    item_snapshots = {
+        leg_id: json.loads(path.read_text(encoding="utf-8"))
+        for leg_id, path in ER_GUIDE_ITEM_SNAPSHOT_FILES.items()
+    }
     route_profiles = load("data/v1/route-profiles.json")
     online_index_manifest = json.loads(ONLINE_INDEX_MANIFEST_FILE.read_text(encoding="utf-8"))
     online_map_key_index = json.loads(ONLINE_MAP_KEY_INDEX_FILE.read_text(encoding="utf-8"))
@@ -1054,40 +1064,52 @@ def audit() -> dict:
     if broad_route_endpoint_contract["actual"] != broad_route_endpoint_contract["expected"]:
         raise ValueError(f"broad route endpoint contract failed: {broad_route_endpoint_contract}")
     target_group_records = route_target_groups.get("records", [])
-    caelid_target_group = next(record for record in target_group_records if record.get("route_leg_id") == "er_guide_leg_caelid-06")
-    caelid_leg = next(record for record in legs["records"] if record["canonical_id"] == "er_guide_leg_caelid-06")
-    caelid_item_records = caelid_item_snapshot.get("records", [])
-    expected_caelid_item_ids = set(caelid_leg.get("item_ids", []))
-    actual_caelid_item_ids = [record.get("id") for record in caelid_item_records]
-    online_item_snapshot_contract = {
-        "declared_records": caelid_item_snapshot.get("record_count"),
-        "records": len(caelid_item_records),
-        "expected_source_item_ids": len(expected_caelid_item_ids),
-        "missing_source_item_ids": sorted(expected_caelid_item_ids - set(actual_caelid_item_ids)),
-        "unexpected_item_ids": sorted(set(actual_caelid_item_ids) - expected_caelid_item_ids),
-        "duplicate_item_ids": sorted(
-            item for item in set(actual_caelid_item_ids) if actual_caelid_item_ids.count(item) > 1
-        ),
-        "coordinate_records": sum(record.get("map") is not None for record in caelid_item_records),
-        "declared_coordinate_records": caelid_item_snapshot.get("coordinate_record_count"),
-        "routeable": caelid_item_snapshot.get("routeable"),
-        "source_commit": caelid_item_snapshot.get("source", {}).get("commit"),
-        "source_path": caelid_item_snapshot.get("source", {}).get("path"),
-    }
-    if (
-        online_item_snapshot_contract["declared_records"] != 33
-        or online_item_snapshot_contract["records"] != 33
-        or online_item_snapshot_contract["expected_source_item_ids"] != 33
-        or online_item_snapshot_contract["missing_source_item_ids"]
-        or online_item_snapshot_contract["unexpected_item_ids"]
-        or online_item_snapshot_contract["duplicate_item_ids"]
-        or online_item_snapshot_contract["coordinate_records"] != 8
-        or online_item_snapshot_contract["declared_coordinate_records"] != 8
-        or online_item_snapshot_contract["routeable"] is not False
-        or online_item_snapshot_contract["source_commit"] != "7f24d64d3631ef4d549f56b42d4c3e3817a269fa"
-        or online_item_snapshot_contract["source_path"] != "data/items.json"
-    ):
-        raise ValueError(f"online item snapshot contract failed: {online_item_snapshot_contract}")
+    online_item_snapshot_contract = {}
+    for leg_id, item_snapshot in item_snapshots.items():
+        leg = next(record for record in legs["records"] if record["canonical_id"] == leg_id)
+        target_group = next(record for record in target_group_records if record.get("route_leg_id") == leg_id)
+        item_records = item_snapshot.get("records", [])
+        expected_item_ids = set(leg.get("item_ids", []))
+        actual_item_ids = [record.get("id") for record in item_records]
+        expected_snapshot_id = f"er-guide-items-{leg_id.removeprefix('er_guide_leg_')}-20260818"
+        contract = {
+            "declared_records": item_snapshot.get("record_count"),
+            "records": len(item_records),
+            "expected_source_item_ids": len(expected_item_ids),
+            "missing_source_item_ids": sorted(expected_item_ids - set(actual_item_ids)),
+            "unexpected_item_ids": sorted(set(actual_item_ids) - expected_item_ids),
+            "duplicate_item_ids": sorted(
+                item for item in set(actual_item_ids) if actual_item_ids.count(item) > 1
+            ),
+            "coordinate_records": sum(record.get("map") is not None for record in item_records),
+            "declared_coordinate_records": item_snapshot.get("coordinate_record_count"),
+            "routeable": item_snapshot.get("routeable"),
+            "source_commit": item_snapshot.get("source", {}).get("commit"),
+            "source_path": item_snapshot.get("source", {}).get("path"),
+            "target_group_reference_valid": (
+                item_snapshot.get("route_target_group_id") == target_group.get("canonical_id")
+                and target_group.get("online_item_snapshot") == expected_snapshot_id
+                and target_group.get("online_item_snapshot_path") == f"data/v1/source-snapshots/{expected_snapshot_id}.json"
+            ),
+        }
+        expected_count = len(expected_item_ids)
+        expected_coordinate_count = EXPECTED_ITEM_COORDINATE_COUNTS[leg_id]
+        if (
+            contract["declared_records"] != expected_count
+            or contract["records"] != expected_count
+            or contract["expected_source_item_ids"] != expected_count
+            or contract["missing_source_item_ids"]
+            or contract["unexpected_item_ids"]
+            or contract["duplicate_item_ids"]
+            or contract["coordinate_records"] != expected_coordinate_count
+            or contract["declared_coordinate_records"] != expected_coordinate_count
+            or contract["routeable"] is not False
+            or contract["source_commit"] != "7f24d64d3631ef4d549f56b42d4c3e3817a269fa"
+            or contract["source_path"] != "data/items.json"
+            or not contract["target_group_reference_valid"]
+        ):
+            raise ValueError(f"online item snapshot contract failed: {leg_id}: {contract}")
+        online_item_snapshot_contract[leg_id] = contract
     invalid_target_group_subroutes = []
     for record in target_group_records:
         declared_targets = set(record.get("resolved_formal_target_ids", []))
@@ -1153,14 +1175,15 @@ def audit() -> dict:
             for record in target_group_records
             if not set(record.get("source_evidence", [])).issubset(known_evidence_ids)
         ],
-        "caelid_item_snapshot_reference_valid": (
-            caelid_target_group.get("online_item_snapshot") == "er-guide-items-caelid-06-20260818"
-            and caelid_target_group.get("online_item_snapshot_path") == "data/v1/source-snapshots/er-guide-items-caelid-06-20260818.json"
-            and caelid_target_group.get("online_item_record_count") == 33
-            and caelid_target_group.get("online_item_coordinate_count") == 8
-            and caelid_target_group.get("item_target_status") == "all_source_ids_resolved_coordinates_partial"
+        "item_snapshot_references_valid": all(
+            record.get("online_item_snapshot")
+            and record.get("online_item_snapshot_path")
+            and record.get("online_item_record_count") == online_item_snapshot_contract[record["route_leg_id"]]["records"]
+            and record.get("online_item_coordinate_count") == online_item_snapshot_contract[record["route_leg_id"]]["coordinate_records"]
+            and record.get("item_target_status") == "all_source_ids_resolved_coordinates_partial"
+            for record in target_group_records if record.get("route_leg_id") in ER_GUIDE_ITEM_SNAPSHOT_FILES
         ),
-        "caelid_item_snapshot": online_item_snapshot_contract,
+        "item_snapshots": online_item_snapshot_contract,
     }
     if (
         target_group_contract["declared_records"] != 8
@@ -1170,7 +1193,7 @@ def audit() -> dict:
         or target_group_contract["invalid_formal_target_ids"]
         or target_group_contract["routeable_records"]
         or target_group_contract["missing_source_evidence"]
-        or not target_group_contract["caelid_item_snapshot_reference_valid"]
+        or not target_group_contract["item_snapshot_references_valid"]
         or target_group_contract["invalid_subroutes"]
     ):
         raise ValueError(f"route target group contract failed: {target_group_contract}")

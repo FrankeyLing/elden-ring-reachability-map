@@ -17,7 +17,10 @@ ACHIEVEMENTS_FILE = ROOT / "data" / "v1" / "entities" / "achievements.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
 ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
-CAELID_CLEANUP_ITEM_SNAPSHOT_FILE = ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json"
+ROUTE_TARGET_ITEM_SNAPSHOT_FILES = {
+    "er-guide-items-caelid-06-20260818": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json",
+    "er-guide-items-dragonbarrow-02-20260818": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dragonbarrow-02-20260818.json",
+}
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
@@ -134,7 +137,7 @@ class AppHandler(SimpleHTTPRequestHandler):
             self.send_json_file(ROUTE_ASSESSMENTS_FILE)
             return
         if parsed.path == "/api/catalog/route-target-items":
-            self.send_json_file(CAELID_CLEANUP_ITEM_SNAPSHOT_FILE)
+            self.send_route_target_items(parse_qs(parsed.query))
             return
         if parsed.path == "/api/route-profiles":
             self.send_json_file(ROUTE_PROFILES_FILE)
@@ -189,6 +192,14 @@ class AppHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
         self.wfile.write(payload)
+
+    def send_route_target_items(self, query: dict[str, list[str]]):
+        snapshot = query.get("snapshot", [""])[0].strip()
+        path = ROUTE_TARGET_ITEM_SNAPSHOT_FILES.get(snapshot)
+        if path is None:
+            self.send_json_error(ValueError("unknown route target item snapshot"))
+            return
+        self.send_json_file(path)
 
     def send_map_points(self, query: dict[str, list[str]]):
         search = query.get("q", [""])[0].strip().casefold()
