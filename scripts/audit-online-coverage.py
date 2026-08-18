@@ -67,6 +67,10 @@ UNRESOLVED_BOSS_LOCATION_NODES = {
     "godrick_knight_fort_haight_gate",
     "soldier_of_godrick_cave_knowledge_gate",
 }
+EXPECTED_EXTERNAL_ROOT_NODES = {
+    "chapel_of_anticipation_spawn",
+    "pureblood_knight_medal_gate",
+}
 
 # These are identity aliases only.  They do not create edges and are kept
 # explicit because the formal graph deliberately uses shorter route IDs,
@@ -1096,6 +1100,30 @@ def audit() -> dict:
             continue
         condition_adjacency.setdefault(edge["from"], set()).add(edge["to"])
 
+    reachability_start = "grace_gatefront"
+    reachable_from_start = {reachability_start}
+    reachability_queue = [reachability_start]
+    while reachability_queue:
+        current = reachability_queue.pop()
+        for neighbor in condition_adjacency.get(current, set()):
+            if neighbor not in reachable_from_start:
+                reachable_from_start.add(neighbor)
+                reachability_queue.append(neighbor)
+    formal_reachability_contract = {
+        "start": reachability_start,
+        "condition_assumption": "all_registered_conditions_enabled",
+        "reachable_nodes": len(reachable_from_start),
+        "total_nodes": len(nodes),
+        "unreachable_nodes": sorted(node_id for node_id in node_by_id if node_id not in reachable_from_start),
+        "expected_external_root_nodes": sorted(EXPECTED_EXTERNAL_ROOT_NODES),
+    }
+    if (
+        reachability_start not in node_by_id
+        or formal_reachability_contract["unreachable_nodes"]
+        != formal_reachability_contract["expected_external_root_nodes"]
+    ):
+        raise ValueError(f"formal reachability contract failed: {formal_reachability_contract}")
+
     def shortest_grace_path(target_id: str):
         best = None
         for grace in formal_graces:
@@ -1532,6 +1560,7 @@ def audit() -> dict:
         "route_assessment_contract": route_assessment_contract,
         "online_item_snapshot_contract": online_item_snapshot_contract,
         "transition_contract": transition_contract,
+        "formal_reachability_contract": formal_reachability_contract,
         "online_snapshot_contract": online_snapshot_contract,
         "online_map_key_contract": online_map_key_contract,
         "projected_anchor_contract": projected_anchor_contract,
