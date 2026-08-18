@@ -910,6 +910,7 @@ async function init() {
         state.onlineMapPointRecords.push({
           sourceIndex: record[0],
           id: record[1],
+          snapshot: `mapforgoblins-map-points-part${payload.part}-20260818`,
           mapKey: mapKeyFromParts(record[3], record[4], record[5]),
           position: [record[6], record[7], record[8]],
           names: record[9] || [],
@@ -1540,8 +1541,14 @@ async function init() {
         verificationState: "online_single",
         sourceEvidence: ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"],
         onlineCoordinate: onlinePoint ? {
+          source: "map_for_goblins",
+          snapshot: onlinePoint.snapshot,
+          recordId: onlinePoint.id,
           name: (onlinePoint.names || []).join(" / "),
           map: onlinePoint.mapKey,
+          coordinateSpace: "game_world_xyz",
+          bindingBasis: "route_name_candidate",
+          coordinateRole: "candidate_location_anchor",
           position: onlinePoint.position,
           sourceIndex: onlinePoint.sourceIndex,
         } : null,
