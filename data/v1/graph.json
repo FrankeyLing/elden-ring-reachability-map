@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.102-online-multiplane",
+  "version": "1.0.103-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2813,7 +2813,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-bolt-of-gransax-r84084"],
-      "description": "状态对照节点：古兰桑克斯的雷电不在该状态可获取。"
+      "description": "世界纪元状态节点：击败玛利喀斯后进入灰烬王城状态；该状态随后把玩家送入灰烬王城入口。古兰桑克斯的雷电不在该状态可获取。"
     },
     {
       "id": "grace_nokstella_eternal_city",
@@ -11986,18 +11986,33 @@
       "tags": ["boss", "state_change", "conditional", "cross_checked"]
     },
     {
-      "id": "maliketh-to-ashen-capital",
+      "id": "maliketh-to-ashen-capital-epoch",
       "from": "grace_maliketh_black_blade",
-      "to": "grace_leyndell_capital_of_ash",
-      "mode": "Maliketh to Ashen Capital",
-      "cost": 7,
+      "to": "epoch_ashen_capital",
+      "mode": "Maliketh completion to Ashen Capital world state",
+      "cost": 1,
       "risk": 1,
       "direction": "forward",
-      "transitionType": "world_epoch_transition",
+      "transitionType": "world_epoch_state_change",
       "requires": ["maliketh_defeated"],
       "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "gamesradar-mainline-state-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "Automatic main-story world transition; no walking route across the missing capital state is implied.",
+      "note": "Records the irreversible main-story epoch change separately from the arrival location; it does not represent a walkable route.",
+      "tags": ["world_state", "state_change", "one_way", "conditional", "cross_checked"]
+    },
+    {
+      "id": "ashen-capital-epoch-to-arrival",
+      "from": "epoch_ashen_capital",
+      "to": "grace_leyndell_capital_of_ash",
+      "mode": "Ashen Capital world state to capital arrival",
+      "cost": 6,
+      "risk": 1,
+      "direction": "forward",
+      "transitionType": "world_epoch_arrival",
+      "requires": ["maliketh_defeated"],
+      "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "gamesradar-mainline-state-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "Arrives at the Ashen Capital entry grace after the world-state transition; no walking route across the missing capital state is implied.",
       "tags": ["world_state", "teleport", "one_way", "conditional", "cross_checked"]
     },
     {
@@ -17356,6 +17371,7 @@
     ,{ "id": "scaduview-cross-to-moorth-ruins", "from": "grace_scadu_altus_main_scaduview_cross", "to": "grace_scadu_altus_moorth_ruins", "mode": "Scaduview Cross return down sealed Spiritspring", "cost": 8, "risk": 7, "direction": "backtrack", "transitionType": "sealed_spiritspring_jump_return", "requires": ["scaduview_cross_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-scadu-altus", "eip-scadu-altus-cross-check", "powerpyx-dlc-all-graces-cross-check"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring to descend toward Moorth Ruins; the ascent and descent remain explicit conditional vertical transitions.", "tags": ["walk", "vertical", "spirit_spring", "conditional", "backtrack", "cross_checked"] }
     ,{ "id": "abductor-virgin-to-seethewater-river", "from": "grace_volcano_manor_main_abductor_virgin", "to": "grace_altus_plateau_mt_gelmir_seethewater_river", "mode": "Abductor Virgin post-boss exit to Seethewater River", "cost": 10, "risk": 9, "direction": "backtrack", "transitionType": "volcano_inquisition_exit", "requires": ["abductor_virgins_defeated"], "sourceEvidence": ["eldenpedia-volcano-r97173", "powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check"], "verificationState": "online_cross_checked", "note": "After the subterranean duo is defeated, use the opened lava-cave exit onto Mt. Gelmir's Seethewater route; the pre-boss fast-travel lock is not bypassed.", "tags": ["walk", "boss", "vertical", "legacy_entrance", "conditional", "backtrack", "cross_checked"] }
     ,{ "id": "dragonkin-post-grace-to-ainsel-downstream", "from": "grace_ainsel_river_main_dragonkin_soldier_of_nokstella", "to": "grace_ainsel_river_main_ainsel_river_downstream", "mode": "Dragonkin Soldier post-boss return to Ainsel Downstream", "cost": 6, "risk": 7, "direction": "backtrack", "transitionType": "ainsel_boss_route_return", "requires": ["dragonkin_soldier_defeated"], "sourceEvidence": ["eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check", "gamespot-ainsel-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared throne cavern and retrace the Ainsel downstream route; the Sluice Gate lift remains the next return layer.", "tags": ["walk", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "fort-faroth-to-dectus-right", "from": "grace_fort_faroth", "to": "item_dectus_medallion_right", "mode": "Fort Faroth interior to Dectus Medallion (Right)", "cost": 4, "risk": 7, "direction": "forward", "transitionType": "legacy_item_pickup_approach", "requires": [], "sourceEvidence": ["eldenpedia-fort-faroth-r39788", "powerpyx-dectus-right-cross-check", "game8-dectus-right-cross-check"], "verificationState": "online_cross_checked", "note": "Enter Fort Faroth from its grace and follow the interior route to the Dectus Medallion (Right) chest; the item is modeled as a destination, consistent with other one-way pickup approaches.", "tags": ["walk", "item", "legacy", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17378,7 +17394,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 700,
-    "formalRouteEdgeCount": 1031,
+    "formalRouteEdgeCount": 1033,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
