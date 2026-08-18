@@ -206,7 +206,12 @@ class AppHandler(SimpleHTTPRequestHandler):
             for record in payload["records"]:
                 search_text = " / ".join(
                     str(value or "")
-                    for value in (record.get("canonical_id"), record.get("name"), record.get("description"))
+                    for value in (
+                        record.get("canonical_id"),
+                        record.get("name"),
+                        record.get("description"),
+                        *record.get("required_item_names", []),
+                    )
                 )
                 if search and search not in search_text.casefold():
                     continue
