@@ -920,14 +920,18 @@ function renderOnlinePoiResults(payload, kind) {
         const label = title.textContent || "online coordinate";
         if (!focusOnlineCoordinate(record, kind, label)) {
           els.mapToast.textContent = "该在线记录缺少可定位的地图层或 XYZ。";
+          return;
         }
+        renderOnlineCoordinateInspector(record, kind, label);
       });
     } else if (kind === "projected-graces") {
       row.classList.add("clickable");
       row.addEventListener("click", () => {
         if (!focusProjectedCoordinate(record, record.name)) {
           els.mapToast.textContent = "该投影记录缺少有效 px/py。";
+          return;
         }
+        renderProjectedAnchorInspector(record, record.name);
       });
     }
     els.onlinePoiResults.appendChild(row);
