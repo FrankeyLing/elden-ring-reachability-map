@@ -90,6 +90,7 @@ ROUTE_ENDPOINT_ALIASES = {
     "rosechurchvarre": "landmark_rose_church",
     "bellumhighwayeastliurnia": "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate",
     "bellumhighway": "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate",
+    "endings": "ending_selection_state",
     "innerconsecratedsnowfield": "grace_inner_consecrated_snowfield",
     "ordinaliturgicaltown": "grace_ordina_liturgical_town",
     "apostatederelict": "grace_mountaintops_of_the_giants_apostate_derelict",

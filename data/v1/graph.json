@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.110-online-multiplane",
+  "version": "1.0.111-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1052,6 +1052,9 @@
     { "id": "gamesradar-mainline-state-cross-check", "label": "GamesRadar / mainline world-state cross-check", "url": "https://www.gamesradar.com/elden-ring-goldmask-questline-age-of-order-ending/", "grade": "B" },
     { "id": "game8-ashen-capital-cross-check", "label": "Game8 / Leyndell Ashen Capital walkthrough", "url": "https://game8.co/games/Elden-Ring/archives/379950", "grade": "B" },
     { "id": "eldenpedia-radagon-final", "label": "Eldenpedia / Radagon of the Golden Order", "url": "https://eldenring.wiki.gg/wiki/Radagon_of_the_Golden_Order", "grade": "A" },
+    { "id": "eldenpedia-endings", "label": "Eldenpedia / Endings", "url": "https://eldenring.wiki.gg/wiki/Endings", "grade": "A" },
+    { "id": "game8-elden-lord-ending-cross-check", "label": "Game8 / Elden Lord ending", "url": "https://game8.co/games/Elden-Ring/archives/371240", "grade": "B" },
+    { "id": "gamefaqs-endings-cross-check", "label": "GameFAQs / Endings guide", "url": "https://gamefaqs.gamespot.com/ps4/265987-elden-ring/faqs/79824/endings-guide", "grade": "B" },
     { "id": "bandai-dlc-access-official", "label": "Bandai Namco / entering the Realm of Shadow", "url": "https://en.bandainamcoent.eu/elden-ring/news/elden-ring-how-enter-the-realm-of-shadow", "grade": "A" },
     { "id": "eldenpedia-shadow-realm-access", "label": "Eldenpedia / Realm of Shadow access", "url": "https://eldenring.wiki.gg/wiki/Realm_of_Shadow", "grade": "A" },
     { "id": "eldenpedia-gravesite-plain", "label": "Eldenpedia / Gravesite Plain", "url": "https://eldenring.wiki.gg/wiki/Gravesite_Plain", "grade": "A" },
@@ -4366,6 +4369,21 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"],
       "description": "Post-Elden Beast ending and grace state."
+    },
+    {
+      "id": "ending_selection_state",
+      "label": "Endings",
+      "kind": "state",
+      "layer": "legacy",
+      "region": "Leyndell, Ashen Capital",
+      "floor": "Ending interaction",
+      "worldEpoch": "ashen_capital_post_maliketh",
+      "x": 1720,
+      "y": 590,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-endings", "game8-elden-lord-ending-cross-check", "gamefaqs-endings-cross-check"],
+      "description": "Interaction state reached by touching Fractured Marika after the final boss; the available ending depends on quest and mending-rune conditions, so this is not a physical map room."
     },
     {
       "id": "grace_shadow_realm_gravesite_plain",
@@ -17499,6 +17517,7 @@
     ,{ "id": "schoolhouse-to-cuckoo-return", "from": "grace_schoolhouse_classroom", "to": "grace_church_of_cuckoo", "mode": "Schoolhouse to Church of the Cuckoo return", "cost": 8, "risk": 4, "direction": "backtrack", "transitionType": "academy_waterwheel_return", "requires": [], "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the waterwheel and graveyard route back to the Church of the Cuckoo grace.", "tags": ["vertical", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "cuckoo-to-main-academy-return", "from": "grace_church_of_cuckoo", "to": "grace_main_academy_gate", "mode": "Church of the Cuckoo to Main Academy Gate return", "cost": 3, "risk": 2, "direction": "backtrack", "transitionType": "academy_elevator_return", "requires": [], "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Use the Academy gate elevator to return from the lower interior to Main Academy Gate.", "tags": ["elevator", "legacy", "backtrack", "cross_checked"] }
     ,{ "id": "main-academy-to-south-raya-return", "from": "grace_main_academy_gate", "to": "grace_liurnia_of_the_lakes_main_south_raya_lucaria_gate", "mode": "Main Academy Gate to South Raya Lucaria Gate return", "cost": 4, "risk": 3, "direction": "backtrack", "transitionType": "academy_key_gate_return", "requires": ["academy_glintstone_key"], "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-raya-r97405", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Academy through the same southern seal after the Glintstone Key gate has been opened.", "tags": ["key_gate", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "fractured-marika-to-endings", "from": "grace_fractured_marika", "to": "ending_selection_state", "mode": "Touch Fractured Marika and select an ending", "cost": 1, "risk": 0, "direction": "forward", "transitionType": "ending_interaction", "requires": ["radagon_elden_beast_defeated"], "sourceEvidence": ["eldenpedia-endings", "game8-elden-lord-ending-cross-check", "gamefaqs-endings-cross-check"], "verificationState": "online_cross_checked", "note": "This is an end-state interaction after the final boss, not a movement edge; the selected ending remains conditional on quest and mending-rune state.", "tags": ["ending", "interaction", "final", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17520,8 +17539,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 703,
-    "formalRouteEdgeCount": 1107,
+    "formalNodeCount": 704,
+    "formalRouteEdgeCount": 1108,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
