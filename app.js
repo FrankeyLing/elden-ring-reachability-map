@@ -469,6 +469,18 @@ function renderGraph() {
   els.graphStats.textContent = `${state.data.nodes.length} 节点 · ${state.data.edges.length} 已证实边 · ${state.data.catalogRecordCount || 0} 赐福 · ${state.data.candidateRouteLegCount || 0} 候选路段${onlineStats} · ${state.data.meta.verificationLabel || "V1"}`;
 }
 
+function renderOnlineCoordinateInspector(record, kind, label) {
+  if (!record) return;
+  const safe = (value) => String(value ?? "").replace(/[&<>\"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character]));
+  const position = Array.isArray(record.position) ? record.position : [];
+  const map = record.map || record.current_map || record.source_map || "unknown map";
+  const sourceIndex = record.source_index ?? record.id ?? "n/a";
+  els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || "Online coordinate")}</div><div class="inspector-type">ONLINE ${safe(kind).toUpperCase()} · ROUTEABLE=false</div></div><div class="inspector-region">${safe(map)}</div></div><p class="inspector-description">Pinned online coordinate evidence only. It does not create a physical route edge or assert pickup/encounter state.</p><div class="inspector-online">Source record: ${safe(sourceIndex)}<br>Map: ${safe(map)}<br>X ${safe(position[0])} / Y ${safe(position[1])} / Z ${safe(position[2])}</div><button class="online-text-location-button" data-refocus-online-coordinate>Focus this coordinate</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
+  els.nodeInspector.querySelector("[data-refocus-online-coordinate]").addEventListener("click", () => {
+    focusOnlineCoordinate(record, kind, label);
+  });
+}
+
 function renderInspector() {
   const node = state.nodes.get(state.selectedNode);
   if (!node) return;

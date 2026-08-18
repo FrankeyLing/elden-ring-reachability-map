@@ -124,6 +124,16 @@ function renderCoordinateMap() {
     .concat(items.map((record) => ({ position: record.position, label: (record.items || []).map((item) => item.name || item.id).join(" / "), kind: "item" })))
     .concat(entities.map((record) => ({ position: record.position, label: record.name || record.model || record.entity_id, kind: "entity" })))
     .concat(gathering.map((record) => ({ position: record.position, label: record.name || record.model, kind: "gathering" })));
+  const coordinateSourceRecords = [
+    ...gracePositions.map((record) => ({ raw: record, sourceKind: "grace-positions" })),
+    ...bosses.map((record) => ({ raw: record, sourceKind: "boss-positions" })),
+    ...conversions.map((record) => ({ raw: record, sourceKind: "map-conversions" })),
+    ...points.map((record) => ({ raw: record, sourceKind: "map-points" })),
+    ...items.map((record) => ({ raw: record, sourceKind: "items" })),
+    ...entities.map((record) => ({ raw: record, sourceKind: "entities" })),
+    ...gathering.map((record) => ({ raw: record, sourceKind: "gathering" })),
+  ];
+  plotRecords.forEach((record, index) => Object.assign(record, coordinateSourceRecords[index]));
   const xs = plotRecords.map((record) => Number(record.position[0])).filter(Number.isFinite);
   const ys = plotRecords.map((record) => Number(record.position[2])).filter(Number.isFinite);
   const rawMinX = xs.length ? Math.min(...xs) : -500;
@@ -169,6 +179,7 @@ function renderCoordinateMap() {
     group.addEventListener("click", () => {
       els.mapToast.textContent = record.label + " · X " + record.position[0] + " / Y " + record.position[1] + " / Z " + record.position[2];
     });
+    group.addEventListener("click", () => renderOnlineCoordinateInspector(record.raw, record.sourceKind, record.label));
     els.nodeLayer.appendChild(group);
   });
   const focus = state.coordinateFocus;
