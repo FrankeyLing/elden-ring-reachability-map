@@ -25,6 +25,7 @@ ONLINE_MAP_POINT_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"mapforgoblins-map-points-part{part}-20260818.json"
     for part in range(1, 4)
 )
+ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 
 # These are identity aliases only.  They do not create edges and are kept
 # explicit because the formal graph deliberately uses shorter route IDs,
@@ -192,6 +193,17 @@ def load_online_map_point_records() -> dict[tuple[str, int, int], list]:
         snapshot = path.stem
         for row in payload["records"]:
             records[(snapshot, int(row[0]), int(row[1]))] = row
+    return records
+
+
+def load_online_boss_position_records() -> dict[tuple[str, int, int], list]:
+    records = {}
+    payload = json.loads(ONLINE_BOSS_POSITION_FILE.read_text(encoding="utf-8"))
+    snapshot = ONLINE_BOSS_POSITION_FILE.stem
+    for row in payload["records"]:
+        # Boss-position records have no separate map-point id; npcParamId is
+        # the pinned source record identity used by onlineCoordinate.recordId.
+        records[(snapshot, int(row[0]), int(row[10]))] = row
     return records
 
 
@@ -462,6 +474,7 @@ def audit() -> dict:
         )
     ]
     map_point_records = load_online_map_point_records()
+    boss_position_records = load_online_boss_position_records()
     invalid_coordinate_bindings = []
     unresolved_formal_candidates = []
     manual_bindings = []
@@ -479,21 +492,35 @@ def audit() -> dict:
             int(coordinate["sourceIndex"]),
             int(coordinate["recordId"]),
         )
-        row = map_point_records.get(key)
+        source_snapshot = str(coordinate["snapshot"])
+        if source_snapshot == ONLINE_BOSS_POSITION_FILE.stem:
+            row = boss_position_records.get(key)
+            source_kind = "boss_position"
+            formal_candidates = (row[13] if row is not None else []) or []
+            source_names = [row[1]] if row is not None else []
+            expected_map = row[2] if row is not None else None
+            expected_position = row[6:9] if row is not None else None
+        else:
+            row = map_point_records.get(key)
+            source_kind = "map_point"
+            formal_candidates = (row[10] if row is not None else []) or []
+            source_names = (row[9] if row is not None else []) or []
+            expected_map = f"area {row[3]} / grid {row[4]},{row[5]}" if row is not None else None
+            expected_position = row[6:9] if row is not None else None
         if row is None:
             invalid_coordinate_bindings.append({"node": node["id"], "reason": "source_record_not_found", "key": key})
             continue
-        formal_candidates = row[10] or []
         if node["id"] not in formal_candidates:
             candidate_issue = {
                 "node": node["id"],
                 "reason": "formal_candidate_mismatch" if formal_candidates else "no_formal_candidate",
-                "recordId": row[1],
+                "recordId": key[2],
+                "sourceKind": source_kind,
                 "formalCandidates": formal_candidates,
             }
             binding_basis = coordinate.get("bindingBasis")
-            manual_name_match = coordinate.get("name") in (row[9] or [])
-            if binding_basis == "manual_exact_name_region" and manual_name_match:
+            manual_name_match = coordinate.get("name") in source_names
+            if binding_basis in {"manual_exact_name_region", "manual_source_alias_region"} and manual_name_match:
                 if coordinate.get("coordinateRole") not in manual_binding_roles:
                     invalid_coordinate_bindings.append(
                         {
@@ -508,7 +535,8 @@ def audit() -> dict:
                         **candidate_issue,
                         "bindingBasis": binding_basis,
                         "coordinateRole": coordinate.get("coordinateRole"),
-                        "sourceNames": row[9] or [],
+                        "sourceKind": source_kind,
+                        "sourceNames": source_names,
                     }
                 )
             elif node.get("kind") in {"grace", "boss", "entrance"} and formal_candidates:
@@ -516,13 +544,12 @@ def audit() -> dict:
                 continue
             else:
                 unresolved_formal_candidates.append(candidate_issue)
-        expected_map = f"area {row[3]} / grid {row[4]},{row[5]}"
-        if coordinate["position"] != row[6:9]:
-            invalid_coordinate_bindings.append({"node": node["id"], "reason": "position_mismatch", "recordId": row[1]})
-        elif coordinate["name"] not in (row[9] or []):
-            invalid_coordinate_bindings.append({"node": node["id"], "reason": "name_mismatch", "recordId": row[1]})
+        if coordinate["position"] != expected_position:
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "position_mismatch", "recordId": key[2], "sourceKind": source_kind})
+        elif coordinate["name"] not in source_names:
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "name_mismatch", "recordId": key[2], "sourceKind": source_kind})
         elif coordinate["map"] != expected_map:
-            invalid_coordinate_bindings.append({"node": node["id"], "reason": "map_layer_mismatch", "recordId": row[1], "expected": expected_map})
+            invalid_coordinate_bindings.append({"node": node["id"], "reason": "map_layer_mismatch", "recordId": key[2], "sourceKind": source_kind, "expected": expected_map})
     online_coordinate_contract = {
         "node_count": len(online_coordinate_nodes),
         "invalid_nodes": invalid_coordinate_nodes,

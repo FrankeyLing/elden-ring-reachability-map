@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.156-online-multiplane",
+  "version": "1.0.157-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -3106,8 +3106,9 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
-      "description": "Aqueduct boss gate before the coffin transfer to Deeproot Depths."
+      "sourceEvidence": ["eldenpedia-siofra-aqueduct-r48924", "game8-deeproot-cross-check", "powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 141, "recordId": 47700033, "name": "Valiant Gargoyle", "map": "m60_42_51_00", "position": [37.134, 880.269, 85.273], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor" },
+      "description": "Aqueduct boss gate before the coffin transfer to Deeproot Depths. The online XYZ is the exact-name Valiant Gargoyle boss-position record, not a local fog-wall geometry survey."
     },
     {
       "id": "deeproot_coffin",
@@ -9367,7 +9368,7 @@
     },
     {
       "id": "frenzied_duelist_gaol_gate", "label": "Frenzied Duelist (Gaol Cave)", "kind": "boss", "layer": "legacy", "region": "Gaol Cave", "floor": "Lower chasm boss chamber", "worldEpoch": "caelid_surface", "x": 410, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-frenzied-duelist", "game8-gaol-cave-cross-check", "neoseeker-frenzied-duelist-cross-check"], "description": "Frenzied Duelist at the bottom of the cell and chasm route."
+      "sourceEvidence": ["eldenpedia-frenzied-duelist", "game8-gaol-cave-cross-check", "neoseeker-frenzied-duelist-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-boss-positions-20260818", "sourceIndex": 151, "recordId": 34000940, "name": "Crazed Duelist", "map": "m31_21_00_00", "position": [-166.69, 13.045, 48.637], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_source_alias_region", "coordinateRole": "boss_arena_anchor" }, "description": "Frenzied Duelist at the bottom of the cell and chasm route. The pinned online boss record names this same encounter Crazed Duelist; the XYZ is the boss-position record, not a local fog-wall geometry survey."
     },
     {
       "id": "gaol_cave_post_boss_state", "label": "Gaol Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Gaol Cave", "floor": "Frenzied Duelist chamber return state", "worldEpoch": "caelid_surface", "x": 470, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",

@@ -4,8 +4,11 @@ function mapKeyFromParts(area, gridX, gridZ) {
 }
 
 function coordinateMapKeyForRecord(record, kind) {
+  if (record && record.mapKey) return String(record.mapKey).trim();
   if (kind === "map-points") return mapKeyFromParts(record.area_no, record.grid_x, record.grid_z);
-  return String(record.map || record.current_map || "").trim();
+  const rawMap = String(record.map || record.current_map || "").trim();
+  const areaGrid = rawMap.match(/^area\s+(\d+)\s*\/\s*grid\s+(\d+)\s*,\s*(\d+)$/i);
+  return areaGrid ? mapKeyFromParts(areaGrid[1], areaGrid[2], areaGrid[3]) : rawMap;
 }
 
 function focusOnlineCoordinate(record, kind, label) {
