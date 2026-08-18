@@ -68,6 +68,64 @@ EXPLICIT_ALIASES = {
     "grace_volcano_manor_main_volcano_manor": "grace_volcano_manor_entrance",
 }
 
+# Normalized route-guide endpoint labels mapped to one formal node only when
+# the guide label is an unambiguous identity match.  These aliases improve
+# audit coverage; they do not promote guide legs to traversal edges.  Broad
+# sweeps, multi-area labels, and endpoints that are not represented as a
+# single formal node intentionally remain unmapped.
+ROUTE_ENDPOINT_ALIASES = {
+    "rennasrisesendinggate": "renna_rise_waygate",
+    "ainselrivermain": "grace_ainsel_river_main",
+    "nokstellaeternalcity": "grace_nokstella_eternal_city",
+    "fracturedmarika": "grace_fractured_marika",
+    "smolderingchurch": "grace_smoldering_church",
+    "churchoftheplague": "grace_church_of_plague",
+    "innerconsecratedsnowfield": "grace_inner_consecrated_snowfield",
+    "ordinaliturgicaltown": "grace_ordina_liturgical_town",
+    "apostatederelict": "grace_mountaintops_of_the_giants_apostate_derelict",
+    "spiralrise": "grace_enir_ilim_spiral_rise",
+    "divinegate": "promised_consort_radahn_gate",
+    "mohgwynpalace": "grace_palace_approach_ledge_road",
+    "gravesiteplain": "grace_shadow_realm_gravesite_plain",
+    "castlefront": "grace_castle_front",
+    "ensismoongazinggrounds": "grace_ensis_moongazing_grounds",
+    "cliffroadterminus": "grace_shadow_realm_cliffroad_terminus",
+    "highroadcross": "grace_scadu_altus_highroad_cross",
+    "castlewateringhole": "grace_scadu_altus_main_castle_watering_hole",
+    "shadowkeepmaingateplaza": "grace_shadow_keep_main_gate_plaza",
+    "shadowkeepbackgate": "grace_shadow_keep_back_gate",
+    "dragonbarrowwest": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
+    "fortfaroth": "grace_fort_faroth",
+    "farumgreatbridge": "grace_caelid_greyoll_s_dragonbarrow_farum_greatbridge",
+    "forgeofthegiants": "grace_forge_of_giants",
+    "haligtreecanopy": "grace_haligtree_canopy",
+    "haligtreepromenade": "grace_haligtree_promenade",
+    "haligtreeroots": "grace_elphael_haligtree_roots",
+    "malenia": "malenia_haligtree_gate",
+    "avenuebalcony": "grace_avenue_balcony",
+    "erdtreesanctuary": "grace_erdtree_sanctuary",
+    "lakefacingcliffs": "grace_lake_facing_cliffs",
+    "mainacademygate": "grace_main_academy_gate",
+    "rayalucariaacademy": "grace_church_of_cuckoo",
+    "schoolhouseclassroom": "grace_schoolhouse_classroom",
+    "rayalucariagrandlibrary": "grace_raya_lucaria_grand_library",
+    "villageofthealbinaurics": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics",
+    "cariamanor": "grace_liurnia_of_the_lakes_main_royal_moongazing_grounds",
+    "rannisrise": "grace_liurnia_of_the_lakes_main_ranni_s_rise",
+    "castlesolrooftop": "grace_castle_sol_rooftop",
+    "spiritcallercave": "grace_mountaintops_main_spiritcallers_cave",
+    "volcanomanor": "grace_volcano_manor_entrance",
+    "prisontownchurch": "grace_prison_town_church",
+    "templeofeiglay": "grace_temple_of_eiglay",
+    "starfallcrater": "starfall_crater_entrance",
+    "aqueductfacingcliffs": "grace_aqueduct_facing_cliffs",
+    "siofrariverwelldepths": "grace_siofra_river_siofra_river_well_depths",
+    "siofrariverbank": "grace_siofra_river_bank",
+    "hallowhorngrounds": "hallowhorn_grounds_siofra",
+    "worshipperswoods": "grace_worshippers_woods",
+    "roundtablehold": "grace_roundtable_hold_main_table_of_lost_grace",
+}
+
 
 def load(relative: str):
     return json.loads((ROOT / relative).read_text(encoding="utf-8"))
@@ -217,13 +275,23 @@ def audit() -> dict:
     endpoint_ambiguous = 0
     endpoint_unmapped = []
     exact_endpoint_without_path = []
+    endpoint_alias_matches = 0
     direct_edge_match = 0
     topology_path_match = 0
     normal_profile_path_match = 0
     normal_profile_matches = []
+
+    def route_candidates(name: str, region: str = "") -> list[dict]:
+        nonlocal endpoint_alias_matches
+        alias_id = ROUTE_ENDPOINT_ALIASES.get(norm(name))
+        if alias_id in node_by_id:
+            endpoint_alias_matches += 1
+            return [node_by_id[alias_id]]
+        return candidates_for(label_index, name, region)
+
     for leg in legs["records"]:
-        from_candidates = candidates_for(label_index, leg["from"], leg["region_name"])
-        to_candidates = candidates_for(label_index, leg["to"], leg["region_name"])
+        from_candidates = route_candidates(leg["from"], leg["region_name"])
+        to_candidates = route_candidates(leg["to"], leg["region_name"])
         if len(from_candidates) == 1 and len(to_candidates) == 1:
             endpoint_exact += 1
             pair = (from_candidates[0]["id"], to_candidates[0]["id"])
@@ -289,6 +357,7 @@ def audit() -> dict:
         "route_leg_catalog": {
             "records": len(legs["records"]),
             "endpoint_exact_matches": endpoint_exact,
+            "endpoint_alias_matches": endpoint_alias_matches,
             "endpoint_ambiguous": endpoint_ambiguous,
             "direct_or_reverse_formal_edge_matches": direct_edge_match,
             "formal_topology_path_matches": topology_path_match,
