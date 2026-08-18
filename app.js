@@ -8,6 +8,7 @@ const state = {
   coordinateMapId: "m10_00_00",
   coordinateEntityKind: "enemy",
   coordinateBounds: null,
+  coordinateFocus: null,
   onlineIndex: null,
   achievementCatalog: null,
  onlineBossByNodeId: new Map(),
@@ -699,6 +700,14 @@ function renderOnlinePoiResults(payload, kind) {
           els.mapToast.textContent = record.name + " · 已定位正式目标节点：" + nodeLabel(targetId) + (originId ? " · 起点：" + nodeLabel(originId) : "");
         });
       }
+    } else if (["map-points", "items", "boss-positions", "entities", "gathering", "grace-positions"].includes(kind)) {
+      row.classList.add("clickable");
+      row.addEventListener("click", () => {
+        const label = title.textContent || "online coordinate";
+        if (!focusOnlineCoordinate(record, kind, label)) {
+          els.mapToast.textContent = "该在线记录缺少可定位的地图层或 XYZ。";
+        }
+      });
     }
     els.onlinePoiResults.appendChild(row);
   });
@@ -735,12 +744,14 @@ function wireEvents() {
       loadCoordinateItems();
     } else {
       state.coordinateBounds = null;
+      state.coordinateFocus = null;
       applyMapCoordinateSpace();
       renderGraph();
     }
   }));
   els.coordinateMapSelect.addEventListener("change", () => {
     state.coordinateMapId = els.coordinateMapSelect.value;
+    state.coordinateFocus = null;
     loadCoordinateItems();
   });
   els.coordinateEntityKind.addEventListener("change", () => {

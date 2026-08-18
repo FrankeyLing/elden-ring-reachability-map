@@ -3,6 +3,28 @@ function mapKeyFromParts(area, gridX, gridZ) {
   return "m" + pad(area) + "_" + pad(gridX) + "_" + pad(gridZ);
 }
 
+function coordinateMapKeyForRecord(record, kind) {
+  if (kind === "map-points") return mapKeyFromParts(record.area_no, record.grid_x, record.grid_z);
+  return String(record.map || record.current_map || "").trim();
+}
+
+function focusOnlineCoordinate(record, kind, label) {
+  const mapKey = coordinateMapKeyForRecord(record, kind);
+  const position = Array.isArray(record.position) ? record.position : [];
+  if (!mapKey || position.length !== 3 || position.some((value) => !Number.isFinite(Number(value)))) return false;
+  state.mapMode = "coordinates";
+  state.coordinateMapId = mapKey;
+  state.coordinateFocus = { mapKey, position: position.map(Number), label: String(label || "online coordinate"), kind };
+  els.coordinateMapSelect.hidden = false;
+  els.coordinateEntityKind.hidden = false;
+  els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "coordinates"));
+  populateCoordinateMapSelect();
+  els.coordinateMapSelect.value = state.coordinateMapId;
+  loadCoordinateItems();
+  els.mapToast.textContent = state.coordinateFocus.label + " · located on " + mapKey + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+  return true;
+}
+
 function populateCoordinateMapSelect() {
   const options = new Map();
   state.onlineTileRecords.forEach((record) => options.set(record.mapKey, record));
@@ -132,6 +154,21 @@ function renderCoordinateMap() {
     });
     els.nodeLayer.appendChild(group);
   });
+  const focus = state.coordinateFocus;
+  if (focus && focus.mapKey === state.coordinateMapId && Array.isArray(focus.position)) {
+    const x = Number(focus.position[0]);
+    const y = Number(focus.position[2]);
+    if (Number.isFinite(x) && Number.isFinite(y)) {
+      const radius = Math.max(10, Math.min(width, height) * 0.035);
+      const focusGroup = svg("g", { class: "coordinate-focus", transform: "translate(" + x + " " + y + ")" });
+      const ring = svg("circle", { r: radius, class: "coordinate-focus-ring" });
+      const core = svg("circle", { r: 3, class: "coordinate-focus-core" });
+      const title = svg("title");
+      title.textContent = focus.label + " · X " + focus.position[0] + " / Y " + focus.position[1] + " / Z " + focus.position[2];
+      focusGroup.append(ring, core, title);
+      els.nodeLayer.appendChild(focusGroup);
+    }
+  }
   const coverage = state.onlineIndex?.manifest?.coverage || {};
   els.graphStats.textContent = state.coordinateMapId + " · " + gracePositions.length + "/" + (state.coordinateGracePositionTotal || gracePositions.length) + " raw grace positions · " + bosses.length + "/" + (state.coordinateBossPositionTotal || bosses.length) + " bosses · " + conversions.length + "/" + (state.coordinateMapConversionTotal || conversions.length) + " map conversions · " + points.length + " named points · " + items.length + "/" + (state.coordinateItemTotal || items.length) + " items · " + entities.length + "/" + (state.coordinateEntityTotal || entities.length) + " " + state.coordinateEntityKind + " entities · " + gathering.length + "/" + (state.coordinateGatheringTotal || gathering.length) + " gathering nodes · " + (coverage.tileRegionRecords || 0) + " map layers";
 }
