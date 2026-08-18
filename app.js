@@ -18,6 +18,7 @@ const state = {
   onlineMapPointRecords: [],
   onlineTileRecords: [],
   onlineGracePositionRecords: [],
+  onlineNamedGracePositionRecords: [],
   onlineBossPositionRecords: [],
   onlineMapConversionRecords: [],
   onlineItemRecords: [],
@@ -26,6 +27,7 @@ const state = {
   onlineProjectedGraceRecords: [],
   coordinateItemTotal: 0,
   coordinateGracePositionTotal: 0,
+  coordinateNamedGraceTotal: 0,
   coordinateBossPositionTotal: 0,
   coordinateMapConversionTotal: 0,
   coordinateEntityTotal: 0,
@@ -465,6 +467,10 @@ function renderGraph() {
     renderCoordinateMap();
     return;
   }
+  if (state.mapMode === "named-coordinates") {
+    renderNamedCoordinateMap();
+    return;
+  }
   if (state.mapMode === "projected") {
     renderProjectedMap();
     return;
@@ -652,7 +658,7 @@ function planAndRender() {
 
 function setZoom(nextZoom) {
   state.zoom = Math.max(0.7, Math.min(1.7, nextZoom));
-  if (["coordinates", "projected"].includes(state.mapMode) && state.coordinateBounds) {
+  if (["coordinates", "named-coordinates", "projected"].includes(state.mapMode) && state.coordinateBounds) {
     const bounds = state.coordinateBounds;
     const centerX = bounds.minX + bounds.width / 2;
     const centerY = bounds.minY + bounds.height / 2;
@@ -701,6 +707,8 @@ function renderOnlinePoiResults(payload, kind) {
       title.textContent = (record.names || []).join(" / ") || ("map point " + record.id);
     } else if (kind === "grace-positions") {
       title.textContent = "raw grace position #" + record.source_index + " · " + (record.major_region || record.sub_region || "unknown region");
+    } else if (kind === "named-grace-positions") {
+      title.textContent = record.name || "named grace";
     } else if (kind === "projected-graces") {
       title.textContent = record.name || "projected grace";
     } else {
@@ -859,7 +867,7 @@ function renderOnlinePoiResults(payload, kind) {
           els.mapToast.textContent = record.name + " · 已定位正式目标节点：" + nodeLabel(targetId) + (originId ? " · 起点：" + nodeLabel(originId) : "");
         });
       }
-    } else if (["map-points", "items", "boss-positions", "entities", "gathering", "grace-positions"].includes(kind)) {
+    } else if (["map-points", "items", "boss-positions", "entities", "gathering", "grace-positions", "named-grace-positions"].includes(kind)) {
       row.classList.add("clickable");
       row.addEventListener("click", () => {
         const label = title.textContent || "online coordinate";
@@ -903,13 +911,18 @@ function wireEvents() {
     state.mapMode = button.dataset.mapMode;
     els.mapModes.forEach((item) => item.classList.toggle("active", item === button));
     renderCoordinateLayerMeta();
-    els.coordinateMapSelect.hidden = state.mapMode !== "coordinates";
+    els.coordinateMapSelect.hidden = !["coordinates", "named-coordinates"].includes(state.mapMode);
     els.coordinateEntityKind.hidden = state.mapMode !== "coordinates";
     els.projectedMasterSelect.hidden = state.mapMode !== "projected";
     if (state.mapMode === "coordinates") {
       populateCoordinateMapSelect();
       renderCoordinateMap();
       loadCoordinateItems();
+    } else if (state.mapMode === "named-coordinates") {
+      state.coordinateBounds = null;
+      state.coordinateFocus = null;
+      populateCoordinateMapSelect();
+      loadNamedCoordinateLayer();
     } else if (state.mapMode === "projected") {
       state.coordinateBounds = null;
       state.coordinateFocus = null;
@@ -926,7 +939,8 @@ function wireEvents() {
   els.coordinateMapSelect.addEventListener("change", () => {
     state.coordinateMapId = els.coordinateMapSelect.value;
     state.coordinateFocus = null;
-    loadCoordinateItems();
+    if (state.mapMode === "named-coordinates") loadNamedCoordinateLayer();
+    else loadCoordinateItems();
   });
   els.coordinateEntityKind.addEventListener("change", () => {
     state.coordinateEntityKind = els.coordinateEntityKind.value;

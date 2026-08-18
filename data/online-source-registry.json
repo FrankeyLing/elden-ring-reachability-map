@@ -66,10 +66,12 @@
       "url": "https://github.com/EthanShoeDev/elden-ring-compass",
       "access": "public repository and website",
       "license": "root-level reuse status requires audit",
-      "v1_role": ["schema_reference", "coverage_statistics", "save_state_reference"],
-      "import_status": "reference_only",
-      "exclude": ["code", "prebuilt game data", "icons"],
-      "freshness": "current README describes active extractor and v2.6.2 data"
+      "v1_role": ["schema_reference", "coverage_statistics", "save_state_reference", "named_grace_xyz"],
+      "import_status": "direct_fixed_generated_coordinate_snapshot_pending_rights_review",
+      "revision": "9d64b7ca8e93a5af9094ffb91831d91ca803e6a5",
+      "allowed_files": ["packages/data/src/generated/graces.ts", "packages/data/src/generated/markers.ts"],
+      "exclude": ["code", "icons", "tiles", "unrelated generated data", "automatic promotion to formal transitions"],
+      "freshness": "fixed generated-data commit; coordinate snapshot captured 2026-08-18"
     },
     {
       "id": "jw_ofs_elden_ring_map",

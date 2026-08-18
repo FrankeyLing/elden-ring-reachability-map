@@ -85,6 +85,7 @@
               <div class="map-mode-tabs" role="tablist" aria-label="地图视图">
                 <button class="map-mode active" data-map-mode="topology">拓扑路线</button>
                 <button class="map-mode" data-map-mode="coordinates">真实坐标</button>
+                <button class="map-mode" data-map-mode="named-coordinates">命名源 XYZ</button>
                 <button class="map-mode" data-map-mode="projected">在线投影</button>
               </div>
               <select id="coordinate-map-select" class="coordinate-map-select" aria-label="选择真实地图层" hidden></select>
@@ -178,6 +179,7 @@
                  <option value="entities">实体坐标</option>
                  <option value="gathering">采集节点</option>
                  <option value="grace-positions">原始赐福坐标</option>
+                 <option value="named-grace-positions">命名赐福 XYZ</option>
                  <option value="projected-graces">命名赐福投影</option>
                </select>
                <input id="online-poi-query" type="search" placeholder="搜索名称，例如 Shabriri Grape" />

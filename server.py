@@ -35,6 +35,10 @@ ONLINE_PROJECTED_GRACE_FILES = (
     ONLINE_PROJECTED_GRACE_FILE,
     *(ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-map-markers-supplement-{part:02d}-20260818.json" for part in range(1, 6)),
 )
+ONLINE_NAMED_GRACE_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-compass-graces-{part:02d}-20260818.json"
+    for part in range(1, 6)
+)
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_MAP_CONVERSION_FILES = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-base-20260818.json",
@@ -165,6 +169,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/grace-positions":
             self.send_grace_positions(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/named-grace-positions":
+            self.send_named_grace_positions(parse_qs(parsed.query))
             return
         if parsed.path == "/api/catalog/projected-graces":
             self.send_projected_graces(parse_qs(parsed.query))
@@ -383,6 +390,49 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "records": records[:limit],
                 "routeable": False,
                 "note": "raw online grace positions; the source index has no reliable grace names, so names are intentionally not guessed",
+            }
+        )
+
+    def send_named_grace_positions(self, query: dict[str, list[str]]):
+        map_id = query.get("map", [""])[0].strip()
+        search = query.get("q", [""])[0].strip().casefold()
+        formal_id = query.get("formal_id", [""])[0].strip()
+        try:
+            limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
+        except ValueError:
+            limit = ONLINE_QUERY_MAX
+        try:
+            payloads = [json.loads(path.read_bytes()) for path in ONLINE_NAMED_GRACE_FILES]
+            records = []
+            for payload in payloads:
+                for record in payload["records"]:
+                    row_map = str(record.get("map") or "")
+                    if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+                        continue
+                    if formal_id and formal_id not in (record.get("formal_candidates") or []):
+                        continue
+                    search_text = " / ".join(
+                        str(value or "")
+                        for value in (record.get("name"), record.get("region"), *(record.get("formal_candidates") or []))
+                    )
+                    if search and search not in search_text.casefold():
+                        continue
+                    records.append(record)
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+            return
+        self.send_json_payload(
+            {
+                "schema": "elden-ring-reachability-map/named-grace-position-query@1",
+                "query": {"q": search, "map": map_id, "formal_id": formal_id, "limit": limit},
+                "record_count": len(records[:limit]),
+                "total_matches": len(records),
+                "records": records[:limit],
+                "routeable": False,
+                "source": payloads[0]["source"],
+                "snapshots": [payload["snapshot"] for payload in payloads],
+                "coordinate_space": payloads[0]["coordinate_space"],
+                "note": "named grace raw map-local entity XYZ evidence; this frame is not interchangeable with MapForGoblins coordinates; formal_candidates are identity links only and never create traversal edges",
             }
         )
 

@@ -20,7 +20,7 @@ function coordinateMapKeyForRecord(record, kind) {
 function renderCoordinateLayerMeta() {
   const panel = els.coordinateLayerMeta;
   if (!panel) return;
-  if (!["coordinates", "projected"].includes(state.mapMode)) {
+  if (!["coordinates", "named-coordinates", "projected"].includes(state.mapMode)) {
     panel.hidden = true;
     return;
   }
@@ -28,6 +28,12 @@ function renderCoordinateLayerMeta() {
   if (state.mapMode === "projected") {
     const total = state.projectedGraceTotal || state.onlineProjectedGraceRecords.length;
     panel.innerHTML = `<strong>${escape(state.projectedMaster)}</strong> · 命名赐福投影<br>显示：${state.onlineProjectedGraceRecords.length}/${total} 个赐福锚点<div class="layer-meta-note">坐标空间：master_tile_pixel，px/py 为 10496×10496 主图像素；仅用于在线地图定位，routeable=false，不是游戏 XYZ。</div>`;
+    panel.hidden = false;
+    return;
+  }
+  if (state.mapMode === "named-coordinates") {
+    const total = state.coordinateNamedGraceTotal || state.onlineNamedGracePositionRecords.length;
+    panel.innerHTML = `<strong>${escape(state.coordinateMapId)}</strong> · 命名赐福源坐标<br>显示：${state.onlineNamedGracePositionRecords.length}/${total} 个赐福锚点<div class="layer-meta-note">坐标空间：source_map_local_xyz；来自 Elden Ring Compass 的 mapId 实体坐标。它与 MapForGoblins XYZ 不是同一坐标框架，单独显示，routeable=false。</div>`;
     panel.hidden = false;
     return;
   }
@@ -45,6 +51,7 @@ function renderCoordinateLayerMeta() {
 }
 
 function focusOnlineCoordinate(record, kind, label) {
+  if (kind === "named-grace-positions") return focusNamedGraceCoordinate(record, label);
   const mapKey = coordinateMapKeyForRecord(record, kind);
   const position = Array.isArray(record.position) ? record.position : [];
   if (!mapKey || position.length !== 3 || position.some((value) => !Number.isFinite(Number(value)))) return false;
@@ -158,6 +165,10 @@ function populateCoordinateMapSelect() {
   state.onlineMapPointRecords.forEach((record) => {
     if (!options.has(record.mapKey)) options.set(record.mapKey, { mapKey: record.mapKey });
   });
+  state.onlineNamedGracePositionRecords.forEach((record) => {
+    const mapKey = coordinateMapKeyForRecord(record, "named-grace-positions");
+    if (mapKey && !options.has(mapKey)) options.set(mapKey, { mapKey });
+  });
   (state.onlineIndex?.bosses?.records || []).forEach((record) => {
     const mapKey = normalizeCoordinateMapKey(record[2]);
     if (mapKey && !options.has(mapKey)) options.set(mapKey, { mapKey });
@@ -222,6 +233,106 @@ async function loadCoordinateItems() {
     els.mapToast.textContent = "online POI layer load failed: " + error.message;
   }
   renderCoordinateMap();
+}
+
+async function loadNamedCoordinateLayer() {
+  state.onlineNamedGracePositionRecords = [];
+  state.coordinateNamedGraceTotal = 0;
+  try {
+    const map = encodeURIComponent(state.coordinateMapId);
+    const response = await fetch("/api/catalog/named-grace-positions?map=" + map + "&limit=1000", { cache: "no-store" });
+    if (!response.ok) throw new Error("named grace XYZ layer HTTP " + response.status);
+    const payload = await response.json();
+    state.onlineNamedGracePositionRecords = payload.records || [];
+    state.coordinateNamedGraceTotal = payload.total_matches || state.onlineNamedGracePositionRecords.length;
+  } catch (error) {
+    els.mapToast.textContent = "命名赐福源坐标层加载失败：" + error.message;
+  }
+  renderNamedCoordinateMap();
+}
+
+function focusNamedGraceCoordinate(record, label) {
+  const mapKey = coordinateMapKeyForRecord(record, "named-grace-positions");
+  const position = Array.isArray(record?.position) ? record.position : [];
+  if (!mapKey || position.length !== 3 || position.some((value) => !Number.isFinite(Number(value)))) return false;
+  state.mapMode = "named-coordinates";
+  state.coordinateMapId = mapKey;
+  state.coordinateFocus = { mapKey, position: position.map(Number), label: String(label || record.name || "named grace"), kind: "named-grace-positions" };
+  state.projectedFocus = null;
+  els.coordinateMapSelect.hidden = false;
+  els.coordinateEntityKind.hidden = true;
+  els.projectedMasterSelect.hidden = true;
+  els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "named-coordinates"));
+  populateCoordinateMapSelect();
+  els.coordinateMapSelect.value = state.coordinateMapId;
+  loadNamedCoordinateLayer();
+  els.mapToast.textContent = state.coordinateFocus.label + " · source map " + record.map + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+  return true;
+}
+
+function renderNamedCoordinateMap() {
+  els.edgeLayer.innerHTML = "";
+  els.regionLabels.innerHTML = "";
+  els.nodeLayer.innerHTML = "";
+  renderCoordinateLayerMeta();
+  const records = state.onlineNamedGracePositionRecords;
+  const plotRecords = records.map((record) => ({ raw: record, sourceKind: "named-grace-positions", position: record.position, label: record.name, kind: "named-grace-position" }));
+  const xs = plotRecords.map((record) => Number(record.position?.[0])).filter(Number.isFinite);
+  const ys = plotRecords.map((record) => Number(record.position?.[2])).filter(Number.isFinite);
+  const rawMinX = xs.length ? Math.min(...xs) : -500;
+  const rawMaxX = xs.length ? Math.max(...xs) : 500;
+  const rawMinY = ys.length ? Math.min(...ys) : -500;
+  const rawMaxY = ys.length ? Math.max(...ys) : 500;
+  const rawWidth = Math.max(100, rawMaxX - rawMinX);
+  const rawHeight = Math.max(100, rawMaxY - rawMinY);
+  const margin = Math.max(30, Math.max(rawWidth, rawHeight) * 0.08);
+  const minX = rawMinX - margin;
+  const minY = rawMinY - margin;
+  const width = rawWidth + margin * 2;
+  const height = rawHeight + margin * 2;
+  state.coordinateBounds = { minX, minY, width, height };
+  const map = document.getElementById("topology-map");
+  map.setAttribute("viewBox", [minX, minY, width, height].join(" "));
+  const grid = document.querySelector(".map-grid");
+  if (grid) {
+    grid.setAttribute("x", String(minX));
+    grid.setAttribute("y", String(minY));
+    grid.setAttribute("width", String(width));
+    grid.setAttribute("height", String(height));
+  }
+  setZoom(state.zoom);
+  const axis = svg("text", { x: minX + 10, y: minY + 16, class: "coordinate-axis" });
+  axis.textContent = state.coordinateMapId + " · source map entity X/Z · Y is height";
+  els.regionLabels.appendChild(axis);
+  plotRecords.forEach((record, index) => {
+    const x = Number(record.position[0]);
+    const y = Number(record.position[2]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+    const group = svg("g", { class: "coordinate-poi named-grace-position", transform: "translate(" + x + " " + y + ")" });
+    const circle = svg("circle", { r: 9, class: "node-hit" });
+    const core = svg("circle", { r: 5, class: "node-core named-grace-position" });
+    const title = svg("title");
+    title.textContent = record.label + " · " + record.raw.map + " · X " + record.position[0] + " / Y " + record.position[1] + " / Z " + record.position[2];
+    group.append(circle, core, title);
+    if (records.length <= 90 || index < 60) {
+      const label = svg("text", { x: 12, y: 3, class: "coordinate-poi-label" });
+      label.textContent = record.label;
+      group.appendChild(label);
+    }
+    group.addEventListener("click", () => renderOnlineCoordinateInspector(record.raw, record.sourceKind, record.label));
+    els.nodeLayer.appendChild(group);
+  });
+  const focus = state.coordinateFocus;
+  if (focus && focus.mapKey === state.coordinateMapId && Array.isArray(focus.position)) {
+    const x = Number(focus.position[0]);
+    const y = Number(focus.position[2]);
+    if (Number.isFinite(x) && Number.isFinite(y)) {
+      const focusGroup = svg("g", { class: "coordinate-focus", transform: "translate(" + x + " " + y + ")" });
+      focusGroup.append(svg("circle", { r: Math.max(20, Math.min(width, height) * 0.035), class: "coordinate-focus-ring" }), svg("circle", { r: 3, class: "coordinate-focus-core" }));
+      els.nodeLayer.appendChild(focusGroup);
+    }
+  }
+  els.graphStats.textContent = state.coordinateMapId + " · " + records.length + "/" + (state.coordinateNamedGraceTotal || records.length) + " named grace source XYZ · routeable=false · frame=source_map_local_xyz";
 }
 
 function renderCoordinateMap() {

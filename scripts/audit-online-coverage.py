@@ -31,6 +31,10 @@ ONLINE_PROJECTED_GRACE_FILES = (
     ONLINE_PROJECTED_GRACE_FILE,
     *(ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-map-markers-supplement-{part:02d}-20260818.json" for part in range(1, 6)),
 )
+ONLINE_NAMED_GRACE_FILES = tuple(
+    ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-compass-graces-{part:02d}-20260818.json"
+    for part in range(1, 6)
+)
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
@@ -325,6 +329,10 @@ def audit() -> dict:
         for path in ONLINE_PROJECTED_GRACE_FILES
     ]
     projected_graces = projected_grace_payloads[0]
+    named_grace_payloads = [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in ONLINE_NAMED_GRACE_FILES
+    ]
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
@@ -393,6 +401,53 @@ def audit() -> dict:
         or projected_anchor_contract["invalid_records"]
     ):
         raise ValueError(f"projected anchor contract failed: {projected_anchor_contract}")
+    named_grace_records = [
+        record
+        for payload in named_grace_payloads
+        for record in payload.get("records", [])
+    ]
+    formal_grace_ids = {node["id"] for node in nodes if node.get("kind") == "grace"}
+    named_grace_contract = {
+        "schema": named_grace_payloads[0].get("schema"),
+        "snapshots": [payload.get("snapshot") for payload in named_grace_payloads],
+        "source_url": named_grace_payloads[0].get("source", {}).get("url"),
+        "coordinate_space": named_grace_payloads[0].get("coordinate_space"),
+        "record_count": len(named_grace_records),
+        "part_record_counts": [len(payload.get("records", [])) for payload in named_grace_payloads],
+        "duplicate_flag_ids": sorted(
+            flag_id
+            for flag_id in {record.get("flag_id") for record in named_grace_records}
+            if flag_id is not None and [item.get("flag_id") for item in named_grace_records].count(flag_id) > 1
+        ),
+        "duplicate_entity_ids": sorted(
+            entity_id
+            for entity_id in {record.get("bonfire_entity_id") for record in named_grace_records}
+            if entity_id is not None and [item.get("bonfire_entity_id") for item in named_grace_records].count(entity_id) > 1
+        ),
+        "invalid_records": [
+            record.get("flag_id")
+            for record in named_grace_records
+            if not re.fullmatch(r"m\d+_\d+_\d+_\d+", str(record.get("map", "")))
+            or not isinstance(record.get("position"), list)
+            or len(record.get("position", [])) != 3
+            or not all(isinstance(value, (int, float)) for value in record.get("position", []))
+            or not set(record.get("formal_candidates", [])) <= formal_grace_ids
+        ],
+        "formal_candidate_count": sum(bool(record.get("formal_candidates")) for record in named_grace_records),
+    }
+    if (
+        named_grace_contract["schema"] != "elden-ring-reachability-map/named-grace-coordinate-snapshot@1"
+        or named_grace_contract["snapshots"] != [path.stem for path in ONLINE_NAMED_GRACE_FILES]
+        or named_grace_contract["source_url"] != "https://raw.githubusercontent.com/EthanShoeDev/elden-ring-compass/main/packages/data/src/generated/markers.ts"
+        or named_grace_contract["coordinate_space"].get("id") != "source_map_local_xyz"
+        or named_grace_contract["record_count"] != 419
+        or named_grace_contract["part_record_counts"] != [84, 84, 84, 84, 83]
+        or named_grace_contract["duplicate_flag_ids"]
+        or named_grace_contract["duplicate_entity_ids"]
+        or named_grace_contract["invalid_records"]
+        or named_grace_contract["formal_candidate_count"] != 378
+    ):
+        raise ValueError(f"named grace coordinate contract failed: {named_grace_contract}")
     graph_condition_ids = {condition["id"] for condition in graph.get("conditions", [])}
     achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
     required_items_by_achievement = {
@@ -1371,6 +1426,7 @@ def audit() -> dict:
         "online_snapshot_contract": online_snapshot_contract,
         "online_map_key_contract": online_map_key_contract,
         "projected_anchor_contract": projected_anchor_contract,
+        "named_grace_coordinate_contract": named_grace_contract,
         "map_point_candidate_contract": map_point_candidate_contract,
         "online_text_location_contract": online_text_location_contract,
         "unresolved_boss_location_contract": unresolved_boss_location_contract,
