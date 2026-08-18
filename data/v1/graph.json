@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.133-online-multiplane",
+  "version": "1.0.134-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2289,7 +2289,8 @@
       "y": 250,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "gamefaqs-haligtree-cross-check"],
+      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "gamefaqs-haligtree-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 425, "recordId": 50150000, "name": "Elphael Inner Wall", "map": "area 15 / grid 0,0", "position": [6.765999794006348, 208.42300415039062, 570.364013671875], "coordinateSpace": "game_world_xyz" },
       "description": "Rooftop and battlemage plaza before the Loretta, Knight of the Haligtree boss gate."
     },
     {
@@ -2455,7 +2456,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check"],
+      "sourceEvidence": ["powerpyx-farum-cross-check", "game8-farum-cross-check", "eip-farum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 230, "recordId": 30130001, "name": "Godskin Duo", "map": "area 13 / grid 0,0", "position": [-12.54699993133545, -73.00150299072266, 411.51800537109375], "coordinateSpace": "game_world_xyz" },
       "description": "Mandatory Dragon Temple boss gate with the shared Godskin Duo health bar."
     },
     {
@@ -3692,7 +3694,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"],
+      "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 232, "recordId": 30140000, "name": "Red Wolf of Radagon", "map": "area 14 / grid 0,0", "position": [129.22500610351562, 110.18199920654297, -219.85000610351562], "coordinateSpace": "game_world_xyz" },
       "description": "Red Wolf boss gate in the Academy progression."
     },
     {
@@ -4441,7 +4444,8 @@
       "y": 445,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-sites-of-grace-r83774", "powerpyx-farum-cross-check"],
+      "sourceEvidence": ["eldenpedia-maliketh-r100643", "eldenpedia-sites-of-grace-r83774", "powerpyx-farum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 231, "recordId": 30130002, "name": "Maliketh, the Black Blade", "map": "area 13 / grid 0,0", "position": [190.97500610351562, -62.53900146484375, 378.2279968261719], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Maliketh grace state kept separate from the pre-boss approach."
     },
     {
@@ -4471,7 +4475,8 @@
       "y": 470,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check"],
+      "sourceEvidence": ["eldenpedia-ashen-capital-r65655", "powerpyx-ashen-capital-cross-check", "game8-ashen-capital-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 210, "recordId": 30110501, "name": "Sir Gideon Ofnir, the All-Knowing", "map": "area 11 / grid 5,0", "position": [-132.0, 31.030000686645508, -341.5], "coordinateSpace": "game_world_xyz" },
       "description": "Ashen Capital mainline boss gate before the Erdtree Sanctuary continuation."
     },
     {
@@ -5136,7 +5141,8 @@
       "y": 700,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Storehouse, First Floor", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz" },
       "description": "Grace at the upper end of Shadow Keep's south entrance lift."
     },
     {
@@ -5791,7 +5797,8 @@
       "y": 780,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-dragons-pit", "game8-jagged-peak-cross-check", "neoseeker-jagged-peak-cross-check"],
+      "sourceEvidence": ["eldenpedia-dragons-pit", "game8-jagged-peak-cross-check", "neoseeker-jagged-peak-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 200, "recordId": 430100, "name": "Ancient Dragon-Man", "map": "area 43 / grid 1,0", "position": [-99.91999816894531, 360.7099914550781, 16.549999237060547], "coordinateSpace": "game_world_xyz" },
       "description": "Mandatory Dragon's Pit gate before the Terminus grace and Jagged Peak exit."
     },
     {
@@ -6052,7 +6059,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check"],
+      "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-abyssal", "game8-midra-manse-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 191, "recordId": 400200, "name": "Jori, Elder Inquisitor", "map": "area 40 / grid 2,0", "position": [-46.209999084472656, 80.01000213623047, 111.52999877929688], "coordinateSpace": "game_world_xyz" },
       "description": "Gatekeeper boss at the Darklight Catacombs exit."
     },
     {
@@ -6648,7 +6656,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-lamenters-gaol", "eldenpedia-sites-of-grace-r83774", "neoseeker-charo-cross-check"],
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "eldenpedia-sites-of-grace-r83774", "neoseeker-charo-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 194, "recordId": 410200, "name": "Lamenter's Gaol", "map": "area 41 / grid 2,0", "position": [85.7699966430664, 76.5199966430664, 4.579999923706055], "coordinateSpace": "game_world_xyz" },
       "description": "Optional gaol entrance grace inside Charo's Hidden Grave."
     },
     {
@@ -6663,7 +6672,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"],
+      "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 194, "recordId": 410200, "name": "Lamenter", "map": "area 41 / grid 2,0", "position": [85.7699966430664, 76.5199966430664, 4.579999923706055], "coordinateSpace": "game_world_xyz" },
       "description": "Lamenter's Gaol boss gate."
     },
     {
@@ -6754,7 +6764,8 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check"],
+      "sourceEvidence": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 276, "recordId": 31433000, "name": "Leonine Misbegotten", "map": "area 60 / grid 43,30", "position": [-20.461999893188477, 0.4749999940395355, 21.44499969482422], "coordinateSpace": "game_world_xyz" },
       "description": "Castle Morne interior entrance grace after the outer rampart."
     },
     {
@@ -7161,7 +7172,8 @@
       "y": 580,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caria-manor", "powerpyx-caria-manor-cross-check"],
+      "sourceEvidence": ["eldenpedia-caria-manor", "powerpyx-caria-manor-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 305, "recordId": 32355000, "name": "Royal Knight Loretta", "map": "area 60 / grid 35,50", "position": [-49.849998474121094, 430.9460144042969, 80.61199951171875], "coordinateSpace": "game_world_xyz" },
       "description": "Caria Manor's Royal Knight Loretta boss gate."
     },
     {
