@@ -35,6 +35,7 @@ ONLINE_NAMED_GRACE_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-compass-graces-{part:02d}-20260818.json"
     for part in range(1, 6)
 )
+NAMED_GRACE_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "named-grace-identity-bindings.json"
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
@@ -333,6 +334,7 @@ def audit() -> dict:
         json.loads(path.read_text(encoding="utf-8"))
         for path in ONLINE_NAMED_GRACE_FILES
     ]
+    named_grace_identity_bindings = json.loads(NAMED_GRACE_IDENTITY_BINDINGS_FILE.read_text(encoding="utf-8"))
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
@@ -401,12 +403,48 @@ def audit() -> dict:
         or projected_anchor_contract["invalid_records"]
     ):
         raise ValueError(f"projected anchor contract failed: {projected_anchor_contract}")
-    named_grace_records = [
+    named_grace_source_records = [
         record
         for payload in named_grace_payloads
         for record in payload.get("records", [])
     ]
-    formal_grace_ids = {node["id"] for node in nodes if node.get("kind") == "grace"}
+    binding_records = named_grace_identity_bindings.get("records", [])
+    binding_by_flag = {record.get("flag_id"): record for record in binding_records}
+    source_by_flag = {record.get("flag_id"): record for record in named_grace_source_records}
+    named_grace_identity_contract = {
+        "schema": named_grace_identity_bindings.get("schema"),
+        "record_count": len(binding_records),
+        "duplicate_flag_ids": sorted(
+            flag_id
+            for flag_id in {record.get("flag_id") for record in binding_records}
+            if flag_id is not None and [item.get("flag_id") for item in binding_records].count(flag_id) > 1
+        ),
+        "invalid_records": [],
+    }
+    formal_node_ids = set(node_by_id)
+    for binding in binding_records:
+        source = source_by_flag.get(binding.get("flag_id"))
+        invalid = (
+            not source
+            or binding.get("name") != source.get("name")
+            or binding.get("region") != source.get("region")
+            or binding.get("map") != source.get("map")
+            or binding.get("formal_id") not in formal_node_ids
+            or binding.get("binding_basis") != "manual_name_region_map_alias"
+            or binding.get("formal_id") in (source.get("formal_candidates") or [])
+        )
+        if invalid:
+            named_grace_identity_contract["invalid_records"].append(binding.get("flag_id"))
+    named_grace_records = []
+    for source_record in named_grace_source_records:
+        record = dict(source_record)
+        binding = binding_by_flag.get(record.get("flag_id"))
+        if binding:
+            candidates = list(record.get("formal_candidates") or [])
+            if binding["formal_id"] not in candidates:
+                candidates.append(binding["formal_id"])
+            record["formal_candidates"] = candidates
+        named_grace_records.append(record)
     named_grace_contract = {
         "schema": named_grace_payloads[0].get("schema"),
         "snapshots": [payload.get("snapshot") for payload in named_grace_payloads],
@@ -431,9 +469,12 @@ def audit() -> dict:
             or not isinstance(record.get("position"), list)
             or len(record.get("position", [])) != 3
             or not all(isinstance(value, (int, float)) for value in record.get("position", []))
-            or not set(record.get("formal_candidates", [])) <= formal_grace_ids
+            or not set(record.get("formal_candidates", [])) <= formal_node_ids
         ],
+        "raw_formal_candidate_count": sum(bool(record.get("formal_candidates")) for record in named_grace_source_records),
         "formal_candidate_count": sum(bool(record.get("formal_candidates")) for record in named_grace_records),
+        "identity_binding_count": len(binding_records),
+        "unbound_source_records": sum(not record.get("formal_candidates") for record in named_grace_records),
     }
     if (
         named_grace_contract["schema"] != "elden-ring-reachability-map/named-grace-coordinate-snapshot@1"
@@ -445,9 +486,16 @@ def audit() -> dict:
         or named_grace_contract["duplicate_flag_ids"]
         or named_grace_contract["duplicate_entity_ids"]
         or named_grace_contract["invalid_records"]
-        or named_grace_contract["formal_candidate_count"] != 378
+        or named_grace_contract["raw_formal_candidate_count"] != 378
+        or named_grace_contract["formal_candidate_count"] != 417
+        or named_grace_contract["identity_binding_count"] != 39
+        or named_grace_contract["unbound_source_records"] != 2
+        or named_grace_identity_contract["schema"] != "elden-ring-reachability-map/named-grace-identity-bindings@1"
+        or named_grace_identity_contract["record_count"] != 39
+        or named_grace_identity_contract["duplicate_flag_ids"]
+        or named_grace_identity_contract["invalid_records"]
     ):
-        raise ValueError(f"named grace coordinate contract failed: {named_grace_contract}")
+        raise ValueError(f"named grace coordinate contract failed: {named_grace_contract}; identity bindings: {named_grace_identity_contract}")
     graph_condition_ids = {condition["id"] for condition in graph.get("conditions", [])}
     achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
     required_items_by_achievement = {
@@ -1427,6 +1475,7 @@ def audit() -> dict:
         "online_map_key_contract": online_map_key_contract,
         "projected_anchor_contract": projected_anchor_contract,
         "named_grace_coordinate_contract": named_grace_contract,
+        "named_grace_identity_contract": named_grace_identity_contract,
         "map_point_candidate_contract": map_point_candidate_contract,
         "online_text_location_contract": online_text_location_contract,
         "unresolved_boss_location_contract": unresolved_boss_location_contract,

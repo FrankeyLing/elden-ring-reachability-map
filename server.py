@@ -39,6 +39,7 @@ ONLINE_NAMED_GRACE_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-compass-graces-{part:02d}-20260818.json"
     for part in range(1, 6)
 )
+NAMED_GRACE_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "named-grace-identity-bindings.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 ONLINE_MAP_CONVERSION_FILES = (
     ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-conversions-base-20260818.json",
@@ -69,6 +70,7 @@ ONLINE_GATHERING_FILES = tuple(
 ONLINE_ITEM_CACHE = None
 ONLINE_ENTITY_CACHE = None
 ONLINE_GATHERING_CACHE = None
+NAMED_GRACE_IDENTITY_BINDINGS = None
 
 
 def collection_item_evidence(record):
@@ -117,6 +119,35 @@ def decode_online_chunks(paths):
         raise ValueError("online snapshot chunks are incomplete or out of order")
     encoded = "".join(chunk["chunk"] for chunk in chunks)
     return json.loads(zlib.decompress(base64.b64decode(encoded)).decode("utf-8"))
+
+
+def load_named_grace_identity_bindings():
+    global NAMED_GRACE_IDENTITY_BINDINGS
+    if NAMED_GRACE_IDENTITY_BINDINGS is None:
+        payload = json.loads(NAMED_GRACE_IDENTITY_BINDINGS_FILE.read_bytes())
+        NAMED_GRACE_IDENTITY_BINDINGS = {
+            int(record["flag_id"]): record
+            for record in payload.get("records", [])
+        }
+    return NAMED_GRACE_IDENTITY_BINDINGS
+
+
+def enrich_named_grace_record(record, bindings):
+    enriched = dict(record)
+    binding = bindings.get(int(record["flag_id"]))
+    if not binding:
+        return enriched
+    candidates = list(enriched.get("formal_candidates") or [])
+    if binding["formal_id"] not in candidates:
+        candidates.append(binding["formal_id"])
+    enriched["formal_candidates"] = candidates
+    enriched["formal_binding"] = {
+        "formal_id": binding["formal_id"],
+        "binding_basis": binding["binding_basis"],
+        "identity_only": True,
+        "routeable": False,
+    }
+    return enriched
 
 
 class AppHandler(SimpleHTTPRequestHandler):
@@ -403,9 +434,11 @@ class AppHandler(SimpleHTTPRequestHandler):
             limit = ONLINE_QUERY_MAX
         try:
             payloads = [json.loads(path.read_bytes()) for path in ONLINE_NAMED_GRACE_FILES]
+            bindings = load_named_grace_identity_bindings()
             records = []
             for payload in payloads:
-                for record in payload["records"]:
+                for source_record in payload["records"]:
+                    record = enrich_named_grace_record(source_record, bindings)
                     row_map = str(record.get("map") or "")
                     if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
                         continue
@@ -432,7 +465,9 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "source": payloads[0]["source"],
                 "snapshots": [payload["snapshot"] for payload in payloads],
                 "coordinate_space": payloads[0]["coordinate_space"],
-                "note": "named grace raw map-local entity XYZ evidence; this frame is not interchangeable with MapForGoblins coordinates; formal_candidates are identity links only and never create traversal edges",
+                "identity_binding_snapshot": "named-grace-identity-bindings@1",
+                "identity_binding_count": len(bindings),
+                "note": "named grace raw map-local entity XYZ evidence; this frame is not interchangeable with MapForGoblins coordinates; formal_candidates and formal_binding are identity links only and never create traversal edges",
             }
         )
 
