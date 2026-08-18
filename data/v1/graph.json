@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.139-online-multiplane",
+  "version": "1.0.140-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -6823,7 +6823,8 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check"],
+      "sourceEvidence": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 276, "recordId": 31433000, "name": "Leonine Misbegotten", "map": "area 60 / grid 43,30", "position": [-20.461999893188477, 0.4749999940395355, 21.44499969482422], "coordinateSpace": "game_world_xyz" },
       "description": "Castle Morne boss gate for the Grafted Blade Greatsword route."
     },
     {
@@ -7433,7 +7434,8 @@
       "y": 1030,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-magma-wyrm-makar", "eldenpedia-ruin-strewn-precipice", "game8-ruin-strewn-cross-check"],
+      "sourceEvidence": ["eldenpedia-magma-wyrm-makar", "eldenpedia-ruin-strewn-precipice", "game8-ruin-strewn-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 314, "recordId": 32392000, "name": "Magma Wyrm Makar", "map": "area 39 / grid 20,0", "position": [-98.68699645996094, 353.031005859375, -1304.2110595703125], "coordinateSpace": "game_world_xyz" },
       "description": "Magma Wyrm Makar boss gate at the highest cavern."
     },
     {
@@ -7599,7 +7601,8 @@
       "y": 760,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check"],
+      "sourceEvidence": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 367, "recordId": 34493800, "name": "Commander O'Neil", "map": "area 60 / grid 49,38", "position": [-55.22200012207031, 65.85600280761719, 50.56999969482422], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Commander O'Neil encounter in the central Aeonia swamp."
     },
     {
@@ -8253,7 +8256,8 @@
       "y": 360,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shaded-castle", "game8-shaded-castle-cross-check"],
+      "sourceEvidence": ["eldenpedia-shaded-castle", "game8-shaded-castle-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 339, "recordId": 33395400, "name": "Elemer of the Briar", "map": "area 60 / grid 39,54", "position": [-18.722000122070312, 768.302001953125, 63.51100158691406], "coordinateSpace": "game_world_xyz" },
       "description": "Elemer of the Briar boss gate."
     },
     {
@@ -8406,7 +8410,8 @@
       "y": 940,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check"],
+      "sourceEvidence": ["eldenpedia-groveside-cave", "game8-groveside-cave-cross-check", "neoseeker-groveside-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 265, "recordId": 31310300, "name": "Beastman of Farum Azula", "map": "area 31 / grid 3,0", "position": [-120.76899719238281, 88.18099975585938, 80.7969970703125], "coordinateSpace": "game_world_xyz" },
       "description": "Beastman of Farum Azula boss gate at the end of Groveside Cave."
     },
     {
@@ -8452,7 +8457,8 @@
       "y": 1050,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check"],
+      "sourceEvidence": ["game8-coastal-cave-cross-check", "neoseeker-coastal-cave-cross-check", "gamefaqs-limgrave-west-coastal-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 266, "recordId": 31311500, "name": "Demi-Human Chiefs", "map": "area 31 / grid 15,0", "position": [30.93899917602539, -29.329999923706055, -99.89099884033203], "coordinateSpace": "game_world_xyz" },
       "description": "Paired Demi-Human Chiefs boss gate in the deepest Coastal Cave chamber."
     },
     {
@@ -8696,7 +8702,8 @@
       "y": 930,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-highroad-cave", "gamerguides-highroad-cave-cross-check"],
+      "sourceEvidence": ["eldenpedia-highroad-cave", "gamerguides-highroad-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 267, "recordId": 31311700, "name": "Guardian Golem", "map": "area 31 / grid 17,0", "position": [74.41799926757812, -9.862000465393066, 148.6820068359375], "coordinateSpace": "game_world_xyz" },
       "description": "Guardian Golem boss gate at the end of the river cave."
     },
     {
@@ -8955,7 +8962,7 @@
     },
     {
       "id": "cleanrot_knight_stillwater_gate", "label": "Cleanrot Knight (Stillwater Cave)", "kind": "boss", "layer": "legacy", "region": "Stillwater Cave", "floor": "Poison pool boss chamber", "worldEpoch": "liurnia_surface", "x": 770, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check"], "description": "Cleanrot Knight boss gate at the far end of the poison pool."
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 292, "recordId": 32310400, "name": "Cleanrot Knight", "map": "area 31 / grid 4,0", "position": [98.02999877929688, 199.76199340820312, -166.70899963378906], "coordinateSpace": "game_world_xyz" }, "description": "Cleanrot Knight boss gate at the far end of the poison pool."
     },
     {
       "id": "stillwater_cave_post_boss_state", "label": "Stillwater Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Stillwater Cave", "floor": "Cleanrot Knight chamber return state", "worldEpoch": "liurnia_surface", "x": 830, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -8971,7 +8978,7 @@
     },
     {
       "id": "bloodhound_knight_lakeside_gate", "label": "Bloodhound Knight (Lakeside Crystal Cave)", "kind": "boss", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Bloodhound Knight chamber", "worldEpoch": "liurnia_surface", "x": 880, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check"], "description": "Bloodhound Knight boss gate in the lower cave network."
+      "sourceEvidence": ["eldenpedia-lakeside-crystal-cave", "game8-lakeside-crystal-cave-cross-check", "gamerguides-lakeside-crystal-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 293, "recordId": 32310500, "name": "Bloodhound Knight", "map": "area 31 / grid 5,0", "position": [-169.3419952392578, 160.968994140625, -22.972000122070312], "coordinateSpace": "game_world_xyz" }, "description": "Bloodhound Knight boss gate in the lower cave network."
     },
     {
       "id": "lakeside_crystal_cave_post_boss_state", "label": "Lakeside Crystal Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Lakeside Crystal Cave", "floor": "Bloodhound Knight chamber return state", "worldEpoch": "liurnia_surface", "x": 940, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -8993,7 +9000,7 @@
     },
     {
       "id": "spiritcaller_snail_roads_end_gate", "label": "Spiritcaller Snail (Road's End Catacombs)", "kind": "boss", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Spiritcaller Snail chamber", "worldEpoch": "liurnia_surface", "x": 640, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check"], "description": "Invisible Spiritcaller Snail boss gate behind illusory walls."
+      "sourceEvidence": ["eldenpedia-roads-end-catacombs", "gamerguides-roads-end-catacombs-cross-check", "neoseeker-roads-end-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 288, "recordId": 32300300, "name": "Spiritcaller Snail", "map": "area 30 / grid 3,0", "position": [89.22000122070312, 194.43800354003906, 36.073001861572266], "coordinateSpace": "game_world_xyz" }, "description": "Invisible Spiritcaller Snail boss gate behind illusory walls."
     },
     {
       "id": "roads_end_catacombs_post_boss_state", "label": "Road's End Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Spiritcaller Snail chamber return state", "worldEpoch": "liurnia_surface", "x": 700, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9137,7 +9144,7 @@
     },
     {
       "id": "necromancer_garris_gate", "label": "Necromancer Garris (Sage's Cave)", "kind": "boss", "layer": "legacy", "region": "Sage's Cave", "floor": "Hidden Garris chamber", "worldEpoch": "altus_surface", "x": 880, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Necromancer Garris behind an illusory wall."
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 327, "recordId": 33311901, "name": "Necromancer Garris", "map": "area 31 / grid 19,0", "position": [108.32499694824219, 627.2620239257812, -45.18600082397461], "coordinateSpace": "game_world_xyz" }, "description": "Necromancer Garris behind an illusory wall."
     },
     {
       "id": "sages_cave_garris_post_boss_state", "label": "Sage's Cave (Garris cleared)", "kind": "state", "layer": "legacy", "region": "Sage's Cave", "floor": "Garris chamber return state", "worldEpoch": "altus_surface", "x": 940, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9357,7 +9364,7 @@
     },
     {
       "id": "putrid_tree_spirit_war_dead_gate", "label": "Putrid Tree Spirit (War-Dead Catacombs)", "kind": "boss", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Putrid Tree Spirit chamber", "worldEpoch": "post_radahn_world_state", "x": 770, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Putrid Tree Spirit at the end of the battlefield catacombs."
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 215, "recordId": 30120103, "name": "Putrid Tree Spirit", "map": "area 12 / grid 1,0", "position": [-420.2980041503906, -373.6400146484375, -475.6700134277344], "coordinateSpace": "game_world_xyz" }, "description": "Putrid Tree Spirit at the end of the battlefield catacombs."
     },
     {
       "id": "war_dead_catacombs_post_boss_state", "label": "War-Dead Catacombs (post-boss state)", "kind": "state", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Putrid Tree Spirit chamber return state", "worldEpoch": "post_radahn_world_state", "x": 830, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9373,7 +9380,7 @@
     },
     {
       "id": "fallingstar_beast_sellia_tunnel_gate", "label": "Fallingstar Beast (Sellia Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Fallingstar Beast mine chamber", "worldEpoch": "caelid_surface", "x": 1020, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check"], "description": "Fallingstar Beast at the end of the crystal mine."
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 342, "recordId": 33415000, "name": "Fallingstar Beast", "map": "area 60 / grid 41,50", "position": [40.8380012512207, 834.14599609375, 109.23899841308594], "coordinateSpace": "game_world_xyz" }, "description": "Fallingstar Beast at the end of the crystal mine."
     },
     {
       "id": "sellia_crystal_tunnel_post_boss_state", "label": "Sellia Crystal Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Fallingstar Beast chamber return state", "worldEpoch": "caelid_surface", "x": 1080, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9487,7 +9494,7 @@
     },
     {
       "id": "misbegotten_crusader_cave_forlorn_gate", "label": "Misbegotten Crusader (Cave of the Forlorn)", "kind": "boss", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Crusader boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1180, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check"], "description": "Misbegotten Crusader at the end of the cave."
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 383, "recordId": 35311200, "name": "Misbegotten Crusader", "map": "area 31 / grid 12,0", "position": [-24.40399932861328, 1193.3609619140625, 121.93000030517578], "coordinateSpace": "game_world_xyz" }, "description": "Misbegotten Crusader at the end of the cave."
     },
     {
       "id": "cave_of_forlorn_post_boss_state", "label": "Cave of the Forlorn (post-boss state)", "kind": "state", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Crusader chamber return state", "worldEpoch": "consecrated_snowfield", "x": 1240, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9519,7 +9526,7 @@
     },
     {
       "id": "astel_stars_darkness_yelough_gate", "label": "Astel, Stars of Darkness (Yelough Anix Tunnel)", "kind": "boss", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Astel boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1280, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "description": "Astel at the end of the frozen mine."
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 385, "recordId": 35321100, "name": "Astel, Stars of Darkness", "map": "area 32 / grid 11,0", "position": [51.792999267578125, 1207.5150146484375, 149.46600341796875], "coordinateSpace": "game_world_xyz" }, "description": "Astel at the end of the frozen mine."
     },
     {
       "id": "yelough_anix_tunnel_post_boss_state", "label": "Yelough Anix Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Astel chamber return state", "worldEpoch": "consecrated_snowfield", "x": 1340, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9681,7 +9688,7 @@
     },
     {
       "id": "scaly_misbegotten_morne_tunnel_gate", "label": "Scaly Misbegotten (Morne Tunnel)", "kind": "boss", "layer": "legacy", "region": "Morne Tunnel", "floor": "Tunnel boss chamber", "worldEpoch": "limgrave_surface", "x": 450, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "description": "Scaly Misbegotten at the end of the tunnel; the encounter rewards the Rusted Anchor."
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 268, "recordId": 31320000, "name": "Scaly Misbegotten", "map": "area 32 / grid 0,0", "position": [83.31400299072266, -24.548999786376953, -25.440000534057617], "coordinateSpace": "game_world_xyz" }, "description": "Scaly Misbegotten at the end of the tunnel; the encounter rewards the Rusted Anchor."
     },
     {
       "id": "morne_tunnel_post_boss_state", "label": "Morne Tunnel (post-boss state)", "kind": "state", "layer": "legacy", "region": "Morne Tunnel", "floor": "Scaly Misbegotten chamber return state", "worldEpoch": "limgrave_surface", "x": 510, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9747,7 +9754,7 @@
     },
     {
       "id": "grafted_scion_chapel_gate", "label": "Grafted Scion (Chapel of Anticipation)", "kind": "boss", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Opening courtyard", "worldEpoch": "limgrave_surface", "x": 150, "y": 70, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-grafted-scion-chapel", "eldenpedia-chapel-of-anticipation"], "description": "Opening boss gate; the first-run route exits by the death/cutscene or the nearby fatal fall, while a later visit can clear the boss."
+      "sourceEvidence": ["eldenpedia-grafted-scion-chapel", "eldenpedia-chapel-of-anticipation", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 287, "recordId": 32100100, "name": "Grafted Scion", "map": "area 10 / grid 1,0", "position": [-41.74800109863281, 21.325000762939453, -39.474998474121094], "coordinateSpace": "game_world_xyz" }, "description": "Opening boss gate; the first-run route exits by the death/cutscene or the nearby fatal fall, while a later visit can clear the boss."
     },
     {
       "id": "chapel_of_anticipation_post_scion_state", "label": "Chapel of Anticipation (post-Scion state)", "kind": "state", "layer": "legacy", "region": "Chapel of Anticipation", "floor": "Courtyard beyond Grafted Scion", "worldEpoch": "limgrave_surface", "x": 205, "y": 70, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9805,7 +9812,7 @@
     },
     {
       "id": "mad_pumpkin_head_waypoint_gate", "label": "Mad Pumpkin Head (Waypoint Ruins)", "kind": "boss", "layer": "legacy", "region": "Waypoint Ruins", "floor": "Cellar boss room", "worldEpoch": "limgrave_surface", "x": 225, "y": 1040, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check", "game8-limgrave-cross-check"], "description": "Cellar boss gate below the Waypoint Ruins; defeating it opens the room beyond for Sorceress Sellen."
+      "sourceEvidence": ["eldenpedia-waypoint-ruins", "gamerguides-waypoint-cross-check", "game8-limgrave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 285, "recordId": 31443600, "name": "Mad Pumpkin Head", "map": "area 60 / grid 44,36", "position": [-9.918999671936035, 80.79900360107422, 35.132999420166016], "coordinateSpace": "game_world_xyz" }, "description": "Cellar boss gate below the Waypoint Ruins; defeating it opens the room beyond for Sorceress Sellen."
     },
     {
       "id": "waypoint_ruins_post_boss_state", "label": "Waypoint Ruins Cellar (post-boss state)", "kind": "state", "layer": "legacy", "region": "Waypoint Ruins", "floor": "Cellar beyond Mad Pumpkin Head", "worldEpoch": "limgrave_surface", "x": 270, "y": 1040, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
