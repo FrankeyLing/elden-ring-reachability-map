@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.131-online-multiplane",
+  "version": "1.0.132-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1744,7 +1744,8 @@
       "y": 445,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ancestor-spirit", "gamespot-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "sourceEvidence": ["eldenpedia-ancestor-spirit", "gamespot-siofra-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 227, "recordId": 30120800, "name": "Ancestor Spirit", "map": "area 12 / grid 8,0", "position": [1261.10205078125, -1736.050048828125, 1153.2860107421875], "coordinateSpace": "game_world_xyz" },
       "description": "Lower Siofra Ancestor Spirit gate; all eight braziers must be lit before touching the horned remains."
     },
     {
@@ -1835,7 +1836,8 @@
       "y": 335,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "eldenpedia-sending-gate-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "sourceEvidence": ["eldenpedia-dragonkin-cross-check", "eldenpedia-sending-gate-cross-check", "game8-siofra-cross-check", "neoseeker-siofra-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 213, "recordId": 30120101, "name": "Dragonkin Soldier", "map": "area 12 / grid 1,0", "position": [-217.38499450683594, -317.0719909667969, -317.6709899902344], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Siofra Dragonkin Soldier boss reached through the hidden sending gate; distinct from Dragonkin Soldier of Nokstella in Ainsel River."
     },
     {
@@ -2711,7 +2713,8 @@
       "y": 720,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check", "gamespot-ainsel-cross-check"],
+      "sourceEvidence": ["eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check", "gamespot-ainsel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 214, "recordId": 30120102, "name": "Dragonkin Soldier of Nokstella", "map": "area 12 / grid 1,0", "position": [-152.2209930419922, -224.49899291992188, 117.05000305175781], "coordinateSpace": "game_world_xyz" },
       "description": "Optional southern Ainsel boss; its arena has no onward route to the northern Ranni branch."
     },
     {
@@ -2741,7 +2744,8 @@
       "y": 585,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-nokstella-r83146", "powerpyx-ainsel-cross-check", "game8-ranni-cross-check"],
+      "sourceEvidence": ["eldenpedia-nokstella-r83146", "powerpyx-ainsel-cross-check", "game8-ranni-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 212, "recordId": 30120100, "name": "Baleful Shadow", "map": "area 12 / grid 1,0", "position": [-298.94000244140625, -280.42999267578125, 25.920000076293945], "coordinateSpace": "game_world_xyz" },
       "description": "Ranni quest invader gate between Nokstella Waterfall Basin and the Lake of Rot lift."
     },
     {
@@ -2786,7 +2790,8 @@
       "y": 360,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 604, "recordId": 66120200, "name": "Night's Sacred Ground", "map": "area 12 / grid 2,0", "position": [1016.2000122070312, -664.0599975585938, 1404.989990234375], "coordinateSpace": "game_world_xyz" },
       "description": "Nokron quest branch grace near the Fingerslayer Blade and the return portal to Ancestral Woods."
     },
     {
@@ -2801,7 +2806,8 @@
       "y": 430,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 228, "recordId": 30120900, "name": "Regal Ancestor Spirit", "map": "area 12 / grid 9,0", "position": [1181.8289794921875, -1538.4110107421875, 1638.7760009765625], "coordinateSpace": "game_world_xyz" },
       "description": "Optional six-flame/Hallowhorn Grounds boss branch from Ancestral Woods."
     },
     {
@@ -2906,7 +2912,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "game8-deeproot-cross-check", "gamesradar-deeproot-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 223, "recordId": 30120302, "name": "Fia's Champions", "map": "area 12 / grid 3,0", "position": [-359.1109924316406, 149.468994140625, -217.44500732421875], "coordinateSpace": "game_world_xyz" },
       "description": "Fia quest boss group at the upper end of the Deeproot root route."
     },
     {
@@ -2921,7 +2928,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check", "game8-deeproot-cross-check"],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check", "game8-deeproot-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 224, "recordId": 30120303, "name": "Lichdragon Fortissax", "map": "area 12 / grid 3,0", "position": [-447.77099609375, 149.343994140625, -269.1090087890625], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Fia quest dream boss; the entry is gated by the Cursemark and Fia's post-Champions state."
     },
     {
@@ -2966,7 +2974,8 @@
       "y": 405,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check"],
+      "sourceEvidence": ["eldenpedia-nokstella-r83146", "gamespot-ainsel-cross-check", "powerpyx-ainsel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 602, "recordId": 66120103, "name": "Nokstella, Eternal City", "map": "area 12 / grid 1,0", "position": [-96.58999633789062, -129.02999877929688, 204.27999877929688], "coordinateSpace": "game_world_xyz" },
       "description": "Formal route node for the Nokstella city section; the catalog contains the underlying grace entry."
     },
     {
@@ -3011,7 +3020,8 @@
       "y": 405,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 603, "recordId": 66120104, "name": "Grand Cloister", "map": "area 12 / grid 1,0", "position": [-531.9400024414062, -373.239990234375, -544.0599975585938], "coordinateSpace": "game_world_xyz" },
       "description": "Cloister node containing the coffin transition to the Astel encounter."
     },
     {
@@ -3026,7 +3036,8 @@
       "y": 405,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "sourceEvidence": ["eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 225, "recordId": 30120400, "name": "Astel, Naturalborn of the Void", "map": "area 12 / grid 4,0", "position": [-98.75900268554688, -106.13700103759766, -134.39300537109375], "coordinateSpace": "game_world_xyz" },
       "description": "Boss gate reached by the Grand Cloister coffin; the exit is state-gated."
     },
     {
@@ -4027,7 +4038,8 @@
       "y": 1080,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check"],
+      "sourceEvidence": ["eldenpedia-siofra-r71937", "game8-siofra-cross-check", "pcgamer-siofra-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 480, "recordId": 61453700, "name": "Siofra River Well", "map": "area 60 / grid 45,37", "position": [96.40299987792969, 29.624000549316406, 12.017000198364258], "coordinateSpace": "game_world_xyz" },
       "description": "Physical surface entrance; its elevator descends into Siofra River Well Depths."
     },
     {
