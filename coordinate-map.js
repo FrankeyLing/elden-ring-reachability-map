@@ -34,6 +34,10 @@ function populateCoordinateMapSelect() {
   state.onlineMapPointRecords.forEach((record) => {
     if (!options.has(record.mapKey)) options.set(record.mapKey, { mapKey: record.mapKey });
   });
+  (state.onlineIndex?.bosses?.records || []).forEach((record) => {
+    const mapKey = String(record[2] || "").trim();
+    if (mapKey && !options.has(mapKey)) options.set(mapKey, { mapKey });
+  });
   els.coordinateMapSelect.innerHTML = "";
   [...options.values()].sort((a, b) => a.mapKey.localeCompare(b.mapKey)).forEach((record) => {
     const option = document.createElement("option");
