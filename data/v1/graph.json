@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.109-online-multiplane",
+  "version": "1.0.110-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1150,6 +1150,10 @@
     { "id": "gamespot-gelmir-cross-check", "label": "GameSpot / Mt. Gelmir guide", "url": "https://www.gamespot.com/articles/elden-ring-mt-gelmir-guide-where-to-go-items-to-get-and-enemies-to-watch-out-for/1100-6501392/", "grade": "B" },
     { "id": "gamespot-fallingstar-cross-check", "label": "GameSpot / Full-Grown Fallingstar Beast route", "url": "https://www.gamespot.com/articles/how-to-beat-the-full-grown-fallingstar-beast/1100-6503176/", "grade": "B" },
     { "id": "eldenpedia-sellia-town", "label": "Eldenpedia / Sellia, Town of Sorcery", "url": "https://eldenring.wiki.gg/wiki/Sellia,_Town_of_Sorcery", "grade": "A" },
+    { "id": "eldenpedia-churches-r83204", "label": "Eldenpedia / Churches / r83204", "url": "https://eldenring.wiki.gg/wiki/Churches", "grade": "A" },
+    { "id": "eldenpedia-thops", "label": "Eldenpedia / Sorcerer Thops", "url": "https://eldenring.wiki.gg/wiki/Thops", "grade": "A" },
+    { "id": "eldenpedia-rose-church", "label": "Eldenpedia / Rose Church", "url": "https://eldenring.wiki.gg/wiki/Rose_Church", "grade": "A" },
+    { "id": "nexus-map-for-goblins", "label": "Nexus Mods / Map for Goblins", "url": "https://www.nexusmods.com/eldenring/mods/3091", "grade": "B" },
     { "id": "gamefaqs-sellia-route-cross-check", "label": "GameFAQs / Caelid Sellia and Millicent route", "url": "https://gamefaqs.gamespot.com/ps5/323053-elden-ring/faqs/80116/chapter-5-morgott-the-omen-king", "grade": "B" },
     { "id": "eldenpedia-dragonbarrow", "label": "Eldenpedia / Greyoll's Dragonbarrow", "url": "https://eldenring.wiki.gg/wiki/Dragonbarrow", "grade": "A" },
     { "id": "pcgamer-caelid-divine-tower", "label": "PC Gamer / Divine Tower of Caelid route", "url": "https://www.pcgamer.com/elden-ring-caelid-divine-tower/", "grade": "B" },
@@ -3476,6 +3480,22 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-raya-r97405", "eldenpedia-sites-of-grace-r83774", "powerpyx-raya-cross-check"],
       "description": "Academy gate node and branch toward the Dectus lift."
+    },
+    {
+      "id": "landmark_church_of_irith",
+      "label": "Church of Irith",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "South Liurnia church grounds",
+      "worldEpoch": "liurnia_surface",
+      "x": 875,
+      "y": 1040,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-churches-r83204", "eldenpedia-thops", "nexus-map-for-goblins", "game8-liurnia-cross-check"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 525, "recordId": 62393900, "name": "Church of Irith", "map": "area 60 / grid 39,39", "position": [-30.40999984741211, 320.0400085449219, 106.70999908447266], "coordinateSpace": "game_world_xyz" },
+      "description": "Church landmark beyond Stormveil's Liurnia exit; the online XYZ is retained as a sidecar while the displayed x/y remains an abstract V1 layout coordinate."
     },
     {
       "id": "grace_church_of_cuckoo",
@@ -9101,6 +9121,22 @@
     {
       "id": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "label": "Village of the Albinaurics", "kind": "grace", "layer": "legacy", "region": "Liurnia of the Lakes", "floor": "Albinauric village ravine", "worldEpoch": "liurnia_surface", "x": 540, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-village-albinaurics", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Hidden ravine settlement below the lake plateau; the Omenkiller route is internal to this lower settlement layer."
+    },
+    {
+      "id": "landmark_rose_church",
+      "label": "Rose Church",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Liurnia of the Lakes",
+      "floor": "Rose Church island",
+      "worldEpoch": "liurnia_surface",
+      "x": 655,
+      "y": 1070,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rose-church", "nexus-map-for-goblins", "game8-liurnia-branches-cross-check"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 504, "recordId": 62354400, "name": "Rose Church", "map": "area 60 / grid 35,44", "position": [-88.36000061035156, 241.83999633789062, -112.47000122070312], "coordinateSpace": "game_world_xyz" },
+      "description": "Rose Church island south of Raya Lucaria; Varré's quest location is kept as a surface landmark rather than fabricated as a Site of Grace."
     },
     {
       "id": "omenkiller_village_albinaurics_gate", "label": "Omenkiller (Village of the Albinaurics)", "kind": "boss", "layer": "legacy", "region": "Village of the Albinaurics", "floor": "Village eastern end", "worldEpoch": "liurnia_surface", "x": 590, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -17451,6 +17487,18 @@
     ,{ "id": "gowry-to-church-of-plague", "from": "landmark_gowrys_shack", "to": "grace_church_of_plague", "mode": "Gowry's Shack to Church of the Plague surface route", "cost": 4, "risk": 5, "direction": "bidirectional", "transitionType": "surface_quest_landmark_walk", "requires": [], "sourceEvidence": ["eldenpedia-caelid-r68953", "pcgamer-millicent-cross-check", "gamefaqs-sellia-route-cross-check"], "verificationState": "online_cross_checked", "note": "Return west along the eastern Aeonia road from Gowry's Shack to the Church of the Plague grace.", "tags": ["walk", "surface", "quest", "backtrack", "cross_checked"] }
     ,{ "id": "gowry-to-sellia-under-stair", "from": "landmark_gowrys_shack", "to": "grace_caelid_main_sellia_under_stair", "mode": "Gowry's Shack to Sellia, Town of Sorcery", "cost": 5, "risk": 6, "direction": "bidirectional", "transitionType": "surface_town_approach", "requires": [], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Continue east from Gowry's Shack into Sellia; the under-stair grace is the formal town-entry representative for this route leg.", "tags": ["walk", "surface", "town", "quest", "cross_checked"] }
     ,{ "id": "sellia-under-stair-to-gowry", "from": "grace_caelid_main_sellia_under_stair", "to": "landmark_gowrys_shack", "mode": "Sellia, Town of Sorcery to Gowry's Shack", "cost": 5, "risk": 6, "direction": "bidirectional", "transitionType": "surface_town_approach", "requires": [], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Return west from Sellia to Gowry's Shack; the town grace is the formal endpoint representative, not a claim that the whole town is one coordinate.", "tags": ["walk", "surface", "town", "quest", "backtrack", "cross_checked"] }
+    ,{ "id": "lake-facing-to-church-of-irith", "from": "grace_lake_facing_cliffs", "to": "landmark_church_of_irith", "mode": "Lake-Facing Cliffs to Church of Irith", "cost": 3, "risk": 3, "direction": "forward", "transitionType": "liurnia_church_surface_approach", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-churches-r83204", "eldenpedia-thops", "nexus-map-for-goblins", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the south Liurnia road from the Stormveil exit toward the Church of Irith landmark.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "church-of-irith-to-lake-facing", "from": "landmark_church_of_irith", "to": "grace_lake_facing_cliffs", "mode": "Church of Irith return to Lake-Facing Cliffs", "cost": 3, "risk": 3, "direction": "backtrack", "transitionType": "liurnia_church_surface_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-churches-r83204", "eldenpedia-thops", "nexus-map-for-goblins", "game8-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return southwest from the church grounds to the Lake-Facing Cliffs staging grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "church-of-irith-to-academy-town", "from": "landmark_church_of_irith", "to": "grace_liurnia_of_the_lakes_main_academy_gate_town", "mode": "Church of Irith to Academy Gate Town", "cost": 7, "risk": 4, "direction": "forward", "transitionType": "liurnia_lakebed_surface_route", "requires": [], "sourceEvidence": ["eldenpedia-churches-r83204", "eldenpedia-thops", "eldenpedia-academy-gate-town", "game8-liurnia-cross-check", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Continue through the open south Liurnia lakebed toward Academy Gate Town; the Academy Glintstone Key is checked only at the sealed Academy entrance edge.", "tags": ["walk", "surface", "lakebed", "cross_checked"] }
+    ,{ "id": "academy-town-to-church-of-irith", "from": "grace_liurnia_of_the_lakes_main_academy_gate_town", "to": "landmark_church_of_irith", "mode": "Academy Gate Town to Church of Irith", "cost": 7, "risk": 4, "direction": "backtrack", "transitionType": "liurnia_lakebed_surface_route_return", "requires": [], "sourceEvidence": ["eldenpedia-churches-r83204", "eldenpedia-thops", "eldenpedia-academy-gate-town", "game8-liurnia-cross-check", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return southwest across the same open lakebed route to Church of Irith.", "tags": ["walk", "surface", "lakebed", "backtrack", "cross_checked"] }
+    ,{ "id": "academy-town-to-rose-church", "from": "grace_liurnia_of_the_lakes_main_academy_gate_town", "to": "landmark_rose_church", "mode": "Academy Gate Town to Rose Church island", "cost": 7, "risk": 6, "direction": "forward", "transitionType": "rose_church_island_route", "requires": [], "sourceEvidence": ["eldenpedia-rose-church", "nexus-map-for-goblins", "game8-liurnia-branches-cross-check", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Ride across the southern Liurnia shallows to the Rose Church island; the island landmark is not treated as a Site of Grace.", "tags": ["walk", "surface", "lakebed", "landmark", "cross_checked"] }
+    ,{ "id": "rose-church-to-academy-town", "from": "landmark_rose_church", "to": "grace_liurnia_of_the_lakes_main_academy_gate_town", "mode": "Rose Church island to Academy Gate Town", "cost": 7, "risk": 6, "direction": "backtrack", "transitionType": "rose_church_island_route_return", "requires": [], "sourceEvidence": ["eldenpedia-rose-church", "nexus-map-for-goblins", "game8-liurnia-branches-cross-check", "powerpyx-liurnia-cross-check"], "verificationState": "online_cross_checked", "note": "Return across the same southern Liurnia shallows to Academy Gate Town.", "tags": ["walk", "surface", "lakebed", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "rennala-to-debate-return", "from": "rennala_gate", "to": "grace_debate_parlor", "mode": "Rennala arena to Debate Parlor return", "cost": 5, "risk": 8, "direction": "backtrack", "transitionType": "academy_post_boss_return", "requires": ["rennala_defeated"], "sourceEvidence": ["eldenpedia-raya-r97405", "eldenpedia-raya-library-r65940", "powerpyx-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared Rennala arena and retrace the Debate Parlor approach.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "debate-to-redwolf-return", "from": "grace_debate_parlor", "to": "red_wolf_gate", "mode": "Debate Parlor to Red Wolf return", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "academy_boss_route_return", "requires": ["red_wolf_defeated"], "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the cleared Red Wolf approach toward the lower Academy floors.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "redwolf-to-schoolhouse-return", "from": "red_wolf_gate", "to": "grace_schoolhouse_classroom", "mode": "Red Wolf route to Schoolhouse return", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "academy_vertical_return", "requires": ["red_wolf_defeated"], "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the cleared Red Wolf route to the Schoolhouse Classroom floor.", "tags": ["boss", "vertical", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "schoolhouse-to-cuckoo-return", "from": "grace_schoolhouse_classroom", "to": "grace_church_of_cuckoo", "mode": "Schoolhouse to Church of the Cuckoo return", "cost": 8, "risk": 4, "direction": "backtrack", "transitionType": "academy_waterwheel_return", "requires": [], "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the waterwheel and graveyard route back to the Church of the Cuckoo grace.", "tags": ["vertical", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "cuckoo-to-main-academy-return", "from": "grace_church_of_cuckoo", "to": "grace_main_academy_gate", "mode": "Church of the Cuckoo to Main Academy Gate return", "cost": 3, "risk": 2, "direction": "backtrack", "transitionType": "academy_elevator_return", "requires": [], "sourceEvidence": ["eldenpedia-raya-r97405", "powerpyx-raya-cross-check", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Use the Academy gate elevator to return from the lower interior to Main Academy Gate.", "tags": ["elevator", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "main-academy-to-south-raya-return", "from": "grace_main_academy_gate", "to": "grace_liurnia_of_the_lakes_main_south_raya_lucaria_gate", "mode": "Main Academy Gate to South Raya Lucaria Gate return", "cost": 4, "risk": 3, "direction": "backtrack", "transitionType": "academy_key_gate_return", "requires": ["academy_glintstone_key"], "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-raya-r97405", "game8-raya-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Academy through the same southern seal after the Glintstone Key gate has been opened.", "tags": ["key_gate", "legacy", "backtrack", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17472,8 +17520,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 701,
-    "formalRouteEdgeCount": 1095,
+    "formalNodeCount": 703,
+    "formalRouteEdgeCount": 1107,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

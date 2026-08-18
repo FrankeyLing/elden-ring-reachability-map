@@ -86,6 +86,10 @@ ROUTE_ENDPOINT_ALIASES = {
     "smolderingchurch": "grace_smoldering_church",
     "churchoftheplague": "grace_church_of_plague",
     "selliatownofsorcery": "grace_caelid_main_sellia_under_stair",
+    "churchofirith": "landmark_church_of_irith",
+    "rosechurchvarre": "landmark_rose_church",
+    "bellumhighwayeastliurnia": "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate",
+    "bellumhighway": "grace_liurnia_of_the_lakes_bellum_highway_east_raya_lucaria_gate",
     "innerconsecratedsnowfield": "grace_inner_consecrated_snowfield",
     "ordinaliturgicaltown": "grace_ordina_liturgical_town",
     "apostatederelict": "grace_mountaintops_of_the_giants_apostate_derelict",
@@ -424,6 +428,29 @@ def audit() -> dict:
     }
     if any(transition_contract[key] for key in ("missing_source_evidence", "missing_verification_state", "invalid_endpoints", "semantic_relation_edge_ids")):
         raise ValueError(f"formal transition contract failed: {transition_contract}")
+    online_coordinate_nodes = [node for node in nodes if node.get("onlineCoordinate")]
+    online_coordinate_contract = {
+        "node_count": len(online_coordinate_nodes),
+        "invalid_nodes": [
+            node["id"]
+            for node in online_coordinate_nodes
+            if not all(
+                [
+                    node["onlineCoordinate"].get("source"),
+                    node["onlineCoordinate"].get("snapshot"),
+                    node["onlineCoordinate"].get("sourceIndex") is not None,
+                    node["onlineCoordinate"].get("recordId") is not None,
+                    node["onlineCoordinate"].get("name"),
+                    node["onlineCoordinate"].get("map"),
+                    node["onlineCoordinate"].get("coordinateSpace") == "game_world_xyz",
+                    isinstance(node["onlineCoordinate"].get("position"), list)
+                    and len(node["onlineCoordinate"].get("position")) == 3,
+                ]
+            )
+        ],
+    }
+    if online_coordinate_contract["invalid_nodes"]:
+        raise ValueError(f"online coordinate contract failed: {online_coordinate_contract}")
     topology_adjacency: dict[str, set[str]] = {}
     for edge in graph["edges"]:
         topology_adjacency.setdefault(edge["from"], set()).add(edge["to"])
@@ -648,6 +675,7 @@ def audit() -> dict:
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
         },
         "transition_contract": transition_contract,
+        "online_coordinate_contract": online_coordinate_contract,
         "safety": {
             "game_process_accessed": False,
             "game_files_accessed": False,
