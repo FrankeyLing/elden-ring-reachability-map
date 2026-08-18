@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.121-online-multiplane",
+  "version": "1.0.122-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -942,6 +942,21 @@
       "hint": "Rakshasa in the Eastern Nameless Mausoleum has been cleared."
     },
     {
+      "id": "ghostflame_dragon_gravesite_defeated",
+      "label": "Ghostflame Dragon (Greatbridge North) defeated",
+      "hint": "The Ghostflame Dragon in the Gravesite Plain lake west of Greatbridge, North has been cleared."
+    },
+    {
+      "id": "ghostflame_dragon_moorth_defeated",
+      "label": "Ghostflame Dragon (Moorth Highway) defeated",
+      "hint": "The Ghostflame Dragon south of Moorth Ruins has been cleared."
+    },
+    {
+      "id": "ghostflame_dragon_cerulean_defeated",
+      "label": "Ghostflame Dragon (Cerulean Coast) defeated",
+      "hint": "The Ghostflame Dragon south of the Cerulean Coast grace has been cleared."
+    },
+    {
       "id": "scaly_misbegotten_morne_tunnel_defeated",
       "label": "Morne Tunnel Scaly Misbegotten defeated",
       "hint": "The Scaly Misbegotten boss at the bottom of Morne Tunnel has been cleared."
@@ -1147,6 +1162,8 @@
     { "id": "eldenpedia-miquella-cross-moorth-index", "label": "Eldenpedia / Miquella's Cross (Moorth Ruins)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Moorth_Ruins%29", "grade": "A" },
     { "id": "eldenpedia-uhl-palace-ruins", "label": "Eldenpedia / Uhl Palace Ruins", "url": "https://eldenring.wiki.gg/wiki/Uhl_Palace_Ruins", "grade": "A" },
     { "id": "gamespot-uhl-palace-cross-check", "label": "GameSpot / Ainsel River and Uhl Palace route", "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/", "grade": "B" },
+    { "id": "eldenpedia-ghostflame-dragon", "label": "Eldenpedia / Ghostflame Dragon", "url": "https://eldenring.wiki.gg/wiki/Ghostflame_Dragon", "grade": "A" },
+    { "id": "game8-ghostflame-dragon-cross-check", "label": "Game8 / Ghostflame Dragon locations", "url": "https://game8.co/games/Elden-Ring/archives/459841", "grade": "B" },
     { "id": "eldenpedia-blackgaol-knight", "label": "Eldenpedia / Blackgaol Knight", "url": "https://eldenring.wiki.gg/wiki/Blackgaol_Knight", "grade": "A" },
     { "id": "eldenpedia-dancer-of-ranah", "label": "Eldenpedia / Dancer of Ranah", "url": "https://eldenring.wiki.gg/wiki/Dancer_of_Ranah", "grade": "A" },
     { "id": "eldenpedia-red-bear", "label": "Eldenpedia / Red Bear", "url": "https://eldenring.wiki.gg/wiki/Red_Bear", "grade": "A" },
@@ -9809,6 +9826,39 @@
     {
       "id": "grace_liurnia_of_the_lakes_main_artist_s_shack", "label": "Artist's Shack", "aliases": ["Artist's Shack (Liurnia)"], "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia cliff shack", "worldEpoch": "liurnia_surface", "x": 1180, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "gamerguides-artist-shack-liurnia-cross-check", "neoseeker-liurnia-central-east-cross-check"], "description": "Liurnia Artist's Shack on the eastern cliff north of Liurnia Highway North; it is deliberately separate from the Limgrave grace with the same display name."
+    },
+    {
+      "id": "ghostflame_dragon_gravesite_gate", "label": "Ghostflame Dragon (Greatbridge North)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Greatbridge, North", "worldEpoch": "shadow_realm", "x": 350, "y": 690, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 399, "recordId": 38454400, "name": "Ghostflame Dragon", "map": "area 41 / grid 61,45,44", "position": [60.0, 88.95500183105469, -80.0], "coordinateSpace": "game_world_xyz" },
+      "description": "Optional field boss in the Gravesite Plain lake west of the Greatbridge, North grace. The coordinate is the online map-point record; the route node remains separate from the grace."
+    },
+    {
+      "id": "ghostflame_dragon_gravesite_post_state", "label": "Greatbridge North Ghostflame Dragon cleared state", "kind": "state", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Greatbridge, North", "worldEpoch": "shadow_realm", "x": 390, "y": 690, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "description": "Cleared-state node for the Greatbridge North Ghostflame Dragon arena; no post-boss grace is fabricated."
+    },
+    {
+      "id": "ghostflame_dragon_moorth_gate", "label": "Ghostflame Dragon (Moorth Highway)", "kind": "boss", "layer": "surface", "region": "Scadu Altus", "floor": "Ruined encampment south of Moorth Ruins", "worldEpoch": "shadow_realm", "x": 460, "y": 630, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 412, "recordId": 39494300, "name": "Ghostflame Dragon", "map": "area 41 / grid 61,49,43", "position": [-32.0, 88.95500183105469, 170.0], "coordinateSpace": "game_world_xyz" },
+      "description": "Optional field boss at the ruined encampment south of Moorth Ruins, reachable from Moorth Highway, South. The online map point is retained as game-world XYZ evidence."
+    },
+    {
+      "id": "ghostflame_dragon_moorth_post_state", "label": "Moorth Highway Ghostflame Dragon cleared state", "kind": "state", "layer": "surface", "region": "Scadu Altus", "floor": "Ruined encampment south of Moorth Ruins", "worldEpoch": "shadow_realm", "x": 500, "y": 630, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "description": "Cleared-state node for the Moorth Highway Ghostflame Dragon arena; the nearby grace remains the return anchor."
+    },
+    {
+      "id": "ghostflame_dragon_cerulean_gate", "label": "Ghostflame Dragon (Cerulean Coast)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "South of Cerulean Coast", "worldEpoch": "shadow_realm", "x": 520, "y": 910, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 406, "recordId": 38483800, "name": "Ghostflame Dragon", "map": "area 41 / grid 61,48,38", "position": [-85.0, 88.95500183105469, 35.0], "coordinateSpace": "game_world_xyz" },
+      "description": "Optional field boss south of the Cerulean Coast grace. The route is modeled as an approach from the grace, not as a Euclidean-nearest-point claim."
+    },
+    {
+      "id": "ghostflame_dragon_cerulean_post_state", "label": "Cerulean Coast Ghostflame Dragon cleared state", "kind": "state", "layer": "surface", "region": "Gravesite Plain", "floor": "South of Cerulean Coast", "worldEpoch": "shadow_realm", "x": 560, "y": 910, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"],
+      "description": "Cleared-state node for the Cerulean Coast Ghostflame Dragon arena; no extra grace is invented."
     }
   ],
   "edges": [
@@ -18294,6 +18344,15 @@
     ,{ "id": "eastern-mausoleum-to-rakshasa", "from": "landmark_eastern_nameless_mausoleum", "to": "rakshasa_gate", "mode": "Eastern Nameless Mausoleum entrance to Rakshasa", "cost": 2, "risk": 9, "direction": "forward", "transitionType": "nameless_mausoleum_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums"], "verificationState": "online_cross_checked", "note": "Enter the Eastern Nameless Mausoleum arena; no raw Boss XYZ is claimed because the current online Boss snapshot has no matching record.", "tags": ["boss", "legacy", "landmark", "cross_checked"] }
     ,{ "id": "rakshasa-to-cleared-state", "from": "rakshasa_gate", "to": "rakshasa_post_state", "mode": "Rakshasa completion", "cost": 2, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["rakshasa_defeated"], "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state return route after Rakshasa is defeated.", "tags": ["boss", "conditional", "state_change", "legacy", "cross_checked"] }
     ,{ "id": "rakshasa-post-to-eastern-mausoleum", "from": "rakshasa_post_state", "to": "landmark_eastern_nameless_mausoleum", "mode": "Rakshasa cleared return to Eastern Nameless Mausoleum", "cost": 2, "risk": 9, "direction": "backtrack", "transitionType": "boss_arena_exit_return", "requires": ["rakshasa_defeated"], "sourceEvidence": ["eldenpedia-rakshasa", "eldenpedia-eastern-nameless-mausoleum"], "verificationState": "online_cross_checked", "note": "Leave the cleared arena and return to the mausoleum entrance landmark.", "tags": ["boss", "legacy", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "greatbridge-north-to-ghostflame-dragon", "from": "grace_gravesite_plain_main_greatbridge_north", "to": "ghostflame_dragon_gravesite_gate", "mode": "Greatbridge, North to Ghostflame Dragon", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Leave Greatbridge, North and follow the lake approach west to the optional Ghostflame Dragon arena.", "tags": ["walk", "surface", "boss", "hazard", "cross_checked"] }
+    ,{ "id": "ghostflame-dragon-gravesite-to-cleared-state", "from": "ghostflame_dragon_gravesite_gate", "to": "ghostflame_dragon_gravesite_post_state", "mode": "Greatbridge North Ghostflame Dragon completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["ghostflame_dragon_gravesite_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "The arena becomes a cleared-state node after the field boss is defeated.", "tags": ["boss", "conditional", "state_change", "surface", "cross_checked"] }
+    ,{ "id": "ghostflame-dragon-gravesite-return", "from": "ghostflame_dragon_gravesite_post_state", "to": "grace_gravesite_plain_main_greatbridge_north", "mode": "Greatbridge North Ghostflame Dragon cleared return", "cost": 5, "risk": 8, "direction": "backtrack", "transitionType": "field_boss_return", "requires": ["ghostflame_dragon_gravesite_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the lake approach to Greatbridge, North; no post-boss grace is fabricated.", "tags": ["walk", "surface", "boss", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "moorth-highway-south-to-ghostflame-dragon", "from": "grace_scadu_altus_main_moorth_highway_south", "to": "ghostflame_dragon_moorth_gate", "mode": "Moorth Highway South to Ghostflame Dragon", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the highway north toward the ruined encampment south of Moorth Ruins where the optional field boss waits.", "tags": ["walk", "surface", "boss", "hazard", "cross_checked"] }
+    ,{ "id": "ghostflame-dragon-moorth-to-cleared-state", "from": "ghostflame_dragon_moorth_gate", "to": "ghostflame_dragon_moorth_post_state", "mode": "Moorth Highway Ghostflame Dragon completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["ghostflame_dragon_moorth_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "The ruined encampment arena becomes a cleared-state node after the field boss is defeated.", "tags": ["boss", "conditional", "state_change", "surface", "cross_checked"] }
+    ,{ "id": "ghostflame-dragon-moorth-return", "from": "ghostflame_dragon_moorth_post_state", "to": "grace_scadu_altus_main_moorth_highway_south", "mode": "Moorth Highway Ghostflame Dragon cleared return", "cost": 5, "risk": 8, "direction": "backtrack", "transitionType": "field_boss_return", "requires": ["ghostflame_dragon_moorth_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Return along the Moorth Highway route to the south grace.", "tags": ["walk", "surface", "boss", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "cerulean-coast-to-ghostflame-dragon", "from": "grace_gravesite_plain_cerulean_coast_cerulean_coast", "to": "ghostflame_dragon_cerulean_gate", "mode": "Cerulean Coast to Ghostflame Dragon", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the coast south from the Cerulean Coast grace to the optional Ghostflame Dragon arena.", "tags": ["walk", "surface", "boss", "hazard", "cross_checked"] }
+    ,{ "id": "ghostflame-dragon-cerulean-to-cleared-state", "from": "ghostflame_dragon_cerulean_gate", "to": "ghostflame_dragon_cerulean_post_state", "mode": "Cerulean Coast Ghostflame Dragon completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["ghostflame_dragon_cerulean_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "The coastal arena becomes a cleared-state node after the field boss is defeated.", "tags": ["boss", "conditional", "state_change", "surface", "cross_checked"] }
+    ,{ "id": "ghostflame-dragon-cerulean-return", "from": "ghostflame_dragon_cerulean_post_state", "to": "grace_gravesite_plain_cerulean_coast_cerulean_coast", "mode": "Cerulean Coast Ghostflame Dragon cleared return", "cost": 5, "risk": 8, "direction": "backtrack", "transitionType": "field_boss_return", "requires": ["ghostflame_dragon_cerulean_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the southern coast route to the Cerulean Coast grace.", "tags": ["walk", "surface", "boss", "backtrack", "conditional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -18315,8 +18374,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 735,
-    "formalRouteEdgeCount": 1170,
+    "formalNodeCount": 741,
+    "formalRouteEdgeCount": 1179,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
