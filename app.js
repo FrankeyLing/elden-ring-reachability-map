@@ -164,7 +164,7 @@ function edgeIsAvailable(edge) {
   return (edge.requires || []).every((condition) => state.conditions.has(condition));
 }
 
-function findBestGraceOrigin(targetId) {
+function findBestGraceOrigin(targetId, excludedGraceIds = new Set()) {
   const incoming = new Map();
   state.data.edges.filter((edge) => edgeIsAvailable(edge)).forEach((edge) => {
     if (!incoming.has(edge.to)) incoming.set(edge.to, []);
@@ -191,7 +191,7 @@ function findBestGraceOrigin(targetId) {
     });
   }
   return [...state.nodes.values()]
-    .filter((node) => node.kind === "grace" && distances.has(node.id))
+    .filter((node) => node.kind === "grace" && !excludedGraceIds.has(node.id) && distances.has(node.id))
     .sort((a, b) => distances.get(a.id) - distances.get(b.id))[0]?.id || null;
 }
 
@@ -602,7 +602,11 @@ function renderOnlinePoiResults(payload, kind) {
     if (kind === "achievements") {
       const targetIds = [...new Set([...(record.formal_target_ids || []), ...(record.location_target_ids || [])])];
       const targets = targetIds.map((id) => nodeLabel(id)).join(" / ") || "未绑定正式目标节点";
-      detail.textContent = record.category + " · " + record.coverage_state + " · " + targets;
+      const requirements = (record.external_requirements || []).join("；");
+      const prerequisiteTargets = (record.prerequisite_target_ids || []).map((id) => nodeLabel(id)).join(" / ");
+      detail.textContent = record.category + " · " + record.coverage_state + " · " + targets
+        + (prerequisiteTargets ? " · 前置节点：" + prerequisiteTargets : "")
+        + (requirements ? " · 条件：" + requirements : "");
     } else {
       const position = record.position || [];
       detail.textContent = (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
@@ -613,7 +617,7 @@ function renderOnlinePoiResults(payload, kind) {
       if (targetId) {
         row.classList.add("clickable");
         row.addEventListener("click", () => {
-          const originId = findBestGraceOrigin(targetId);
+          const originId = findBestGraceOrigin(targetId, new Set([targetId]));
           if (originId) {
             state.origin = originId;
             state.destination = targetId;

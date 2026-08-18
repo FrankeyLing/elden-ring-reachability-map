@@ -176,6 +176,12 @@ def audit() -> dict:
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
+    graph_evidence_ids = {
+        evidence.get("id") if isinstance(evidence, dict) else evidence
+        for evidence in graph.get("sourceEvidence", [])
+    }
+    known_evidence_ids = related_source_ids | graph_evidence_ids | {achievements.get("source", {}).get("source_id")}
+    graph_condition_ids = {condition["id"] for condition in graph.get("conditions", [])}
     achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
     achievement_contract = {
         "records": len(achievements["records"]),
@@ -196,11 +202,48 @@ def audit() -> dict:
             for target_id in record.get("location_target_ids", [])
             if target_id not in node_by_id
         ],
+        "invalid_prerequisite_target_ids": [
+            {"achievement": record.get("canonical_id"), "target_id": target_id}
+            for record in achievements["records"]
+            for target_id in record.get("prerequisite_target_ids", [])
+            if target_id not in node_by_id
+        ],
+        "invalid_location_target_group_ids": [
+            {"achievement": record.get("canonical_id"), "target_id": target_id}
+            for record in achievements["records"]
+            for group in record.get("location_target_groups", [])
+            for target_id in group.get("target_ids", [])
+            if target_id not in node_by_id
+        ],
+        "invalid_state_requirement_ids": [
+            {"achievement": record.get("canonical_id"), "condition_id": condition_id}
+            for record in achievements["records"]
+            for condition_id in record.get("state_requirements", [])
+            if condition_id not in graph_condition_ids
+        ],
+        "invalid_effect_condition_ids": [
+            {"achievement": record.get("canonical_id"), "condition_id": condition_id}
+            for record in achievements["records"]
+            for condition_id in record.get("effect_conditions", [])
+            if condition_id not in graph_condition_ids
+        ],
         "missing_location_source_evidence": [
             record.get("canonical_id")
             for record in achievements["records"]
             if record.get("location_target_ids")
             and record.get("location_source_evidence") not in related_source_ids
+        ],
+        "missing_location_group_source_evidence": [
+            {"achievement": record.get("canonical_id"), "requirement": group.get("requirement")}
+            for record in achievements["records"]
+            for group in record.get("location_target_groups", [])
+            if group.get("source_evidence") not in related_source_ids
+        ],
+        "invalid_record_evidence_ids": [
+            {"achievement": record.get("canonical_id"), "field": field, "source_id": record.get(field)}
+            for record in achievements["records"]
+            for field in ("state_source_evidence", "formal_target_source_evidence", "prerequisite_source_evidence")
+            if record.get(field) and record.get(field) not in known_evidence_ids
         ],
         "routeable_records": [
             record.get("canonical_id") for record in achievements["records"] if record.get("routeable") is not False
@@ -214,7 +257,13 @@ def audit() -> dict:
         or achievement_contract["missing_source_evidence"]
         or achievement_contract["invalid_formal_target_ids"]
         or achievement_contract["invalid_location_target_ids"]
+        or achievement_contract["invalid_prerequisite_target_ids"]
+        or achievement_contract["invalid_location_target_group_ids"]
+        or achievement_contract["invalid_state_requirement_ids"]
+        or achievement_contract["invalid_effect_condition_ids"]
         or achievement_contract["missing_location_source_evidence"]
+        or achievement_contract["missing_location_group_source_evidence"]
+        or achievement_contract["invalid_record_evidence_ids"]
         or achievement_contract["routeable_records"]
         or not achievement_contract["source_revision"]
     ):
@@ -325,7 +374,7 @@ def audit() -> dict:
     for edge in graph["edges"]:
         topology_adjacency.setdefault(edge["from"], set()).add(edge["to"])
 
-    all_condition_ids = {condition["id"] for condition in graph["conditions"]}
+    all_condition_ids = graph_condition_ids
     condition_adjacency: dict[str, set[str]] = {}
     for edge in graph["edges"]:
         if edge.get("routeable") is False or not set(edge.get("requires", [])).issubset(all_condition_ids):
@@ -336,6 +385,8 @@ def audit() -> dict:
         best = None
         for grace in formal_graces:
             start = grace["id"]
+            if start == target_id:
+                continue
             seen = {start}
             queue = [(start, 0)]
             while queue:
@@ -349,6 +400,8 @@ def audit() -> dict:
                     if neighbor not in seen:
                         seen.add(neighbor)
                         queue.append((neighbor, hops + 1))
+        if best is None and target_id in {grace["id"] for grace in formal_graces}:
+            return {"origin": target_id, "target": target_id, "hops": 0}
         return best
 
     achievement_route_coverage = []
@@ -488,6 +541,14 @@ def audit() -> dict:
             **achievement_contract,
             "formal_target_bound_records": sum(bool(record.get("formal_target_ids")) for record in achievements["records"]),
             "location_target_bound_records": sum(bool(record.get("location_target_ids")) for record in achievements["records"]),
+            "prerequisite_target_bound_records": sum(bool(record.get("prerequisite_target_ids")) for record in achievements["records"]),
+            "state_bound_records": sum(
+                bool(record.get("state_requirements") or record.get("effect_conditions"))
+                for record in achievements["records"]
+            ),
+            "location_target_group_count": sum(
+                len(record.get("location_target_groups", [])) for record in achievements["records"]
+            ),
             "unbound_records": [
                 record["canonical_id"] for record in achievements["records"] if not record.get("formal_target_ids")
             ],
