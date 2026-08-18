@@ -227,7 +227,6 @@ code { color: #c0b58f; font-size: 9px; }
 .map-mode.active, .map-mode:hover { color: var(--gold); border-color: rgba(230, 200, 121, .55); }
 .coordinate-map-select { max-width: 170px; border: 1px solid var(--line); background: #111820; color: #b9b8a9; font-size: 9px; padding: 5px; }
 .coordinate-poi-label { fill: #d8d0b5; font-size: 8px; pointer-events: none; }
-.projected-raster { opacity: .72; pointer-events: none; }
 .coordinate-poi-label.item { fill: #a8bd8e; }
 .node-core.item { fill: #a8bd8e; }
 .node-core.entity { fill: #c77d7d; }
