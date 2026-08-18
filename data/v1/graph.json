@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.166-online-multiplane",
+    "version": "1.0.170-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -18567,6 +18567,10 @@
     ,{ "id": "cerulean-coast-to-ghostflame-dragon", "from": "grace_gravesite_plain_cerulean_coast_cerulean_coast", "to": "ghostflame_dragon_cerulean_gate", "mode": "Cerulean Coast to Ghostflame Dragon", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Follow the coast south from the Cerulean Coast grace to the optional Ghostflame Dragon arena.", "tags": ["walk", "surface", "boss", "hazard", "cross_checked"] }
     ,{ "id": "ghostflame-dragon-cerulean-to-cleared-state", "from": "ghostflame_dragon_cerulean_gate", "to": "ghostflame_dragon_cerulean_post_state", "mode": "Cerulean Coast Ghostflame Dragon completion", "cost": 3, "risk": 10, "direction": "forward", "transitionType": "boss_completion_state", "requires": ["ghostflame_dragon_cerulean_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "The coastal arena becomes a cleared-state node after the field boss is defeated.", "tags": ["boss", "conditional", "state_change", "surface", "cross_checked"] }
     ,{ "id": "ghostflame-dragon-cerulean-return", "from": "ghostflame_dragon_cerulean_post_state", "to": "grace_gravesite_plain_cerulean_coast_cerulean_coast", "mode": "Cerulean Coast Ghostflame Dragon cleared return", "cost": 5, "risk": 8, "direction": "backtrack", "transitionType": "field_boss_return", "requires": ["ghostflame_dragon_cerulean_defeated"], "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the southern coast route to the Cerulean Coast grace.", "tags": ["walk", "surface", "boss", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "side-door-rewards-to-return-chapel", "from": "chapel_of_anticipation_side_door_rewards", "to": "chapel_of_anticipation_return_state", "mode": "Chapel side-door rewards return to return island", "cost": 3, "risk": 4, "direction": "backtrack", "transitionType": "return_only_reward_branch_return", "requires": [], "sourceEvidence": ["eldenpedia-chapel-of-anticipation", "game8-nepheli-chapel-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the unlocked side-chapel route after collecting Stormhawk King and Stormhawk Deenh; the return island remains isolated from the mainland.", "tags": ["walk", "reward", "optional", "backtrack", "cross_checked"] }
+    ,{ "id": "finger-rhia-bell-to-ruins", "from": "finger_rhia_bell", "to": "grace_gravesite_plain_cerulean_coast_finger_ruins_of_rhia", "mode": "Finger Ruins of Rhia bell return", "cost": 3, "risk": 7, "direction": "backtrack", "transitionType": "quest_interaction_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-rhia", "game8-ymir-cross-check", "powerpyx-ymir-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the first bell interaction and retrace the short approach to the Finger Ruins of Rhia grace.", "tags": ["walk", "quest", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "finger-dheo-bell-to-ruins", "from": "finger_dheo_bell", "to": "finger_ruins_dheo", "mode": "Finger Ruins of Dheo bell return", "cost": 3, "risk": 8, "direction": "backtrack", "transitionType": "quest_interaction_return", "requires": [], "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "game8-ymir-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the second bell interaction and retrace the short approach to the Finger Ruins of Dheo landmark.", "tags": ["walk", "quest", "surface", "backtrack", "cross_checked"] }
+    ,{ "id": "lamenter-post-to-grace", "from": "lamenter_post_state", "to": "grace_gravesite_plain_charo_s_hidden_grave_lamenter_s_gaol", "mode": "Lamenter's Gaol post-boss return", "cost": 5, "risk": 9, "direction": "backtrack", "transitionType": "boss_completion_state_return", "requires": ["lamenter_defeated"], "sourceEvidence": ["eldenpedia-lamenters-gaol", "neoseeker-charo-cross-check", "gamer-guides-lamenter-cross-check"], "verificationState": "online_cross_checked", "note": "After Lamenter is defeated, retrace the cleared gaol route to the Lamenter's Gaol grace; no new exit or post-boss grace is fabricated.", "tags": ["boss", "legacy", "backtrack", "conditional", "optional", "cross_checked"] }
   ],
   "relations": [
     {
@@ -18589,7 +18593,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 741,
-  "formalRouteEdgeCount": 1183,
+    "formalRouteEdgeCount": 1187,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
