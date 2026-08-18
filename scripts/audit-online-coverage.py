@@ -557,6 +557,37 @@ def audit() -> dict:
         or online_map_key_contract["safety"].get("gameDirectoryAccess")
     ):
         raise ValueError(f"online map-key index contract failed: {online_map_key_contract}")
+    map_point_candidate_records = []
+    for path in ONLINE_MAP_POINT_FILES:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        map_point_candidate_records.extend(
+            (path.stem, row) for row in payload["records"] if len(row[10] or []) == 1
+        )
+    map_point_candidates_by_target: dict[str, list[dict]] = {}
+    for snapshot, row in map_point_candidate_records:
+        map_point_candidates_by_target.setdefault(row[10][0], []).append(
+            {"snapshot": snapshot, "sourceIndex": row[0], "recordId": row[1], "names": row[9] or []}
+        )
+    map_point_candidate_contract = {
+        "single_candidate_records": len(map_point_candidate_records),
+        "unique_formal_targets": len(map_point_candidates_by_target),
+        "bound_formal_targets": sum(
+            target_id in {node["id"] for node in nodes if node.get("onlineCoordinate")}
+            for target_id in map_point_candidates_by_target
+        ),
+        "unbound_formal_targets": {
+            target_id: records
+            for target_id, records in map_point_candidates_by_target.items()
+            if target_id not in {node["id"] for node in nodes if node.get("onlineCoordinate")}
+        },
+    }
+    if (
+        map_point_candidate_contract["single_candidate_records"] != 157
+        or map_point_candidate_contract["unique_formal_targets"] != 139
+        or map_point_candidate_contract["bound_formal_targets"] != 138
+        or sorted(map_point_candidate_contract["unbound_formal_targets"]) != ["hallowhorn_grounds_siofra"]
+    ):
+        raise ValueError(f"online map-point candidate contract failed: {map_point_candidate_contract}")
     transition_contract = {
         "edge_count": len(graph["edges"]),
         "missing_source_evidence": [edge["id"] for edge in graph["edges"] if not edge.get("sourceEvidence")],
@@ -958,6 +989,7 @@ def audit() -> dict:
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,
         "online_map_key_contract": online_map_key_contract,
+        "map_point_candidate_contract": map_point_candidate_contract,
         "online_text_location_contract": online_text_location_contract,
         "unresolved_boss_location_contract": unresolved_boss_location_contract,
         "online_coordinate_contract": online_coordinate_contract,
