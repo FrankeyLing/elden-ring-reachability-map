@@ -929,6 +929,21 @@ def audit() -> dict:
     }
     if physical_route_discontinuity_contract["actual"] != physical_route_discontinuity_contract["expected"]:
         raise ValueError(f"physical route discontinuity contract failed: {physical_route_discontinuity_contract}")
+    expected_broad_route_legs = {
+        "er_guide_leg_caelid-04",
+        "er_guide_leg_caelid-06",
+        "er_guide_leg_dlc-scadu-altus-01",
+        "er_guide_leg_dlc-scadu-altus-04",
+        "er_guide_leg_dlc-scadu-altus-05",
+        "er_guide_leg_dlc-scadu-altus-07",
+        "er_guide_leg_dragonbarrow-02",
+    }
+    broad_route_endpoint_contract = {
+        "actual": sorted(item["catalog_id"] for item in endpoint_unmapped),
+        "expected": sorted(expected_broad_route_legs),
+    }
+    if broad_route_endpoint_contract["actual"] != broad_route_endpoint_contract["expected"]:
+        raise ValueError(f"broad route endpoint contract failed: {broad_route_endpoint_contract}")
 
     return {
         "graph": {
@@ -999,6 +1014,7 @@ def audit() -> dict:
             "exact_endpoint_without_topology_path": exact_endpoint_without_path,
             "endpoint_unmapped_or_broad_sweep": endpoint_unmapped,
             "physical_route_discontinuity_contract": physical_route_discontinuity_contract,
+            "broad_route_endpoint_contract": broad_route_endpoint_contract,
         },
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,
