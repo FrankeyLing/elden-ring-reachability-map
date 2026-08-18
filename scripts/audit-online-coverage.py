@@ -176,6 +176,9 @@ def audit() -> dict:
     nodes = graph["nodes"]
     node_by_id = {node["id"]: node for node in nodes}
     related_source_ids = {source.get("source_id") for source in achievements.get("related_sources", [])}
+    related_sources_by_id = {
+        source.get("source_id"): source for source in achievements.get("related_sources", [])
+    }
     graph_evidence_ids = {
         evidence.get("id") if isinstance(evidence, dict) else evidence
         for evidence in graph.get("sourceEvidence", [])
@@ -183,6 +186,46 @@ def audit() -> dict:
     known_evidence_ids = related_source_ids | graph_evidence_ids | {achievements.get("source", {}).get("source_id")}
     graph_condition_ids = {condition["id"] for condition in graph.get("conditions", [])}
     achievement_ids = [record.get("canonical_id") for record in achievements["records"]]
+    required_items_by_achievement = {
+        record["canonical_id"]: set(record.get("required_item_names", []))
+        for record in achievements["records"]
+    }
+    text_location_catalog = achievements.get("online_text_location_evidence", {})
+    text_location_entries = [
+        (achievement_id, entry)
+        for achievement_id, entries in text_location_catalog.items()
+        for entry in entries
+    ]
+    text_location_contract = {
+        "achievement_ids_without_records": sorted(
+            achievement_id for achievement_id in text_location_catalog if achievement_id not in required_items_by_achievement
+        ),
+        "invalid_item_names": [
+            {"achievement": achievement_id, "item": entry.get("item")}
+            for achievement_id, entry in text_location_entries
+            if entry.get("item") not in required_items_by_achievement.get(achievement_id, set())
+        ],
+        "invalid_target_ids": [
+            {"achievement": achievement_id, "item": entry.get("item"), "target_id": entry.get("formal_target_id")}
+            for achievement_id, entry in text_location_entries
+            if entry.get("formal_target_id") not in node_by_id
+        ],
+        "invalid_source_evidence": [
+            {"achievement": achievement_id, "item": entry.get("item"), "source_id": entry.get("source_evidence")}
+            for achievement_id, entry in text_location_entries
+            if entry.get("source_evidence") not in known_evidence_ids
+        ],
+        "missing_source_urls": [
+            {"achievement": achievement_id, "item": entry.get("item"), "source_id": entry.get("source_evidence")}
+            for achievement_id, entry in text_location_entries
+            if not related_sources_by_id.get(entry.get("source_evidence"), {}).get("source_url")
+        ],
+        "coordinate_claims": [
+            {"achievement": achievement_id, "item": entry.get("item")}
+            for achievement_id, entry in text_location_entries
+            if entry.get("coordinate_available") is not False
+        ],
+    }
     achievement_contract = {
         "records": len(achievements["records"]),
         "declared_records": achievements.get("record_count"),
@@ -245,6 +288,7 @@ def audit() -> dict:
             for field in ("state_source_evidence", "formal_target_source_evidence", "prerequisite_source_evidence")
             if record.get(field) and record.get(field) not in known_evidence_ids
         ],
+        "online_text_location_contract": text_location_contract,
         "routeable_records": [
             record.get("canonical_id") for record in achievements["records"] if record.get("routeable") is not False
         ],
@@ -264,6 +308,7 @@ def audit() -> dict:
         or achievement_contract["missing_location_source_evidence"]
         or achievement_contract["missing_location_group_source_evidence"]
         or achievement_contract["invalid_record_evidence_ids"]
+        or any(text_location_contract.values())
         or achievement_contract["routeable_records"]
         or not achievement_contract["source_revision"]
     ):

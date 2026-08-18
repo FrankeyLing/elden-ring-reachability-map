@@ -32,6 +32,48 @@
       "license": "CC BY-SA 4.0 page text unless otherwise noted"
     },
     {
+      "source_id": "eldenpedia-dark-moon-greatsword",
+      "page_title": "Dark Moon Greatsword",
+      "source_url": "https://eldenring.wiki.gg/wiki/Dark_Moon_Greatsword",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-grafted-blade-greatsword",
+      "page_title": "Grafted Blade Greatsword",
+      "source_url": "https://eldenring.wiki.gg/wiki/Grafted_Blade_Greatsword",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-marais-executioners-sword",
+      "page_title": "Marais Executioner's Sword",
+      "source_url": "https://eldenring.wiki.gg/wiki/Marais_Executioner%27s_Sword",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-comet-azur",
+      "page_title": "Comet Azur",
+      "source_url": "https://eldenring.wiki.gg/wiki/Comet_Azur",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-stars-of-ruin",
+      "page_title": "Stars of Ruin",
+      "source_url": "https://eldenring.wiki.gg/wiki/Stars_of_Ruin",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-greyolls-roar",
+      "page_title": "Greyoll's Roar",
+      "source_url": "https://eldenring.wiki.gg/wiki/Greyoll%27s_Roar",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
       "source_id": "eldenpedia-endings",
       "page_title": "Endings",
       "page_id": 11798,
@@ -156,6 +198,18 @@
   ],
   "record_count": 42,
   "routeable_record_count": 0,
+  "online_text_location_evidence": {
+    "achievement_legendary_armaments": [
+      { "item": "Dark Moon Greatsword", "formal_target_id": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "source_evidence": "eldenpedia-dark-moon-greatsword", "coordinate_available": false, "note": "Quest reward obtained beneath the Cathedral of Manus Celes after completing Ranni's quest." },
+      { "item": "Grafted Blade Greatsword", "formal_target_id": "grace_limgrave_weeping_peninsula_castle_morne_lift", "source_evidence": "eldenpedia-grafted-blade-greatsword", "coordinate_available": false, "note": "Guaranteed drop from Leonine Misbegotten at Castle Morne." },
+      { "item": "Marais Executioner's Sword", "formal_target_id": "grace_altus_plateau_main_shaded_castle_inner_gate", "source_evidence": "eldenpedia-marais-executioners-sword", "coordinate_available": false, "note": "Guaranteed drop from Elemer of the Briar at the Shaded Castle." }
+    ],
+    "achievement_legendary_sorceries_incantations": [
+      { "item": "Comet Azur", "formal_target_id": "grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur", "source_evidence": "eldenpedia-comet-azur", "coordinate_available": false, "note": "Obtained from Primeval Sorcerer Azur on the cliffs southeast of Hermit Village." },
+      { "item": "Stars of Ruin", "formal_target_id": "grace_caelid_sellia_hideaway", "source_evidence": "eldenpedia-stars-of-ruin", "coordinate_available": false, "note": "Obtained from Primeval Sorcerer Lusat inside Sellia Hideaway after the Sellian Sealbreaker step." },
+      { "item": "Greyoll's Roar", "formal_target_id": "grace_cathedral_dragon_communion", "source_evidence": "eldenpedia-greyolls-roar", "coordinate_available": false, "note": "Purchased at the Cathedral of Dragon Communion after defeating Elder Dragon Greyoll." }
+    ]
+  },
   "records": [
     { "canonical_id": "achievement_age_of_the_stars", "name": "Age of the Stars", "category": "ending", "description": "Achieved the \"Age of the Stars\" ending", "trophy": "Gold", "gamerscore": 50, "formal_target_ids": ["grace_fractured_marika"], "state_requirements": ["radagon_elden_beast_defeated", "ranni_quest_started", "dark_moon_ring"], "external_requirements": ["Complete Ranni's questline", "Touch Ranni's blue summon sign near Fractured Marika"], "state_source_evidence": "eldenpedia-endings", "formal_target_source_evidence": "eldenpedia-endings", "coverage_state": "formal_ending_state_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
     { "canonical_id": "achievement_ancestor_spirit", "name": "Ancestor Spirit", "category": "boss", "description": "Defeated Ancestor Spirit", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["ancestor_spirit_siofra_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },

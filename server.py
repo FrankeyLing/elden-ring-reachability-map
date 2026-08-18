@@ -259,8 +259,12 @@ class AppHandler(SimpleHTTPRequestHandler):
                     continue
                 records.append(record)
             enriched_records = []
+            text_location_evidence = payload.get("online_text_location_evidence", {})
             for record in records:
                 enriched = dict(record)
+                enriched["online_text_location_evidence"] = list(
+                    text_location_evidence.get(enriched.get("canonical_id"), [])
+                )
                 if enriched.get("category") == "collection":
                     enriched["online_item_evidence"] = collection_item_evidence(enriched)
                 enriched_records.append(enriched)

@@ -615,9 +615,11 @@ function renderOnlinePoiResults(payload, kind) {
       const requirements = (record.external_requirements || []).join("；");
       const prerequisiteTargets = (record.prerequisite_target_ids || []).map((id) => nodeLabel(id)).join(" / ");
       const itemEvidence = record.online_item_evidence || [];
+      const textLocationEvidence = record.online_text_location_evidence || [];
       detail.textContent = record.category + " · " + record.coverage_state + " · " + targets
         + (prerequisiteTargets ? " · 前置节点：" + prerequisiteTargets : "")
         + (itemEvidence.length ? " · 在线物品定位：" + itemEvidence.length + "/" + (record.required_item_names || []).length : "")
+        + (textLocationEvidence.length ? " · 文本地点证据：" + textLocationEvidence.length : "")
         + (requirements ? " · 条件：" + requirements : "");
     } else {
       const position = record.position || [];
@@ -626,7 +628,38 @@ function renderOnlinePoiResults(payload, kind) {
     row.append(title, detail);
     if (kind === "achievements") {
       const itemEvidence = record.online_item_evidence || [];
+      const textLocationEvidence = record.online_text_location_evidence || [];
       const targetId = [...(record.formal_target_ids || []), ...(record.location_target_ids || [])].find((id) => state.nodes.has(id));
+      if (record.category === "collection" && textLocationEvidence.length) {
+        const locationList = document.createElement("div");
+        locationList.className = "online-text-location-list";
+        textLocationEvidence.forEach((evidence) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "online-text-location-button";
+          button.textContent = evidence.item + " → " + nodeLabel(evidence.formal_target_id) + " · 文本地点";
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const locationTarget = evidence.formal_target_id;
+            const originId = findBestGraceOrigin(locationTarget, new Set([locationTarget]));
+            if (originId) {
+              state.origin = originId;
+              state.destination = locationTarget;
+              els.origin.value = originId;
+              els.destination.value = locationTarget;
+            }
+            state.selectedNode = locationTarget;
+            state.mapMode = "topology";
+            els.coordinateMapSelect.hidden = true;
+            els.coordinateEntityKind.hidden = true;
+            els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
+            planAndRender();
+            els.mapToast.textContent = record.name + " · " + evidence.item + "：文本地点证据，不声明 XYZ 坐标。";
+          });
+          locationList.appendChild(button);
+        });
+        row.appendChild(locationList);
+      }
       if (record.category === "collection" && itemEvidence.length) {
         row.classList.add("clickable");
         row.addEventListener("click", () => {
