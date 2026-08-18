@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.171-online-multiplane",
+    "version": "1.0.172-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -718,6 +718,11 @@
       "hint": "The optional Hollowhorn Grounds encounter has been cleared and its post-boss return state is available."
     },
     {
+      "id": "nokron_ancestor_braziers_lit",
+      "label": "Northern Hallowhorn six braziers lit",
+      "hint": "All six braziers around Nokron's northern Hallowhorn Grounds have been lit, enabling the Regal Ancestor Spirit encounter."
+    },
+    {
       "id": "fia_champions_defeated",
       "label": "Fia's Champions defeated",
       "hint": "The Deeproot Champions arena has been cleared and the Prince of Death's Throne grace is available."
@@ -1286,6 +1291,7 @@
     ,{ "id": "eip-farum-cross-check", "label": "EIP Gaming / Crumbling Farum Azula route", "url": "https://eip.gg/elden-ring/guides/crumbling-farum-azula-walkthrough/", "grade": "B" }
     ,{ "id": "gamespot-placidusax-cross-check", "label": "GameSpot / Dragonlord Placidusax route", "url": "https://www.gamespot.com/articles/how-to-beat-elden-ring-dragonlord-placidusax/1100-6501885/", "grade": "B" }
     ,{ "id": "powerpyx-nokron-cross-check", "label": "PowerPyx / Nokron walkthrough", "url": "https://www.powerpyx.com/elden-ring-nokron-eternal-city-walkthrough/", "grade": "B" }
+    ,{ "id": "eldenpedia-hallowhorn-north", "label": "Eldenpedia / Hallowhorn Grounds (North)", "url": "https://eldenring.wiki.gg/wiki/Hallowhorn_Grounds_%28North%29", "grade": "A" }
     ,{ "id": "neoseeker-deeproot-cross-check", "label": "Neoseeker / Deeproot Depths walkthrough", "url": "https://www.neoseeker.com/elden-ring/walkthrough/Deeproot_Depths", "grade": "B" }
     ,{ "id": "eldenpedia-ancestor-spirit", "label": "Eldenpedia · Ancestor Spirit", "url": "https://eldenring.wiki.gg/wiki/Ancestor_Spirit", "grade": "A" }
     ,{ "id": "gamespot-siofra-cross-check", "label": "GameSpot · Siofra River guide", "url": "https://www.gamespot.com/articles/elden-ring-siofra-river-guide-where-to-go-items-to-get-and-enemies-to-watch-out-for/1100-6501889/", "grade": "B" }
@@ -1758,6 +1764,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-siofra-r71937", "eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 606, "recordId": 66120202, "name": "Hallowhorn Grounds", "map": "area 12 / grid 2,0", "position": [1221.2900390625, -809.1699829101562, 1195.5999755859375], "coordinateSpace": "game_world_xyz", "bindingBasis": "formal_candidate", "coordinateRole": "landmark_anchor" },
       "description": "Southern Hallowhorn Grounds beside the lower Siofra River; kept separate from Nokron's northern Hallowhorn Grounds."
     },
     {
@@ -2838,6 +2845,22 @@
       "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check", "nexus-map-for-goblins"],
       "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 604, "recordId": 66120200, "name": "Night's Sacred Ground", "map": "area 12 / grid 2,0", "position": [1016.2000122070312, -664.0599975585938, 1404.989990234375], "coordinateSpace": "game_world_xyz" },
       "description": "Nokron quest branch grace near the Fingerslayer Blade and the return portal to Ancestral Woods."
+    },
+    {
+      "id": "hallowhorn_grounds_nokron",
+      "label": "Hallowhorn Grounds (North)",
+      "kind": "landmark",
+      "layer": "underground",
+      "region": "Nokron, Eternal City",
+      "floor": "Hallowhorn Grounds (north)",
+      "worldEpoch": "nokron_underground",
+      "x": 650,
+      "y": 410,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-hallowhorn-north", "eldenpedia-nokron-r66900", "game8-nokron-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 607, "recordId": 66120203, "name": "Hallowhorn Grounds", "map": "area 12 / grid 2,0", "position": [1169.780029296875, -611.780029296875, 1598.7099609375], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor" },
+      "description": "Northern Hallowhorn Grounds on Nokron's upper Siofra level, reached from Ancestral Woods; kept separate from the lower Siofra Hallowhorn Grounds."
     },
     {
       "id": "regal_ancestor_spirit_gate",
@@ -15364,18 +15387,33 @@
       "tags": ["walk", "rooftop", "conditional", "underground", "cross_checked"]
     },
     {
-      "id": "ancestral-woods-to-regal-ancestor",
+      "id": "ancestral-woods-to-hallowhorn-north",
       "from": "grace_ancestral_woods",
+      "to": "hallowhorn_grounds_nokron",
+      "mode": "Ancestral Woods to northern Hallowhorn Grounds",
+      "cost": 6,
+      "risk": 6,
+      "direction": "forward",
+      "transitionType": "hallowhorn_north_approach",
+      "requires": ["mimic_tear_defeated"],
+      "sourceEvidence": ["eldenpedia-hallowhorn-north", "eldenpedia-nokron-r66900", "game8-nokron-cross-check"],
+      "verificationState": "online_cross_checked",
+      "note": "After the Mimic Tear branch, follow Nokron's upper woods route to the separate northern Hallowhorn Grounds landmark.",
+      "tags": ["walk", "branch", "underground", "conditional", "cross_checked"]
+    },
+    {
+      "id": "hallowhorn-north-to-regal-ancestor",
+      "from": "hallowhorn_grounds_nokron",
       "to": "regal_ancestor_spirit_gate",
-      "mode": "Ancestral Woods to Regal Ancestor Spirit",
-      "cost": 8,
+      "mode": "Northern Hallowhorn Grounds brazier puzzle",
+      "cost": 3,
       "risk": 8,
       "direction": "forward",
-      "transitionType": "hollowhorn_puzzle_boss_branch",
-      "requires": ["mimic_tear_defeated"],
-      "sourceEvidence": ["powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "transitionType": "hallowhorn_puzzle_boss_branch",
+      "requires": ["nokron_ancestor_braziers_lit"],
+      "sourceEvidence": ["eldenpedia-hallowhorn-north", "eldenpedia-nokron-r66900", "game8-nokron-cross-check"],
       "verificationState": "online_cross_checked",
-      "note": "Six flame pillars and the Hallowhorn Grounds activate this optional boss branch; it does not replace the Night's Sacred Ground main route.",
+      "note": "The Regal Ancestor Spirit encounter activates only after all six northern Hallowhorn braziers are lit and the horned remains are touched.",
       "tags": ["puzzle", "boss", "optional", "conditional", "underground", "cross_checked"]
     },
     {
@@ -18501,7 +18539,8 @@
     ,{ "id": "garden-of-deep-purple-to-fissure-cross", "from": "grace_gravesite_plain_stone_coffin_fissure_garden_of_deep_purple", "to": "grace_gravesite_plain_stone_coffin_fissure_fissure_cross", "mode": "Garden of Deep Purple return to Fissure Cross", "cost": 12, "risk": 10, "direction": "backtrack", "transitionType": "fissure_boss_route_return", "requires": ["putrescent_knight_defeated"], "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "game8-stone-coffin-cross-check", "game8-thiollier-cross-check"], "verificationState": "online_cross_checked", "note": "Climb back through the Fissure after Putrescent Knight is defeated; the hazardous descent remains represented by separate layer nodes.", "tags": ["parkour", "vertical", "underground", "boss", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "finger-birthing-grounds-to-ymir-throne", "from": "grace_scadu_altus_main_finger_birthing_grounds", "to": "ymir_throne_gate", "mode": "Finger Birthing Grounds return to Count Ymir's Throne", "cost": 8, "risk": 8, "direction": "backtrack", "transitionType": "finger_ruins_boss_route_return", "requires": ["metyr_defeated"], "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-metyr", "game8-ymir-cross-check"], "verificationState": "online_cross_checked", "note": "Return from Metyr's cleared hidden arena to the Manus Metyr throne route.", "tags": ["walk", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "ancestor-post-to-hallowhorn", "from": "grace_siofra_ancestor_spirit_post_boss", "to": "hallowhorn_grounds_siofra", "mode": "Ancestor Spirit post-boss return to Hallowhorn Grounds", "cost": 4, "risk": 7, "direction": "backtrack", "transitionType": "hallowhorn_boss_route_return", "requires": ["siofra_ancestor_spirit_defeated"], "sourceEvidence": ["eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the cleared southern Hallowhorn boss area and return to the Siofra Hallowhorn Grounds landmark.", "tags": ["walk", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
-    ,{ "id": "regal-post-to-ancestral-woods", "from": "grace_nokron_regal_ancestor_post_boss", "to": "grace_ancestral_woods", "mode": "Regal Ancestor post-boss return to Ancestral Woods", "cost": 4, "risk": 6, "direction": "backtrack", "transitionType": "boss_completion_teleport_return", "requires": ["regal_ancestor_spirit_defeated"], "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"], "verificationState": "online_cross_checked", "note": "The post-boss return state leads back to Nokron's upper woods before the Aqueduct branch.", "tags": ["teleport", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "regal-post-to-hallowhorn-north", "from": "grace_nokron_regal_ancestor_post_boss", "to": "hallowhorn_grounds_nokron", "mode": "Regal Ancestor post-boss return to northern Hallowhorn Grounds", "cost": 3, "risk": 6, "direction": "backtrack", "transitionType": "boss_completion_teleport_return", "requires": ["regal_ancestor_spirit_defeated"], "sourceEvidence": ["eldenpedia-hallowhorn-north", "eldenpedia-nokron-r66900", "game8-nokron-cross-check"], "verificationState": "online_cross_checked", "note": "The cleared optional boss state returns to the northern Hallowhorn Grounds landmark before the normal woods route.", "tags": ["teleport", "boss", "underground", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "hallowhorn-north-to-ancestral-woods", "from": "hallowhorn_grounds_nokron", "to": "grace_ancestral_woods", "mode": "Northern Hallowhorn Grounds return to Ancestral Woods", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "hallowhorn_north_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-hallowhorn-north", "eldenpedia-nokron-r66900", "game8-nokron-cross-check"], "verificationState": "online_cross_checked", "note": "Retrace the upper Siofra route from the northern Hallowhorn Grounds to Ancestral Woods; this is not a direct teleport shortcut.", "tags": ["walk", "branch", "underground", "backtrack", "cross_checked"] }
     ,{ "id": "chair-crypt-to-sellia-backstreets", "from": "grace_caelid_main_chair_crypt_of_sellia", "to": "grace_caelid_main_sellia_backstreets", "mode": "Chair-Crypt of Sellia return to Sellia Backstreets", "cost": 5, "risk": 6, "direction": "backtrack", "transitionType": "sellia_three_braziers_gate_return", "requires": ["sellia_all_braziers_lit"], "sourceEvidence": ["eldenpedia-sellia-town", "gamefaqs-sellia-route-cross-check", "pcgamer-millicent-cross-check"], "verificationState": "online_cross_checked", "note": "Use the opened upper doorway to leave the chair-crypt and return to Sellia Backstreets.", "tags": ["walk", "surface", "branch", "backtrack", "conditional", "cross_checked"] }
     ,{ "id": "rear-gael-to-third-church", "from": "grace_limgrave_rear_gael_tunnel_entrance", "to": "grace_third_church_of_marika", "mode": "Rear Gael Tunnel return to Third Church", "cost": 8, "risk": 6, "direction": "backtrack", "transitionType": "limgrave_cliff_route_return", "requires": [], "sourceEvidence": ["eldenpedia-gael-tunnel", "gamerguides-gael-tunnel-cross-check", "powerpyx-caelid-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Limgrave-side rear entrance by the exterior cliff route; the inner tunnel door remains locked from this side.", "tags": ["walk", "surface", "legacy_entrance", "backtrack", "cross_checked"] }
     ,{ "id": "road-iniquity-side-to-bower", "from": "grace_altus_plateau_main_road_of_iniquity_side_path", "to": "grace_altus_plateau_main_bower_of_bounty", "mode": "Road of Iniquity Side Path return to Bower of Bounty", "cost": 6, "risk": 6, "direction": "backtrack", "transitionType": "underbridge_waygate_branch_return", "requires": [], "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "powerpyx-altus-cross-check"], "verificationState": "online_cross_checked", "note": "Return through the underbridge branch to the Bower of Bounty grace; this does not open a new waygate or surface shortcut.", "tags": ["walk", "surface", "branch", "backtrack", "cross_checked"] }
@@ -18681,8 +18720,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 745,
-    "formalRouteEdgeCount": 1193,
+    "formalNodeCount": 746,
+    "formalRouteEdgeCount": 1195,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

@@ -677,8 +677,8 @@ def audit() -> dict:
     if (
         map_point_candidate_contract["single_candidate_records"] != 157
         or map_point_candidate_contract["unique_formal_targets"] != 139
-        or map_point_candidate_contract["bound_formal_targets"] != 138
-        or sorted(map_point_candidate_contract["unbound_formal_targets"]) != ["hallowhorn_grounds_siofra"]
+        or map_point_candidate_contract["bound_formal_targets"] != 139
+        or map_point_candidate_contract["unbound_formal_targets"] != {}
     ):
         raise ValueError(f"online map-point candidate contract failed: {map_point_candidate_contract}")
     transition_contract = {
