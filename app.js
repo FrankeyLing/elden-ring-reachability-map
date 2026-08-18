@@ -491,15 +491,53 @@ function renderOnlineCoordinateInspector(record, kind, label) {
   const position = Array.isArray(record.position) ? record.position : [];
   const map = record.map || record.current_map || record.source_map || "unknown map";
   const sourceIndex = record.source_index ?? record.id ?? "n/a";
-  els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || "Online coordinate")}</div><div class="inspector-type">ONLINE ${safe(kind).toUpperCase()} · ROUTEABLE=false</div></div><div class="inspector-region">${safe(map)}</div></div><p class="inspector-description">Pinned online coordinate evidence only. It does not create a physical route edge or assert pickup/encounter state.</p><div class="inspector-online">Source record: ${safe(sourceIndex)}<br>Map: ${safe(map)}<br>X ${safe(position[0])} / Y ${safe(position[1])} / Z ${safe(position[2])}</div><button class="online-text-location-button" data-refocus-online-coordinate>Focus this coordinate</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
+  const formalIds = onlineFormalBindingIds(record, kind);
+  els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || "Online coordinate")}</div><div class="inspector-type">ONLINE ${safe(kind).toUpperCase()} · ROUTEABLE=false</div></div><div class="inspector-region">${safe(map)}</div></div><p class="inspector-description">Pinned online coordinate evidence only. It does not create a physical route edge or assert pickup/encounter state.</p><div class="inspector-online">Source record: ${safe(sourceIndex)}<br>Map: ${safe(map)}<br>X ${safe(position[0])} / Y ${safe(position[1])} / Z ${safe(position[2])}</div>${onlineFormalBindingMarkup(formalIds, safe)}<button class="online-text-location-button" data-refocus-online-coordinate>Focus this coordinate</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
   if (kind === "named-grace-positions") {
     const frameNote = document.createElement("div");
     frameNote.className = "inspector-online";
     frameNote.textContent = "Coordinate frame: source_map_local_xyz; do not compare directly with MapForGoblins XYZ.";
     els.nodeInspector.querySelector(".inspector-description").prepend(frameNote);
   }
+  wireOnlineFormalBindingActions(formalIds);
   els.nodeInspector.querySelector("[data-refocus-online-coordinate]").addEventListener("click", () => {
     focusOnlineCoordinate(record, kind, label);
+  });
+}
+
+function onlineFormalBindingIds(record, kind) {
+  const candidates = kind === "projected-graces"
+    ? [record.formal_id]
+    : (Array.isArray(record.formal_candidates) ? record.formal_candidates : []);
+  return [...new Set(candidates.filter((id) => id && state.nodes.has(id)))];
+}
+
+function onlineFormalBindingMarkup(formalIds, safe) {
+  if (formalIds.length !== 1) {
+    return formalIds.length > 1
+      ? `<div class="inspector-online">Formal identity candidates: ${formalIds.length}; route target selection remains manual to avoid guessing.</div>`
+      : `<div class="inspector-online">Formal identity: none confirmed; this coordinate remains location evidence only.</div>`;
+  }
+  const formalId = formalIds[0];
+  return `<div class="inspector-online">Formal identity: ${safe(nodeLabel(formalId))}<br>Identity binding does not create a traversal edge.</div><div class="inspector-actions"><button data-online-set-origin="${safe(formalId)}">Use formal node as origin</button><button data-online-set-destination="${safe(formalId)}">Use formal node as destination</button></div>`;
+}
+
+function wireOnlineFormalBindingActions(formalIds) {
+  if (formalIds.length !== 1) return;
+  const formalId = formalIds[0];
+  const originButton = els.nodeInspector.querySelector("[data-online-set-origin]");
+  const destinationButton = els.nodeInspector.querySelector("[data-online-set-destination]");
+  if (originButton) originButton.addEventListener("click", () => {
+    state.origin = formalId;
+    state.selectedNode = formalId;
+    els.origin.value = formalId;
+    planAndRender();
+  });
+  if (destinationButton) destinationButton.addEventListener("click", () => {
+    state.destination = formalId;
+    state.selectedNode = formalId;
+    els.destination.value = formalId;
+    planAndRender();
   });
 }
 
@@ -508,7 +546,9 @@ function renderProjectedAnchorInspector(record, label) {
   const safe = (value) => String(value ?? "").replace(/[&<>\"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character]));
   const position = Array.isArray(record.position) ? record.position : [];
   const formal = record.formal_id && state.nodes.has(record.formal_id) ? nodeLabel(record.formal_id) : "未绑定正式节点";
-  els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || record.name || "Projected grace")}</div><div class="inspector-type">ONLINE PROJECTED · ROUTEABLE=false</div></div><div class="inspector-region">${safe(record.description || record.master)}</div></div><p class="inspector-description">公开在线地图的主图投影锚点。它用于命名定位和层间对照，不是游戏原始 XYZ，不会创建路线边。</p><div class="inspector-online">Source marker: ${safe(record.source_id)}<br>Layer: ${safe(record.master)} · Coordinate space: master_tile_pixel<br>px ${safe(position[0])} / py ${safe(position[1])}<br>Formal identity: ${safe(formal)}</div><button class="online-text-location-button" data-refocus-projected-anchor>Focus this projection</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
+  const formalIds = onlineFormalBindingIds(record, "projected-graces");
+  els.nodeInspector.innerHTML = `<div class="inspector-card"><div class="inspector-head"><div><div class="inspector-title">${safe(label || record.name || "Projected grace")}</div><div class="inspector-type">ONLINE PROJECTED · ROUTEABLE=false</div></div><div class="inspector-region">${safe(record.description || record.master)}</div></div><p class="inspector-description">公开在线地图的主图投影锚点。它用于命名定位和层间对照，不是游戏原始 XYZ，不会创建路线边。</p><div class="inspector-online">Source marker: ${safe(record.source_id)}<br>Layer: ${safe(record.master)} · Coordinate space: master_tile_pixel<br>px ${safe(position[0])} / py ${safe(position[1])}<br>Formal identity: ${safe(formal)}</div>${onlineFormalBindingMarkup(formalIds, safe)}<button class="online-text-location-button" data-refocus-projected-anchor>Focus this projection</button><details class="coordinate-inspector-details"><summary>Raw source record</summary><pre>${safe(JSON.stringify(record, null, 2))}</pre></details></div>`;
+  wireOnlineFormalBindingActions(formalIds);
   els.nodeInspector.querySelector("[data-refocus-projected-anchor]").addEventListener("click", () => focusProjectedCoordinate(record, label));
 }
 
