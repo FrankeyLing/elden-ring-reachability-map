@@ -216,6 +216,9 @@ code { color: #c0b58f; font-size: 9px; }
 .online-text-location-list { display: grid; gap: 4px; margin-top: 5px; }
 .online-text-location-button { border: 1px solid var(--line); background: transparent; color: var(--gold); cursor: pointer; font-size: 9px; padding: 4px 5px; text-align: left; }
 .online-text-location-button:hover { border-color: rgba(230, 200, 121, .6); background: rgba(230, 200, 121, .06); }
+.online-item-evidence-list { display: grid; gap: 4px; margin-top: 6px; }
+.online-item-evidence-button { border: 1px solid rgba(160, 190, 110, .25); background: rgba(17, 24, 32, .45); color: #aebd9a; cursor: pointer; font-size: 9px; line-height: 1.4; padding: 5px 6px; text-align: left; }
+.online-item-evidence-button:hover { border-color: rgba(230, 200, 121, .6); background: rgba(230, 200, 121, .06); }
 .coordinate-inspector-details { color: #7f8984; font-size: 9px; margin-top: 10px; }
 .coordinate-inspector-details summary { color: var(--gold); cursor: pointer; }
 .coordinate-inspector-details pre { max-height: 220px; overflow: auto; white-space: pre-wrap; word-break: break-word; background: rgba(17, 24, 32, .7); padding: 7px; margin-top: 5px; }

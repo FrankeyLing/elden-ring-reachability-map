@@ -576,6 +576,7 @@ function renderInspector() {
   if (focusLocationAnchorButton) {
     focusLocationAnchorButton.addEventListener("click", () => {
       state.mapMode = "topology";
+      renderCoordinateLayerMeta();
       els.coordinateMapSelect.hidden = true;
       els.coordinateEntityKind.hidden = true;
       els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
@@ -705,6 +706,30 @@ function renderOnlinePoiResults(payload, kind) {
     if (kind === "achievements") {
       const itemEvidence = record.online_item_evidence || [];
       const textLocationEvidence = record.online_text_location_evidence || [];
+      if (record.category === "collection" && itemEvidence.length) {
+        const evidenceList = document.createElement("div");
+        evidenceList.className = "online-item-evidence-list";
+        itemEvidence.forEach((evidence) => {
+          const evidenceButton = document.createElement("button");
+          evidenceButton.type = "button";
+          evidenceButton.className = "online-item-evidence-button";
+          const matched = (evidence.matched_requirements || []).join(" / ") || "matched item";
+          const position = evidence.position || [];
+          evidenceButton.textContent = matched + " · " + (evidence.map || "unknown map") + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+          evidenceButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            focusOnlineCoordinate({
+              map: evidence.map,
+              position: evidence.position,
+              source_index: evidence.source_index,
+              items: evidence.items,
+              matched_requirements: evidence.matched_requirements,
+            }, "items", matched);
+          });
+          evidenceList.appendChild(evidenceButton);
+        });
+        row.appendChild(evidenceList);
+      }
       const targetId = [...(record.formal_target_ids || []), ...(record.location_target_ids || [])].find((id) => state.nodes.has(id));
       if (record.category === "collection" && textLocationEvidence.length) {
         const locationList = document.createElement("div");
@@ -726,6 +751,7 @@ function renderOnlinePoiResults(payload, kind) {
             }
             state.selectedNode = locationTarget;
             state.mapMode = "topology";
+            renderCoordinateLayerMeta();
             els.coordinateMapSelect.hidden = true;
             els.coordinateEntityKind.hidden = true;
             els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
@@ -742,6 +768,7 @@ function renderOnlinePoiResults(payload, kind) {
           const evidence = itemEvidence[0];
           state.mapMode = "coordinates";
           state.coordinateMapId = evidence.map;
+          renderCoordinateLayerMeta();
           state.coordinateEntityKind = "all";
           els.coordinateMapSelect.hidden = false;
           els.coordinateEntityKind.hidden = false;
@@ -764,6 +791,7 @@ function renderOnlinePoiResults(payload, kind) {
           }
           state.selectedNode = targetId;
           state.mapMode = "topology";
+          renderCoordinateLayerMeta();
           els.coordinateMapSelect.hidden = true;
           els.coordinateEntityKind.hidden = true;
           els.mapModes.forEach((button) => button.classList.toggle("active", button.dataset.mapMode === "topology"));
