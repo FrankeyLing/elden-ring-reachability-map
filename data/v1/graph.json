@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.150-online-multiplane",
+  "version": "1.0.152-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2036,7 +2036,8 @@
       "y": 360,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-nokron-r66900", "game8-nokron-cross-check", "pcgamer-ranni-cross-check"],
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "game8-nokron-cross-check", "pcgamer-ranni-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 479, "recordId": 61453600, "name": "Starfall Crater", "map": "area 60 / grid 45,36", "position": [-41.45000076293945, 102.08000183105469, -2.5399999618530273], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor" },
       "description": "碎星拉塔恩战后出现的诺克隆入口；没有该状态时不能从此处进入。"
     },
     {
@@ -9142,7 +9143,7 @@
     },
     {
       "id": "unsightly_catacombs_surface_entrance", "label": "Unsightly Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Below Perfumer's Ruins cliff", "worldEpoch": "altus_surface", "x": 730, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check"], "description": "One-key imp statue entrance below Perfumer's Ruins."
+      "sourceEvidence": ["eldenpedia-unsightly-catacombs", "game8-unsightly-catacombs-cross-check", "eip-unsightly-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 140, "recordId": 301200, "name": "Unsightly Catacombs", "map": "area 30 / grid 12,0", "position": [-39.029998779296875, 653.6199951171875, 105.44000244140625], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "One-key imp statue entrance below Perfumer's Ruins. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_unsightly_catacombs", "label": "Unsightly Catacombs", "kind": "grace", "layer": "legacy", "region": "Unsightly Catacombs", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 790, "y": 160, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9158,7 +9159,7 @@
     },
     {
       "id": "sage_cave_surface_entrance", "label": "Sage's Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Southwestern Altus pool", "worldEpoch": "altus_surface", "x": 760, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check"], "description": "Grotto mouth on the north-eastern edge of the shallow southwestern Altus pool."
+      "sourceEvidence": ["eldenpedia-sages-cave", "game8-sages-cave-cross-check", "gamerguides-sages-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 166, "recordId": 311900, "name": "Sage's Cave", "map": "area 31 / grid 19,0", "position": [101.29000091552734, 654.72998046875, -55.790000915527344], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Grotto mouth on the north-eastern edge of the shallow southwestern Altus pool. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_sage_s_cave", "label": "Sage's Cave", "kind": "grace", "layer": "legacy", "region": "Sage's Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9182,7 +9183,7 @@
     },
     {
       "id": "auriza_hero_grave_surface_entrance", "label": "Auriza Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Capital Outskirts", "floor": "North-eastern capital outskirts cliff", "worldEpoch": "altus_surface", "x": 980, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "eip-auriza-hero-grave-cross-check"], "description": "Entrance beneath the north-eastern Leyndell outer wall, reached from the Capital Outskirts cliff route."
+      "sourceEvidence": ["eldenpedia-auriza-hero-grave", "game8-auriza-hero-grave-cross-check", "eip-auriza-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 138, "recordId": 301000, "name": "Auriza Hero's Grave", "map": "area 30 / grid 10,0", "position": [62.540000915527344, 952.8200073242188, 137.72000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Entrance beneath the north-eastern Leyndell outer wall, reached from the Capital Outskirts cliff route. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_auriza_hero_s_grave", "label": "Auriza Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Auriza Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1040, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9198,7 +9199,7 @@
     },
     {
       "id": "auriza_side_tomb_surface_entrance", "label": "Auriza Side Tomb surface entrance", "kind": "entrance", "layer": "surface", "region": "Capital Outskirts", "floor": "North of Auriza Hero's Grave", "worldEpoch": "altus_surface", "x": 980, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check"], "description": "Catacomb entrance on the path north of Auriza Hero's Grave."
+      "sourceEvidence": ["eldenpedia-auriza-side-tomb", "game8-auriza-side-tomb-cross-check", "neoseeker-auriza-side-tomb-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 141, "recordId": 301300, "name": "Auriza Side Tomb", "map": "area 30 / grid 13,0", "position": [102.75, 969.7100219726562, 25.770000457763672], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb entrance on the path north of Auriza Hero's Grave. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_auriza_side_tomb", "label": "Auriza Side Tomb", "kind": "grace", "layer": "legacy", "region": "Auriza Side Tomb", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 1040, "y": 120, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9214,7 +9215,7 @@
     },
     {
       "id": "gelmir_hero_grave_surface_entrance", "label": "Gelmir Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "West of First Mt. Gelmir Campsite", "worldEpoch": "altus_surface", "x": 500, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check"], "description": "Dome and lift entrance west of the First Mt. Gelmir Campsite."
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "neoseeker-gelmir-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 137, "recordId": 300900, "name": "Gelmir Hero's Grave", "map": "area 30 / grid 9,0", "position": [104.55999755859375, 902.5900268554688, 15.6899995803833], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Dome and lift entrance west of the First Mt. Gelmir Campsite. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_gelmir_hero_s_grave", "label": "Gelmir Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 560, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9230,7 +9231,7 @@
     },
     {
       "id": "wyndham_catacombs_surface_entrance", "label": "Wyndham Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "Wyndham Ruins rear cliff", "worldEpoch": "altus_surface", "x": 600, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check"], "description": "Entrance behind the Wyndham Ruins at the base of Mt. Gelmir."
+      "sourceEvidence": ["eldenpedia-wyndham-catacombs", "game8-wyndham-catacombs-cross-check", "eip-wyndham-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 135, "recordId": 300700, "name": "Wyndham Catacombs", "map": "area 30 / grid 7,0", "position": [-127.08000183105469, 835.8099975585938, 121.83000183105469], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Entrance behind the Wyndham Ruins at the base of Mt. Gelmir. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_wyndham_catacombs", "label": "Wyndham Catacombs", "kind": "grace", "layer": "legacy", "region": "Wyndham Catacombs", "floor": "Catacomb entrance", "worldEpoch": "altus_surface", "x": 660, "y": 320, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9246,7 +9247,7 @@
     },
     {
       "id": "seethewater_cave_surface_entrance", "label": "Seethewater Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "Seethewater ravine imp seal", "worldEpoch": "altus_surface", "x": 460, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check"], "description": "One-key Imp seal in the ravine north of Seethewater River."
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "gamepressure-seethewater-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 156, "recordId": 310700, "name": "Seethewater Cave", "map": "area 31 / grid 7,0", "position": [-9.09000015258789, 799.9400024414062, 141.35000610351562], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "One-key Imp seal in the ravine north of Seethewater River. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_seethewater_cave", "label": "Seethewater Cave", "kind": "grace", "layer": "legacy", "region": "Seethewater Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 520, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9262,7 +9263,7 @@
     },
     {
       "id": "volcano_cave_surface_entrance", "label": "Volcano Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mt. Gelmir", "floor": "North of Ninth Mt. Gelmir Campsite", "worldEpoch": "altus_surface", "x": 720, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check"], "description": "Cave opening north of the bridge east of Ninth Mt. Gelmir Campsite."
+      "sourceEvidence": ["pushsquare-volcano-cave", "game8-volcano-cave-boss-cross-check", "neoseeker-volcano-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 159, "recordId": 310900, "name": "Volcano Cave", "map": "area 31 / grid 9,0", "position": [-67.26000213623047, 1033.4200439453125, -60.25], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Cave opening north of the bridge east of Ninth Mt. Gelmir Campsite. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_volcano_cave", "label": "Volcano Cave", "kind": "grace", "layer": "legacy", "region": "Volcano Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 780, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9278,7 +9279,7 @@
     },
     {
       "id": "altus_tunnel_surface_entrance", "label": "Altus Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "South of Altus Minor Erdtree", "worldEpoch": "altus_surface", "x": 1160, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check"], "description": "Crystal mine entrance in the rock wall south of the Altus Plateau Minor Erdtree."
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "fextralife-altus-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 174, "recordId": 320500, "name": "Altus Tunnel", "map": "area 32 / grid 5,0", "position": [-52.2599983215332, 814.0, 40.720001220703125], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Crystal mine entrance in the rock wall south of the Altus Plateau Minor Erdtree. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_altus_tunnel", "label": "Altus Tunnel", "kind": "grace", "layer": "legacy", "region": "Altus Tunnel", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1220, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9294,7 +9295,7 @@
     },
     {
       "id": "sainted_hero_grave_surface_entrance", "label": "Sainted Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Rampartside Path cliff", "worldEpoch": "altus_surface", "x": 1020, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check"], "description": "Hero's Grave entrance reached from the Rampartside Path area."
+      "sourceEvidence": ["eldenpedia-sainted-hero-grave", "game8-sainted-hero-grave-cross-check", "eip-sainted-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 136, "recordId": 300800, "name": "Sainted Hero's Grave", "map": "area 30 / grid 8,0", "position": [47.060001373291016, 884.02001953125, 8.119999885559082], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Hero's Grave entrance reached from the Rampartside Path area. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_sainted_hero_s_grave", "label": "Sainted Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Sainted Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1080, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9310,7 +9311,7 @@
     },
     {
       "id": "abandoned_cave_surface_entrance", "label": "Abandoned Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Aeonia ravine branch", "worldEpoch": "caelid_surface", "x": 350, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Branch crossing over the ravine east of Smoldering Wall."
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 167, "recordId": 312000, "name": "Abandoned Cave", "map": "area 31 / grid 20,0", "position": [137.7899932861328, 127.62000274658203, 42.439998626708984], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Branch crossing over the ravine east of Smoldering Wall. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_caelid_main_abandoned_cave", "label": "Abandoned Cave", "kind": "grace", "layer": "legacy", "region": "Abandoned Cave", "floor": "Cave entrance", "worldEpoch": "caelid_surface", "x": 410, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9326,7 +9327,7 @@
     },
     {
       "id": "caelid_catacombs_surface_entrance", "label": "Caelid Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Southern Caelid cliff", "worldEpoch": "caelid_surface", "x": 560, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check"], "description": "Catacomb mouth on the southern Caelid approach."
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "segmentnext-cemetery-shade-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 143, "recordId": 301500, "name": "Caelid Catacombs", "map": "area 30 / grid 15,0", "position": [90.19000244140625, 54.5099983215332, 69.12999725341797], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb mouth on the southern Caelid approach. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_caelid_main_caelid_catacombs", "label": "Caelid Catacombs", "kind": "grace", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Catacomb entrance", "worldEpoch": "caelid_surface", "x": 620, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9342,7 +9343,7 @@
     },
     {
       "id": "gaol_cave_surface_entrance", "label": "Gaol Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Scarlet-rot pool beneath Fort Gael", "worldEpoch": "caelid_surface", "x": 290, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "pushsquare-gaol-cave-cross-check"], "description": "Two-key Imp seal at the blood-rot pool south-east of Fort Gael."
+      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "pushsquare-gaol-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 168, "recordId": 312100, "name": "Gaol Cave", "map": "area 31 / grid 21,0", "position": [-64.31999969482422, 87.80999755859375, 33.869998931884766], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Two-key Imp seal at the blood-rot pool south-east of Fort Gael. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_caelid_main_gaol_cave", "label": "Gaol Cave", "kind": "grace", "layer": "legacy", "region": "Gaol Cave", "floor": "Cave entrance tunnel", "worldEpoch": "caelid_surface", "x": 350, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9362,7 +9363,7 @@
     },
     {
       "id": "minor_erdtree_catacombs_surface_entrance", "label": "Minor Erdtree Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Northern Caelid Minor Erdtree", "worldEpoch": "caelid_surface", "x": 700, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Catacomb entrance beside the northern Caelid Minor Erdtree."
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 142, "recordId": 301400, "name": "Minor Erdtree Catacombs", "map": "area 30 / grid 14,0", "position": [-54.47999954223633, 123.36000061035156, 67.58899688720703], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb entrance beside the northern Caelid Minor Erdtree. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_caelid_main_minor_erdtree_catacombs", "label": "Minor Erdtree Catacombs", "kind": "grace", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Catacomb entrance", "worldEpoch": "caelid_surface", "x": 760, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9378,7 +9379,7 @@
     },
     {
       "id": "war_dead_catacombs_surface_entrance", "label": "War-Dead Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "Wailing Dunes north-east shore", "worldEpoch": "post_radahn_world_state", "x": 650, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check"], "description": "Post-Radahn catacomb entrance on the northern edge of the Wailing Dunes."
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "neoseeker-war-dead-catacombs-cross-check", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 144, "recordId": 301600, "name": "War-Dead Catacombs", "map": "area 30 / grid 16,0", "position": [37.720001220703125, 5.190000057220459, -134.67999267578125], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Post-Radahn catacomb entrance on the northern edge of the Wailing Dunes. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_caelid_main_war_dead_catacombs", "label": "War-Dead Catacombs", "kind": "grace", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Catacomb entrance", "worldEpoch": "post_radahn_world_state", "x": 710, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9394,7 +9395,7 @@
     },
     {
       "id": "sellia_crystal_tunnel_surface_entrance", "label": "Sellia Crystal Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Caelid", "floor": "North-west of Sellia", "worldEpoch": "caelid_surface", "x": 900, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check"], "description": "Mine entrance north-west of Sellia, with a separate Dragon-Burnt Ruins trap-chest arrival."
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "passaguai-sellia-crystal-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 176, "recordId": 320800, "name": "Sellia Crystal Tunnel", "map": "area 32 / grid 8,0", "position": [18.43000030517578, 86.41999816894531, 110.58000183105469], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Mine entrance north-west of Sellia, with a separate Dragon-Burnt Ruins trap-chest arrival. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_caelid_main_sellia_crystal_tunnel", "label": "Sellia Crystal Tunnel", "kind": "grace", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Mine entrance", "worldEpoch": "caelid_surface", "x": 960, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9442,7 +9443,7 @@
     },
     {
       "id": "rivermouth_cave_surface_entrance", "label": "Rivermouth Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Ellac River upstream mouth", "worldEpoch": "shadow_realm", "x": 340, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check"], "description": "Small cave entrance at the northern end of the Ellac River."
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "game8-chief-bloodfiend-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 199, "recordId": 430000, "name": "Rivermouth Cave", "map": "area 43 / grid 0,0", "position": [-82.44300079345703, 163.677001953125, 143.7989959716797], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Small cave entrance at the northern end of the Ellac River. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_rivermouth_cave", "label": "Rivermouth Cave", "kind": "grace", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Cave entrance", "worldEpoch": "shadow_realm", "x": 400, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9460,7 +9461,7 @@
     },
     {
       "id": "scorpion_river_catacombs_surface_entrance", "label": "Scorpion River Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Rauh Base", "floor": "Scorpion River western end", "worldEpoch": "shadow_realm", "x": 760, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check"], "description": "Catacomb mouth at the far western end of the Scorpion River."
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "neoseeker-scorpion-river-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 190, "recordId": 400100, "name": "Scorpion River Catacombs", "map": "area 40 / grid 1,0", "position": [-62.70000076293945, 295.04998779296875, 58.2599983215332], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb mouth at the far western end of the Scorpion River. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_scorpion_river_catacombs", "label": "Scorpion River Catacombs", "kind": "grace", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Catacomb entrance", "worldEpoch": "shadow_realm", "x": 820, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9476,7 +9477,7 @@
     },
     {
       "id": "ruined_forge_lava_intake_surface_entrance", "label": "Ruined Forge Lava Intake surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "South-east of Castle Front", "worldEpoch": "shadow_realm", "x": 160, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "description": "Ruined forge entrance south-south-east of Castle Front, among massive ruined columns."
+      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 195, "recordId": 420000, "name": "Ruined Forge Lava Intake", "map": "area 42 / grid 0,0", "position": [-116.3499984741211, 269.260009765625, 71.33999633789062], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Ruined forge entrance south-south-east of Castle Front, among massive ruined columns. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_ruined_forge_lava_intake", "label": "Ruined Forge Lava Intake", "kind": "grace", "layer": "legacy", "region": "Ruined Forge Lava Intake", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 220, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9492,7 +9493,7 @@
     },
     {
       "id": "taylew_ruined_forge_surface_entrance", "label": "Taylew's Ruined Forge surface entrance", "kind": "entrance", "layer": "surface", "region": "Rauh Base", "floor": "North-east of Ancient Ruins Base", "worldEpoch": "shadow_realm", "x": 740, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "neoseeker-taylew-ruined-forge-cross-check"], "description": "Forge entrance north-east of the Ancient Ruins Base grace."
+      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "neoseeker-taylew-ruined-forge-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 198, "recordId": 420300, "name": "Taylew's Ruined Forge", "map": "area 42 / grid 3,0", "position": [-39.880001068115234, 353.05999755859375, -92.43000030517578], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Forge entrance north-east of the Ancient Ruins Base grace. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_taylew_ruined_forge", "label": "Taylew's Ruined Forge", "kind": "grace", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 800, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9508,7 +9509,7 @@
     },
     {
       "id": "cave_of_forlorn_surface_entrance", "label": "Cave of the Forlorn surface entrance", "kind": "entrance", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Albinauric Rise approach", "worldEpoch": "consecrated_snowfield", "x": 1060, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check"], "description": "Cave entrance near Albinauric Rise in the Consecrated Snowfield."
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "arrpeegeez-cave-of-forlorn-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 162, "recordId": 311200, "name": "Cave of the Forlorn", "map": "area 31 / grid 12,0", "position": [-54.880001068115234, 1254.8199462890625, 43.9900016784668], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Cave entrance near Albinauric Rise in the Consecrated Snowfield. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_mountaintops_main_cave_of_forlorn", "label": "Cave of the Forlorn", "kind": "grace", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Cave entrance", "worldEpoch": "consecrated_snowfield", "x": 1120, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9524,7 +9525,7 @@
     },
     {
       "id": "snowfield_catacombs_surface_entrance", "label": "Consecrated Snowfield Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Consecrated Snowfield", "floor": "South-east of Inner Consecrated Snowfield", "worldEpoch": "consecrated_snowfield", "x": 980, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check"], "description": "Catacomb entrance south-east of the Inner Consecrated Snowfield grace."
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "gamerguides-putrid-duelist-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 147, "recordId": 301900, "name": "Consecrated Snowfield Catacombs", "map": "area 60 / grid 50,55", "position": [-69.56999969482422, 1360.010009765625, -86.38999938964844], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb entrance south-east of the Inner Consecrated Snowfield grace. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_mountaintops_main_consecrated_snowfield_catacombs", "label": "Consecrated Snowfield Catacombs", "kind": "grace", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Catacomb entrance", "worldEpoch": "consecrated_snowfield", "x": 1040, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9540,7 +9541,7 @@
     },
     {
       "id": "yelough_anix_tunnel_surface_entrance", "label": "Yelough Anix Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Below Yelough Anix Ruins", "worldEpoch": "consecrated_snowfield", "x": 1160, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check"], "description": "Frozen mine entrance below Yelough Anix Ruins."
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "arrpeegeez-yelough-anix-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 177, "recordId": 321100, "name": "Yelough Anix Tunnel", "map": "area 60 / grid 47,55", "position": [45.93000030517578, 1258.75, -61.040000915527344], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Frozen mine entrance below Yelough Anix Ruins. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_mountaintops_main_yelough_anix_tunnel", "label": "Yelough Anix Tunnel", "kind": "grace", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Bottom of entrance lift", "worldEpoch": "consecrated_snowfield", "x": 1220, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9556,7 +9557,7 @@
     },
     {
       "id": "giant_conquering_hero_surface_entrance", "label": "Giant-Conquering Hero's Grave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Chain/invisible bridge approach", "worldEpoch": "mountaintops_surface", "x": 820, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check"], "description": "Hero's Grave entrance reached across the elevated chain and bridge approach."
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "eip-giant-conquering-hero-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 145, "recordId": 301700, "name": "Giant-Conquering Hero's Grave", "map": "area 60 / grid 50,53", "position": [-118.55999755859375, 1511.760009765625, 120.04000091552734], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Hero's Grave entrance reached across the elevated chain and bridge approach. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_mountaintops_main_giant_conquering_hero_s_grave", "label": "Giant-Conquering Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "mountaintops_surface", "x": 880, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9572,7 +9573,7 @@
     },
     {
       "id": "giants_mountaintop_catacombs_surface_entrance", "label": "Giants' Mountaintop Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Flame Peak catacomb mouth", "worldEpoch": "mountaintops_surface", "x": 700, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "game8-giants-watchdog-cross-check"], "description": "Catacomb entrance in the Flame Peak approach."
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "game8-giants-watchdog-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 146, "recordId": 301800, "name": "Giants' Mountaintop Catacombs", "map": "area 60 / grid 50,53", "position": [26.15999984741211, 1577.7099609375, 109.33999633789062], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb entrance in the Flame Peak approach. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_mountaintops_main_giants_mountaintop_catacombs", "label": "Giants' Mountaintop Catacombs", "kind": "grace", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Catacomb entrance", "worldEpoch": "mountaintops_surface", "x": 760, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9608,7 +9609,7 @@
     },
     {
       "id": "ruined_forge_starfall_surface_entrance", "label": "Ruined Forge of Starfall Past surface entrance", "kind": "entrance", "layer": "surface", "region": "Scadu Altus", "floor": "South-west of Moorth Ruins / Moorth Highway", "worldEpoch": "shadow_realm", "x": 520, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Rear structure entrance southwest of Moorth Ruins, reached by the torch-marked opening and ladder."
+      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 197, "recordId": 420200, "name": "Ruined Forge of Starfall Past", "map": "area 42 / grid 2,0", "position": [64.5199966430664, 357.94000244140625, -94.5199966430664], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Rear structure entrance southwest of Moorth Ruins, reached by the torch-marked opening and ladder. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_ruined_forge_starfall_past", "label": "Ruined Forge of Starfall Past", "kind": "grace", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 580, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9668,7 +9669,7 @@
     },
     {
       "id": "bonny_gaol_surface_entrance", "label": "Bonny Gaol surface entrance", "kind": "entrance", "layer": "surface", "region": "Scadu Altus", "floor": "South-east of Bonny Village / wooden bridge", "worldEpoch": "shadow_realm", "x": 620, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check", "pushsquare-bonny-labirith-cross-check"], "description": "Gaol entrance across the southern bridge from Bonny Village."
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check", "pushsquare-bonny-labirith-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 193, "recordId": 410100, "name": "Bonny Gaol", "map": "area 41 / grid 1,0", "position": [-45.36000061035156, 304.6000061035156, -25.5], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Gaol entrance across the southern bridge from Bonny Village. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_scadu_altus_main_bonny_gaol", "label": "Bonny Gaol", "kind": "grace", "layer": "legacy", "region": "Bonny Gaol", "floor": "Gaol entrance", "worldEpoch": "shadow_realm", "x": 680, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9688,7 +9689,7 @@
     },
     {
       "id": "fog_rift_fort_surface_entrance", "label": "Fog Rift Fort lower entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Cliff ledges below Scadu Altus, West", "worldEpoch": "shadow_realm", "x": 260, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check"], "description": "Vertical drop route from Scadu Altus, West through cliff ledges and a ladder into the lower fort."
+      "sourceEvidence": ["eldenpedia-fog-rift-fort", "gameofguides-fog-rift-fort-cross-check", "eip-garrew-fog-rift-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 637, "recordId": 69474500, "name": "Fog Rift Fort", "map": "area 61 / grid 47,45", "position": [-26.31999969482422, 330.0199890136719, -93.19000244140625], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Vertical drop route from Scadu Altus, West through cliff ledges and a ladder into the lower fort. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "black_knight_garrew_fog_rift_gate", "label": "Black Knight Garrew (Fog Rift Fort)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Fort", "floor": "Lower fort bridge / courtyard", "worldEpoch": "shadow_realm", "x": 320, "y": 430, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9702,7 +9703,7 @@
     },
     {
       "id": "morne_tunnel_surface_entrance", "label": "Morne Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Weeping Peninsula", "floor": "Minor Erdtree eastern ravine", "worldEpoch": "limgrave_surface", "x": 330, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "description": "Mine entrance at the southern end of the rocky chasm east of the Weeping Peninsula Minor Erdtree."
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 170, "recordId": 320000, "name": "Morne Tunnel", "map": "area 32 / grid 0,0", "position": [36.13999938964844, 27.8700008392334, -69.91000366210938], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Mine entrance at the southern end of the rocky chasm east of the Weeping Peninsula Minor Erdtree. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_limgrave_weeping_peninsula_morne_tunnel", "label": "Morne Tunnel", "kind": "grace", "layer": "legacy", "region": "Morne Tunnel", "floor": "Lift bottom / mine entrance", "worldEpoch": "limgrave_surface", "x": 390, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9722,7 +9723,7 @@
     },
     {
       "id": "fort_haight_surface_entrance", "label": "Fort Haight surface entrance", "kind": "entrance", "layer": "surface", "region": "Limgrave", "floor": "Hill approach / ballista line", "worldEpoch": "limgrave_surface", "x": 330, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check"], "description": "Uphill approach from Fort Haight West through the ballista and soldier line to the fort gate."
+      "sourceEvidence": ["eldenpedia-fort-haight", "game8-fort-haight-cross-check", "ludo-fort-haight-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 484, "recordId": 61463600, "name": "Fort Haight", "map": "area 60 / grid 46,36", "position": [-25.28499984741211, 31.305999755859375, -20.259000778198242], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Uphill approach from Fort Haight West through the ballista and soldier line to the fort gate. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "godrick_knight_fort_haight_gate", "label": "Godrick Knight (Fort Haight)", "kind": "boss", "layer": "legacy", "region": "Fort Haight", "floor": "Upper fort level", "worldEpoch": "limgrave_surface", "x": 390, "y": 300, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
