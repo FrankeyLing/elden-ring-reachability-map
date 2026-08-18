@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.119-online-multiplane",
+  "version": "1.0.120-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1133,6 +1133,18 @@
     { "id": "eldenpedia-miquella-cross-castle-ensis", "label": "Eldenpedia / Miquella's Cross (Castle Ensis)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Castle_Ensis%29", "grade": "A" },
     { "id": "eldenpedia-miquella-cross-belurat", "label": "Eldenpedia / Miquella's Cross (Belurat)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Belurat%2C_Tower_Settlement%29", "grade": "A" },
     { "id": "eldenpedia-miquella-cross-moorth", "label": "Eldenpedia / Miquella's Cross (Moorth Ruins)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Moorth_Ruins%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-index", "label": "Eldenpedia / Miquella's Cross location index", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-three-path", "label": "Eldenpedia / Miquella's Cross (Three-Path)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Three-Path%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-main-gate", "label": "Eldenpedia / Miquella's Cross (Main Gate)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Main_Gate%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-castle-ensis-index", "label": "Eldenpedia / Miquella's Cross (Castle Ensis)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Castle_Ensis%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-pillar-path", "label": "Eldenpedia / Miquella's Cross (Pillar Path)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Pillar_Path%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-cerulean", "label": "Eldenpedia / Miquella's Cross (Cerulean Coast)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-fissure", "label": "Eldenpedia / Miquella's Cross (Fissure)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-enir-ilim", "label": "Eldenpedia / Miquella's Cross (Enir-Ilim)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Enir-Ilim%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-storehouse", "label": "Eldenpedia / Miquella's Cross (Specimen Storehouse)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Specimen_Storehouse%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-ancient-rauh", "label": "Eldenpedia / Miquella's Cross (Ancient Ruins of Rauh)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Ancient_Ruins_of_Rauh%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-highroad", "label": "Eldenpedia / Miquella's Cross (Highroad)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Highroad%29", "grade": "A" },
+    { "id": "eldenpedia-miquella-cross-moorth-index", "label": "Eldenpedia / Miquella's Cross (Moorth Ruins)", "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Cross_%28Moorth_Ruins%29", "grade": "A" },
     { "id": "eldenpedia-blackgaol-knight", "label": "Eldenpedia / Blackgaol Knight", "url": "https://eldenring.wiki.gg/wiki/Blackgaol_Knight", "grade": "A" },
     { "id": "eldenpedia-dancer-of-ranah", "label": "Eldenpedia / Dancer of Ranah", "url": "https://eldenring.wiki.gg/wiki/Dancer_of_Ranah", "grade": "A" },
     { "id": "eldenpedia-red-bear", "label": "Eldenpedia / Red Bear", "url": "https://eldenring.wiki.gg/wiki/Red_Bear", "grade": "A" },
@@ -4555,6 +4567,166 @@
       "description": "Cleared-state return point after Blackgaol Knight; it is a state node, not a fabricated additional Site of Grace."
     },
     {
+      "id": "landmark_three_path_miquella_cross",
+      "label": "Miquella's Cross (Three-Path)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Three-Path Cross roadside",
+      "worldEpoch": "shadow_realm",
+      "x": 240,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-three-path", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 611, "recordId": 68454200, "name": "Miquella's Cross", "map": "area 61 / grid 45,42", "position": [-101.2300033569336, 392.6199951171875, 97.11000061035156], "coordinateSpace": "game_world_xyz" },
+      "description": "The Three-Path Cross landmark beside the corresponding grace; retained separately so the collectible point is not confused with the checkpoint."
+    },
+    {
+      "id": "landmark_main_gate_miquella_cross",
+      "label": "Miquella's Cross (Main Gate)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Main Gate Cross exterior",
+      "worldEpoch": "shadow_realm",
+      "x": 370,
+      "y": 700,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-main-gate", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 616, "recordId": 68464200, "name": "Miquella's Cross", "map": "area 61 / grid 46,42", "position": [-7.730000019073486, 297.17999267578125, 94.36000061035156], "coordinateSpace": "game_world_xyz" },
+      "description": "The Main Gate Cross west of Three-Path Cross, kept separate from its adjacent Main Gate Cross grace."
+    },
+    {
+      "id": "landmark_pillar_path_miquella_cross",
+      "label": "Miquella's Cross (Pillar Path)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Pillar Path cliff edge",
+      "worldEpoch": "shadow_realm",
+      "x": 310,
+      "y": 850,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-pillar-path", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 628, "recordId": 68484300, "name": "Miquella's Cross", "map": "area 61 / grid 48,43", "position": [39.61000061035156, 313.6099853515625, -84.97000122070312], "coordinateSpace": "game_world_xyz" },
+      "description": "Pillar Path Cross on the eastern cliff branch, separate from the Pillar Path Cross grace."
+    },
+    {
+      "id": "landmark_cerulean_coast_miquella_cross",
+      "label": "Miquella's Cross (Cerulean Coast)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Cerulean Coast",
+      "worldEpoch": "shadow_realm",
+      "x": 790,
+      "y": 860,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-cerulean", "eldenpedia-cerulean-coast", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 624, "recordId": 68483700, "name": "Miquella's Cross", "map": "area 61 / grid 48,37", "position": [29.65999984741211, 60.11000061035156, -97.05000305175781], "coordinateSpace": "game_world_xyz" },
+      "description": "Cerulean Coast Cross adjacent to the coast-cross grace route."
+    },
+    {
+      "id": "landmark_fissure_miquella_cross",
+      "label": "Miquella's Cross (Fissure)",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Gravesite Plain",
+      "floor": "Stone Coffin Fissure",
+      "worldEpoch": "shadow_realm",
+      "x": 1150,
+      "y": 980,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-fissure", "eldenpedia-stone-coffin-fissure", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 126, "recordId": 220001, "name": "Miquella's Cross", "map": "area 22 / grid 0,0", "position": [-236.6300048828125, 215.6699981689453, -24.170000076293945], "coordinateSpace": "game_world_xyz" },
+      "description": "Fissure Cross inside Stone Coffin Fissure; it is an interior collectible landmark rather than the surface pit grace."
+    },
+    {
+      "id": "landmark_highroad_miquella_cross",
+      "label": "Miquella's Cross (Highroad)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Scadu Altus",
+      "floor": "Highroad Cross",
+      "worldEpoch": "shadow_realm",
+      "x": 850,
+      "y": 760,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-highroad", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 640, "recordId": 69494300, "name": "Miquella's Cross", "map": "area 61 / grid 50,43", "position": [-25.639999389648438, 459.80999755859375, -61.04999923706055], "coordinateSpace": "game_world_xyz" },
+      "description": "Highroad Cross near the northeast Castle Ensis approach, distinct from the Highroad Cross grace."
+    },
+    {
+      "id": "landmark_scaduview_miquella_cross",
+      "label": "Miquella's Cross (Scaduview)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Scadu Altus",
+      "floor": "Scaduview Cross",
+      "worldEpoch": "shadow_realm",
+      "x": 1040,
+      "y": 1010,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-index", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 639, "recordId": 69484500, "name": "Miquella's Cross", "map": "area 61 / grid 48,44", "position": [-28.030000686645508, 410.3800048828125, 134.3699951171875], "coordinateSpace": "game_world_xyz" },
+      "description": "Scaduview Cross adjacent to the highland grace route; the landmark and grace remain separate nodes."
+    },
+    {
+      "id": "landmark_ancient_rauh_miquella_cross",
+      "label": "Miquella's Cross (Ancient Ruins of Rauh)",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Land of the Tower",
+      "floor": "Ancient Ruins of Rauh, East",
+      "worldEpoch": "shadow_realm",
+      "x": 1190,
+      "y": 450,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-ancient-rauh", "eldenpedia-rauh", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 642, "recordId": 69494400, "name": "Miquella's Cross", "map": "area 61 / grid 49,44", "position": [-47.88999938964844, 350.4800109863281, 119.66999816894531], "coordinateSpace": "game_world_xyz" },
+      "description": "Ancient Ruins Cross beside the Rauh Ancient Ruins, East route."
+    },
+    {
+      "id": "landmark_enir_ilim_miquella_cross",
+      "label": "Miquella's Cross (Enir-Ilim)",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Land of the Tower",
+      "floor": "Enir-Ilim near Spiral Rise",
+      "worldEpoch": "shadow_realm_enir_ilim",
+      "x": 1920,
+      "y": 230,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-enir-ilim", "eldenpedia-enir-ilim", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz" },
+      "description": "Enir-Ilim Cross near the Spiral Rise grace; this point belongs to the m20_01 Enir-Ilim map layer, not the Belurat m20_00 layer."
+    },
+    {
+      "id": "landmark_storehouse_miquella_cross",
+      "label": "Miquella's Cross (Specimen Storehouse)",
+      "kind": "landmark",
+      "layer": "legacy",
+      "region": "Shadow Keep",
+      "floor": "Specimen Storehouse near Fourth Floor",
+      "worldEpoch": "shadow_realm",
+      "x": 1260,
+      "y": 540,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-miquella-cross-storehouse", "eldenpedia-shadow-keep", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Miquella's Cross", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz" },
+      "description": "Storehouse Cross near the Fourth Floor grace and hanging horned giant route; it is not the First Floor grace despite the map point's companion layer label."
+    },
+    {
       "id": "grace_shadow_realm_three_path_cross",
       "label": "Three-Path Cross",
       "kind": "grace",
@@ -4627,8 +4799,8 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz" },
-      "description": "Belurat Cross in the hidden room behind rubble east of the tower with giant spider scorpions; it is not the entrance grace itself."
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 120, "recordId": 200001, "name": "Miquella's Cross", "map": "area 20 / grid 0,0", "position": [-32.25, 77.22000122070312, 264.5799865722656], "coordinateSpace": "game_world_xyz" },
+      "description": "Belurat Cross in the hidden room behind rubble east of the tower with giant spider scorpions; the m20_00 point is the Belurat map layer and is not the entrance grace itself."
     },
     {
       "id": "grace_belurat_tower_settlement",
@@ -17975,6 +18147,26 @@
     ,{ "id": "northern-mausoleum-spring-to-temple-town", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "grace_land_of_the_tower_rauh_base_temple_town_ruins", "mode": "Northern Nameless Mausoleum Spiritspring return to Temple Town Ruins", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "rauh_surface_spiritspring_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "game8-rauh-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the sealed Spiritspring staging point to Temple Town Ruins before taking the lower Rauh road.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
     ,{ "id": "northern-mausoleum-spring-to-northern-mausoleum", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "landmark_northern_nameless_mausoleum", "mode": "Unsealed Spiritspring jumps to Northern Nameless Mausoleum", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Break the nearby cairn, then chain the Spiritspring jumps to the high plateau; without the condition this edge is unavailable.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "cross_checked"] }
     ,{ "id": "northern-nameless-mausoleum-to-spring", "from": "landmark_northern_nameless_mausoleum", "to": "northern_nameless_mausoleum_spiritspring_seal", "mode": "Northern Nameless Mausoleum return via Spiritspring", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump_return", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring chain to return from the high plateau; no normal road or elevator is invented.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "three-path-grace-to-miquella-cross", "from": "grace_shadow_realm_three_path_cross", "to": "landmark_three_path_miquella_cross", "mode": "Three-Path Cross grace to Miquella's Cross", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "adjacent_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-three-path", "eldenpedia-gravesite-plain"], "verificationState": "online_cross_checked", "note": "The collectible cross is adjacent to the Three-Path grace and is represented as its own landmark node.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-three-path-grace", "from": "landmark_three_path_miquella_cross", "to": "grace_shadow_realm_three_path_cross", "mode": "Miquella's Cross return to Three-Path grace", "cost": 1, "risk": 1, "direction": "backtrack", "transitionType": "adjacent_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-three-path", "eldenpedia-gravesite-plain"], "verificationState": "online_cross_checked", "note": "Return to the adjacent Three-Path grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "main-gate-grace-to-miquella-cross", "from": "grace_shadow_realm_main_gate_cross", "to": "landmark_main_gate_miquella_cross", "mode": "Main Gate grace to Miquella's Cross", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "adjacent_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-main-gate", "eldenpedia-gravesite-plain"], "verificationState": "online_cross_checked", "note": "The Main Gate collectible cross is adjacent to its grace and remains a distinct map point.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-main-gate-grace", "from": "landmark_main_gate_miquella_cross", "to": "grace_shadow_realm_main_gate_cross", "mode": "Miquella's Cross return to Main Gate grace", "cost": 1, "risk": 1, "direction": "backtrack", "transitionType": "adjacent_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-main-gate", "eldenpedia-gravesite-plain"], "verificationState": "online_cross_checked", "note": "Return to the Main Gate Cross grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "pillar-grace-to-miquella-cross", "from": "grace_shadow_realm_pillar_path_cross", "to": "landmark_pillar_path_miquella_cross", "mode": "Pillar Path grace to Miquella's Cross", "cost": 2, "risk": 3, "direction": "forward", "transitionType": "cliffside_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-pillar-path", "eldenpedia-gravesite-plain"], "verificationState": "online_cross_checked", "note": "Follow the short cliff-edge branch beside the Pillar Path grace.", "tags": ["walk", "surface", "vertical", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-pillar-grace", "from": "landmark_pillar_path_miquella_cross", "to": "grace_shadow_realm_pillar_path_cross", "mode": "Miquella's Cross return to Pillar Path grace", "cost": 2, "risk": 3, "direction": "backtrack", "transitionType": "cliffside_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-pillar-path", "eldenpedia-gravesite-plain"], "verificationState": "online_cross_checked", "note": "Return along the same cliff-edge branch.", "tags": ["walk", "surface", "vertical", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "cerulean-grace-to-miquella-cross", "from": "grace_gravesite_plain_cerulean_coast_cerulean_coast_cross", "to": "landmark_cerulean_coast_miquella_cross", "mode": "Cerulean Coast Cross grace to Miquella's Cross", "cost": 1, "risk": 2, "direction": "forward", "transitionType": "coast_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-cerulean", "eldenpedia-cerulean-coast"], "verificationState": "online_cross_checked", "note": "Walk the short coastal approach to the collectible cross.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-cerulean-grace", "from": "landmark_cerulean_coast_miquella_cross", "to": "grace_gravesite_plain_cerulean_coast_cerulean_coast_cross", "mode": "Miquella's Cross return to Cerulean Coast Cross grace", "cost": 1, "risk": 2, "direction": "backtrack", "transitionType": "coast_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-cerulean", "eldenpedia-cerulean-coast"], "verificationState": "online_cross_checked", "note": "Return to Cerulean Coast Cross grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "fissure-grace-to-miquella-cross", "from": "grace_gravesite_plain_stone_coffin_fissure_fissure_cross", "to": "landmark_fissure_miquella_cross", "mode": "Fissure Cross grace to Miquella's Cross", "cost": 2, "risk": 5, "direction": "forward", "transitionType": "fissure_internal_cross_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-fissure", "eldenpedia-stone-coffin-fissure"], "verificationState": "online_cross_checked", "note": "Descend the short interior route from the Fissure Cross grace to the collectible cross.", "tags": ["walk", "vertical", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-fissure-grace", "from": "landmark_fissure_miquella_cross", "to": "grace_gravesite_plain_stone_coffin_fissure_fissure_cross", "mode": "Miquella's Cross return to Fissure Cross grace", "cost": 2, "risk": 5, "direction": "backtrack", "transitionType": "fissure_internal_cross_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-fissure", "eldenpedia-stone-coffin-fissure"], "verificationState": "online_cross_checked", "note": "Climb back to the Fissure Cross grace.", "tags": ["walk", "vertical", "legacy", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "highroad-grace-to-miquella-cross", "from": "grace_scadu_altus_highroad_cross", "to": "landmark_highroad_miquella_cross", "mode": "Highroad Cross grace to Miquella's Cross", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "adjacent_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-highroad", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "The Highroad collectible cross is adjacent to the Highroad Cross grace.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-highroad-grace", "from": "landmark_highroad_miquella_cross", "to": "grace_scadu_altus_highroad_cross", "mode": "Miquella's Cross return to Highroad Cross grace", "cost": 1, "risk": 1, "direction": "backtrack", "transitionType": "adjacent_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-highroad", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "Return to the Highroad Cross grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "scaduview-grace-to-miquella-cross", "from": "grace_scadu_altus_main_scaduview_cross", "to": "landmark_scaduview_miquella_cross", "mode": "Scaduview Cross grace to Miquella's Cross", "cost": 1, "risk": 1, "direction": "forward", "transitionType": "adjacent_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-index", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "The Scaduview collectible cross is adjacent to the Scaduview Cross grace.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-scaduview-grace", "from": "landmark_scaduview_miquella_cross", "to": "grace_scadu_altus_main_scaduview_cross", "mode": "Miquella's Cross return to Scaduview Cross grace", "cost": 1, "risk": 1, "direction": "backtrack", "transitionType": "adjacent_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-index", "eldenpedia-scadu-altus"], "verificationState": "online_cross_checked", "note": "Return to the Scaduview Cross grace.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "rauh-east-grace-to-miquella-cross", "from": "grace_rauh_ancient_ruins_east", "to": "landmark_ancient_rauh_miquella_cross", "mode": "Rauh Ancient Ruins East grace to Miquella's Cross", "cost": 2, "risk": 3, "direction": "forward", "transitionType": "rauh_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-ancient-rauh", "eldenpedia-rauh"], "verificationState": "online_cross_checked", "note": "Follow the eastern ruins bridge route to the Ancient Ruins Cross.", "tags": ["walk", "surface", "vertical", "landmark", "cross_checked"] }
+    ,{ "id": "miquella-cross-to-rauh-east-grace", "from": "landmark_ancient_rauh_miquella_cross", "to": "grace_rauh_ancient_ruins_east", "mode": "Miquella's Cross return to Rauh Ancient Ruins East grace", "cost": 2, "risk": 3, "direction": "backtrack", "transitionType": "rauh_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-ancient-rauh", "eldenpedia-rauh"], "verificationState": "online_cross_checked", "note": "Return across the ruins bridge to the East grace.", "tags": ["walk", "surface", "vertical", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "spiral-rise-to-enir-cross", "from": "grace_enir_ilim_spiral_rise", "to": "landmark_enir_ilim_miquella_cross", "mode": "Spiral Rise to Enir-Ilim Miquella's Cross", "cost": 2, "risk": 4, "direction": "forward", "transitionType": "enir_ilim_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-enir-ilim", "eldenpedia-enir-ilim"], "verificationState": "online_cross_checked", "note": "Follow the short Enir-Ilim interior route near Spiral Rise to the cross.", "tags": ["walk", "vertical", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "enir-cross-to-spiral-rise", "from": "landmark_enir_ilim_miquella_cross", "to": "grace_enir_ilim_spiral_rise", "mode": "Enir-Ilim Miquella's Cross return to Spiral Rise", "cost": 2, "risk": 4, "direction": "backtrack", "transitionType": "enir_ilim_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-enir-ilim", "eldenpedia-enir-ilim"], "verificationState": "online_cross_checked", "note": "Return to Spiral Rise grace.", "tags": ["walk", "vertical", "legacy", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "storehouse-fourth-to-miquella-cross", "from": "grace_shadow_keep_storehouse_fourth_floor", "to": "landmark_storehouse_miquella_cross", "mode": "Storehouse Fourth Floor to Miquella's Cross", "cost": 4, "risk": 6, "direction": "forward", "transitionType": "storehouse_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-storehouse", "eldenpedia-shadow-keep"], "verificationState": "online_cross_checked", "note": "Pass the hanging horned giant corpse and use the Fourth Floor route to the Storehouse Cross.", "tags": ["walk", "vertical", "legacy", "landmark", "cross_checked"] }
+    ,{ "id": "storehouse-cross-to-fourth", "from": "landmark_storehouse_miquella_cross", "to": "grace_shadow_keep_storehouse_fourth_floor", "mode": "Storehouse Cross return to Fourth Floor grace", "cost": 4, "risk": 6, "direction": "backtrack", "transitionType": "storehouse_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-storehouse", "eldenpedia-shadow-keep"], "verificationState": "online_cross_checked", "note": "Return to the Storehouse Fourth Floor grace.", "tags": ["walk", "vertical", "legacy", "landmark", "backtrack", "cross_checked"] }
     ,{ "id": "castle-ensis-checkpoint-to-cross", "from": "grace_castle_ensis_checkpoint", "to": "landmark_castle_ensis_miquella_cross", "mode": "Castle Ensis Checkpoint to Castle Cross", "cost": 3, "risk": 4, "direction": "forward", "transitionType": "castle_ensis_cross_landmark_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643"], "verificationState": "online_cross_checked", "note": "Follow the checkpoint route to the lowered gate and Castle Cross; the cross is adjacent to, not identical with, the grace.", "tags": ["walk", "vertical", "legacy", "landmark", "cross_checked"] }
     ,{ "id": "castle-cross-to-ensis-checkpoint", "from": "landmark_castle_ensis_miquella_cross", "to": "grace_castle_ensis_checkpoint", "mode": "Castle Cross return to Castle Ensis Checkpoint", "cost": 3, "risk": 4, "direction": "backtrack", "transitionType": "castle_ensis_cross_landmark_route_return", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643"], "verificationState": "online_cross_checked", "note": "Return from the lowered gate to the Castle Ensis Checkpoint grace.", "tags": ["walk", "vertical", "legacy", "landmark", "backtrack", "cross_checked"] }
     ,{ "id": "belurat-to-miquella-cross", "from": "grace_belurat_tower_settlement", "to": "landmark_belurat_miquella_cross", "mode": "Belurat grace to hidden Miquella's Cross room", "cost": 8, "risk": 7, "direction": "forward", "transitionType": "belurat_hidden_rubble_cross_route", "requires": [], "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement"], "verificationState": "online_cross_checked", "note": "Use the elevator/stair route and climb over the rubble near the spider-scorpion tower to reach the hidden cross room.", "tags": ["walk", "vertical", "hidden", "legacy", "landmark", "cross_checked"] }
@@ -18014,8 +18206,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 723,
-    "formalRouteEdgeCount": 1145,
+    "formalNodeCount": 733,
+    "formalRouteEdgeCount": 1165,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
