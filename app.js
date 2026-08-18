@@ -529,6 +529,11 @@ function renderInspector() {
   const focusLocationAnchorButton = els.nodeInspector.querySelector("[data-focus-location-anchor]");
   if (focusLocationAnchorButton) {
     focusLocationAnchorButton.addEventListener("click", () => {
+      state.mapMode = "topology";
+      els.coordinateMapSelect.hidden = true;
+      els.coordinateEntityKind.hidden = true;
+      els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
+      renderGraph();
       selectNode(focusLocationAnchorButton.dataset.focusLocationAnchor);
     });
   }
