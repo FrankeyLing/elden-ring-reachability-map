@@ -19,6 +19,8 @@ const state = {
   onlineTileRecords: [],
   onlineGracePositionRecords: [],
   onlineNamedGracePositionRecords: [],
+  onlineNamedGraceCatalogRecords: [],
+  onlineNamedGraceByNodeId: new Map(),
   onlineBossPositionRecords: [],
   onlineMapConversionRecords: [],
   onlineItemRecords: [],
@@ -573,6 +575,10 @@ function renderInspector() {
   const onlineEvidence = onlineBoss
     ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
     : "";
+  const namedGraceSource = state.onlineNamedGraceByNodeId.get(node.id);
+  const namedGraceEvidence = namedGraceSource
+    ? `<div class="inspector-online">命名源 XYZ：${namedGraceSource.name} · ${namedGraceSource.map}<br>source_map_local_xyz X ${namedGraceSource.position[0]} / Y ${namedGraceSource.position[1]} / Z ${namedGraceSource.position[2]}<br>这是独立坐标系证据，不等同于 MapForGoblins XYZ。</div><button data-focus-named-coordinate>打开命名源 XYZ</button>`
+    : "";
   const candidateAssessments = [...new Map(
     connections
       .filter((edge) => edge.routeAssessment)
@@ -602,6 +608,7 @@ function renderInspector() {
       </div>
       <p class="inspector-description">${node.description}</p>
        ${onlineEvidence}
+       ${namedGraceEvidence}
        ${onlineBinding}
        ${onlineTextLocation}
        ${onlineCoordinateAction}
@@ -654,6 +661,13 @@ function renderInspector() {
       els.mapModes.forEach((mapButton) => mapButton.classList.toggle("active", mapButton.dataset.mapMode === "topology"));
       renderGraph();
       selectNode(focusLocationAnchorButton.dataset.focusLocationAnchor);
+    });
+  }
+  const namedGraceCoordinateButton = els.nodeInspector.querySelector("[data-focus-named-coordinate]");
+  if (namedGraceCoordinateButton) {
+    namedGraceCoordinateButton.addEventListener("click", () => {
+      focusNamedGraceCoordinate(namedGraceSource, namedGraceSource.name);
+      renderOnlineCoordinateInspector(namedGraceSource, "named-grace-positions", namedGraceSource.name);
     });
   }
 }
@@ -1061,7 +1075,7 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeAssessmentResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
+    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeAssessmentResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response, onlineNamedGraceResponse] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/achievements", { cache: "no-store" }),
@@ -1077,6 +1091,7 @@ async function init() {
       fetch("/data/v1/source-snapshots/mapforgoblins-map-points-part3-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-tile-regions-part1-20260818.json", { cache: "no-store" }),
       fetch("/data/v1/source-snapshots/mapforgoblins-tile-regions-part2-20260818.json", { cache: "no-store" }),
+      fetch("/api/catalog/named-grace-positions?limit=1000", { cache: "no-store" }),
    ]);
     if (!routeProfileResponse.ok) throw new Error(`route profile HTTP ${routeProfileResponse.status}`);
     if (!graphResponse.ok) throw new Error(`图数据 HTTP ${graphResponse.status}`);
@@ -1094,6 +1109,7 @@ async function init() {
     if (!onlineBossResponse.ok) throw new Error(`online boss coordinates HTTP ${onlineBossResponse.status}`);
     if (!onlineMapPoint1Response.ok || !onlineMapPoint2Response.ok || !onlineMapPoint3Response.ok) throw new Error("online map point coordinates unavailable");
     if (!onlineTile1Response.ok || !onlineTile2Response.ok) throw new Error("online tile region index unavailable");
+    if (!onlineNamedGraceResponse.ok) throw new Error(`named grace source coordinates HTTP ${onlineNamedGraceResponse.status}`);
     state.onlineIndex = {
       manifest: await onlineIndexResponse.json(),
       mapKeys: await onlineMapKeyResponse.json(),
@@ -1101,6 +1117,19 @@ async function init() {
       mapPoints: await Promise.all([onlineMapPoint1Response.json(), onlineMapPoint2Response.json(), onlineMapPoint3Response.json()]),
       tiles: await Promise.all([onlineTile1Response.json(), onlineTile2Response.json()]),
     };
+    const namedGracePayload = await onlineNamedGraceResponse.json();
+    state.onlineNamedGraceCatalogRecords = namedGracePayload.records || [];
+    state.onlineNamedGraceByNodeId = new Map();
+    const namedGraceCandidates = new Map();
+    state.onlineNamedGraceCatalogRecords.forEach((record) => {
+      (record.formal_candidates || []).filter((id) => state.data.nodes.some((node) => node.id === id)).forEach((id) => {
+        if (!namedGraceCandidates.has(id)) namedGraceCandidates.set(id, []);
+        namedGraceCandidates.get(id).push(record);
+      });
+    });
+    namedGraceCandidates.forEach((records, formalId) => {
+      if (records.length === 1) state.onlineNamedGraceByNodeId.set(formalId, records[0]);
+    });
     state.onlineBossByNodeId = new Map();
     state.onlineIndex.bosses.records.forEach((record) => {
       const formalCandidates = record[13] || [];
