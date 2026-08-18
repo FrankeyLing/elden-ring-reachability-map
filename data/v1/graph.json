@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.125-online-multiplane",
+  "version": "1.0.126-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -6283,7 +6283,8 @@
       "y": 860,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cerulean-coast", "eldenpedia-finger-rhia", "game8-cerulean-coast-cross-check"],
+      "sourceEvidence": ["eldenpedia-cerulean-coast", "eldenpedia-finger-rhia", "game8-cerulean-coast-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 632, "recordId": 68504000, "name": "Finger Ruins of Rhia", "map": "area 61 / grid 50,40", "position": [86.93000030517578, -76.7699966430664, -22.530000686645508], "coordinateSpace": "game_world_xyz" },
       "description": "Eastern coast branch containing the first Finger Ruins bell area."
     },
     {
@@ -6464,7 +6465,8 @@
       "y": 760,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check"],
+      "sourceEvidence": ["eldenpedia-finger-dheo", "game8-finger-dheo-cross-check", "eip-finger-dheo-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 657, "recordId": 69534600, "name": "Finger Ruins of Dheo", "map": "area 61 / grid 53,46", "position": [65.58999633789062, 321.2699890136719, -22.31999969482422], "coordinateSpace": "game_world_xyz" },
       "description": "Count Ymir's second Finger Ruins branch southeast of Hinterland Bridge."
     },
     {
@@ -6539,7 +6541,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check"],
+      "sourceEvidence": ["eldenpedia-finger-miyr", "eldenpedia-cathedral-manus-metyr", "game8-ymir-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 653, "recordId": 69514501, "name": "Finger Ruins of Miyr", "map": "area 61 / grid 51,45", "position": [-104.19999694824219, 447.55999755859375, 150.05999755859375], "coordinateSpace": "game_world_xyz" },
       "description": "Third Finger Ruins below the cathedral, reached through the changed throne route."
     },
     {
