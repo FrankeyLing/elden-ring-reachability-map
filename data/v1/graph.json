@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.127-online-multiplane",
+  "version": "1.0.128-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -5032,7 +5032,8 @@
       "y": 880,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-scadu-altus", "eldenpedia-sites-of-grace-r83774", "powerpyx-dlc-walkthrough-cross-check"],
+      "sourceEvidence": ["eldenpedia-scadu-altus", "eldenpedia-sites-of-grace-r83774", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 643, "recordId": 69494500, "name": "Moorth Ruins", "map": "area 61 / grid 49,44", "position": [40.13999938964844, 345.0899963378906, 74.05000305175781], "coordinateSpace": "game_world_xyz" },
       "description": "Surface ruins above the vertical tunnel to Bonny Village."
     },
     {
@@ -5062,7 +5063,8 @@
       "y": 930,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-scadu-altus", "eldenpedia-sites-of-grace-r83774", "game8-church-district-cross-check"],
+      "sourceEvidence": ["eldenpedia-scadu-altus", "eldenpedia-sites-of-grace-r83774", "game8-church-district-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 647, "recordId": 69504401, "name": "Bonny Village", "map": "area 61 / grid 50,44", "position": [-53.97999954223633, 306.2900085449219, -3.559999942779541], "coordinateSpace": "game_world_xyz" },
       "description": "Lower eastern Scadu Altus arrival from the Moorth tunnel."
     },
     {
@@ -5396,7 +5398,8 @@
       "y": 690,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-scaduview", "eldenpedia-sites-of-grace-r83774", "game8-scadutree-chalice-cross-check"],
+      "sourceEvidence": ["eldenpedia-scaduview", "eldenpedia-sites-of-grace-r83774", "game8-scadutree-chalice-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 650, "recordId": 69504800, "name": "Scadutree Base", "map": "area 61 / grid 50,48", "position": [-27.790000915527344, 190.02000427246094, 122.01000213623047], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Gaius Scaduview/Scadutree Chalice route state."
     },
     {
@@ -5487,7 +5490,8 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rauh", "eldenpedia-sites-of-grace-r83774", "neoseeker-rauh-base-cross-check", "game8-rauh-cross-check"],
+      "sourceEvidence": ["eldenpedia-rauh", "eldenpedia-sites-of-grace-r83774", "neoseeker-rauh-base-cross-check", "game8-rauh-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 634, "recordId": 69464500, "name": "Temple Town Ruins", "map": "area 61 / grid 46,45", "position": [-109.68000030517578, 308.7799987792969, 3.5299999713897705], "coordinateSpace": "game_world_xyz" },
       "description": "Lower Rauh Base grace southwest of Ancient Ruins Base, beside the Temple Town ruins and the river route to Ravine North."
     },
     {
@@ -5744,7 +5748,8 @@
       "y": 780,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-dragons-pit", "eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check"],
+      "sourceEvidence": ["eldenpedia-dragons-pit", "eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 200, "recordId": 430100, "name": "Dragon's Pit", "map": "area 43 / grid 1,0", "position": [-99.91999816894531, 360.7099914550781, 16.549999237060547], "coordinateSpace": "game_world_xyz" },
       "description": "Cave entrance at the end of Pillar Path and the first Jagged Peak branch node."
     },
     {
@@ -5804,7 +5809,8 @@
       "y": 900,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "game8-jagged-peak-cross-check", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 629, "recordId": 68493900, "name": "Grand Altar of Dragon Communion", "map": "area 61 / grid 49,39", "position": [72.30999755859375, 80.45999908447266, -125.83999633789062], "coordinateSpace": "game_world_xyz" },
       "description": "Southern optional branch at the Foot of the Jagged Peak."
     },
     {
@@ -6003,7 +6009,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-sites-of-grace-r83774", "bo3gg-darklight-cross-check"],
+      "sourceEvidence": ["eldenpedia-darklight", "eldenpedia-sites-of-grace-r83774", "bo3gg-darklight-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 191, "recordId": 400200, "name": "Darklight Catacombs", "map": "area 40 / grid 2,0", "position": [-46.209999084472656, 80.01000213623047, 111.52999877929688], "coordinateSpace": "game_world_xyz" },
       "description": "Catacomb entrance grace on the only formal route into Abyssal Woods."
     },
     {
@@ -6521,7 +6528,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-sites-of-grace-r83774", "game8-ymir-cross-check"],
+      "sourceEvidence": ["eldenpedia-cathedral-manus-metyr", "eldenpedia-sites-of-grace-r83774", "game8-ymir-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 652, "recordId": 69514500, "name": "Cathedral of Manus Metyr", "map": "area 61 / grid 51,45", "position": [-92.69000244140625, 472.010009765625, 21.479999542236328], "coordinateSpace": "game_world_xyz" },
       "description": "Cathedral grace and Ymir quest hub off the Church District Highroad."
     },
     {
@@ -9324,7 +9332,9 @@
     },
     {
       "id": "grace_shadow_realm_rivermouth_cave", "label": "Rivermouth Cave", "kind": "grace", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Cave entrance", "worldEpoch": "shadow_realm", "x": 400, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check"], "description": "Grace just beyond the cave entrance."
+      "sourceEvidence": ["eldenpedia-rivermouth-cave", "neoseeker-rivermouth-cave-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 199, "recordId": 430000, "name": "Rivermouth Cave", "map": "area 43 / grid 0,0", "position": [-82.44300079345703, 163.677001953125, 143.7989959716797], "coordinateSpace": "game_world_xyz" },
+      "description": "Grace just beyond the cave entrance."
     },
     {
       "id": "chief_bloodfiend_rivermouth_gate", "label": "Chief Bloodfiend (Rivermouth Cave)", "kind": "boss", "layer": "legacy", "region": "Rivermouth Cave", "floor": "Blood pool boss chamber", "worldEpoch": "shadow_realm", "x": 460, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9520,7 +9530,9 @@
     },
     {
       "id": "grace_scadu_altus_main_fort_of_reprimand", "label": "Fort of Reprimand", "kind": "grace", "layer": "legacy", "region": "Fort of Reprimand", "floor": "Fort battlements", "worldEpoch": "shadow_realm", "x": 560, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "eldenpedia-sites-of-grace-r83774"], "description": "Interior fort grace discovered on the battlements after entering from the highway or rear route."
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "eldenpedia-sites-of-grace-r83774", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 641, "recordId": 69494301, "name": "Fort of Reprimand", "map": "area 61 / grid 49,43", "position": [55.95000076293945, 396.4800109863281, -72.16000366210938], "coordinateSpace": "game_world_xyz" },
+      "description": "Interior fort grace discovered on the battlements after entering from the highway or rear route."
     },
     {
       "id": "fort_reprimand_front_entrance", "label": "Fort of Reprimand front entrance", "kind": "entrance", "layer": "surface", "region": "Fort of Reprimand", "floor": "Front courtyard", "worldEpoch": "shadow_realm", "x": 530, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
