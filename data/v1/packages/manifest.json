@@ -1,0 +1,514 @@
+{
+  "schema": "elden-ring-manifest@1",
+  "version": "1.0.0",
+  "title": "Online Verified V1 · Multi-plane Reachability",
+  "generatedAt": "2026-08-18T15:59:49+00:00",
+  "source": {
+    "file": "C:\\Users\\Frankey\\ZCodeProject\\repos\\elden-ring-reachability-map\\data\\v1\\graph.json",
+    "version": "1.0.174-online-boss-bindings"
+  },
+  "defaults": {
+    "origin": "grace_erdtree_sanctuary",
+    "destination": "item_bolt_of_gransax",
+    "conditions": [
+      "royal_capital_pre_maliketh",
+      "erdtree_sanctuary_activated"
+    ]
+  },
+  "packages": [
+    {
+      "id": "surface-main-world",
+      "path": "data/v1/packages/surface-main-world.jsonl",
+      "title": "主世界地表（宁姆格福/利耶尼亚/盖利德/亚坛/巨人山顶/化圣雪原等）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 182,
+        "edgeCount": 321,
+        "conditionCount": 20,
+        "regions": [
+          "Altus Plateau",
+          "Bellum Highway",
+          "Caelid",
+          "Consecrated Snowfield",
+          "Greyoll's Dragonbarrow",
+          "Limgrave",
+          "Liurnia of the Lakes",
+          "Mountaintops of the Giants",
+          "Mt. Gelmir",
+          "Sellia, Town of Sorcery",
+          "Summonwater Village",
+          "Swamp of Aeonia",
+          "The Four Belfries",
+          "Three Sisters",
+          "Wailing Dunes",
+          "Weeping Peninsula",
+          "化圣雪原",
+          "宁姆格福"
+        ],
+        "layers": [
+          "surface"
+        ],
+        "epochs": [
+          "altus_surface",
+          "base_surface",
+          "caelid_surface",
+          "caria_study_hall_legacy",
+          "consecrated_snowfield",
+          "dragonbarrow_surface",
+          "limgrave_surface",
+          "liurnia_surface",
+          "moonlight_altar",
+          "mountaintops_surface",
+          "post_radahn_world_state",
+          "unknown",
+          "weeping_peninsula"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "underground",
+      "path": "data/v1/packages/underground.jsonl",
+      "title": "地下世界（希芙拉河/安瑟尔河/诺克隆/深根底层/腐败湖/蒙格温王朝）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 56,
+        "edgeCount": 83,
+        "conditionCount": 15,
+        "regions": [
+          "Ainsel River",
+          "Deeproot Depths",
+          "Deeproot Depths / Ainsel River",
+          "Grand Cloister",
+          "Lake of Rot",
+          "Mohgwyn Palace",
+          "Nokron, Eternal City",
+          "Siofra Aqueduct",
+          "Siofra River",
+          "Siofra River / Dragonbarrow",
+          "安瑟尔河",
+          "希芙拉河",
+          "诺克隆，永恒之城"
+        ],
+        "layers": [
+          "legacy",
+          "underground"
+        ],
+        "epochs": [
+          "ainsel_underground",
+          "deeproot_underground",
+          "lake_of_rot_underground",
+          "mohgwyn_underground",
+          "nokron_underground",
+          "nokstella_underground",
+          "siofra_underground"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "royal-capital",
+      "path": "data/v1/packages/royal-capital.jsonl",
+      "title": "王城罗德尔（玛利喀斯前正常状态）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 32,
+        "edgeCount": 47,
+        "conditionCount": 7,
+        "regions": [
+          "Capital Outskirts",
+          "Leyndell, Royal Capital",
+          "Subterranean Shunning-Grounds",
+          "王城罗德尔"
+        ],
+        "layers": [
+          "legacy",
+          "surface",
+          "underground"
+        ],
+        "epochs": [
+          "altus_surface",
+          "base_surface",
+          "royal_capital_pre_maliketh"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "ashen-capital",
+      "path": "data/v1/packages/ashen-capital.jsonl",
+      "title": "灰烬王城（玛利喀斯后状态）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 10,
+        "edgeCount": 9,
+        "conditionCount": 5,
+        "regions": [
+          "Leyndell, Ashen Capital",
+          "灰烬王城"
+        ],
+        "layers": [
+          "legacy",
+          "surface"
+        ],
+        "epochs": [
+          "ashen_capital_post_maliketh"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "shadow-realm",
+      "path": "data/v1/packages/shadow-realm.jsonl",
+      "title": "《黄金树幽影》区域（幽影之地/影之塔/恩希斯城/塔之镇/米德拉宅邸等）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 197,
+        "edgeCount": 304,
+        "conditionCount": 41,
+        "regions": [
+          "Belurat Gaol",
+          "Belurat, Tower Settlement",
+          "Bonny Gaol",
+          "Fog Rift Catacombs",
+          "Fog Rift Fort",
+          "Fort of Reprimand",
+          "Gravesite Plain",
+          "Land of the Tower",
+          "Rauh Base",
+          "Rivermouth Cave",
+          "Ruined Forge Lava Intake",
+          "Ruined Forge of Starfall Past",
+          "Scadu Altus",
+          "Scaduview",
+          "Scorpion River Catacombs",
+          "Shadow Keep",
+          "Taylew's Ruined Forge",
+          "城的前方",
+          "恩希斯城"
+        ],
+        "layers": [
+          "legacy",
+          "surface",
+          "underground"
+        ],
+        "epochs": [
+          "shadow_realm",
+          "shadow_realm_enir_ilim"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "farum-azula",
+      "path": "data/v1/packages/farum-azula.jsonl",
+      "title": "法姆·亚兹拉（逐渐崩毁的法姆·亚兹拉）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 15,
+        "edgeCount": 23,
+        "conditionCount": 5,
+        "regions": [
+          "Crumbling Farum Azula",
+          "逐渐崩毁的法姆·亚兹拉"
+        ],
+        "layers": [
+          "legacy"
+        ],
+        "epochs": [
+          "crumbling_farum_azula"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "haligtree",
+      "path": "data/v1/packages/haligtree.jsonl",
+      "title": "米凯拉的圣树与艾布雷菲尔",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 12,
+        "edgeCount": 21,
+        "conditionCount": 2,
+        "regions": [
+          "Elphael, Brace of the Haligtree",
+          "Miquella's Haligtree",
+          "米凯拉的圣树"
+        ],
+        "layers": [
+          "legacy"
+        ],
+        "epochs": [
+          "haligtree_legacy"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "stormveil",
+      "path": "data/v1/packages/stormveil.jsonl",
+      "title": "史东薇尔城",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 8,
+        "edgeCount": 14,
+        "conditionCount": 1,
+        "regions": [
+          "Stormveil Castle"
+        ],
+        "layers": [
+          "legacy",
+          "surface"
+        ],
+        "epochs": [
+          "base_surface",
+          "stormveil_legacy",
+          "stormveil_pre_godrick"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "raya-lucaria",
+      "path": "data/v1/packages/raya-lucaria.jsonl",
+      "title": "雷亚卢卡利亚魔法学院",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 9,
+        "edgeCount": 15,
+        "conditionCount": 2,
+        "regions": [
+          "Academy of Raya Lucaria",
+          "Raya Lucaria Academy"
+        ],
+        "layers": [
+          "legacy"
+        ],
+        "epochs": [
+          "base_surface",
+          "liurnia_surface",
+          "raya_lucaria_legacy"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "volcano-manor",
+      "path": "data/v1/packages/volcano-manor.jsonl",
+      "title": "火山官邸",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 7,
+        "edgeCount": 6,
+        "conditionCount": 2,
+        "regions": [
+          "Volcano Manor"
+        ],
+        "layers": [
+          "legacy",
+          "underground"
+        ],
+        "epochs": [
+          "base_surface",
+          "unknown"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "caria-manor",
+      "path": "data/v1/packages/caria-manor.jsonl",
+      "title": "卡利亚城寨",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 6,
+        "edgeCount": 8,
+        "conditionCount": 1,
+        "regions": [
+          "Caria Manor",
+          "卡利亚城寨"
+        ],
+        "layers": [
+          "legacy"
+        ],
+        "epochs": [
+          "base_surface",
+          "caria_manor_legacy"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "legacy-other",
+      "path": "data/v1/packages/legacy-other.jsonl",
+      "title": "其他遗迹与地牢（洞窟/墓地/英雄墓地/塔/监牢等）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 212,
+        "edgeCount": 198,
+        "conditionCount": 69,
+        "regions": [
+          "Abandoned Cave",
+          "Academy Crystal Cave",
+          "Altus Tunnel",
+          "Auriza Hero's Grave",
+          "Auriza Side Tomb",
+          "Black Knife Catacombs",
+          "Caelid",
+          "Caelid Catacombs",
+          "Carian Study Hall",
+          "Castle Sol",
+          "Cave of Knowledge",
+          "Cave of the Forlorn",
+          "Chapel of Anticipation",
+          "Cliffbottom Catacombs",
+          "Coastal Cave",
+          "Consecrated Snowfield Catacombs",
+          "Deathtouched Catacombs",
+          "Divine Tower of Caelid",
+          "Divine Tower of Limgrave",
+          "Divine Tower of Liurnia",
+          "Divine Tower of West Altus",
+          "Dragonbarrow Cave",
+          "Earthbore Cave",
+          "Forbidden Lands",
+          "Fort Haight",
+          "Gael Tunnel",
+          "Gaol Cave",
+          "Gelmir Hero's Grave",
+          "Giant-Conquering Hero's Grave",
+          "Giants' Mountaintop Catacombs",
+          "Greyoll's Dragonbarrow",
+          "Groveside Cave",
+          "Highroad Cave",
+          "Impaler's Catacombs",
+          "Lakeside Crystal Cave",
+          "Limgrave",
+          "Limgrave Tunnels",
+          "Liurnia of the Lakes",
+          "Minor Erdtree Catacombs",
+          "Mohgwyn Palace",
+          "Morne Tunnel",
+          "Mountaintops of the Giants",
+          "Murkwater Catacombs",
+          "Murkwater Cave",
+          "Old Altus Tunnel",
+          "Perfumer's Grotto",
+          "Raya Lucaria Crystal Tunnel",
+          "Redmane Castle",
+          "Road's End Catacombs",
+          "Roundtable Hold",
+          "Ruin-Strewn Precipice",
+          "Sage's Cave",
+          "Sainted Hero's Grave",
+          "Sealed Tunnel",
+          "Seethewater Cave",
+          "Sellia Crystal Tunnel",
+          "Sellia Hideaway",
+          "Sellia, Town of Sorcery",
+          "Spiritcaller's Cave",
+          "Stillwater Cave",
+          "Stormfoot Catacombs",
+          "The Shaded Castle",
+          "Tombsward Catacombs",
+          "Tombsward Cave",
+          "Unsightly Catacombs",
+          "Village of the Albinaurics",
+          "Volcano Cave",
+          "War-Dead Catacombs",
+          "Waypoint Ruins",
+          "Wyndham Catacombs",
+          "Yelough Anix Tunnel",
+          "格密尔火山"
+        ],
+        "layers": [
+          "legacy"
+        ],
+        "epochs": [
+          "altus_surface",
+          "base_surface",
+          "caelid_surface",
+          "caria_study_hall_legacy",
+          "castle_sol_legacy",
+          "consecrated_snowfield",
+          "dragonbarrow_surface",
+          "limgrave_surface",
+          "liurnia_surface",
+          "mountaintops_surface",
+          "post_radahn_world_state",
+          "redmane_festival",
+          "roundtable_hold",
+          "ruin_strewn_precipice_legacy",
+          "unknown"
+        ]
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    },
+    {
+      "id": "bridge",
+      "path": "data/v1/packages/bridge.jsonl",
+      "title": "跨区域桥接（传送/升降梯/入口/单向跳落/世界状态切换等跨包边）",
+      "version": "1.0.0",
+      "generatedAt": "2026-08-18T15:59:49+00:00",
+      "coverage": {
+        "nodeCount": 0,
+        "edgeCount": 146,
+        "conditionCount": 33,
+        "regions": [],
+        "layers": [],
+        "epochs": []
+      },
+      "crossPackageDependencies": [],
+      "isolatedRecordCount": 0,
+      "knownGaps": []
+    }
+  ],
+  "bridgePackageId": "bridge",
+  "coverage": {
+    "formalNodeCount": 746,
+    "formalRouteEdgeCount": 1195,
+    "conditionCount": 177,
+    "packageCount": 13,
+    "bridgeEdgeCount": 146,
+    "originalGameCoordinates": false,
+    "localGameVerified": false,
+    "isolatedRecordCount": 0,
+    "statement": "Beta 仅以已加载数据包的范围提供路线；未覆盖区域、未加载包与隔离记录不冒充一比一。"
+  }
+}

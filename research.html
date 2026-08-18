@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0d1117" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13' fill='%23e9c979'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
-    <title>RUNE//PATH · 艾尔登法环拓扑路线规划器（Beta）</title>
-    <link rel="stylesheet" href="styles.css?v=beta-packages" />
+    <title>RUNE//PATH · Reachability Graph</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="app-shell">
@@ -15,14 +14,14 @@
           <div class="brand-mark">✦</div>
           <div>
             <div class="brand-name">RUNE<span>//</span>PATH</div>
-            <div class="brand-subtitle">THE LANDS BETWEEN · REACHABILITY GRAPH · BETA</div>
+            <div class="brand-subtitle">THE LANDS BETWEEN · REACHABILITY GRAPH</div>
           </div>
         </div>
         <div class="topbar-meta">
           <span class="live-dot"></span>
-          <span id="dataset-version">载入数据包中…</span>
+          <span>ONLINE VERIFIED V1</span>
           <span class="meta-divider"></span>
-          <span id="package-status-chip">—</span>
+          <span id="dataset-version">v0.1.0</span>
         </div>
       </header>
 
@@ -30,22 +29,16 @@
         <aside class="control-panel panel">
           <div class="panel-kicker">ROUTE PLANNER <span>01</span></div>
           <h1>寻找一条可达的路</h1>
-          <p class="lede">输入起点与终点，按当前世界状态计算条件化可达路线。距离不是路线。</p>
+          <p class="lede">距离不是路线。选择两个拓扑节点，让图上的条件边替你筛掉不可行的直线。</p>
 
           <div class="field-group">
-            <label for="origin-search">起点 <span>FROM</span></label>
-            <div class="combobox" data-combobox="origin">
-              <input id="origin-search" type="search" autocomplete="off" placeholder="搜索赐福 / Boss / 入口…" />
-              <div class="combobox-list" hidden></div>
-            </div>
+            <label for="origin-select">起点 <span>FROM</span></label>
+            <select id="origin-select"></select>
           </div>
-          <button id="swap-route" class="swap-button" title="交换起终点">⇅ 交换起终点</button>
+          <div class="route-arrow">↓</div>
           <div class="field-group">
-            <label for="destination-search">终点 <span>TO</span></label>
-            <div class="combobox" data-combobox="destination">
-              <input id="destination-search" type="search" autocomplete="off" placeholder="搜索赐福 / Boss / 入口…" />
-              <div class="combobox-list" hidden></div>
-            </div>
+            <label for="destination-select">终点 <span>TO</span></label>
+            <select id="destination-select"></select>
           </div>
 
           <div class="section-line"><span>ROUTE PROFILE</span></div>
@@ -56,10 +49,6 @@
           <div class="profile-hint" id="route-profile-hint"></div>
 
           <div class="section-line"><span>WORLD STATE</span></div>
-          <div class="condition-toolbar">
-            <button id="conditions-all" class="ghost-button small">全部勾选</button>
-            <button id="conditions-none" class="ghost-button small">全部清除</button>
-          </div>
           <div id="conditions" class="condition-list"></div>
 
           <div class="section-line"><span>ROUTE COST</span></div>
@@ -71,18 +60,18 @@
           <div class="preference-hint" id="preference-hint">综合时间与风险，适合首次探索。</div>
 
           <button id="plan-route" class="primary-button"><span>◎</span> 规划可达路线</button>
-          <button id="reset-route" class="ghost-button">重置为默认示例</button>
+          <button id="reset-route" class="ghost-button">重置 V1 状态</button>
 
           <div class="data-note">
             <span class="note-icon">i</span>
-            <span id="coverage-note">正在读取数据包清单…</span>
+            <span>当前数据来自带 revision 的在线 Source Snapshot；赐福目录可浏览，候选路段不自动通行，正式路线边保留方向、条件和证据。</span>
           </div>
         </aside>
 
         <section class="map-panel panel">
           <div class="map-toolbar">
             <div class="map-title">
-              <span class="eyebrow">WORLD TOPOLOGY / BETA</span>
+              <span class="eyebrow">WORLD TOPOLOGY / 001</span>
               <strong>可达性图</strong>
               <span id="graph-stats">加载中…</span>
             </div>
@@ -91,8 +80,38 @@
                 <button class="layer-tab active" data-layer="all">全域</button>
                 <button class="layer-tab" data-layer="surface">地表</button>
                 <button class="layer-tab" data-layer="underground">地下</button>
-                <button class="layer-tab" data-layer="legacy">遗迹 / 建筑层</button>
+                <button class="layer-tab" data-layer="legacy">独立地图 / 建筑层</button>
               </div>
+              <div class="map-mode-tabs" role="tablist" aria-label="地图视图">
+                <button class="map-mode active" data-map-mode="topology">拓扑路线</button>
+                <button class="map-mode" data-map-mode="local-topology">LOCAL TOPOLOGY</button>
+                <button class="map-mode" data-map-mode="coordinates">真实坐标</button>
+                <button class="map-mode" data-map-mode="local-msbe">LOCAL MSBE XYZ</button>
+                <button class="map-mode" data-map-mode="local-abstract">LOCAL ABSTRACT ENTITIES</button>
+                <button class="map-mode" data-map-mode="local-native">LOCAL NATIVE TOPOLOGY</button>
+                <button class="map-mode" data-map-mode="named-coordinates">命名源 XYZ</button>
+                <button class="map-mode" data-map-mode="projected">在线投影</button>
+              </div>
+              <select id="coordinate-map-select" class="coordinate-map-select" aria-label="选择真实地图层" hidden></select>
+              <select id="local-msbe-map-select" class="coordinate-map-select" aria-label="Select local MSBE map" hidden></select>
+              <select id="local-msbe-layer-select" class="coordinate-map-select" aria-label="Select raw MSBE map studio layer" hidden></select>
+              <select id="local-msbe-kind" class="coordinate-map-select" aria-label="Select local MSBE layer" hidden>
+                <option value="all">All MSBE records</option>
+                <option value="parts">Parts</option>
+                <option value="regions">Regions</option>
+                <option value="events">Events</option>
+                <option value="transitions">Transitions</option>
+              </select>
+              <select id="coordinate-entity-kind" class="coordinate-map-select" aria-label="选择在线实体类别" hidden>
+                <option value="enemy">敌人实体</option>
+                <option value="asset">地图资产</option>
+                <option value="all">全部实体</option>
+              </select>
+              <select id="projected-master-select" class="coordinate-map-select" aria-label="选择在线投影层" hidden>
+                <option value="M00">M00 · 地表/主地图</option>
+                <option value="M01">M01 · 地下</option>
+                <option value="M10">M10 · 幽影之地</option>
+              </select>
               <div class="zoom-controls">
                 <button id="zoom-out" aria-label="缩小">−</button>
                 <button id="zoom-reset" aria-label="重置缩放">1:1</button>
@@ -102,7 +121,7 @@
           </div>
 
           <div class="map-stage" id="map-stage">
-            <svg id="topology-map" viewBox="0 0 1000 600" role="img" aria-label="艾尔登法环拓扑可达性图">
+            <svg id="topology-map" viewBox="0 0 1000 600" role="img" aria-label="艾尔登法环示例可达性图">
               <defs>
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
                   <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(176, 155, 105, 0.08)" stroke-width="1" />
@@ -118,12 +137,12 @@
                   <path d="M0,0 L9,4.5 L0,9 z" fill="#e9c979" />
                 </marker>
                 <g id="map-transform">
+                  <rect class="map-grid" x="0" y="0" width="1000" height="600" />
                   <g id="region-labels"></g>
                   <g id="edge-layer"></g>
                   <g id="node-layer"></g>
                 </g>
               </defs>
-              <rect class="map-grid" x="0" y="0" width="1000" height="600" />
               <use href="#map-transform" />
             </svg>
             <div class="map-overlay top-left">
@@ -131,10 +150,10 @@
               <div class="legend-row"><span class="legend-line route"></span><span>当前路线</span></div>
               <div class="legend-row"><span class="legend-line"></span><span>可通行边</span></div>
               <div class="legend-row"><span class="legend-line blocked"></span><span>条件未满足</span></div>
-              <div class="legend-row"><span class="legend-line unknown"></span><span>条件未知</span></div>
             </div>
+            <div class="map-overlay coordinate-layer-meta" id="coordinate-layer-meta" hidden></div>
             <div class="map-overlay bottom-right" id="map-toast">点击节点查看详情</div>
-            <div id="loading-state" class="loading-state">正在载入数据包…</div>
+            <div id="loading-state" class="loading-state">正在载入拓扑数据…</div>
           </div>
         </section>
 
@@ -143,7 +162,7 @@
           <div id="route-summary" class="route-summary empty">
             <div class="summary-icon">⌁</div>
             <h2>还没有路线</h2>
-            <p id="route-empty-hint">设定起点和终点后，规划器会按照当前世界状态计算可达路径。</p>
+            <p>设定起点和终点后，规划器会按照当前世界状态计算可达路径。</p>
           </div>
           <div id="route-content" class="hidden">
             <div class="summary-head">
@@ -162,12 +181,26 @@
             <div class="route-notice" id="route-notice"></div>
           </div>
 
-          <div class="section-line node-section-title"><span>DATA PACKAGES &amp; COVERAGE</span></div>
-          <div id="coverage-panel" class="coverage-panel">
-            <div class="coverage-placeholder">数据包状态将在这里显示。</div>
-          </div>
-
-          <div class="section-line node-section-title"><span>NODE INSPECTOR</span></div>
+           <div class="section-line online-query-title"><span>ONLINE POI LOOKUP</span></div>
+           <div class="online-query">
+             <div class="online-query-row">
+             <select id="online-poi-kind" aria-label="在线数据类型">
+                 <option value="achievements">成就 / P0 目标</option>
+                 <option value="map-points">地图点</option>
+                 <option value="items">物品/掉落</option>
+                 <option value="boss-positions">Boss 坐标</option>
+                 <option value="entities">实体坐标</option>
+                 <option value="gathering">采集节点</option>
+                 <option value="grace-positions">原始赐福坐标</option>
+                 <option value="named-grace-positions">命名赐福 XYZ</option>
+                 <option value="projected-graces">命名赐福投影</option>
+               </select>
+               <input id="online-poi-query" type="search" placeholder="搜索名称，例如 Shabriri Grape" />
+               <button id="online-poi-search">查询</button>
+             </div>
+             <div id="online-poi-results" class="online-poi-results">输入名称查询固定在线坐标证据。</div>
+           </div>
+           <div class="section-line node-section-title"><span>NODE INSPECTOR</span></div>
           <div id="node-inspector" class="node-inspector">
             <div class="inspector-placeholder">选择地图上的节点<br />查看它的层级、类型和可用连接。</div>
           </div>
@@ -175,12 +208,11 @@
       </main>
 
       <footer class="footer-bar">
-        <span><i class="status-pip"></i> <span id="engine-status">GRAPH ENGINE LOADING</span></span>
-        <span id="footer-coverage">—</span>
-        <span><a href="research.html" target="_blank" rel="noopener" class="research-link">研究控制台（开发检查入口）</a></span>
+        <span><i class="status-pip"></i> GRAPH ENGINE READY</span>
+        <span>DIRECTED EDGES · CONDITIONAL ACCESS · LAYER-AWARE ROUTING</span>
       </footer>
     </div>
-    <script src="framework.js?v=beta-packages"></script>
-    <script src="app.js?v=beta-packages"></script>
+    <script src="coordinate-map.js?v=20260818-native-abstract-topology"></script>
+    <script src="research-app.js?v=20260818-native-abstract-topology"></script>
   </body>
 </html>

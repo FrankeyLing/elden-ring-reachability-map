@@ -15,6 +15,9 @@ from urllib.parse import parse_qs, urlparse
 ROOT = Path(__file__).resolve().parent
 ONLINE_QUERY_MAX = 1000
 DATA_FILE = ROOT / "data" / "v1" / "graph.json"
+PACKAGES_DIR = ROOT / "data" / "v1" / "packages"
+PACKAGES_MANIFEST_FILE = PACKAGES_DIR / "manifest.json"
+PACKAGE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ACHIEVEMENTS_FILE = ROOT / "data" / "v1" / "entities" / "achievements.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
@@ -246,6 +249,13 @@ class AppHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):  # noqa: N802 - stdlib handler API
         parsed = urlparse(self.path)
+        if parsed.path == "/api/packages/manifest":
+            self.send_json_file(PACKAGES_MANIFEST_FILE)
+            return
+        if parsed.path.startswith("/api/packages/"):
+            package_id = parsed.path[len("/api/packages/"):]
+            self.send_package_file(package_id)
+            return
         if parsed.path == "/api/graph":
             self.send_json_file(DATA_FILE)
             return
@@ -429,6 +439,28 @@ class AppHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/":
             self.path = "/index.html"
         return super().do_GET()
+
+    def send_package_file(self, package_id: str):
+        """Serve one JSONL data package. Package ids are strictly validated so
+        a request can never escape the packages directory."""
+        if not PACKAGE_ID_RE.fullmatch(package_id):
+            self.send_json_error(ValueError(f"invalid package id: {package_id!r}"))
+            return
+        path = PACKAGES_DIR / f"{package_id}.jsonl"
+        if not path.is_file():
+            self.send_json_error(FileNotFoundError(f"package not found: {package_id}"))
+            return
+        try:
+            payload = path.read_bytes()
+        except OSError as exc:
+            self.send_json_error(exc)
+            return
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(payload)))
+        self.end_headers()
+        self.wfile.write(payload)
 
     def send_json_file(self, path: Path):
         try:

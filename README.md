@@ -1,5 +1,72 @@
 # RUNE//PATH
 
+## 拓扑路线规划器 Beta（2026-08-19 发布）
+
+一个以固定在线资料为主数据源、按当前世界状态返回关键节点序列、通行方式、单向性、层级变化和条件说明的《艾尔登法环》多位面拓扑路线规划器。
+
+**Beta 不声称一比一**：只对已加载数据包覆盖的范围提供路线。未覆盖区域、未加载包、隔离记录都以诊断形式明确展示，不冒充完整世界。
+
+### 快速开始
+
+```bash
+python server.py --port 8105
+# 浏览器打开 http://127.0.0.1:8105/
+```
+
+页面首屏只加载数据包清单、13 个数据包和路线配置，不加载任何本地研究索引（MSBE/EMEVD/NVA/HKX 几何等均为按需研究入口）。默认示例路线为「黄金树大教堂 → 古兰桑克斯的雷电」。
+
+### 数据包架构（框架与数据完全解耦）
+
+- 正式图（746 节点 / 1195 条有向边 / 177 个条件）机械拆分为 12 个区域/状态包 + 1 个桥接包，见 `data/v1/packages/`。
+- 每个包为 JSONL，一行一条记录；单条记录损坏只隔离该行，整包无效才跳过该包，且不影响其他包。
+- 桥接包只保存跨包边（传送/升降梯/入口/单向跳落/世界状态切换）；桥接包缺失时各连通分量内部照常工作。
+- `framework.js` 是来源无关的框架层：逐记录校验、隔离区、连通分量、搜索、条件化求路、最小阻断解释、诊断。它不认识任何具体游戏数据源。
+- 坏节点只隔离该节点及直接依赖边；悬空边只隔离该边；未知条件只让引用它的边进入「条件未知」；重复 id 保留先发布记录。
+
+### 覆盖声明
+
+- 正式图覆盖：746 节点（418 赐福）、1195 条已证实有向边、177 个状态条件、1 个弱连通分量。
+- 数据包：`surface-main-world` / `underground` / `royal-capital` / `ashen-capital` / `shadow-realm` / `farum-azula` / `haligtree` / `stormveil` / `raya-lucaria` / `volcano-manor` / `caria-manor` / `legacy-other` / `bridge`。
+- 坐标仅用于自制抽象底图布局，不是游戏原始 XYZ；cost/risk 是相对单位，不是实测分钟。
+- 本地考据图（29,144 节点 / 7,976 条候选边，全部 `routeable: false`）是证据仓库，不在玩家关键路径上；开发检查入口为 `/research.html`。
+
+### 固定 E2E 路线（阶段七回归）
+
+| # | 路线 | 段数 | 关键语义 |
+|---|---|---|---|
+| 1 | 黄金树大教堂 → 古兰桑克斯的雷电 | 5 | 出口→电梯→单向跳落→拾取 |
+| 2 | 史东薇尔正门 → 葛瑞克 | 5 | 遗迹内部、垂直路线、Boss 接近 |
+| 3 | 火山官邸入口 → 拉卡德 | 5 | 隐藏路线、Boss 完成、传送门 |
+| 4 | 法姆·亚兹拉迎风露台 → 玛利喀斯 | 8 | 浮空岩、屋顶、Boss 状态 |
+| 5 | 圣树树冠 → 玛莲妮亚 | 9 | 垂直路线、升降梯、腐败树根 |
+| 6 | 希芙拉河井底 → 龙人士兵 | 5 | 地下通道、升降梯、传送门 |
+| 7 | 王城正常状态 / 灰烬状态互斥 | — | 两态条件互斥，不混成无条件路线 |
+| 8 | DLC 影之塔正门广场 → 标本仓库第七层 | 3 | 升降梯垂直路线 |
+
+### 测试与构建
+
+```bash
+# 8 条 E2E 路线回归（真实 HTTP 服务 + framework 引擎）
+node scripts/e2e-route-regression.mjs
+
+# 故障隔离测试：零数据/单包/坏节点/悬空边/未知条件/坏行/坏包/缺桥接/重复id/最小阻断
+node scripts/test-fault-isolation.mjs
+
+# 数据包完整性审计（拆包不丢边、不悬空、不重复）
+python scripts/audit-packages.py
+
+# 从正式图重建数据包（机械拆分，可重复）
+python scripts/build-packages.py
+```
+
+### 发布验收（与恢复计划第 10 节 20 条对应）
+
+框架行为与玩家主流程验收全部通过：零数据可启动；单包可用；坏节点/悬空边/坏包/缺桥接均只局部失败；未知条件只影响引用边；默认示例路线首屏成功；起点终点文字搜索（含中文别名）；阻断只显示相关缺失条件；单向跳落不被反向；王城两态互斥；路线步骤显示入口/层级/通行方式/包版本/证据等级；默认不加载研究数据；真实浏览器无项目自身错误；页面明确写明覆盖范围与隔离记录。
+
+---
+
+## 研究层文档（不参与 Beta 关键路径）
+
 ## Online Boss identity layer
 
 The current Online Verified V1 API exposes the pinned MapForGoblins Boss coordinates through `/api/catalog/boss-positions`. Twenty records are additionally checked against `sourceIndex`, `mapId`, `npcParamId`, and encounter name in [`data/v1/entities/boss-identity-bindings.json`](./data/v1/entities/boss-identity-bindings.json). These bindings only connect coordinate evidence to an existing formal Boss node; they never create traversal edges, Boss gates, or game-state changes. Ambiguous and source-only Boss records remain explicitly unbound.
