@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.116-online-multiplane",
+  "version": "1.0.117-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -917,6 +917,11 @@
       "hint": "The sealed spirit spring southeast of Moorth Ruins has been opened by destroying its stone cairn, enabling the Torrent jump to Scaduview Cross."
     },
     {
+      "id": "northern_nameless_mausoleum_spiritspring_unsealed",
+      "label": "Northern Nameless Mausoleum spirit spring unsealed",
+      "hint": "The sealed spirit spring near Temple Town Ruins has been opened, enabling the chained Torrent jumps to the Northern Nameless Mausoleum plateau."
+    },
+    {
       "id": "scaly_misbegotten_morne_tunnel_defeated",
       "label": "Morne Tunnel Scaly Misbegotten defeated",
       "hint": "The Scaly Misbegotten boss at the bottom of Morne Tunnel has been cleared."
@@ -1100,6 +1105,11 @@
     { "id": "eldenpedia-ruins-of-unte", "label": "Eldenpedia / Ruins of Unte", "url": "https://eldenring.wiki.gg/wiki/Ruins_of_Unte", "grade": "A" },
     { "id": "eldenpedia-nameless-mausoleums", "label": "Eldenpedia / Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Nameless_Mausoleum", "grade": "A" },
     { "id": "eldenpedia-eastern-nameless-mausoleum", "label": "Eldenpedia / Eastern Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Eastern_Nameless_Mausoleum", "grade": "A" },
+    { "id": "eldenpedia-western-nameless-mausoleum", "label": "Eldenpedia / Western Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Western_Nameless_Mausoleum", "grade": "A" },
+    { "id": "eldenpedia-southern-nameless-mausoleum", "label": "Eldenpedia / Southern Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Southern_Nameless_Mausoleum", "grade": "A" },
+    { "id": "eldenpedia-northern-nameless-mausoleum", "label": "Eldenpedia / Northern Nameless Mausoleum", "url": "https://eldenring.wiki.gg/wiki/Northern_Nameless_Mausoleum", "grade": "A" },
+    { "id": "game8-southern-nameless-mausoleum-cross-check", "label": "Game8 / Southern Nameless Mausoleum route", "url": "https://game8.co/games/Elden-Ring/archives/462520", "grade": "B" },
+    { "id": "gamerguides-northern-nameless-mausoleum-cross-check", "label": "Gamer Guides / Northern Nameless Mausoleum route", "url": "https://www.gamerguides.com/elden-ring-shadow-of-the-erdtree/database/locations/gravesite-plain/northern-nameless-mausoleum", "grade": "B" },
     { "id": "eldenpedia-abyssal", "label": "Eldenpedia / Abyssal Woods", "url": "https://eldenring.wiki.gg/wiki/Abyssal_Woods", "grade": "A" },
     { "id": "eldenpedia-midra-manse", "label": "Eldenpedia / Midra's Manse", "url": "https://eldenring.wiki.gg/wiki/Midra%27s_Manse", "grade": "A" },
     { "id": "game8-jagged-peak-cross-check", "label": "Game8 / Jagged Peak map and route", "url": "https://game8.co/games/Elden-Ring/archives/458835", "grade": "B" },
@@ -4456,6 +4466,22 @@
       "description": "Early Gravesite Plain surface grace on the northbound road between the Realm of Shadow entry and Three-Path Cross."
     },
     {
+      "id": "landmark_western_nameless_mausoleum",
+      "label": "Western Nameless Mausoleum",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Western Gravesite Plain",
+      "worldEpoch": "shadow_realm",
+      "x": 60,
+      "y": 730,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-western-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 615, "recordId": 68464100, "name": "Western Nameless Mausoleum", "map": "area 61 / grid 46,41", "position": [-129.9600067138672, 329.9700012207031, 54.68000030517578], "coordinateSpace": "game_world_xyz" },
+      "description": "Western Gravesite Plain boss-landmark, located west of Scorched Ruins. The online XYZ sidecar is preserved separately from the abstract layout coordinate."
+    },
+    {
       "id": "grace_shadow_realm_three_path_cross",
       "label": "Three-Path Cross",
       "kind": "grace",
@@ -5040,6 +5066,37 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-rauh", "eldenpedia-sites-of-grace-r83774", "neoseeker-rauh-base-cross-check"],
       "description": "Lower Rauh Base entrance that joins the upper Ancient Ruins route."
+    },
+    {
+      "id": "northern_nameless_mausoleum_spiritspring_seal",
+      "label": "Northern Nameless Mausoleum sealed Spiritspring",
+      "kind": "junction",
+      "layer": "surface",
+      "region": "Land of the Tower",
+      "floor": "Temple Town Ruins eastern cliff",
+      "worldEpoch": "shadow_realm",
+      "x": 760,
+      "y": 900,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "game8-rauh-cross-check"],
+      "description": "Sealed Spiritspring staging point east of Temple Town Ruins. It remains a junction rather than a map-point coordinate because the online map snapshot has no named point for the cairn/seal itself."
+    },
+    {
+      "id": "landmark_northern_nameless_mausoleum",
+      "label": "Northern Nameless Mausoleum",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Northern Rauh plateau",
+      "worldEpoch": "shadow_realm",
+      "x": 850,
+      "y": 780,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 635, "recordId": 69464501, "name": "Northern Nameless Mausoleum", "map": "area 61 / grid 46,45", "position": [86.63999938964844, 408.2200012207031, -42.5099983215332], "coordinateSpace": "game_world_xyz" },
+      "description": "Northern Nameless Mausoleum on the high plateau north of Rauh Base. The route is intentionally conditional on the nearby sealed Spiritspring being opened."
     },
     {
       "id": "grace_land_of_the_tower_rauh_base_temple_town_ruins",
@@ -5747,6 +5804,22 @@
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-cerulean-coast", "eldenpedia-sites-of-grace-r83774", "game8-cerulean-coast-cross-check"],
       "description": "Western optional Cerulean Coast branch."
+    },
+    {
+      "id": "landmark_southern_nameless_mausoleum",
+      "label": "Southern Nameless Mausoleum",
+      "kind": "landmark",
+      "layer": "surface",
+      "region": "Gravesite Plain",
+      "floor": "Cerulean Coast southern island",
+      "worldEpoch": "shadow_realm",
+      "x": 620,
+      "y": 940,
+      "coordinateType": "abstract_layout",
+      "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-southern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-cerulean-coast", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Southern Nameless Mausoleum", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz" },
+      "description": "Southern Cerulean Coast boss-landmark reached through the coastal cave route from Cerulean Coast West; the online XYZ sidecar is not used as rendered map geometry."
     },
     {
       "id": "grace_gravesite_plain_cerulean_coast_cerulean_coast_cross",
@@ -17699,6 +17772,14 @@
     ,{ "id": "redmane-exit-waygate-to-impassable", "from": "redmane_castle_exit_waygate", "to": "grace_impassable_greatbridge", "mode": "Redmane exit sending gate to Impassable Greatbridge", "cost": 1, "risk": 0, "direction": "one_way", "transitionType": "redmane_festival_exit_waygate", "requires": ["radahn_festival_active"], "sourceEvidence": ["eldenpedia-sending-gate-cross-check", "eldenpedia-redmane-r16802", "game8-redmane-cross-check"], "verificationState": "online_cross_checked", "note": "Teleport back to the Caelid-side Impassable Greatbridge grace; the reverse gate is represented by the existing impassable-to-redmane-plaza edge.", "tags": ["teleport", "one_way", "conditional", "surface", "cross_checked"] }
     ,{ "id": "fort-faroth-to-greyoll", "from": "grace_fort_faroth", "to": "elder_dragon_greyoll_gate", "mode": "Fort Faroth to Elder Dragon Greyoll", "cost": 4, "risk": 8, "direction": "forward", "transitionType": "field_boss_approach", "requires": [], "sourceEvidence": ["eldenpedia-dragonbarrow", "game8-greyoll-cross-check", "neoseeker-dragonbarrow-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Leave the Fort Faroth grace and cross the short Dragonbarrow field route to Greyoll south of the fort.", "tags": ["walk", "surface", "boss", "cross_checked"] }
     ,{ "id": "greyoll-to-fort-faroth", "from": "elder_dragon_greyoll_gate", "to": "grace_fort_faroth", "mode": "Elder Dragon Greyoll cleared return to Fort Faroth", "cost": 4, "risk": 8, "direction": "backtrack", "transitionType": "field_boss_return", "requires": ["elder_dragon_greyoll_defeated"], "sourceEvidence": ["eldenpedia-dragonbarrow", "game8-greyoll-cross-check", "neoseeker-dragonbarrow-cave-cross-check"], "verificationState": "online_cross_checked", "note": "Return to Fort Faroth after clearing the field boss; no post-boss grace is fabricated.", "tags": ["walk", "surface", "boss", "backtrack", "conditional", "cross_checked"] }
+    ,{ "id": "scorched-ruins-to-western-nameless-mausoleum", "from": "grace_gravesite_plain_main_scorched_ruins", "to": "landmark_western_nameless_mausoleum", "mode": "Scorched Ruins to Western Nameless Mausoleum", "cost": 6, "risk": 5, "direction": "forward", "transitionType": "surface_western_mausoleum_route", "requires": [], "sourceEvidence": ["eldenpedia-western-nameless-mausoleum", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Travel west from Scorched Ruins across the western Gravesite Plain to the mausoleum entrance; no hidden lift or fast-travel edge is implied.", "tags": ["walk", "surface", "landmark", "cross_checked"] }
+    ,{ "id": "western-nameless-mausoleum-to-scorched-ruins", "from": "landmark_western_nameless_mausoleum", "to": "grace_gravesite_plain_main_scorched_ruins", "mode": "Western Nameless Mausoleum return to Scorched Ruins", "cost": 6, "risk": 5, "direction": "backtrack", "transitionType": "surface_western_mausoleum_route_return", "requires": [], "sourceEvidence": ["eldenpedia-western-nameless-mausoleum", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Return east across the same open surface route to Scorched Ruins.", "tags": ["walk", "surface", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "cerulean-coast-west-to-southern-nameless-mausoleum", "from": "grace_gravesite_plain_cerulean_coast_cerulean_coast_west", "to": "landmark_southern_nameless_mausoleum", "mode": "Cerulean Coast West to Southern Nameless Mausoleum", "cost": 9, "risk": 8, "direction": "forward", "transitionType": "coastal_cave_to_southern_mausoleum", "requires": [], "sourceEvidence": ["eldenpedia-southern-nameless-mausoleum", "eldenpedia-cerulean-coast", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Follow the coast south/east to the large tree, descend into the cave and cross the tunnel to the island mausoleum; this is not a flat shoreline edge.", "tags": ["walk", "surface", "vertical", "cave", "landmark", "cross_checked"] }
+    ,{ "id": "southern-nameless-mausoleum-to-cerulean-coast-west", "from": "landmark_southern_nameless_mausoleum", "to": "grace_gravesite_plain_cerulean_coast_cerulean_coast_west", "mode": "Southern Nameless Mausoleum return to Cerulean Coast West", "cost": 9, "risk": 8, "direction": "backtrack", "transitionType": "southern_mausoleum_to_coastal_cave_return", "requires": [], "sourceEvidence": ["eldenpedia-southern-nameless-mausoleum", "eldenpedia-cerulean-coast", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Retrace the island cave and cliff route to Cerulean Coast West.", "tags": ["walk", "surface", "vertical", "cave", "landmark", "backtrack", "cross_checked"] }
+    ,{ "id": "temple-town-to-northern-mausoleum-spring", "from": "grace_land_of_the_tower_rauh_base_temple_town_ruins", "to": "northern_nameless_mausoleum_spiritspring_seal", "mode": "Temple Town Ruins to Northern Nameless Mausoleum sealed Spiritspring", "cost": 7, "risk": 7, "direction": "forward", "transitionType": "rauh_surface_spiritspring_approach", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "game8-rauh-cross-check"], "verificationState": "online_cross_checked", "note": "Ride east from Temple Town Ruins to the sealed Spiritspring staging point; the cairn interaction is modeled as a separate condition.", "tags": ["walk", "surface", "vertical", "conditional", "cross_checked"] }
+    ,{ "id": "northern-mausoleum-spring-to-temple-town", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "grace_land_of_the_tower_rauh_base_temple_town_ruins", "mode": "Northern Nameless Mausoleum Spiritspring return to Temple Town Ruins", "cost": 7, "risk": 7, "direction": "backtrack", "transitionType": "rauh_surface_spiritspring_approach_return", "requires": [], "sourceEvidence": ["eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "game8-rauh-cross-check"], "verificationState": "online_cross_checked", "note": "Return from the sealed Spiritspring staging point to Temple Town Ruins before taking the lower Rauh road.", "tags": ["walk", "surface", "vertical", "backtrack", "cross_checked"] }
+    ,{ "id": "northern-mausoleum-spring-to-northern-mausoleum", "from": "northern_nameless_mausoleum_spiritspring_seal", "to": "landmark_northern_nameless_mausoleum", "mode": "Unsealed Spiritspring jumps to Northern Nameless Mausoleum", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Break the nearby cairn, then chain the Spiritspring jumps to the high plateau; without the condition this edge is unavailable.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "cross_checked"] }
+    ,{ "id": "northern-nameless-mausoleum-to-spring", "from": "landmark_northern_nameless_mausoleum", "to": "northern_nameless_mausoleum_spiritspring_seal", "mode": "Northern Nameless Mausoleum return via Spiritspring", "cost": 8, "risk": 10, "direction": "one_way", "transitionType": "sealed_spiritspring_jump_return", "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"], "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "gamerguides-northern-nameless-mausoleum-cross-check", "eldenpedia-rauh", "nexus-map-for-goblins"], "verificationState": "online_cross_checked", "note": "Use the unsealed Spiritspring chain to return from the high plateau; no normal road or elevator is invented.", "tags": ["vertical", "spirit_spring", "one_way", "conditional", "hazard", "landmark", "backtrack", "cross_checked"] }
   ],
   "relations": [
     {
@@ -17720,8 +17801,8 @@
   ],
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
-    "formalNodeCount": 708,
-    "formalRouteEdgeCount": 1119,
+    "formalNodeCount": 712,
+    "formalRouteEdgeCount": 1127,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,
