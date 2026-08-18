@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.138-online-multiplane",
+  "version": "1.0.139-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -2551,7 +2551,8 @@
       "y": 760,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check"],
+      "sourceEvidence": ["eldenpedia-ainsel-well", "game8-ainsel-well-cross-check", "gamerguides-ainsel-well-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 520, "recordId": 62384600, "name": "Ainsel River Well", "map": "area 60 / grid 38,46", "position": [89.05000305175781, 248.83999633789062, 76.72000122070312], "coordinateSpace": "game_world_xyz" },
       "description": "Eastern Liurnia's Ainsel River Well surface building; its lift descends to the separate southern Ainsel branch."
     },
     {
@@ -4875,7 +4876,8 @@
       "y": 900,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-church-of-consolation", "game8-church-of-consolation-cross-check", "eldenpedia-gravesite-plain"],
+      "sourceEvidence": ["eldenpedia-church-of-consolation", "game8-church-of-consolation-cross-check", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 626, "recordId": 68484100, "name": "Church of Consolation", "map": "area 61 / grid 48,41", "position": [-82.68000030517578, 228.80999755859375, -74.29000091552734], "coordinateSpace": "game_world_xyz" },
       "description": "Landmark and loot location; not a Site of Grace and not a fast-travel node."
     },
     {
@@ -9737,7 +9739,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_the_four_belfries", "label": "The Four Belfries", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Four Belfries hilltop", "worldEpoch": "liurnia_surface", "x": 470, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-four-belfries", "eldenpedia-sites-of-grace-r83774", "game8-four-belfries-chapel-cross-check"], "description": "Hilltop grace beside three Sending Gates and the Imbued Sword Key chest."
+      "sourceEvidence": ["eldenpedia-four-belfries", "eldenpedia-sites-of-grace-r83774", "game8-four-belfries-chapel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 491, "recordId": 62334700, "name": "The Four Belfries", "map": "area 60 / grid 33,47", "position": [68.5199966430664, 376.3999938964844, -77.0999984741211], "coordinateSpace": "game_world_xyz" }, "description": "Hilltop grace beside three Sending Gates and the Imbued Sword Key chest."
     },
     {
       "id": "chapel_of_anticipation_spawn", "label": "Chapel of Anticipation (opening chapel)", "kind": "junction", "layer": "legacy", "region": "Limgrave", "floor": "Opening chapel", "worldEpoch": "limgrave_surface", "x": 90, "y": 70, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9783,7 +9785,7 @@
     },
     {
       "id": "grace_limgrave_main_church_of_dragon_communion", "label": "Church of Dragon Communion", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Offshore Dragon Communion island", "worldEpoch": "limgrave_surface", "x": 30, "y": 1130, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-church-dragon-communion", "powerpyx-church-dragon-communion-cross-check", "game8-church-dragon-communion-cross-check"], "description": "Island grace reached through Coastal Cave's rear passage; the island is a separate surface plane segment from the mainland coast."
+      "sourceEvidence": ["eldenpedia-church-dragon-communion", "powerpyx-church-dragon-communion-cross-check", "game8-church-dragon-communion-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 454, "recordId": 61413500, "name": "Church of Dragon Communion", "map": "area 60 / grid 41,35", "position": [-71.08399963378906, 27.291000366210938, -48.86899948120117], "coordinateSpace": "game_world_xyz" }, "description": "Island grace reached through Coastal Cave's rear passage; the island is a separate surface plane segment from the mainland coast."
     },
     {
       "id": "grace_limgrave_main_summonwater_village_outskirts", "label": "Summonwater Village Outskirts", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Western Summonwater approach", "worldEpoch": "limgrave_surface", "x": 520, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9811,7 +9813,7 @@
     },
     {
       "id": "grace_limgrave_stormhill_warmasters_shack", "label": "Warmaster's Shack", "kind": "grace", "layer": "surface", "region": "Limgrave", "floor": "Central Stormhill woods", "worldEpoch": "limgrave_surface", "x": 380, "y": 940, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-warmaster-shack", "eldenpedia-sites-of-grace-r83774", "game8-warmaster-shack-cross-check"], "description": "Stormhill shack grace on the road between Stormhill Shack and Saintsbridge; night state can replace Bernahl with the Bell Bearing Hunter."
+      "sourceEvidence": ["eldenpedia-warmaster-shack", "eldenpedia-sites-of-grace-r83774", "game8-warmaster-shack-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 465, "recordId": 61423800, "name": "Warmaster's Shack", "map": "area 60 / grid 42,38", "position": [10.387999534606934, 186.947998046875, 87.53600311279297], "coordinateSpace": "game_world_xyz" }, "description": "Stormhill shack grace on the road between Stormhill Shack and Saintsbridge; night state can replace Bernahl with the Bell Bearing Hunter."
     },
     {
       "id": "grace_limgrave_weeping_peninsula_ailing_village_outskirts", "label": "Ailing Village Outskirts", "kind": "grace", "layer": "surface", "region": "Weeping Peninsula", "floor": "Ailing Village northern plateau", "worldEpoch": "weeping_peninsula", "x": 430, "y": 1080, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9831,7 +9833,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_boilprawn_shack", "label": "Boilprawn Shack", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Central Liurnia lake shore", "worldEpoch": "liurnia_surface", "x": 760, "y": 850, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-boilprawn-shack", "eldenpedia-sites-of-grace-r83774", "game8-boilprawn-cross-check"], "description": "Lake-shore grace north of Scenic Isle and the Blackguard Big Boggart encounter."
+      "sourceEvidence": ["eldenpedia-boilprawn-shack", "eldenpedia-sites-of-grace-r83774", "game8-boilprawn-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 510, "recordId": 62364300, "name": "Boilprawn Shack", "map": "area 60 / grid 36,43", "position": [90.7699966430664, 237.69000244140625, -58.209999084472656], "coordinateSpace": "game_world_xyz" }, "description": "Lake-shore grace north of Scenic Isle and the Blackguard Big Boggart encounter."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_folly_on_the_lake", "label": "Folly on the Lake", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Western Liurnia lake shallows", "worldEpoch": "liurnia_surface", "x": 620, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9867,15 +9869,15 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_jarburg", "label": "Jarburg", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Jarburg cliff settlement", "worldEpoch": "liurnia_surface", "x": 1360, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-jarburg", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Lower cliff settlement reached by descending the tombstone ledges east of Liurnia; it is not on the same elevation as the eastern lake shore."
+      "sourceEvidence": ["eldenpedia-jarburg", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 528, "recordId": 62394400, "name": "Jarburg", "map": "area 60 / grid 39,44", "position": [43.75, 212.49000549316406, -6.679999828338623], "coordinateSpace": "game_world_xyz" }, "description": "Lower cliff settlement reached by descending the tombstone ledges east of Liurnia; it is not on the same elevation as the eastern lake shore."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_revengers_shack", "label": "Revenger's Shack", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Western Liurnia shore", "worldEpoch": "liurnia_surface", "x": 590, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Western Liurnia shack grace and Edgar the Revenger invasion branch."
+      "sourceEvidence": ["eldenpedia-revengers-shack", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 489, "recordId": 62334400, "name": "Revenger's Shack", "map": "area 60 / grid 33,44", "position": [17.8799991607666, 256.9200134277344, 28.049999237060547], "coordinateSpace": "game_world_xyz" }, "description": "Western Liurnia shack grace and Edgar the Revenger invasion branch."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_slumbering_wolfs_shack", "label": "Slumbering Wolf's Shack", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Lakeside Crystal Cave rear exit", "worldEpoch": "liurnia_surface", "x": 380, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-slumbering-wolf-shack", "eldenpedia-lakeside-crystal-cave", "game8-liurnia-cross-check"], "description": "Surface grace at the rear of Lakeside Crystal Cave, where Latenna's shack branch begins after the cave boss."
+      "sourceEvidence": ["eldenpedia-slumbering-wolf-shack", "eldenpedia-lakeside-crystal-cave", "game8-liurnia-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 509, "recordId": 62364100, "name": "Slumbering Wolf's Shack", "map": "area 60 / grid 36,41", "position": [136.3000030517578, 151.1699981689453, -62.70000076293945], "coordinateSpace": "game_world_xyz" }, "description": "Surface grace at the rear of Lakeside Crystal Cave, where Latenna's shack branch begins after the cave boss."
     },
     {
       "id": "grace_liurnia_of_the_lakes_bellum_highway_frenzied_flame_village_outskirts", "label": "Frenzied Flame Village Outskirts", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northern Bellum Highway plateau", "worldEpoch": "liurnia_surface", "x": 1100, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9883,7 +9885,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_bellum_highway_church_of_inhibition", "label": "Church of Inhibition", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northern plateau church", "worldEpoch": "liurnia_surface", "x": 1140, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check"], "description": "High northern church grace reached by the back slope of Frenzied Flame Village; the approach crosses a Madness hazard and can spawn Festering Fingerprint Vyke."
+      "sourceEvidence": ["eldenpedia-church-inhibition", "game8-church-inhibition-cross-check", "game8-liurnia-branches-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 516, "recordId": 62374900, "name": "Church of Inhibition", "map": "area 60 / grid 37,49", "position": [72.08000183105469, 494.1700134277344, -37.86000061035156], "coordinateSpace": "game_world_xyz" }, "description": "High northern church grace reached by the back slope of Frenzied Flame Village; the approach crosses a Madness hazard and can spawn Festering Fingerprint Vyke."
     },
     {
       "id": "grace_mountaintops_of_the_giants_ancient_snow_valley_ruins", "label": "Ancient Snow Valley Ruins", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Frozen river valley", "worldEpoch": "mountaintops_surface", "x": 950, "y": 640, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9901,7 +9903,7 @@
     },
     {
       "id": "grace_mountaintops_of_the_giants_church_of_repose", "label": "Church of Repose", "kind": "grace", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Flame Peak eastern approach", "worldEpoch": "mountaintops_surface", "x": 1320, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check"], "description": "Flame Peak church grace on the approach from Foot of the Forge; the Bloody Finger Okina encounter is a local hazard."
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-sites-of-grace-r83774", "game8-mountaintops-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 591, "recordId": 65515300, "name": "Church of Repose", "map": "area 60 / grid 51,53", "position": [-58.34000015258789, 1802.5999755859375, -65.45999908447266], "coordinateSpace": "game_world_xyz" }, "description": "Flame Peak church grace on the approach from Foot of the Forge; the Bloody Finger Okina encounter is a local hazard."
     },
     {
       "id": "grace_mountaintops_of_the_giants_hidden_path_to_the_haligtree", "label": "Hidden Path to the Haligtree", "kind": "grace", "layer": "legacy", "region": "Forbidden Lands", "floor": "Secret Rold lift dungeon", "worldEpoch": "consecrated_snowfield", "x": 800, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9919,11 +9921,11 @@
     },
     {
       "id": "grace_altus_plateau_capital_outskirts_hermit_merchants_shack", "label": "Hermit Merchant's Shack", "kind": "grace", "layer": "surface", "region": "Capital Outskirts", "floor": "Outer wall battleground cliff", "worldEpoch": "altus_surface", "x": 1460, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-hermit-merchant-cross-check"], "description": "Cliffside merchant grace east/northwest of Outer Wall Battleground; its Bell Bearing Hunter state is an optional night hazard."
+      "sourceEvidence": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-hermit-merchant-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 556, "recordId": 63435300, "name": "Hermit Merchant's Shack", "map": "area 60 / grid 43,53", "position": [-20.510000228881836, 993.4199829101562, 0.7599999904632568], "coordinateSpace": "game_world_xyz" }, "description": "Cliffside merchant grace east/northwest of Outer Wall Battleground; its Bell Bearing Hunter state is an optional night hazard."
     },
     {
       "id": "grace_altus_plateau_capital_outskirts_minor_erdtree_church", "label": "Minor Erdtree Church", "kind": "grace", "layer": "surface", "region": "Capital Outskirts", "floor": "Southern outer-wall church", "worldEpoch": "altus_surface", "x": 1340, "y": 920, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-minor-erdtree-church-cross-check"], "description": "Church grace at the end of the southeast path from Outer Wall Phantom Tree, between the Sealed Tunnel and West Altus tower route."
+      "sourceEvidence": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-minor-erdtree-church-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 555, "recordId": 63435000, "name": "Minor Erdtree Church", "map": "area 60 / grid 43,50", "position": [-115.44000244140625, 910.1099853515625, -45.310001373291016], "coordinateSpace": "game_world_xyz" }, "description": "Church grace at the end of the southeast path from Outer Wall Phantom Tree, between the Sealed Tunnel and West Altus tower route."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_fallen_ruins_of_the_lake", "label": "Fallen Ruins of the Lake", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Central lake fallen ruins", "worldEpoch": "liurnia_surface", "x": 650, "y": 850, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9931,7 +9933,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_temple_quarter", "label": "Temple Quarter", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Temple Quarter ruins", "worldEpoch": "liurnia_surface", "x": 700, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "neoseeker-liurnia-north-cross-check"], "description": "Grace on the outer edge of the flooded Temple Quarter ruins, reached north/northeast from Fallen Ruins of the Lake and serving as a central lake branch."
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "eip-liurnia-cross-check", "neoseeker-liurnia-north-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 495, "recordId": 62344400, "name": "Temple Quarter", "map": "area 60 / grid 34,44", "position": [42.540000915527344, 237.57000732421875, 78.05000305175781], "coordinateSpace": "game_world_xyz" }, "description": "Grace on the outer edge of the flooded Temple Quarter ruins, reached north/northeast from Fallen Ruins of the Lake and serving as a central lake branch."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_crystalline_woods", "label": "Crystalline Woods", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northwestern academy island", "worldEpoch": "liurnia_surface", "x": 820, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
