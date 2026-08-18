@@ -554,6 +554,7 @@ def audit() -> dict:
     ):
         raise ValueError(f"sites-of-grace catalog anomaly contract failed: {catalog_anomaly_contract}")
     route_edges = {(edge["from"], edge["to"]) for edge in graph["edges"]}
+    edge_by_id = {edge["id"]: edge for edge in graph["edges"]}
     node_ids = set(node_by_id)
     registered_snapshot_ids = set(graph.get("meta", {}).get("sourceSnapshots", []))
     coordinate_snapshot_ids = {
@@ -1020,6 +1021,48 @@ def audit() -> dict:
     if broad_route_endpoint_contract["actual"] != broad_route_endpoint_contract["expected"]:
         raise ValueError(f"broad route endpoint contract failed: {broad_route_endpoint_contract}")
     target_group_records = route_target_groups.get("records", [])
+    invalid_target_group_subroutes = []
+    for record in target_group_records:
+        declared_targets = set(record.get("resolved_formal_target_ids", []))
+        for subroute in record.get("subroutes", []):
+            edge_ids = list(subroute.get("path_edge_ids", []))
+            path_edges = [edge_by_id.get(edge_id) for edge_id in edge_ids]
+            path_requires = set()
+            if any(edge is None for edge in path_edges):
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "missing_edge_id"}
+                )
+                continue
+            for edge in path_edges:
+                path_requires.update(edge.get("requires", []))
+            if any(edge.get("routeable") is False for edge in path_edges):
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "non_routeable_edge"}
+                )
+            if path_edges[0]["from"] != subroute.get("entry_node_id"):
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "entry_mismatch"}
+                )
+            if path_edges[-1]["to"] != subroute.get("target_node_id"):
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "target_mismatch"}
+                )
+            if any(left["to"] != right["from"] for left, right in zip(path_edges, path_edges[1:])):
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "path_discontinuity"}
+                )
+            if set(subroute.get("requires", [])) != path_requires:
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "condition_mismatch"}
+                )
+            if not set(subroute.get("requires", [])).issubset(graph_condition_ids):
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "unknown_condition"}
+                )
+            if subroute.get("target_node_id") not in declared_targets:
+                invalid_target_group_subroutes.append(
+                    {"group": record.get("canonical_id"), "target": subroute.get("target_node_id"), "reason": "target_not_declared"}
+                )
     target_group_contract = {
         "declared_records": route_target_groups.get("record_count"),
         "records": len(target_group_records),
@@ -1036,6 +1079,8 @@ def audit() -> dict:
             if target_id not in node_by_id
         ),
         "routeable_records": [record.get("canonical_id") for record in target_group_records if record.get("routeable")],
+        "subroute_count": sum(len(record.get("subroutes", [])) for record in target_group_records),
+        "invalid_subroutes": invalid_target_group_subroutes,
         "missing_source_evidence": [
             record.get("canonical_id")
             for record in target_group_records
@@ -1050,6 +1095,7 @@ def audit() -> dict:
         or target_group_contract["invalid_formal_target_ids"]
         or target_group_contract["routeable_records"]
         or target_group_contract["missing_source_evidence"]
+        or target_group_contract["invalid_subroutes"]
     ):
         raise ValueError(f"route target group contract failed: {target_group_contract}")
     route_endpoint_resolution_contract = {

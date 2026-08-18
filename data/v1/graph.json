@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-    "version": "1.0.165-online-multiplane",
+    "version": "1.0.166-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -17959,9 +17959,8 @@
     {
       "id": "fort-front-to-fort-grace", "from": "fort_reprimand_front_entrance", "to": "grace_scadu_altus_main_fort_of_reprimand", "mode": "Fort of Reprimand battlement ascent", "cost": 10, "risk": 9, "direction": "forward", "transitionType": "fort_vertical_route", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Cross the courtyard and internal stairs/ladders to discover the grace on the battlements.", "tags": ["vertical", "ladder", "legacy", "cross_checked"]
     },
-    {
-      "id": "fort-behind-to-fort-grace", "from": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "to": "grace_scadu_altus_main_fort_of_reprimand", "mode": "Rear Fort of Reprimand to battlement grace", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "rear_fort_ladder_route", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Use the rear landing and ladder route to reach the same battlement grace without entering through the highway door.", "tags": ["vertical", "ladder", "legacy", "cross_checked"]
-    },
+    { "id": "fort-grace-to-front", "from": "grace_scadu_altus_main_fort_of_reprimand", "to": "fort_reprimand_front_entrance", "mode": "Fort of Reprimand battlement grace return to front entrance", "cost": 10, "risk": 9, "direction": "backtrack", "transitionType": "fort_vertical_route", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Descend the internal stairs and ladders from the battlement grace to the front courtyard; the outside highway remains a separate transition.", "tags": ["vertical", "ladder", "legacy", "backtrack", "cross_checked"] }
+    ,{ "id": "fort-behind-to-fort-grace", "from": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "to": "grace_scadu_altus_main_fort_of_reprimand", "mode": "Rear Fort of Reprimand to battlement grace", "cost": 5, "risk": 8, "direction": "forward", "transitionType": "rear_fort_ladder_route", "requires": [], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "Use the rear landing and ladder route to reach the same battlement grace without entering through the highway door.", "tags": ["vertical", "ladder", "legacy", "cross_checked"] },
     {
       "id": "ensis-to-fort-rear-grace", "from": "grace_ensis_moongazing_grounds", "to": "grace_scadu_altus_main_behind_the_fort_of_reprimand", "mode": "Castle Ensis rear exit to Behind the Fort of Reprimand", "cost": 9, "risk": 7, "direction": "forward", "transitionType": "legacy_rear_exit", "requires": ["rellana_defeated"], "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "verificationState": "online_cross_checked", "note": "After clearing Castle Ensis, descend through its rear route to the fort's back-side grace; this is not the same as the front highway approach.", "tags": ["conditional", "vertical", "legacy_entrance", "cross_checked"]
     },
@@ -18590,7 +18589,7 @@
   "coverage": {
     "scope": "P0 plus representative slices across underground, legacy dungeons and Shadow Realm",
     "formalNodeCount": 741,
-  "formalRouteEdgeCount": 1182,
+  "formalRouteEdgeCount": 1183,
     "semanticRelationCount": 2,
     "originalGameCoordinates": false,
     "localGameVerified": false,

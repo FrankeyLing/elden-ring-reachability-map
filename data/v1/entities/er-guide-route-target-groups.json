@@ -17,6 +17,15 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["grace_fort_gael_north"],
       "unresolved_scope": ["Caelid Wilds sweep"],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_church_of_plague",
+          "target_node_id": "grace_fort_gael_north",
+          "path_edge_ids": ["plague-church-to-southern-aeonia", "southern-aeonia-to-caelid-highway", "caelid-highway-to-caelem", "caelem-to-fort-gael-north"],
+          "requires": [],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -27,6 +36,7 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": [],
       "unresolved_scope": ["Caelid cleanup sweep"],
+      "subroutes": [],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -37,6 +47,22 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["grace_scadu_altus_moorth_ruins", "grace_scadu_altus_bonny_village"],
       "unresolved_scope": [],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_scadu_altus_highroad_cross",
+          "target_node_id": "grace_scadu_altus_moorth_ruins",
+          "path_edge_ids": ["highroad-cross-to-moorth-ruins"],
+          "requires": [],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_scadu_altus_highroad_cross",
+          "target_node_id": "grace_scadu_altus_bonny_village",
+          "path_edge_ids": ["highroad-cross-to-moorth-ruins", "moorth-ruins-to-bonny-village"],
+          "requires": [],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -47,6 +73,29 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["ruined_forge_starfall_surface_entrance", "grace_scadu_altus_main_recluses_river_upstream", "grace_scadu_altus_main_recluses_river_downstream"],
       "unresolved_scope": [],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_scadu_altus_main_fort_of_reprimand",
+          "target_node_id": "ruined_forge_starfall_surface_entrance",
+          "path_edge_ids": ["fort-grace-to-front", "fort-front-to-moorth-highway-south", "moorth-highway-south-to-moorth", "moorth-ruins-to-starfall-forge-mouth"],
+          "requires": [],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_scadu_altus_main_fort_of_reprimand",
+          "target_node_id": "grace_scadu_altus_main_recluses_river_upstream",
+          "path_edge_ids": ["fort-grace-to-front", "fort-front-to-moorth-highway-south", "moorth-highway-south-to-moorth", "moorth-to-rauh-base", "rauh-base-to-ancient-east", "rauh-east-to-viaduct", "rauh-viaduct-to-west-rampart", "west-rampart-to-storehouse-first", "storehouse-first-to-castle-watering-hole", "castle-watering-hole-to-ruins-unte", "ruins-unte-to-recluses-upstream"],
+          "requires": ["golden_hippopotamus_defeated"],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_scadu_altus_main_fort_of_reprimand",
+          "target_node_id": "grace_scadu_altus_main_recluses_river_downstream",
+          "path_edge_ids": ["fort-grace-to-front", "fort-front-to-moorth-highway-south", "moorth-highway-south-to-moorth", "moorth-to-rauh-base", "rauh-base-to-ancient-east", "rauh-east-to-viaduct", "rauh-viaduct-to-west-rampart", "west-rampart-to-storehouse-first", "storehouse-first-to-castle-watering-hole", "castle-watering-hole-to-ruins-unte", "ruins-unte-to-recluses-upstream", "recluses-upstream-to-downstream"],
+          "requires": ["golden_hippopotamus_defeated"],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -57,6 +106,22 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["grace_shadow_keep_church_district_entrance", "messmer_gate"],
       "unresolved_scope": [],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_shadow_keep_main_gate_plaza",
+          "target_node_id": "grace_shadow_keep_church_district_entrance",
+          "path_edge_ids": ["main-gate-plaza-to-storehouse-first", "storehouse-first-to-west-rampart", "west-rampart-to-rauh-viaduct", "rauh-viaduct-to-east", "ancient-east-to-rauh-base", "rauh-base-to-moorth", "moorth-ruins-to-bonny-village", "bonny-village-to-bridge", "bridge-to-church-district-highroad", "church-highroad-to-shadow-keep-district"],
+          "requires": ["golden_hippopotamus_defeated"],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_shadow_keep_main_gate_plaza",
+          "target_node_id": "messmer_gate",
+          "path_edge_ids": ["main-gate-plaza-to-storehouse-first", "storehouse-first-to-fourth", "storehouse-fourth-to-seventh", "storehouse-seventh-to-dark-chamber", "dark-chamber-entrance-to-messmer"],
+          "requires": ["golden_hippopotamus_defeated"],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -67,6 +132,22 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["grace_shadow_keep_scaduview", "commander_gaius_gate"],
       "unresolved_scope": [],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_shadow_keep_back_gate",
+          "target_node_id": "grace_shadow_keep_scaduview",
+          "path_edge_ids": ["back-gate-to-scaduview"],
+          "requires": [],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_shadow_keep_back_gate",
+          "target_node_id": "commander_gaius_gate",
+          "path_edge_ids": ["back-gate-to-scaduview", "scaduview-to-gaius"],
+          "requires": [],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -77,6 +158,36 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["landmark_ruins_of_unte", "landmark_northern_nameless_mausoleum", "landmark_southern_nameless_mausoleum", "landmark_eastern_nameless_mausoleum"],
       "unresolved_scope": [],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_scadu_altus_main_darklight_catacombs",
+          "target_node_id": "landmark_ruins_of_unte",
+          "path_edge_ids": ["darklight-to-recluses-downstream", "recluses-downstream-to-upstream", "recluses-upstream-to-ruins-unte"],
+          "requires": [],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_scadu_altus_main_darklight_catacombs",
+          "target_node_id": "landmark_eastern_nameless_mausoleum",
+          "path_edge_ids": ["darklight-to-recluses-downstream", "recluses-downstream-to-eastern-nameless-mausoleum"],
+          "requires": [],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_land_of_the_tower_rauh_base_temple_town_ruins",
+          "target_node_id": "landmark_northern_nameless_mausoleum",
+          "path_edge_ids": ["temple-town-to-northern-mausoleum-spring", "northern-mausoleum-spring-to-northern-mausoleum"],
+          "requires": ["northern_nameless_mausoleum_spiritspring_unsealed"],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_gravesite_plain_cerulean_coast_cerulean_coast_west",
+          "target_node_id": "landmark_southern_nameless_mausoleum",
+          "path_edge_ids": ["cerulean-coast-west-to-southern-nameless-mausoleum"],
+          "requires": [],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -87,6 +198,22 @@
       "scope": "multi_area_sweep",
       "resolved_formal_target_ids": ["grace_fort_faroth", "elder_dragon_greyoll_gate"],
       "unresolved_scope": [],
+      "subroutes": [
+        {
+          "entry_node_id": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
+          "target_node_id": "grace_fort_faroth",
+          "path_edge_ids": ["dragonbarrow-west-to-fork", "dragonbarrow-to-fort-faroth"],
+          "requires": [],
+          "status": "formal_path_exists"
+        },
+        {
+          "entry_node_id": "grace_caelid_greyoll_s_dragonbarrow_dragonbarrow_west",
+          "target_node_id": "elder_dragon_greyoll_gate",
+          "path_edge_ids": ["dragonbarrow-west-to-fork", "dragonbarrow-to-fort-faroth", "fort-faroth-to-greyoll"],
+          "requires": [],
+          "status": "formal_path_exists"
+        }
+      ],
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     }
