@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.140-online-multiplane",
+  "version": "1.0.141-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -9196,7 +9196,7 @@
     },
     {
       "id": "grace_altus_plateau_main_gelmir_hero_s_grave", "label": "Gelmir Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 560, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check"], "description": "Grace at the bottom of the entrance lift."
+      "sourceEvidence": ["eldenpedia-gelmir-hero-grave", "game8-gelmir-hero-grave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 137, "recordId": 300900, "name": "Gelmir Hero's Grave", "map": "area 30 / grid 9,0", "position": [104.55999755859375, 902.5900268554688, 15.6899995803833], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the entrance lift."
     },
     {
       "id": "red_wolf_champion_gelmir_gate", "label": "Red Wolf of the Champion (Gelmir Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Gelmir Hero's Grave", "floor": "Lava chariot route boss chamber", "worldEpoch": "altus_surface", "x": 620, "y": 380, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9228,7 +9228,7 @@
     },
     {
       "id": "grace_altus_plateau_main_seethewater_cave", "label": "Seethewater Cave", "kind": "grace", "layer": "legacy", "region": "Seethewater Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 520, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave"], "description": "Grace inside the sealed cave entrance."
+      "sourceEvidence": ["eldenpedia-seethewater-cave", "segmentnext-seethewater-cave", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 156, "recordId": 310700, "name": "Seethewater Cave", "map": "area 31 / grid 7,0", "position": [-9.09000015258789, 799.9400024414062, 141.35000610351562], "coordinateSpace": "game_world_xyz" }, "description": "Grace inside the sealed cave entrance."
     },
     {
       "id": "kindred_rot_seethewater_gate", "label": "Kindred of Rot duo (Seethewater Cave)", "kind": "boss", "layer": "legacy", "region": "Seethewater Cave", "floor": "Rot-infested lower chamber", "worldEpoch": "altus_surface", "x": 580, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9244,7 +9244,7 @@
     },
     {
       "id": "grace_altus_plateau_main_volcano_cave", "label": "Volcano Cave", "kind": "grace", "layer": "legacy", "region": "Volcano Cave", "floor": "Cave entrance", "worldEpoch": "altus_surface", "x": 780, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["pushsquare-volcano-cave", "neoseeker-volcano-cave-cross-check"], "description": "Grace just inside the northern Gelmir cave."
+      "sourceEvidence": ["pushsquare-volcano-cave", "neoseeker-volcano-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 159, "recordId": 310900, "name": "Volcano Cave", "map": "area 31 / grid 9,0", "position": [-67.26000213623047, 1033.4200439453125, -60.25], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the northern Gelmir cave."
     },
     {
       "id": "demi_human_queen_margot_volcano_gate", "label": "Demi-Human Queen Margot (Volcano Cave)", "kind": "boss", "layer": "legacy", "region": "Volcano Cave", "floor": "Lowest cave chamber", "worldEpoch": "altus_surface", "x": 840, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9260,7 +9260,7 @@
     },
     {
       "id": "grace_altus_plateau_main_altus_tunnel", "label": "Altus Tunnel", "kind": "grace", "layer": "legacy", "region": "Altus Tunnel", "floor": "Bottom of entrance lift", "worldEpoch": "altus_surface", "x": 1220, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check"], "description": "Grace at the bottom of the mine entrance lift."
+      "sourceEvidence": ["eldenpedia-altus-tunnel", "game8-altus-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 174, "recordId": 320500, "name": "Altus Tunnel", "map": "area 32 / grid 5,0", "position": [-52.2599983215332, 814.0, 40.720001220703125], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the mine entrance lift."
     },
     {
       "id": "crystalian_duo_altus_tunnel_gate", "label": "Crystalian Spear and Ringblade (Altus Tunnel)", "kind": "boss", "layer": "legacy", "region": "Altus Tunnel", "floor": "Twin Crystalian chamber", "worldEpoch": "altus_surface", "x": 1280, "y": 360, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9292,7 +9292,7 @@
     },
     {
       "id": "grace_caelid_main_abandoned_cave", "label": "Abandoned Cave", "kind": "grace", "layer": "legacy", "region": "Abandoned Cave", "floor": "Cave entrance", "worldEpoch": "caelid_surface", "x": 410, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check"], "description": "Grace inside the scarlet-rot cave."
+      "sourceEvidence": ["eldenpedia-abandoned-cave", "gamesradar-abandoned-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 167, "recordId": 312000, "name": "Abandoned Cave", "map": "area 31 / grid 20,0", "position": [137.7899932861328, 127.62000274658203, 42.439998626708984], "coordinateSpace": "game_world_xyz" }, "description": "Grace inside the scarlet-rot cave."
     },
     {
       "id": "cleanrot_knights_abandoned_gate", "label": "Cleanrot Knight pair (Abandoned Cave)", "kind": "boss", "layer": "legacy", "region": "Abandoned Cave", "floor": "Scarlet-rot boss chamber", "worldEpoch": "caelid_surface", "x": 470, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9308,7 +9308,7 @@
     },
     {
       "id": "grace_caelid_main_caelid_catacombs", "label": "Caelid Catacombs", "kind": "grace", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Catacomb entrance", "worldEpoch": "caelid_surface", "x": 620, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check"], "description": "Grace at the beginning of the scarlet-rot catacombs."
+      "sourceEvidence": ["eldenpedia-caelid-catacombs", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 143, "recordId": 301500, "name": "Caelid Catacombs", "map": "area 30 / grid 15,0", "position": [90.19000244140625, 54.5099983215332, 69.12999725341797], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the scarlet-rot catacombs."
     },
     {
       "id": "cemetery_shade_caelid_gate", "label": "Cemetery Shade (Caelid Catacombs)", "kind": "boss", "layer": "legacy", "region": "Caelid Catacombs", "floor": "Cemetery Shade chamber", "worldEpoch": "caelid_surface", "x": 680, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9324,7 +9324,7 @@
     },
     {
       "id": "grace_caelid_main_gaol_cave", "label": "Gaol Cave", "kind": "grace", "layer": "legacy", "region": "Gaol Cave", "floor": "Cave entrance tunnel", "worldEpoch": "caelid_surface", "x": 350, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check"], "description": "Grace just inside the prison cave."
+      "sourceEvidence": ["eldenpedia-gaol-cave", "game8-gaol-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 168, "recordId": 312100, "name": "Gaol Cave", "map": "area 31 / grid 21,0", "position": [-64.31999969482422, 87.80999755859375, 33.869998931884766], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the prison cave."
     },
     {
       "id": "frenzied_duelist_gaol_gate", "label": "Frenzied Duelist (Gaol Cave)", "kind": "boss", "layer": "legacy", "region": "Gaol Cave", "floor": "Lower chasm boss chamber", "worldEpoch": "caelid_surface", "x": 410, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9344,7 +9344,7 @@
     },
     {
       "id": "grace_caelid_main_minor_erdtree_catacombs", "label": "Minor Erdtree Catacombs", "kind": "grace", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Catacomb entrance", "worldEpoch": "caelid_surface", "x": 760, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check"], "description": "Grace at the beginning of the scarlet-rot catacomb."
+      "sourceEvidence": ["eldenpedia-minor-erdtree-catacombs", "game8-erdtree-watchdog-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 142, "recordId": 301400, "name": "Minor Erdtree Catacombs", "map": "area 30 / grid 14,0", "position": [-54.47999954223633, 123.36000061035156, 67.58899688720703], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the scarlet-rot catacomb."
     },
     {
       "id": "minor_erdtree_watchdogs_caelid_gate", "label": "Erdtree Burial Watchdogs (Minor Erdtree Catacombs)", "kind": "boss", "layer": "legacy", "region": "Minor Erdtree Catacombs", "floor": "Twin Watchdog chamber", "worldEpoch": "caelid_surface", "x": 820, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9360,7 +9360,7 @@
     },
     {
       "id": "grace_caelid_main_war_dead_catacombs", "label": "War-Dead Catacombs", "kind": "grace", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Catacomb entrance", "worldEpoch": "post_radahn_world_state", "x": 710, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "game8-caelid-walkthrough-cross-check"], "description": "Grace inside the post-Radahn battlefield catacombs."
+      "sourceEvidence": ["eldenpedia-war-dead-catacombs", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 144, "recordId": 301600, "name": "War-Dead Catacombs", "map": "area 30 / grid 16,0", "position": [37.720001220703125, 5.190000057220459, -134.67999267578125], "coordinateSpace": "game_world_xyz" }, "description": "Grace inside the post-Radahn battlefield catacombs."
     },
     {
       "id": "putrid_tree_spirit_war_dead_gate", "label": "Putrid Tree Spirit (War-Dead Catacombs)", "kind": "boss", "layer": "legacy", "region": "War-Dead Catacombs", "floor": "Putrid Tree Spirit chamber", "worldEpoch": "post_radahn_world_state", "x": 770, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9376,7 +9376,7 @@
     },
     {
       "id": "grace_caelid_main_sellia_crystal_tunnel", "label": "Sellia Crystal Tunnel", "kind": "grace", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Mine entrance", "worldEpoch": "caelid_surface", "x": 960, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check"], "description": "Grace at the start of the crystal mine."
+      "sourceEvidence": ["eldenpedia-sellia-crystal-tunnel", "game8-caelid-walkthrough-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 176, "recordId": 320800, "name": "Sellia Crystal Tunnel", "map": "area 32 / grid 8,0", "position": [18.43000030517578, 86.41999816894531, 110.58000183105469], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the start of the crystal mine."
     },
     {
       "id": "fallingstar_beast_sellia_tunnel_gate", "label": "Fallingstar Beast (Sellia Crystal Tunnel)", "kind": "boss", "layer": "legacy", "region": "Sellia Crystal Tunnel", "floor": "Fallingstar Beast mine chamber", "worldEpoch": "caelid_surface", "x": 1020, "y": 760, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9392,7 +9392,7 @@
     },
     {
       "id": "grace_shadow_realm_belurat_gaol", "label": "Belurat Gaol", "kind": "grace", "layer": "legacy", "region": "Belurat Gaol", "floor": "Gaol entrance", "worldEpoch": "shadow_realm", "x": 330, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-belurat-gaol", "pushsquare-belurat-gaol-cross-check"], "description": "Grace immediately inside the optional gaol."
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "pushsquare-belurat-gaol-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 192, "recordId": 410000, "name": "Belurat Gaol", "map": "area 41 / grid 0,0", "position": [-100.72000122070312, 259.7699890136719, -106.43000030517578], "coordinateSpace": "game_world_xyz" }, "description": "Grace immediately inside the optional gaol."
     },
     {
       "id": "demi_human_swordmaster_onze_gate", "label": "Demi-Human Swordmaster Onze (Belurat Gaol)", "kind": "boss", "layer": "legacy", "region": "Belurat Gaol", "floor": "Bottom lake boss chamber", "worldEpoch": "shadow_realm", "x": 390, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9408,7 +9408,7 @@
     },
     {
       "id": "grace_shadow_realm_fog_rift_catacombs", "label": "Fog Rift Catacombs", "kind": "grace", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Catacomb entrance", "worldEpoch": "shadow_realm", "x": 180, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check"], "description": "Grace at the start of the spike-trap catacombs."
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 189, "recordId": 400000, "name": "Fog Rift Catacombs", "map": "area 40 / grid 0,0", "position": [-92.01000213623047, 259.0199890136719, -68.97000122070312], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the start of the spike-trap catacombs."
     },
     {
       "id": "death_knight_fog_rift_gate", "label": "Death Knight (Fog Rift Catacombs)", "kind": "boss", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Deepest elevator boss chamber", "worldEpoch": "shadow_realm", "x": 240, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9442,7 +9442,7 @@
     },
     {
       "id": "grace_shadow_realm_scorpion_river_catacombs", "label": "Scorpion River Catacombs", "kind": "grace", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Catacomb entrance", "worldEpoch": "shadow_realm", "x": 820, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check"], "description": "Grace at the beginning of the death-blight trap catacombs."
+      "sourceEvidence": ["game8-scorpion-river-catacombs-cross-check", "eip-scorpion-river-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 190, "recordId": 400100, "name": "Scorpion River Catacombs", "map": "area 40 / grid 1,0", "position": [-62.70000076293945, 295.04998779296875, 58.2599983215332], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the death-blight trap catacombs."
     },
     {
       "id": "death_knight_scorpion_river_gate", "label": "Death Knight (Scorpion River Catacombs)", "kind": "boss", "layer": "legacy", "region": "Scorpion River Catacombs", "floor": "Deepest elevator boss chamber", "worldEpoch": "shadow_realm", "x": 880, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9458,7 +9458,7 @@
     },
     {
       "id": "grace_shadow_realm_ruined_forge_lava_intake", "label": "Ruined Forge Lava Intake", "kind": "grace", "layer": "legacy", "region": "Ruined Forge Lava Intake", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 220, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check"], "description": "Grace just inside the forge entrance."
+      "sourceEvidence": ["eldenpedia-ruined-forge-lava-intake", "eip-ruined-forge-lava-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 195, "recordId": 420000, "name": "Ruined Forge Lava Intake", "map": "area 42 / grid 0,0", "position": [-116.3499984741211, 269.260009765625, 71.33999633789062], "coordinateSpace": "game_world_xyz" }, "description": "Grace just inside the forge entrance."
     },
     {
       "id": "ruined_forge_lava_intake_pipe_state", "label": "Ruined Forge Lava Intake (pipe route)", "kind": "checkpoint", "layer": "legacy", "region": "Ruined Forge Lava Intake", "floor": "Intake pipe and lava channel", "worldEpoch": "shadow_realm", "x": 280, "y": 280, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9474,7 +9474,7 @@
     },
     {
       "id": "grace_shadow_realm_taylew_ruined_forge", "label": "Taylew's Ruined Forge", "kind": "grace", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 800, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check"], "description": "Grace at the beginning of the pipe-and-lava forge."
+      "sourceEvidence": ["eldenpedia-taylew-ruined-forge", "game8-taylew-ruined-forge-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 198, "recordId": 420300, "name": "Taylew's Ruined Forge", "map": "area 42 / grid 3,0", "position": [-39.880001068115234, 353.05999755859375, -92.43000030517578], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the pipe-and-lava forge."
     },
     {
       "id": "taylew_ruined_forge_pipe_state", "label": "Taylew's Ruined Forge (reoriented pipe)", "kind": "checkpoint", "layer": "legacy", "region": "Taylew's Ruined Forge", "floor": "Central tilted pipe and lever", "worldEpoch": "shadow_realm", "x": 860, "y": 1020, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9490,7 +9490,7 @@
     },
     {
       "id": "grace_mountaintops_main_cave_of_forlorn", "label": "Cave of the Forlorn", "kind": "grace", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Cave entrance", "worldEpoch": "consecrated_snowfield", "x": 1120, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check"], "description": "Grace at the beginning of the snowy cave."
+      "sourceEvidence": ["eldenpedia-cave-of-forlorn", "game8-cave-of-forlorn-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 162, "recordId": 311200, "name": "Cave of the Forlorn", "map": "area 31 / grid 12,0", "position": [-54.880001068115234, 1254.8199462890625, 43.9900016784668], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the beginning of the snowy cave."
     },
     {
       "id": "misbegotten_crusader_cave_forlorn_gate", "label": "Misbegotten Crusader (Cave of the Forlorn)", "kind": "boss", "layer": "legacy", "region": "Cave of the Forlorn", "floor": "Crusader boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1180, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9506,7 +9506,7 @@
     },
     {
       "id": "grace_mountaintops_main_consecrated_snowfield_catacombs", "label": "Consecrated Snowfield Catacombs", "kind": "grace", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Catacomb entrance", "worldEpoch": "consecrated_snowfield", "x": 1040, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check"], "description": "Grace at the start of the frost catacombs."
+      "sourceEvidence": ["eldenpedia-consecrated-snowfield-catacombs", "gameofguides-snowfield-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 147, "recordId": 301900, "name": "Consecrated Snowfield Catacombs", "map": "area 60 / grid 50,55", "position": [-69.56999969482422, 1360.010009765625, -86.38999938964844], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the start of the frost catacombs."
     },
     {
       "id": "putrid_grave_warden_snowfield_gate", "label": "Putrid Grave Warden Duelist (Snowfield Catacombs)", "kind": "boss", "layer": "legacy", "region": "Consecrated Snowfield Catacombs", "floor": "Duelist boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1100, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9522,7 +9522,7 @@
     },
     {
       "id": "grace_mountaintops_main_yelough_anix_tunnel", "label": "Yelough Anix Tunnel", "kind": "grace", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Bottom of entrance lift", "worldEpoch": "consecrated_snowfield", "x": 1220, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check"], "description": "Grace at the bottom of the frozen mine lift."
+      "sourceEvidence": ["eldenpedia-yelough-anix-tunnel", "eip-yelough-anix-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 177, "recordId": 321100, "name": "Yelough Anix Tunnel", "map": "area 60 / grid 47,55", "position": [45.93000030517578, 1258.75, -61.040000915527344], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the frozen mine lift."
     },
     {
       "id": "astel_stars_darkness_yelough_gate", "label": "Astel, Stars of Darkness (Yelough Anix Tunnel)", "kind": "boss", "layer": "legacy", "region": "Yelough Anix Tunnel", "floor": "Astel boss chamber", "worldEpoch": "consecrated_snowfield", "x": 1280, "y": 560, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9538,7 +9538,7 @@
     },
     {
       "id": "grace_mountaintops_main_giant_conquering_hero_s_grave", "label": "Giant-Conquering Hero's Grave", "kind": "grace", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Bottom of entrance lift", "worldEpoch": "mountaintops_surface", "x": 880, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check"], "description": "Grace at the bottom of the Hero's Grave lift."
+      "sourceEvidence": ["eldenpedia-giant-conquering-hero-grave", "pushsquare-giant-conquering-hero-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 145, "recordId": 301700, "name": "Giant-Conquering Hero's Grave", "map": "area 60 / grid 50,53", "position": [-118.55999755859375, 1511.760009765625, 120.04000091552734], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the bottom of the Hero's Grave lift."
     },
     {
       "id": "ancient_hero_zamor_giant_conquering_gate", "label": "Ancient Hero of Zamor (Giant-Conquering Hero's Grave)", "kind": "boss", "layer": "legacy", "region": "Giant-Conquering Hero's Grave", "floor": "Zamor boss chamber", "worldEpoch": "mountaintops_surface", "x": 940, "y": 420, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9554,7 +9554,7 @@
     },
     {
       "id": "grace_mountaintops_main_giants_mountaintop_catacombs", "label": "Giants' Mountaintop Catacombs", "kind": "grace", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Catacomb entrance", "worldEpoch": "mountaintops_surface", "x": 760, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check"], "description": "Grace at the start of the multi-elevator catacombs."
+      "sourceEvidence": ["eldenpedia-giants-mountaintop-catacombs", "eip-giants-mountaintop-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 146, "recordId": 301800, "name": "Giants' Mountaintop Catacombs", "map": "area 60 / grid 50,53", "position": [26.15999984741211, 1577.7099609375, 109.33999633789062], "coordinateSpace": "game_world_xyz" }, "description": "Grace at the start of the multi-elevator catacombs."
     },
     {
       "id": "giants_mountaintop_watchdog_gate", "label": "Erdtree Burial Watchdog (Giants' Mountaintop Catacombs)", "kind": "boss", "layer": "legacy", "region": "Giants' Mountaintop Catacombs", "floor": "Watchdog boss chamber", "worldEpoch": "mountaintops_surface", "x": 820, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9590,7 +9590,7 @@
     },
     {
       "id": "grace_shadow_realm_ruined_forge_starfall_past", "label": "Ruined Forge of Starfall Past", "kind": "grace", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "Forge entrance", "worldEpoch": "shadow_realm", "x": 580, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check"], "description": "Internal grace immediately inside the forge; this dungeon has no boss encounter."
+      "sourceEvidence": ["eldenpedia-ruined-forge-starfall-past", "eip-ruined-forge-starfall-cross-check", "game8-ruined-forge-starfall-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 197, "recordId": 420200, "name": "Ruined Forge of Starfall Past", "map": "area 42 / grid 2,0", "position": [64.5199966430664, 357.94000244140625, -94.5199966430664], "coordinateSpace": "game_world_xyz" }, "description": "Internal grace immediately inside the forge; this dungeon has no boss encounter."
     },
     {
       "id": "ruined_forge_starfall_first_door_state", "label": "Ruined Forge of Starfall Past (first door opened)", "kind": "checkpoint", "layer": "legacy", "region": "Ruined Forge of Starfall Past", "floor": "First chamber / large iron door", "worldEpoch": "shadow_realm", "x": 640, "y": 520, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9650,7 +9650,7 @@
     },
     {
       "id": "grace_scadu_altus_main_bonny_gaol", "label": "Bonny Gaol", "kind": "grace", "layer": "legacy", "region": "Bonny Gaol", "floor": "Gaol entrance", "worldEpoch": "shadow_realm", "x": 680, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check"], "description": "Internal grace just inside the Bonny Gaol entrance."
+      "sourceEvidence": ["eldenpedia-bonny-gaol", "segmentnext-bonny-gaol-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 193, "recordId": 410100, "name": "Bonny Gaol", "map": "area 41 / grid 1,0", "position": [-45.36000061035156, 304.6000061035156, -25.5], "coordinateSpace": "game_world_xyz" }, "description": "Internal grace just inside the Bonny Gaol entrance."
     },
     {
       "id": "curseblade_labirith_bonny_gate", "label": "Curseblade Labirith (Bonny Gaol)", "kind": "boss", "layer": "legacy", "region": "Bonny Gaol", "floor": "Gaol boss chamber", "worldEpoch": "shadow_realm", "x": 740, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9684,7 +9684,7 @@
     },
     {
       "id": "grace_limgrave_weeping_peninsula_morne_tunnel", "label": "Morne Tunnel", "kind": "grace", "layer": "legacy", "region": "Morne Tunnel", "floor": "Lift bottom / mine entrance", "worldEpoch": "limgrave_surface", "x": 390, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check"], "description": "The tunnel grace is at the bottom of the entrance lift, before the Misbegotten mine galleries."
+      "sourceEvidence": ["eldenpedia-morne-tunnel", "pushsquare-morne-tunnel-cross-check", "gamerguides-morne-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 170, "recordId": 320000, "name": "Morne Tunnel", "map": "area 32 / grid 0,0", "position": [36.13999938964844, 27.8700008392334, -69.91000366210938], "coordinateSpace": "game_world_xyz" }, "description": "The tunnel grace is at the bottom of the entrance lift, before the Misbegotten mine galleries."
     },
     {
       "id": "scaly_misbegotten_morne_tunnel_gate", "label": "Scaly Misbegotten (Morne Tunnel)", "kind": "boss", "layer": "legacy", "region": "Morne Tunnel", "floor": "Tunnel boss chamber", "worldEpoch": "limgrave_surface", "x": 450, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9848,7 +9848,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_village_of_the_albinaurics", "label": "Village of the Albinaurics", "kind": "grace", "layer": "legacy", "region": "Liurnia of the Lakes", "floor": "Albinauric village ravine", "worldEpoch": "liurnia_surface", "x": 540, "y": 980, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-village-albinaurics", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check"], "description": "Hidden ravine settlement below the lake plateau; the Omenkiller route is internal to this lower settlement layer."
+      "sourceEvidence": ["eldenpedia-village-albinaurics", "powerpyx-liurnia-cross-check", "game8-liurnia-branches-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 502, "recordId": 62354200, "name": "Village of the Albinaurics", "map": "area 60 / grid 34,42", "position": [86.62000274658203, 269.6099853515625, -94.44999694824219], "coordinateSpace": "game_world_xyz" }, "description": "Hidden ravine settlement below the lake plateau; the Omenkiller route is internal to this lower settlement layer."
     },
     {
       "id": "landmark_rose_church",
@@ -9914,7 +9914,7 @@
     },
     {
       "id": "grace_mountaintops_of_the_giants_hidden_path_to_the_haligtree", "label": "Hidden Path to the Haligtree", "kind": "grace", "layer": "legacy", "region": "Forbidden Lands", "floor": "Secret Rold lift dungeon", "worldEpoch": "consecrated_snowfield", "x": 800, "y": 860, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-consecrated-snowfield-r65359", "game8-medallion-cross-check"], "description": "Secret lift/dungeon grace reached by using the Haligtree Secret Medallion at Grand Lift of Rold; it is not the normal Mountaintops lift result."
+      "sourceEvidence": ["eldenpedia-mountaintops-r99043", "eldenpedia-consecrated-snowfield-r65359", "game8-medallion-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 148, "recordId": 302000, "name": "Hidden Path to the Haligtree", "map": "area 30 / grid 20,0", "position": [-105.12000274658203, 1338.6199951171875, -122.69999694824219], "coordinateSpace": "game_world_xyz" }, "description": "Secret lift/dungeon grace reached by using the Haligtree Secret Medallion at Grand Lift of Rold; it is not the normal Mountaintops lift result."
     },
     {
       "id": "grace_mountaintops_of_the_giants_apostate_derelict", "label": "Apostate Derelict", "kind": "grace", "layer": "surface", "region": "Consecrated Snowfield", "floor": "Northwestern Snowfield church", "worldEpoch": "consecrated_snowfield", "x": 570, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
