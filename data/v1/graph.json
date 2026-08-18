@@ -2,11 +2,12 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.148-online-multiplane",
+  "version": "1.0.150-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
     "coordinateSpace": { "width": 2500, "height": 1100 },
+    "onlineCoordinateBindingNotice": "formal_candidate is the default; manual_exact_name_region is explicit human binding by exact source name and region, and never promotes a semantic relation to a traversal edge.",
     "sourceSnapshots": [
       "eldenpedia-sites-of-grace-r83774",
       "eldenpedia-bolt-of-gransax-r84084",
@@ -1944,7 +1945,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-castle-ensis", "eldenpedia-castle-ensis-r73643", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 623, "recordId": 68474401, "name": "Miquella's Cross", "map": "area 61 / grid 47,44", "position": [80.87000274658203, 359.42999267578125, 64.38999938964844], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 623, "recordId": 68474401, "name": "Miquella's Cross", "map": "area 61 / grid 47,44", "position": [80.87000274658203, 359.42999267578125, 64.38999938964844], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Castle Cross beside the lowered gate near Castle Ensis Checkpoint. It is a collectible landmark adjacent to, but not identical with, the checkpoint grace."
     },
     {
@@ -1975,7 +1976,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["game8-dlc-cross-check", "er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 407, "recordId": 38484400, "name": "Rellana, Twin Moon Knight", "map": "area 61 / grid 48,44", "position": [-52.13800048828125, 88.95500183105469, 75.77300262451172], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 407, "recordId": 38484400, "name": "Rellana, Twin Moon Knight", "map": "area 61 / grid 48,44", "position": [-52.13800048828125, 88.95500183105469, 75.77300262451172], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor"},
       "description": "蕾拉娜 Boss 前的门节点；击败 Boss 后才能继续到达后方赐福。"
     },
     {
@@ -2677,7 +2678,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-uhl-palace-ruins", "eldenpedia-ainsel-r71938", "gamespot-uhl-palace-cross-check", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 600, "recordId": 66120100, "name": "Uhl Palace Ruins", "map": "area 12 / grid 1,0", "position": [162.9199981689453, -205.47000122070312, -169.22000122070312], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 600, "recordId": 66120100, "name": "Uhl Palace Ruins", "map": "area 12 / grid 1,0", "position": [162.9199981689453, -205.47000122070312, -169.22000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Upper Uhl Palace Ruins section at the Sluice Gate lift landing. The negative height in the sidecar is preserved as raw game XYZ; it is not used as the abstract layout y coordinate."
     },
     {
@@ -2693,7 +2694,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-uhl-palace-ruins", "eldenpedia-ainsel-r71938", "gamespot-uhl-palace-cross-check", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 601, "recordId": 66120102, "name": "Uhl Palace Ruins", "map": "area 12 / grid 1,0", "position": [285.07000732421875, -80.54000091552734, 117.47000122070312], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 601, "recordId": 66120102, "name": "Uhl Palace Ruins", "map": "area 12 / grid 1,0", "position": [285.07000732421875, -80.54000091552734, 117.47000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Lower Uhl Palace Ruins section on the river route before Ainsel River Downstream; it is kept separate from the upper lift landing."
     },
     {
@@ -3663,7 +3664,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-churches-r83204", "eldenpedia-thops", "nexus-map-for-goblins", "game8-liurnia-cross-check"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 525, "recordId": 62393900, "name": "Church of Irith", "map": "area 60 / grid 39,39", "position": [-30.40999984741211, 320.0400085449219, 106.70999908447266], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 525, "recordId": 62393900, "name": "Church of Irith", "map": "area 60 / grid 39,39", "position": [-30.40999984741211, 320.0400085449219, 106.70999908447266], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Church landmark beyond Stormveil's Liurnia exit; the online XYZ is retained as a sidecar while the displayed x/y remains an abstract V1 layout coordinate."
     },
     {
@@ -4646,7 +4647,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-western-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 615, "recordId": 68464100, "name": "Western Nameless Mausoleum", "map": "area 61 / grid 46,41", "position": [-129.9600067138672, 329.9700012207031, 54.68000030517578], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 615, "recordId": 68464100, "name": "Western Nameless Mausoleum", "map": "area 61 / grid 46,41", "position": [-129.9600067138672, 329.9700012207031, 54.68000030517578], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Western Gravesite Plain boss-landmark, located west of Scorched Ruins. The online XYZ sidecar is preserved separately from the abstract layout coordinate."
     },
     {
@@ -4692,7 +4693,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-three-path", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 611, "recordId": 68454200, "name": "Miquella's Cross", "map": "area 61 / grid 45,42", "position": [-101.2300033569336, 392.6199951171875, 97.11000061035156], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 611, "recordId": 68454200, "name": "Miquella's Cross", "map": "area 61 / grid 45,42", "position": [-101.2300033569336, 392.6199951171875, 97.11000061035156], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "The Three-Path Cross landmark beside the corresponding grace; retained separately so the collectible point is not confused with the checkpoint."
     },
     {
@@ -4708,7 +4709,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-main-gate", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 616, "recordId": 68464200, "name": "Miquella's Cross", "map": "area 61 / grid 46,42", "position": [-7.730000019073486, 297.17999267578125, 94.36000061035156], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 616, "recordId": 68464200, "name": "Miquella's Cross", "map": "area 61 / grid 46,42", "position": [-7.730000019073486, 297.17999267578125, 94.36000061035156], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "The Main Gate Cross west of Three-Path Cross, kept separate from its adjacent Main Gate Cross grace."
     },
     {
@@ -4724,7 +4725,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-pillar-path", "eldenpedia-gravesite-plain", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 628, "recordId": 68484300, "name": "Miquella's Cross", "map": "area 61 / grid 48,43", "position": [39.61000061035156, 313.6099853515625, -84.97000122070312], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 628, "recordId": 68484300, "name": "Miquella's Cross", "map": "area 61 / grid 48,43", "position": [39.61000061035156, 313.6099853515625, -84.97000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Pillar Path Cross on the eastern cliff branch, separate from the Pillar Path Cross grace."
     },
     {
@@ -4740,7 +4741,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-cerulean", "eldenpedia-cerulean-coast", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 624, "recordId": 68483700, "name": "Miquella's Cross", "map": "area 61 / grid 48,37", "position": [29.65999984741211, 60.11000061035156, -97.05000305175781], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 624, "recordId": 68483700, "name": "Miquella's Cross", "map": "area 61 / grid 48,37", "position": [29.65999984741211, 60.11000061035156, -97.05000305175781], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Cerulean Coast Cross adjacent to the coast-cross grace route."
     },
     {
@@ -4756,7 +4757,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-fissure", "eldenpedia-stone-coffin-fissure", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 126, "recordId": 220001, "name": "Miquella's Cross", "map": "area 22 / grid 0,0", "position": [-236.6300048828125, 215.6699981689453, -24.170000076293945], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 126, "recordId": 220001, "name": "Miquella's Cross", "map": "area 22 / grid 0,0", "position": [-236.6300048828125, 215.6699981689453, -24.170000076293945], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Fissure Cross inside Stone Coffin Fissure; it is an interior collectible landmark rather than the surface pit grace."
     },
     {
@@ -4772,7 +4773,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-highroad", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 640, "recordId": 69494300, "name": "Miquella's Cross", "map": "area 61 / grid 50,43", "position": [-25.639999389648438, 459.80999755859375, -61.04999923706055], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 640, "recordId": 69494300, "name": "Miquella's Cross", "map": "area 61 / grid 50,43", "position": [-25.639999389648438, 459.80999755859375, -61.04999923706055], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Highroad Cross near the northeast Castle Ensis approach, distinct from the Highroad Cross grace."
     },
     {
@@ -4788,7 +4789,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-index", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 639, "recordId": 69484500, "name": "Miquella's Cross", "map": "area 61 / grid 48,44", "position": [-28.030000686645508, 410.3800048828125, 134.3699951171875], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 639, "recordId": 69484500, "name": "Miquella's Cross", "map": "area 61 / grid 48,44", "position": [-28.030000686645508, 410.3800048828125, 134.3699951171875], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Scaduview Cross adjacent to the highland grace route; the landmark and grace remain separate nodes."
     },
     {
@@ -4804,7 +4805,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-ancient-rauh", "eldenpedia-rauh", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 642, "recordId": 69494400, "name": "Miquella's Cross", "map": "area 61 / grid 49,44", "position": [-47.88999938964844, 350.4800109863281, 119.66999816894531], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 642, "recordId": 69494400, "name": "Miquella's Cross", "map": "area 61 / grid 49,44", "position": [-47.88999938964844, 350.4800109863281, 119.66999816894531], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Ancient Ruins Cross beside the Rauh Ancient Ruins, East route."
     },
     {
@@ -4820,7 +4821,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-enir-ilim", "eldenpedia-enir-ilim", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 122, "recordId": 200101, "name": "Miquella's Cross", "map": "area 20 / grid 1,0", "position": [-294.82000732421875, 65.06999969482422, -80.47000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Enir-Ilim Cross near the Spiral Rise grace; this point belongs to the m20_01 Enir-Ilim map layer, not the Belurat m20_00 layer."
     },
     {
@@ -4836,7 +4837,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-storehouse", "eldenpedia-shadow-keep", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Miquella's Cross", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Miquella's Cross", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Storehouse Cross near the Fourth Floor grace and hanging horned giant route; it is not the First Floor grace despite the map point's companion layer label."
     },
     {
@@ -4913,7 +4914,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-belurat", "eldenpedia-belurat-tower-settlement", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 120, "recordId": 200001, "name": "Miquella's Cross", "map": "area 20 / grid 0,0", "position": [-32.25, 77.22000122070312, 264.5799865722656], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 120, "recordId": 200001, "name": "Miquella's Cross", "map": "area 20 / grid 0,0", "position": [-32.25, 77.22000122070312, 264.5799865722656], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Belurat Cross in the hidden room behind rubble east of the tower with giant spider scorpions; the m20_00 point is the Belurat map layer and is not the entrance grace itself."
     },
     {
@@ -5067,7 +5068,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-miquella-cross-moorth", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 636, "recordId": 69464700, "name": "Miquella's Cross", "map": "area 61 / grid 46,47", "position": [-95.73999786376953, 560.77001953125, -84.19999694824219], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 636, "recordId": 69464700, "name": "Miquella's Cross", "map": "area 61 / grid 46,47", "position": [-95.73999786376953, 560.77001953125, -84.19999694824219], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor" },
       "description": "Moorth Ruins Cross on the northwestern edge of the ruins, adjacent to the Moorth Ruins grace but kept as a separate collectible landmark."
     },
     {
@@ -5496,7 +5497,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-northern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-rauh", "gamerguides-northern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 635, "recordId": 69464501, "name": "Northern Nameless Mausoleum", "map": "area 61 / grid 46,45", "position": [86.63999938964844, 408.2200012207031, -42.5099983215332], "coordinateSpace": "game_world_xyz" },
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 635, "recordId": 69464501, "name": "Northern Nameless Mausoleum", "map": "area 61 / grid 46,45", "position": [86.63999938964844, 408.2200012207031, -42.5099983215332], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor" },
       "description": "Northern Nameless Mausoleum on the high plateau north of Rauh Base. The route is intentionally conditional on the nearby sealed Spiritspring being opened."
     },
     {
@@ -5955,7 +5956,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ruins-of-unte", "eldenpedia-scadu-altus", "nexus-map-for-goblins", "bo3gg-darklight-cross-check"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 649, "recordId": 69504600, "name": "Ruins of Unte", "map": "area 61 / grid 50,46", "position": [-41.90999984741211, 260.6600036621094, 112.9000015258789], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 649, "recordId": 69504600, "name": "Ruins of Unte", "map": "area 61 / grid 50,46", "position": [-41.90999984741211, 260.6600036621094, 112.9000015258789], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Flooded township landmark between Castle Watering Hole and the upper Recluses' River. The XYZ sidecar is from the online map snapshot; the rendered x/y remains an abstract layout coordinate."
     },
     {
@@ -6001,7 +6002,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-eastern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-scadu-altus", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 651, "recordId": 69514400, "name": "Eastern Nameless Mausoleum", "map": "area 61 / grid 51,44", "position": [-26.850000381469727, 170.3300018310547, 77.7699966430664], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 651, "recordId": 69514400, "name": "Eastern Nameless Mausoleum", "map": "area 61 / grid 51,44", "position": [-26.850000381469727, 170.3300018310547, 77.7699966430664], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "The eastern of the four Nameless Mausoleums, reached from the Recluses' River canyon branch. The boss arena is not silently promoted to a route edge; this node represents the physical landmark and entrance."
     },
     {
@@ -6291,7 +6292,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-southern-nameless-mausoleum", "eldenpedia-nameless-mausoleums", "eldenpedia-cerulean-coast", "game8-southern-nameless-mausoleum-cross-check", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Southern Nameless Mausoleum", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 612, "recordId": 68463800, "name": "Southern Nameless Mausoleum", "map": "area 61 / grid 46,38", "position": [-3.109999895095825, 21.43000030517578, -62.709999084472656], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Southern Cerulean Coast boss-landmark reached through the coastal cave route from Cerulean Coast West; the online XYZ sidecar is not used as rendered map geometry."
     },
     {
@@ -8345,8 +8346,9 @@
       "y": 1035,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check"],
-      "description": "Surface mouth at the north end of Lake Agheel; the internal grace is reached by the mine lift."
+      "sourceEvidence": ["eldenpedia-limgrave-tunnels", "game8-limgrave-tunnels-cross-check", "gamerguides-limgrave-tunnels-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 171, "recordId": 320100, "name": "Limgrave Tunnels", "map": "area 60 / grid 43,37", "position": [-121.69999694824219, 67.55999755859375, -34.93000030517578], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" },
+      "description": "Surface mouth at the north end of Lake Agheel; the internal grace is reached by the mine lift. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_limgrave_main_limgrave_tunnels",
@@ -8687,8 +8689,9 @@
       "y": 930,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-highroad-cave", "gamerguides-highroad-cave-cross-check", "eldenpedia-limgrave-r97518"],
-      "description": "Cliffside cave mouth reached by following the river north under Saintsbridge."
+      "sourceEvidence": ["eldenpedia-highroad-cave", "gamerguides-highroad-cave-cross-check", "eldenpedia-limgrave-r97518", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 164, "recordId": 311700, "name": "Highroad Cave", "map": "area 31 / grid 17,0", "position": [60.06999969482422, 96.44999694824219, 96.4000015258789], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" },
+      "description": "Cliffside cave mouth reached by following the river north under Saintsbridge. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_limgrave_main_highroad_cave",
@@ -8973,7 +8976,7 @@
     },
     {
       "id": "stillwater_cave_surface_entrance", "label": "Stillwater Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Southern Liurnia cliff base", "worldEpoch": "liurnia_surface", "x": 650, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check", "eldenpedia-liurnia-r49924"], "description": "Cliffside entrance below the southern Liurnia lake route."
+      "sourceEvidence": ["eldenpedia-stillwater-cave", "gamerguides-stillwater-cave-cross-check", "eldenpedia-liurnia-r49924", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 153, "recordId": 310400, "name": "Stillwater Cave", "map": "area 31 / grid 4,0", "position": [14.539999961853027, 237.30999755859375, -38.150001525878906], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Cliffside entrance below the southern Liurnia lake route. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_stillwater_cave", "label": "Stillwater Cave", "kind": "grace", "layer": "legacy", "region": "Stillwater Cave", "floor": "Cave entrance", "worldEpoch": "liurnia_surface", "x": 710, "y": 1030, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9027,7 +9030,7 @@
     },
     {
       "id": "cliffbottom_catacombs_surface_entrance", "label": "Cliffbottom Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia lower cliff", "worldEpoch": "liurnia_surface", "x": 1120, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check"], "description": "Lower eastern cliff entrance east of the Purified Ruins approach."
+      "sourceEvidence": ["eldenpedia-cliffbottom-catacombs", "game8-cliffbottom-catacombs-cross-check", "gamerguides-cliffbottom-catacombs-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 134, "recordId": 300600, "name": "Cliffbottom Catacombs", "map": "area 30 / grid 6,0", "position": [75.45999908447266, 239.75, 69.66000366210938], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Lower eastern cliff entrance east of the Purified Ruins approach. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_cliffbottom_catacombs", "label": "Cliffbottom Catacombs", "kind": "grace", "layer": "legacy", "region": "Cliffbottom Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 1180, "y": 900, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9043,7 +9046,7 @@
     },
     {
       "id": "academy_crystal_cave_surface_entrance", "label": "Academy Crystal Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northwestern academy island shore", "worldEpoch": "liurnia_surface", "x": 870, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check"], "description": "Sealed cave mouth beneath the western side of Raya Lucaria Academy; two Stonesword Keys are required."
+      "sourceEvidence": ["eldenpedia-academy-crystal-cave", "game8-academy-crystal-cave-cross-check", "gamerguides-academy-crystal-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 155, "recordId": 310600, "name": "Academy Crystal Cave", "map": "area 31 / grid 6,0", "position": [72.95999908447266, 236.38999938964844, 120.51000213623047], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Sealed cave mouth beneath the western side of Raya Lucaria Academy; two Stonesword Keys are required. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_academy_crystal_cave", "label": "Academy Crystal Cave", "kind": "grace", "layer": "legacy", "region": "Academy Crystal Cave", "floor": "Cave entrance", "worldEpoch": "liurnia_surface", "x": 930, "y": 650, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9063,7 +9066,7 @@
     },
     {
       "id": "raya_lucaria_crystal_tunnel_surface_entrance", "label": "Raya Lucaria Crystal Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "East Raya Lucaria lake shore", "worldEpoch": "liurnia_surface", "x": 1250, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check"], "description": "Mine mouth near the East Raya Lucaria Gate, accessed from the lake shore."
+      "sourceEvidence": ["eldenpedia-raya-lucaria-crystal-tunnel", "game8-raya-lucaria-crystal-tunnel-cross-check", "pushsquare-raya-lucaria-crystal-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 172, "recordId": 320200, "name": "Raya Lucaria Crystal Tunnel", "map": "area 60 / grid 37,47", "position": [-111.9800033569336, 242.97999572753906, 16.290000915527344], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Mine mouth near the East Raya Lucaria Gate, accessed from the lake shore. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_raya_lucaria_crystal_tunnel", "label": "Raya Lucaria Crystal Tunnel", "kind": "grace", "layer": "legacy", "region": "Raya Lucaria Crystal Tunnel", "floor": "Mine entrance", "worldEpoch": "liurnia_surface", "x": 1310, "y": 930, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9107,7 +9110,7 @@
     },
     {
       "id": "old_altus_tunnel_surface_entrance", "label": "Old Altus Tunnel surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Wyndham north-eastern cliff", "worldEpoch": "altus_surface", "x": 650, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-old-altus-tunnel-cross-check", "game8-altus-old-tunnel-cross-check"], "description": "Two-key imp seal in the valley north of the Altus arrival route."
+      "sourceEvidence": ["eldenpedia-old-altus-tunnel", "game8-old-altus-tunnel-cross-check", "game8-altus-old-tunnel-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 173, "recordId": 320400, "name": "Old Altus Tunnel", "map": "area 60 / grid 38,53", "position": [87.73999786376953, 732.3300170898438, -114.48999786376953], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Two-key imp seal in the valley north of the Altus arrival route. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_old_altus_tunnel", "label": "Old Altus Tunnel", "kind": "grace", "layer": "legacy", "region": "Old Altus Tunnel", "floor": "Lift landing", "worldEpoch": "altus_surface", "x": 710, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9123,7 +9126,7 @@
     },
     {
       "id": "perfumer_grotto_surface_entrance", "label": "Perfumer's Grotto surface entrance", "kind": "entrance", "layer": "surface", "region": "Altus Plateau", "floor": "Capital approach poison flower", "worldEpoch": "altus_surface", "x": 1350, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check"], "description": "Entrance behind the poison-spewing flower on the capital approach."
+      "sourceEvidence": ["eldenpedia-perfumers-grotto", "game8-perfumers-grotto-cross-check", "game8-omenkiller-perfumers-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 165, "recordId": 311800, "name": "Perfumer's Grotto", "map": "area 31 / grid 18,0", "position": [49.47999954223633, 838.1300048828125, 23.110000610351562], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Entrance behind the poison-spewing flower on the capital approach. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_altus_plateau_main_perfumer_s_grotto", "label": "Perfumer's Grotto", "kind": "grace", "layer": "legacy", "region": "Perfumer's Grotto", "floor": "Grotto entrance", "worldEpoch": "altus_surface", "x": 1410, "y": 260, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9407,7 +9410,7 @@
     },
     {
       "id": "belurat_gaol_surface_entrance", "label": "Belurat Gaol surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Belurat", "worldEpoch": "shadow_realm", "x": 270, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check"], "description": "Cave entrance by the lake west of Belurat, reached from Three-Path Cross."
+      "sourceEvidence": ["eldenpedia-belurat-gaol", "game8-belurat-onze-cross-check", "pushsquare-belurat-gaol-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 192, "recordId": 410000, "name": "Belurat Gaol", "map": "area 41 / grid 0,0", "position": [-100.72000122070312, 259.7699890136719, -106.43000030517578], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Cave entrance by the lake west of Belurat, reached from Three-Path Cross. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_belurat_gaol", "label": "Belurat Gaol", "kind": "grace", "layer": "legacy", "region": "Belurat Gaol", "floor": "Gaol entrance", "worldEpoch": "shadow_realm", "x": 330, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9423,7 +9426,7 @@
     },
     {
       "id": "fog_rift_catacombs_surface_entrance", "label": "Fog Rift Catacombs surface entrance", "kind": "entrance", "layer": "surface", "region": "Gravesite Plain", "floor": "Fog Rift ravine", "worldEpoch": "shadow_realm", "x": 120, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check"], "description": "Catacomb mouth in the fog-filled ravine north of the Castle Front approach."
+      "sourceEvidence": ["game8-fog-rift-catacombs-cross-check", "neoseeker-fog-rift-catacombs-cross-check", "escapist-fog-rift-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 189, "recordId": 400000, "name": "Fog Rift Catacombs", "map": "area 40 / grid 0,0", "position": [-92.01000213623047, 259.0199890136719, -68.97000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Catacomb mouth in the fog-filled ravine north of the Castle Front approach. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "grace_shadow_realm_fog_rift_catacombs", "label": "Fog Rift Catacombs", "kind": "grace", "layer": "legacy", "region": "Fog Rift Catacombs", "floor": "Catacomb entrance", "worldEpoch": "shadow_realm", "x": 180, "y": 180, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9585,19 +9588,19 @@
     },
     {
       "id": "spiritcaller_cave_surface_entrance", "label": "Spiritcaller's Cave surface entrance", "kind": "entrance", "layer": "surface", "region": "Mountaintops of the Giants", "floor": "Western Freezing Lake", "worldEpoch": "mountaintops_surface", "x": 500, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "One-key Imp seal north-west of the First Church of Marika, across the frozen lake."
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 169, "recordId": 312200, "name": "Spiritcaller Cave", "map": "area 60 / grid 53,56", "position": [-38.33000183105469, 1626.260009765625, 114.54000091552734], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "One-key Imp seal north-west of the First Church of Marika, across the frozen lake. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey; the raw source's formal candidate incorrectly points to the Road's End Spiritcaller Snail and is not used."
     },
     {
       "id": "grace_mountaintops_main_spiritcallers_cave", "label": "Spiritcaller's Cave", "kind": "grace", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Cave entrance", "worldEpoch": "mountaintops_surface", "x": 560, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check"], "description": "Grace inside the Stonesword-sealed cave."
     },
     {
-      "id": "spiritcaller_godskin_apostle_gate", "label": "Godskin Apostle (Spiritcaller's Cave)", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "First sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 620, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "First boss phase summoned by the Spiritcaller Snail."
+      "id": "spiritcaller_godskin_apostle_gate", "label": "Spiritcaller Snail summon - Godskin Apostle phase", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "First sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 620, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Summoned Apostle phase of the Spiritcaller Snail encounter; this is not an independent cave boss or a separately coordinate-bound room."
     },
     {
-      "id": "spiritcaller_godskin_noble_gate", "label": "Godskin Noble (Spiritcaller's Cave)", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Second sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 680, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Second boss phase after the Apostle; both are summoned sequentially by the hidden snail."
+      "id": "spiritcaller_godskin_noble_gate", "label": "Spiritcaller Snail summon - Godskin Noble phase", "kind": "boss", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Second sequential Godskin chamber", "worldEpoch": "mountaintops_surface", "x": 680, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
+      "sourceEvidence": ["eldenpedia-spiritcallers-cave", "game8-spiritcallers-cave-cross-check", "segmentnext-spiritcallers-cave-cross-check"], "description": "Summoned Noble phase after the Apostle; both phases belong to the single hidden Spiritcaller Snail encounter and are not separately coordinate-bound rooms."
     },
     {
       "id": "spiritcallers_cave_post_boss_state", "label": "Spiritcaller's Cave (post-boss state)", "kind": "state", "layer": "legacy", "region": "Spiritcaller's Cave", "floor": "Spiritcaller reward chamber", "worldEpoch": "mountaintops_surface", "x": 740, "y": 600, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9647,7 +9650,7 @@
     },
     {
       "id": "fort_reprimand_front_entrance", "label": "Fort of Reprimand front entrance", "kind": "entrance", "layer": "surface", "region": "Fort of Reprimand", "floor": "Front courtyard", "worldEpoch": "shadow_realm", "x": 530, "y": 590, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check"], "description": "Front courtyard entrance from Moorth Highway, South; the lower dungeon and main hall branch are distinct from the battlement grace."
+      "sourceEvidence": ["eldenpedia-fort-of-reprimand", "eip-fort-reprimand-cross-check", "escapist-fort-reprimand-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 641, "recordId": 69494301, "name": "Fort of Reprimand", "map": "area 61 / grid 49,43", "position": [55.95000076293945, 396.4800109863281, -72.16000366210938], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "named_dungeon_location_anchor" }, "description": "Front courtyard entrance from Moorth Highway, South; the lower dungeon and main hall branch are distinct from the battlement grace. The online XYZ is a named dungeon-location anchor, not a verified exact surface-mouth survey."
     },
     {
       "id": "fort_reprimand_spirit_spring_seal", "label": "Fort of Reprimand sealed spiritspring route", "kind": "junction", "layer": "surface", "region": "Gravesite Plain", "floor": "Northeastern poison pools / Ellac River descent", "worldEpoch": "shadow_realm", "x": 300, "y": 500, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9882,7 +9885,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-rose-church", "nexus-map-for-goblins", "game8-liurnia-branches-cross-check"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 504, "recordId": 62354400, "name": "Rose Church", "map": "area 60 / grid 35,44", "position": [-88.36000061035156, 241.83999633789062, -112.47000122070312], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 504, "recordId": 62354400, "name": "Rose Church", "map": "area 60 / grid 35,44", "position": [-88.36000061035156, 241.83999633789062, -112.47000122070312], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "landmark_anchor"},
       "description": "Rose Church island south of Raya Lucaria; Varré's quest location is kept as a surface landmark rather than fabricated as a Site of Grace."
     },
     {
@@ -10000,7 +10003,7 @@
     {
       "id": "ghostflame_dragon_gravesite_gate", "label": "Ghostflame Dragon (Greatbridge North)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "Lake west of Greatbridge, North", "worldEpoch": "shadow_realm", "x": 350, "y": 690, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 399, "recordId": 38454400, "name": "Ghostflame Dragon", "map": "area 61 / grid 45,44", "position": [60.0, 88.95500183105469, -80.0], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 399, "recordId": 38454400, "name": "Ghostflame Dragon", "map": "area 61 / grid 45,44", "position": [60.0, 88.95500183105469, -80.0], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor"},
       "description": "Optional field boss in the Gravesite Plain lake west of the Greatbridge, North grace. The coordinate is the online map-point record; the route node remains separate from the grace."
     },
     {
@@ -10011,7 +10014,7 @@
     {
       "id": "ghostflame_dragon_moorth_gate", "label": "Ghostflame Dragon (Moorth Highway)", "kind": "boss", "layer": "surface", "region": "Scadu Altus", "floor": "Ruined encampment south of Moorth Ruins", "worldEpoch": "shadow_realm", "x": 460, "y": 630, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 412, "recordId": 39494300, "name": "Ghostflame Dragon", "map": "area 61 / grid 49,43", "position": [-32.0, 88.95500183105469, 170.0], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 412, "recordId": 39494300, "name": "Ghostflame Dragon", "map": "area 61 / grid 49,43", "position": [-32.0, 88.95500183105469, 170.0], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor"},
       "description": "Optional field boss at the ruined encampment south of Moorth Ruins, reachable from Moorth Highway, South. The online map point is retained as game-world XYZ evidence."
     },
     {
@@ -10022,7 +10025,7 @@
     {
       "id": "ghostflame_dragon_cerulean_gate", "label": "Ghostflame Dragon (Cerulean Coast)", "kind": "boss", "layer": "surface", "region": "Gravesite Plain", "floor": "South of Cerulean Coast", "worldEpoch": "shadow_realm", "x": 520, "y": 910, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-ghostflame-dragon", "game8-ghostflame-dragon-cross-check", "nexus-map-for-goblins"],
-"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 406, "recordId": 38483800, "name": "Ghostflame Dragon", "map": "area 61 / grid 48,38", "position": [-85.0, 88.95500183105469, 35.0], "coordinateSpace": "game_world_xyz"},
+"onlineCoordinate": {"source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 406, "recordId": 38483800, "name": "Ghostflame Dragon", "map": "area 61 / grid 48,38", "position": [-85.0, 88.95500183105469, 35.0], "coordinateSpace": "game_world_xyz", "bindingBasis": "manual_exact_name_region", "coordinateRole": "boss_arena_anchor"},
       "description": "Optional field boss south of the Cerulean Coast grace. The route is modeled as an approach from the grace, not as a Euclidean-nearest-point claim."
     },
     {

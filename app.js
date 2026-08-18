@@ -476,6 +476,9 @@ function renderInspector() {
   const incoming = allEdges.filter((edge) => edge.to === node.id).slice(0, 3);
   const connections = [...outgoing, ...incoming];
   const onlineBoss = state.onlineBossByNodeId.get(node.id) || state.onlineMapPointByNodeId.get(node.id) || node.onlineCoordinate;
+  const onlineBinding = node.onlineCoordinate
+    ? `<div class="inspector-online">Coordinate binding: ${node.onlineCoordinate.bindingBasis || "formal_candidate"} / role: ${node.onlineCoordinate.coordinateRole || "formal_node_anchor"}</div>`
+    : "";
   const onlineEvidence = onlineBoss
     ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
     : "";
@@ -487,6 +490,7 @@ function renderInspector() {
       </div>
       <p class="inspector-description">${node.description}</p>
        ${onlineEvidence}
+       ${onlineBinding}
        <div class="inspector-source">验证：${node.verificationState || "unknown"} · 坐标：${node.coordinateType || "unknown"}<br>来源：${(node.sourceEvidence || []).map((id) => state.data.sourceEvidence?.find((item) => item.id === id)?.label || id).join("；") || "未登记"}</div>
       <div class="inspector-actions"><button data-set-origin="${node.id}">设为起点</button><button data-set-destination="${node.id}">设为终点</button></div>
       <div class="connection-list"><div class="connection-list-title">附近连接 / ${connections.length}</div>
