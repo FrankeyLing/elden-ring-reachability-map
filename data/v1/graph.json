@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.146-online-multiplane",
+  "version": "1.0.147-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -488,8 +488,8 @@
     },
     {
       "id": "godskin_noble_altus_defeated",
-      "label": "Godskin Noble of Windmill Village defeated",
-      "hint": "The Windmill Heights grace is available after clearing the Windmill Village boss arena."
+      "label": "Godskin Apostle of Windmill Village defeated",
+      "hint": "The Windmill Heights grace is available after clearing the Windmill Village Godskin Apostle arena."
     },
     {
       "id": "elemer_of_the_briar_defeated",
@@ -8147,11 +8147,11 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-altus-cross-check"],
-      "description": "Dominula village grace before the Godskin Noble arena."
+      "description": "Dominula village grace before the Godskin Apostle arena."
     },
     {
       "id": "godskin_noble_altus_gate",
-      "label": "Godskin Noble (Windmill Village)",
+      "label": "Godskin Apostle (Windmill Village)",
       "kind": "boss",
       "layer": "surface",
       "region": "Altus Plateau",
@@ -8161,9 +8161,8 @@
       "y": 80,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 299, "recordId": 32341100, "name": "Godskin Noble", "map": "area 34 / grid 11,0", "position": [402.4339904785156, 90.58502960205078, 71.28399658203125], "coordinateSpace": "game_world_xyz" },
-      "description": "Godskin Noble boss gate at the top of Windmill Village."
+      "sourceEvidence": ["eldenpedia-altus-r65232", "game8-altus-cross-check"],
+      "description": "Godskin Apostle boss gate at the top of Windmill Village; the current Map for Goblins record is withheld because it labels this location as Godskin Noble."
     },
     {
       "id": "grace_altus_plateau_main_windmill_heights",
@@ -8178,7 +8177,7 @@
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
       "sourceEvidence": ["eldenpedia-altus-r65232", "eldenpedia-sites-of-grace-r83774", "game8-altus-cross-check"],
-      "description": "Post-Godskin Noble Windmill grace."
+      "description": "Post-Godskin Apostle Windmill grace."
     },
     {
       "id": "grace_altus_plateau_main_bower_of_bounty",
@@ -16621,7 +16620,7 @@
       "id": "windmill-to-godskin-noble",
       "from": "grace_altus_plateau_main_windmill_village",
       "to": "godskin_noble_altus_gate",
-      "mode": "Windmill Village to Godskin Noble",
+      "mode": "Windmill Village to Godskin Apostle",
       "cost": 4,
       "risk": 9,
       "direction": "forward",
@@ -16636,7 +16635,7 @@
       "id": "godskin-noble-to-windmill-heights",
       "from": "godskin_noble_altus_gate",
       "to": "grace_altus_plateau_main_windmill_heights",
-      "mode": "Godskin Noble completion",
+      "mode": "Godskin Apostle completion",
       "cost": 3,
       "risk": 9,
       "direction": "forward",
