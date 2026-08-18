@@ -1,0 +1,22 @@
+{
+  "schema":"elden-ring-reachability-map/er-guide-item-snapshot@1",
+  "source":{"source_id":"er_guide","repository":"https://github.com/aether-auto/er-guide","commit":"7f24d64d3631ef4d549f56b42d4c3e3817a269fa","path":"data/items.json","captured_on":"2026-08-18"},
+  "route_leg_id":"er_guide_leg_dlc-scadu-altus-02","route_target_group_id":"er_guide_target_group_dlc-scadu-altus-02","record_count":14,"coordinate_record_count":14,"routeable":false,"coordinate_space":"er_guide_leaflet_lat_lng",
+  "records":[
+    {"id":"ash-of-war-ash-of-war-aspects-of-the-crucible-wings","name":"Ash of War: Aspects of the Crucible: Wings","category":"ash-of-war","map":{"code":"dlc","markerId":655056,"lat":-145.8046875,"lng":129.4724948878176},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ash_of_War%3A_Aspects_of_the_Crucible%3A_Wings"},
+    {"id":"ash-of-war-ash-of-war-piercing-throw","name":"Ash of War: Piercing Throw","category":"ash-of-war","map":{"code":"dlc","markerId":655043,"lat":-140.45572912693024,"lng":125.29296875},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ash_of_War%3A_Piercing_Throw"},
+    {"id":"ash-of-war-ash-of-war-scattershot-throw","name":"Ash of War: Scattershot Throw","category":"ash-of-war","map":{"code":"dlc","markerId":659332,"lat":-117.82291662693024,"lng":122.19140625},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ash_of_War%3A_Scattershot_Throw"},
+    {"id":"bell-bearing-moldmonger-s-bell-bearing","name":"Moldmonger's Bell Bearing","category":"bell-bearing","map":{"code":"dlc","markerId":659324,"lat":-137.2265625,"lng":136.3324539332389},"wikiUrl":"https://eldenring.wiki.gg/wiki/Moldmonger's_Bell_Bearing"},
+    {"id":"cookbook-battlefield-priest-s-cookbook-2","name":"Battlefield Priest's Cookbook 2","category":"cookbook","map":{"code":"dlc","markerId":655531,"lat":-146.109375,"lng":129.78541772767358},"wikiUrl":"https://eldenring.wiki.gg/wiki/Battlefield_Priest's_Cookbook_2"},
+    {"id":"spirit-ash-messmer-soldier-ashes","name":"Messmer Soldier Ashes","category":"spirit-ash","map":{"code":"dlc","markerId":655074,"lat":-146.4296875,"lng":129.55844809564064},"wikiUrl":"https://eldenring.wiki.gg/wiki/Messmer_Soldier_Ashes"},
+    {"id":"talisman-flamedrake-talisman-3","name":"Flamedrake Talisman +3","category":"talisman","map":{"code":"dlc","markerId":655269,"lat":-146.6640625,"lng":130.79325693086736},"wikiUrl":"https://eldenring.wiki.gg/wiki/Flamedrake_Talisman_%2B3"},
+    {"id":"talisman-pearl-shield-talisman","name":"Pearl Shield Talisman","category":"talisman","map":{"code":"dlc","markerId":655435,"lat":-121.03125,"lng":117.5820969372601},"wikiUrl":"https://eldenring.wiki.gg/wiki/Pearl_Shield_Talisman"},
+    {"id":"talisman-smithing-talisman","name":"Smithing Talisman","category":"talisman","map":{"code":"dlc","markerId":658907,"lat":-140.1171875,"lng":125.99656212872418},"wikiUrl":"https://eldenring.wiki.gg/wiki/Smithing_Talisman"},
+    {"id":"tool-blessing-of-marika","name":"Blessing of Marika","category":"tool","map":{"code":"dlc","markerId":655757,"lat":-116.84375,"lng":135.4175446387772},"wikiUrl":"https://eldenring.wiki.gg/wiki/Blessing_of_Marika"},
+    {"id":"tool-iris-of-occultation","name":"Iris of Occultation","category":"tool","map":{"code":"dlc","markerId":655515,"lat":-118.5,"lng":131.41096306091208},"wikiUrl":"https://eldenring.wiki.gg/wiki/Iris_of_Occultation"},
+    {"id":"weapon-ancient-meteoric-ore-greatsword","name":"Ancient Meteoric Ore Greatsword","category":"weapon","map":{"code":"dlc","markerId":658911,"lat":-139.484375,"lng":125.70736397025223},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ancient_Meteoric_Ore_Greatsword"},
+    {"id":"weapon-smithscript-cirque","name":"Smithscript Cirque","category":"weapon","map":{"code":"dlc","markerId":658906,"lat":-138.328125,"lng":126.59042065550173},"wikiUrl":"https://eldenring.wiki.gg/wiki/Smithscript_Cirque"},
+    {"id":"weapon-smithscript-spear","name":"Smithscript Spear","category":"weapon","map":{"code":"dlc","markerId":658904,"lat":-140.4609375,"lng":125.05107684267044},"wikiUrl":"https://eldenring.wiki.gg/wiki/Smithscript_Spear"}
+  ],
+  "notes":["All upstream item IDs resolve against the pinned er-guide item database.","Leaflet latitude/longitude is not game-world XYZ and never creates traversal edges."]
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "elden-ring-reachability-map/er-guide-item-snapshot@1",
+  "source": {"source_id":"er_guide","repository":"https://github.com/aether-auto/er-guide","commit":"7f24d64d3631ef4d549f56b42d4c3e3817a269fa","path":"data/items.json","captured_on":"2026-08-18"},
+  "route_leg_id":"er_guide_leg_dlc-scadu-altus-01",
+  "route_target_group_id":"er_guide_target_group_dlc-scadu-altus-01",
+  "record_count":19,
+  "coordinate_record_count":19,
+  "routeable":false,
+  "coordinate_space":"er_guide_leaflet_lat_lng",
+  "records":[
+    {"id":"armor-dane-s-hat","name":"Dane's Hat","category":"armor","map":{"code":"dlc","markerId":655680,"lat":-135.3828125,"lng":127.74652357315847},"wikiUrl":"https://eldenring.wiki.gg/wiki/Dane's_Hat"},
+    {"id":"armor-night-maiden-armor","name":"Night Maiden Armor","category":"armor","map":{"code":"dlc","markerId":658960,"lat":-143.89322912693024,"lng":132.17578125},"wikiUrl":"https://eldenring.wiki.gg/wiki/Night_Maiden_Armor"},
+    {"id":"armor-night-maiden-twin-crown","name":"Night Maiden Twin Crown","category":"armor","map":{"code":"dlc","markerId":658960,"lat":-143.89322912693024,"lng":132.17578125},"wikiUrl":"https://eldenring.wiki.gg/wiki/Night_Maiden_Twin_Crown"},
+    {"id":"ash-of-war-ash-of-war-palm-blast","name":"Ash of War: Palm Blast","category":"ash-of-war","map":{"code":"dlc","markerId":659330,"lat":-134.6640625,"lng":127.94143060331274},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ash_of_War%3A_Palm_Blast"},
+    {"id":"cookbook-fire-knight-s-cookbook-1","name":"Fire Knight's Cookbook 1","category":"cookbook","map":{"code":"dlc","markerId":655040,"lat":-134.875,"lng":125.73986345617803},"wikiUrl":"https://eldenring.wiki.gg/wiki/Fire_Knight's_Cookbook_1"},
+    {"id":"incantation-golden-arcs","name":"Golden Arcs","category":"incantation","map":{"code":"dlc","markerId":655077,"lat":-136.7890625,"lng":130.35656686963077},"wikiUrl":"https://eldenring.wiki.gg/wiki/Golden_Arcs"},
+    {"id":"key-item-monk-s-missive","name":"Monk's Missive","category":"key-item","map":{"code":"dlc","markerId":655196,"lat":-134.53385412693024,"lng":121.81640625},"wikiUrl":"https://eldenring.wiki.gg/wiki/Monk's_Missive"},
+    {"id":"map-fragment-map-scadu-altus","name":"Map Scadu Altus","category":"map-fragment","map":{"code":"dlc","markerId":655195,"lat":-129.43235291663035,"lng":122.67322506200382},"wikiUrl":"https://eldenring.wiki.gg/wiki/Map_Scadu_Altus"},
+    {"id":"revered-spirit-ash-07","name":"Revered Spirit Ash #7","category":"revered-spirit-ash","map":{"code":"dlc","markerId":659110,"lat":-140.8203125,"lng":132.55095403605372},"wikiUrl":"https://eldenring.wiki.gg/wiki/Revered_Spirit_Ash"},
+    {"id":"scadutree-fragment-11","name":"Scadutree Fragment #11","category":"scadutree-fragment","map":{"code":"dlc","markerId":654885,"lat":-147.390625,"lng":102.78471071901846},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"shield-shield-of-night","name":"Shield of Night","category":"shield","map":{"code":"dlc","markerId":658965,"lat":-144.46354162693024,"lng":132.63671875},"wikiUrl":"https://eldenring.wiki.gg/wiki/Shield_of_Night"},
+    {"id":"spirit-ash-curseblade-meera","name":"Curseblade Meera","category":"spirit-ash","map":{"code":"dlc","markerId":655337,"lat":-141.953125,"lng":129.95696699072383},"wikiUrl":"https://eldenring.wiki.gg/wiki/Curseblade_Meera"},
+    {"id":"talisman-shattered-stone-talisman","name":"Shattered Stone Talisman","category":"talisman","map":{"code":"dlc","markerId":655075,"lat":-136.3984375,"lng":129.97368439841892},"wikiUrl":"https://eldenring.wiki.gg/wiki/Shattered_Stone_Talisman"},
+    {"id":"talisman-stalwart-horn-charm-2","name":"Stalwart Horn Charm +2","category":"talisman","map":{"code":"dlc","markerId":655094,"lat":-142.3046875,"lng":133.23889671106744},"wikiUrl":"https://eldenring.wiki.gg/wiki/Stalwart_Horn_Charm_%2B2"},
+    {"id":"weapon-black-steel-twinblade","name":"Black Steel Twinblade","category":"weapon","map":{"code":"dlc","markerId":658996,"lat":-125.46725948678804,"lng":119.1762118641283},"wikiUrl":"https://eldenring.wiki.gg/wiki/Black_Steel_Twinblade"},
+    {"id":"weapon-bonny-butchering-knife","name":"Bonny Butchering Knife","category":"weapon","map":{"code":"dlc","markerId":655082,"lat":-137.53125,"lng":133.03658851786693},"wikiUrl":"https://eldenring.wiki.gg/wiki/Bonny_Butchering_Knife"},
+    {"id":"weapon-repeating-crossbow","name":"Repeating Crossbow","category":"weapon","map":{"code":"dlc","markerId":659323,"lat":-140.95572912693024,"lng":128.38671875},"wikiUrl":"https://eldenring.wiki.gg/wiki/Repeating_Crossbow"},
+    {"id":"weapon-swift-spear","name":"Swift Spear","category":"weapon","map":{"code":"dlc","markerId":655445,"lat":-141.5859375,"lng":119.58211121709925},"wikiUrl":"https://eldenring.wiki.gg/wiki/Swift_Spear"},
+    {"id":"weapon-tooth-whip","name":"Tooth Whip","category":"weapon","map":{"code":"dlc","markerId":655101,"lat":-137.32291662693024,"lng":137.76953125},"wikiUrl":"https://eldenring.wiki.gg/wiki/Tooth_Whip"}
+  ],
+  "notes":["All upstream item IDs resolve against the pinned er-guide item database.","Leaflet latitude/longitude is not game-world XYZ and never creates traversal edges."]
+}

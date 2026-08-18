@@ -1,0 +1,20 @@
+{
+  "schema":"elden-ring-reachability-map/er-guide-item-snapshot@1",
+  "source":{"source_id":"er_guide","repository":"https://github.com/aether-auto/er-guide","commit":"7f24d64d3631ef4d549f56b42d4c3e3817a269fa","path":"data/items.json","captured_on":"2026-08-18"},
+  "route_leg_id":"er_guide_leg_dlc-scadu-altus-05","route_target_group_id":"er_guide_target_group_dlc-scadu-altus-05","record_count":12,"coordinate_record_count":12,"routeable":false,"coordinate_space":"er_guide_leaflet_lat_lng",
+  "records":[
+    {"id":"ash-of-war-ash-of-war-raging-beast","name":"Ash of War: Raging Beast","category":"ash-of-war","map":{"code":"dlc","markerId":659328,"lat":-133.8046875,"lng":142.89478845516257},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ash_of_War%3A_Raging_Beast"},
+    {"id":"bell-bearing-spellmachinist-s-bell-bearing","name":"Spellmachinist's Bell Bearing","category":"bell-bearing","map":{"code":"dlc","markerId":659325,"lat":-122.453125,"lng":142.51985254638092},"wikiUrl":"https://eldenring.wiki.gg/wiki/Spellmachinist's_Bell_Bearing"},
+    {"id":"great-rune-miquella-s-great-rune","name":"Miquella's Great Rune","category":"great-rune","map":{"code":"dlc","markerId":655395,"lat":-110.1484375,"lng":132.59760369811463},"wikiUrl":"https://eldenring.wiki.gg/wiki/Miquella's_Great_Rune"},
+    {"id":"incantation-minor-erdtree-spell","name":"Minor Erdtree (spell)","category":"incantation","map":{"code":"dlc","markerId":248603,"lat":-117.9375,"lng":139.3870671780753},"wikiUrl":"https://eldenring.wiki.gg/wiki/Minor_Erdtree_(spell)"},
+    {"id":"remembrance-remembrance-of-the-shadow-sunflower","name":"Remembrance of the Shadow Sunflower","category":"remembrance","map":{"code":"dlc","markerId":655391,"lat":-109.921875,"lng":133.33186654470072},"wikiUrl":"https://eldenring.wiki.gg/wiki/Remembrance_of_the_Shadow_Sunflower"},
+    {"id":"remembrance-remembrance-of-the-wild-boar-rider","name":"Remembrance of the Wild Boar Rider","category":"remembrance","map":{"code":"dlc","markerId":655413,"lat":-113.2578125,"lng":130.07413949492084},"wikiUrl":"https://eldenring.wiki.gg/wiki/Remembrance_of_the_Wild_Boar_Rider"},
+    {"id":"scadutree-fragment-29","name":"Scadutree Fragment #29","category":"scadutree-fragment","map":{"code":"dlc","markerId":655206,"lat":-130.60172449409254,"lng":129.74185685205128},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"scadutree-fragment-31","name":"Scadutree Fragment #31","category":"scadutree-fragment","map":{"code":"dlc","markerId":655821,"lat":-129.35312497615814,"lng":132.5312757049491},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"sorcery-gravitational-missile","name":"Gravitational Missile","category":"sorcery","map":{"code":"dlc","markerId":655771,"lat":-111.0703125,"lng":147.98105850735698},"wikiUrl":"https://eldenring.wiki.gg/wiki/Gravitational_Missile"},
+    {"id":"spirit-ash-fingercreeper-ashes","name":"Fingercreeper Ashes","category":"spirit-ash","map":{"code":"dlc","markerId":659327,"lat":-115.65625,"lng":152.6527056316822},"wikiUrl":"https://eldenring.wiki.gg/wiki/Fingercreeper_Ashes"},
+    {"id":"talisman-golden-braid","name":"Golden Braid","category":"talisman","map":{"code":"dlc","markerId":248602,"lat":-120.0234375,"lng":140.17579695782308},"wikiUrl":"https://eldenring.wiki.gg/wiki/Golden_Braid"},
+    {"id":"talisman-sharpshot-talisman","name":"Sharpshot Talisman","category":"talisman","map":{"code":"dlc","markerId":655414,"lat":-109.7578125,"lng":126.16043042291172},"wikiUrl":"https://eldenring.wiki.gg/wiki/Sharpshot_Talisman"}
+  ],
+  "notes":["All upstream item IDs resolve against the pinned er-guide item database.","Leaflet latitude/longitude is not game-world XYZ and never creates traversal edges."]
+}

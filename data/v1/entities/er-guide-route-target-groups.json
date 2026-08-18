@@ -68,6 +68,11 @@
           "status": "formal_path_exists"
         }
       ],
+      "online_item_snapshot": "er-guide-items-dlc-scadu-altus-01-20260818",
+      "online_item_snapshot_path": "data/v1/source-snapshots/er-guide-items-dlc-scadu-altus-01-20260818.json",
+      "online_item_record_count": 19,
+      "online_item_coordinate_count": 19,
+      "item_target_status": "all_source_ids_resolved_coordinates_complete",
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -101,6 +106,11 @@
           "status": "formal_path_exists"
         }
       ],
+      "online_item_snapshot": "er-guide-items-dlc-scadu-altus-02-20260818",
+      "online_item_snapshot_path": "data/v1/source-snapshots/er-guide-items-dlc-scadu-altus-02-20260818.json",
+      "online_item_record_count": 14,
+      "online_item_coordinate_count": 14,
+      "item_target_status": "all_source_ids_resolved_coordinates_complete",
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -127,6 +137,11 @@
           "status": "formal_path_exists"
         }
       ],
+      "online_item_snapshot": "er-guide-items-dlc-scadu-altus-04-20260818",
+      "online_item_snapshot_path": "data/v1/source-snapshots/er-guide-items-dlc-scadu-altus-04-20260818.json",
+      "online_item_record_count": 16,
+      "online_item_coordinate_count": 16,
+      "item_target_status": "all_source_ids_resolved_coordinates_complete",
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -153,6 +168,11 @@
           "status": "formal_path_exists"
         }
       ],
+      "online_item_snapshot": "er-guide-items-dlc-scadu-altus-05-20260818",
+      "online_item_snapshot_path": "data/v1/source-snapshots/er-guide-items-dlc-scadu-altus-05-20260818.json",
+      "online_item_record_count": 12,
+      "online_item_coordinate_count": 12,
+      "item_target_status": "all_source_ids_resolved_coordinates_complete",
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },
@@ -193,6 +213,11 @@
           "status": "formal_path_exists"
         }
       ],
+      "online_item_snapshot": "er-guide-items-dlc-scadu-altus-07-20260818",
+      "online_item_snapshot_path": "data/v1/source-snapshots/er-guide-items-dlc-scadu-altus-07-20260818.json",
+      "online_item_record_count": 29,
+      "online_item_coordinate_count": 29,
+      "item_target_status": "all_source_ids_resolved_coordinates_complete",
       "routeable": false,
       "source_evidence": ["er-guide-main-7f24d64d3631ef4d549f56b42d4c3e3817a269fa"]
     },

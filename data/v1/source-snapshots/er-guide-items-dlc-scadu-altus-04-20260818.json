@@ -1,0 +1,24 @@
+{
+  "schema":"elden-ring-reachability-map/er-guide-item-snapshot@1",
+  "source":{"source_id":"er_guide","repository":"https://github.com/aether-auto/er-guide","commit":"7f24d64d3631ef4d549f56b42d4c3e3817a269fa","path":"data/items.json","captured_on":"2026-08-18"},
+  "route_leg_id":"er_guide_leg_dlc-scadu-altus-04","route_target_group_id":"er_guide_target_group_dlc-scadu-altus-04","record_count":16,"coordinate_record_count":16,"routeable":false,"coordinate_space":"er_guide_leaflet_lat_lng",
+  "records":[
+    {"id":"armor-death-mask-helm","name":"Death Mask Helm","category":"armor","map":{"code":"dlc","markerId":659465,"lat":-118.96354162693024,"lng":130.37109375},"wikiUrl":"https://eldenring.wiki.gg/wiki/Death_Mask_Helm"},
+    {"id":"armor-salza-s-hood","name":"Salza's Hood","category":"armor","map":{"code":"dlc","markerId":655625,"lat":-118.7265625,"lng":115.86375819662767},"wikiUrl":"https://eldenring.wiki.gg/wiki/Salza's_Hood"},
+    {"id":"ash-of-war-ash-of-war-flame-skewer","name":"Ash of War: Flame Skewer","category":"ash-of-war","map":{"code":"dlc","markerId":655202,"lat":-126.8359375,"lng":116.27750225621459},"wikiUrl":"https://eldenring.wiki.gg/wiki/Ash_of_War%3A_Flame_Skewer"},
+    {"id":"incantation-rain-of-fire","name":"Rain of Fire","category":"incantation","map":{"code":"dlc","markerId":655626,"lat":-118.5546875,"lng":115.66059606904588},"wikiUrl":"https://eldenring.wiki.gg/wiki/Rain_of_Fire"},
+    {"id":"key-item-messmer-s-kindling","name":"Messmer's Kindling","category":"key-item","map":{"code":"dlc","markerId":655497,"lat":-114.7890625,"lng":126.72301919980995},"wikiUrl":"https://eldenring.wiki.gg/wiki/Messmer's_Kindling"},
+    {"id":"key-item-prayer-room-key","name":"Prayer Room Key","category":"key-item","map":{"code":"dlc","markerId":655203,"lat":-127.15625,"lng":116.06652620064888},"wikiUrl":"https://eldenring.wiki.gg/wiki/Prayer_Room_Key"},
+    {"id":"remembrance-remembrance-of-the-impaler","name":"Remembrance of the Impaler","category":"remembrance","map":{"code":"dlc","markerId":655489,"lat":-114.4609375,"lng":125.65266504282765},"wikiUrl":"https://eldenring.wiki.gg/wiki/Remembrance_of_the_Impaler"},
+    {"id":"scadutree-fragment-23","name":"Scadutree Fragment #23","category":"scadutree-fragment","map":{"code":"dlc","markerId":659077,"lat":-135.109375,"lng":94.73046875},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"scadutree-fragment-24","name":"Scadutree Fragment #24","category":"scadutree-fragment","map":{"code":"dlc","markerId":658999,"lat":-134.6015625,"lng":127.22266030888545},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"scadutree-fragment-25","name":"Scadutree Fragment #25","category":"scadutree-fragment","map":{"code":"dlc","markerId":654915,"lat":-134.5625,"lng":122.12181059792543},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"scadutree-fragment-27","name":"Scadutree Fragment #27","category":"scadutree-fragment","map":{"code":"dlc","markerId":655041,"lat":-134.453125,"lng":125.72423560021019},"wikiUrl":"https://eldenring.wiki.gg/wiki/Scadutree_Fragment"},
+    {"id":"shield-golden-lion-shield","name":"Golden Lion Shield","category":"shield","map":{"code":"dlc","markerId":655617,"lat":-116.4453125,"lng":128.63654310797844},"wikiUrl":"https://eldenring.wiki.gg/wiki/Golden_Lion_Shield"},
+    {"id":"sorcery-mantle-of-thorns","name":"Mantle of Thorns","category":"sorcery","map":{"code":"dlc","markerId":655490,"lat":-119.375,"lng":131.27812628518552},"wikiUrl":"https://eldenring.wiki.gg/wiki/Mantle_of_Thorns"},
+    {"id":"spirit-ash-fire-knight-queelign","name":"Fire Knight Queelign","category":"spirit-ash","map":{"code":"dlc","markerId":655541,"lat":-118.203125,"lng":130.2475231618991},"wikiUrl":"https://eldenring.wiki.gg/wiki/Fire_Knight_Queelign"},
+    {"id":"talisman-crusade-insignia","name":"Crusade Insignia","category":"talisman","map":{"code":"dlc","markerId":655136,"lat":-140.83072912693024,"lng":102.89453125},"wikiUrl":"https://eldenring.wiki.gg/wiki/Crusade_Insignia"},
+    {"id":"weapon-queelign-s-greatsword","name":"Queelign's Greatsword","category":"weapon","map":{"code":"dlc","markerId":655495,"lat":-118.625,"lng":130.58982233024128},"wikiUrl":"https://eldenring.wiki.gg/wiki/Queelign's_Greatsword"}
+  ],
+  "notes":["All upstream item IDs resolve against the pinned er-guide item database.","Leaflet latitude/longitude is not game-world XYZ and never creates traversal edges."]
+}

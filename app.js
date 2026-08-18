@@ -518,7 +518,7 @@ function renderInspector() {
       ? subroutes.map((subroute) => `<button type="button" class="target-group-route target-group-route-button" data-target-group-route="1" data-entry-node="${subroute.entry_node_id}" data-target-node="${subroute.target_node_id}"><span>${nodeLabel(subroute.entry_node_id)} → ${nodeLabel(subroute.target_node_id)}</span><span>${subroute.path_edge_ids.length} edges${subroute.requires?.length ? ` · requires ${subroute.requires.join(", ")}` : ""}</span></button>`).join("")
       : `<div class="target-group-route">No formal subroute; scope remains unresolved.</div>`;
     const itemMarkup = group.online_item_snapshot
-      ? `<div class="target-group-items"><a href="/api/catalog/route-target-items?snapshot=${encodeURIComponent(group.online_item_snapshot)}" target="_blank" rel="noreferrer">Online item snapshot</a> · ${group.online_item_record_count} records · ${group.online_item_coordinate_count} coordinates · routeable=false</div>`
+      ? `<div class="target-group-items"><a href="/api/catalog/route-target-items?snapshot=${encodeURIComponent(group.online_item_snapshot)}" target="_blank" rel="noreferrer">Online item snapshot</a> · ${group.online_item_record_count} records · ${group.online_item_coordinate_count} coordinates · ${group.item_target_status || "routeable=false"}</div>`
       : "";
     return `<div class="inspector-target-group"><div class="target-group-title">${group.label}</div><div class="target-group-meta">${group.scope} · routeable=false</div>${itemMarkup}${subrouteMarkup}</div>`;
   }).join("");

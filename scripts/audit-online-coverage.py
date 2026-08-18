@@ -32,10 +32,20 @@ ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-t
 ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
 ER_GUIDE_ITEM_SNAPSHOT_FILES = {
     "er_guide_leg_caelid-06": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json",
+    "er_guide_leg_dlc-scadu-altus-01": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-01-20260818.json",
+    "er_guide_leg_dlc-scadu-altus-02": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-02-20260818.json",
+    "er_guide_leg_dlc-scadu-altus-04": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-04-20260818.json",
+    "er_guide_leg_dlc-scadu-altus-05": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-05-20260818.json",
+    "er_guide_leg_dlc-scadu-altus-07": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dlc-scadu-altus-07-20260818.json",
     "er_guide_leg_dragonbarrow-02": ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-dragonbarrow-02-20260818.json",
 }
 EXPECTED_ITEM_COORDINATE_COUNTS = {
     "er_guide_leg_caelid-06": 8,
+    "er_guide_leg_dlc-scadu-altus-01": 19,
+    "er_guide_leg_dlc-scadu-altus-02": 14,
+    "er_guide_leg_dlc-scadu-altus-04": 16,
+    "er_guide_leg_dlc-scadu-altus-05": 12,
+    "er_guide_leg_dlc-scadu-altus-07": 29,
     "er_guide_leg_dragonbarrow-02": 7,
 }
 UNRESOLVED_BOSS_LOCATION_NODES = {
@@ -1180,7 +1190,10 @@ def audit() -> dict:
             and record.get("online_item_snapshot_path")
             and record.get("online_item_record_count") == online_item_snapshot_contract[record["route_leg_id"]]["records"]
             and record.get("online_item_coordinate_count") == online_item_snapshot_contract[record["route_leg_id"]]["coordinate_records"]
-            and record.get("item_target_status") == "all_source_ids_resolved_coordinates_partial"
+            and record.get("item_target_status") in {
+                "all_source_ids_resolved_coordinates_partial",
+                "all_source_ids_resolved_coordinates_complete",
+            }
             for record in target_group_records if record.get("route_leg_id") in ER_GUIDE_ITEM_SNAPSHOT_FILES
         ),
         "item_snapshots": online_item_snapshot_contract,
