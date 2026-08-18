@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.137-online-multiplane",
+  "version": "1.0.138-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -4269,7 +4269,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-radahn-r97504", "eldenpedia-sites-of-grace-r83774", "powerpyx-redmane-cross-check"],
+      "sourceEvidence": ["eldenpedia-radahn-r97504", "eldenpedia-sites-of-grace-r83774", "powerpyx-redmane-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 350, "recordId": 34130900, "name": "Starscourge Radahn", "map": "area 60 / grid 52,38", "position": [-23.687999725341797, 34.595001220703125, 156.30799865722656], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Radahn grace and crater-world-state anchor."
     },
     {
@@ -4622,7 +4623,8 @@
       "y": 790,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check", "game8-dlc-cross-check"],
+      "sourceEvidence": ["eldenpedia-gravesite-plain", "eldenpedia-sites-of-grace-r83774", "eip-gravesite-cross-check", "game8-dlc-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 617, "recordId": 68464201, "name": "Scorched Ruins", "map": "area 61 / grid 47,41", "position": [-80.83999633789062, 300.8599853515625, 3.3399999141693115], "coordinateSpace": "game_world_xyz" },
       "description": "Early Gravesite Plain surface grace on the northbound road between the Realm of Shadow entry and Three-Path Cross."
     },
     {
@@ -6743,7 +6745,8 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-bridge-sacrifice", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-weeping-cross-check"],
+      "sourceEvidence": ["eldenpedia-bridge-sacrifice", "eldenpedia-sites-of-grace-r83774", "game8-limgrave-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 473, "recordId": 61443400, "name": "Bridge of Sacrifice", "map": "area 60 / grid 44,34", "position": [119.99099731445312, 36.68199920654297, 48.457000732421875], "coordinateSpace": "game_world_xyz" },
       "description": "Fortified crossing that connects mainland Limgrave to the Weeping Peninsula."
     },
     {
@@ -6909,7 +6912,8 @@
       "y": 900,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "powerpyx-liurnia-cross-check", "neoseeker-liurnia-north-cross-check"],
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "powerpyx-liurnia-cross-check", "neoseeker-liurnia-north-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 513, "recordId": 62374200, "name": "Laskyar Ruins", "map": "area 60 / grid 37,42", "position": [108.12999725341797, 237.3800048828125, -116.27999877929688], "coordinateSpace": "game_world_xyz" },
       "description": "Lakebed grace northwest of Liurnia Lake Shore; the Laskyar ruins also contain the sending gate to South Raya Lucaria Gate."
     },
     {
@@ -6984,7 +6988,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"],
+      "sourceEvidence": ["eldenpedia-academy-gate-town", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 514, "recordId": 62374400, "name": "Academy Gate Town", "map": "area 60 / grid 37,44", "position": [-87.44999694824219, 237.69000244140625, 45.33000183105469], "coordinateSpace": "game_world_xyz" },
       "description": "Southeastern academy town checkpoint."
     },
     {
@@ -7226,7 +7231,8 @@
       "y": 460,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-three-sisters", "eldenpedia-sites-of-grace-r83774", "powerpyx-caria-manor-cross-check"],
+      "sourceEvidence": ["eldenpedia-three-sisters", "eldenpedia-sites-of-grace-r83774", "powerpyx-caria-manor-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 498, "recordId": 62345001, "name": "Ranni's Rise", "map": "area 60 / grid 34,50", "position": [-54.7400016784668, 471.7200012207031, 25.09000015258789], "coordinateSpace": "game_world_xyz" },
       "description": "Grace inside the middle tower of Three Sisters, where Ranni's quest begins."
     },
     {
@@ -7348,7 +7354,8 @@
       "y": 930,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-bellum-highway", "eldenpedia-sites-of-grace-r83774", "gamerguides-bellum-cross-check"],
+      "sourceEvidence": ["eldenpedia-bellum-highway", "eldenpedia-sites-of-grace-r83774", "gamerguides-bellum-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 511, "recordId": 62364900, "name": "Bellum Church", "map": "area 60 / grid 36,49", "position": [12.130000114440918, 321.9100036621094, -83.98999786376953], "coordinateSpace": "game_world_xyz" },
       "description": "Midpoint grace on the eastbound highway toward the Dectus lift."
     },
     {
@@ -7514,7 +7521,8 @@
       "y": 420,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-mt-gelmir", "eldenpedia-sites-of-grace-r83774", "pcgamer-comet-azur-cross-check"],
+      "sourceEvidence": ["eldenpedia-mt-gelmir", "eldenpedia-sites-of-grace-r83774", "pcgamer-comet-azur-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 533, "recordId": 63365203, "name": "Craftsman's Shack", "map": "area 60 / grid 36,52", "position": [90.7249984741211, 879.81298828125, -20.75200080871582], "coordinateSpace": "game_world_xyz" },
       "description": "Grace after the Seethewater Terminus lava/fort branch and before Hermit Village."
     },
     {
@@ -8731,7 +8739,8 @@
       "y": 1170,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"],
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 452, "recordId": 61413300, "name": "Fourth Church of Marika", "map": "area 60 / grid 41,33", "position": [82.83999633789062, 32.849998474121094, 68.91000366210938], "coordinateSpace": "game_world_xyz" },
       "description": "Western Weeping Peninsula church grace and the approach landmark for Tombsward Cave."
     },
     {
@@ -8746,7 +8755,8 @@
       "y": 1120,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check"],
+      "sourceEvidence": ["eldenpedia-weeping-peninsula", "game8-limgrave-weeping-cross-check", "powerpyx-weeping-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 468, "recordId": 61433400, "name": "Church of Pilgrimage", "map": "area 60 / grid 43,34", "position": [-110.63999938964844, 88.80999755859375, 115.52999877929688], "coordinateSpace": "game_world_xyz" },
       "description": "Northern peninsula church grace used as the surface landmark for Tombsward Catacombs."
     },
     {
@@ -8971,7 +8981,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_converted_tower", "label": "Converted Tower", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Western Liurnia tower plateau", "worldEpoch": "liurnia_surface", "x": 520, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "description": "Surface landmark near the western Liurnia cliffs and Road's End Catacombs."
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 494, "recordId": 62344300, "name": "Converted Tower", "map": "area 60 / grid 34,43", "position": [-87.41000366210938, 269.4800109863281, -76.33999633789062], "coordinateSpace": "game_world_xyz" }, "description": "Surface landmark near the western Liurnia cliffs and Road's End Catacombs."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_road_s_end_catacombs", "label": "Road's End Catacombs", "kind": "grace", "layer": "legacy", "region": "Road's End Catacombs", "floor": "Catacomb entrance", "worldEpoch": "liurnia_surface", "x": 580, "y": 700, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
@@ -9041,7 +9051,7 @@
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_church_of_vows", "label": "Church of Vows", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Eastern Liurnia church road", "worldEpoch": "liurnia_surface", "x": 1440, "y": 780, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check"], "description": "Surface church landmark on the eastern road toward the northeastern catacombs."
+      "sourceEvidence": ["eldenpedia-liurnia-r49924", "eldenpedia-sites-of-grace-r83774", "game8-liurnia-cross-check", "nexus-map-for-goblins"], "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part3-20260818", "sourceIndex": 515, "recordId": 62374600, "name": "Church of Vows", "map": "area 60 / grid 37,46", "position": [-43.68000030517578, 398.0899963378906, 11.489999771118164], "coordinateSpace": "game_world_xyz" }, "description": "Surface church landmark on the eastern road toward the northeastern catacombs."
     },
     {
       "id": "grace_liurnia_of_the_lakes_main_ruined_labyrinth", "label": "Ruined Labyrinth", "kind": "grace", "layer": "surface", "region": "Liurnia of the Lakes", "floor": "Northeastern Liurnia ruins", "worldEpoch": "liurnia_surface", "x": 1500, "y": 720, "coordinateType": "abstract_layout", "verificationState": "online_cross_checked",
