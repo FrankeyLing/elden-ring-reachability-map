@@ -489,6 +489,12 @@ function renderInspector() {
   const onlineEvidence = onlineBoss
     ? `<div class="inspector-online">在线坐标证据：${onlineBoss.name} · ${onlineBoss.map}<br>游戏坐标 X ${onlineBoss.position[0]} / Y ${onlineBoss.position[1]} / Z ${onlineBoss.position[2]}<br>来源：固定 Git JSON；仅用于定位证据，不改变正式拓扑。</div>`
     : "";
+  const candidateAssessments = [...new Map(
+    connections
+      .filter((edge) => edge.routeAssessment)
+      .map((edge) => [edge.routeAssessment.route_leg_id, edge.routeAssessment]),
+  ).values()];
+  const routeAssessmentMarkup = candidateAssessments.map((assessment) => `<div class="inspector-route-assessment"><strong>${assessment.status}</strong> · profile=${assessment.route_profile}<br>${assessment.reason}</div>`).join("");
   const candidateTargetGroups = [...new Map(
     connections
       .filter((edge) => edge.targetGroup)
@@ -515,6 +521,7 @@ function renderInspector() {
        ${onlineBinding}
        ${onlineTextLocation}
        ${onlineCoordinateAction}
+       ${routeAssessmentMarkup}
        ${targetGroupMarkup}
        <div class="inspector-source">验证：${node.verificationState || "unknown"} · 坐标：${node.coordinateType || "unknown"}<br>来源：${(node.sourceEvidence || []).map((id) => state.data.sourceEvidence?.find((item) => item.id === id)?.label || id).join("；") || "未登记"}</div>
       <div class="inspector-actions"><button data-set-origin="${node.id}">设为起点</button><button data-set-destination="${node.id}">设为终点</button></div>
@@ -868,12 +875,13 @@ function wireEvents() {
 async function init() {
   wireEvents();
   try {
-    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
+    const [graphResponse, catalogResponse, achievementResponse, routeLegResponse, routeTargetGroupResponse, routeAssessmentResponse, routeProfileResponse, onlineIndexResponse, onlineMapKeyResponse, onlineBossResponse, onlineMapPoint1Response, onlineMapPoint2Response, onlineMapPoint3Response, onlineTile1Response, onlineTile2Response] = await Promise.all([
       fetch("/api/graph", { cache: "no-store" }),
       fetch("/api/catalog/sites-of-grace", { cache: "no-store" }),
       fetch("/api/catalog/achievements", { cache: "no-store" }),
       fetch("/api/catalog/route-legs", { cache: "no-store" }),
       fetch("/api/catalog/route-target-groups", { cache: "no-store" }),
+      fetch("/api/catalog/route-assessments", { cache: "no-store" }),
       fetch("/api/route-profiles", { cache: "no-store" }),
       fetch("/api/online-index", { cache: "no-store" }),
       fetch("/api/online-map-keys", { cache: "no-store" }),
@@ -890,6 +898,7 @@ async function init() {
     if (!achievementResponse.ok) throw new Error(`成就目录 HTTP ${achievementResponse.status}`);
     if (!routeLegResponse.ok) throw new Error(`候选路线 HTTP ${routeLegResponse.status}`);
     if (!routeTargetGroupResponse.ok) throw new Error(`route target groups HTTP ${routeTargetGroupResponse.status}`);
+    if (!routeAssessmentResponse.ok) throw new Error(`route assessments HTTP ${routeAssessmentResponse.status}`);
     state.data = await graphResponse.json();
     els.datasetVersion.textContent = state.data.meta?.version || "Online Verified V1";
     state.routeProfiles = await routeProfileResponse.json();
@@ -963,6 +972,10 @@ async function init() {
     const routeTargetGroupCatalog = await routeTargetGroupResponse.json();
     const routeTargetGroupByLegId = new Map(
       (routeTargetGroupCatalog.records || []).map((group) => [group.route_leg_id, group]),
+    );
+    const routeAssessmentCatalog = await routeAssessmentResponse.json();
+    const routeAssessmentByLegId = new Map(
+      (routeAssessmentCatalog.records || []).map((assessment) => [assessment.route_leg_id, assessment]),
     );
     const regionSlots = new Map();
     const sourceNameToNodeId = new Map([
@@ -1601,6 +1614,7 @@ async function init() {
       routeable: false,
       sourceEvidence: [leg.source_evidence],
       targetGroup: routeTargetGroupByLegId.get(leg.canonical_id) || null,
+      routeAssessment: routeAssessmentByLegId.get(leg.canonical_id) || null,
       note: `${leg.from} → ${leg.to}；步骤类型：${(leg.step_types || []).join("、")}。需要独立来源核对后才能进入寻路器。`,
       tags: ["candidate", "source_only"],
     }));

@@ -16,6 +16,7 @@ CATALOG_FILE = ROOT / "data" / "v1" / "entities" / "sites-of-grace.json"
 ACHIEVEMENTS_FILE = ROOT / "data" / "v1" / "entities" / "achievements.json"
 ROUTE_LEGS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-legs.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
+ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
 CAELID_CLEANUP_ITEM_SNAPSHOT_FILE = ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json"
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
@@ -128,6 +129,9 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/route-target-groups":
             self.send_json_file(ROUTE_TARGET_GROUPS_FILE)
+            return
+        if parsed.path == "/api/catalog/route-assessments":
+            self.send_json_file(ROUTE_ASSESSMENTS_FILE)
             return
         if parsed.path == "/api/catalog/route-target-items":
             self.send_json_file(CAELID_CLEANUP_ITEM_SNAPSHOT_FILE)

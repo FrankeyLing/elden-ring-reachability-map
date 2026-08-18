@@ -29,6 +29,7 @@ ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforg
 ONLINE_INDEX_MANIFEST_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-online-index-20260818.json"
 ONLINE_MAP_KEY_INDEX_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-map-key-index-20260818.json"
 ROUTE_TARGET_GROUPS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-target-groups.json"
+ROUTE_ASSESSMENTS_FILE = ROOT / "data" / "v1" / "entities" / "er-guide-route-assessments.json"
 CAELID_CLEANUP_ITEM_SNAPSHOT_FILE = ROOT / "data" / "v1" / "source-snapshots" / "er-guide-items-caelid-06-20260818.json"
 UNRESOLVED_BOSS_LOCATION_NODES = {
     "elder_dragon_greyoll_gate",
@@ -287,6 +288,7 @@ def audit() -> dict:
     achievements = load("data/v1/entities/achievements.json")
     legs = load("data/v1/entities/er-guide-route-legs.json")
     route_target_groups = json.loads(ROUTE_TARGET_GROUPS_FILE.read_text(encoding="utf-8"))
+    route_assessments = json.loads(ROUTE_ASSESSMENTS_FILE.read_text(encoding="utf-8"))
     caelid_item_snapshot = json.loads(CAELID_CLEANUP_ITEM_SNAPSHOT_FILE.read_text(encoding="utf-8"))
     route_profiles = load("data/v1/route-profiles.json")
     online_index_manifest = json.loads(ONLINE_INDEX_MANIFEST_FILE.read_text(encoding="utf-8"))
@@ -1006,6 +1008,35 @@ def audit() -> dict:
     }
     if physical_route_discontinuity_contract["actual"] != physical_route_discontinuity_contract["expected"]:
         raise ValueError(f"physical route discontinuity contract failed: {physical_route_discontinuity_contract}")
+    route_assessment_records = route_assessments.get("records", [])
+    route_assessment_contract = {
+        "declared_records": route_assessments.get("record_count"),
+        "records": len(route_assessment_records),
+        "expected_route_leg_ids": sorted(expected_physical_route_discontinuities),
+        "actual_route_leg_ids": sorted(record.get("route_leg_id") for record in route_assessment_records),
+        "invalid_statuses": [
+            record.get("route_leg_id") for record in route_assessment_records if record.get("status") != "normal_fast_travel_only"
+        ],
+        "invalid_profiles": [
+            record.get("route_leg_id") for record in route_assessment_records if record.get("route_profile") != "normal_fast_travel"
+        ],
+        "routeable_records": [record.get("route_leg_id") for record in route_assessment_records if record.get("routeable")],
+        "invalid_formal_endpoints": [
+            record.get("route_leg_id")
+            for record in route_assessment_records
+            if record.get("formal_from") not in node_by_id or record.get("formal_to") not in node_by_id
+        ],
+    }
+    if (
+        route_assessment_contract["declared_records"] != 4
+        or route_assessment_contract["records"] != 4
+        or route_assessment_contract["actual_route_leg_ids"] != route_assessment_contract["expected_route_leg_ids"]
+        or route_assessment_contract["invalid_statuses"]
+        or route_assessment_contract["invalid_profiles"]
+        or route_assessment_contract["routeable_records"]
+        or route_assessment_contract["invalid_formal_endpoints"]
+    ):
+        raise ValueError(f"route assessment contract failed: {route_assessment_contract}")
     expected_broad_route_legs = {
         "er_guide_leg_caelid-04",
         "er_guide_leg_caelid-06",
@@ -1229,6 +1260,7 @@ def audit() -> dict:
             "endpoint_resolution_contract": route_endpoint_resolution_contract,
         },
         "route_target_group_contract": target_group_contract,
+        "route_assessment_contract": route_assessment_contract,
         "online_item_snapshot_contract": online_item_snapshot_contract,
         "transition_contract": transition_contract,
         "online_snapshot_contract": online_snapshot_contract,

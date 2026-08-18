@@ -1,0 +1,48 @@
+{
+  "dataset_type": "route_leg_assessment_catalog",
+  "verification_label": "Online Verified V1 route classification",
+  "record_count": 4,
+  "records": [
+    {
+      "route_leg_id": "er_guide_leg_dlc-scadu-altus-03",
+      "status": "normal_fast_travel_only",
+      "formal_from": "grace_scadu_altus_main_castle_watering_hole",
+      "formal_to": "grace_shadow_keep_main_gate_plaza",
+      "route_profile": "normal_fast_travel",
+      "reason": "No verified physical topology path between the two grace endpoints; both endpoints remain valid fast-travel destinations.",
+      "routeable": false
+    },
+    {
+      "route_leg_id": "er_guide_leg_dlc-south-03",
+      "status": "normal_fast_travel_only",
+      "formal_from": "grace_gravesite_plain_stone_coffin_fissure_fissure_depths",
+      "formal_to": "grace_gravesite_plain_cerulean_coast_finger_ruins_of_rhia",
+      "route_profile": "normal_fast_travel",
+      "reason": "The Fissure Depths and Finger Ruins of Rhia endpoints are not connected by a verified continuous physical route in the current topology slice.",
+      "routeable": false
+    },
+    {
+      "route_leg_id": "er_guide_leg_dlc-west-05",
+      "status": "normal_fast_travel_only",
+      "formal_from": "grace_gravesite_plain_foot_of_the_jagged_peak_grand_altar_of_dragon_communion",
+      "formal_to": "finger_ruins_dheo",
+      "route_profile": "normal_fast_travel",
+      "reason": "Grand Altar of Dragon Communion and Finger Ruins of Dheo are represented by separate verified regional branches; no direct physical edge is claimed.",
+      "routeable": false
+    },
+    {
+      "route_leg_id": "er_guide_leg_mtgelmir-03",
+      "status": "normal_fast_travel_only",
+      "formal_from": "grace_altus_plateau_main_gelmir_hero_s_grave",
+      "formal_to": "grace_altus_plateau_main_wyndham_catacombs",
+      "route_profile": "normal_fast_travel",
+      "reason": "Gelmir Hero's Grave and Wyndham Catacombs are separate legacy dungeons; their entrance graces are not a continuous dungeon interior route.",
+      "routeable": false
+    }
+  ],
+  "notes": [
+    "This catalog classifies route-guide legs; it does not create edges.",
+    "The normal_fast_travel profile still requires the player to have discovered both grace endpoints and enabled the profile condition.",
+    "A future independently verified physical route may replace a classification, but it must not be inferred from Euclidean proximity."
+  ]
+}

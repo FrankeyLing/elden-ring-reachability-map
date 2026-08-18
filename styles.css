@@ -188,6 +188,8 @@ code { color: #c0b58f; font-size: 9px; }
 .inspector-description { color: var(--muted); line-height: 1.6; font-size: 10px; margin: 12px 0; }
 .inspector-online { color: #b7c18f; line-height: 1.6; font-size: 9px; margin: 8px 0 12px; border-left: 2px solid rgba(160, 190, 110, .55); padding-left: 8px; }
 .inspector-target-group { color: #b7c18f; line-height: 1.5; font-size: 9px; margin: 8px 0 12px; border-left: 2px solid rgba(230, 200, 121, .55); padding-left: 8px; }
+.inspector-route-assessment { color: #c6b98d; line-height: 1.5; font-size: 9px; margin: 8px 0 12px; border-left: 2px solid rgba(199, 125, 125, .65); padding-left: 8px; }
+.inspector-route-assessment strong { color: #e0a49b; font-weight: 500; }
 .target-group-title { color: #ded6bb; }
 .target-group-meta, .target-group-items { color: #7f8984; margin-top: 3px; }
 .target-group-items a { color: var(--gold); }
