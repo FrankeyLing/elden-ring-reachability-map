@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.135-online-multiplane",
+  "version": "1.0.136-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -1760,7 +1760,8 @@
       "y": 445,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check"],
+      "sourceEvidence": ["eldenpedia-ancestor-spirit", "game8-siofra-cross-check", "neoseeker-siofra-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 227, "recordId": 30120800, "name": "Ancestor Spirit", "map": "area 12 / grid 8,0", "position": [1261.10205078125, -1736.050048828125, 1153.2860107421875], "coordinateSpace": "game_world_xyz" },
       "description": "Explicit post-Ancestor-Spirit state, kept separate from the ordinary Siofra River Bank route."
     },
     {
@@ -2244,7 +2245,8 @@
       "y": 430,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check", "neoseeker-volcano-manor-cross-check"],
+      "sourceEvidence": ["powerpyx-volcano-cross-check", "game8-abductor-virgin-cross-check", "neoseeker-volcano-manor-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 236, "recordId": 30160000, "name": "Abductor Virgins", "map": "area 16 / grid 0,0", "position": [203.0570068359375, -132.94400024414062, -233.6439971923828], "coordinateSpace": "game_world_xyz" },
       "description": "Optional subterranean duo boss branch below the Inquisition Chamber."
     },
     {
@@ -2289,8 +2291,7 @@
       "y": 250,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "gamefaqs-haligtree-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 425, "recordId": 50150000, "name": "Elphael Inner Wall", "map": "area 15 / grid 0,0", "position": [6.765999794006348, 208.42300415039062, 570.364013671875], "coordinateSpace": "game_world_xyz" },
+      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "gamefaqs-haligtree-cross-check"],
       "description": "Rooftop and battlemage plaza before the Loretta, Knight of the Haligtree boss gate."
     },
     {
@@ -2321,7 +2322,8 @@
       "y": 365,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "gamefaqs-haligtree-cross-check"],
+      "sourceEvidence": ["powerpyx-haligtree-cross-check", "game8-haligtree-cross-check", "gamefaqs-haligtree-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part2-20260818", "sourceIndex": 425, "recordId": 50150000, "name": "Elphael Inner Wall", "map": "area 15 / grid 0,0", "position": [6.765999794006348, 208.42300415039062, 570.364013671875], "coordinateSpace": "game_world_xyz" },
       "description": "The next Elphael grace behind the Erdtree Avatar route, before the Scarlet Rot waterfall crossing."
     },
     {
@@ -2731,7 +2733,8 @@
       "y": 720,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-ainsel-r71938", "powerpyx-ainsel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 214, "recordId": 30120102, "name": "Dragonkin Soldier of Nokstella", "map": "area 12 / grid 1,0", "position": [-152.2209930419922, -224.49899291992188, 117.05000305175781], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Dragonkin grace in the southern branch; it is an endpoint rather than a hidden connection to Lake of Rot."
     },
     {
@@ -2762,7 +2765,8 @@
       "y": 360,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "sourceEvidence": ["eldenpedia-nokron-r66900", "powerpyx-nokron-cross-check", "game8-nokron-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 218, "recordId": 30120202, "name": "Mimic Tear", "map": "area 12 / grid 2,0", "position": [984.64697265625, -641.3109741210938, 1159.0179443359375], "coordinateSpace": "game_world_xyz" },
       "description": "Mandatory early Nokron boss gate before the Ancestral Woods grace."
     },
     {
@@ -2777,7 +2781,8 @@
       "y": 360,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 218, "recordId": 30120202, "name": "Mimic Tear", "map": "area 12 / grid 2,0", "position": [984.64697265625, -641.3109741210938, 1159.0179443359375], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Mimic grace activated immediately after the boss arena, before the bridge to Ancestral Woods."
     },
     {
@@ -2824,7 +2829,8 @@
       "y": 430,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "powerpyx-nokron-cross-check", "game8-nokron-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 228, "recordId": 30120900, "name": "Regal Ancestor Spirit", "map": "area 12 / grid 9,0", "position": [1181.8289794921875, -1538.4110107421875, 1638.7760009765625], "coordinateSpace": "game_world_xyz" },
       "description": "Explicit post-Regal-Ancestor state; the teleport returns the player to the Nokron woods before the Aqueduct branch."
     },
     {
@@ -2946,7 +2952,8 @@
       "y": 500,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check"],
+      "sourceEvidence": ["powerpyx-deeproot-cross-check", "gamesradar-deeproot-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 224, "recordId": 30120303, "name": "Lichdragon Fortissax", "map": "area 12 / grid 3,0", "position": [-447.77099609375, 149.343994140625, -269.1090087890625], "coordinateSpace": "game_world_xyz" },
       "description": "Post-dream-boss return state; kept separate from the Prince of Death's Throne grace."
     },
     {
@@ -3054,7 +3061,8 @@
       "y": 405,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check"],
+      "sourceEvidence": ["eldenpedia-sites-of-grace-r83774", "eldenpedia-grand-cloister-r65881", "game8-astel-cross-check", "powerpyx-ainsel-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 225, "recordId": 30120400, "name": "Astel, Naturalborn of the Void", "map": "area 12 / grid 4,0", "position": [-98.75900268554688, -106.13700103759766, -134.39300537109375], "coordinateSpace": "game_world_xyz" },
       "description": "Independent post-boss grace in Astel's arena; it is separate from the boss fog gate and precedes the Ring-gated lift to Moonlight Altar."
     },
     {
@@ -5141,8 +5149,7 @@
       "y": 700,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Storehouse, First Floor", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz" },
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check"],
       "description": "Grace at the upper end of Shadow Keep's south entrance lift."
     },
     {
@@ -5248,7 +5255,8 @@
       "y": 580,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "eldenpedia-sites-of-grace-r83774", "game8-shadow-keep-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 124, "recordId": 210101, "name": "Storehouse, First Floor", "map": "area 21 / grid 1,0", "position": [173.55999755859375, 298.1000061035156, 277.489990234375], "coordinateSpace": "game_world_xyz" },
       "description": "First floor of the Specimen Storehouse after the Main Gate Plaza route."
     },
     {
@@ -6764,8 +6772,7 @@
       "y": 1010,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check", "nexus-map-for-goblins"],
-      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 276, "recordId": 31433000, "name": "Leonine Misbegotten", "map": "area 60 / grid 43,30", "position": [-20.461999893188477, 0.4749999940395355, 21.44499969482422], "coordinateSpace": "game_world_xyz" },
+      "sourceEvidence": ["eldenpedia-castle-morne", "eldenpedia-sites-of-grace-r83774", "game8-castle-morne-cross-check"],
       "description": "Castle Morne interior entrance grace after the outer rampart."
     },
     {
@@ -7987,7 +7994,8 @@
       "y": 560,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "game8-shunning-grounds-cross-check"],
+      "sourceEvidence": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "game8-shunning-grounds-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 187, "recordId": 350002, "name": "Forsaken Depths", "map": "area 35 / grid 0,0", "position": [-138.8350067138672, -143.74000549316406, -242.30799865722656], "coordinateSpace": "game_world_xyz" },
       "description": "Lower sewer grace immediately before the Mohg, the Omen chapel."
     },
     {
@@ -8017,7 +8025,8 @@
       "y": 560,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "game8-shunning-grounds-cross-check"],
+      "sourceEvidence": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "game8-shunning-grounds-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 186, "recordId": 350000, "name": "Cathedral of the Forsaken", "map": "area 35 / grid 0,0", "position": [-96.81999969482422, -88.52999877929688, -181.16000366210938], "coordinateSpace": "game_world_xyz" },
       "description": "Post-Mohg cathedral grace and hidden altar entrance."
     },
     {
@@ -8032,7 +8041,8 @@
       "y": 680,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "neoseeker-shunning-cross-check"],
+      "sourceEvidence": ["eldenpedia-leyndell-sewers", "eldenpedia-sites-of-grace-r83774", "neoseeker-shunning-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 187, "recordId": 350002, "name": "Leyndell Catacombs", "map": "area 35 / grid 0,0", "position": [-138.8350067138672, -143.74000549316406, -242.30799865722656], "coordinateSpace": "game_world_xyz" },
       "description": "Optional catacomb branch entered from the sewer's crayfish room."
     },
     {
