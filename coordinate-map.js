@@ -125,6 +125,7 @@ function renderProjectedMap() {
     grid.setAttribute("height", String(height));
   }
   setZoom(state.zoom);
+  renderProjectedRasterTiles(state.projectedMaster);
   const axis = svg("text", { x: 160, y: 220, class: "coordinate-axis" });
   axis.textContent = state.projectedMaster + " · master tile pixels (px/py) · named grace anchors";
   els.regionLabels.appendChild(axis);
@@ -157,6 +158,38 @@ function renderProjectedMap() {
     }
   }
   els.graphStats.textContent = state.projectedMaster + " · " + records.length + "/" + (state.projectedGraceTotal || records.length) + " named grace projected anchors · master_tile_pixel · routeable=false";
+}
+
+const PROJECTED_TILE_SOURCE = {
+  baseUrl: "https://raw.githubusercontent.com/EthanShoeDev/elden-ring-compass/9d64b7ca8e93a5af9094ffb91831d91ca803e6a5/packages/data/images/map-tiles",
+  zoom: 3,
+  nativeZoom: 6,
+  tileSize: 256,
+  tiles: {
+    M00: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [0, 3], [1, 3], [2, 3], [3, 3], [4, 3], [0, 4], [1, 4], [2, 4], [3, 4], [4, 4]],
+    M01: [[1, 0], [2, 0], [0, 1], [1, 1], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [0, 3], [1, 3], [2, 3], [3, 3], [2, 4]],
+    M10: [[1, 0], [2, 0], [3, 0], [1, 1], [2, 1], [3, 1], [1, 2], [2, 2], [3, 2], [1, 3], [2, 3], [3, 3]],
+  },
+};
+
+function renderProjectedRasterTiles(master) {
+  const tiles = PROJECTED_TILE_SOURCE.tiles[master];
+  if (!tiles) return;
+  const scale = Math.pow(2, PROJECTED_TILE_SOURCE.nativeZoom - PROJECTED_TILE_SOURCE.zoom);
+  const displaySize = PROJECTED_TILE_SOURCE.tileSize * scale;
+  tiles.forEach(([x, y]) => {
+      const image = svg("image", {
+        x: x * displaySize,
+        y: y * displaySize,
+        width: displaySize,
+        height: displaySize,
+        class: "projected-raster",
+        preserveAspectRatio: "none",
+      });
+      image.setAttribute("href", `${PROJECTED_TILE_SOURCE.baseUrl}/${master}/base/${PROJECTED_TILE_SOURCE.zoom}/${y}/${x}.webp`);
+      image.setAttribute("aria-hidden", "true");
+      els.edgeLayer.appendChild(image);
+  });
 }
 
 function populateCoordinateMapSelect() {

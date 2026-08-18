@@ -884,6 +884,25 @@ def audit() -> dict:
         or online_map_key_contract["safety"].get("gameDirectoryAccess")
     ):
         raise ValueError(f"online map-key index contract failed: {online_map_key_contract}")
+    projected_tile_source = graph.get("meta", {}).get("onlineProjectedTileSource", {})
+    projected_tile_contract = {
+        "source": projected_tile_source.get("source"),
+        "commit": projected_tile_source.get("commit"),
+        "path": projected_tile_source.get("path"),
+        "coordinate_space": projected_tile_source.get("coordinateSpace"),
+        "routeable": projected_tile_source.get("routeable"),
+        "floor_verified": projected_tile_source.get("floorVerified"),
+        "masters": ["M00", "M01", "M10"],
+    }
+    if (
+        projected_tile_contract["source"] != "EthanShoeDev/elden-ring-compass"
+        or projected_tile_contract["commit"] != "9d64b7ca8e93a5af9094ffb91831d91ca803e6a5"
+        or projected_tile_contract["path"] != "packages/data/images/map-tiles/{M00|M01|M10}/base/3/{y}/{x}.webp"
+        or projected_tile_contract["coordinate_space"] != "master_tile_pixel"
+        or projected_tile_contract["routeable"] is not False
+        or projected_tile_contract["floor_verified"] is not False
+    ):
+        raise ValueError(f"projected tile source contract failed: {projected_tile_contract}")
     map_point_candidate_records = []
     for path in ONLINE_MAP_POINT_FILES:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -1563,6 +1582,7 @@ def audit() -> dict:
         "formal_reachability_contract": formal_reachability_contract,
         "online_snapshot_contract": online_snapshot_contract,
         "online_map_key_contract": online_map_key_contract,
+        "projected_tile_contract": projected_tile_contract,
         "projected_anchor_contract": projected_anchor_contract,
         "named_grace_coordinate_contract": named_grace_contract,
         "named_grace_identity_contract": named_grace_identity_contract,

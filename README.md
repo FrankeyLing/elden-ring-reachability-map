@@ -4,6 +4,8 @@
 
 The current Online Verified V1 API exposes the pinned MapForGoblins Boss coordinates through `/api/catalog/boss-positions`. Twenty records are additionally checked against `sourceIndex`, `mapId`, `npcParamId`, and encounter name in [`data/v1/entities/boss-identity-bindings.json`](./data/v1/entities/boss-identity-bindings.json). These bindings only connect coordinate evidence to an existing formal Boss node; they never create traversal edges, Boss gates, or game-state changes. Ambiguous and source-only Boss records remain explicitly unbound.
 
+The projected online view now loads the public Compass raster tiles for M00/M01/M10 at a pinned commit. The tiles provide visual map context for `master_tile_pixel` markers only; they are not floor truth, game XYZ, collision data, or route edges.
+
 《艾尔登法环》可达性图 WebUI 原型。
 
 这个项目把地图建模为有向图：
