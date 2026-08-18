@@ -2,7 +2,7 @@
   "meta": {
     "title": "Online Verified V1 · Multi-plane Reachability",
     "subtitle": "王城、地下、法姆·亚兹拉与幽影之地代表性拓扑切片",
-  "version": "1.0.124-online-multiplane",
+  "version": "1.0.125-online-multiplane",
     "verificationLabel": "Online Verified V1",
     "coordinateNotice": "所有 x/y 仅用于自制抽象底图布局，不是游戏原始 XYZ。",
     "costSemantics": "cost 是路线相对成本单位，不是实测分钟。",
@@ -5131,7 +5131,8 @@
       "y": 640,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-shadow-keep-cross-check", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 246, "recordId": 30210000, "name": "Golden Hippopotamus", "map": "area 41 / grid 21,0", "position": [89.64599609375, 73.75599670410156, 171.29299926757812], "coordinateSpace": "game_world_xyz" },
       "description": "Main Gate Plaza boss gate before the Specimen Storehouse route."
     },
     {
@@ -5281,7 +5282,8 @@
       "y": 400,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check"],
+      "sourceEvidence": ["eldenpedia-shadow-keep", "game8-messmer-cross-check", "powerpyx-dlc-walkthrough-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 247, "recordId": 30210100, "name": "Messmer the Impaler", "map": "area 67 / grid 21,1", "position": [113.0, 73.75599670410156, 399.0], "coordinateSpace": "game_world_xyz" },
       "description": "Main DLC boss gate at the top of the Specimen Storehouse."
     },
     {
@@ -6129,7 +6131,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-midra-manse", "game8-midra-manse-cross-check", "vulkk-abyssal-cross-check"],
+      "sourceEvidence": ["eldenpedia-midra-manse", "game8-midra-manse-cross-check", "vulkk-abyssal-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 250, "recordId": 30280000, "name": "Midra, Lord of Frenzied Flame", "map": "area 67 / grid 28,0", "position": [15.0, 73.75599670410156, -125.0], "coordinateSpace": "game_world_xyz" },
       "description": "Midra's Manse boss gate."
     },
     {
@@ -6370,7 +6373,8 @@
       "y": 980,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "game8-thiollier-cross-check", "neoseeker-stone-coffin-cross-check"],
+      "sourceEvidence": ["eldenpedia-stone-coffin-fissure", "game8-thiollier-cross-check", "neoseeker-stone-coffin-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 248, "recordId": 30220000, "name": "Putrescent Knight", "map": "area 67 / grid 22,0", "position": [-50.64599609375, 73.75599670410156, 71.29299926757812], "coordinateSpace": "game_world_xyz" },
       "description": "Stone Coffin Fissure final boss gate."
     },
     {
@@ -6550,7 +6554,8 @@
       "y": 620,
       "coordinateType": "abstract_layout",
       "verificationState": "online_cross_checked",
-      "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check"],
+      "sourceEvidence": ["eldenpedia-metyr", "eldenpedia-finger-miyr", "game8-ymir-cross-check", "nexus-map-for-goblins"],
+      "onlineCoordinate": { "source": "map_for_goblins", "snapshot": "mapforgoblins-map-points-part1-20260818", "sourceIndex": 249, "recordId": 30250000, "name": "Metyr, Mother of Fingers", "map": "area 67 / grid 25,0", "position": [-18.0, 73.75599670410156, 12.0], "coordinateSpace": "game_world_xyz" },
       "description": "Optional Ymir quest boss at the end of the third Finger Ruins bell route."
     },
     {
