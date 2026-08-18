@@ -497,7 +497,7 @@ function renderInspector() {
   const targetGroupMarkup = candidateTargetGroups.map((group) => {
     const subroutes = group.subroutes || [];
     const subrouteMarkup = subroutes.length
-      ? subroutes.map((subroute) => `<div class="target-group-route"><span>${nodeLabel(subroute.entry_node_id)} → ${nodeLabel(subroute.target_node_id)}</span><span>${subroute.path_edge_ids.length} edges${subroute.requires?.length ? ` · requires ${subroute.requires.join(", ")}` : ""}</span></div>`).join("")
+      ? subroutes.map((subroute) => `<button type="button" class="target-group-route target-group-route-button" data-target-group-route="1" data-entry-node="${subroute.entry_node_id}" data-target-node="${subroute.target_node_id}"><span>${nodeLabel(subroute.entry_node_id)} → ${nodeLabel(subroute.target_node_id)}</span><span>${subroute.path_edge_ids.length} edges${subroute.requires?.length ? ` · requires ${subroute.requires.join(", ")}` : ""}</span></button>`).join("")
       : `<div class="target-group-route">No formal subroute; scope remains unresolved.</div>`;
     const itemMarkup = group.online_item_snapshot
       ? `<div class="target-group-items"><a href="/api/catalog/route-target-items" target="_blank" rel="noreferrer">Online item snapshot</a> · ${group.online_item_record_count} records · ${group.online_item_coordinate_count} coordinates · routeable=false</div>`
@@ -535,6 +535,16 @@ function renderInspector() {
     state.destination = node.id;
     els.destination.value = node.id;
     planAndRender();
+  });
+  els.nodeInspector.querySelectorAll("[data-target-group-route]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.origin = button.dataset.entryNode;
+      state.destination = button.dataset.targetNode;
+      state.selectedNode = state.destination;
+      els.origin.value = state.origin;
+      els.destination.value = state.destination;
+      planAndRender();
+    });
   });
   const focusCoordinateButton = els.nodeInspector.querySelector("[data-focus-coordinate]");
   if (focusCoordinateButton) {

@@ -192,6 +192,8 @@ code { color: #c0b58f; font-size: 9px; }
 .target-group-meta, .target-group-items { color: #7f8984; margin-top: 3px; }
 .target-group-items a { color: var(--gold); }
 .target-group-route { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid rgba(119, 130, 127, .18); margin-top: 4px; padding-top: 4px; }
+.target-group-route-button { width: 100%; border-left: 0; border-right: 0; border-bottom: 0; background: transparent; color: inherit; cursor: pointer; text-align: left; }
+.target-group-route-button:hover { background: rgba(230, 200, 121, .08); }
 .target-group-route span:last-child { color: #7f8984; text-align: right; }
 .online-query { margin: 8px 0 12px; }
 .online-query-row { display: grid; grid-template-columns: 82px 1fr 42px; gap: 4px; }
