@@ -165,6 +165,16 @@ function edgeIsAvailable(edge) {
 }
 
 function findBestGraceOrigin(targetId, excludedGraceIds = new Set()) {
+  const fastTravelRule = state.routeProfiles?.fastTravelRule;
+  if (
+    activeRouteProfile().dynamicFastTravel
+    && fastTravelRule
+    && state.conditions.has(fastTravelRule.id)
+    && isGraceNode(state.origin)
+    && !excludedGraceIds.has(state.origin)
+  ) {
+    return state.origin;
+  }
   const incoming = new Map();
   state.data.edges.filter((edge) => edgeIsAvailable(edge)).forEach((edge) => {
     if (!incoming.has(edge.to)) incoming.set(edge.to, []);
@@ -1429,6 +1439,7 @@ async function init() {
     const ensureCandidateEndpoint = (name, regionName) => {
       const regionNameKey = `${regionName}|${name}`;
       if (sourceRegionNameToNodeId.has(regionNameKey)) return sourceRegionNameToNodeId.get(regionNameKey);
+      if (name === "Erdtree Sanctuary" && regionName.includes("Ashen")) return "grace_ashen_erdtree_sanctuary";
       if (sourceNameToNodeId.has(name) && catalogNameCounts.get(name) <= 1) return sourceNameToNodeId.get(name);
       if (candidateEndpointByRegionName.has(regionNameKey)) return candidateEndpointByRegionName.get(regionNameKey);
       const layer = candidateLayer(regionName);
