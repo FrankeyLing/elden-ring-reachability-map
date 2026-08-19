@@ -1214,6 +1214,14 @@ async function loadZhMapping() {
 
 async function init() {
   wireEvents();
+  /* collapsible settings/coverage: auto-expanded on desktop, collapsed on mobile */
+  const advancedDetails = document.querySelectorAll(".advanced-settings");
+  const syncDetailState = () => {
+    const desktop = window.innerWidth >= 901;
+    advancedDetails.forEach((details) => { details.open = desktop; });
+  };
+  syncDetailState();
+  window.addEventListener("resize", syncDetailState);
   try {
     const manifestPayload = await loadPackages();
     state.loaded = true;
@@ -1255,9 +1263,10 @@ function applyMapCoordinateSpace() {
 /* ---------------- events ---------------- */
 
 function wireEvents() {
-  /* ---- camera interactions: wheel zoom at cursor, left-drag pan ---- */
+  /* ---- camera interactions: wheel zoom at cursor, left-drag pan, touch ---- */
   let panState = null;
   let suppressNextClick = false;
+  let isTouching = false;
 
   els.mapStage.addEventListener("wheel", (event) => {
     event.preventDefault();
@@ -1267,6 +1276,7 @@ function wireEvents() {
 
   els.mapStage.addEventListener("mousedown", (event) => {
     if (event.button !== 0) return;
+    if (isTouching) return; /* synthesized mouse events are handled by touch code */
     panState = {
       startSvg: toSvgPoint(event.clientX, event.clientY),
       camStart: { x: state.camera.x, y: state.camera.y, zoom: state.camera.zoom },
@@ -1276,7 +1286,7 @@ function wireEvents() {
   });
 
   window.addEventListener("mousemove", (event) => {
-    if (!panState) return;
+    if (!panState || isTouching) return;
     const current = toSvgPoint(event.clientX, event.clientY);
     const deltaX = current.x - panState.startSvg.x;
     const deltaY = current.y - panState.startSvg.y;
@@ -1288,7 +1298,7 @@ function wireEvents() {
   });
 
   window.addEventListener("mouseup", () => {
-    if (!panState) return;
+    if (!panState || isTouching) return;
     if (panState.moved) {
       suppressNextClick = true;
       setTimeout(() => { suppressNextClick = false; }, 0);
@@ -1296,6 +1306,81 @@ function wireEvents() {
     panState = null;
     els.mapStage.classList.remove("panning");
   });
+
+  /* ---- touch: single-finger pan, two-finger pinch zoom (camera model) ---- */
+  const activeTouches = new Map();
+  let pinchState = null;
+  let touchPanState = null;
+
+  els.mapStage.addEventListener("touchstart", (event) => {
+    isTouching = true;
+    for (const touch of event.changedTouches) {
+      activeTouches.set(touch.identifier, { x: touch.clientX, y: touch.clientY });
+    }
+    if (activeTouches.size === 2) {
+      const [a, b] = [...activeTouches.values()];
+      const midX = (a.x + b.x) / 2;
+      const midY = (a.y + b.y) / 2;
+      pinchState = {
+        startDist: Math.hypot(b.x - a.x, b.y - a.y),
+        startZoom: state.camera.zoom,
+        startCam: { x: state.camera.x, y: state.camera.y },
+        startMidSvg: toSvgPoint(midX, midY),
+      };
+      touchPanState = null;
+      els.mapStage.classList.add("panning");
+    } else if (activeTouches.size === 1) {
+      const [touch] = [...activeTouches.values()];
+      touchPanState = {
+        startSvg: toSvgPoint(touch.x, touch.y),
+        camStart: { x: state.camera.x, y: state.camera.y, zoom: state.camera.zoom },
+        moved: false,
+      };
+      pinchState = null;
+    }
+  }, { passive: true });
+
+  els.mapStage.addEventListener("touchmove", (event) => {
+    event.preventDefault(); /* pan started: suppress the synthesized click */
+    for (const touch of event.changedTouches) {
+      if (activeTouches.has(touch.identifier)) {
+        activeTouches.set(touch.identifier, { x: touch.clientX, y: touch.clientY });
+      }
+    }
+    if (activeTouches.size === 2 && pinchState) {
+      const [a, b] = [...activeTouches.values()];
+      const dist = Math.hypot(b.x - a.x, b.y - a.y);
+      const midSvg = toSvgPoint((a.x + b.x) / 2, (a.y + b.y) / 2);
+      /* restore the pinch start (zoom too, so the ratio is absolute), pan by
+       * the mid-point delta, then zoom at the current mid-point so the world
+       * under the fingers stays put */
+      state.camera.zoom = pinchState.startZoom;
+      state.camera.x = clampCamera(pinchState.startCam.x + (pinchState.startMidSvg.x - midSvg.x), CAMERA_MIN_X, CAMERA_MAX_X);
+      state.camera.y = clampCamera(pinchState.startCam.y + (pinchState.startMidSvg.y - midSvg.y), CAMERA_MIN_Y, CAMERA_MAX_Y);
+      zoomAt(midSvg, dist / pinchState.startDist);
+    } else if (activeTouches.size === 1 && touchPanState) {
+      const [touch] = [...activeTouches.values()];
+      const current = toSvgPoint(touch.x, touch.y);
+      const deltaX = current.x - touchPanState.startSvg.x;
+      const deltaY = current.y - touchPanState.startSvg.y;
+      if (Math.hypot(deltaX, deltaY) > 3) touchPanState.moved = true;
+      state.camera.x = clampCamera(touchPanState.camStart.x + (touchPanState.startSvg.x - current.x), CAMERA_MIN_X, CAMERA_MAX_X);
+      state.camera.y = clampCamera(touchPanState.camStart.y + (touchPanState.startSvg.y - current.y), CAMERA_MIN_Y, CAMERA_MAX_Y);
+      applyCamera();
+    }
+  }, { passive: false });
+
+  function endTouch(event) {
+    for (const touch of event.changedTouches) activeTouches.delete(touch.identifier);
+    if (activeTouches.size < 2) pinchState = null;
+    if (activeTouches.size === 0) {
+      touchPanState = null;
+      isTouching = false;
+      els.mapStage.classList.remove("panning");
+    }
+  }
+  els.mapStage.addEventListener("touchend", endTouch);
+  els.mapStage.addEventListener("touchcancel", endTouch);
 
   /* a click right after a drag must not select nodes under the pointer */
   document.addEventListener("click", (event) => {

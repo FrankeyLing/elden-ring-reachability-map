@@ -2,11 +2,11 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#0d1117" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13' fill='%23e9c979'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
     <title>RUNE//PATH · 艾尔登法环拓扑路线规划器（Beta）</title>
-    <link rel="stylesheet" href="styles.css?v=v1-regions3" />
+    <link rel="stylesheet" href="styles.css?v=v1-mobile2" />
   </head>
   <body>
     <div class="app-shell">
@@ -48,30 +48,33 @@
             </div>
           </div>
 
-          <div class="section-line"><span>ROUTE PROFILE</span></div>
-          <div class="field-group">
-            <label for="route-profile-select">通行方式 <span>PROFILE</span></label>
-            <select id="route-profile-select"></select>
-          </div>
-          <div class="profile-hint" id="route-profile-hint"></div>
-
-          <div class="section-line"><span>WORLD STATE</span></div>
-          <div class="condition-toolbar">
-            <button id="conditions-all" class="ghost-button small">全部勾选</button>
-            <button id="conditions-none" class="ghost-button small">全部清除</button>
-          </div>
-          <div id="conditions" class="condition-list"></div>
-
-          <div class="section-line"><span>ROUTE COST</span></div>
-          <div class="segmented" role="group" aria-label="路线偏好">
-            <button class="segment active" data-preference="balanced">平衡</button>
-            <button class="segment" data-preference="fast">最快</button>
-            <button class="segment" data-preference="safe">低风险</button>
-          </div>
-          <div class="preference-hint" id="preference-hint">综合时间与风险，适合首次探索。</div>
-
           <button id="plan-route" class="primary-button"><span>◎</span> 规划可达路线</button>
           <button id="reset-route" class="ghost-button">重置为默认示例</button>
+
+          <details class="advanced-settings">
+            <summary class="advanced-settings-summary">世界状态与通行设置</summary>
+            <div class="section-line"><span>ROUTE PROFILE</span></div>
+            <div class="field-group">
+              <label for="route-profile-select">通行方式 <span>PROFILE</span></label>
+              <select id="route-profile-select"></select>
+            </div>
+            <div class="profile-hint" id="route-profile-hint"></div>
+
+            <div class="section-line"><span>WORLD STATE</span></div>
+            <div class="condition-toolbar">
+              <button id="conditions-all" class="ghost-button small">全部勾选</button>
+              <button id="conditions-none" class="ghost-button small">全部清除</button>
+            </div>
+            <div id="conditions" class="condition-list"></div>
+
+            <div class="section-line"><span>ROUTE COST</span></div>
+            <div class="segmented" role="group" aria-label="路线偏好">
+              <button class="segment active" data-preference="balanced">平衡</button>
+              <button class="segment" data-preference="fast">最快</button>
+              <button class="segment" data-preference="safe">低风险</button>
+            </div>
+            <div class="preference-hint" id="preference-hint">综合时间与风险，适合首次探索。</div>
+          </details>
 
           <div class="data-note">
             <span class="note-icon">i</span>
@@ -163,10 +166,13 @@
             <div class="route-notice" id="route-notice"></div>
           </div>
 
-          <div class="section-line node-section-title"><span>DATA PACKAGES &amp; COVERAGE</span></div>
-          <div id="coverage-panel" class="coverage-panel">
-            <div class="coverage-placeholder">数据包状态将在这里显示。</div>
-          </div>
+          <details class="advanced-settings coverage-details-mobile">
+            <summary class="advanced-settings-summary">数据包状态与覆盖声明</summary>
+            <div class="section-line node-section-title"><span>DATA PACKAGES &amp; COVERAGE</span></div>
+            <div id="coverage-panel" class="coverage-panel">
+              <div class="coverage-placeholder">数据包状态将在这里显示。</div>
+            </div>
+          </details>
 
           <div class="section-line node-section-title"><span>NODE INSPECTOR</span></div>
           <div id="node-inspector" class="node-inspector">
@@ -181,7 +187,7 @@
         <span><a href="research.html" target="_blank" rel="noopener" class="research-link">研究控制台（开发检查入口）</a></span>
       </footer>
     </div>
-    <script src="framework.js?v=v1-regions3"></script>
-    <script src="app.js?v=v1-regions3"></script>
+    <script src="framework.js?v=v1-mobile2"></script>
+    <script src="app.js?v=v1-mobile2"></script>
   </body>
 </html>

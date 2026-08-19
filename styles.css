@@ -401,3 +401,57 @@ code { color: #c0b58f; font-size: 9px; }
 .map-back-button { border: 1px solid var(--line); background: transparent; color: var(--gold); font-size: 10px; padding: 5px 9px; margin-left: 6px; cursor: pointer; }
 .map-back-button:hover { border-color: rgba(230, 200, 121, 0.6); }
 .region-node-hit { fill: transparent; pointer-events: all; cursor: pointer; }
+
+/* ============ mobile portrait layout (竖屏触屏优化) ============ */
+@media (max-width: 900px) {
+  body { min-width: 0; font-size: 14px; }
+  .app-shell { min-height: 100dvh; }
+  .topbar { height: auto; padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+  .brand-subtitle { display: none; }
+  .topbar-meta { font-size: 9px; flex-wrap: wrap; }
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    padding: 8px;
+    gap: 8px;
+    max-width: none;
+  }
+  /* 地图优先:排在配置面板之后、路线面板之前,占约 55% 视口高 */
+  .map-panel { order: 2; min-height: 56dvh; flex: none; }
+  .control-panel { order: 1; padding: 12px 12px; overflow-y: visible; }
+  .route-panel { order: 3; padding: 12px 12px; overflow-y: visible; }
+  .footer-bar { display: none; }
+  /* 触控目标 ≥44px */
+  .combobox input, .primary-button, .ghost-button, .swap-button,
+  .segment, .layer-tab, .zoom-controls button, .map-back-button,
+  .condition-item input, .copy-button {
+    min-height: 44px;
+  }
+  .combobox input { font-size: 16px; }  /* 防 iOS 聚焦缩放 */
+  .condition-list { max-height: 34dvh; }
+  .layer-tabs { flex-wrap: wrap; }
+  .map-toolbar { flex-wrap: wrap; gap: 6px; }
+  .map-overlay.top-left { display: none; }  /* 图例让位给地图 */
+  .map-stage { touch-action: none; }
+  .coverage-panel { max-height: 40dvh; overflow-y: auto; }
+  .path-track { max-height: none; }
+}
+
+/* 移动端高级设置折叠(桌面自动展开) */
+.advanced-settings-summary { color: var(--gold); font-size: 11px; cursor: pointer; padding: 8px 0; min-height: 44px; display: flex; align-items: center; }
+.advanced-settings { border-top: 1px solid var(--line); margin-top: 12px; }
+@media (min-width: 901px) {
+  .advanced-settings-summary { display: none; }
+  .advanced-settings { border-top: 0; margin-top: 0; }
+  .advanced-settings > .section-line,
+  .advanced-settings > .field-group,
+  .advanced-settings > .profile-hint,
+  .advanced-settings > .condition-toolbar,
+  .advanced-settings > .condition-list,
+  .advanced-settings > .segmented,
+  .advanced-settings > .preference-hint { display: revert; }
+  /* details 折叠在桌面强制展开 */
+  .advanced-settings[open] { display: block; }
+}
