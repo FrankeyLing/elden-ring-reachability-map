@@ -806,7 +806,7 @@ function renderOnlinePoiResults(payload, kind) {
     } else if (kind === "grace-positions") {
       title.textContent = "raw grace position #" + record.source_index + " · " + (record.major_region || record.sub_region || "unknown region");
     } else if (kind === "named-grace-positions") {
-      title.textContent = record.name || "named grace";
+      title.textContent = (record.map_id ? record.map_id + " #" + record.entity_id : (record.name || "named grace"));
     } else if (kind === "projected-graces") {
       title.textContent = record.name || "projected grace";
     } else {
@@ -829,7 +829,7 @@ function renderOnlinePoiResults(payload, kind) {
       const position = record.position || [];
       detail.textContent = kind === "projected-graces"
         ? record.master + " · px " + position[0] + " / py " + position[1] + (record.formal_id ? " · " + nodeLabel(record.formal_id) : " · 未绑定正式节点")
-        : (record.map || (record.current_map || "ID " + (record.id || record.source_index))) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
+        : (record.map_id || record.map || record.current_map || "ID " + (record.id || record.source_index || record.entity_id)) + " · X " + position[0] + " / Y " + position[1] + " / Z " + position[2];
     }
     row.append(title, detail);
     if (kind === "achievements") {

@@ -17,6 +17,10 @@ private-artifacts/
 # snapshot via scripts/build-local-*.py). Frozen and archived outside the product
 # repo; only lightweight package files under data/v1/packages/ are published.
 data/v1/entities/local-*.json
+# Self-datamined grace positions (AEG099_060 from local MSBE) and the MSBE map
+# name table are published product inputs — they must be tracked.
+!data/v1/entities/local-grace-positions.json
+!data/v1/entities/local-msbe-map-names.json
 
 # 274MB bilingual FMG extract (regenerable via scripts/build-official-fmg-index.py
 # from the external snapshot); only the resulting mapping data/v1/zh-cn/ is published.

@@ -90,7 +90,7 @@
                 <button class="map-mode" data-map-mode="local-abstract">LOCAL ABSTRACT ENTITIES</button>
                 <button class="map-mode" data-map-mode="local-native">LOCAL NATIVE TOPOLOGY</button>
                 <button class="map-mode" data-map-mode="named-coordinates">命名源 XYZ</button>
-                <button class="map-mode" data-map-mode="projected">在线投影</button>
+
               </div>
               <select id="coordinate-map-select" class="coordinate-map-select" aria-label="选择真实地图层" hidden></select>
               <select id="local-msbe-map-select" class="coordinate-map-select" aria-label="Select local MSBE map" hidden></select>
@@ -106,11 +106,6 @@
                 <option value="enemy">敌人实体</option>
                 <option value="asset">地图资产</option>
                 <option value="all">全部实体</option>
-              </select>
-              <select id="projected-master-select" class="coordinate-map-select" aria-label="选择在线投影层" hidden>
-                <option value="M00">M00 · 地表/主地图</option>
-                <option value="M01">M01 · 地下</option>
-                <option value="M10">M10 · 幽影之地</option>
               </select>
               <div class="zoom-controls">
                 <button id="zoom-out" aria-label="缩小">−</button>
@@ -193,7 +188,6 @@
                  <option value="gathering">采集节点</option>
                  <option value="grace-positions">原始赐福坐标</option>
                  <option value="named-grace-positions">命名赐福 XYZ</option>
-                 <option value="projected-graces">命名赐福投影</option>
                </select>
                <input id="online-poi-query" type="search" placeholder="搜索名称，例如 Shabriri Grape" />
                <button id="online-poi-search">查询</button>

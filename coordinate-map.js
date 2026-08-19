@@ -838,22 +838,17 @@ function populateProjectedMasterSelect() {
 }
 
 async function loadProjectedGraces() {
+  /* projected-pixel view removed: its snapshot came from an unlicensed
+   * repository (jw-ofs/elden-ring-map markers.js); use the self-datamined
+   * game-local grace positions instead */
   state.onlineProjectedGraceRecords = [];
   state.projectedGraceTotal = 0;
-  try {
-    const master = encodeURIComponent(state.projectedMaster);
-    const response = await fetch("/api/catalog/projected-graces?master=" + master + "&limit=1000", { cache: "no-store" });
-    if (!response.ok) throw new Error("projected grace layer HTTP " + response.status);
-    const payload = await response.json();
-    state.onlineProjectedGraceRecords = payload.records || [];
-    state.projectedGraceTotal = payload.total_matches || state.onlineProjectedGraceRecords.length;
-  } catch (error) {
-    els.mapToast.textContent = "在线投影层加载失败：" + error.message;
-  }
   renderProjectedMap();
 }
 
 function focusProjectedCoordinate(record, label) {
+  els.mapToast.textContent = "在线投影视图已移除（原数据源无许可证）；请使用命名源 XYZ（本地自产坐标）。";
+  return false;
   const position = Array.isArray(record?.position) ? record.position : [];
   if (!record?.master || position.length !== 2 || position.some((value) => !Number.isFinite(Number(value)))) return false;
   state.mapMode = "projected";
@@ -874,6 +869,9 @@ function renderProjectedMap() {
   els.edgeLayer.innerHTML = "";
   els.regionLabels.innerHTML = "";
   els.nodeLayer.innerHTML = "";
+  const notice = svg("text", { x: 60, y: 80, class: "coordinate-axis" });
+  notice.textContent = "在线投影视图已移除：原数据源（jw-ofs/elden-ring-map markers.js）无许可证；请改用命名源 XYZ（本地 MSBE 自产坐标）。";
+  els.regionLabels.appendChild(notice);
   renderCoordinateLayerMeta();
   const records = state.onlineProjectedGraceRecords.filter((record) => record.master === state.projectedMaster);
   const width = 10496;

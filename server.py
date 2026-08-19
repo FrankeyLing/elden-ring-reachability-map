@@ -35,15 +35,13 @@ ROUTE_TARGET_ITEM_SNAPSHOT_FILES = {
 }
 ROUTE_PROFILES_FILE = ROOT / "data" / "v1" / "route-profiles.json"
 ONLINE_GRACE_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-grace-positions-20260818.json"
-ONLINE_PROJECTED_GRACE_FILE = ROOT / "data" / "v1" / "source-snapshots" / "elden-ring-map-markers-20260818.json"
-ONLINE_PROJECTED_GRACE_FILES = (
-    ONLINE_PROJECTED_GRACE_FILE,
-    *(ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-map-markers-supplement-{part:02d}-20260818.json" for part in range(1, 6)),
-)
+ONLINE_PROJECTED_GRACE_FILE = None
+ONLINE_PROJECTED_GRACE_FILES = ()
 ONLINE_NAMED_GRACE_FILES = tuple(
     ROOT / "data" / "v1" / "source-snapshots" / f"elden-ring-compass-graces-{part:02d}-20260818.json"
     for part in range(1, 6)
 )
+LOCAL_GRACE_POSITIONS_FILE = ROOT / "data" / "v1" / "entities" / "local-grace-positions.json"
 NAMED_GRACE_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "named-grace-identity-bindings.json"
 ONLINE_BOSS_POSITION_FILE = ROOT / "data" / "v1" / "source-snapshots" / "mapforgoblins-boss-positions-20260818.json"
 BOSS_IDENTITY_BINDINGS_FILE = ROOT / "data" / "v1" / "entities" / "boss-identity-bindings.json"
@@ -1394,94 +1392,59 @@ class AppHandler(SimpleHTTPRequestHandler):
         )
 
     def send_named_grace_positions(self, query: dict[str, list[str]]):
+        """Grace positions datamined from the local MSBE copy (model AEG099_060).
+
+        No third-party coordinate snapshot is involved; names are intentionally
+        not guessed (the game files carry no grace display names)."""
         map_id = query.get("map", [""])[0].strip()
         search = query.get("q", [""])[0].strip().casefold()
-        formal_id = query.get("formal_id", [""])[0].strip()
         try:
             limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
         except ValueError:
             limit = ONLINE_QUERY_MAX
         try:
-            payloads = [json.loads(path.read_bytes()) for path in ONLINE_NAMED_GRACE_FILES]
-            bindings = load_named_grace_identity_bindings()
+            payload = json.loads(LOCAL_GRACE_POSITIONS_FILE.read_bytes())
             records = []
-            for payload in payloads:
-                for source_record in payload["records"]:
-                    record = enrich_named_grace_record(source_record, bindings)
-                    row_map = str(record.get("map") or "")
-                    if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+            for record in payload["records"]:
+                row_map = str(record.get("map_id") or "")
+                if map_id and not (row_map == map_id or row_map.startswith(map_id + "_")):
+                    continue
+                if search:
+                    search_text = f"{row_map} {record.get('entity_id') or ''}".casefold()
+                    if search not in search_text:
                         continue
-                    if formal_id and formal_id not in (record.get("formal_candidates") or []):
-                        continue
-                    search_text = " / ".join(
-                        str(value or "")
-                        for value in (record.get("name"), record.get("region"), *(record.get("formal_candidates") or []))
-                    )
-                    if search and search not in search_text.casefold():
-                        continue
-                    records.append(record)
+                records.append(record)
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             self.send_json_error(exc)
             return
         self.send_json_payload(
             {
-                "schema": "elden-ring-reachability-map/named-grace-position-query@1",
-                "query": {"q": search, "map": map_id, "formal_id": formal_id, "limit": limit},
+                "schema": "elden-ring-reachability-map/local-grace-position-query@1",
+                "query": {"q": search, "map": map_id, "limit": limit},
                 "record_count": len(records[:limit]),
                 "total_matches": len(records),
                 "records": records[:limit],
                 "routeable": False,
-                "source": payloads[0]["source"],
-                "snapshots": [payload["snapshot"] for payload in payloads],
-                "coordinate_space": payloads[0]["coordinate_space"],
-                "identity_binding_snapshot": "named-grace-identity-bindings@1",
-                "identity_binding_count": len(bindings),
-                "note": "named grace raw map-local entity XYZ evidence; this frame is not interchangeable with MapForGoblins coordinates; formal_candidates and formal_binding are identity links only and never create traversal edges",
+                "source": payload.get("source"),
+                "coordinate_space": payload.get("source", {}).get("coordinate_space", "game_local_xyz"),
+                "note": "grace positions datamined from the local MSBE copy (AEG099_060); game-local XYZ frame, no community snapshot involved; names are not guessed",
             }
         )
 
     def send_projected_graces(self, query: dict[str, list[str]]):
-        master = query.get("master", [""])[0].strip().upper()
-        search = query.get("q", [""])[0].strip().casefold()
-        formal_id = query.get("formal_id", [""])[0].strip()
-        try:
-            limit = min(max(int(query.get("limit", ["500"])[0]), 1), ONLINE_QUERY_MAX)
-        except ValueError:
-            limit = ONLINE_QUERY_MAX
-        try:
-            payloads = [json.loads(path.read_bytes()) for path in ONLINE_PROJECTED_GRACE_FILES]
-            payload = payloads[0]
-            records = []
-            for source_payload in payloads:
-                for record in source_payload["records"]:
-                    if master and record.get("master") != master:
-                        continue
-                    if formal_id and record.get("formal_id") != formal_id:
-                        continue
-                    search_text = " / ".join(
-                        str(value or "")
-                        for value in (record.get("name"), record.get("description"), record.get("formal_id"))
-                    )
-                    if search and search not in search_text.casefold():
-                        continue
-                    records.append(record)
-        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
-            self.send_json_error(exc)
-            return
+        """Removed: the projected-pixel snapshot came from an unlicensed
+        third-party repository (jw-ofs/elden-ring-map) and was dropped when the
+        project switched to self-datamined grace positions."""
         self.send_json_payload(
             {
                 "schema": "elden-ring-reachability-map/projected-grace-query@1",
-                "query": {"q": search, "master": master, "formal_id": formal_id, "limit": limit},
-                "record_count": len(records[:limit]),
-                "total_matches": len(records),
-                "records": records[:limit],
-                "routeable": False,
-                "source": payload["source"],
-                "coordinate_space": payload["coordinate_space"],
-                "snapshots": [source_payload["snapshot"] for source_payload in payloads],
-                "note": "projected online pins only; formal_id is an identity link, not a game-world XYZ coordinate or traversal edge",
+                "removed": True,
+                "record_count": 0,
+                "records": [],
+                "note": "projected grace view removed: source markers.js had no license; use local-grace-positions (game-local XYZ) instead",
             }
         )
+
 
     def send_boss_positions(self, query: dict[str, list[str]]):
         map_id = query.get("map", [""])[0].strip()

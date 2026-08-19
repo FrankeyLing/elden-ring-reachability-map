@@ -1,200 +1,358 @@
 {
-  "registry_version": 1,
-  "reviewed_at": "2026-08-18",
-  "sources": [
-    {
-      "id": "eldenpedia",
-      "name": "Eldenpedia / eldenring.wiki.gg",
-      "url": "https://eldenring.wiki.gg/",
-      "access": "MediaWiki Action or REST API",
-      "license": "CC BY-SA 4.0 for page text unless otherwise noted; media is per-file",
-      "v1_role": ["entities", "regions", "walkthrough_semantics", "entrances", "floors", "quests"],
-      "import_status": "direct",
-      "exclude": ["media without per-file license audit"],
-      "freshness": "fetch revision per page"
-    },
-    {
-      "id": "erdb",
-      "name": "EldenRingDatabase/erdb",
-      "url": "https://github.com/EldenRingDatabase/erdb",
-      "access": "public REST API or fixed Git commit",
-      "license": "MIT",
-      "v1_role": ["items", "ids", "stats", "versioned_schema"],
-      "import_status": "direct",
-      "exclude": ["unverified claims of current 2.6.2.0 coverage"],
-      "freshness": "API and commit spike required"
-    },
-    {
-      "id": "frontiernav",
-      "name": "FrontierNav Elden Ring Wiki",
-      "url": "https://frontiernav.net/wiki/elden-ring",
-      "access": "public pages and Deep Query",
-      "license": "CC BY-SA 4.0 for contributed text; non-text media varies",
-      "v1_role": ["semantic_relations", "entity_relationships", "region_membership"],
-      "import_status": "direct",
-      "exclude": ["non-text media without license audit", "automatic conversion of semantic relations to traversal edges"],
-      "freshness": "Elden Ring dataset completeness and revision audit required"
-    },
-    {
-      "id": "map_for_goblins",
-      "name": "ERR-MapForGoblins-DLL",
-      "url": "https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL",
-      "access": "fixed Git commit and repository data files",
-      "license": "MIT-style with bundled third-party notices",
-      "v1_role": ["online_game_coordinates", "named_map_points", "item_placements", "poi_positions", "world_entities", "gathering_nodes", "map_layer_index", "map_conversion_evidence", "coverage_scale"],
-      "import_status": "direct_fixed_git_json_snapshot",
-      "revision": "324a895ba51d6091534578c2ce194d0c6720edc2",
-      "snapshot_manifest": "data/v1/source-snapshots/mapforgoblins-online-index-20260818.json",
-      "allowed_files": ["grace_position_index.json", "boss_list.json", "WorldMapPointParam.json", "PlaceName_engus.json", "items_database.json", "msb_entity_index.json", "all_gathering_nodes_final.json", "tile_region_map.json", "WorldMapLegacyConvParam.json", "WorldMapLegacyConvParam_dlc.json"],
-      "exclude": ["DLL execution", "runtime injection", "overlay", "memory-derived state", "game assets without separate rights", "automatic promotion of map conversions to traversal edges"],
-      "freshness": "fixed commit and vanilla+DLC JSON snapshot"
-    },
-    {
-      "id": "er_guide",
-      "name": "aether-auto/er-guide",
-      "url": "https://github.com/aether-auto/er-guide",
-      "access": "fixed Git commit; selected JSON only",
-      "license": "MIT code; route and imported data require file/source-level audit",
-      "v1_role": ["grace_to_grace_legs", "route_steps", "achievement_and_unique_item_coverage"],
-      "import_status": "conditional",
-      "exclude": ["Fextralife tiles", "images", "mixed-origin coordinates until independently confirmed"],
-      "freshness": "pin commit and preserve upstream attribution"
-    },
-    {
-      "id": "elden_ring_compass",
-      "name": "Elden Ring Compass",
-      "url": "https://github.com/EthanShoeDev/elden-ring-compass",
-      "access": "public repository and website",
-      "license": "root-level reuse status requires audit",
-      "v1_role": ["schema_reference", "coverage_statistics", "save_state_reference", "named_grace_xyz"],
-      "import_status": "direct_fixed_generated_coordinate_snapshot_pending_rights_review",
-      "revision": "9d64b7ca8e93a5af9094ffb91831d91ca803e6a5",
-      "allowed_files": ["packages/data/src/generated/graces.ts", "packages/data/src/generated/markers.ts"],
-      "exclude": ["code", "icons", "tiles", "unrelated generated data", "automatic promotion to formal transitions"],
-      "freshness": "fixed generated-data commit; coordinate snapshot captured 2026-08-18"
-    },
-    {
-      "id": "jw_ofs_elden_ring_map",
-      "name": "jw-ofs/elden-ring-map",
-      "url": "https://github.com/jw-ofs/elden-ring-map",
-      "access": "fixed Git commit; public README and generated marker files",
-      "license": "repository-level reuse license not found during audit; game-derived tiles and mixed-origin markers require separate rights review",
-      "v1_role": ["coverage_gap_detection", "marker_category_reference", "projected_grace_anchors", "questline_ux_reference"],
-      "import_status": "direct_fixed_git_generated_marker_snapshot_pending_rights_review",
-      "revision": "6b7c3da11de11e53cb84bbb40f7c3fed5377549a",
-      "allowed_files": ["markers.js (grace records only)"],
-      "exclude": ["map tiles", "icons", "automatic promotion to formal transitions", "distribution as a replacement for the upstream map"],
-      "freshness": "recheck upstream revision and rights before any data import"
-    },
-    {
-      "id": "elden_ring_fan_api",
-      "name": "Elden Ring Fan API",
-      "url": "https://github.com/deliton/eldenring-api",
-      "access": "public API and repository JSON",
-      "license": "no clear root license confirmed during 2026-08-17 review",
-      "v1_role": ["difference_detection", "descriptions_reference"],
-      "import_status": "reference_only",
-      "exclude": ["published data until license and provenance are confirmed"],
-      "freshness": "2022-era API; freshness audit required"
-    },
-    {
-      "id": "proprietary_interactive_maps",
-      "name": "MapGenie, Fextralife, Wand, AtlasForge, IGN, Game8",
-      "url": null,
-      "access": "manual browser cross-check only",
-      "license": "proprietary or source-specific",
-      "v1_role": ["gap_detection", "ux_reference", "manual_route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["private APIs", "robots bypass", "tile mirroring", "bulk coordinate copying", "copyrighted walkthrough text"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "game8_manual_cross_check",
-      "name": "Game8 Elden Ring guide",
-      "url": "https://game8.co/games/Elden-Ring/archives/372056",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "pcgamer_manual_cross_check",
-      "name": "PC Gamer Elden Ring guide",
-      "url": "https://www.pcgamer.com/elden-ring-bolt-of-gransax-location/",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "powerpyx_manual_cross_check",
-      "name": "PowerPyx Elden Ring walkthrough",
-      "url": "https://www.powerpyx.com/elden-ring-mohgwyn-palace-walkthrough/",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "gamespot_manual_cross_check",
-      "name": "GameSpot Elden Ring guide",
-      "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "gamesradar_manual_cross_check",
-      "name": "GamesRadar Elden Ring guide",
-      "url": "https://www.gamesradar.com/elden-ring-fia-quest-walkthrough-deathbed-companion-age-of-duskborn-ending/",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "eip_manual_cross_check",
-      "name": "EIP Gaming Elden Ring guide",
-      "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "neoseeker_manual_cross_check",
-      "name": "Neoseeker Elden Ring guide",
-      "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_Aqueduct",
-      "access": "manual page review only",
-      "license": "proprietary; no bulk reuse",
-      "v1_role": ["route_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "coordinates", "private API"],
-      "freshness": "manual review per claim"
-    },
-    {
-      "id": "bandai_namco_official",
-      "name": "Bandai Namco Elden Ring official pages",
-      "url": "https://en.bandainamcoent.eu/elden-ring/",
-      "access": "public official page review only",
-      "license": "official web content; no bulk reuse",
-      "v1_role": ["dlc_scope", "access_requirements", "official_cross_check"],
-      "import_status": "reference_only",
-      "exclude": ["copied article text", "images", "game assets", "private API"],
-      "freshness": "manual review per claim"
-    }
-  ]
+ "registry_version": 1,
+ "reviewed_at": "2026-08-19",
+ "sources": [
+  {
+   "id": "eldenpedia",
+   "name": "Eldenpedia / eldenring.wiki.gg",
+   "url": "https://eldenring.wiki.gg/",
+   "access": "MediaWiki Action or REST API",
+   "license": "CC BY-SA 4.0 for page text unless otherwise noted; media is per-file",
+   "v1_role": [
+    "entities",
+    "regions",
+    "walkthrough_semantics",
+    "entrances",
+    "floors",
+    "quests"
+   ],
+   "import_status": "direct",
+   "exclude": [
+    "media without per-file license audit"
+   ],
+   "freshness": "fetch revision per page"
+  },
+  {
+   "id": "erdb",
+   "name": "EldenRingDatabase/erdb",
+   "url": "https://github.com/EldenRingDatabase/erdb",
+   "access": "public REST API or fixed Git commit",
+   "license": "MIT",
+   "v1_role": [
+    "items",
+    "ids",
+    "stats",
+    "versioned_schema"
+   ],
+   "import_status": "direct",
+   "exclude": [
+    "unverified claims of current 2.6.2.0 coverage"
+   ],
+   "freshness": "API and commit spike required"
+  },
+  {
+   "id": "frontiernav",
+   "name": "FrontierNav Elden Ring Wiki",
+   "url": "https://frontiernav.net/wiki/elden-ring",
+   "access": "public pages and Deep Query",
+   "license": "CC BY-SA 4.0 for contributed text; non-text media varies",
+   "v1_role": [
+    "semantic_relations",
+    "entity_relationships",
+    "region_membership"
+   ],
+   "import_status": "direct",
+   "exclude": [
+    "non-text media without license audit",
+    "automatic conversion of semantic relations to traversal edges"
+   ],
+   "freshness": "Elden Ring dataset completeness and revision audit required"
+  },
+  {
+   "id": "map_for_goblins",
+   "name": "ERR-MapForGoblins-DLL",
+   "url": "https://github.com/Jovial-Nik/ERR-MapForGoblins-DLL",
+   "access": "fixed Git commit and repository data files",
+   "license": "MIT-style with bundled third-party notices",
+   "v1_role": [
+    "online_game_coordinates",
+    "named_map_points",
+    "item_placements",
+    "poi_positions",
+    "world_entities",
+    "gathering_nodes",
+    "map_layer_index",
+    "map_conversion_evidence",
+    "coverage_scale"
+   ],
+   "import_status": "direct_fixed_git_json_snapshot",
+   "revision": "324a895ba51d6091534578c2ce194d0c6720edc2",
+   "snapshot_manifest": "data/v1/source-snapshots/mapforgoblins-online-index-20260818.json",
+   "allowed_files": [
+    "grace_position_index.json",
+    "boss_list.json",
+    "WorldMapPointParam.json",
+    "PlaceName_engus.json",
+    "items_database.json",
+    "msb_entity_index.json",
+    "all_gathering_nodes_final.json",
+    "tile_region_map.json",
+    "WorldMapLegacyConvParam.json",
+    "WorldMapLegacyConvParam_dlc.json"
+   ],
+   "exclude": [
+    "DLL execution",
+    "runtime injection",
+    "overlay",
+    "memory-derived state",
+    "game assets without separate rights",
+    "automatic promotion of map conversions to traversal edges"
+   ],
+   "freshness": "fixed commit and vanilla+DLC JSON snapshot"
+  },
+  {
+   "id": "er_guide",
+   "name": "aether-auto/er-guide",
+   "url": "https://github.com/aether-auto/er-guide",
+   "access": "fixed Git commit; selected JSON only",
+   "license": "MIT code; route and imported data require file/source-level audit",
+   "v1_role": [
+    "grace_to_grace_legs",
+    "route_steps",
+    "achievement_and_unique_item_coverage"
+   ],
+   "import_status": "conditional",
+   "exclude": [
+    "Fextralife tiles",
+    "images",
+    "mixed-origin coordinates until independently confirmed"
+   ],
+   "freshness": "pin commit and preserve upstream attribution"
+  },
+  {
+   "id": "elden_ring_compass",
+   "name": "Elden Ring Compass",
+   "url": "https://github.com/EthanShoeDev/elden-ring-compass",
+   "access": "public repository and website",
+   "license": "root-level reuse status requires audit",
+   "v1_role": [
+    "schema_reference",
+    "coverage_statistics",
+    "save_state_reference"
+   ],
+   "import_status": "removed_2026-08-19_no_license_and_private_package;grace_positions_now_datamined_from_local_msbe",
+   "revision": "9d64b7ca8e93a5af9094ffb91831d91ca803e6a5",
+   "allowed_files": [
+    "packages/data/src/generated/graces.ts",
+    "packages/data/src/generated/markers.ts"
+   ],
+   "exclude": [
+    "code",
+    "icons",
+    "tiles",
+    "unrelated generated data",
+    "automatic promotion to formal transitions"
+   ],
+   "freshness": "fixed generated-data commit; coordinate snapshot captured 2026-08-18",
+   "removal_note": "Coordinate snapshot removed: upstream has no LICENSE and package.json declares private; positions regenerated from local MSBE (model AEG099_060) via scripts/build-local-grace-positions.py"
+  },
+  {
+   "id": "jw_ofs_elden_ring_map",
+   "name": "jw-ofs/elden-ring-map",
+   "url": "https://github.com/jw-ofs/elden-ring-map",
+   "access": "fixed Git commit; public README and generated marker files",
+   "license": "repository-level reuse license not found during audit; game-derived tiles and mixed-origin markers require separate rights review",
+   "v1_role": [
+    "coverage_gap_detection",
+    "marker_category_reference",
+    "questline_ux_reference"
+   ],
+   "import_status": "removed_2026-08-19_no_license;projected_view_dropped",
+   "revision": "6b7c3da11de11e53cb84bbb40f7c3fed5377549a",
+   "allowed_files": [
+    "markers.js (grace records only)"
+   ],
+   "exclude": [
+    "map tiles",
+    "icons",
+    "automatic promotion to formal transitions",
+    "distribution as a replacement for the upstream map"
+   ],
+   "freshness": "recheck upstream revision and rights before any data import",
+   "removal_note": "Projected grace anchors removed: upstream has no LICENSE and data is second-hand datamined; the projected-pixel view was dropped, use local-grace-positions (game-local XYZ) instead"
+  },
+  {
+   "id": "elden_ring_fan_api",
+   "name": "Elden Ring Fan API",
+   "url": "https://github.com/deliton/eldenring-api",
+   "access": "public API and repository JSON",
+   "license": "no clear root license confirmed during 2026-08-17 review",
+   "v1_role": [
+    "difference_detection",
+    "descriptions_reference"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "published data until license and provenance are confirmed"
+   ],
+   "freshness": "2022-era API; freshness audit required"
+  },
+  {
+   "id": "proprietary_interactive_maps",
+   "name": "MapGenie, Fextralife, Wand, AtlasForge, IGN, Game8",
+   "url": null,
+   "access": "manual browser cross-check only",
+   "license": "proprietary or source-specific",
+   "v1_role": [
+    "gap_detection",
+    "ux_reference",
+    "manual_route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "private APIs",
+    "robots bypass",
+    "tile mirroring",
+    "bulk coordinate copying",
+    "copyrighted walkthrough text"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "game8_manual_cross_check",
+   "name": "Game8 Elden Ring guide",
+   "url": "https://game8.co/games/Elden-Ring/archives/372056",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "pcgamer_manual_cross_check",
+   "name": "PC Gamer Elden Ring guide",
+   "url": "https://www.pcgamer.com/elden-ring-bolt-of-gransax-location/",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "powerpyx_manual_cross_check",
+   "name": "PowerPyx Elden Ring walkthrough",
+   "url": "https://www.powerpyx.com/elden-ring-mohgwyn-palace-walkthrough/",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "gamespot_manual_cross_check",
+   "name": "GameSpot Elden Ring guide",
+   "url": "https://www.gamespot.com/articles/elden-ring-ainsel-river-guide-bosses-treasures-rannis-quest/1100-6502122/",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "gamesradar_manual_cross_check",
+   "name": "GamesRadar Elden Ring guide",
+   "url": "https://www.gamesradar.com/elden-ring-fia-quest-walkthrough-deathbed-companion-age-of-duskborn-ending/",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "eip_manual_cross_check",
+   "name": "EIP Gaming Elden Ring guide",
+   "url": "https://eip.gg/elden-ring/guides/miquellas-haligtree-walkthrough/",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "neoseeker_manual_cross_check",
+   "name": "Neoseeker Elden Ring guide",
+   "url": "https://www.neoseeker.com/elden-ring/walkthrough/Siofra_Aqueduct",
+   "access": "manual page review only",
+   "license": "proprietary; no bulk reuse",
+   "v1_role": [
+    "route_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "coordinates",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  },
+  {
+   "id": "bandai_namco_official",
+   "name": "Bandai Namco Elden Ring official pages",
+   "url": "https://en.bandainamcoent.eu/elden-ring/",
+   "access": "public official page review only",
+   "license": "official web content; no bulk reuse",
+   "v1_role": [
+    "dlc_scope",
+    "access_requirements",
+    "official_cross_check"
+   ],
+   "import_status": "reference_only",
+   "exclude": [
+    "copied article text",
+    "images",
+    "game assets",
+    "private API"
+   ],
+   "freshness": "manual review per claim"
+  }
+ ]
 }
