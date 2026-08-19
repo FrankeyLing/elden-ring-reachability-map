@@ -7,8 +7,8 @@ official-Chinese mapping for the formal graph.
 
 Usage:
     python scripts/build-official-fmg-index.py \
-        --msg-root C:/Users/Frankey/ZCodeProject/local-snapshots/elden-ring-20260818/extracted/msg-all \
-        --oodle-dll C:/Users/Frankey/ZCodeProject/local-snapshots/elden-ring-20260818/runtime/oo2core_6_win64.dll \
+        --msg-root <local-snapshot>/elden-ring-20260818/extracted/msg-all \
+        --oodle-dll <local-snapshot>/elden-ring-20260818/runtime/oo2core_6_win64.dll \
         --output data/v1/entities/official-fmg-bilingual-index.json
 """
 

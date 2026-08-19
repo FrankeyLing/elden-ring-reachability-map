@@ -4,7 +4,7 @@
   "title": "Online Verified V1 · Multi-plane Reachability",
   "generatedAt": "2026-08-19T00:54:45+00:00",
   "source": {
-    "file": "C:\\Users\\Frankey\\ZCodeProject\\repos\\elden-ring-reachability-map\\data\\v1\\graph-v1.json",
+    "file": "data\\v1\\graph-v1.json",
     "version": "1.0.0-v1-local-verified"
   },
   "defaults": {

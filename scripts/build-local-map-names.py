@@ -15,14 +15,19 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
-MSBE_MAPS = Path(
-    "C:/Users/Frankey/ZCodeProject/local-snapshots/elden-ring-20260818/extracted/parsed-mapstudio-all-extra2/maps"
+MSBE_SNAPSHOT_ROOT = Path(
+    os.environ.get(
+        "ELDEN_RING_LOCAL_SNAPSHOT_ROOT",
+        str(ROOT.parent.parent / "local-snapshots" / "elden-ring-20260818"),
+    )
 )
+MSBE_MAPS = MSBE_SNAPSHOT_ROOT / "extracted" / "parsed-mapstudio-all-extra2" / "maps"
 
 
 def fmg_base(name: str) -> str:

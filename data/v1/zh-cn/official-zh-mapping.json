@@ -1,8 +1,8 @@
 {
  "schema": "elden-ring-official-zh-mapping@2",
  "source": {
-  "graph": "C:\\Users\\Frankey\\ZCodeProject\\repos\\elden-ring-reachability-map\\data\\v1\\graph-v1.json",
-  "fmgIndex": "C:\\Users\\Frankey\\ZCodeProject\\repos\\elden-ring-reachability-map\\data\\v1\\entities\\official-fmg-bilingual-index.json",
+  "graph": "data\\v1\\graph-v1.json",
+  "fmgIndex": "data\\v1\\entities\\official-fmg-bilingual-index.json",
   "policy": "Only FromSoftware official Simplified-Chinese texts are used; no invented translations.",
   "levels": {
    "official": "whole field matches an official entry",
