@@ -1076,6 +1076,17 @@ function zoomAt(svgPoint, factor) {
   applyCamera();
 }
 
+/* Pan so the world point under fromSvg ends up under toSvg. The pointer delta
+ * is in viewBox (screen) space, but the camera coordinate lives in the
+ * pre-scale space, so the delta must be divided by zoom before it is applied
+ * — otherwise pan speed decouples from the zoom factor. */
+function panCameraBySvgDelta(camStart, fromSvg, toSvg, zoom) {
+  return {
+    x: clampCamera(camStart.x + (fromSvg.x - toSvg.x) / zoom, CAMERA_MIN_X, CAMERA_MAX_X),
+    y: clampCamera(camStart.y + (fromSvg.y - toSvg.y) / zoom, CAMERA_MIN_Y, CAMERA_MAX_Y),
+  };
+}
+
 /* ---------------- coverage panel ---------------- */
 
 function renderCoverage() {
@@ -1291,9 +1302,10 @@ function wireEvents() {
     const deltaX = current.x - panState.startSvg.x;
     const deltaY = current.y - panState.startSvg.y;
     if (Math.hypot(deltaX, deltaY) > 3) panState.moved = true;
-    /* dragging the pointer by d moves the camera by -d */
-    state.camera.x = clampCamera(panState.camStart.x + (panState.startSvg.x - current.x), CAMERA_MIN_X, CAMERA_MAX_X);
-    state.camera.y = clampCamera(panState.camStart.y + (panState.startSvg.y - current.y), CAMERA_MIN_Y, CAMERA_MAX_Y);
+    /* dragging the pointer by d moves the camera by -d / zoom */
+    const next = panCameraBySvgDelta(panState.camStart, panState.startSvg, current, panState.camStart.zoom);
+    state.camera.x = next.x;
+    state.camera.y = next.y;
     applyCamera();
   });
 
@@ -1355,8 +1367,9 @@ function wireEvents() {
        * the mid-point delta, then zoom at the current mid-point so the world
        * under the fingers stays put */
       state.camera.zoom = pinchState.startZoom;
-      state.camera.x = clampCamera(pinchState.startCam.x + (pinchState.startMidSvg.x - midSvg.x), CAMERA_MIN_X, CAMERA_MAX_X);
-      state.camera.y = clampCamera(pinchState.startCam.y + (pinchState.startMidSvg.y - midSvg.y), CAMERA_MIN_Y, CAMERA_MAX_Y);
+      const next = panCameraBySvgDelta(pinchState.startCam, pinchState.startMidSvg, midSvg, pinchState.startZoom);
+      state.camera.x = next.x;
+      state.camera.y = next.y;
       zoomAt(midSvg, dist / pinchState.startDist);
     } else if (activeTouches.size === 1 && touchPanState) {
       const [touch] = [...activeTouches.values()];
@@ -1364,8 +1377,9 @@ function wireEvents() {
       const deltaX = current.x - touchPanState.startSvg.x;
       const deltaY = current.y - touchPanState.startSvg.y;
       if (Math.hypot(deltaX, deltaY) > 3) touchPanState.moved = true;
-      state.camera.x = clampCamera(touchPanState.camStart.x + (touchPanState.startSvg.x - current.x), CAMERA_MIN_X, CAMERA_MAX_X);
-      state.camera.y = clampCamera(touchPanState.camStart.y + (touchPanState.startSvg.y - current.y), CAMERA_MIN_Y, CAMERA_MAX_Y);
+      const next = panCameraBySvgDelta(touchPanState.camStart, touchPanState.startSvg, current, touchPanState.camStart.zoom);
+      state.camera.x = next.x;
+      state.camera.y = next.y;
       applyCamera();
     }
   }, { passive: false });
