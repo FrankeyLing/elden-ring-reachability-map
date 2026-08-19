@@ -57,6 +57,8 @@
 | `acquisition-registry.json` | 获取关系：掉落、拾取、商店、Boss 奖励 |
 | `location-catalog.json` | 位置实例（来自 `WorldMapPointParam`：教堂、墓地、洞窟、城寨……） |
 | `boss-rewards.json` | 从 EMEVD `AwardItemLot` 指令解码出的 Boss 奖励 lot |
+| `msb-objact-catalog.json` | MSB 中的 825 个地图机关（宝箱/门/升降机/拉杆/隐藏房间） |
+| `msb-message-regions.json` | MSB 中的 50 个游戏内留言区域（含坐标） |
 | `graph-v1.json` | 正式可达性图 + 集成的 location/item/boss 节点与关系 |
 
 ### 2.1 entity-registry.json
@@ -96,7 +98,17 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 - `scripts/audit-acquisition.py` 验证 id 唯一性、名称存在性、能指有效性、
   关系端点与图关系端点。
 
-## 4. 构建管道
+## 4. 已知缺口（后续增量）
+
+- 拾取**位置**：5,011 条拾取 lot 尚未绑定到 MSB 拾取物实例（已发现
+  3,894 个 `Treasure` 事件）；EMEVD 拾取事件链仍需解码。
+- 商店**商人绑定**：商店关系绑定到 `shop-<id>` 实体，尚未绑定到具名
+  商人 NPC。
+- 灵泉/车队/谜题：`WorldMapPointParam` 与 MSB 中尚未映射这些类别。
+- 隐形墙与传送机关已存在于 `msb-objact-catalog.json`（隐藏房间、传送
+  陷阱），但尚未提升为图节点。
+
+## 5. 构建管道
 
 ```bash
 python scripts/build-entity-registry.py --param-dir <快照>/extracted/param-json

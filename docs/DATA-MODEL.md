@@ -148,7 +148,19 @@ the boss via the official name mapping (`Remembrance of the Grafted` →
 - `scripts/audit-acquisition.py` verifies id uniqueness, name presence,
   signifier validity, relation endpoints and graph relation endpoints.
 
-## 4. Build pipeline
+## 4. Known gaps (future increments)
+
+- Pickup **locations**: the 5,011 pickup lots are not yet bound to MSB
+  treasure instances (3,894 `Treasure` events found); the EMEVD treasure
+  event chain still needs decoding.
+- Shop **merchant binding**: shop relations are bound to `shop-<id>`
+  entities, not yet to named NPC merchants.
+- Spirit springs / caravans / puzzles: no WorldMapPointParam or MSB
+  category has been mapped for these yet.
+- Illusory walls and teleporters exist inside `msb-objact-catalog.json`
+  (hidden rooms, warp traps) but are not yet promoted to graph nodes.
+
+## 5. Build pipeline
 
 ```bash
 python scripts/build-entity-registry.py --param-dir <snapshot>/extracted/param-json
