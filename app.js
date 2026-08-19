@@ -140,7 +140,7 @@ const state = {
   routeProfiles: null,
   routeProfile: DEFAULT_ROUTE_PROFILE,
   preference: "balanced",
-  layer: "all",
+  layer: "surface",
   zoom: 1,
   route: null,
   selectedNode: null,
@@ -255,6 +255,7 @@ const els = {
   footerCoverage: document.getElementById("footer-coverage"),
   loadingState: document.getElementById("loading-state"),
   topologyMap: document.getElementById("topology-map"),
+  mapStage: document.querySelector(".map-stage"),
 };
 
 /* ---------------- combobox ---------------- */
@@ -575,6 +576,35 @@ function edgeAvailable(edge) {
   return (edge.requires || []).every((id) => state.conditions.has(id));
 }
 
+/* Focus mode: with a planned route, the focus set is the route plus its
+ * one-hop neighbourhood; without a route but with a chosen origin, the focus
+ * is the unconditionally reachable set. Everything else recedes (dim). */
+function focusNodeIds() {
+  if (state.route) {
+    const focus = new Set(state.route.nodes);
+    for (const edge of state.store.activeEdgeList()) {
+      if (focus.has(edge.from)) focus.add(edge.to);
+      if (focus.has(edge.to)) focus.add(edge.from);
+    }
+    return focus;
+  }
+  if (state.origin && state.store.hasData()) {
+    const focus = new Set([state.origin]);
+    const queue = [state.origin];
+    while (queue.length) {
+      const current = queue.pop();
+      for (const edge of state.store.activeEdgeList()) {
+        if (edge.from === current && edgeAvailable(edge) && !focus.has(edge.to)) {
+          focus.add(edge.to);
+          queue.push(edge.to);
+        }
+      }
+    }
+    return focus;
+  }
+  return null;
+}
+
 function renderRegions() {
   els.regionLabels.innerHTML = "";
   const groups = new Map();
@@ -596,6 +626,7 @@ function renderRegions() {
 function renderEdges() {
   els.edgeLayer.innerHTML = "";
   const routeEdgeIds = new Set(state.route?.edges.map((edge) => edge.id) || []);
+  const focus = focusNodeIds();
   for (const edge of state.store.activeEdgeList()) {
     const from = state.store.node(edge.from);
     const to = state.store.node(edge.to);
@@ -604,7 +635,19 @@ function renderEdges() {
     const available = edgeAvailable(edge);
     const isRoute = routeEdgeIds.has(edge.id);
     const unknown = Boolean(edge.conditionUnknown?.length);
-    const classes = ["edge", available ? "available" : "blocked", (edge.requires || []).length ? "conditional" : "", unknown ? "unknown" : "", isRoute ? "route" : ""];
+    const isLocalDeclared = (edge.tags || []).includes("local_declared") || (edge.tags || []).includes("known_connection");
+    const isCatalogGrace = (edge.tags || []).includes("catalog_grace");
+    const dimEdge = Boolean(focus) && !focus.has(edge.from) && !focus.has(edge.to) && !isRoute;
+    const classes = [
+      "edge",
+      available ? "available" : "blocked",
+      (edge.requires || []).length ? "conditional" : "",
+      unknown ? "unknown" : "",
+      isRoute ? "route" : "",
+      isLocalDeclared ? "local-declared" : "",
+      isCatalogGrace ? "catalog-grace" : "",
+      dimEdge ? "dim-edge" : "",
+    ];
     const line = svg("line", {
       x1: from.x,
       y1: from.y,
@@ -652,7 +695,10 @@ function renderNodes() {
       class: `node-group kind-${node.kind} ${state.selectedNode === node.id ? "selected" : ""} ${routeNodeIds.has(node.id) ? "route-node" : ""} ${node.id === state.origin ? "origin" : ""} ${node.id === state.destination ? "destination" : ""}`,
       transform: `translate(${node.x} ${node.y})`,
     });
-    if (state.route && !routeNodeIds.has(node.id) && state.layer === "all") group.classList.add("dim");
+    const focus = focusNodeIds();
+    const dimNode = Boolean(focus) && !focus.has(node.id) && !routeNodeIds.has(node.id);
+    if (dimNode) group.classList.add("dim-hard");
+    else if (state.route && !routeNodeIds.has(node.id) && state.layer === "all") group.classList.add("dim");
     const hit = svg("circle", { r: 14, class: "node-hit" });
     const ring = svg("circle", { r: node.kind === "target" ? 9 : 7, class: "node-ring" });
     const core = svg("circle", { r: node.kind === "target" ? 4 : 3, class: "node-core", fill: nodeCoreColor(node.kind) });
@@ -729,6 +775,10 @@ const COORDINATE_SPACE = { width: 2500, height: 1100 };
 function setZoom(nextZoom) {
   state.zoom = Math.max(0.5, Math.min(3, nextZoom));
   applyZoom();
+  /* zoom-dependent label levels: far view hides node labels so only the
+   * region labels remain readable (progressive disclosure) */
+  const zoomLevel = state.zoom < 0.9 ? "far" : state.zoom < 1.5 ? "mid" : "near";
+  els.mapStage.dataset.zoomLevel = zoomLevel;
 }
 
 function applyZoom() {
@@ -919,6 +969,7 @@ async function init() {
 
 function applyMapCoordinateSpace() {
   els.topologyMap.setAttribute("viewBox", `0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`);
+  els.mapStage.dataset.zoomLevel = "mid";
   applyZoom();
 }
 

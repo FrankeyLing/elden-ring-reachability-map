@@ -365,3 +365,20 @@ code { color: #c0b58f; font-size: 9px; }
 
 .research-link { color: #7f8984; text-decoration: none; }
 .research-link:hover { color: var(--gold); }
+
+/* ============ map readability (方案四/二/五) ============ */
+
+/* zoom-dependent label levels: far view keeps only region labels readable */
+.map-stage[data-zoom-level="far"] .node-label,
+.map-stage[data-zoom-level="far"] .node-region { display: none; }
+.map-stage[data-zoom-level="far"] .node-status { display: none; }
+.map-stage[data-zoom-level="mid"] .node-region { display: none; }
+
+/* edge evidence channels (方案五) */
+.edge.local-declared { stroke-dasharray: 6 4; opacity: 0.45; }
+.edge.catalog-grace { stroke-dasharray: 2 4; opacity: 0.22; }
+.edge.local-declared.route, .edge.catalog-grace.route { opacity: 0.95; }
+
+/* focus mode dimming (方案二): non-focus nodes/edges recede */
+.edge.dim-edge { opacity: 0.08; }
+.node-group.dim-hard { opacity: 0.06; pointer-events: none; }

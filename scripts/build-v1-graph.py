@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from collections import Counter, defaultdict
@@ -526,6 +527,40 @@ def main() -> int:
         existing_edge_ids.add(edge_id + ":r")
         grace_bridges += 1
     print(f"catalog grace region bridges added: {grace_bridges}")
+
+    # ---- 4d. auto-layout catalog graces around their region anchors ----
+    region_points = defaultdict(list)
+    for node in nodes:
+        if node.get("isCatalog"):
+            continue
+        x, y = node.get("x"), node.get("y")
+        if isinstance(x, (int, float)) and isinstance(y, (int, float)):
+            region_points[node.get("region", "")].append((x, y))
+    region_anchor = {
+        region: (sum(p[0] for p in points) / len(points), sum(p[1] for p in points) / len(points))
+        for region, points in region_points.items()
+        if points
+    }
+    catalog_by_region = defaultdict(list)
+    for node in nodes:
+        if node.get("isCatalog"):
+            catalog_by_region[node.get("region", "")].append(node)
+    laid_out = 0
+    for region, members in catalog_by_region.items():
+        anchor = region_anchor.get(region)
+        if not anchor:
+            continue
+        anchor_x, anchor_y = anchor
+        for index, node in enumerate(members):
+            x, y = node.get("x"), node.get("y")
+            if isinstance(x, (int, float)) and isinstance(y, (int, float)) and (x != 0 or y != 0):
+                continue
+            radius = 46 + 17 * (index // 12)
+            angle = (index % 12) / 12 * 2 * math.pi + (index // 12) * 0.35
+            node["x"] = round(anchor_x + radius * math.cos(angle), 1)
+            node["y"] = round(anchor_y + radius * math.sin(angle), 1)
+            laid_out += 1
+    print(f"catalog grace nodes laid out: {laid_out}")
 
     # ---- 5. re-verify ----
     outgoing2 = defaultdict(list)
