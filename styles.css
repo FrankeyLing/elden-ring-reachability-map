@@ -151,6 +151,7 @@ code { color: #c0b58f; font-size: 9px; }
 .node-label { fill: #bbbbae; font-size: 10px; pointer-events: none; paint-order: stroke; stroke: #11171b; stroke-width: 4px; stroke-linejoin: round; }
 .node-label-hidden { display: none; }
 .node-region { fill: #6d7774; font-size: 7px; pointer-events: none; paint-order: stroke; stroke: #11171b; stroke-width: 3px; }
+.node-leader { stroke: rgba(157, 168, 161, 0.55); stroke-width: 1; pointer-events: none; }
 .node-group.selected .node-ring { stroke: var(--gold-bright); stroke-width: 2.4; filter: url(#route-glow); }
 .node-group.route-node .node-ring { stroke: var(--gold); }
 .node-group.origin .node-ring { stroke: var(--blue); }

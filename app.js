@@ -914,6 +914,90 @@ function renderRegionOverview() {
   els.graphStats.textContent = `${groups.size} 个区域 · ${state.store.nodes.size} 节点 · ${state.store.edges.size} 条边（点击区域下钻）`;
 }
 
+/* ---- node label layout (collision avoidance + leader lines) ---- */
+
+let labelMeasureCtx = null;
+function measureTextWidth(text, fontSize) {
+  if (!labelMeasureCtx) {
+    labelMeasureCtx = document.createElement("canvas").getContext("2d");
+  }
+  labelMeasureCtx.font = `${fontSize}px "Segoe UI", "Microsoft YaHei", sans-serif`;
+  return labelMeasureCtx.measureText(text).width;
+}
+
+function labelRectCollides(rect, placed, nodeObstacles, selfId) {
+  for (const p of placed) {
+    if (rect.x < p.x + p.w && rect.x + rect.w > p.x && rect.y < p.y + p.h && rect.y + rect.h > p.y) return true;
+  }
+  for (const [id, o] of nodeObstacles) {
+    if (id === selfId) continue;
+    const nx = Math.max(rect.x, Math.min(o.x, rect.x + rect.w));
+    const ny = Math.max(rect.y, Math.min(o.y, rect.y + rect.h));
+    const dx = o.x - nx;
+    const dy = o.y - ny;
+    if (dx * dx + dy * dy < o.r * o.r) return true;
+  }
+  return false;
+}
+
+/* Greedy anti-overlap label placement for a region's member nodes. Nodes stay
+ * at their fixed geographic positions (moving them would distort the map), so
+ * only the labels move: each label tries right / left / below / above the node
+ * in that order and takes the first spot that neither overlaps a previously
+ * placed label nor sits on another node. A leader line ties a label back to
+ * its node when it lands anywhere but the default (right) slot. */
+function layoutNodeLabels(nodes) {
+  const FONT = 10;          // matches .node-label font-size
+  const GAP = 7;            // gap between node ring and label edge
+  const NODE_R = 15;        // obstacle radius (ring + margin)
+  const ordered = [...nodes].sort((a, b) => a.y - b.y || a.x - b.x);
+  const nodeObstacles = new Map();
+  for (const n of nodes) nodeObstacles.set(n.id, { x: n.x, y: n.y, r: NODE_R });
+  const placed = [];
+  const placements = new Map();
+  for (const n of ordered) {
+    const w = measureTextWidth(n.label, FONT);
+    const h = FONT;
+    /* Multiple standoff distances per direction: labels hug the node first,
+     * and when the local cluster is too dense (real geographic coordinates can
+     * put several nodes within a few tens of units) they step outward until a
+     * slot clears, tied back by a leader line. */
+    const standoffs = [GAP, GAP + 14, GAP + 28];
+    const candidates = [];
+    for (const s of standoffs) {
+      candidates.push(
+        { tx: n.x + s + 5, ty: n.y + FONT * 0.8, anchor: "start",  side: "right",        rect: { x: n.x + s + 5, y: n.y - h / 2, w, h } },
+        { tx: n.x - s - 5, ty: n.y + FONT * 0.8, anchor: "end",    side: "left",         rect: { x: n.x - s - 5 - w, y: n.y - h / 2, w, h } },
+        { tx: n.x, ty: n.y + s + FONT, anchor: "middle",           side: "below",        rect: { x: n.x - w / 2, y: n.y + s, w, h } },
+        { tx: n.x, ty: n.y - s, anchor: "middle",                  side: "above",        rect: { x: n.x - w / 2, y: n.y - s - h, w, h } },
+        { tx: n.x + s, ty: n.y - s, anchor: "start",               side: "top-right",    rect: { x: n.x + s, y: n.y - s - h, w, h } },
+        { tx: n.x - s, ty: n.y - s, anchor: "end",                 side: "top-left",     rect: { x: n.x - s - w, y: n.y - s - h, w, h } },
+        { tx: n.x + s, ty: n.y + s + FONT, anchor: "start",        side: "bottom-right", rect: { x: n.x + s, y: n.y + s, w, h } },
+        { tx: n.x - s, ty: n.y + s + FONT, anchor: "end",          side: "bottom-left",  rect: { x: n.x - s - w, y: n.y + s, w, h } },
+      );
+    }
+    let chosen = candidates[0];
+    for (const cand of candidates) {
+      if (labelRectCollides(cand.rect, placed, nodeObstacles, n.id)) continue;
+      chosen = cand;
+      break;
+    }
+    placements.set(n.id, { tx: chosen.tx, ty: chosen.ty, anchor: chosen.anchor, side: chosen.side, rect: chosen.rect });
+    placed.push({ x: chosen.rect.x, y: chosen.rect.y, w, h });
+  }
+  return placements;
+}
+
+/* Point on the label rect edge closest to the node centre, in absolute
+ * coordinate-space units — used to draw the leader line from the node ring to
+ * a relocated label. */
+function leaderEndPoint(nodeX, nodeY, placement) {
+  const r = placement.rect;
+  const px = Math.max(r.x, Math.min(nodeX, r.x + r.w));
+  const py = Math.max(r.y, Math.min(nodeY, r.y + r.h));
+  return { x: px, y: py };
+}
+
 function renderRegionDetail() {
   const region = state.detailRegion;
   const memberIds = new Set();
@@ -971,6 +1055,14 @@ function renderRegionDetail() {
   }
 
   const routeNodeIds = new Set(state.route?.nodes || []);
+  const memberNodes = [];
+  for (const node of state.store.activeNodeList()) {
+    if (memberIds.has(node.id)) {
+      memberNodes.push({ id: node.id, x: node.x, y: node.y, label: nodeLabelZh(node.id) });
+    }
+  }
+  const labelLayout = layoutNodeLabels(memberNodes);
+
   for (const node of state.store.activeNodeList()) {
     if (!memberIds.has(node.id)) continue;
     const group = svg("g", {
@@ -982,11 +1074,34 @@ function renderRegionDetail() {
     const hit = svg("circle", { r: 14, class: "node-hit" });
     const ring = svg("circle", { r: node.kind === "target" ? 9 : 7, class: "node-ring" });
     const core = svg("circle", { r: node.kind === "target" ? 4 : 3, class: "node-core", fill: nodeCoreColor(node.kind) });
-    const label = svg("text", { x: 12, y: 4, class: "node-label" });
+
+    const placement = labelLayout.get(node.id);
+    const localX = placement.tx - node.x;
+    const localY = placement.ty - node.y;
+    const label = svg("text", { x: localX, y: localY, "text-anchor": placement.anchor, class: "node-label" });
     label.textContent = nodeLabelZh(node.id);
-    const region = svg("text", { x: 12, y: 15, class: "node-region" });
+    const region = svg("text", { x: localX, y: localY + 11, "text-anchor": placement.anchor, class: "node-region" });
     region.textContent = `${layerZh(node.layer).toUpperCase()} · ${regionZh(node.id)}`;
-    group.append(hit, ring, core, label, region);
+    group.append(hit, ring, core);
+
+    /* leader line ties a relocated (non-right) label back to its node */
+    if (placement.side !== "right") {
+      const end = leaderEndPoint(node.x, node.y, placement);
+      const ringEdge = node.kind === "target" ? 9 : 7;
+      const dx = end.x - node.x;
+      const dy = end.y - node.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const lead = svg("line", {
+        x1: (dx / len) * ringEdge,
+        y1: (dy / len) * ringEdge,
+        x2: end.x - node.x,
+        y2: end.y - node.y,
+        class: "node-leader",
+      });
+      group.appendChild(lead);
+    }
+
+    group.append(label, region);
     if (node.id === state.origin || node.id === state.destination) {
       const marker = svg("text", { x: -4, y: -13, class: "node-status" });
       marker.textContent = node.id === state.origin ? "FROM" : "TO";
