@@ -48,6 +48,8 @@ def main() -> int:
     locations = json.loads((DATA / "entities" / "location-catalog.json").read_text(encoding="utf-8"))
     graph = json.loads((DATA / "graph-v1.json").read_text(encoding="utf-8"))
     gaps = json.loads((DATA / "entities" / "gap-catalog.json").read_text(encoding="utf-8"))
+    reinforce = json.loads((DATA / "entities" / "reinforce-catalog.json").read_text(encoding="utf-8"))
+    pickups = json.loads((DATA / "entities" / "pickup-location-bindings.json").read_text(encoding="utf-8"))
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -97,6 +99,28 @@ def main() -> int:
         if g["category"] == "spirit_spring":
             check(g.get("verification") == "icon_heuristic", f"spring {g['id']} must be labelled heuristic")
     print(f"gap catalog: {len(gaps['entities'])} entities")
+
+    # ---- 3c. reinforce catalog -------------------------------------------------
+    for rel in reinforce["reinforcements"]:
+        check(rel["from"] in entity_ids, f"reinforce {rel['id']} from {rel['from']} unresolved")
+        check(rel["to"] in entity_ids, f"reinforce {rel['id']} to {rel['to']} unresolved")
+        check(rel["verification"] == "game_mechanics_official", f"reinforce {rel['id']} bad verification")
+    set_members = set()
+    for s in reinforce["armor_sets"]:
+        check(s["id"] not in set_members, f"armor set duplicate {s['id']}")
+        set_members.add(s["id"])
+        check(len(s["members"]) >= 1, f"armor set {s['id']} has no members")
+        for member in s["members"]:
+            check(member["item"] in entity_ids, f"armor set {s['id']} member {member['item']} unresolved")
+    print(f"reinforce catalog: {len(reinforce['reinforcements'])} relations, {len(reinforce['armor_sets'])} sets")
+
+    # ---- 3d. pickup bindings ---------------------------------------------------
+    for b in pickups["bindings"]:
+        for item in b.get("items", []):
+            check(item.get("item") in entity_ids or item["item"].startswith(("item_", "weapon_", "armor_")),
+                  f"pickup lot {b['lot']} item {item.get('item')} unresolved")
+        check(b.get("positions"), f"pickup lot {b['lot']} has no positions")
+    print(f"pickup bindings: {len(pickups['bindings'])} lots")
 
     # ---- 4. graph integration ------------------------------------------------
     node_ids = {n["id"] for n in graph["nodes"]}

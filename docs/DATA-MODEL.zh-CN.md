@@ -100,10 +100,16 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 
 ## 4. 剩余缺口（后续增量）
 
-- 拾取**位置**：5,011 条拾取 lot 尚未绑定到 MSB 拾取物实例（已发现
-  3,894 个 `Treasure` 事件）；EMEVD 拾取事件链仍需解码。
 - 商店**商人绑定**：商店关系绑定到 `shop-<id>` 实体，尚未绑定到具名
   商人 NPC。
+
+已关闭缺口（2026-08-20）：
+- 拾取**位置**：3,552 个 lot 绑定到 3,894 个 MSB Treasure 实例（地图局部
+  坐标，`pickup-location-bindings.json`）；每个拾取点成为图节点
+  （`pickup_<lot>_<map>`），与物品节点建立 `pickup_at` 关系。
+- **强化**：武器材料集（普通/失色）与官方等级→锻造石映射
+  （`reinforce-catalog.json`，13,015 条关系），以及按所有者前缀分组的
+  52 个防具套装。
 
 已关闭缺口（2026-08-20）：灵泉（70 个，icon-83 启发式，标注
 `icon_heuristic`）、车队（5 条 MSB 巡逻路线）、谜题（20 个特殊 ObjAct

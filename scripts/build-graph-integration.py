@@ -57,6 +57,12 @@ def main() -> int:
                         default=ROOT / "data" / "v1" / "entities" / "gap-catalog.json")
     parser.add_argument("--objacts", type=Path,
                         default=ROOT / "data" / "v1" / "entities" / "msb-objact-catalog.json")
+    parser.add_argument("--pickups", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "pickup-location-bindings.json")
+    parser.add_argument("--grace-positions", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "local-grace-positions.json")
+    parser.add_argument("--reinforce", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "reinforce-catalog.json")
     args = parser.parse_args()
 
     graph = load_json(args.graph)
@@ -66,6 +72,9 @@ def main() -> int:
     achievements = load_json(args.achievements)
     gaps = load_json(args.gaps) if args.gaps.exists() else {"entities": []}
     objacts = load_json(args.objacts) if args.objacts.exists() else {"objacts": []}
+    pickups = load_json(args.pickups) if args.pickups.exists() else {"bindings": []}
+    grace_positions = load_json(args.grace_positions) if args.grace_positions.exists() else {"records": []}
+    reinforce = load_json(args.reinforce) if args.reinforce.exists() else {"reinforcements": [], "armor_sets": []}
 
     node_ids = {n["id"] for n in graph["nodes"]}
     existing_relations = {(r["id"]) for r in graph.get("relations", [])}
@@ -273,6 +282,143 @@ def main() -> int:
             })
             existing_relations.add(rid)
             added_relations += 1
+
+    # ---- 4b. pickup lots -> pickup-point nodes (MSB coordinates) ----------
+    pickup_relations = 0
+    for binding in pickups.get("bindings", []):
+        for pos_rec in binding.get("positions", []):
+            if not pos_rec.get("position"):
+                continue
+            pos = pos_rec["position"]
+            map_key = pos_rec.get("map", "unknown")
+            pid = f"pickup_{binding['lot']}_{map_key}"
+            if pid not in node_ids:
+                graph["nodes"].append({
+                    "id": pid,
+                    "label": f"拾取点 lot {binding['lot']}",
+                    "kind": "location",
+                    "layer": None,
+                    "region": None,
+                    "floor": None,
+                    "worldEpoch": None,
+                    "x": None,
+                    "y": None,
+                    "coordinateType": "msb",
+                    "verificationState": "local_msb_verified",
+                    "sourceEvidence": [f"MSB Treasure {pos_rec.get('part')} in {map_key}"],
+                    "description": f"pickup point: lot {binding['lot']} in {map_key}",
+                    "entityType": "pickup_point",
+                    "position": pos,
+                    "map": map_key,
+                })
+                node_ids.add(pid)
+                added_nodes += 1
+            for item in binding.get("items", []):
+                item_id = item["item"]
+                if item_id not in node_ids:
+                    graph["nodes"].append({
+                        "id": item_id,
+                        "label": item["name"].get("zh") or item["name"].get("en"),
+                        "kind": "item",
+                        "layer": None,
+                        "region": None,
+                        "floor": None,
+                        "worldEpoch": None,
+                        "x": None,
+                        "y": None,
+                        "coordinateType": "none",
+                        "verificationState": "local_param_verified",
+                        "sourceEvidence": [f"pickup lot {binding['lot']}"],
+                        "description": f"item: {item['name'].get('en')}",
+                        "entityType": "pickup_item",
+                    })
+                    node_ids.add(item_id)
+                    added_nodes += 1
+                rid = f"{item_id}-pickup-{binding['lot']}-{map_key}"
+                if rid in existing_relations:
+                    continue
+                relations.append({
+                    "id": rid,
+                    "from": item_id,
+                    "to": pid,
+                    "type": "pickup_at",
+                    "routeable": False,
+                    "sourceEvidence": [f"MSB Treasure lot {binding['lot']} in {map_key} "
+                                       f"({pos_rec.get('part')})"],
+                    "lot": {"param": "ItemLotParam_map", "rowId": binding["lot"]},
+                })
+                existing_relations.add(rid)
+                pickup_relations += 1
+    print(f"pickup relations: {pickup_relations}")
+
+    # ---- 4c. reinforcement relations and armor-set nodes -------------------
+    reinforce_relations = 0
+    for rel in reinforce.get("reinforcements", []):
+        from_id, to_id = rel["from"], rel["to"]
+        if from_id not in node_ids:
+            graph["nodes"].append({
+                "id": from_id, "label": from_id, "kind": "item",
+                "layer": None, "region": None, "floor": None, "worldEpoch": None,
+                "x": None, "y": None, "coordinateType": "none",
+                "verificationState": "local_param_verified",
+                "sourceEvidence": ["reinforce-catalog"],
+                "description": "reinforced item", "entityType": "reinforceable",
+            })
+            node_ids.add(from_id)
+            added_nodes += 1
+        if to_id not in node_ids:
+            graph["nodes"].append({
+                "id": to_id, "label": to_id, "kind": "item",
+                "layer": None, "region": None, "floor": None, "worldEpoch": None,
+                "x": None, "y": None, "coordinateType": "none",
+                "verificationState": "local_param_verified",
+                "sourceEvidence": ["reinforce-catalog"],
+                "description": "reinforcement material", "entityType": "smithing_stone",
+            })
+            node_ids.add(to_id)
+            added_nodes += 1
+        rid = rel["id"]
+        if rid in existing_relations:
+            continue
+        relations.append({
+            "id": rid, "from": from_id, "to": to_id, "type": "reinforced_with",
+            "routeable": False, "level": rel["level"], "maxLevel": rel["maxLevel"],
+            "sourceEvidence": rel.get("evidence", []),
+        })
+        existing_relations.add(rid)
+        reinforce_relations += 1
+
+    for s in reinforce.get("armor_sets", []):
+        sid = s["id"]
+        if sid not in node_ids:
+            graph["nodes"].append({
+                "id": sid,
+                "label": s["name"]["zh"] or s["name"]["en"],
+                "kind": "armor_set",
+                "layer": None, "region": None, "floor": None, "worldEpoch": None,
+                "x": None, "y": None, "coordinateType": "none",
+                "verificationState": "official_names",
+                "sourceEvidence": ["armor-set grouping by owner prefix"],
+                "description": f"armor set: {s['name']['en']}",
+                "entityType": "armor_set",
+            })
+            node_ids.add(sid)
+            added_nodes += 1
+        for member in s.get("members", []):
+            mid = member["item"]
+            if mid not in node_ids:
+                continue
+            rid = f"{sid}-member-{mid}"
+            if rid in existing_relations:
+                continue
+            relations.append({
+                "id": rid, "from": sid, "to": mid, "type": "set_member",
+                "routeable": False,
+                "sourceEvidence": ["armor-set grouping"],
+            })
+            existing_relations.add(rid)
+            reinforce_relations += 1
+    print(f"reinforce relations: {reinforce_relations}")
 
     # ---- 5. unique items located in / at shops -----------------------------
     for rel in acquisitions["relations"]:

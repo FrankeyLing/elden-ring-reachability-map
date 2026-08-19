@@ -150,11 +150,17 @@ the boss via the official name mapping (`Remembrance of the Grafted` →
 
 ## 4. Remaining gaps (future increments)
 
-- Pickup **locations**: the 5,011 pickup lots are not yet bound to MSB
-  treasure instances (3,894 `Treasure` events found); the EMEVD treasure
-  event chain still needs decoding.
 - Shop **merchant binding**: shop relations are bound to `shop-<id>`
   entities, not yet to named NPC merchants.
+
+Closed gaps (2026-08-20):
+- Pickup **locations**: 3,552 lots bound to 3,894 MSB Treasure instances
+  with map-local coordinates (`pickup-location-bindings.json`); each pickup
+  became a graph node (`pickup_<lot>_<map>`) with `pickup_at` relations to
+  the item node.
+- **Reinforcement**: weapon material sets (normal vs somber) and the
+  official level->stone mapping (`reinforce-catalog.json`, 13,015
+  relations) plus 52 armor sets grouped by owner prefix.
 
 Closed gaps (2026-08-20): spirit springs (70, icon-83 heuristic, labelled
 `icon_heuristic`), caravans (5 MSB patrol routes), puzzles (20 special
