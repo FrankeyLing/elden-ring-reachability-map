@@ -20,7 +20,8 @@
    "exclude": [
     "media without per-file license audit"
    ],
-   "freshness": "fetch revision per page"
+   "freshness": "fetch revision per page",
+   "note": "CC BY-SA 4.0 page text; repository keeps only factual extracts (names/regions/facts), expressive summary text removed 2026-08-19; facts are not copyrightable expression"
   },
   {
    "id": "erdb",
@@ -47,16 +48,15 @@
    "access": "public pages and Deep Query",
    "license": "CC BY-SA 4.0 for contributed text; non-text media varies",
    "v1_role": [
-    "semantic_relations",
-    "entity_relationships",
-    "region_membership"
+    "semantic_relations_planned"
    ],
-   "import_status": "direct",
+   "import_status": "reference_only_no_data_imported_as_of_2026-08-19",
    "exclude": [
     "non-text media without license audit",
     "automatic conversion of semantic relations to traversal edges"
    ],
-   "freshness": "Elden Ring dataset completeness and revision audit required"
+   "freshness": "Elden Ring dataset completeness and revision audit required",
+   "note": "CC BY-SA 4.0; no data from this source is present in the repository (registry previously marked direct by mistake)"
   },
   {
    "id": "map_for_goblins",
@@ -105,7 +105,7 @@
    "name": "aether-auto/er-guide",
    "url": "https://github.com/aether-auto/er-guide",
    "access": "fixed Git commit; selected JSON only",
-   "license": "MIT code; route and imported data require file/source-level audit",
+   "license": "MIT code; data/items.json derived from eldenring.wiki.gg CC BY-NC-SA 3.0 entries; map tiles from Fextralife (non-commercial fan project)",
    "v1_role": [
     "grace_to_grace_legs",
     "route_steps",
@@ -117,7 +117,8 @@
     "images",
     "mixed-origin coordinates until independently confirmed"
    ],
-   "freshness": "pin commit and preserve upstream attribution"
+   "freshness": "pin commit and preserve upstream attribution",
+   "note": "Route legs used are factual (grace names/relations/step types) and independently verified in the formal graph; no expressive text imported"
   },
   {
    "id": "elden_ring_compass",

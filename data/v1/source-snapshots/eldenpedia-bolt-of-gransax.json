@@ -1,27 +1,32 @@
 {
-  "snapshot_id": "eldenpedia-bolt-of-gransax-r84084",
-  "source_id": "eldenpedia",
-  "snapshot_kind": "normalized_source_extract",
-  "source_url": "https://eldenring.wiki.gg/wiki/Bolt_of_Gransax",
-  "api_url": "https://eldenring.wiki.gg/api.php?action=query&prop=revisions&rvprop=ids%7Ctimestamp&format=json&titles=Bolt%20of%20Gransax",
-  "page_id": 12317,
-  "revision_id": 84084,
-  "revision_timestamp": "2025-05-04T18:29:07Z",
-  "license": "CC BY-SA 4.0 for page text unless otherwise noted",
-  "captured_on": "2026-08-17",
-  "raw_response_retained": false,
-  "extracted_record": {
-    "canonical_id": "item_bolt_of_gransax",
-    "name": "Bolt of Gransax",
-    "name_zh": "古兰桑克斯的雷电",
-    "item_type": "legendary armament",
-    "location": "Leyndell, Royal Capital",
-    "acquisition_summary": "Leave Erdtree Sanctuary, descend by the elevator, follow the route to the giant spear and jump from the railing onto the lower platform before climbing the spear.",
-    "world_state_guard": "Must be obtained before Maliketh changes Leyndell into the Ashen Capital.",
-    "ashen_capital": "not obtainable in the Ashen Capital according to the source page"
-  },
-  "notes": [
-    "The acquisition summary is a normalized paraphrase, not a republication of the source page.",
-    "No original map coordinate is present in this snapshot."
+ "snapshot_id": "eldenpedia-bolt-of-gransax-r84084",
+ "source_id": "eldenpedia",
+ "snapshot_kind": "normalized_source_extract",
+ "source_url": "https://eldenring.wiki.gg/wiki/Bolt_of_Gransax",
+ "api_url": "https://eldenring.wiki.gg/api.php?action=query&prop=revisions&rvprop=ids%7Ctimestamp&format=json&titles=Bolt%20of%20Gransax",
+ "page_id": 12317,
+ "revision_id": 84084,
+ "revision_timestamp": "2025-05-04T18:29:07Z",
+ "license": "CC BY-SA 4.0 for page text unless otherwise noted",
+ "captured_on": "2026-08-17",
+ "raw_response_retained": false,
+ "extracted_record": {
+  "canonical_id": "item_bolt_of_gransax",
+  "name": "Bolt of Gransax",
+  "name_zh": "古兰桑克斯的雷电",
+  "item_type": "legendary armament",
+  "location": "Leyndell, Royal Capital",
+  "ashen_capital": "not obtainable in the Ashen Capital according to the source page",
+  "facts": [
+   "location: Leyndell, Royal Capital",
+   "obtainable_before: Maliketh turns Leyndell into the Ashen Capital",
+   "ashen_capital: not obtainable (per source page fact)"
   ]
+ },
+ "notes": [
+  "The acquisition summary is a normalized paraphrase, not a republication of the source page.",
+  "No original map coordinate is present in this snapshot.",
+  "Expressive summary text from the CC BY-SA page was removed; only factual fields remain.",
+  "Facts are not copyrightable expression; no page text is reproduced."
+ ]
 }
