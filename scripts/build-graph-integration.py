@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""Integrate the acquisition entity layer into the formal graph.
+
+Adds to graph-v1.json:
+  - location nodes (WorldMapPointParam instances, kind=location)
+  - boss -> arena gate relations (from achievements formal_target_ids)
+  - unique item nodes (remembrances / great runes / stone sword keys / bell
+    bearings / map fragments) with dropped_by / located_in relations
+  - location -> graph node relations where names match
+
+Usage:
+    python scripts/build-graph-integration.py \
+        --graph data/v1/graph-v1.json \
+        --registry data/v1/entities/entity-registry.json \
+        --acquisitions data/v1/entities/acquisition-registry.json \
+        --locations data/v1/entities/location-catalog.json \
+        --out data/v1/graph-v1.json
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parent.parent
+
+UNIQUE_ITEM_CATEGORIES = {"remembrance", "great_rune", "stone_sword_key",
+                          "bell_bearing", "map_fragment"}
+
+
+def slugify(text: str) -> str:
+    s = text.lower().strip()
+    s = re.sub(r"[^a-z0-9]+", "_", s)
+    return s.strip("_")
+
+
+def load_json(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--graph", type=Path, default=ROOT / "data" / "v1" / "graph-v1.json")
+    parser.add_argument("--registry", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "entity-registry.json")
+    parser.add_argument("--acquisitions", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "acquisition-registry.json")
+    parser.add_argument("--locations", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "location-catalog.json")
+    parser.add_argument("--achievements", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "achievements.json")
+    args = parser.parse_args()
+
+    graph = load_json(args.graph)
+    registry = load_json(args.registry)
+    acquisitions = load_json(args.acquisitions)
+    locations = load_json(args.locations)
+    achievements = load_json(args.achievements)
+
+    node_ids = {n["id"] for n in graph["nodes"]}
+    existing_relations = {(r["id"]) for r in graph.get("relations", [])}
+    entities = {e["id"]: e for e in registry["entities"]}
+    relations = list(graph.get("relations", []))
+    added_nodes = 0
+    added_relations = 0
+
+    # ---- 1. location nodes -------------------------------------------------
+    for loc in locations["entities"]:
+        if loc["id"] in node_ids:
+            continue
+        pos = loc["properties"].get("position") or {}
+        graph["nodes"].append({
+            "id": loc["id"],
+            "label": loc["name"]["zh"] or loc["name"]["en"],
+            "kind": "location",
+            "layer": None,
+            "region": None,
+            "floor": None,
+            "worldEpoch": None,
+            "x": None,
+            "y": None,
+            "coordinateType": "none",
+            "verificationState": "local_param_verified",
+            "sourceEvidence": [f"WorldMapPointParam row {loc['signifiers'][0]['rows'][0]}"],
+            "description": f"{loc['category']}: {loc['name']['en']}",
+            "entityType": loc["category"],
+            "position": pos,
+        })
+        node_ids.add(loc["id"])
+        added_nodes += 1
+
+    # ---- 2. unique item nodes ---------------------------------------------
+    for ent in registry["entities"]:
+        if ent["kind"] not in ("item", "weapon", "armor", "accessory", "ash_of_war"):
+            continue
+        if ent["category"] not in UNIQUE_ITEM_CATEGORIES:
+            continue
+        if ent["id"] in node_ids:
+            continue
+        graph["nodes"].append({
+            "id": ent["id"],
+            "label": ent["name"]["zh"] or ent["name"]["en"],
+            "kind": "item",
+            "layer": None,
+            "region": None,
+            "floor": None,
+            "worldEpoch": None,
+            "x": None,
+            "y": None,
+            "coordinateType": "none",
+            "verificationState": "local_param_verified",
+            "sourceEvidence": [f"EquipParamGoods row {ent['signifiers'][0]['rows'][0]}"],
+            "description": f"{ent['category']}: {ent['name']['en']}",
+            "entityType": ent["category"],
+        })
+        node_ids.add(ent["id"])
+        added_nodes += 1
+
+    # ---- 2b. boss entity nodes (achievement bosses) -------------------------
+    achievement_boss_names = {
+        a["name"].lower() for a in achievements["records"] if a.get("category") == "boss"
+    }
+    reward_boss_names = set()
+    for rel in acquisitions["relations"]:
+        if rel["method"] == "boss_reward":
+            for it in rel["items"]:
+                reward_boss_names.add(it["name"]["en"].lower())
+    boss_names = achievement_boss_names | reward_boss_names
+    for ent in registry["entities"]:
+        if ent["kind"] not in ("enemy", "npc"):
+            continue
+        low = ent["name"]["en"].lower()
+        if low not in boss_names and not any(
+            low in b or b in low for b in achievement_boss_names):
+            continue
+        if ent["id"] in node_ids:
+            continue
+        graph["nodes"].append({
+            "id": ent["id"],
+            "label": ent["name"]["zh"] or ent["name"]["en"],
+            "kind": "boss",
+            "layer": None,
+            "region": None,
+            "floor": None,
+            "worldEpoch": None,
+            "x": None,
+            "y": None,
+            "coordinateType": "none",
+            "verificationState": "official_names",
+            "sourceEvidence": ["achievement list"],
+            "description": f"boss: {ent['name']['en']}",
+            "entityType": "boss",
+        })
+        node_ids.add(ent["id"])
+        added_nodes += 1
+
+    # ---- 3. boss -> arena gate relations (achievements) --------------------
+    boss_entities = {e["id"]: e for e in registry["entities"] if e["kind"] in ("enemy", "npc")}
+    boss_by_name = {e["name"]["en"].lower(): e for e in boss_entities.values()}
+    for ach in achievements["records"]:
+        if ach.get("category") != "boss":
+            continue
+        name = ach["name"]
+        boss = boss_by_name.get(name.lower())
+        if not boss:
+            # try a suffix-tolerant match (e.g. "Ancestor Spirit" vs entries)
+            for key, e in boss_by_name.items():
+                if name.lower() in key or key in name.lower():
+                    boss = e
+                    break
+        if not boss:
+            continue
+        for target in ach.get("formal_target_ids", []):
+            if target not in node_ids:
+                continue
+            rid = f"{slugify(boss['name']['en'])}-located-at-{target}"
+            if rid in existing_relations:
+                continue
+            relations.append({
+                "id": rid,
+                "from": boss["id"],
+                "to": target,
+                "type": "boss_located_at",
+                "routeable": False,
+                "sourceEvidence": [f"achievement {ach['canonical_id']}"],
+            })
+            existing_relations.add(rid)
+            added_relations += 1
+
+    # ---- 4. remembrance / great rune -> boss (dropped_by) -------------------
+    for rel in acquisitions["relations"]:
+        if rel["method"] != "boss_reward":
+            continue
+        item_id = rel["from"]
+        for it in rel["items"]:
+            rid = f"{item_id}-dropped-by-{it['item']}"
+            if rid in existing_relations:
+                continue
+            relations.append({
+                "id": rid,
+                "from": item_id,
+                "to": it["item"],
+                "type": "dropped_by",
+                "routeable": False,
+                "sourceEvidence": rel.get("evidence", []),
+            })
+            existing_relations.add(rid)
+            added_relations += 1
+
+    # ---- 5. unique items located in / at shops -----------------------------
+    for rel in acquisitions["relations"]:
+        if rel["method"] not in ("pickup", "purchase"):
+            continue
+        for it in rel["items"]:
+            item_id = it["item"]
+            if item_id not in node_ids:
+                continue
+            if rel["method"] == "pickup":
+                rid = f"{item_id}-pickup-lot{rel['lot']['rowId']}"
+                rtype = "pickup_lot"
+            else:
+                rid = f"{item_id}-sold-shop{rel['id']}"
+                rtype = "sold_in"
+            if rid in existing_relations:
+                continue
+            target = f"shop-{rel['id'].split('-')[-1]}" if rel["method"] == "purchase" else None
+            if target is not None and target not in node_ids:
+                continue
+            relations.append({
+                "id": rid,
+                "from": item_id,
+                "to": target,
+                "type": rtype,
+                "routeable": False,
+                "sourceEvidence": rel.get("evidence", []),
+                **({"lot": rel["lot"]} if "lot" in rel else {}),
+            })
+            existing_relations.add(rid)
+            added_relations += 1
+
+    node_ids_final = {n["id"] for n in graph["nodes"]}
+    relations = [r for r in relations if r.get("to") in node_ids_final and r["from"] in node_ids_final]
+    graph["relations"] = relations
+    graph["coverage"] = {
+        **graph.get("coverage", {}),
+        "acquisitionEntities": len(registry["entities"]),
+        "acquisitionRelations": len(relations),
+        "locationInstances": len(locations["entities"]),
+    }
+    graph["meta"] = {
+        **graph.get("meta", {}),
+        "version": graph.get("meta", {}).get("version", "").removesuffix("-acquisition") + "-acquisition",
+        "acquisitionLayer": "entity-registry + acquisition-registry (see data/v1/entities/)",
+    }
+
+    args.graph.write_text(json.dumps(graph, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"added nodes: {added_nodes}, relations: {added_relations}")
+    print(f"graph now: {len(graph['nodes'])} nodes, {len(graph['relations'])} relations")
+    print(f"wrote {args.graph}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

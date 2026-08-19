@@ -45,12 +45,14 @@ def load_package(path: Path):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packages", type=Path, default=Path("data/v1/packages"))
-    parser.add_argument("--graph", type=Path, default=Path("data/v1/graph.json"))
+    parser.add_argument("--graph", type=Path, default=Path("data/v1/graph-v1.json"))
     args = parser.parse_args()
 
     packages_dir = args.packages.resolve()
     graph = json.loads(args.graph.resolve().read_text(encoding="utf-8"))
-    source_nodes = {n["id"]: n for n in graph["nodes"]}
+    # packages cover the reachability layer only; entity-layer nodes
+    # (locations / items / bosses without a region) live in the registries
+    source_nodes = {n["id"]: n for n in graph["nodes"] if n.get("region") is not None}
     source_edges = {e["id"]: e for e in graph["edges"]}
     source_conditions = {c["id"]: c for c in graph["conditions"]}
 

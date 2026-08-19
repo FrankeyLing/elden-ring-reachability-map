@@ -106,9 +106,12 @@ def build_packages(graph_path: Path, out_dir: Path) -> dict:
     edges = graph["edges"]
     conditions = graph["conditions"]
 
-    # 1. assign nodes
+    # 1. assign nodes (entity-layer nodes without a region are not part of the
+    #    reachability packages; they live in the entity/acquisition registries)
     node_package: dict[str, str] = {}
     for node in nodes:
+        if node.get("region") is None:
+            continue
         node_package[node["id"]] = package_for_node(node)
 
     # 2. assign edges (intra stays, cross goes to bridge)
@@ -140,7 +143,7 @@ def build_packages(graph_path: Path, out_dir: Path) -> dict:
 
     package_meta = {}
     for pkg_id in [*PACKAGE_TITLES.keys()]:
-        pkg_nodes = [n for n in nodes if node_package[n["id"]] == pkg_id] if pkg_id != "bridge" else []
+        pkg_nodes = [n for n in nodes if n.get("region") is not None and node_package.get(n["id"]) == pkg_id] if pkg_id != "bridge" else []
         pkg_edges = package_edges.get(pkg_id, []) if pkg_id != "bridge" else bridge_edges
         pkg_conditions = referenced_conditions(pkg_edges) if pkg_id != "bridge" else referenced_conditions(pkg_edges)
 

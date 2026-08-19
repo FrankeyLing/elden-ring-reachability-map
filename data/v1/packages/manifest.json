@@ -2,10 +2,10 @@
   "schema": "elden-ring-manifest@1",
   "version": "1.0.0",
   "title": "Online Verified V1 · Multi-plane Reachability",
-  "generatedAt": "2026-08-19T00:54:45+00:00",
+  "generatedAt": "2026-08-19T17:11:16+00:00",
   "source": {
-    "file": "data\\v1\\graph-v1.json",
-    "version": "1.0.0-v1-local-verified"
+    "file": "C:\\Users\\Frankey\\ZCodeProject\\repos\\elden-ring-reachability-map\\data\\v1\\graph-v1.json",
+    "version": "1.0.0-v1-local-verified-acquisition-acquisition-acquisition-acquisition-acquisition-acquisition-acquisition"
   },
   "defaults": {
     "origin": "grace_erdtree_sanctuary",
@@ -21,7 +21,7 @@
       "path": "data/v1/packages/surface-main-world.jsonl",
       "title": "主世界地表（宁姆格福/利耶尼亚/盖利德/亚坛/巨人山顶/化圣雪原等）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 253,
         "edgeCount": 393,
@@ -78,7 +78,7 @@
       "path": "data/v1/packages/underground.jsonl",
       "title": "地下世界（希芙拉河/安瑟尔河/诺克隆/深根底层/腐败湖/蒙格温王朝）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 77,
         "edgeCount": 124,
@@ -123,7 +123,7 @@
       "path": "data/v1/packages/royal-capital.jsonl",
       "title": "王城罗德尔（玛利喀斯前正常状态）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 44,
         "edgeCount": 71,
@@ -155,7 +155,7 @@
       "path": "data/v1/packages/ashen-capital.jsonl",
       "title": "灰烬王城（玛利喀斯后状态）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 10,
         "edgeCount": 9,
@@ -181,7 +181,7 @@
       "path": "data/v1/packages/shadow-realm.jsonl",
       "title": "《黄金树幽影》区域（幽影之地/影之塔/恩希斯城/塔之镇/米德拉宅邸等）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 197,
         "edgeCount": 306,
@@ -226,7 +226,7 @@
       "path": "data/v1/packages/farum-azula.jsonl",
       "title": "法姆·亚兹拉（逐渐崩毁的法姆·亚兹拉）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 25,
         "edgeCount": 43,
@@ -252,7 +252,7 @@
       "path": "data/v1/packages/haligtree.jsonl",
       "title": "米凯拉的圣树与艾布雷菲尔",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 21,
         "edgeCount": 39,
@@ -279,7 +279,7 @@
       "path": "data/v1/packages/stormveil.jsonl",
       "title": "史东薇尔城",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 14,
         "edgeCount": 26,
@@ -307,7 +307,7 @@
       "path": "data/v1/packages/raya-lucaria.jsonl",
       "title": "雷亚卢卡利亚魔法学院",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 13,
         "edgeCount": 23,
@@ -335,7 +335,7 @@
       "path": "data/v1/packages/volcano-manor.jsonl",
       "title": "火山官邸",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 10,
         "edgeCount": 12,
@@ -362,7 +362,7 @@
       "path": "data/v1/packages/caria-manor.jsonl",
       "title": "卡利亚城寨",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 6,
         "edgeCount": 8,
@@ -388,7 +388,7 @@
       "path": "data/v1/packages/legacy-other.jsonl",
       "title": "其他遗迹与地牢（洞窟/墓地/英雄墓地/塔/监牢等）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 268,
         "edgeCount": 208,
@@ -503,7 +503,7 @@
       "path": "data/v1/packages/bridge.jsonl",
       "title": "跨区域桥接（传送/升降梯/入口/单向跳落/世界状态切换等跨包边）",
       "version": "1.0.0",
-      "generatedAt": "2026-08-19T00:54:45+00:00",
+      "generatedAt": "2026-08-19T17:11:16+00:00",
       "coverage": {
         "nodeCount": 0,
         "edgeCount": 339,
@@ -519,7 +519,7 @@
   ],
   "bridgePackageId": "bridge",
   "coverage": {
-    "formalNodeCount": 938,
+    "formalNodeCount": 1380,
     "formalRouteEdgeCount": 1601,
     "conditionCount": 177,
     "packageCount": 13,

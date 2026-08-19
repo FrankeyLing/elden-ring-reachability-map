@@ -226,7 +226,7 @@ async function main() {
     console.log("\n[page] startup independence");
     {
       const html = await fetchText("/");
-      check("player page served", html.includes("RUNE//PATH"));
+      check("player page served", html.includes("ERRM") || html.includes("Elden Ring Reachability Map"));
       check("page loads framework + app only", html.includes("framework.js") && html.includes("app.js")
         && !html.includes("coordinate-map.js"));
       const researchHtml = await fetchText("/research.html");
