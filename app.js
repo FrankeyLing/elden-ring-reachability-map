@@ -686,7 +686,9 @@ function nodeCoreColor(kind) {
 
 function selectNode(id) {
   state.selectedNode = id;
-  renderNodes();
+  /* renderGraph, not renderNodes: in region-detail view, renderNodes would
+   * repaint every node globally and yank the user out of the region. */
+  renderGraph();
   renderInspector();
 }
 
@@ -886,7 +888,7 @@ function renderRegionOverview() {
       state.mapView = "detail";
       state.detailRegion = key;
       state.selectedNode = null;
-      resetCamera();
+      fitCameraToRegion(key);
       els.mapBack.hidden = false;
       renderGraph();
     });
@@ -1041,6 +1043,41 @@ function applyCamera() {
 
 function resetCamera() {
   state.camera = { x: VIEWBOX_WIDTH / 2, y: VIEWBOX_HEIGHT / 2, zoom: 1 };
+  applyCamera();
+}
+
+/* Fit the camera to a region's member nodes so the region fills the viewport.
+ * Region-detail nodes keep their raw coordinate-space positions, so without
+ * this the camera sits at the whole-map default and the region collapses into
+ * a dense, unreadable, un-tappable cluster. */
+function fitCameraToRegion(region) {
+  const spaceScale = VIEWBOX_WIDTH / COORDINATE_SPACE.width;
+  const spaceOffsetY = (VIEWBOX_HEIGHT - COORDINATE_SPACE.height * spaceScale) / 2;
+  let minWx = Infinity;
+  let minWy = Infinity;
+  let maxWx = -Infinity;
+  let maxWy = -Infinity;
+  for (const node of state.store.activeNodeList()) {
+    if (regionKey(node) !== region) continue;
+    const wx = node.x * spaceScale;
+    const wy = node.y * spaceScale + spaceOffsetY;
+    if (wx < minWx) minWx = wx;
+    if (wx > maxWx) maxWx = wx;
+    if (wy < minWy) minWy = wy;
+    if (wy > maxWy) maxWy = wy;
+  }
+  if (maxWx === -Infinity) {
+    resetCamera();
+    return;
+  }
+  const bboxW = Math.max(1, maxWx - minWx);
+  const bboxH = Math.max(1, maxWy - minWy);
+  const pad = 70;
+  const zoom = Math.max(
+    ZOOM_MIN,
+    Math.min(ZOOM_MAX, Math.min((VIEWBOX_WIDTH - pad * 2) / bboxW, (VIEWBOX_HEIGHT - pad * 2) / bboxH))
+  );
+  state.camera = { x: (minWx + maxWx) / 2, y: (minWy + maxWy) / 2, zoom };
   applyCamera();
 }
 
