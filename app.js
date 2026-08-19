@@ -771,29 +771,71 @@ function svg(tag, attrs = {}) {
 const VIEWBOX_WIDTH = 1000;
 const VIEWBOX_HEIGHT = 600;
 const COORDINATE_SPACE = { width: 2500, height: 1100 };
+const ZOOM_MIN = 0.3;
+const ZOOM_MAX = 8;
+const CAMERA_MIN_X = -1200;
+const CAMERA_MAX_X = 2200;
+const CAMERA_MIN_Y = -900;
+const CAMERA_MAX_Y = 1500;
 
-function setZoom(nextZoom) {
-  state.zoom = Math.max(0.5, Math.min(3, nextZoom));
-  applyZoom();
-  /* zoom-dependent label levels: far view hides node labels so only the
-   * region labels remain readable (progressive disclosure) */
-  const zoomLevel = state.zoom < 0.9 ? "far" : state.zoom < 1.5 ? "mid" : "near";
-  els.mapStage.dataset.zoomLevel = zoomLevel;
+function clampCamera(value, min, max) {
+  return Math.max(min, Math.min(max, value));
 }
 
-function applyZoom() {
-  /* map-transform maps the 2500x1100 coordinate space into the 1000x600
-   * viewBox (uniform scale + vertical centering), then applies the user zoom
-   * around the viewBox center. Keeping the viewBox small keeps node sizes and
-   * font sizes readable. */
+/* Camera model: (camX, camY) is the viewport centre in the 1000x600 canvas
+ * coordinates, zoom scales around it. The transform chain is
+ *   translate(cx,cy) scale(zoom) translate(-camX,-camY) translate(0,oy) scale(ss)
+ * so the world point under the cursor stays fixed while zooming (zoomAt) and
+ * dragging moves the camera by the inverse of the pointer delta. */
+function applyCamera() {
   const spaceScale = VIEWBOX_WIDTH / COORDINATE_SPACE.width;
   const spaceOffsetY = (VIEWBOX_HEIGHT - COORDINATE_SPACE.height * spaceScale) / 2;
   const centerX = VIEWBOX_WIDTH / 2;
   const centerY = VIEWBOX_HEIGHT / 2;
+  const { x: camX, y: camY, zoom } = state.camera;
   els.mapTransform.setAttribute(
     "transform",
-    `translate(${centerX} ${centerY}) scale(${state.zoom}) translate(${-centerX} ${-centerY}) translate(0 ${spaceOffsetY}) scale(${spaceScale})`
+    `translate(${centerX} ${centerY}) scale(${zoom}) translate(${-camX} ${-camY}) translate(0 ${spaceOffsetY}) scale(${spaceScale})`
   );
+  const zoomLevel = zoom < 0.9 ? "far" : zoom < 1.5 ? "mid" : "near";
+  els.mapStage.dataset.zoomLevel = zoomLevel;
+}
+
+function resetCamera() {
+  state.camera = { x: VIEWBOX_WIDTH / 2, y: VIEWBOX_HEIGHT / 2, zoom: 1 };
+  applyCamera();
+}
+
+/* Convert a client-space point to viewBox coordinates (handles the SVG
+ * preserveAspectRatio mapping exactly). */
+function toSvgPoint(clientX, clientY) {
+  const point = els.topologyMap.createSVGPoint();
+  point.x = clientX;
+  point.y = clientY;
+  const ctm = els.topologyMap.getScreenCTM();
+  if (!ctm) return { x: clientX, y: clientY };
+  const mapped = point.matrixTransform(ctm.inverse());
+  return { x: mapped.x, y: mapped.y };
+}
+
+/* Zoom keeping the world point under svgPoint fixed on screen. */
+function zoomAt(svgPoint, factor) {
+  const spaceScale = VIEWBOX_WIDTH / COORDINATE_SPACE.width;
+  const spaceOffsetY = (VIEWBOX_HEIGHT - COORDINATE_SPACE.height * spaceScale) / 2;
+  const centerX = VIEWBOX_WIDTH / 2;
+  const centerY = VIEWBOX_HEIGHT / 2;
+  const zoomNew = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, state.camera.zoom * factor));
+  if (zoomNew === state.camera.zoom) return;
+  /* world point under the cursor */
+  const qx = (svgPoint.x - centerX) / state.camera.zoom + state.camera.x;
+  const qy = (svgPoint.y - centerY) / state.camera.zoom + state.camera.y;
+  const px = qx / spaceScale;
+  const py = (qy - spaceOffsetY) / spaceScale;
+  /* keep that world point under the cursor at the new zoom */
+  state.camera.zoom = zoomNew;
+  state.camera.x = clampCamera(spaceScale * px - (svgPoint.x - centerX) / zoomNew, CAMERA_MIN_X, CAMERA_MAX_X);
+  state.camera.y = clampCamera(spaceScale * py + spaceOffsetY - (svgPoint.y - centerY) / zoomNew, CAMERA_MIN_Y, CAMERA_MAX_Y);
+  applyCamera();
 }
 
 /* ---------------- coverage panel ---------------- */
@@ -969,13 +1011,63 @@ async function init() {
 
 function applyMapCoordinateSpace() {
   els.topologyMap.setAttribute("viewBox", `0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`);
-  els.mapStage.dataset.zoomLevel = "mid";
-  applyZoom();
+  resetCamera();
 }
 
 /* ---------------- events ---------------- */
 
 function wireEvents() {
+  /* ---- camera interactions: wheel zoom at cursor, left-drag pan ---- */
+  let panState = null;
+  let suppressNextClick = false;
+
+  els.mapStage.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.15 : 1 / 1.15;
+    zoomAt(toSvgPoint(event.clientX, event.clientY), factor);
+  }, { passive: false });
+
+  els.mapStage.addEventListener("mousedown", (event) => {
+    if (event.button !== 0) return;
+    panState = {
+      startSvg: toSvgPoint(event.clientX, event.clientY),
+      camStart: { x: state.camera.x, y: state.camera.y, zoom: state.camera.zoom },
+      moved: false,
+    };
+    els.mapStage.classList.add("panning");
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    if (!panState) return;
+    const current = toSvgPoint(event.clientX, event.clientY);
+    const deltaX = current.x - panState.startSvg.x;
+    const deltaY = current.y - panState.startSvg.y;
+    if (Math.hypot(deltaX, deltaY) > 3) panState.moved = true;
+    /* dragging the pointer by d moves the camera by -d */
+    state.camera.x = clampCamera(panState.camStart.x + (panState.startSvg.x - current.x), CAMERA_MIN_X, CAMERA_MAX_X);
+    state.camera.y = clampCamera(panState.camStart.y + (panState.startSvg.y - current.y), CAMERA_MIN_Y, CAMERA_MAX_Y);
+    applyCamera();
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!panState) return;
+    if (panState.moved) {
+      suppressNextClick = true;
+      setTimeout(() => { suppressNextClick = false; }, 0);
+    }
+    panState = null;
+    els.mapStage.classList.remove("panning");
+  });
+
+  /* a click right after a drag must not select nodes under the pointer */
+  document.addEventListener("click", (event) => {
+    if (suppressNextClick) {
+      event.stopPropagation();
+      event.preventDefault();
+      suppressNextClick = false;
+    }
+  }, true);
+
   attachCombobox(els.originSearch, (item) => {
     state.origin = item.id;
     state.selectedNode = item.id;
@@ -1044,9 +1136,9 @@ function wireEvents() {
     document.querySelectorAll(".layer-tab").forEach((item) => item.classList.toggle("active", item === button));
     renderGraph();
   }));
-  document.getElementById("zoom-in").addEventListener("click", () => setZoom(state.zoom + 0.1));
-  document.getElementById("zoom-out").addEventListener("click", () => setZoom(state.zoom - 0.1));
-  document.getElementById("zoom-reset").addEventListener("click", () => setZoom(1));
+  document.getElementById("zoom-in").addEventListener("click", () => zoomAt({ x: VIEWBOX_WIDTH / 2, y: VIEWBOX_HEIGHT / 2 }, 1.2));
+  document.getElementById("zoom-out").addEventListener("click", () => zoomAt({ x: VIEWBOX_WIDTH / 2, y: VIEWBOX_HEIGHT / 2 }, 1 / 1.2));
+  document.getElementById("zoom-reset").addEventListener("click", resetCamera);
   els.copyRoute.addEventListener("click", async () => {
     if (!state.route) return;
     try {

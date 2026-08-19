@@ -382,3 +382,7 @@ code { color: #c0b58f; font-size: 9px; }
 /* focus mode dimming (方案二): non-focus nodes/edges recede */
 .edge.dim-edge { opacity: 0.08; }
 .node-group.dim-hard { opacity: 0.06; pointer-events: none; }
+
+/* camera interactions: grab cursor, panning state, no text selection */
+.map-stage { cursor: grab; user-select: none; }
+.map-stage.panning { cursor: grabbing; }
