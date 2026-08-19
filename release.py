@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""RUNE//PATH 发布脚本。
+"""Elden Ring Reachability Map 发布脚本。
 
 把"全量地图可达性查询"所需的运行时文件打包为一个 7z 发布包：
 

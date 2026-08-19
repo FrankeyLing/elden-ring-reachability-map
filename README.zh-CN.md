@@ -1,4 +1,4 @@
-# RUNE//PATH
+# 艾尔登法环可达性地图
 
 **语言**: [English](README.md) · [中文](README.zh-CN.md)
 

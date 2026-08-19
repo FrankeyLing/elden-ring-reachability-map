@@ -1,4 +1,4 @@
-# RUNE//PATH · 数据与权利声明
+# 艾尔登法环可达性地图 · 数据与权利声明
 
 **语言**: [English](../README.md) · [中文](./DISCLAIMER.zh-CN.md)
 

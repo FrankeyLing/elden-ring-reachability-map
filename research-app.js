@@ -710,7 +710,7 @@ function renderInspector() {
 }
 
 function routeText(route) {
-  const lines = [`RUNE//PATH 路线`, `${nodeLabel(state.origin)} → ${nodeLabel(state.destination)}`, `相对成本 ${route.time} · 风险指数 ${route.risk} · ${route.edges.length} 段`, ""];
+  const lines = [`艾尔登法环可达性地图 路线`, `${nodeLabel(state.origin)} → ${nodeLabel(state.destination)}`, `相对成本 ${route.time} · 风险指数 ${route.risk} · ${route.edges.length} 段`, ""];
   route.nodes.forEach((nodeId, index) => {
     lines.push(`${index + 1}. ${nodeLabel(nodeId)}${route.edges[index] ? ` —[${route.edges[index].mode}]→` : ""}`);
   });

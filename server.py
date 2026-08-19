@@ -1736,13 +1736,13 @@ class AppHandler(SimpleHTTPRequestHandler):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run the RUNE//PATH WebUI")
+    parser = argparse.ArgumentParser(description="Run the Elden Ring Reachability Map WebUI")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8090)
     args = parser.parse_args()
 
     server = ThreadingHTTPServer((args.host, args.port), AppHandler)
-    print(f"RUNE//PATH running at http://{args.host}:{args.port}")
+    print(f"Elden Ring Reachability Map running at http://{args.host}:{args.port}")
     print("Press Ctrl+C to stop.")
     try:
         server.serve_forever()

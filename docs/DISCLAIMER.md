@@ -1,4 +1,4 @@
-# RUNE//PATH · Data & Rights Statement
+# Elden Ring Reachability Map · Data & Rights Statement
 
 **Language**: English · [中文](DISCLAIMER.zh-CN.md)
 

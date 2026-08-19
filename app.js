@@ -1,4 +1,4 @@
-/* RUNE//PATH Beta — player-first route planner.
+/* Elden Ring Reachability Map Beta — player-first route planner.
  *
  * Depends on framework.js (RouteFramework). The page loads ONLY the package
  * manifest and the data packages; no research indexes, no online coordinate
@@ -1429,7 +1429,7 @@ async function init() {
     }
     planAndRender();
   } catch (error) {
-    console.warn("RUNE//PATH init:", error);
+    console.warn("Elden Ring Reachability Map init:", error);
     showZeroData(error.message);
   }
 }
@@ -1670,7 +1670,7 @@ function routeText(route) {
     const direction = edge.direction === "one_way" || edge.direction === "one_way_drop" ? "（单向）" : "";
     return `${index + 1}. ${from} → ${to}${direction} · ${modeZh(edge)}`;
   });
-  return `RUNE//PATH 路线（${route.edges.length} 段）\n${lines.join("\n")}`;
+  return `艾尔登法环可达性地图 路线（${route.edges.length} 段）\n${lines.join("\n")}`;
 }
 
 document.addEventListener("DOMContentLoaded", init);

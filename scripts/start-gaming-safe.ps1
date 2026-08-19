@@ -28,14 +28,14 @@ try {
         Start-Sleep -Milliseconds 200
         $listener = Get-NetTCPConnection -LocalAddress "127.0.0.1" -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
         if ($listener -and $listener.OwningProcess -eq $server.Id) { break }
-        if ($server.HasExited) { throw "RUNE//PATH server exited before binding 127.0.0.1:$Port." }
+        if ($server.HasExited) { throw "ERRM server exited before binding 127.0.0.1:$Port." }
     } while ((Get-Date) -lt $deadline)
 
     if (-not $listener -or $listener.OwningProcess -ne $server.Id) {
-        throw "RUNE//PATH server did not bind 127.0.0.1:$Port within 5 seconds."
+        throw "ERRM server did not bind 127.0.0.1:$Port within 5 seconds."
     }
     Set-Content -LiteralPath $PidFile -Value $server.Id -Encoding ASCII
-    Write-Output "RUNE//PATH server started in hidden mode: http://127.0.0.1:$Port (PID $($server.Id))."
+    Write-Output "ERRM server started in hidden mode: http://127.0.0.1:$Port (PID $($server.Id))."
     Write-Output "No browser was opened; no game process, game file, save, overlay, or input hook is accessed."
 }
 catch {

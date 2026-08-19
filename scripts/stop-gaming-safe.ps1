@@ -8,7 +8,7 @@ $Root = Split-Path -Parent $PSScriptRoot
 $PidFile = Join-Path (Join-Path $Root ".runtime") "server.pid"
 
 if (-not (Test-Path -LiteralPath $PidFile)) {
-    Write-Output "No RUNE//PATH managed server PID file was found; no process was changed."
+    Write-Output "No ERRM managed server PID file was found; no process was changed."
     exit 0
 }
 
@@ -21,4 +21,4 @@ if (-not $listener -or $listener.OwningProcess -ne $managedPid) {
 
 Stop-Process -Id $managedPid
 Remove-Item -LiteralPath $PidFile -ErrorAction SilentlyContinue
-Write-Output "RUNE//PATH server stopped: PID $managedPid; no other process was changed."
+Write-Output "ERRM server stopped: PID $managedPid; no other process was changed."
