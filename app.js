@@ -141,6 +141,9 @@ const state = {
   routeProfile: DEFAULT_ROUTE_PROFILE,
   preference: "balanced",
   layer: "surface",
+  mapView: "regions",      // "regions" (aggregate overview) | "detail" (one region)
+  detailRegion: null,
+  regionLayoutCache: null,
   zoom: 1,
   route: null,
   selectedNode: null,
@@ -247,6 +250,7 @@ const els = {
   routeEmptyHint: document.getElementById("route-empty-hint"),
   nodeInspector: document.getElementById("node-inspector"),
   mapToast: document.getElementById("map-toast"),
+  mapBack: document.getElementById("map-back"),
   mapTransform: document.getElementById("map-transform"),
   copyRoute: document.getElementById("copy-route"),
   coveragePanel: document.getElementById("coverage-panel"),
@@ -752,7 +756,241 @@ function renderInspector() {
   </div>`;
 }
 
+/* ---------------- region overview (方案六) ---------------- */
+
+/* Group key: the displayed (official-Chinese) region name, so synonym regions
+ * like 王城罗德尔 / Leyndell, Royal Capital merge into one aggregate node. */
+function regionKey(node) {
+  return regionZh(node.id) || node.region || "?";
+}
+
+function buildRegionGroups() {
+  const groups = new Map();
+  for (const node of state.store.activeNodeList()) {
+    const key = regionKey(node);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(node);
+  }
+  return groups;
+}
+
+function regionRadius(nodeCount) {
+  return 30 + Math.min(nodeCount, 120) * 0.5;
+}
+
+/* Force-directed anti-overlap layout for the aggregate region nodes: starts
+ * from each region's centroid, then repels overlapping pairs until stable.
+ * Result is cached per group signature (deterministic, ~100ms for 122). */
+function computeRegionLayout(groups) {
+  const keys = [...groups.keys()];
+  const pos = new Map();
+  const radius = new Map();
+  for (const key of keys) {
+    const nodes = groups.get(key);
+    pos.set(key, {
+      x: nodes.reduce((sum, node) => sum + node.x, 0) / nodes.length,
+      y: nodes.reduce((sum, node) => sum + node.y, 0) / nodes.length,
+    });
+    radius.set(key, regionRadius(nodes.length));
+  }
+  for (let iteration = 0; iteration < 90; iteration += 1) {
+    let moved = 0;
+    for (let i = 0; i < keys.length; i += 1) {
+      for (let j = i + 1; j < keys.length; j += 1) {
+        const a = pos.get(keys[i]);
+        const b = pos.get(keys[j]);
+        let dx = b.x - a.x;
+        let dy = b.y - a.y;
+        let dist = Math.hypot(dx, dy);
+        const minDist = radius.get(keys[i]) + radius.get(keys[j]) + 20;
+        if (dist >= minDist) continue;
+        if (dist === 0) {
+          dx = 1;
+          dy = 0.3;
+          dist = Math.hypot(dx, dy);
+        }
+        const push = (minDist - dist) / 2;
+        const ux = dx / dist;
+        const uy = dy / dist;
+        a.x -= ux * push;
+        a.y -= uy * push;
+        b.x += ux * push;
+        b.y += uy * push;
+        moved += 1;
+      }
+    }
+    for (const key of keys) {
+      pos.get(key).x = Math.max(50, Math.min(COORDINATE_SPACE.width - 50, pos.get(key).x));
+      pos.get(key).y = Math.max(50, Math.min(COORDINATE_SPACE.height - 50, pos.get(key).y));
+    }
+    if (moved === 0) break;
+  }
+  return { pos, radius };
+}
+
+function renderRegionOverview() {
+  els.regionLabels.innerHTML = "";
+  els.edgeLayer.innerHTML = "";
+  els.nodeLayer.innerHTML = "";
+  const groups = buildRegionGroups();
+  const signature = [...groups.keys()].sort().join("|") + ":" + [...groups.values()].map((nodes) => nodes.length).join(",");
+  if (!state.regionLayoutCache || state.regionLayoutCache.signature !== signature) {
+    state.regionLayoutCache = { signature, ...computeRegionLayout(groups) };
+  }
+  const { pos, radius } = state.regionLayoutCache;
+  const meta = new Map();
+  for (const [key, nodes] of groups) {
+    const position = pos.get(key);
+    meta.set(key, {
+      cx: position.x,
+      cy: position.y,
+      radius: radius.get(key),
+      nodes: nodes.length,
+      graces: nodes.filter((node) => node.kind === "grace").length,
+    });
+  }
+
+  /* aggregate inter-region edges: one dashed link per region pair */
+  const drawnPairs = new Set();
+  for (const edge of state.store.activeEdgeList()) {
+    const from = state.store.node(edge.from);
+    const to = state.store.node(edge.to);
+    if (!from || !to) continue;
+    const fromKey = regionKey(from);
+    const toKey = regionKey(to);
+    if (fromKey === toKey) continue;
+    const a = meta.get(fromKey);
+    const b = meta.get(toKey);
+    if (!a || !b) continue;
+    const pair = fromKey < toKey ? `${fromKey}|${toKey}` : `${toKey}|${fromKey}`;
+    if (drawnPairs.has(pair)) continue;
+    drawnPairs.add(pair);
+    const line = svg("line", { x1: a.cx, y1: a.cy, x2: b.cx, y2: b.cy, class: "region-edge" });
+    els.edgeLayer.appendChild(line);
+  }
+
+  for (const [key, regionMeta] of meta) {
+    const group = svg("g", {
+      class: "region-node",
+      transform: `translate(${regionMeta.cx} ${regionMeta.cy})`,
+    });
+    const circle = svg("circle", { r: regionMeta.radius, class: "region-node-core" });
+    /* transparent hit circle extends the clickable area beyond the visual ring */
+    const hit = svg("circle", { r: regionMeta.radius + 16, class: "region-node-hit" });
+    const label = svg("text", { y: -regionMeta.radius - 9, class: "region-node-label" });
+    label.textContent = key;
+    const sub = svg("text", { y: 5, class: "region-node-sub" });
+    sub.textContent = `${regionMeta.nodes} 节点 · ${regionMeta.graces} 赐福`;
+    group.append(hit, circle, label, sub);
+    group.addEventListener("click", () => {
+      state.mapView = "detail";
+      state.detailRegion = key;
+      state.selectedNode = null;
+      resetCamera();
+      els.mapBack.hidden = false;
+      renderGraph();
+    });
+    group.addEventListener("mouseenter", () => {
+      els.mapToast.textContent = `${key} · ${regionMeta.nodes} 节点 · ${regionMeta.graces} 赐福（点击进入）`;
+    });
+    group.addEventListener("mouseleave", () => { els.mapToast.textContent = "点击区域查看内部拓扑"; });
+    els.nodeLayer.appendChild(group);
+  }
+  els.graphStats.textContent = `${groups.size} 个区域 · ${state.store.nodes.size} 节点 · ${state.store.edges.size} 条边（点击区域下钻）`;
+}
+
+function renderRegionDetail() {
+  const region = state.detailRegion;
+  const memberIds = new Set();
+  for (const node of state.store.activeNodeList()) {
+    if (regionKey(node) === region) memberIds.add(node.id);
+  }
+
+  els.regionLabels.innerHTML = "";
+  els.edgeLayer.innerHTML = "";
+  els.nodeLayer.innerHTML = "";
+
+  const routeEdgeIds = new Set(state.route?.edges.map((edge) => edge.id) || []);
+  const focus = focusNodeIds();
+  let internalEdges = 0;
+  let externalEdges = 0;
+  for (const edge of state.store.activeEdgeList()) {
+    const inFrom = memberIds.has(edge.from);
+    const inTo = memberIds.has(edge.to);
+    if (!inFrom && !inTo) continue;
+    if (!inFrom || !inTo) {
+      externalEdges += 1;
+      continue;
+    }
+    internalEdges += 1;
+    const from = state.store.node(edge.from);
+    const to = state.store.node(edge.to);
+    const available = edgeAvailable(edge);
+    const isRoute = routeEdgeIds.has(edge.id);
+    const unknown = Boolean(edge.conditionUnknown?.length);
+    const isLocalDeclared = (edge.tags || []).includes("local_declared") || (edge.tags || []).includes("known_connection");
+    const isCatalogGrace = (edge.tags || []).includes("catalog_grace");
+    const dimEdge = Boolean(focus) && !focus.has(edge.from) && !focus.has(edge.to) && !isRoute;
+    const classes = [
+      "edge", available ? "available" : "blocked",
+      (edge.requires || []).length ? "conditional" : "",
+      unknown ? "unknown" : "",
+      isRoute ? "route" : "",
+      isLocalDeclared ? "local-declared" : "",
+      isCatalogGrace ? "catalog-grace" : "",
+      dimEdge ? "dim-edge" : "",
+    ];
+    const line = svg("line", {
+      x1: from.x, y1: from.y, x2: to.x, y2: to.y,
+      class: classes.join(" "),
+      "data-edge-id": edge.id,
+    });
+    line.addEventListener("mouseenter", () => {
+      els.mapToast.textContent = `${nodeLabelZh(edge.from)} → ${nodeLabelZh(edge.to)} · ${modeZh(edge)}`;
+    });
+    line.addEventListener("mouseleave", () => { els.mapToast.textContent = "点击节点查看详情"; });
+    els.edgeLayer.appendChild(line);
+  }
+
+  const routeNodeIds = new Set(state.route?.nodes || []);
+  for (const node of state.store.activeNodeList()) {
+    if (!memberIds.has(node.id)) continue;
+    const group = svg("g", {
+      class: `node-group kind-${node.kind} ${state.selectedNode === node.id ? "selected" : ""} ${routeNodeIds.has(node.id) ? "route-node" : ""} ${node.id === state.origin ? "origin" : ""} ${node.id === state.destination ? "destination" : ""}`,
+      transform: `translate(${node.x} ${node.y})`,
+    });
+    const dimNode = Boolean(focus) && !focus.has(node.id) && !routeNodeIds.has(node.id);
+    if (dimNode) group.classList.add("dim-hard");
+    const hit = svg("circle", { r: 14, class: "node-hit" });
+    const ring = svg("circle", { r: node.kind === "target" ? 9 : 7, class: "node-ring" });
+    const core = svg("circle", { r: node.kind === "target" ? 4 : 3, class: "node-core", fill: nodeCoreColor(node.kind) });
+    const label = svg("text", { x: 12, y: 4, class: "node-label" });
+    label.textContent = nodeLabelZh(node.id);
+    const region = svg("text", { x: 12, y: 15, class: "node-region" });
+    region.textContent = `${layerZh(node.layer).toUpperCase()} · ${regionZh(node.id)}`;
+    group.append(hit, ring, core, label, region);
+    if (node.id === state.origin || node.id === state.destination) {
+      const marker = svg("text", { x: -4, y: -13, class: "node-status" });
+      marker.textContent = node.id === state.origin ? "FROM" : "TO";
+      group.appendChild(marker);
+    }
+    group.addEventListener("click", () => selectNode(node.id));
+    group.addEventListener("mouseenter", () => { els.mapToast.textContent = `${nodeLabelZh(node.id)} · ${regionZh(node.id)}`; });
+    group.addEventListener("mouseleave", () => { els.mapToast.textContent = "点击节点查看详情"; });
+    els.nodeLayer.appendChild(group);
+  }
+  els.graphStats.textContent = `${region} · ${memberIds.size} 节点 · ${internalEdges} 内部边 · ${externalEdges} 条跨区边`;
+}
+
 function renderGraph() {
+  if (state.mapView === "regions") {
+    renderRegionOverview();
+    return;
+  }
+  if (state.mapView === "detail") {
+    renderRegionDetail();
+    return;
+  }
   renderRegions();
   renderEdges();
   renderNodes();
@@ -1079,8 +1317,7 @@ function wireEvents() {
     planAndRender();
   });
   els.swapRoute.addEventListener("click", () => {
-    const tmp = state.origin;
-    state.origin = state.destination;
+    const tmp = state.origin;    state.origin = state.destination;
     state.destination = tmp;
     els.originSearch.value = nodeLabel(state.origin);
     els.originSearch.dataset.nodeId = state.origin;
@@ -1139,6 +1376,14 @@ function wireEvents() {
   document.getElementById("zoom-in").addEventListener("click", () => zoomAt({ x: VIEWBOX_WIDTH / 2, y: VIEWBOX_HEIGHT / 2 }, 1.2));
   document.getElementById("zoom-out").addEventListener("click", () => zoomAt({ x: VIEWBOX_WIDTH / 2, y: VIEWBOX_HEIGHT / 2 }, 1 / 1.2));
   document.getElementById("zoom-reset").addEventListener("click", resetCamera);
+  els.mapBack.addEventListener("click", () => {
+    state.mapView = "regions";
+    state.detailRegion = null;
+    state.selectedNode = null;
+    els.mapBack.hidden = true;
+    resetCamera();
+    renderGraph();
+  });
   els.copyRoute.addEventListener("click", async () => {
     if (!state.route) return;
     try {
