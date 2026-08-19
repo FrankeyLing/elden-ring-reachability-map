@@ -31,6 +31,7 @@ KNOWN_LOCATION_TYPES = {
     "castle", "minor_erdtree", "town", "village", "mausoleum", "eternal_city",
     "belfries", "landmark", "capital", "underground", "study_hall",
     "miquella_cross", "manse", "gaol", "ruined_forge", "unknown",
+    "spirit_spring", "caravan", "puzzle", "hidden_passage", "teleporter",
 }
 
 problems: list[str] = []
@@ -46,6 +47,7 @@ def main() -> int:
     acquisitions = json.loads((DATA / "entities" / "acquisition-registry.json").read_text(encoding="utf-8"))
     locations = json.loads((DATA / "entities" / "location-catalog.json").read_text(encoding="utf-8"))
     graph = json.loads((DATA / "graph-v1.json").read_text(encoding="utf-8"))
+    gaps = json.loads((DATA / "entities" / "gap-catalog.json").read_text(encoding="utf-8"))
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -85,6 +87,16 @@ def main() -> int:
     for l in locs:
         check(l["category"] in KNOWN_LOCATION_TYPES, f"location {l['id']} unknown type {l['category']}")
     print(f"location catalog: {len(locs)} locations")
+
+    # ---- 3b. gap catalog -----------------------------------------------------
+    gap_ids = [g["id"] for g in gaps["entities"]]
+    check(len(gap_ids) == len(set(gap_ids)), "gap catalog ids not unique")
+    for g in gaps["entities"]:
+        check(g["category"] in KNOWN_LOCATION_TYPES, f"gap entity {g['id']} unknown type {g['category']}")
+        check(g.get("verification"), f"gap entity {g['id']} missing verification")
+        if g["category"] == "spirit_spring":
+            check(g.get("verification") == "icon_heuristic", f"spring {g['id']} must be labelled heuristic")
+    print(f"gap catalog: {len(gaps['entities'])} entities")
 
     # ---- 4. graph integration ------------------------------------------------
     node_ids = {n["id"] for n in graph["nodes"]}

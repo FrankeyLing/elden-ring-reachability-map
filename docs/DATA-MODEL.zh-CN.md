@@ -98,15 +98,17 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 - `scripts/audit-acquisition.py` 验证 id 唯一性、名称存在性、能指有效性、
   关系端点与图关系端点。
 
-## 4. 已知缺口（后续增量）
+## 4. 剩余缺口（后续增量）
 
 - 拾取**位置**：5,011 条拾取 lot 尚未绑定到 MSB 拾取物实例（已发现
   3,894 个 `Treasure` 事件）；EMEVD 拾取事件链仍需解码。
 - 商店**商人绑定**：商店关系绑定到 `shop-<id>` 实体，尚未绑定到具名
   商人 NPC。
-- 灵泉/车队/谜题：`WorldMapPointParam` 与 MSB 中尚未映射这些类别。
-- 隐形墙与传送机关已存在于 `msb-objact-catalog.json`（隐藏房间、传送
-  陷阱），但尚未提升为图节点。
+
+已关闭缺口（2026-08-20）：灵泉（70 个，icon-83 启发式，标注
+`icon_heuristic`）、车队（5 条 MSB 巡逻路线）、谜题（20 个特殊 ObjAct
+交互）、暗门与传送机关（7 个 MSB ObjAct）——全部在 `gap-catalog.json`
+中并已提升为图节点。
 
 ## 5. 构建管道
 

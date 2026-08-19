@@ -53,6 +53,10 @@ def main() -> int:
                         default=ROOT / "data" / "v1" / "entities" / "location-catalog.json")
     parser.add_argument("--achievements", type=Path,
                         default=ROOT / "data" / "v1" / "entities" / "achievements.json")
+    parser.add_argument("--gaps", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "gap-catalog.json")
+    parser.add_argument("--objacts", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "msb-objact-catalog.json")
     args = parser.parse_args()
 
     graph = load_json(args.graph)
@@ -60,6 +64,8 @@ def main() -> int:
     acquisitions = load_json(args.acquisitions)
     locations = load_json(args.locations)
     achievements = load_json(args.achievements)
+    gaps = load_json(args.gaps) if args.gaps.exists() else {"entities": []}
+    objacts = load_json(args.objacts) if args.objacts.exists() else {"objacts": []}
 
     node_ids = {n["id"] for n in graph["nodes"]}
     existing_relations = {(r["id"]) for r in graph.get("relations", [])}
@@ -91,6 +97,63 @@ def main() -> int:
             "position": pos,
         })
         node_ids.add(loc["id"])
+        added_nodes += 1
+
+    # ---- 1b. gap-catalog nodes (spirit springs / caravans / puzzles) -------
+    for ent in gaps.get("entities", []):
+        if ent["id"] in node_ids:
+            continue
+        graph["nodes"].append({
+            "id": ent["id"],
+            "label": ent["name"]["zh"] or ent["name"]["en"],
+            "kind": "location",
+            "layer": None,
+            "region": None,
+            "floor": None,
+            "worldEpoch": None,
+            "x": None,
+            "y": None,
+            "coordinateType": "none",
+            "verificationState": ent.get("verification", "local_msb_verified"),
+            "sourceEvidence": [json.dumps(ent.get("signifiers", [{}])[0], ensure_ascii=False)[:120]],
+            "description": f"{ent['category']}: {ent['name']['en']}",
+            "entityType": ent["category"],
+            **({"position": ent["properties"].get("position")} if ent.get("properties", {}).get("position") else {}),
+        })
+        node_ids.add(ent["id"])
+        added_nodes += 1
+
+    # ---- 1c. hidden passages / teleporters from MSB ObjAct ----------------
+    import re as _re
+    for obj in objacts.get("objacts", []):
+        n = obj.get("name", "")
+        cat = None
+        if _re.search(r"隠し|hidden|secret", n, re.I):
+            cat = "hidden_passage"
+        elif _re.search(r"ワープ|warp|転送|テレポート|転移", n, re.I):
+            cat = "teleporter"
+        if cat is None:
+            continue
+        lid = f"location_{cat}_{slugify(n)[:40]}"
+        if lid in node_ids:
+            continue
+        graph["nodes"].append({
+            "id": lid,
+            "label": f"{'暗门' if cat == 'hidden_passage' else '传送机关'}: {n[:40]}",
+            "kind": "location",
+            "layer": None,
+            "region": None,
+            "floor": None,
+            "worldEpoch": None,
+            "x": None,
+            "y": None,
+            "coordinateType": "none",
+            "verificationState": "local_msb_verified",
+            "sourceEvidence": [f"MSB ObjAct {n} in {obj.get('map')}"],
+            "description": f"{cat}: {n}",
+            "entityType": cat,
+        })
+        node_ids.add(lid)
         added_nodes += 1
 
     # ---- 2. unique item nodes ---------------------------------------------
