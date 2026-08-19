@@ -780,13 +780,25 @@ function regionRadius(nodeCount) {
   return 30 + Math.min(nodeCount, 120) * 0.5;
 }
 
+/* Half-width of a region's name label in local (region-node) units. The label
+ * is drawn at 15px and, crucially, sits in the same local coordinate space as
+ * the circle (the group carries only a translate; the spaceScale is applied
+ * uniformly to both in the parent transform). A Chinese name can be wider than
+ * a small circle's diameter, so repulsion must account for it or labels stack. */
+function regionLabelSpan(key) {
+  return ([...key].length * 15) / 2;
+}
+
 /* Force-directed anti-overlap layout for the aggregate region nodes: starts
  * from each region's centroid, then repels overlapping pairs until stable.
+ * The circle radius drives the drawn node, but repulsion uses the wider of the
+ * circle radius and the label half-width so text never stacks on text.
  * Result is cached per group signature (deterministic, ~100ms for 122). */
 function computeRegionLayout(groups) {
   const keys = [...groups.keys()];
   const pos = new Map();
   const radius = new Map();
+  const collision = new Map();
   for (const key of keys) {
     const nodes = groups.get(key);
     pos.set(key, {
@@ -794,6 +806,7 @@ function computeRegionLayout(groups) {
       y: nodes.reduce((sum, node) => sum + node.y, 0) / nodes.length,
     });
     radius.set(key, regionRadius(nodes.length));
+    collision.set(key, Math.max(radius.get(key), regionLabelSpan(key)));
   }
   for (let iteration = 0; iteration < 90; iteration += 1) {
     let moved = 0;
@@ -804,7 +817,7 @@ function computeRegionLayout(groups) {
         let dx = b.x - a.x;
         let dy = b.y - a.y;
         let dist = Math.hypot(dx, dy);
-        const minDist = radius.get(keys[i]) + radius.get(keys[j]) + 20;
+        const minDist = collision.get(keys[i]) + collision.get(keys[j]) + 12;
         if (dist >= minDist) continue;
         if (dist === 0) {
           dx = 1;
@@ -913,7 +926,10 @@ function renderRegionDetail() {
   els.nodeLayer.innerHTML = "";
 
   const routeEdgeIds = new Set(state.route?.edges.map((edge) => edge.id) || []);
-  const focus = focusNodeIds();
+  /* Region detail shows the full intra-region topology; the global focus dim
+   * (which fades + disables nodes outside the current route/origin reach) must
+   * not apply here or most nodes render ghosted and un-tappable. */
+  const focus = null;
   let internalEdges = 0;
   let externalEdges = 0;
   for (const edge of state.store.activeEdgeList()) {
