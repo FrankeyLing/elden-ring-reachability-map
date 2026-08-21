@@ -185,6 +185,13 @@ the exact awarded item and shares an event flag with the local award event.
 Name-only and flag-only candidates remain omitted from acquisition relations;
 they are counted in the builder output for later review.
 
+The acquisition projection additionally copies 80 local NPC instances into
+these 12 relations as `quest_npc_endpoint` records. They are coordinate
+evidence from the local MSB spawn catalog, not formal route nodes: each one is
+explicitly `coordinate_endpoint` with empty route and semantic node lists. A
+future topology pass may bind an instance to a formal node independently; a
+missing or unresolved NPC endpoint must not remove the quest reward relation.
+
 ### 2.5 player query and topology bridge
 
 The player page queries `player-entity-index.json` through

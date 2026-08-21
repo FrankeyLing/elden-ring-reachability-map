@@ -152,6 +152,24 @@ def main() -> int:
         check(binding.get("from") == rel.get("from"), f"quest reward relation {rel['id']} NPC mismatch")
         check(binding.get("verification") == "local_award_external_quest_name_and_flag_overlap",
               f"quest reward relation {rel['id']} weak verification")
+        for endpoint in rel.get("endpointInstances", []):
+            check(endpoint.get("kind") == "quest_npc_endpoint",
+                  f"quest reward {rel['id']} has non-quest NPC endpoint")
+            check(endpoint.get("map") and endpoint.get("part"),
+                  f"quest reward {rel['id']} endpoint missing map or part")
+            check(isinstance(endpoint.get("npcParamId"), int),
+                  f"quest reward {rel['id']} endpoint missing NpcParam id")
+            position = endpoint.get("position")
+            check(
+                isinstance(position, dict)
+                and all(isinstance(position.get(axis), (int, float)) for axis in ("x", "y", "z")),
+                f"quest reward {rel['id']} endpoint missing XYZ position",
+            )
+            topology_binding = endpoint.get("topologyBinding") or {}
+            check(topology_binding.get("status") == "coordinate_endpoint",
+                  f"quest reward {rel['id']} endpoint must remain coordinate-only")
+            check(not topology_binding.get("routeNodeIds") and not topology_binding.get("semanticNodeIds"),
+                  f"quest reward {rel['id']} endpoint invented a topology node")
     print(f"quest reward evidence: {len(quest_binding_ids)} bindings; relations={len(quest_relations)}")
 
     binding_ids = [binding.get("id") for binding in merchant_bindings.get("bindings", [])]
@@ -218,6 +236,14 @@ def main() -> int:
             check(key in spawn_keys, f"drop {rel['id']} endpoint {key} missing from spawn catalog")
             drop_endpoint_count += 1
     print(f"enemy spawn bindings: {len(spawns.get('bindings', []))} npc params, {spawn_count} instances; drop endpoints={drop_endpoint_count}")
+    quest_endpoint_count = 0
+    for rel in quest_relations:
+        for endpoint in rel.get("endpointInstances", []):
+            key = (endpoint.get("map"), endpoint.get("part"), endpoint.get("npcParamId"))
+            check(key in spawn_keys,
+                  f"quest reward {rel['id']} endpoint {key} missing from spawn catalog")
+            quest_endpoint_count += 1
+    print(f"quest NPC coordinate endpoints={quest_endpoint_count}")
 
     # ---- 3. location catalog ------------------------------------------------
     locs = locations["entities"]

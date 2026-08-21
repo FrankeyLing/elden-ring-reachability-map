@@ -142,6 +142,9 @@ def main() -> int:
         assert any(
             relation.get("questRewardBinding", {}).get("npcName") == "Ranni the Witch"
             and relation.get("questRewardBinding", {}).get("eventRewardBindingId") == "event-reward-common-3050-7"
+            and relation.get("endpointInstances")
+            and relation["endpointInstances"][0].get("kind") == "quest_npc_endpoint"
+            and relation["endpointInstances"][0].get("topologyBinding", {}).get("status") == "coordinate_endpoint"
             for relation in quest_sources
         ), quest_sources
         ranni = query(id="npc_ranni_the_witch")

@@ -852,10 +852,86 @@ def build_event_reward_relations(event_rewards_path: Path | None = None) -> list
     return relations
 
 
-def build_quest_reward_relations(quest_rewards_path: Path | None = None) -> list[dict]:
-    """Expose only conservative NPC quest-step/local award intersections."""
+def attach_quest_npc_endpoints(
+    relations: list[dict],
+    entities: list[dict],
+    spawn_path: Path | None,
+) -> int:
+    """Attach copied local NPC MSB instances without inventing route nodes.
+
+    Quest rewards identify a source character, but the quest binding itself is
+    not a route graph.  The local enemy/NPC spawn catalog still gives us useful
+    independent coordinate evidence for every known NpcParam row.  Publish
+    those instances as coordinate endpoints and keep the formal topology
+    binding empty until a real route-node correspondence is proven.
+    """
+    if not spawn_path or not spawn_path.is_file():
+        return 0
+    payload = json.loads(spawn_path.read_text(encoding="utf-8"))
+    by_npc = {
+        str(binding["npcParamId"]): binding.get("instances", [])
+        for binding in payload.get("bindings", [])
+    }
+    rows_by_entity: dict[str, list[int]] = {}
+    for entity in entities:
+        rows = next(
+            (
+                signifier.get("rows", [])
+                for signifier in entity.get("signifiers", [])
+                if signifier.get("type") == "param"
+                and signifier.get("param") == "NpcParam"
+            ),
+            [],
+        )
+        if rows:
+            rows_by_entity[entity["id"]] = [int(row) for row in rows]
+
+    endpoint_count = 0
+    for relation in relations:
+        source_id = relation.get("from")
+        instances: list[dict] = []
+        seen: set[tuple] = set()
+        for row_id in rows_by_entity.get(source_id, []):
+            for source_instance in by_npc.get(str(row_id), []):
+                key = (
+                    source_instance.get("map"),
+                    source_instance.get("part"),
+                    source_instance.get("npcParamId"),
+                )
+                if key in seen:
+                    continue
+                seen.add(key)
+                instance = dict(source_instance)
+                instance["kind"] = "quest_npc_endpoint"
+                instance["questRewardRole"] = "npc_delivery_or_quest_actor"
+                instance["topologyBinding"] = {
+                    "status": "coordinate_endpoint",
+                    "routeNodeIds": [],
+                    "semanticNodeIds": [],
+                    "reason": "local MSB NPC coordinate; no formal quest NPC route node",
+                }
+                instance["sourceEvidence"] = [
+                    *source_instance.get("sourceEvidence", []),
+                    "quest reward source character resolved through local NpcParam",
+                ]
+                instances.append(instance)
+        if instances:
+            relation["endpointInstances"] = instances
+            relation.setdefault("evidence", []).append(
+                "copied local MSB NPC endpoint catalog"
+            )
+            endpoint_count += len(instances)
+    return endpoint_count
+
+
+def build_quest_reward_relations(
+    quest_rewards_path: Path | None = None,
+    entities: list[dict] | None = None,
+    spawn_path: Path | None = None,
+) -> tuple[list[dict], int]:
+    """Expose conservative NPC quest-step/local award intersections."""
     if not quest_rewards_path or not quest_rewards_path.is_file():
-        return []
+        return [], 0
     payload = json.loads(quest_rewards_path.read_text(encoding="utf-8"))
     relations = []
     for binding in payload.get("bindings", []):
@@ -879,7 +955,10 @@ def build_quest_reward_relations(quest_rewards_path: Path | None = None) -> list
             "evidence": binding.get("evidence", []),
             "verification": binding.get("verification", "local_award_external_quest_name_and_flag_overlap"),
         })
-    return relations
+    endpoint_count = attach_quest_npc_endpoints(
+        relations, entities or [], spawn_path
+    )
+    return relations, endpoint_count
 
 
 # ---------------------------------------------------------------------------
@@ -961,8 +1040,13 @@ def main() -> int:
     print(f"boss reward relations: {len(boss_rewards)}")
     event_rewards = build_event_reward_relations(args.event_rewards)
     print(f"event reward relations: {len(event_rewards)}")
-    quest_rewards = build_quest_reward_relations(args.quest_rewards)
-    print(f"quest reward relations: {len(quest_rewards)}")
+    quest_rewards, quest_endpoint_count = build_quest_reward_relations(
+        args.quest_rewards, entities + enemies, args.enemy_spawns
+    )
+    print(
+        f"quest reward relations: {len(quest_rewards)}; "
+        f"NPC endpoints={quest_endpoint_count}"
+    )
 
     # Named entities with no official FMG name (identified by model): the SotE
     # Furnace Golem is a user-category boss with only a community name.
@@ -1000,6 +1084,7 @@ def main() -> int:
             "event_reward": len(event_rewards),
             "quest_reward": len(quest_rewards),
             "dropEndpointInstances": drop_endpoint_count,
+            "questNpcEndpointInstances": quest_endpoint_count,
             "bossRewardEndpointInstances": sum(
                 len(relation.get("endpointInstances", [])) for relation in boss_rewards
             ),
