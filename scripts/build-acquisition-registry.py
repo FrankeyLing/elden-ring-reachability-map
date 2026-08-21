@@ -32,6 +32,7 @@ ACHIEVEMENTS = ROOT / "data" / "v1" / "entities" / "achievements.json"
 DEFAULT_ENEMY_SPAWNS = ROOT / "data" / "v1" / "entities" / "enemy-spawn-bindings.json"
 DEFAULT_MERCHANT_SHOPS = ROOT / "data" / "v1" / "entities" / "merchant-shop-bindings.json"
 DEFAULT_BOSS_ENDPOINTS = ROOT / "data" / "v1" / "entities" / "boss-reward-endpoints.json"
+DEFAULT_EVENT_REWARDS = ROOT / "data" / "v1" / "entities" / "event-reward-bindings.json"
 
 _suffix_re = re.compile(r"(_dlc0[12])?\.fmg$")
 
@@ -820,6 +821,36 @@ def build_boss_reward_relations(
     return relations
 
 
+def build_event_reward_relations(event_rewards_path: Path | None = None) -> list[dict]:
+    """Expose direct EMEVD item-award facts without guessing quest identity."""
+    if not event_rewards_path or not event_rewards_path.is_file():
+        return []
+    payload = json.loads(event_rewards_path.read_text(encoding="utf-8"))
+    relations = []
+    for binding in payload.get("bindings", []):
+        items = [
+            {
+                "item": item["item"],
+                "name": item["name"],
+                "num": item.get("num"),
+            }
+            for item in binding.get("items", [])
+            if item.get("item") and item.get("name", {}).get("en")
+        ]
+        if not items:
+            continue
+        relations.append({
+            "id": binding["id"],
+            "from": None,
+            "method": "event_reward",
+            "items": items,
+            "eventRewardBinding": binding,
+            "evidence": binding.get("evidence", []),
+            "verification": binding.get("verification", "local_emevd_and_param_verified"),
+        })
+    return relations
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -834,6 +865,7 @@ def main() -> int:
     parser.add_argument("--enemy-spawns", type=Path, default=DEFAULT_ENEMY_SPAWNS)
     parser.add_argument("--merchant-shops", type=Path, default=DEFAULT_MERCHANT_SHOPS)
     parser.add_argument("--boss-endpoints", type=Path, default=DEFAULT_BOSS_ENDPOINTS)
+    parser.add_argument("--event-rewards", type=Path, default=DEFAULT_EVENT_REWARDS)
     args = parser.parse_args()
 
     print("loading FMG name tables ...")
@@ -895,6 +927,8 @@ def main() -> int:
 
     boss_rewards = build_boss_reward_relations(entities + enemies, tables, args.boss_endpoints)
     print(f"boss reward relations: {len(boss_rewards)}")
+    event_rewards = build_event_reward_relations(args.event_rewards)
+    print(f"event reward relations: {len(event_rewards)}")
 
     # Named entities with no official FMG name (identified by model): the SotE
     # Furnace Golem is a user-category boss with only a community name.
@@ -909,7 +943,7 @@ def main() -> int:
         "variant_count": 1,
     }]
     all_entities = entities + enemies + shop_entities + manual_entities
-    relations = drops + pickups + shops + boss_rewards
+    relations = drops + pickups + shops + boss_rewards + event_rewards
     canonicalize_acquisition_items(relations, all_entities)
     print(f"canonical entities after acquisition enrichment: {len(all_entities)}")
 
@@ -922,11 +956,13 @@ def main() -> int:
             "enemy_spawn_bindings": str(args.enemy_spawns),
             "merchant_shop_bindings": str(args.merchant_shops),
             "boss_reward_endpoints": str(args.boss_endpoints),
+            "event_reward_bindings": str(args.event_rewards),
             "policy": "Facts derived from local regulation.bin; every item row is a signifier.",
         },
         "stats": {
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
+            "event_reward": len(event_rewards),
             "dropEndpointInstances": drop_endpoint_count,
             "bossRewardEndpointInstances": sum(
                 len(relation.get("endpointInstances", [])) for relation in boss_rewards

@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops"}
+KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward"}
 KNOWN_LOCATION_TYPES = {
     "church", "catacomb", "ruins", "shack", "lookout_tower", "evergaol",
     "gate", "bridge", "cave", "tunnel", "well", "hero_grave", "sorcerer_tower",
@@ -62,6 +62,8 @@ def main() -> int:
     merchant_bindings = json.loads(merchant_path.read_text(encoding="utf-8")) if merchant_path.is_file() else {"bindings": []}
     boss_endpoint_path = DATA / "entities" / "boss-reward-endpoints.json"
     boss_endpoints = json.loads(boss_endpoint_path.read_text(encoding="utf-8")) if boss_endpoint_path.is_file() else {"endpoints": []}
+    event_reward_path = DATA / "entities" / "event-reward-bindings.json"
+    event_rewards = json.loads(event_reward_path.read_text(encoding="utf-8")) if event_reward_path.is_file() else {"bindings": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -116,6 +118,22 @@ def main() -> int:
             check(rel.get("from", "").startswith("shop_context_"),
                   f"unresolved purchase {rel['id']} must use an isolated shop context")
     print(f"purchase endpoint layer: {len(purchase_relations)} relations; named={sum(r.get('sellerStatus') == 'named' for r in purchase_relations)}; unresolved={sum(r.get('sellerStatus') != 'named' for r in purchase_relations)}")
+    event_binding_ids = [binding.get("id") for binding in event_rewards.get("bindings", [])]
+    check(None not in event_binding_ids, "event reward binding missing id")
+    check(len(event_binding_ids) == len(set(event_binding_ids)), "event reward binding ids not unique")
+    for binding in event_rewards.get("bindings", []):
+        check(binding.get("method") == "event_reward", f"event reward {binding.get('id')} bad method")
+        check(isinstance(binding.get("eventId"), int), f"event reward {binding.get('id')} missing event id")
+        check(binding.get("taskStatus") == "unclassified",
+              f"event reward {binding.get('id')} must remain explicitly unclassified")
+        check(binding.get("items"), f"event reward {binding.get('id')} has no items")
+    event_relations = [rel for rel in rels if rel.get("method") == "event_reward"]
+    for rel in event_relations:
+        binding = rel.get("eventRewardBinding") or {}
+        check(binding.get("id") == rel.get("id"), f"event reward relation {rel['id']} binding mismatch")
+        check(binding.get("taskStatus") == "unclassified",
+              f"event reward relation {rel['id']} must remain unclassified")
+    print(f"event reward evidence: {len(event_binding_ids)} bindings; relations={len(event_relations)}; task identity intentionally unclassified")
 
     binding_ids = [binding.get("id") for binding in merchant_bindings.get("bindings", [])]
     check(None not in binding_ids, "merchant shop binding missing id")

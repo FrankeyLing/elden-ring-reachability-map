@@ -44,6 +44,7 @@ const ENTITY_METHOD_LABELS = {
   drop: "敌人掉落",
   drops: "Boss掉落",
   boss_reward: "Boss奖励",
+  event_reward: "事件奖励证据",
   purchase: "商店购买",
   quest_reward: "任务奖励",
   exchange: "交换",
@@ -489,7 +490,13 @@ function renderEntityDetail(payload) {
       const merchant = relation.merchantShopBinding?.merchantName
         || (relation.sellerStatus === "unresolved" ? "卖家身份未解析" : "");
       const lineup = relation.lineupRow != null ? ` · ShopLineupParam ${relation.lineupRow}` : "";
-      const sourceLabel = merchant || lineup ? `<small class="entity-acquisition-source">${escapeHtml(merchant)}${escapeHtml(lineup)}</small>` : "";
+      const eventBinding = relation.eventRewardBinding;
+      const eventSource = eventBinding
+        ? ` · EMEVD ${eventBinding.map} event ${eventBinding.eventId} · ${eventBinding.itemLot?.param || "ItemLotParam"} ${eventBinding.itemLot?.rowId ?? "?"} · ${eventBinding.taskStatus || "task identity unclassified"}`
+        : "";
+      const sourceLabel = merchant || lineup || eventSource
+        ? `<small class="entity-acquisition-source">${escapeHtml(merchant)}${escapeHtml(lineup)}${escapeHtml(eventSource)}</small>`
+        : "";
       const endpointList = relation.endpointInstances?.length
         ? `<details class="entity-endpoint-details"><summary>查看具体终点（前 ${Math.min(relation.endpointInstances.length, 8)} 个，共 ${relation.endpointInstances.length} 个）</summary><div class="entity-endpoint-list">${relation.endpointInstances.slice(0, 8).map(renderEndpoint).join("")}${relation.endpointInstances.length > 8 ? `<small class="entity-endpoint-more">其余 ${relation.endpointInstances.length - 8} 个终点保留在数据接口中。</small>` : ""}</div></details>`
         : "";

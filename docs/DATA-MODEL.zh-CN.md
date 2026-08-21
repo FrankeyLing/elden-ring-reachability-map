@@ -59,6 +59,7 @@
 | `location-catalog.json` | 位置实例（来自 `WorldMapPointParam`：教堂、墓地、洞窟、城寨……） |
 | `boss-rewards.json` | 从 EMEVD `AwardItemLot` 指令解码出的 Boss 奖励 lot |
 | `boss-reward-endpoints.json` | 独立的 Boss 奖励终点绑定：正式 Boss 门节点，以及可用时复制的本地 MSB 战斗坐标 |
+| `event-reward-bindings.json` | 直接的 EMEVD 物品发放证据：事件、物品批次和引用的事件标记；任务或 NPC 归属明确保持未分类 |
 | `msb-objact-catalog.json` | MSB 中的 825 个地图机关（宝箱/门/升降机/拉杆/隐藏房间） |
 | `msb-message-regions.json` | MSB 中的 50 个游戏内留言区域（含坐标） |
 | `graph-v1.json` | 正式可达性图 + 集成的 location/item/boss 节点与关系 |
@@ -102,6 +103,12 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 锚点，其中 17 个有本地战斗坐标。25 条 Boss 奖励关系中目前有 7 条匹配到终点，
 其余关系仍可搜索，但明确标记为未绑定，不会阻断其它实体。
 
+`event-reward-bindings.json` 当前记录 62 条直接事件发放绑定，保留 231 条
+发放指令、其中 67 条是空物品批次，并且 62 条绑定具有事件标记证据。它们在
+获取关系中使用 `event_reward`，而不是 `quest_reward`：同一事件系统同时处理
+Boss、剧情、教程和系统发放；没有直接对话或交付绑定时，不能擅自声明某个 NPC
+任务归属。
+
 ## 3. 来源与验证
 
 - 参数来自本地 `regulation.bin` 快照（用 EldenRing 密钥解密、DCX 解压、
@@ -144,7 +151,8 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 ```bash
 python scripts/build-entity-registry.py --param-dir <快照>/extracted/param-json
 python scripts/build-merchant-shop-bindings.py --source <快照>/supporting/er-archipelago-merchant-shops.tsv
-python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/param-json --merchant-shops data/v1/entities/merchant-shop-bindings.json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json
+python scripts/build-event-reward-bindings.py --parsed-emevd <快照>/extracted/parsed-emevd/files --semantic-references <快照>/extracted/parsed-emevd-semantic/references --emedf <工具>/event-defs/er-common.emedf.json --param-dir <快照>/extracted/param-json
+python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/param-json --merchant-shops data/v1/entities/merchant-shop-bindings.json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json --event-rewards data/v1/entities/event-reward-bindings.json
 python scripts/build-location-catalog.py --param-dir <快照>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
 python scripts/build-boss-reward-endpoints.py

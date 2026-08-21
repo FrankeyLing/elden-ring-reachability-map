@@ -133,6 +133,18 @@ def main() -> int:
         assert boss_topology["found"] is True
         assert "morgott_arena_gate" in boss_topology["routeNodeIds"], boss_topology
 
+        alexander = query(id="accessory_shard_of_alexander")
+        assert alexander["found"] is True
+        event_rewards = [
+            relation for relation in alexander["entity"]["acquisitions"]
+            if relation.get("method") == "event_reward"
+        ]
+        assert any(
+            relation.get("eventRewardBinding", {}).get("eventId") == 13003711
+            and relation.get("eventRewardBinding", {}).get("taskStatus") == "unclassified"
+            for relation in event_rewards
+        ), event_rewards
+
         kale_detail = query(id="npc_merchant_kal")
         assert kale_detail["found"] is True
         assert kale_detail["entity"]["counts"]["shopSales"] > 0, kale_detail
