@@ -58,6 +58,7 @@
 | `merchant-shop-bindings.json` | 复制的对话脚本商店范围绑定：每个 `ShopLineupParam` 行、具名卖家、对话编号、地图实例和 XYZ 终点；未解析卖家也保留 |
 | `location-catalog.json` | 位置实例（来自 `WorldMapPointParam`：教堂、墓地、洞窟、城寨……） |
 | `boss-rewards.json` | 从 EMEVD `AwardItemLot` 指令解码出的 Boss 奖励 lot |
+| `boss-reward-endpoints.json` | 独立的 Boss 奖励终点绑定：正式 Boss 门节点，以及可用时复制的本地 MSB 战斗坐标 |
 | `msb-objact-catalog.json` | MSB 中的 825 个地图机关（宝箱/门/升降机/拉杆/隐藏房间） |
 | `msb-message-regions.json` | MSB 中的 50 个游戏内留言区域（含坐标） |
 | `graph-v1.json` | 正式可达性图 + 集成的 location/item/boss 节点与关系 |
@@ -94,6 +95,12 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 从全部 589 个地图事件文件中解码 `AwardItemLot` /
 `Award Items (Including Clients)` 指令得出。含追忆的 lot 通过官方名称
 映射解析到 Boss（`追忆：接肢` → `葛瑞克`）。
+
+`boss-reward-endpoints.json` 是独立的终点层：只把 `boss-identity-bindings.json`
+中已有的 Boss 身份绑定到 `graph-v1.json` 的正式 Boss 门节点；如果复制的 MSB
+中有对应战斗实体，则同时保留其地图坐标作为证据。本快照发布 20 个可路由 Boss
+锚点，其中 17 个有本地战斗坐标。25 条 Boss 奖励关系中目前有 7 条匹配到终点，
+其余关系仍可搜索，但明确标记为未绑定，不会阻断其它实体。
 
 ## 3. 来源与验证
 
@@ -137,9 +144,10 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 ```bash
 python scripts/build-entity-registry.py --param-dir <快照>/extracted/param-json
 python scripts/build-merchant-shop-bindings.py --source <快照>/supporting/er-archipelago-merchant-shops.tsv
-python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/param-json --merchant-shops data/v1/entities/merchant-shop-bindings.json
+python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/param-json --merchant-shops data/v1/entities/merchant-shop-bindings.json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json
 python scripts/build-location-catalog.py --param-dir <快照>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
+python scripts/build-boss-reward-endpoints.py
 python scripts/build-graph-integration.py
 python scripts/build-player-entity-index.py
 python scripts/audit-acquisition.py

@@ -117,6 +117,22 @@ def main() -> int:
 
         kale = query(q="咖列", limit=20)
         assert any(row["id"] == "npc_merchant_kal" for row in kale["records"]), kale
+        remembrance = query(id="item_remembrance_of_the_omen_king")
+        assert remembrance["found"] is True
+        reward_sources = [
+            relation for relation in remembrance["entity"]["acquisitions"]
+            if relation.get("method") == "drops"
+        ]
+        assert any(
+            relation.get("topologyBinding", {}).get("status") == "routeable_anchor"
+            and relation.get("endpointInstances")
+            and relation["endpointInstances"][0].get("formalNodeId") == "morgott_arena_gate"
+            for relation in reward_sources
+        ), reward_sources
+        boss_topology = topology_query("enemy_morgott_the_omen_king")
+        assert boss_topology["found"] is True
+        assert "morgott_arena_gate" in boss_topology["routeNodeIds"], boss_topology
+
         kale_detail = query(id="npc_merchant_kal")
         assert kale_detail["found"] is True
         assert kale_detail["entity"]["counts"]["shopSales"] > 0, kale_detail

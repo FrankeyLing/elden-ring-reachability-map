@@ -212,6 +212,7 @@ def main() -> int:
         lot_id = str((relation.get("lot") or {}).get("rowId"))
         endpoints = []
         endpoint_keys = set()
+        explicit_semantic_node_ids = set()
         for endpoint in relation.get("endpointInstances", []):
             key = (
                 endpoint.get("kind"), endpoint.get("map"), endpoint.get("part"),
@@ -220,6 +221,13 @@ def main() -> int:
             if key not in endpoint_keys:
                 endpoint_keys.add(key)
                 endpoints.append(endpoint)
+            binding = endpoint.get("topologyBinding") or {}
+            for node_id in binding.get("routeNodeIds", []):
+                if node_id in graph_nodes:
+                    explicit_semantic_node_ids.add(node_id)
+            for node_id in binding.get("semanticNodeIds", []):
+                if node_id in graph_nodes:
+                    explicit_semantic_node_ids.add(node_id)
         for endpoint in pickup_by_lot.get(lot_id, []):
             key = (
                 endpoint.get("kind"), endpoint.get("map"), endpoint.get("part"),
@@ -228,7 +236,7 @@ def main() -> int:
             if key not in endpoint_keys:
                 endpoint_keys.add(key)
                 endpoints.append(endpoint)
-        semantic_node_ids = set()
+        semantic_node_ids = set(explicit_semantic_node_ids)
         candidate_relations = list(graph_relations_by_lot.get(lot_id, []))
         source_id = relation.get("from")
         if source_id:

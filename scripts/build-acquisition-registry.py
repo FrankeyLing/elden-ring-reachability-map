@@ -31,6 +31,7 @@ FMG_INDEX = ROOT / "data" / "v1" / "entities" / "official-fmg-bilingual-index.js
 ACHIEVEMENTS = ROOT / "data" / "v1" / "entities" / "achievements.json"
 DEFAULT_ENEMY_SPAWNS = ROOT / "data" / "v1" / "entities" / "enemy-spawn-bindings.json"
 DEFAULT_MERCHANT_SHOPS = ROOT / "data" / "v1" / "entities" / "merchant-shop-bindings.json"
+DEFAULT_BOSS_ENDPOINTS = ROOT / "data" / "v1" / "entities" / "boss-reward-endpoints.json"
 
 _suffix_re = re.compile(r"(_dlc0[12])?\.fmg$")
 
@@ -769,31 +770,53 @@ GREAT_RUNE_TO_BOSS = {
 }
 
 
-def build_boss_reward_relations(entities: list[dict], tables) -> list[dict]:
+def build_boss_reward_relations(
+    entities: list[dict], tables, boss_endpoints_path: Path | None = None
+) -> list[dict]:
     """Remembrance / Great Rune entities point to their source boss (and back)."""
     by_name = {e["name"]["en"]: e for e in entities}
+    endpoint_by_name: dict[str, dict] = {}
+    if boss_endpoints_path and boss_endpoints_path.is_file():
+        endpoint_payload = json.loads(boss_endpoints_path.read_text(encoding="utf-8"))
+        endpoint_by_name = {
+            str(endpoint["bossName"]).casefold(): endpoint
+            for endpoint in endpoint_payload.get("endpoints", [])
+            if endpoint.get("bossName")
+        }
     relations = []
     for item_name, boss_name in {**REMEMBRANCE_TO_BOSS, **GREAT_RUNE_TO_BOSS}.items():
         item = by_name.get(item_name)
         boss = by_name.get(boss_name)
         if not item or not boss:
             continue
-        relations.append({
+        endpoint = endpoint_by_name.get(boss_name.casefold())
+        evidence = ["official boss/remembrance name mapping"]
+        verification = "official_names"
+        if endpoint:
+            evidence.append("independent Boss reward endpoint binding")
+            verification = "official_names_and_boss_endpoint_binding"
+        reward_relation = {
             "id": f"boss-reward-{slugify(item_name)}",
             "from": item["id"],
             "method": "boss_reward",
             "items": [{"item": boss["id"], "name": boss["name"], "num": 1}],
-            "evidence": ["official boss/remembrance name mapping"],
-            "verification": "official_names",
-        })
-        relations.append({
+            "evidence": evidence,
+            "verification": verification,
+        }
+        if endpoint:
+            reward_relation["endpointInstances"] = [endpoint]
+        relations.append(reward_relation)
+        drops_relation = {
             "id": f"boss-drops-{slugify(boss_name)}",
             "from": boss["id"],
             "method": "drops",
             "items": [{"item": item["id"], "name": item["name"], "num": 1}],
-            "evidence": ["official boss/remembrance name mapping"],
-            "verification": "official_names",
-        })
+            "evidence": evidence,
+            "verification": verification,
+        }
+        if endpoint:
+            drops_relation["endpointInstances"] = [endpoint]
+        relations.append(drops_relation)
     return relations
 
 
@@ -810,6 +833,7 @@ def main() -> int:
                         default=ROOT / "data" / "v1" / "entities" / "acquisition-registry.json")
     parser.add_argument("--enemy-spawns", type=Path, default=DEFAULT_ENEMY_SPAWNS)
     parser.add_argument("--merchant-shops", type=Path, default=DEFAULT_MERCHANT_SHOPS)
+    parser.add_argument("--boss-endpoints", type=Path, default=DEFAULT_BOSS_ENDPOINTS)
     args = parser.parse_args()
 
     print("loading FMG name tables ...")
@@ -869,7 +893,7 @@ def main() -> int:
     drop_endpoint_count = attach_enemy_spawn_endpoints(drops, args.enemy_spawns)
     print(f"enemy spawn endpoints attached: {drop_endpoint_count}")
 
-    boss_rewards = build_boss_reward_relations(entities + enemies, tables)
+    boss_rewards = build_boss_reward_relations(entities + enemies, tables, args.boss_endpoints)
     print(f"boss reward relations: {len(boss_rewards)}")
 
     # Named entities with no official FMG name (identified by model): the SotE
@@ -897,12 +921,16 @@ def main() -> int:
             "entity_registry": str(args.registry),
             "enemy_spawn_bindings": str(args.enemy_spawns),
             "merchant_shop_bindings": str(args.merchant_shops),
+            "boss_reward_endpoints": str(args.boss_endpoints),
             "policy": "Facts derived from local regulation.bin; every item row is a signifier.",
         },
         "stats": {
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
             "dropEndpointInstances": drop_endpoint_count,
+            "bossRewardEndpointInstances": sum(
+                len(relation.get("endpointInstances", [])) for relation in boss_rewards
+            ),
             **{f"shop_{key}": value for key, value in shop_stats.items()},
         },
         "relations": relations,

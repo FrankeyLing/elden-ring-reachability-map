@@ -60,6 +60,8 @@ def main() -> int:
     spawns = json.loads(spawn_path.read_text(encoding="utf-8")) if spawn_path.is_file() else {"bindings": []}
     merchant_path = DATA / "entities" / "merchant-shop-bindings.json"
     merchant_bindings = json.loads(merchant_path.read_text(encoding="utf-8")) if merchant_path.is_file() else {"bindings": []}
+    boss_endpoint_path = DATA / "entities" / "boss-reward-endpoints.json"
+    boss_endpoints = json.loads(boss_endpoint_path.read_text(encoding="utf-8")) if boss_endpoint_path.is_file() else {"endpoints": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -124,6 +126,30 @@ def main() -> int:
             check(bool(binding.get("merchantName")), f"named merchant binding {binding.get('id')} missing name")
             check(binding.get("position"), f"named merchant binding {binding.get('id')} missing position")
     print(f"merchant shop bindings: {len(binding_ids)} bindings; named={sum(b.get('sellerStatus') == 'named' for b in merchant_bindings.get('bindings', []))}; unresolved={sum(b.get('sellerStatus') != 'named' for b in merchant_bindings.get('bindings', []))}")
+    boss_endpoint_ids = [endpoint.get("id") for endpoint in boss_endpoints.get("endpoints", [])]
+    check(None not in boss_endpoint_ids, "Boss reward endpoint missing id")
+    check(len(boss_endpoint_ids) == len(set(boss_endpoint_ids)), "Boss reward endpoint ids not unique")
+    graph_node_ids = {node["id"] for node in graph["nodes"]}
+    for endpoint in boss_endpoints.get("endpoints", []):
+        check(bool(endpoint.get("bossName")), f"Boss reward endpoint {endpoint.get('id')} missing boss name")
+        check(endpoint.get("endpointStatus") in {"routeable_anchor", "coordinate_endpoint", "unbound"},
+              f"Boss reward endpoint {endpoint.get('id')} has invalid status")
+        binding = endpoint.get("topologyBinding") or {}
+        for node_id in binding.get("routeNodeIds", []) + binding.get("semanticNodeIds", []):
+            check(node_id in graph_node_ids,
+                  f"Boss reward endpoint {endpoint.get('id')} references missing graph node {node_id}")
+    boss_relation_endpoint_count = 0
+    for rel in rels:
+        if rel.get("method") not in {"boss_reward", "drops"}:
+            continue
+        for endpoint in rel.get("endpointInstances", []):
+            boss_relation_endpoint_count += 1
+            check(endpoint.get("kind") == "boss_reward_endpoint",
+                  f"Boss relation {rel['id']} has non-Boss endpoint")
+            binding = endpoint.get("topologyBinding") or {}
+            check(binding.get("routeNodeIds") or binding.get("semanticNodeIds"),
+                  f"Boss relation {rel['id']} endpoint has no topology binding")
+    print(f"Boss reward endpoints: {len(boss_endpoint_ids)} endpoints; relation attachments={boss_relation_endpoint_count}")
     spawn_keys = set()
     spawn_count = 0
     for binding in spawns.get("bindings", []):

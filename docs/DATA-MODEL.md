@@ -63,6 +63,7 @@ All files live under `data/v1/entities/`:
 | `acquisition-registry.json` | acquisition relations: drops, pickups, shops, boss rewards |
 | `location-catalog.json` | location instances from `WorldMapPointParam` (churches, catacombs, caves, castles, ...) |
 | `boss-rewards.json` | boss reward lots decoded from EMEVD `AwardItemLot` instructions |
+| `boss-reward-endpoints.json` | independent Boss reward-terminal bindings: formal Boss gate node plus copied local MSB encounter coordinates when available |
 | `enemy-spawn-bindings.json` | exact `Enemy` and `DummyEnemy` instances from the copied MSB map snapshot, keyed by `NpcParam` row and retaining map-local XYZ coordinates |
 | `merchant-shop-bindings.json` | copied talk-range shop bindings: each `ShopLineupParam` row, named seller, talk id, map instance and XYZ endpoint, with unresolved seller records retained |
 | `graph-v1.json` | formal reachability graph + integrated location/item/boss nodes and relations |
@@ -161,6 +162,14 @@ instructions across all 589 map event files.  Remembrance lots resolve to
 the boss via the official name mapping (`Remembrance of the Grafted` →
 `Godrick the Grafted`).
 
+`boss-reward-endpoints.json` is a separate endpoint layer. It binds only the
+Boss identities already present in `boss-identity-bindings.json` to formal Boss
+gate nodes in `graph-v1.json`; a copied MSB encounter coordinate is retained as
+evidence when available. The current snapshot publishes 20 routeable Boss
+anchors, 17 with local encounter coordinates. Only 7 of the 25 Boss reward
+relations currently have a matching endpoint; the remaining reward relations
+stay searchable and explicitly unbound.
+
 ### 2.5 player query and topology bridge
 
 The player page queries `player-entity-index.json` through
@@ -215,9 +224,10 @@ in `gap-catalog.json` and promoted to graph nodes.
 ```bash
 python scripts/build-entity-registry.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-enemy-spawn-bindings.py --map-root <snapshot>/extracted/parsed-mapstudio-all-extra2/maps
-python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json
+python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --merchant-shops data/v1/entities/merchant-shop-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json
 python scripts/build-location-catalog.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
+python scripts/build-boss-reward-endpoints.py
 python scripts/build-graph-integration.py
 python scripts/build-player-entity-index.py
 python scripts/audit-acquisition.py
