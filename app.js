@@ -494,8 +494,12 @@ function renderEntityDetail(payload) {
       const eventSource = eventBinding
         ? ` · EMEVD ${eventBinding.map} event ${eventBinding.eventId} · ${eventBinding.itemLot?.param || "ItemLotParam"} ${eventBinding.itemLot?.rowId ?? "?"} · ${eventBinding.taskStatus || "task identity unclassified"}`
         : "";
-      const sourceLabel = merchant || lineup || eventSource
-        ? `<small class="entity-acquisition-source">${escapeHtml(merchant)}${escapeHtml(lineup)}${escapeHtml(eventSource)}</small>`
+      const questBinding = relation.questRewardBinding;
+      const questSource = questBinding
+        ? ` · ${questBinding.npcName || "NPC unresolved"} · ${questBinding.questStep?.description || "quest step description unavailable"}`
+        : "";
+      const sourceLabel = merchant || lineup || eventSource || questSource
+        ? `<small class="entity-acquisition-source">${escapeHtml(merchant)}${escapeHtml(lineup)}${escapeHtml(eventSource)}${escapeHtml(questSource)}</small>`
         : "";
       const endpointList = relation.endpointInstances?.length
         ? `<details class="entity-endpoint-details"><summary>查看具体终点（前 ${Math.min(relation.endpointInstances.length, 8)} 个，共 ${relation.endpointInstances.length} 个）</summary><div class="entity-endpoint-list">${relation.endpointInstances.slice(0, 8).map(renderEndpoint).join("")}${relation.endpointInstances.length > 8 ? `<small class="entity-endpoint-more">其余 ${relation.endpointInstances.length - 8} 个终点保留在数据接口中。</small>` : ""}</div></details>`

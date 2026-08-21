@@ -133,6 +133,21 @@ def main() -> int:
         assert boss_topology["found"] is True
         assert "morgott_arena_gate" in boss_topology["routeNodeIds"], boss_topology
 
+        palace_key = query(id="item_discarded_palace_key")
+        assert palace_key["found"] is True
+        quest_sources = [
+            relation for relation in palace_key["entity"]["acquisitions"]
+            if relation.get("method") == "quest_reward"
+        ]
+        assert any(
+            relation.get("questRewardBinding", {}).get("npcName") == "Ranni the Witch"
+            and relation.get("questRewardBinding", {}).get("eventRewardBindingId") == "event-reward-common-3050-7"
+            for relation in quest_sources
+        ), quest_sources
+        ranni = query(id="npc_ranni_the_witch")
+        assert ranni["found"] is True
+        assert any(target.get("method") == "quest_reward" for target in ranni["entity"].get("acquisitionTargets", [])), ranni
+
         alexander = query(id="accessory_shard_of_alexander")
         assert alexander["found"] is True
         event_rewards = [

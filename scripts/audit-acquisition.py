@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward"}
+KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "quest_reward"}
 KNOWN_LOCATION_TYPES = {
     "church", "catacomb", "ruins", "shack", "lookout_tower", "evergaol",
     "gate", "bridge", "cave", "tunnel", "well", "hero_grave", "sorcerer_tower",
@@ -64,6 +64,8 @@ def main() -> int:
     boss_endpoints = json.loads(boss_endpoint_path.read_text(encoding="utf-8")) if boss_endpoint_path.is_file() else {"endpoints": []}
     event_reward_path = DATA / "entities" / "event-reward-bindings.json"
     event_rewards = json.loads(event_reward_path.read_text(encoding="utf-8")) if event_reward_path.is_file() else {"bindings": []}
+    quest_reward_path = DATA / "entities" / "quest-reward-bindings.json"
+    quest_rewards = json.loads(quest_reward_path.read_text(encoding="utf-8")) if quest_reward_path.is_file() else {"bindings": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -134,6 +136,23 @@ def main() -> int:
         check(binding.get("taskStatus") == "unclassified",
               f"event reward relation {rel['id']} must remain unclassified")
     print(f"event reward evidence: {len(event_binding_ids)} bindings; relations={len(event_relations)}; task identity intentionally unclassified")
+    quest_binding_ids = [binding.get("id") for binding in quest_rewards.get("bindings", [])]
+    check(None not in quest_binding_ids, "quest reward binding missing id")
+    check(len(quest_binding_ids) == len(set(quest_binding_ids)), "quest reward binding ids not unique")
+    for binding in quest_rewards.get("bindings", []):
+        check(binding.get("method") == "quest_reward", f"quest reward {binding.get('id')} bad method")
+        check(binding.get("from") in entity_ids, f"quest reward {binding.get('id')} NPC unresolved")
+        check(binding.get("eventRewardBindingId"), f"quest reward {binding.get('id')} missing local event binding")
+        check(binding.get("matchedEventFlagIds"), f"quest reward {binding.get('id')} missing flag intersection")
+        check(binding.get("items"), f"quest reward {binding.get('id')} has no items")
+    quest_relations = [rel for rel in rels if rel.get("method") == "quest_reward"]
+    for rel in quest_relations:
+        binding = rel.get("questRewardBinding") or {}
+        check(binding.get("id") == rel.get("id"), f"quest reward relation {rel['id']} binding mismatch")
+        check(binding.get("from") == rel.get("from"), f"quest reward relation {rel['id']} NPC mismatch")
+        check(binding.get("verification") == "local_award_external_quest_name_and_flag_overlap",
+              f"quest reward relation {rel['id']} weak verification")
+    print(f"quest reward evidence: {len(quest_binding_ids)} bindings; relations={len(quest_relations)}")
 
     binding_ids = [binding.get("id") for binding in merchant_bindings.get("bindings", [])]
     check(None not in binding_ids, "merchant shop binding missing id")

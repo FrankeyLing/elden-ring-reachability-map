@@ -56,6 +56,7 @@ def compact_acquisition(
             "items", "price", "costType", "stock", "lineupRow",
             "sourceNpcParamRows", "sellerStatus", "merchantShopBinding",
             "eventRewardBinding",
+            "questRewardBinding",
         )
         if key in relation
     }

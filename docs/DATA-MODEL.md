@@ -65,6 +65,7 @@ All files live under `data/v1/entities/`:
 | `boss-rewards.json` | boss reward lots decoded from EMEVD `AwardItemLot` instructions |
 | `boss-reward-endpoints.json` | independent Boss reward-terminal bindings: formal Boss gate node plus copied local MSB encounter coordinates when available |
 | `event-reward-bindings.json` | direct EMEVD item-award evidence with event, item-lot, and referenced event-flag data; quest or NPC identity remains explicitly unclassified |
+| `quest-reward-bindings.json` | conservative NPC quest-step bindings formed only by item-name and event-flag intersection with the local event-award catalog |
 | `enemy-spawn-bindings.json` | exact `Enemy` and `DummyEnemy` instances from the copied MSB map snapshot, keyed by `NpcParam` row and retaining map-local XYZ coordinates |
 | `merchant-shop-bindings.json` | copied talk-range shop bindings: each `ShopLineupParam` row, named seller, talk id, map instance and XYZ endpoint, with unresolved seller records retained |
 | `graph-v1.json` | formal reachability graph + integrated location/item/boss nodes and relations |
@@ -178,6 +179,12 @@ as `event_reward`, not `quest_reward`: the same event system also grants boss,
 story, tutorial, and system items, so assigning an NPC quest without a direct
 talk or delivery binding would be an unsupported claim.
 
+`quest-reward-bindings.json` currently publishes 12 bindings across 9 local
+event-award events. They cover only matches where the external quest step names
+the exact awarded item and shares an event flag with the local award event.
+Name-only and flag-only candidates remain omitted from acquisition relations;
+they are counted in the builder output for later review.
+
 ### 2.5 player query and topology bridge
 
 The player page queries `player-entity-index.json` through
@@ -233,7 +240,8 @@ in `gap-catalog.json` and promoted to graph nodes.
 python scripts/build-entity-registry.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-enemy-spawn-bindings.py --map-root <snapshot>/extracted/parsed-mapstudio-all-extra2/maps
 python scripts/build-event-reward-bindings.py --parsed-emevd <snapshot>/extracted/parsed-emevd/files --semantic-references <snapshot>/extracted/parsed-emevd-semantic/references --emedf <tools>/event-defs/er-common.emedf.json --param-dir <snapshot>/extracted/param-json
-python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --merchant-shops data/v1/entities/merchant-shop-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json --event-rewards data/v1/entities/event-reward-bindings.json
+python scripts/build-quest-reward-bindings.py --quest-source <snapshot>/supporting/oisis-elden-ring-saveforge-quests-v1.6.8.go
+python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --merchant-shops data/v1/entities/merchant-shop-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json --event-rewards data/v1/entities/event-reward-bindings.json --quest-rewards data/v1/entities/quest-reward-bindings.json
 python scripts/build-location-catalog.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
 python scripts/build-boss-reward-endpoints.py
