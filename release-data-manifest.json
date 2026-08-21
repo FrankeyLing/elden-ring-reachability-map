@@ -1,0 +1,53 @@
+{
+  "schema": "elden-ring-reachability-map/release-data-manifest@1",
+  "largeJsonThresholdMiB": 5,
+  "policy": {
+    "sourceRepository": "只提交代码、轻量目录和构建脚本；生成型大型 JSON 不进入 Git 追踪。",
+    "releaseProcess": "发布时从本地生成数据目录复制到暂存树，再与代码一起打包。",
+    "localResearchData": "local-*、官方 FMG 双语索引和原始游戏快照不属于产品发布输入。"
+  },
+  "largeJsonFiles": [
+    {
+      "path": "data/v1/graph-v1.json",
+      "required": true,
+      "role": "formal-reachability-graph"
+    },
+    {
+      "path": "data/v1/entities/abstract-native-topology.json",
+      "required": true,
+      "role": "abstract-native-topology-projection"
+    },
+    {
+      "path": "data/v1/entities/acquisition-registry.json",
+      "required": true,
+      "role": "acquisition-relations"
+    },
+    {
+      "path": "data/v1/entities/acquisition-topology-bridge.json",
+      "required": true,
+      "role": "acquisition-topology-evidence"
+    },
+    {
+      "path": "data/v1/entities/enemy-spawn-bindings.json",
+      "required": true,
+      "role": "enemy-spawn-endpoints"
+    },
+    {
+      "path": "data/v1/entities/online-item-map-records.json",
+      "required": true,
+      "role": "online-item-placement-evidence"
+    },
+    {
+      "path": "data/v1/entities/player-entity-index.json",
+      "required": true,
+      "role": "player-search-projection"
+    }
+  ],
+  "releaseDirectories": [
+    {
+      "path": "data/v1/source-snapshots",
+      "required": true,
+      "role": "pinned-public-source-snapshots"
+    }
+  ]
+}

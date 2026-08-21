@@ -1,0 +1,49 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Never commit original game archives, unpacked files, saves, or private source snapshots.
+game-install/
+source-snapshots/
+.runtime/
+raw-extract/
+private-artifacts/
+*.bdt
+*.bhd
+*.sl2
+*.dcx
+
+# Heavy local research artifacts (evidence layer, regenerable from the external
+# snapshot via scripts/build-local-*.py). Frozen and archived outside the product
+# repo; only lightweight package files under data/v1/packages/ are published.
+data/v1/entities/local-*.json
+# Self-datamined grace positions (AEG099_060 from local MSBE) and the MSBE map
+# name table are published product inputs — they must be tracked.
+!data/v1/entities/local-grace-positions.json
+!data/v1/entities/local-msbe-map-names.json
+
+# 274MB bilingual FMG extract (regenerable via scripts/build-official-fmg-index.py
+# from the external snapshot); only the resulting mapping data/v1/zh-cn/ is published.
+data/v1/entities/official-fmg-bilingual-index.json
+
+# Generated product projections are release inputs, not source-repository files.
+# Keep local copies available for release.py; never commit these JSON blobs and
+# never add them to Git Large File Storage.
+data/v1/graph-v1.json
+data/v1/entities/abstract-native-topology.json
+data/v1/entities/acquisition-registry.json
+data/v1/entities/acquisition-topology-bridge.json
+data/v1/entities/enemy-spawn-bindings.json
+data/v1/entities/online-item-map-records.json
+data/v1/entities/player-entity-index.json
+
+# The release script copies this directory explicitly from the local pinned
+# snapshot. It must not be included merely because it happens to exist locally.
+data/v1/source-snapshots/
+
+# 发布包输出目录（由 release.py 生成）
+Releases/
+
+# Local project contracts, execution plans and acceptance records.
+# These guide local agent work but are not product/repository content.
+.local-plans/

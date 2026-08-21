@@ -1,0 +1,447 @@
+{
+ "schema": "elden-ring-v1-coverage-audit@2",
+ "verification": "PASS",
+ "summary": {
+  "declarations_total": 7976,
+  "declarations_mapped": 1778,
+  "declarations_unmapped": 0,
+  "intra_map_evidence": 6198,
+  "no_map_reference": 0,
+  "declared_region_pairs": 85,
+  "grace_catalog": 418,
+  "grace_nodes": 604,
+  "total_nodes": 938,
+  "total_edges": 1601,
+  "bridge_edges_added": 18,
+  "remaining_gaps": []
+ },
+ "remaining_gaps": [],
+ "unmapped_declarations": [],
+ "declared_region_pairs": [
+  {
+   "from": "Limgrave",
+   "to": "Limgrave",
+   "declarations": 184
+  },
+  {
+   "from": "Altus Plateau",
+   "to": "Altus Plateau",
+   "declarations": 164
+  },
+  {
+   "from": "Caelid",
+   "to": "Caelid",
+   "declarations": 155
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Liurnia of the Lakes",
+   "declarations": 116
+  },
+  {
+   "from": "Mountaintops of the Giants",
+   "to": "Mountaintops of the Giants",
+   "declarations": 114
+  },
+  {
+   "from": "Gravesite Plain",
+   "to": "Gravesite Plain",
+   "declarations": 94
+  },
+  {
+   "from": "Scadu Altus",
+   "to": "Scadu Altus",
+   "declarations": 81
+  },
+  {
+   "from": "Scadu Altus",
+   "to": "Gravesite Plain",
+   "declarations": 55
+  },
+  {
+   "from": "Leyndell, Royal Capital",
+   "to": "Leyndell, Royal Capital",
+   "declarations": 43
+  },
+  {
+   "from": "Mountaintops of the Giants",
+   "to": "Leyndell, Royal Capital",
+   "declarations": 34
+  },
+  {
+   "from": "Shadow Keep",
+   "to": "Scaduview",
+   "declarations": 32
+  },
+  {
+   "from": "Land of the Tower",
+   "to": "Land of the Tower",
+   "declarations": 28
+  },
+  {
+   "from": "Gravesite Plain",
+   "to": "Shadow Keep",
+   "declarations": 27
+  },
+  {
+   "from": "Shadow Keep",
+   "to": "Gravesite Plain",
+   "declarations": 26
+  },
+  {
+   "from": "Scaduview",
+   "to": "Shadow Keep",
+   "declarations": 25
+  },
+  {
+   "from": "Shadow Keep",
+   "to": "Shadow Keep",
+   "declarations": 24
+  },
+  {
+   "from": "Ainsel River",
+   "to": "Liurnia of the Lakes",
+   "declarations": 23
+  },
+  {
+   "from": "Nokron, Eternal City",
+   "to": "Caelid",
+   "declarations": 21
+  },
+  {
+   "from": "Limgrave",
+   "to": "Stormveil Castle",
+   "declarations": 21
+  },
+  {
+   "from": "Stormveil Castle",
+   "to": "Stormveil Castle",
+   "declarations": 20
+  },
+  {
+   "from": "Academy of Raya Lucaria",
+   "to": "Liurnia of the Lakes",
+   "declarations": 20
+  },
+  {
+   "from": "Volcano Manor",
+   "to": "Altus Plateau",
+   "declarations": 20
+  },
+  {
+   "from": "Stormveil Castle",
+   "to": "Limgrave",
+   "declarations": 19
+  },
+  {
+   "from": "Nokron, Eternal City",
+   "to": "Siofra River",
+   "declarations": 19
+  },
+  {
+   "from": "Land of the Tower",
+   "to": "Scadu Altus",
+   "declarations": 18
+  },
+  {
+   "from": "Limgrave",
+   "to": "Siofra River",
+   "declarations": 18
+  },
+  {
+   "from": "Caelid",
+   "to": "Nokron, Eternal City",
+   "declarations": 17
+  },
+  {
+   "from": "Scadu Altus",
+   "to": "Land of the Tower",
+   "declarations": 17
+  },
+  {
+   "from": "Leyndell, Royal Capital",
+   "to": "Altus Plateau",
+   "declarations": 16
+  },
+  {
+   "from": "Gravesite Plain",
+   "to": "Scadu Altus",
+   "declarations": 15
+  },
+  {
+   "from": "Altus Plateau",
+   "to": "Gravesite Plain",
+   "declarations": 14
+  },
+  {
+   "from": "Gravesite Plain",
+   "to": "Altus Plateau",
+   "declarations": 14
+  },
+  {
+   "from": "Siofra River",
+   "to": "Limgrave",
+   "declarations": 13
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Academy of Raya Lucaria",
+   "declarations": 13
+  },
+  {
+   "from": "Scadu Altus",
+   "to": "Scaduview",
+   "declarations": 13
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Stormveil Castle",
+   "declarations": 13
+  },
+  {
+   "from": "Leyndell, Royal Capital",
+   "to": "Mountaintops of the Giants",
+   "declarations": 12
+  },
+  {
+   "from": "Scaduview",
+   "to": "Scaduview",
+   "declarations": 12
+  },
+  {
+   "from": "Stormveil Castle",
+   "to": "Liurnia of the Lakes",
+   "declarations": 11
+  },
+  {
+   "from": "Ainsel River",
+   "to": "Lake of Rot",
+   "declarations": 11
+  },
+  {
+   "from": "Nokron, Eternal City",
+   "to": "Deeproot Depths",
+   "declarations": 11
+  },
+  {
+   "from": "Leyndell, Royal Capital",
+   "to": "Subterranean Shunning-Grounds",
+   "declarations": 9
+  },
+  {
+   "from": "Shadow Keep",
+   "to": "Scadu Altus",
+   "declarations": 9
+  },
+  {
+   "from": "Altus Plateau",
+   "to": "Liurnia of the Lakes",
+   "declarations": 9
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Altus Plateau",
+   "declarations": 9
+  },
+  {
+   "from": "Siofra River",
+   "to": "Nokron, Eternal City",
+   "declarations": 8
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Ainsel River",
+   "declarations": 8
+  },
+  {
+   "from": "Altus Plateau",
+   "to": "Leyndell, Royal Capital",
+   "declarations": 8
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Chapel of Anticipation",
+   "declarations": 8
+  },
+  {
+   "from": "Scaduview",
+   "to": "Scadu Altus",
+   "declarations": 7
+  },
+  {
+   "from": "Altus Plateau",
+   "to": "Volcano Manor",
+   "declarations": 7
+  },
+  {
+   "from": "Ainsel River",
+   "to": "Nokron, Eternal City",
+   "declarations": 6
+  },
+  {
+   "from": "Limgrave",
+   "to": "Caelid",
+   "declarations": 6
+  },
+  {
+   "from": "Scadu Altus",
+   "to": "Altus Plateau",
+   "declarations": 6
+  },
+  {
+   "from": "Caelid",
+   "to": "Limgrave",
+   "declarations": 5
+  },
+  {
+   "from": "Scadu Altus",
+   "to": "Shadow Keep",
+   "declarations": 5
+  },
+  {
+   "from": "Nokron, Eternal City",
+   "to": "Ainsel River",
+   "declarations": 4
+  },
+  {
+   "from": "Deeproot Depths",
+   "to": "Leyndell, Royal Capital",
+   "declarations": 4
+  },
+  {
+   "from": "Deeproot Depths",
+   "to": "Ainsel River",
+   "declarations": 4
+  },
+  {
+   "from": "Lake of Rot",
+   "to": "Liurnia of the Lakes",
+   "declarations": 4
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Lake of Rot",
+   "declarations": 4
+  },
+  {
+   "from": "Gravesite Plain",
+   "to": "Scaduview",
+   "declarations": 4
+  },
+  {
+   "from": "Deeproot Depths",
+   "to": "Mountaintops of the Giants",
+   "declarations": 3
+  },
+  {
+   "from": "Elphael, Brace of the Haligtree",
+   "to": "Mountaintops of the Giants",
+   "declarations": 3
+  },
+  {
+   "from": "Leyndell, Royal Capital",
+   "to": "Deeproot Depths",
+   "declarations": 3
+  },
+  {
+   "from": "Mountaintops of the Giants",
+   "to": "Crumbling Farum Azula",
+   "declarations": 3
+  },
+  {
+   "from": "Caelid",
+   "to": "Chapel of Anticipation",
+   "declarations": 3
+  },
+  {
+   "from": "Ainsel River",
+   "to": "Deeproot Depths",
+   "declarations": 2
+  },
+  {
+   "from": "Crumbling Farum Azula",
+   "to": "Mountaintops of the Giants",
+   "declarations": 2
+  },
+  {
+   "from": "Scaduview",
+   "to": "Gravesite Plain",
+   "declarations": 2
+  },
+  {
+   "from": "Altus Plateau",
+   "to": "Scadu Altus",
+   "declarations": 2
+  },
+  {
+   "from": "Mountaintops of the Giants",
+   "to": "Elphael, Brace of the Haligtree",
+   "declarations": 2
+  },
+  {
+   "from": "Gravesite Plain",
+   "to": "Land of the Tower",
+   "declarations": 2
+  },
+  {
+   "from": "Limgrave",
+   "to": "Chapel of Anticipation",
+   "declarations": 2
+  },
+  {
+   "from": "Limgrave",
+   "to": "Leyndell, Royal Capital",
+   "declarations": 2
+  },
+  {
+   "from": "Lake of Rot",
+   "to": "Ainsel River",
+   "declarations": 1
+  },
+  {
+   "from": "Mohgwyn Palace",
+   "to": "Caelid",
+   "declarations": 1
+  },
+  {
+   "from": "Crumbling Farum Azula",
+   "to": "Crumbling Farum Azula",
+   "declarations": 1
+  },
+  {
+   "from": "Roundtable Hold",
+   "to": "Chapel of Anticipation",
+   "declarations": 1
+  },
+  {
+   "from": "Subterranean Shunning-Grounds",
+   "to": "Roundtable Hold",
+   "declarations": 1
+  },
+  {
+   "from": "Mohgwyn Palace",
+   "to": "Gravesite Plain",
+   "declarations": 1
+  },
+  {
+   "from": "Academy of Raya Lucaria",
+   "to": "Chapel of Anticipation",
+   "declarations": 1
+  },
+  {
+   "from": "Volcano Manor",
+   "to": "Chapel of Anticipation",
+   "declarations": 1
+  },
+  {
+   "from": "Caelid",
+   "to": "Mohgwyn Palace",
+   "declarations": 1
+  },
+  {
+   "from": "Liurnia of the Lakes",
+   "to": "Volcano Manor",
+   "declarations": 1
+  }
+ ]
+}

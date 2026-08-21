@@ -1,0 +1,315 @@
+{
+  "dataset_type": "achievement_catalog",
+  "verification_label": "Online Verified V1",
+  "source": {
+    "source_id": "eldenpedia",
+    "page_title": "Achievements and Trophies",
+    "page_id": 14061,
+    "revision_id": 95255,
+    "revision_timestamp": "2025-07-24T17:05:00Z",
+    "source_url": "https://eldenring.wiki.gg/wiki/Achievements_and_Trophies",
+    "api_url": "https://eldenring.wiki.gg/api.php?action=query&titles=Achievements%20and%20Trophies&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&format=json",
+    "license": "CC BY-SA 4.0 page text unless otherwise noted",
+    "captured_on": "2026-08-18"
+  },
+  "related_sources": [
+    {
+      "source_id": "eldenpedia-legendary-armaments",
+      "page_title": "Legendary Armaments (Achievement/Trophy)",
+      "page_id": 5281,
+      "revision_id": 65645,
+      "revision_timestamp": "2024-10-27T00:58:18Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Legendary_Armaments_%28Achievement/Trophy%29",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-legendary-sorceries-incantations",
+      "page_title": "Legendary Sorceries and Incantations (Achievement/Trophy)",
+      "page_id": 2594,
+      "revision_id": 65647,
+      "revision_timestamp": "2024-10-27T00:58:24Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Legendary_Sorceries_and_Incantations_%28Achievement/Trophy%29",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-dark-moon-greatsword",
+      "page_title": "Dark Moon Greatsword",
+      "source_url": "https://eldenring.wiki.gg/wiki/Dark_Moon_Greatsword",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-grafted-blade-greatsword",
+      "page_title": "Grafted Blade Greatsword",
+      "source_url": "https://eldenring.wiki.gg/wiki/Grafted_Blade_Greatsword",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-marais-executioners-sword",
+      "page_title": "Marais Executioner's Sword",
+      "source_url": "https://eldenring.wiki.gg/wiki/Marais_Executioner%27s_Sword",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-legendary-ashen-remains",
+      "page_title": "Legendary Ashen Remains (Achievement/Trophy)",
+      "source_url": "https://eldenring.wiki.gg/wiki/Legendary_Ashen_Remains_%28Achievement/Trophy%29",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-legendary-talismans",
+      "page_title": "Legendary Talismans (Achievement/Trophy)",
+      "source_url": "https://eldenring.wiki.gg/wiki/Legendary_Talismans_%28Achievement/Trophy%29",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-comet-azur",
+      "page_title": "Comet Azur",
+      "source_url": "https://eldenring.wiki.gg/wiki/Comet_Azur",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-stars-of-ruin",
+      "page_title": "Stars of Ruin",
+      "source_url": "https://eldenring.wiki.gg/wiki/Stars_of_Ruin",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-greyolls-roar",
+      "page_title": "Greyoll's Roar",
+      "source_url": "https://eldenring.wiki.gg/wiki/Greyoll%27s_Roar",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted",
+      "captured_on": "2026-08-18"
+    },
+    {
+      "source_id": "eldenpedia-endings",
+      "page_title": "Endings",
+      "page_id": 11798,
+      "revision_id": 44411,
+      "revision_timestamp": "2024-08-03T18:22:52Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Endings",
+      "api_url": "https://eldenring.wiki.gg/api.php?action=query&titles=Endings&prop=revisions&rvprop=ids%7Ctimestamp&format=json",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-elden-lord",
+      "page_title": "Elden Lord",
+      "page_id": 12602,
+      "revision_id": 47303,
+      "revision_timestamp": "2024-08-23T01:27:35Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Elden_Lord",
+      "api_url": "https://eldenring.wiki.gg/api.php?action=query&titles=Elden%20Lord&prop=revisions&rvprop=ids%7Ctimestamp&format=json",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-lord-frenzied-flame",
+      "page_title": "Lord of Frenzied Flame",
+      "page_id": 2093,
+      "revision_id": 8007,
+      "revision_timestamp": "2024-09-01T18:52:27Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Lord_of_Frenzied_Flame",
+      "api_url": "https://eldenring.wiki.gg/api.php?action=query&titles=Lord%20of%20Frenzied%20Flame&prop=revisions&rvprop=ids%7Ctimestamp&format=json",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-about-great-runes",
+      "page_title": "About Great Runes",
+      "page_id": 14493,
+      "revision_id": 54158,
+      "revision_timestamp": "2023-11-25T12:24:42Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/About_Great_Runes",
+      "api_url": "https://eldenring.wiki.gg/api.php?action=query&titles=About%20Great%20Runes&prop=revisions&rvprop=ids%7Ctimestamp&format=json",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-godrick-great-rune",
+      "page_title": "Godrick's Great Rune",
+      "page_id": 657,
+      "revision_id": 2368,
+      "revision_timestamp": "2024-09-09T22:33:48Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Godrick%27s_Great_Rune",
+      "api_url": "https://eldenring.wiki.gg/api.php?action=query&titles=Godrick%27s%20Great%20Rune&prop=revisions&rvprop=ids%7Ctimestamp&format=json",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-radahn-great-rune",
+      "page_title": "Radahn's Great Rune",
+      "page_id": 2922,
+      "revision_id": 82799,
+      "revision_timestamp": "2025-04-21T12:37:23Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Radahn%27s_Great_Rune",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-rykard-great-rune",
+      "page_title": "Rykard's Great Rune",
+      "page_id": 13798,
+      "revision_id": 51575,
+      "revision_timestamp": "2024-09-09T22:40:29Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Rykard%27s_Great_Rune",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-morgott-great-rune",
+      "page_title": "Morgott's Great Rune",
+      "page_id": 14455,
+      "revision_id": 82800,
+      "revision_timestamp": "2025-04-21T12:39:00Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Morgott%27s_Great_Rune",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-mohg-great-rune",
+      "page_title": "Mohg's Great Rune",
+      "page_id": 11768,
+      "revision_id": 92470,
+      "revision_timestamp": "2025-06-26T08:45:36Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Mohg%27s_Great_Rune",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-malenia-great-rune",
+      "page_title": "Malenia's Great Rune",
+      "page_id": 11463,
+      "revision_id": 43128,
+      "revision_timestamp": "2024-09-09T22:51:28Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Malenia%27s_Great_Rune",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-ranni-witch",
+      "page_title": "Ranni the Witch",
+      "page_id": 350,
+      "revision_id": 100538,
+      "revision_timestamp": "2026-08-12T21:39:17Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Ranni_the_Witch",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-three-fingers",
+      "page_title": "Three Fingers",
+      "page_id": 5078,
+      "revision_id": 83759,
+      "revision_timestamp": "2025-05-02T18:24:46Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Three_Fingers",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    },
+    {
+      "source_id": "eldenpedia-melina",
+      "page_title": "Melina",
+      "page_id": 12261,
+      "revision_id": 100520,
+      "revision_timestamp": "2026-08-12T20:19:45Z",
+      "source_url": "https://eldenring.wiki.gg/wiki/Melina",
+      "license": "CC BY-SA 4.0 page text unless otherwise noted"
+    }
+  ],
+  "record_count": 42,
+  "routeable_record_count": 0,
+  "online_text_location_evidence": {
+    "achievement_legendary_armaments": [
+      { "item": "Dark Moon Greatsword", "formal_target_id": "grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "source_evidence": "eldenpedia-dark-moon-greatsword", "coordinate_available": false, "note": "Quest reward obtained beneath the Cathedral of Manus Celes after completing Ranni's quest." },
+      { "item": "Grafted Blade Greatsword", "formal_target_id": "grace_limgrave_weeping_peninsula_castle_morne_lift", "source_evidence": "eldenpedia-grafted-blade-greatsword", "coordinate_available": false, "note": "Guaranteed drop from Leonine Misbegotten at Castle Morne." },
+      { "item": "Marais Executioner's Sword", "formal_target_id": "grace_altus_plateau_main_shaded_castle_inner_gate", "source_evidence": "eldenpedia-marais-executioners-sword", "coordinate_available": false, "note": "Guaranteed drop from Elemer of the Briar at the Shaded Castle." }
+    ],
+    "achievement_legendary_sorceries_incantations": [
+      { "item": "Comet Azur", "formal_target_id": "grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur", "source_evidence": "eldenpedia-comet-azur", "coordinate_available": false, "note": "Obtained from Primeval Sorcerer Azur on the cliffs southeast of Hermit Village." },
+      { "item": "Stars of Ruin", "formal_target_id": "grace_caelid_sellia_hideaway", "source_evidence": "eldenpedia-stars-of-ruin", "coordinate_available": false, "note": "Obtained from Primeval Sorcerer Lusat inside Sellia Hideaway after the Sellian Sealbreaker step." },
+      { "item": "Greyoll's Roar", "formal_target_id": "grace_cathedral_dragon_communion", "source_evidence": "eldenpedia-greyolls-roar", "coordinate_available": false, "note": "Purchased at the Cathedral of Dragon Communion after defeating Elder Dragon Greyoll." }
+    ]
+  },
+  "records": [
+    { "canonical_id": "achievement_age_of_the_stars", "name": "Age of the Stars", "category": "ending", "description": "Achieved the \"Age of the Stars\" ending", "trophy": "Gold", "gamerscore": 50, "formal_target_ids": ["grace_fractured_marika"], "state_requirements": ["radagon_elden_beast_defeated", "ranni_quest_started", "dark_moon_ring"], "external_requirements": ["Complete Ranni's questline", "Touch Ranni's blue summon sign near Fractured Marika"], "state_source_evidence": "eldenpedia-endings", "formal_target_source_evidence": "eldenpedia-endings", "coverage_state": "formal_ending_state_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_ancestor_spirit", "name": "Ancestor Spirit", "category": "boss", "description": "Defeated Ancestor Spirit", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["ancestor_spirit_siofra_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_astel_naturalborn", "name": "Astel, Naturalborn of the Void", "category": "boss", "description": "Defeated Astel, Naturalborn of the Void", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["astel_naturalborn_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_commander_niall", "name": "Commander Niall", "category": "boss", "description": "Defeated Commander Niall", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["commander_niall_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_dragonkin_soldier_nokstella", "name": "Dragonkin Soldier of Nokstella", "category": "boss", "description": "Defeated Dragonkin Soldier of Nokstella", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["dragonkin_soldier_nokstella_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_dragonlord_placidusax", "name": "Dragonlord Placidusax", "category": "boss", "description": "Defeated Dragonlord Placidusax", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["dragonlord_placidusax_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_elden_lord", "name": "Elden Lord", "category": "ending", "description": "Achieved the \"Elden Lord\" ending", "trophy": "Gold", "gamerscore": 50, "formal_target_ids": ["grace_fractured_marika"], "state_requirements": ["radagon_elden_beast_defeated"], "external_requirements": ["Touch Fractured Marika and select a valid Elden Lord repair option"], "state_source_evidence": "eldenpedia-elden-lord", "formal_target_source_evidence": "eldenpedia-elden-lord", "coverage_state": "formal_ending_state_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_elden_ring", "name": "Elden Ring", "category": "meta", "description": "Obtained all trophies", "trophy": "Platinum", "gamerscore": 70, "formal_target_ids": [], "coverage_state": "aggregate_achievement", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_elemer_of_the_briar", "name": "Elemer of the Briar", "category": "boss", "description": "Defeated Elemer of the Briar", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["elemer_of_the_briar_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_erdtree_aflame", "name": "Erdtree Aflame", "category": "world_state", "description": "Used kindling to set the Erdtree aflame", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["grace_forge_of_giants"], "state_requirements": ["fire_giant_defeated"], "effect_conditions": ["erdtree_burned"], "external_requirements": ["Rest at Forge of the Giants and choose the kindling/world-transition interaction"], "state_source_evidence": "eldenpedia-melina", "formal_target_source_evidence": "eldenpedia-forge-giants-r35883", "coverage_state": "formal_world_state_event_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_fire_giant", "name": "Fire Giant", "category": "boss", "description": "Defeated Fire Giant", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["fire_giant_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_god_slaying_armament", "name": "God-Slaying Armament", "category": "upgrade", "description": "Upgraded any armament to its highest stage", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": [], "coverage_state": "requires_upgrade_state_mapping", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_godfrey_first_lord", "name": "Godfrey the First Lord", "category": "boss", "description": "Defeated Godfrey (Erdtree Sanctuary)", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["godfrey_royal_capital_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_godskin_duo", "name": "Godskin Duo", "category": "boss", "description": "Defeated Godskin Duo", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["godskin_duo_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_godskin_noble", "name": "Godskin Noble", "category": "boss", "description": "Defeated Godskin Noble", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["godskin_noble_volcano_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_great_rune", "name": "Great Rune", "category": "world_state", "description": "Restored the power of a Great Rune", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": [], "location_target_ids": ["grace_limgrave_stormhill_divine_tower_of_limgrave", "grace_caelid_greyoll_s_dragonbarrow_divine_tower_of_caelid_center", "grace_divine_tower_west_altus", "grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus", "grace_caelid_greyoll_s_dragonbarrow_isolated_divine_tower"], "location_target_groups": [{ "requirement": "Godrick's Great Rune", "target_ids": ["grace_limgrave_stormhill_divine_tower_of_limgrave"], "source_evidence": "eldenpedia-godrick-great-rune" }, { "requirement": "Radahn's Great Rune", "target_ids": ["grace_caelid_greyoll_s_dragonbarrow_divine_tower_of_caelid_center"], "source_evidence": "eldenpedia-radahn-great-rune" }, { "requirement": "Rykard's Great Rune", "target_ids": ["grace_divine_tower_west_altus"], "source_evidence": "eldenpedia-rykard-great-rune" }, { "requirement": "Morgott's Great Rune", "target_ids": ["grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus"], "source_evidence": "eldenpedia-morgott-great-rune" }, { "requirement": "Mohg's Great Rune", "target_ids": ["grace_mountaintops_of_the_giants_forbidden_lands_divine_tower_of_east_altus"], "source_evidence": "eldenpedia-mohg-great-rune" }, { "requirement": "Malenia's Great Rune", "target_ids": ["grace_caelid_greyoll_s_dragonbarrow_isolated_divine_tower"], "source_evidence": "eldenpedia-malenia-great-rune" }], "location_source_evidence": "eldenpedia-about-great-runes", "state_source_evidence": "eldenpedia-about-great-runes", "external_requirements": ["Defeat a shardbearer, then restore that Great Rune at its corresponding Divine Tower"], "coverage_state": "location_state_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_hoarah_loux", "name": "Hoarah Loux the Warrior", "category": "boss", "description": "Defeated Godfrey (Elden Throne)", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["godfrey_ashen_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    {
+      "canonical_id": "achievement_legendary_armaments",
+      "name": "Legendary Armaments",
+      "category": "collection",
+      "description": "Acquired all legendary armaments",
+      "trophy": "Silver",
+      "gamerscore": 30,
+      "formal_target_ids": ["item_bolt_of_gransax"],
+      "location_target_ids": ["grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes", "grace_limgrave_weeping_peninsula_castle_morne_lift", "grace_altus_plateau_main_shaded_castle_inner_gate"],
+      "location_target_groups": [
+        { "requirement": "Dark Moon Greatsword", "target_ids": ["grace_liurnia_of_the_lakes_moonlight_altar_cathedral_of_manus_celes"], "source_evidence": "eldenpedia-legendary-armaments" },
+        { "requirement": "Grafted Blade Greatsword", "target_ids": ["grace_limgrave_weeping_peninsula_castle_morne_lift"], "source_evidence": "eldenpedia-legendary-armaments" },
+        { "requirement": "Marais Executioner's Sword", "target_ids": ["grace_altus_plateau_main_shaded_castle_inner_gate"], "source_evidence": "eldenpedia-legendary-armaments" }
+      ],
+      "location_source_evidence": "eldenpedia-legendary-armaments",
+      "required_item_names": ["Dark Moon Greatsword", "Devourer's Scepter", "Eclipse Shotel", "Golden Order Greatsword", "Grafted Blade Greatsword", "Marais Executioner's Sword", "Ruins Greatsword", "Sword of Night and Flame", "Bolt of Gransax"],
+      "coverage_state": "collection_item_placement_partial_with_location_anchors",
+      "routeable": false,
+      "source_evidence": "eldenpedia-achievements-r95255"
+    },
+    { "canonical_id": "achievement_legendary_ashen_remains", "name": "Legendary Ashen Remains", "category": "collection", "description": "Acquired all legendary ashen remains", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": [], "location_target_ids": ["grace_limgrave_weeping_peninsula_tombsward_catacombs", "grace_caelid_main_war_dead_catacombs", "grace_nokron_nights_sacred_ground", "black_knife_ringleader_gate", "grace_altus_plateau_main_sainted_hero_s_grave", "grace_elphael_prayer_room"], "location_target_groups": [{ "requirement": "Lhutel the Headless", "target_ids": ["grace_limgrave_weeping_peninsula_tombsward_catacombs"], "source_evidence": "eldenpedia-legendary-ashen-remains" }, { "requirement": "Redmane Knight Ogha", "target_ids": ["grace_caelid_main_war_dead_catacombs"], "source_evidence": "eldenpedia-legendary-ashen-remains" }, { "requirement": "Mimic Tear", "target_ids": ["grace_nokron_nights_sacred_ground"], "source_evidence": "eldenpedia-legendary-ashen-remains" }, { "requirement": "Black Knife Tiche", "target_ids": ["black_knife_ringleader_gate"], "source_evidence": "eldenpedia-legendary-ashen-remains" }, { "requirement": "Ancient Dragon Knight Kristoff", "target_ids": ["grace_altus_plateau_main_sainted_hero_s_grave"], "source_evidence": "eldenpedia-legendary-ashen-remains" }, { "requirement": "Cleanrot Knight Finlay", "target_ids": ["grace_elphael_prayer_room"], "source_evidence": "eldenpedia-legendary-ashen-remains" }], "location_source_evidence": "eldenpedia-legendary-ashen-remains", "required_item_names": ["Black Knife Tiche", "Cleanrot Knight Finlay", "Mimic Tear", "Lhutel the Headless", "Ancient Dragon Knight Kristoff", "Redmane Knight Ogha"], "online_name_aliases": { "Mimic Tear": ["Mimic Tear Ashes"] }, "coverage_state": "collection_item_placement_complete_with_location_anchors", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    {
+      "canonical_id": "achievement_legendary_sorceries_incantations",
+      "name": "Legendary Sorceries and Incantations",
+      "category": "collection",
+      "description": "Acquired all legendary sorceries and incantations",
+      "trophy": "Silver",
+      "gamerscore": 30,
+      "formal_target_ids": [],
+      "location_target_ids": ["grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur", "grace_caelid_sellia_hideaway", "grace_cathedral_dragon_communion"],
+      "location_target_groups": [
+        { "requirement": "Comet Azur", "target_ids": ["grace_altus_plateau_mt_gelmir_primeval_sorcerer_azur"], "source_evidence": "eldenpedia-legendary-sorceries-incantations" },
+        { "requirement": "Stars of Ruin", "target_ids": ["grace_caelid_sellia_hideaway"], "source_evidence": "eldenpedia-legendary-sorceries-incantations" },
+        { "requirement": "Greyoll's Roar", "target_ids": ["grace_cathedral_dragon_communion"], "source_evidence": "eldenpedia-legendary-sorceries-incantations" }
+      ],
+      "location_source_evidence": "eldenpedia-legendary-sorceries-incantations",
+      "required_item_names": ["Comet Azur", "Founding Rain of Stars", "Ranni's Dark Moon", "Stars of Ruin", "Elden Stars", "Greyoll's Roar", "Flame of the Fell God"],
+      "coverage_state": "collection_item_placement_partial_with_location_anchors",
+      "routeable": false,
+      "source_evidence": "eldenpedia-achievements-r95255"
+    },
+    { "canonical_id": "achievement_legendary_talismans", "name": "Legendary Talismans", "category": "collection", "description": "Acquired all legendary talismans", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": [], "location_target_ids": ["grace_debate_parlor", "grace_fort_faroth", "godefroy_golden_lineage_gate", "grace_nokstella_eternal_city", "grace_elphael_drainage_channel", "grace_elphael_prayer_room", "grace_beside_great_bridge", "grace_leyndell_capital_of_ash"], "location_target_groups": [{ "requirement": "Radagon Icon", "target_ids": ["grace_debate_parlor"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Radagon's Soreseal", "target_ids": ["grace_fort_faroth"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Godfrey Icon", "target_ids": ["godefroy_golden_lineage_gate"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Moon of Nokstella", "target_ids": ["grace_nokstella_eternal_city"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Dragoncrest Greatshield Talisman", "target_ids": ["grace_elphael_drainage_channel"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Marika's Soreseal", "target_ids": ["grace_elphael_prayer_room"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Old Lord's Talisman", "target_ids": ["grace_beside_great_bridge"], "source_evidence": "eldenpedia-legendary-talismans" }, { "requirement": "Erdtree's Favor +2", "target_ids": ["grace_leyndell_capital_of_ash"], "source_evidence": "eldenpedia-legendary-talismans" }], "location_source_evidence": "eldenpedia-legendary-talismans", "required_item_names": ["Radagon Icon", "Radagon's Soreseal", "Godfrey Icon", "Moon of Nokstella", "Dragoncrest Greatshield Talisman", "Marika's Soreseal", "Old Lord's Talisman", "Erdtree's Favor +2"], "coverage_state": "collection_item_placement_complete_with_location_anchors", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_leonine_misbegotten", "name": "Leonine Misbegotten", "category": "boss", "description": "Defeated the Leonine Misbegotten", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["leonine_misbegotten_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_lichdragon_fortissax", "name": "Lichdragon Fortissax", "category": "boss", "description": "Defeated Lichdragon Fortissax", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["lichdragon_fortissax_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_lord_of_frenzied_flame", "name": "Lord of Frenzied Flame", "category": "ending", "description": "Achieved the \"Lord of Frenzied Flame\" ending", "trophy": "Gold", "gamerscore": 50, "formal_target_ids": ["grace_fractured_marika"], "prerequisite_target_ids": ["grace_leyndell_royal_capital_subterranean_shunning_grounds_frenzied_flame_proscription"], "external_requirements": ["Visit the Three Fingers to inherit the Frenzied Flame", "Finish the game without using Miquella's Needle to remove it"], "state_source_evidence": "eldenpedia-lord-frenzied-flame", "formal_target_source_evidence": "eldenpedia-endings", "prerequisite_source_evidence": "eldenpedia-three-fingers", "coverage_state": "formal_ending_state_bound_with_exclusive_state", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_loretta_knight_haligtree", "name": "Loretta, Knight of the Haligtree", "category": "boss", "description": "Defeated Loretta, Knight of the Haligtree", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["loretta_haligtree_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_magma_wyrm_makar", "name": "Magma Wyrm Makar", "category": "boss", "description": "Defeated Magma Wyrm Makar", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["magma_wyrm_makar_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_maliketh", "name": "Maliketh the Black Blade", "category": "boss", "description": "Defeated Maliketh the Black Blade", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["maliketh_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_margit", "name": "Margit, the Fell Omen", "category": "boss", "description": "Defeated Margit, the Fell Omen", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["margit_fell_omen_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_mimic_tear", "name": "Mimic Tear", "category": "boss", "description": "Defeated Mimic Tear", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["mimic_tear_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_mohg_omen", "name": "Mohg, the Omen", "category": "boss", "description": "Defeated Mohg, the Omen", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["mohg_omen_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_red_wolf_radagon", "name": "Red Wolf of Radagon", "category": "boss", "description": "Defeated the Red Wolf of Radagon", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["red_wolf_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_regal_ancestor_spirit", "name": "Regal Ancestor Spirit", "category": "boss", "description": "Defeated Regal Ancestor Spirit", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["regal_ancestor_spirit_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_rennala", "name": "Rennala, Queen of the Full Moon", "category": "boss", "description": "Defeated Rennala, Queen of the Full Moon", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["rennala_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_roundtable_hold", "name": "Roundtable Hold", "category": "hub", "description": "Arrived at Roundtable Hold", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["roundtable_hold_invitation_trigger", "grace_roundtable_hold_main_table_of_lost_grace"], "coverage_state": "formal_hub_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_royal_knight_loretta", "name": "Royal Knight Loretta", "category": "boss", "description": "Defeated Royal Knight Loretta", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["royal_knight_loretta_caria_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_shardbearer_godrick", "name": "Shardbearer Godrick", "category": "boss", "description": "Defeated Shardbearer Godrick", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["godrick_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_shardbearer_malenia", "name": "Shardbearer Malenia", "category": "boss", "description": "Defeated Shardbearer Malenia", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["malenia_haligtree_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_shardbearer_mohg", "name": "Shardbearer Mohg", "category": "boss", "description": "Defeated Shardbearer Mohg", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["mohg_lord_of_blood_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_shardbearer_morgott", "name": "Shardbearer Morgott", "category": "boss", "description": "Defeated Shardbearer Morgott", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["morgott_arena_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_shardbearer_radahn", "name": "Shardbearer Radahn", "category": "boss", "description": "Defeated Shardbearer Radahn", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["radahn_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_shardbearer_rykard", "name": "Shardbearer Rykard", "category": "boss", "description": "Defeated Shardbearer Rykard", "trophy": "Silver", "gamerscore": 30, "formal_target_ids": ["rykard_lord_of_blasphemy_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" },
+    { "canonical_id": "achievement_valiant_gargoyle", "name": "Valiant Gargoyle", "category": "boss", "description": "Defeated Valiant Gargoyle", "trophy": "Bronze", "gamerscore": 15, "formal_target_ids": ["siofra_aqueduct_valiant_gargoyle_gate"], "coverage_state": "formal_boss_bound", "routeable": false, "source_evidence": "eldenpedia-achievements-r95255" }
+  ],
+  "notes": [
+    "This is a source-backed achievement catalog, not a claim that every achievement route is already executable.",
+    "Achievement records are checklist targets and never become traversal edges automatically.",
+    "Collection targets retain explicit item-name lists; item placement and route binding remain separate evidence layers.",
+    "Page text is attributed to the pinned Eldenpedia revision under its stated license."
+  ]
+}
