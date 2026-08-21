@@ -467,6 +467,15 @@ function renderEntityDetail(payload) {
   const sources = (entity.sources || []).join("、") || "未记录";
   const endpointCount = acquisitions.reduce((sum, relation) => sum + (relation.endpointInstances?.length || 0), 0);
   const routeAnchorNodes = (topology.graphNodes || []).filter((node) => node.routeable && state.store.node(node.id));
+  const renderEndpoint = (endpoint) => {
+    const position = endpoint.position || {};
+    const xyz = ["x", "y", "z"].every((axis) => Number.isFinite(Number(position[axis])))
+      ? `XYZ ${Number(position.x).toFixed(3)}, ${Number(position.y).toFixed(3)}, ${Number(position.z).toFixed(3)}`
+      : "XYZ 未解析";
+    const kind = endpoint.spawnKind || endpoint.kind || "endpoint";
+    const identity = endpoint.npcParamId != null ? `NpcParam ${endpoint.npcParamId}` : "固定拾取点";
+    return `<div class="entity-endpoint"><strong>${escapeHtml(endpoint.map || "未知地图")}</strong><span>${escapeHtml(endpoint.part || "未知部件")} · ${escapeHtml(identity)} · ${escapeHtml(kind)}</span><small>${escapeHtml(xyz)}</small></div>`;
+  };
   const acquisitionHtml = acquisitions.length
     ? acquisitions.slice(0, 40).map((relation) => {
       const method = ENTITY_METHOD_LABELS[relation.method] || relation.method || "其他关系";
@@ -474,7 +483,10 @@ function renderEntityDetail(payload) {
       const evidence = relation.verification || "证据状态未标记";
       const binding = relation.topologyBinding || {};
       const bindingLabel = ENTITY_BINDING_LABELS[binding.status] || "拓扑终点状态未知";
-      return `<div class="entity-detail-row"><strong>${escapeHtml(method)}</strong><span>${escapeHtml(bindingLabel)} · ${escapeHtml(evidence)}${escapeHtml(endpoints)}</span></div>`;
+      const endpointList = relation.endpointInstances?.length
+        ? `<details class="entity-endpoint-details"><summary>查看具体终点（前 ${Math.min(relation.endpointInstances.length, 8)} 个，共 ${relation.endpointInstances.length} 个）</summary><div class="entity-endpoint-list">${relation.endpointInstances.slice(0, 8).map(renderEndpoint).join("")}${relation.endpointInstances.length > 8 ? `<small class="entity-endpoint-more">其余 ${relation.endpointInstances.length - 8} 个终点保留在数据接口中。</small>` : ""}</div></details>`
+        : "";
+      return `<div class="entity-detail-row"><div class="entity-detail-row-head"><strong>${escapeHtml(method)}</strong><span>${escapeHtml(bindingLabel)} · ${escapeHtml(evidence)}${escapeHtml(endpoints)}</span></div>${endpointList}</div>`;
     }).join("")
     : `<div class="entity-placeholder">当前没有已登记获取关系。</div>`;
   const reinforcementHtml = reinforcement.length || outgoing.length

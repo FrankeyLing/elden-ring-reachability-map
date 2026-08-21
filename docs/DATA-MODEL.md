@@ -63,6 +63,7 @@ All files live under `data/v1/entities/`:
 | `acquisition-registry.json` | acquisition relations: drops, pickups, shops, boss rewards |
 | `location-catalog.json` | location instances from `WorldMapPointParam` (churches, catacombs, caves, castles, ...) |
 | `boss-rewards.json` | boss reward lots decoded from EMEVD `AwardItemLot` instructions |
+| `enemy-spawn-bindings.json` | exact `Enemy` and `DummyEnemy` instances from the copied MSB map snapshot, keyed by `NpcParam` row and retaining map-local XYZ coordinates |
 | `graph-v1.json` | formal reachability graph + integrated location/item/boss nodes and relations |
 | `player-entity-index.json` | player query projection: canonical entities, acquisition relations, endpoint states and topology-anchor states; independent of route packages |
 
@@ -97,6 +98,12 @@ taxonomy (10 categories):
   "method": "drop",
   "lot": {"param": "ItemLotParam_enemy", "rowId": 300014010},
   "items": [ {"item": "item_smithing_stone_1", "name": {...}, "num": 1} ],
+  "sourceNpcParamRows": [20108500],
+  "endpointInstances": [
+    {"map": "m10_00_00_00.msb.dcx", "part": "c2010_9000",
+     "npcParamId": 20108500, "position": {"x": 1.0, "y": 2.0, "z": 3.0},
+     "topologyBinding": {"status": "coordinate_endpoint"}}
+  ],
   "evidence": [...],
   "verification": "local_param_verified"
 }
@@ -109,6 +116,15 @@ taxonomy (10 categories):
 The lot category table (verified against the local regulation dump) maps
 `lotItemCategory` to the item table: 1 = Goods, 2 = Weapon, 3 = Protector,
 4 = Accessory, 5 = Gem.
+
+Enemy drop coverage is intentionally split into three independent facts:
+`sourceNpcParamRows` identifies the regulation rows that declare the drop;
+`endpointInstances` identifies each exact local map spawn that uses those rows;
+`topologyBinding` states whether that endpoint is already attached to a formal
+route node. A coordinate endpoint is searchable and displayable, but it is not
+silently promoted to a navigable graph edge. Unnamed ordinary enemies are
+retained under an explicit unresolved behavior-variation entity rather than
+being assigned an invented official name.
 
 ### 2.3 location-catalog.json
 
@@ -163,6 +179,9 @@ states remain visible data and never become fabricated navigation edges.
 
 - Shop **merchant binding**: shop relations are bound to `shop-<id>`
   entities, not yet to named NPC merchants.
+- Enemy spawn **topology binding**: 1,215 enemy-drop relations and 29,516
+  coordinate instances are available, but their map-local coordinates are not
+  yet converted into formal route anchors or floor-transition edges.
 
 Closed gaps (2026-08-20):
 - Pickup **locations**: 3,552 lots bound to 3,894 MSB Treasure instances
@@ -182,6 +201,7 @@ in `gap-catalog.json` and promoted to graph nodes.
 
 ```bash
 python scripts/build-entity-registry.py --param-dir <snapshot>/extracted/param-json
+python scripts/build-enemy-spawn-bindings.py --map-root <snapshot>/extracted/parsed-mapstudio-all-extra2/maps
 python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-location-catalog.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...

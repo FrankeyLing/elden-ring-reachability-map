@@ -56,6 +56,8 @@ def main() -> int:
     gaps = json.loads((DATA / "entities" / "gap-catalog.json").read_text(encoding="utf-8"))
     reinforce = json.loads((DATA / "entities" / "reinforce-catalog.json").read_text(encoding="utf-8"))
     pickups = json.loads((DATA / "entities" / "pickup-location-bindings.json").read_text(encoding="utf-8"))
+    spawn_path = DATA / "entities" / "enemy-spawn-bindings.json"
+    spawns = json.loads(spawn_path.read_text(encoding="utf-8")) if spawn_path.is_file() else {"bindings": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -91,6 +93,37 @@ def main() -> int:
                       f"relation {rel['id']} canonicalized item missing sourceName")
     methods = Counter(r["method"] for r in rels)
     print(f"acquisition registry: {len(rels)} relations, methods={dict(methods)}")
+    spawn_keys = set()
+    spawn_count = 0
+    for binding in spawns.get("bindings", []):
+        npc_id = binding.get("npcParamId")
+        check(npc_id is not None, "enemy spawn binding missing npcParamId")
+        for instance in binding.get("instances", []):
+            key = (instance.get("map"), instance.get("part"), instance.get("npcParamId"))
+            check(key not in spawn_keys, f"duplicate enemy spawn instance {key}")
+            spawn_keys.add(key)
+            spawn_count += 1
+            check(bool(instance.get("map")), f"enemy spawn {key} missing map")
+            check(bool(instance.get("part")), f"enemy spawn {key} missing part")
+            position = instance.get("position")
+            check(
+                isinstance(position, dict)
+                and all(isinstance(position.get(axis), (int, float)) for axis in ("x", "y", "z")),
+                  f"enemy spawn {key} missing XYZ position")
+            check(str(instance.get("npcParamId")) == str(npc_id),
+                  f"enemy spawn {key} disagrees with binding npcParamId")
+    drop_endpoint_count = 0
+    for rel in rels:
+        if rel.get("method") != "drop":
+            continue
+        for row_id in rel.get("sourceNpcParamRows", []):
+            check(rel.get("from") in entity_ids,
+                  f"drop {rel['id']} source row {row_id} has unresolved entity")
+        for endpoint in rel.get("endpointInstances", []):
+            key = (endpoint.get("map"), endpoint.get("part"), endpoint.get("npcParamId"))
+            check(key in spawn_keys, f"drop {rel['id']} endpoint {key} missing from spawn catalog")
+            drop_endpoint_count += 1
+    print(f"enemy spawn bindings: {len(spawns.get('bindings', []))} npc params, {spawn_count} instances; drop endpoints={drop_endpoint_count}")
 
     # ---- 3. location catalog ------------------------------------------------
     locs = locations["entities"]

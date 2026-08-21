@@ -57,6 +57,22 @@ def main() -> int:
         assert len({row["id"] for row in glovewort["records"]}) == len(glovewort["records"])
         assert not any(row["id"].startswith("accessory_") for row in glovewort["records"])
 
+        common_drop = query(id="item_smithing_stone_1")
+        assert common_drop["found"] is True
+        drop_relations = [
+            relation for relation in common_drop["entity"]["acquisitions"]
+            if relation.get("method") == "drop"
+        ]
+        assert drop_relations, common_drop
+        assert any(relation.get("endpointInstances") for relation in drop_relations), common_drop
+        for relation in drop_relations:
+            for endpoint in relation.get("endpointInstances", []):
+                assert endpoint.get("map"), endpoint
+                assert endpoint.get("part"), endpoint
+                assert isinstance(endpoint.get("position"), dict), endpoint
+                assert all(axis in endpoint["position"] for axis in ("x", "y", "z")), endpoint
+                assert endpoint.get("npcParamId") is not None, endpoint
+
         detail = query(id="item_grave_glovewort_1")
         assert detail["found"] is True
         assert detail["entity"]["name"]["zh"] == "墓地铃兰【１】"

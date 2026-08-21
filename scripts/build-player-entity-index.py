@@ -54,6 +54,7 @@ def compact_acquisition(
         for key in (
             "id", "from", "method", "lot", "evidence", "verification",
             "items", "price", "costType", "stock", "lineupRow",
+            "sourceNpcParamRows",
         )
         if key in relation
     }
@@ -209,7 +210,24 @@ def main() -> int:
 
     for relation in acquisitions.get("relations", []):
         lot_id = str((relation.get("lot") or {}).get("rowId"))
-        endpoints = pickup_by_lot.get(lot_id, [])
+        endpoints = []
+        endpoint_keys = set()
+        for endpoint in relation.get("endpointInstances", []):
+            key = (
+                endpoint.get("kind"), endpoint.get("map"), endpoint.get("part"),
+                endpoint.get("npcParamId"), tuple(endpoint.get("position") or []),
+            )
+            if key not in endpoint_keys:
+                endpoint_keys.add(key)
+                endpoints.append(endpoint)
+        for endpoint in pickup_by_lot.get(lot_id, []):
+            key = (
+                endpoint.get("kind"), endpoint.get("map"), endpoint.get("part"),
+                endpoint.get("npcParamId"), tuple(endpoint.get("position") or []),
+            )
+            if key not in endpoint_keys:
+                endpoint_keys.add(key)
+                endpoints.append(endpoint)
         semantic_node_ids = set()
         candidate_relations = list(graph_relations_by_lot.get(lot_id, []))
         source_id = relation.get("from")

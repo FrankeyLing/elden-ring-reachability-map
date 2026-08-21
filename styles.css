@@ -340,9 +340,17 @@ code { color: #c0b58f; font-size: 9px; }
 .entity-detail-route-note { color: #8c777b; font-size: 8px; line-height: 1.5; margin-top: 8px; }
 .entity-detail-section { margin-top: 10px; }
 .entity-detail-section-title { color: #727a75; font-size: 8px; margin-bottom: 4px; }
-.entity-detail-row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(119, 130, 127, .12); font-size: 8px; }
+.entity-detail-row { padding: 4px 0; border-bottom: 1px solid rgba(119, 130, 127, .12); font-size: 8px; }
+.entity-detail-row-head { display: flex; justify-content: space-between; gap: 8px; }
 .entity-detail-row strong { color: #ded6bb; font-weight: 500; }
 .entity-detail-row span { color: #7f8984; text-align: right; }
+.entity-endpoint-details { margin-top: 5px; border-left: 1px solid rgba(119, 130, 127, .22); padding-left: 7px; }
+.entity-endpoint-details summary { color: #a9a492; cursor: pointer; font-size: 8px; }
+.entity-endpoint-list { display: grid; gap: 4px; margin-top: 5px; }
+.entity-endpoint { display: grid; gap: 1px; color: #8b938d; line-height: 1.35; }
+.entity-endpoint strong { color: #b9b8a9; font-size: 8px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entity-endpoint span, .entity-endpoint small { color: #6f7874; font-size: 7.5px; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entity-endpoint-more { color: #8c777b; font-size: 7.5px; }
 .entity-detail-note, .entity-detail-source { color: #7f8984; font-size: 8px; line-height: 1.6; margin-top: 8px; }
 .entity-detail-source { border-top: 1px solid rgba(119, 130, 127, .14); padding-top: 7px; }
 

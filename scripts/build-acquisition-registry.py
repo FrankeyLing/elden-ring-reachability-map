@@ -29,6 +29,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent.parent
 FMG_INDEX = ROOT / "data" / "v1" / "entities" / "official-fmg-bilingual-index.json"
 ACHIEVEMENTS = ROOT / "data" / "v1" / "entities" / "achievements.json"
+DEFAULT_ENEMY_SPAWNS = ROOT / "data" / "v1" / "entities" / "enemy-spawn-bindings.json"
 
 _suffix_re = re.compile(r"(_dlc0[12])?\.fmg$")
 
@@ -345,6 +346,50 @@ def build_enemies_npcs(npc_rows: list[dict], tables) -> tuple[list[dict], dict[i
             continue
         ensure(en, clean_name(entry.get("zh")), nid, None)
 
+    # pass 3: unnamed NpcParam rows that still carry a real enemy drop lot.
+    # Ordinary enemies do not necessarily have an NpcName FMG entry.  Group
+    # them by the stable behavior-variation identity so their drop sources are
+    # retained without pretending that a guessed English name is authoritative.
+    fallback_by_behavior: dict[int, dict] = {}
+    for r in npc_rows:
+        cells = r["cells"]
+        lot_id = cells.get("itemLotId_enemy", -1)
+        if lot_id is None or lot_id <= 0 or r["id"] in row_to_entity:
+            continue
+        behavior_id = cells.get("behaviorVariationId") or 0
+        fallback_key = behavior_id if behavior_id > 0 else r["id"]
+        ent = fallback_by_behavior.get(fallback_key)
+        if ent is None:
+            label = (
+                f"Enemy behavior variation {fallback_key}"
+                if behavior_id > 0
+                else f"Enemy parameter {r['id']}"
+            )
+            ent = {
+                "id": f"enemy_unresolved_{fallback_key}",
+                "kind": "enemy",
+                "category": "enemy",
+                "class": None,
+                "name": {"en": label, "zh": f"未命名敌人参数 {fallback_key}"},
+                "signifiers": [{
+                    "type": "param",
+                    "param": "NpcParam",
+                    "rows": [],
+                    "identityStatus": "unresolved",
+                }],
+                "properties": {
+                    "identityStatus": "unresolved",
+                    "behaviorVariationId": behavior_id if behavior_id > 0 else None,
+                },
+                "variant_count": 0,
+            }
+            fallback_by_behavior[fallback_key] = ent
+            entities[ent["name"]["en"]] = ent
+        ent["signifiers"][0]["rows"].append(r["id"])
+        ent["variant_count"] += 1
+        ent["properties"].setdefault("dropItemLotEnemy", lot_id)
+        row_to_entity[r["id"]] = ent["id"]
+
     return sorted(entities.values(), key=lambda e: e["id"]), row_to_entity
 
 
@@ -394,10 +439,37 @@ def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
                 "method": "drop",
                 "lot": {"param": "ItemLotParam_enemy", "rowId": lot_id},
                 "items": items,
+                "sourceNpcParamRows": [rid],
                 "evidence": [f"regulation.bin NpcParam row {rid} itemLotId_enemy={lot_id}"],
                 "verification": "local_param_verified",
             })
     return relations
+
+
+def attach_enemy_spawn_endpoints(relations: list[dict], spawn_path: Path) -> int:
+    """Attach exact MSB enemy instances to their regulation drop relations."""
+    if not spawn_path.is_file():
+        return 0
+    payload = json.loads(spawn_path.read_text(encoding="utf-8"))
+    by_npc = {
+        str(binding["npcParamId"]): binding.get("instances", [])
+        for binding in payload.get("bindings", [])
+    }
+    endpoint_count = 0
+    for relation in relations:
+        instances: list[dict] = []
+        seen = set()
+        for row_id in relation.get("sourceNpcParamRows", []):
+            for instance in by_npc.get(str(row_id), []):
+                key = (instance.get("map"), instance.get("part"), instance.get("npcParamId"))
+                if key in seen:
+                    continue
+                seen.add(key)
+                instances.append(instance)
+        if instances:
+            relation["endpointInstances"] = instances
+            endpoint_count += len(instances)
+    return endpoint_count
 
 
 def build_pickups(lot_rows: list[dict], tables) -> list[dict]:
@@ -576,6 +648,7 @@ def main() -> int:
                         default=ROOT / "data" / "v1" / "entities" / "entity-registry.json")
     parser.add_argument("--out", type=Path,
                         default=ROOT / "data" / "v1" / "entities" / "acquisition-registry.json")
+    parser.add_argument("--enemy-spawns", type=Path, default=DEFAULT_ENEMY_SPAWNS)
     args = parser.parse_args()
 
     print("loading FMG name tables ...")
@@ -615,15 +688,23 @@ def main() -> int:
     print(f"shop relations: {len(shops)}")
 
     seen = set()
+    deduped_by_key = {}
     deduped = []
     for d in drops:
         key = (d["from"], d["lot"]["rowId"])
         if key in seen:
+            existing = deduped_by_key[key]
+            existing.setdefault("sourceNpcParamRows", []).extend(d.get("sourceNpcParamRows", []))
             continue
         seen.add(key)
+        deduped_by_key[key] = d
         deduped.append(d)
+    for d in deduped:
+        d["sourceNpcParamRows"] = sorted(set(d.get("sourceNpcParamRows", [])))
     drops = deduped
     print(f"drop relations after dedupe: {len(drops)}")
+    drop_endpoint_count = attach_enemy_spawn_endpoints(drops, args.enemy_spawns)
+    print(f"enemy spawn endpoints attached: {drop_endpoint_count}")
 
     boss_rewards = build_boss_reward_relations(entities + enemies, tables)
     print(f"boss reward relations: {len(boss_rewards)}")
@@ -651,11 +732,13 @@ def main() -> int:
         "built_from": {
             "param_dir": str(args.param_dir),
             "entity_registry": str(args.registry),
+            "enemy_spawn_bindings": str(args.enemy_spawns),
             "policy": "Facts derived from local regulation.bin; every item row is a signifier.",
         },
         "stats": {
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
+            "dropEndpointInstances": drop_endpoint_count,
         },
         "relations": relations,
     }
