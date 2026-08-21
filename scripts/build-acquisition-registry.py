@@ -2270,6 +2270,7 @@ def main() -> int:
         for br in json.loads(Path(bp).read_text(encoding="utf-8"))["rewards"]:
             boss_lots.add(br["lot"]["rowId"])
     pickup_root_ids: set[int] = set()
+    orphan_treasure_exclusions_by_lot: dict[int, list[dict]] = defaultdict(list)
     if args.pickup_bindings.is_file():
         pickup_payload = json.loads(args.pickup_bindings.read_text(encoding="utf-8"))
         pickup_root_ids = {
@@ -2277,6 +2278,9 @@ def main() -> int:
             for binding in pickup_payload.get("bindings", [])
             if binding.get("lot") is not None
         }
+        for exclusion in pickup_payload.get("sourceExclusions", []):
+            if isinstance(exclusion.get("lot"), int):
+                orphan_treasure_exclusions_by_lot[exclusion["lot"]].append(exclusion)
     all_map_lot_relations = build_pickups(lot_map, tables)
     pickups = [
         x for x in build_pickups(lot_map, tables, pickup_root_ids)
@@ -2309,10 +2313,34 @@ def main() -> int:
         and relation["lot"]["rowId"] not in boss_lots
     ]
     pickup_source_exclusions = []
+    orphan_treasure_exclusion_count = 0
+    event_reward_exclusion_count = 0
     unclassified_map_lot_gaps = []
     for relation in non_pickup_param_relations:
         row_id = relation["lot"]["rowId"]
-        if row_id in event_reward_rows:
+        if row_id in orphan_treasure_exclusions_by_lot:
+            orphan_treasure_exclusion_count += 1
+            orphan_records = orphan_treasure_exclusions_by_lot[row_id]
+            pickup_source_exclusions.append({
+                "id": f"item-lot-map-exclusion-orphan-treasure-{row_id}",
+                "method": "pickup",
+                "status": "orphan_treasure_event_without_part",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "sourceTreasureEventIds": [row.get("id") for row in orphan_records],
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    *[
+                        evidence
+                        for row in orphan_records
+                        for evidence in row.get("evidence", [])
+                    ],
+                    "not published as a fixed pickup because no positioned MSBE Part exists",
+                ],
+                "verification": "local_msbe_uninstantiated_treasure",
+            })
+        elif row_id in event_reward_rows:
+            event_reward_exclusion_count += 1
             pickup_source_exclusions.append({
                 "id": f"item-lot-map-exclusion-{row_id}",
                 "method": "event_reward",
@@ -2347,7 +2375,8 @@ def main() -> int:
     print(f"pickup relations: {len(pickups)} (excluding {len(boss_lots)} boss reward lots)")
     print(
         "non-pickup map lots: "
-        f"event-classified={len(pickup_source_exclusions)}; "
+        f"event-classified={event_reward_exclusion_count}; "
+        f"orphan-treasure={orphan_treasure_exclusion_count}; "
         f"unclassified={len(unclassified_map_lot_gaps)}"
     )
     print(
@@ -2544,7 +2573,8 @@ def main() -> int:
                 "source_without_coordinates"
             ],
             "pickupMissingBindingRelationCount": pickup_endpoint_stats["missing_bindings"],
-            "pickupEventRewardExclusionCount": len(pickup_source_exclusions),
+            "pickupEventRewardExclusionCount": event_reward_exclusion_count,
+            "pickupOrphanTreasureExclusionCount": orphan_treasure_exclusion_count,
             "unclassifiedItemLotParamMapCount": len(unclassified_map_lot_gaps),
             **{f"pickup_{key}": value for key, value in pickup_gap_stats.items()},
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),

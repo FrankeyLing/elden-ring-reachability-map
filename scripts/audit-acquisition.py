@@ -145,9 +145,22 @@ def main() -> int:
             candidate_ids = binding.get("mapCandidateIds") or []
             candidate_node_ids = binding.get("mapCandidateNodeIds") or []
             if map_status in {"exact_map_instance", "exact_map_instance_alias"}:
-                check(len(map_ids) == 1,
-                      f"relation {rel['id']} endpoint exact map binding has invalid map count")
-                check(map_node_ids == [f"local_map_{map_ids[0]}"],
+                if map_status == "exact_map_instance":
+                    check(len(map_ids) == 1,
+                          f"relation {rel['id']} endpoint exact map binding has invalid map count")
+                else:
+                    check(bool(map_ids),
+                          f"relation {rel['id']} endpoint exact alias binding is empty")
+                    if len(map_ids) > 1:
+                        check(
+                            any(
+                                "content-equivalent" in evidence
+                                and "normalized SHA-256" in evidence
+                                for evidence in binding.get("mapBindingEvidence", [])
+                            ),
+                            f"relation {rel['id']} endpoint multi-map alias lacks content-equivalence evidence",
+                        )
+                check(map_node_ids == [f"local_map_{map_id}" for map_id in map_ids],
                       f"relation {rel['id']} endpoint exact map node mismatch")
                 check(not candidate_ids and not candidate_node_ids,
                       f"relation {rel['id']} endpoint exact map retains candidates")
@@ -430,6 +443,14 @@ def main() -> int:
         if gap.get("method") == "unclassified_param"
     ]
     pickup_source_exclusions = acquisitions.get("sourceExclusions", [])
+    event_reward_pickup_exclusions = [
+        row for row in pickup_source_exclusions
+        if row.get("status") == "classified_event_award_not_fixed_pickup"
+    ]
+    orphan_treasure_exclusions = [
+        row for row in pickup_source_exclusions
+        if row.get("status") == "orphan_treasure_event_without_part"
+    ]
     shop_gaps = [gap for gap in all_gaps if gap.get("method") == "purchase"]
     drop_gap_ids = [gap.get("id") for gap in drop_gaps]
     allowed_drop_gap_statuses = {
@@ -513,9 +534,14 @@ def main() -> int:
         f"no-coordinate={acquisition_stats.get('pickup_coverageGapSourceRecordWithoutCoordinatesCount', 0)}"
     )
     check(
-        len(pickup_source_exclusions)
+        len(event_reward_pickup_exclusions)
         == acquisition_stats.get("pickupEventRewardExclusionCount"),
         "event-reward pickup exclusion count does not match stats",
+    )
+    check(
+        len(orphan_treasure_exclusions)
+        == acquisition_stats.get("pickupOrphanTreasureExclusionCount"),
+        "orphan Treasure exclusion count does not match stats",
     )
     check(
         len(unclassified_map_lot_gaps)
@@ -540,13 +566,16 @@ def main() -> int:
           "unclassified map lot is also published as a fixed pickup")
     check(not (excluded_rows & unclassified_rows),
           "map lot is both event-classified and unclassified")
-    for exclusion in pickup_source_exclusions:
-        check(exclusion.get("status") == "classified_event_award_not_fixed_pickup",
-              f"pickup exclusion {exclusion.get('id')} has invalid status")
+    for exclusion in event_reward_pickup_exclusions:
         check(exclusion.get("eventRewardBindingIds"),
               f"pickup exclusion {exclusion.get('id')} has no event binding")
         check(exclusion.get("verification") == "local_param_and_emevd_classified",
               f"pickup exclusion {exclusion.get('id')} has weak verification")
+    for exclusion in orphan_treasure_exclusions:
+        check(exclusion.get("sourceTreasureEventIds"),
+              f"orphan Treasure exclusion {exclusion.get('id')} has no event identity")
+        check(exclusion.get("verification") == "local_msbe_uninstantiated_treasure",
+              f"orphan Treasure exclusion {exclusion.get('id')} has weak verification")
     for gap in unclassified_map_lot_gaps:
         check(gap.get("status") == "unreferenced_item_lot_param_map",
               f"unclassified map lot {gap.get('id')} has invalid status")
@@ -554,7 +583,8 @@ def main() -> int:
               f"unclassified map lot {gap.get('id')} has weak verification")
     print(
         "non-pickup map lot classification: "
-        f"event-reward={len(pickup_source_exclusions)}; "
+        f"event-reward={len(event_reward_pickup_exclusions)}; "
+        f"orphan-treasure={len(orphan_treasure_exclusions)}; "
         f"unclassified={len(unclassified_map_lot_gaps)}"
     )
     purchase_relations = [rel for rel in rels if rel.get("method") == "purchase"]

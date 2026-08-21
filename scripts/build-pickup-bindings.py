@@ -102,6 +102,7 @@ def main() -> int:
     }
 
     bindings: dict[int, dict] = {}
+    source_exclusions: list[dict[str, Any]] = []
     for path in sorted(glob.glob(str(args.msb_dir / "*.json"))):
         if path.endswith("batch-manifest.json"):
             continue
@@ -119,6 +120,24 @@ def main() -> int:
             position = None
             if part_name and part_name in parts:
                 position = parts[part_name].get("position")
+            if not part_name or part_name not in parts or not isinstance(position, dict):
+                source_exclusions.append({
+                    "id": f"orphan-treasure:{map_key}:{ev.get('event_id')}:{lot}",
+                    "status": "orphan_treasure_event_without_part",
+                    "lot": lot,
+                    "map": map_key,
+                    "eventId": ev.get("event_id"),
+                    "treasureName": ev.get("name"),
+                    "treasurePartName": part_name,
+                    "inChest": extra.get("InChest"),
+                    "evidence": [
+                        f"local MSBE Treasure event {ev.get('event_id')} in {map_key}",
+                        f"ItemLotParam_map row {lot}",
+                        "TreasurePartName is null or does not resolve to a positioned MSBE Part",
+                    ],
+                    "verification": "local_msbe_uninstantiated_treasure",
+                })
+                continue
             entry = bindings.setdefault(lot, {
                 "lot": lot,
                 "items": [],
@@ -200,7 +219,9 @@ def main() -> int:
             "policy": "Positions are map-local MSB coordinates from TreasurePartName parts.",
         },
         "stats": {"lots": len(bindings), "with_positions": with_position,
-                  "instances": sum(b["count"] for b in bindings.values())},
+                  "instances": sum(b["count"] for b in bindings.values()),
+                  "sourceExclusionCount": len(source_exclusions)},
+        "sourceExclusions": source_exclusions,
         "bindings": [b for b in bindings.values() if b["positions"]],
     }
     args.out.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

@@ -63,11 +63,37 @@ def load_map_index(path: Path) -> dict[str, Any]:
                 "verification_state": layer.get("verification_state"),
                 "local_game_verified": layer.get("local_game_verified"),
             }
+    equivalent_groups: dict[str, dict[str, Any]] = {}
+    equivalent_path = path.with_name("equivalent-map-instances.json")
+    if equivalent_path.is_file():
+        equivalent_payload = json.loads(equivalent_path.read_text(encoding="utf-8"))
+        if equivalent_payload.get("schema") != "elden-ring-reachability-map/equivalent-map-instances@1":
+            raise ValueError(f"unsupported equivalent-map schema: {equivalent_path}")
+        for group in equivalent_payload.get("groups", []):
+            coarse_id = _clean_map_token(group.get("coarseMapId"))
+            member_ids = sorted({
+                member
+                for value in group.get("mapIds", [])
+                if (member := _clean_map_token(value)) is not None
+            })
+            digest = str(group.get("normalizedParsedSha256") or "")
+            if (
+                coarse_id is None
+                or len(member_ids) < 2
+                or any(member_id not in maps for member_id in member_ids)
+                or not re.fullmatch(r"[0-9a-f]{64}", digest)
+            ):
+                raise ValueError(f"invalid equivalent-map group for {coarse_id!r}")
+            equivalent_groups[coarse_id] = {
+                "map_ids": member_ids,
+                "normalized_parsed_sha256": digest,
+            }
     return {
         "available": True,
         "maps": maps,
         "layers": layers,
         "map_ids": sorted(maps),
+        "equivalent_groups": equivalent_groups,
     }
 
 
@@ -101,11 +127,20 @@ def enrich_endpoint(endpoint: dict[str, Any], index: dict[str, Any]) -> dict[str
                 map_status = "exact_map_instance_alias"
             evidence.append(f"local-abstract-topology-graph exact map identity {candidates[0]}")
         elif len(candidates) > 1:
-            candidate_ids = candidates
-            map_status = "candidate_map_instance"
-            evidence.append(
-                f"local-abstract-topology-graph map prefix {token} has {len(candidates)} candidates"
-            )
+            equivalent = index.get("equivalent_groups", {}).get(token)
+            if equivalent and candidates == equivalent.get("map_ids"):
+                map_ids = candidates
+                map_status = "exact_map_instance_alias"
+                evidence.append(
+                    "content-equivalent parsed map instances verified by normalized SHA-256 "
+                    f"{equivalent['normalized_parsed_sha256']}: {', '.join(candidates)}"
+                )
+            else:
+                candidate_ids = candidates
+                map_status = "candidate_map_instance"
+                evidence.append(
+                    f"local-abstract-topology-graph map prefix {token} has {len(candidates)} candidates"
+                )
         else:
             map_status = "unresolved_map_instance"
             evidence.append(f"local-abstract-topology-graph has no map identity for {token}")

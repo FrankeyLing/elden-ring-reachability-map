@@ -45,7 +45,13 @@ def main() -> int:
     assert registry["stats"]["ash_of_war"] == 118, registry["stats"]
     assert registry["stats"]["ash_of_war_source_rows"] == 143, registry["stats"]
     assert registry["stats"]["excluded_ash_of_war"] == 3, registry["stats"]
-    assert len(registry["exclusions"]) == 3, registry["exclusions"]
+    assert registry["stats"]["excluded_armor_appearance_rows"] == 41, registry["stats"]
+    assert len(registry["exclusions"]) == 44, registry["exclusions"]
+    assert not any(
+        entity.get("kind") == "armor"
+        and entity.get("properties", {}).get("protectorCategory") == 4
+        for entity in registry["entities"]
+    ), "appearance/body-type protector rows must not be published as armor"
     weapon_entities = [
         entity for entity in registry["entities"]
         if entity.get("kind") == "weapon"
@@ -70,6 +76,27 @@ def main() -> int:
         "+1" in entity.get("name", {}).get("en", "")
         for entity in spirit_ashes
     ), spirit_ashes
+    flask_entities = [
+        entity for entity in registry["entities"]
+        if entity.get("id") in {
+            "item_flask_of_crimson_tears",
+            "item_flask_of_cerulean_tears",
+        }
+    ]
+    assert len(flask_entities) == 2, flask_entities
+    assert all(entity.get("category") == "consumable" for entity in flask_entities)
+    assert all(entity.get("variant_count") == 26 for entity in flask_entities)
+    assert all(
+        entity.get("properties", {}).get("variantKind") == "reinforcement_state"
+        for entity in flask_entities
+    )
+    assert not any(
+        entity.get("id", "").startswith((
+            "item_flask_of_crimson_tears_",
+            "item_flask_of_cerulean_tears_",
+        ))
+        for entity in registry["entities"]
+    ), "flask reinforcement states must not be separate canonical entities"
     glovewort_categories = {
         entity.get("category")
         for entity in registry["entities"]
@@ -766,32 +793,32 @@ def main() -> int:
         assert coverage["drop"]["dropRelationCount"] == 1215, coverage
         assert coverage["drop"]["dropGapCount"] == 166, coverage
         assert coverage["pickup"]["pickupEndpointInstanceCount"] >= 3600, coverage
-        assert coverage["pickup"]["pickup"] == 3356, coverage
-        assert coverage["pickup"]["pickup_coverageGapCount"] == 12, coverage
+        assert coverage["pickup"]["pickup"] == 3344, coverage
+        assert coverage["pickup"]["pickup_coverageGapCount"] == 0, coverage
         assert coverage["pickup"]["pickup_coverageGapNoExternalLocationBindingCount"] == 0, coverage
-        assert coverage["pickup"]["pickup_coverageGapSourceRecordWithoutCoordinatesCount"] == 12, coverage
+        assert coverage["pickup"]["pickup_coverageGapSourceRecordWithoutCoordinatesCount"] == 0, coverage
         assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 32, coverage
+        assert coverage["pickup"]["pickupOrphanTreasureExclusionCount"] == 12, coverage
         assert coverage["shop"]["shop_coverageGapCount"] == 688, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 134, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedBindingCount"] == 0, coverage
         assert index["stats"]["topologyMapBinding"] == {
             "topologyMapEndpointCount": 66893,
-            "topologyMapExactMapInstanceEndpointCount": 64738,
+            "topologyMapExactMapInstanceEndpointCount": 64775,
             "topologyMapExactLayerEndpointCount": 32231,
-            "topologyMapCandidateEndpointCount": 37,
+            "topologyMapCandidateEndpointCount": 0,
             "topologyMapExternalScopeEndpointCount": 1999,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
-                "candidate_map_instance": 37,
                 "exact_map_instance": 64584,
-                "exact_map_instance_alias": 154,
+                "exact_map_instance_alias": 191,
                 "external_map_scope": 1999,
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 7886, index
-        assert coverage["sourceExclusionCount"] == 32, coverage
+        assert len(index["coverageGaps"]) == 7874, index
+        assert coverage["sourceExclusionCount"] == 44, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2544, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3653, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
@@ -820,7 +847,6 @@ def main() -> int:
         } == {
             "source_lot_missing",
             "source_lot_empty",
-            "source_record_without_coordinates",
             "unreferenced_item_lot_param_map",
             "seller_unresolved_no_external_binding",
             "seller_unresolved_candidate_binding",
@@ -831,7 +857,7 @@ def main() -> int:
             "source_marker_unmatched",
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
-        assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 12
+        assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
         assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 1527
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 3190

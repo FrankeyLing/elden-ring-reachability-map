@@ -362,6 +362,12 @@ GOODS_RULES = [
 ]
 
 
+FLASK_REINFORCEMENT_RE = re.compile(
+    r"^(Flask of (?:Crimson|Cerulean) Tears)(?: \+\d+)?$",
+    re.IGNORECASE,
+)
+
+
 def classify_goods(
     name_en: str,
     name_zh: str | None,
@@ -437,18 +443,31 @@ def build_goods(rows: list[dict], tables) -> list[dict]:
         if not en or "dummy" in en.lower() or en.startswith("Ash of War:"):
             continue
         cells = r["cells"]
-        category = classify_goods(
-            en,
-            clean_name(nm.get("zh")),
-            cells.get("goodsType"),
-            cells,
+        flask_match = FLASK_REINFORCEMENT_RE.fullmatch(en)
+        canonical_en = flask_match.group(1) if flask_match else en
+        category = (
+            "consumable"
+            if flask_match
+            else classify_goods(
+                en,
+                clean_name(nm.get("zh")),
+                cells.get("goodsType"),
+                cells,
+            )
         )
         entities.append({
-            "id": f"item_{slugify(en)}",
+            "id": f"item_{slugify(canonical_en)}",
             "kind": "item",
             "category": category,
             "class": None,
-            "name": {"en": en, "zh": clean_name(nm.get("zh")) or en},
+            "name": {
+                "en": canonical_en,
+                "zh": (
+                    clean_name(nm.get("zh")).split("+")[0].strip()
+                    if flask_match and clean_name(nm.get("zh"))
+                    else clean_name(nm.get("zh")) or canonical_en
+                ),
+            },
             "signifiers": [{
                 "type": "param",
                 "param": "EquipParamGoods",
@@ -461,7 +480,10 @@ def build_goods(rows: list[dict], tables) -> list[dict]:
                                "reinforcementClass": SPIRIT_ASH_REINFORCEMENT_MATERIALS[
                                    cells.get("reinforceMaterialId")
                                ],
-                           } if len(chain) > 1 else {})},
+                           } if len(chain) > 1 else {}),
+                           **({
+                               "variantKind": "reinforcement_state",
+                           } if flask_match else {})},
             "variant_count": len(chain),
         })
     return sorted(entities, key=lambda e: e["id"])
@@ -608,8 +630,39 @@ def main() -> int:
 
     weapons = build_weapons(param_rows(args.param_dir, "EquipParamWeapon"), tables)
     print(f"weapons: {len(weapons)}")
-    armors = build_armor(param_rows(args.param_dir, "EquipParamProtector"), tables)
-    print(f"armors: {len(armors)}")
+    armor_rows = param_rows(args.param_dir, "EquipParamProtector")
+    appearance_rows = [
+        row for row in armor_rows
+        if row.get("cells", {}).get("protectorCategory") == 4
+    ]
+    excluded_appearance_armor = [
+        {
+            "kind": "armor",
+            "param": "EquipParamProtector",
+            "row": row["id"],
+            "reason": (
+                "Protector category 4 is a character-appearance/body-type record, "
+                "not a player-obtainable head/body/arms/legs armor item"
+            ),
+            "evidence": [
+                "protectorCategory=4",
+                f"headEquip={row['cells'].get('headEquip')}",
+                f"bodyEquip={row['cells'].get('bodyEquip')}",
+                f"armEquip={row['cells'].get('armEquip')}",
+                f"legEquip={row['cells'].get('legEquip')}",
+                f"isDeposit={row['cells'].get('isDeposit')}",
+            ],
+        }
+        for row in appearance_rows
+    ]
+    armors = build_armor([
+        row for row in armor_rows
+        if row.get("cells", {}).get("protectorCategory") != 4
+    ], tables)
+    print(
+        f"armors: {len(armors)} "
+        f"(excluded appearance/body-type rows: {len(excluded_appearance_armor)})"
+    )
     accessories = build_direct(param_rows(args.param_dir, "EquipParamAccessory"), tables,
                                "AccessoryName", "accessory", "accessory", "EquipParamAccessory")
     print(f"accessories: {len(accessories)}")
@@ -680,8 +733,9 @@ def main() -> int:
             "spell": len(spells), "item": len(goods),
             "gesture": gesture_count,
             "excluded_ash_of_war": len(excluded_gems),
+            "excluded_armor_appearance_rows": len(excluded_appearance_armor),
         },
-        "exclusions": excluded_gems,
+        "exclusions": excluded_gems + excluded_appearance_armor,
         "entities": entities,
     }
     args.out.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

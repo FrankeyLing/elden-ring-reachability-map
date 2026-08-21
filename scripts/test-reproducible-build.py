@@ -60,10 +60,23 @@ def snapshot() -> dict[str, Any]:
 
 def build() -> None:
     current_acquisitions = load(DATA / "entities" / "acquisition-registry.json")
+    current_pickups = load(DATA / "entities" / "pickup-location-bindings.json")
     param_dir = current_acquisitions.get("built_from", {}).get("param_dir")
+    msb_dir = current_pickups.get("built_from", {}).get("msb_dir")
     if not param_dir or not Path(param_dir).is_dir():
         raise RuntimeError(f"pinned parameter snapshot unavailable: {param_dir}")
+    if not msb_dir or not Path(msb_dir).is_dir():
+        raise RuntimeError(f"pinned parsed MapStudio snapshot unavailable: {msb_dir}")
     commands = [
+        [sys.executable, "scripts/build-equivalent-map-instances.py", "--maps-dir", msb_dir],
+        [
+            sys.executable,
+            "scripts/build-pickup-bindings.py",
+            "--msb-dir",
+            msb_dir,
+            "--param-dir",
+            param_dir,
+        ],
         [sys.executable, "scripts/build-acquisition-registry.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-v1-graph.py"],
         [sys.executable, "scripts/build-graph-integration.py"],

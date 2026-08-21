@@ -1,0 +1,31 @@
+{
+  "schema": "elden-ring-reachability-map/equivalent-map-instances@1",
+  "sourceSnapshot": "elden-ring-local-snapshot-20260818",
+  "algorithm": "SHA-256 over parsed MapStudio JSON after recursively removing source_file/source_entry/map_id/mapId and replacing the pair member ids with <MAP>",
+  "groups": [
+    {
+      "coarseMapId": "m60_45_39",
+      "mapIds": [
+        "m60_45_39_00",
+        "m60_45_39_10"
+      ],
+      "normalizedParsedSha256": "f9ad76f8dc7f296a9c3e7f9d72d805a048db350b6252c8a85441c9b1e3bfe204"
+    },
+    {
+      "coarseMapId": "m60_44_52",
+      "mapIds": [
+        "m60_44_52_00",
+        "m60_44_52_10"
+      ],
+      "normalizedParsedSha256": "bde2271a45055967bd89c6e57dc65af8a1e1216080e900df3d24be4001d545eb"
+    },
+    {
+      "coarseMapId": "m61_47_46",
+      "mapIds": [
+        "m61_47_46_00",
+        "m61_47_46_10"
+      ],
+      "normalizedParsedSha256": "a3deae0af2484348d364dd802952dc8b6603069b8d4a62de4ec00d4f28fd3102"
+    }
+  ]
+}
