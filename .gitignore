@@ -28,3 +28,7 @@ data/v1/entities/official-fmg-bilingual-index.json
 
 # 发布包输出目录（由 release.py 生成）
 Releases/
+
+# Local project contracts, execution plans and acceptance records.
+# These guide local agent work but are not product/repository content.
+.local-plans/
