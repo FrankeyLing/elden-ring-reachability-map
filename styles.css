@@ -344,6 +344,7 @@ code { color: #c0b58f; font-size: 9px; }
 .entity-detail-row-head { display: flex; justify-content: space-between; gap: 8px; }
 .entity-detail-row strong { color: #ded6bb; font-weight: 500; }
 .entity-detail-row span { color: #7f8984; text-align: right; }
+.entity-acquisition-source { display: block; margin-top: 3px; color: #b7c18f; font-size: 8px; }
 .entity-endpoint-details { margin-top: 5px; border-left: 1px solid rgba(119, 130, 127, .22); padding-left: 7px; }
 .entity-endpoint-details summary { color: #a9a492; cursor: pointer; font-size: 8px; }
 .entity-endpoint-list { display: grid; gap: 4px; margin-top: 5px; }

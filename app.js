@@ -462,6 +462,7 @@ function renderEntityDetail(payload) {
   const name = entityName(entity);
   const topology = entity.topology || {};
   const acquisitions = entity.acquisitions || [];
+  const shopSales = entity.shopSales || [];
   const reinforcement = entity.reinforcementIncoming || [];
   const outgoing = entity.reinforcementOutgoing || [];
   const sources = (entity.sources || []).join("、") || "未记录";
@@ -474,7 +475,9 @@ function renderEntityDetail(payload) {
       : "XYZ 未解析";
     const kind = endpoint.spawnKind || endpoint.kind || "endpoint";
     const identity = endpoint.npcParamId != null ? `NpcParam ${endpoint.npcParamId}` : "固定拾取点";
-    return `<div class="entity-endpoint"><strong>${escapeHtml(endpoint.map || "未知地图")}</strong><span>${escapeHtml(endpoint.part || "未知部件")} · ${escapeHtml(identity)} · ${escapeHtml(kind)}</span><small>${escapeHtml(xyz)}</small></div>`;
+    const seller = endpoint.merchantName ? ` · ${endpoint.merchantName}` : "";
+    const row = endpoint.rowId != null ? ` · ShopLineupParam ${endpoint.rowId}` : "";
+    return `<div class="entity-endpoint"><strong>${escapeHtml(endpoint.map || "未知地图")}</strong><span>${escapeHtml(endpoint.part || "未知部件")} · ${escapeHtml(identity)} · ${escapeHtml(kind)}${escapeHtml(seller)}${escapeHtml(row)}</span><small>${escapeHtml(xyz)}</small></div>`;
   };
   const acquisitionHtml = acquisitions.length
     ? acquisitions.slice(0, 40).map((relation) => {
@@ -483,12 +486,25 @@ function renderEntityDetail(payload) {
       const evidence = relation.verification || "证据状态未标记";
       const binding = relation.topologyBinding || {};
       const bindingLabel = ENTITY_BINDING_LABELS[binding.status] || "拓扑终点状态未知";
+      const merchant = relation.merchantShopBinding?.merchantName
+        || (relation.sellerStatus === "unresolved" ? "卖家身份未解析" : "");
+      const lineup = relation.lineupRow != null ? ` · ShopLineupParam ${relation.lineupRow}` : "";
+      const sourceLabel = merchant || lineup ? `<small class="entity-acquisition-source">${escapeHtml(merchant)}${escapeHtml(lineup)}</small>` : "";
       const endpointList = relation.endpointInstances?.length
         ? `<details class="entity-endpoint-details"><summary>查看具体终点（前 ${Math.min(relation.endpointInstances.length, 8)} 个，共 ${relation.endpointInstances.length} 个）</summary><div class="entity-endpoint-list">${relation.endpointInstances.slice(0, 8).map(renderEndpoint).join("")}${relation.endpointInstances.length > 8 ? `<small class="entity-endpoint-more">其余 ${relation.endpointInstances.length - 8} 个终点保留在数据接口中。</small>` : ""}</div></details>`
         : "";
-      return `<div class="entity-detail-row"><div class="entity-detail-row-head"><strong>${escapeHtml(method)}</strong><span>${escapeHtml(bindingLabel)} · ${escapeHtml(evidence)}${escapeHtml(endpoints)}</span></div>${endpointList}</div>`;
+      return `<div class="entity-detail-row"><div class="entity-detail-row-head"><strong>${escapeHtml(method)}</strong><span>${escapeHtml(bindingLabel)} · ${escapeHtml(evidence)}${escapeHtml(endpoints)}</span></div>${sourceLabel}${endpointList}</div>`;
     }).join("")
     : `<div class="entity-placeholder">当前没有已登记获取关系。</div>`;
+  const shopSalesHtml = shopSales.length
+    ? `<div class="entity-detail-section"><div class="entity-detail-section-title">商店库存 · ${shopSales.length} 条行记录</div>${shopSales.slice(0, 80).map((sale) => {
+      const item = sale.items?.[0]?.name?.zh || sale.items?.[0]?.name?.en || sale.items?.[0]?.item || "未命名物品";
+      const row = sale.lineupRow != null ? `ShopLineupParam ${sale.lineupRow}` : "商店行未知";
+      const endpoint = sale.endpointInstances?.[0];
+      const location = endpoint?.map ? ` · ${endpoint.map}` : " · 卖家位置未绑定";
+      return `<div class="entity-detail-row"><div class="entity-detail-row-head"><strong>${escapeHtml(item)}</strong><span>${escapeHtml(row)}${escapeHtml(location)}</span></div></div>`;
+    }).join("")}${shopSales.length > 80 ? `<small class="entity-endpoint-more">其余 ${shopSales.length - 80} 条库存记录保留在数据接口中。</small>` : ""}</div>`
+    : "";
   const reinforcementHtml = reinforcement.length || outgoing.length
     ? `<div class="entity-detail-note">强化关系：作为材料被使用 ${reinforcement.length} 条；自身强化 ${outgoing.length} 条。</div>`
     : "";
@@ -505,6 +521,7 @@ function renderEntityDetail(payload) {
     <div class="entity-detail-status"><strong>${escapeHtml(entityTopologyLabel(topology.status))}</strong><span>${escapeHtml(topologyMeta)}</span></div>
     ${routeActionHtml}
     <div class="entity-detail-section"><div class="entity-detail-section-title">获取方式 · ${acquisitions.length}条关系 · ${endpointCount}个已定位终点</div>${acquisitionHtml}</div>
+    ${shopSalesHtml}
     ${reinforcementHtml}
     <div class="entity-detail-source">来源层：${escapeHtml(sources)}</div>
   </div>`;

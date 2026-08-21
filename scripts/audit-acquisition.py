@@ -58,6 +58,8 @@ def main() -> int:
     pickups = json.loads((DATA / "entities" / "pickup-location-bindings.json").read_text(encoding="utf-8"))
     spawn_path = DATA / "entities" / "enemy-spawn-bindings.json"
     spawns = json.loads(spawn_path.read_text(encoding="utf-8")) if spawn_path.is_file() else {"bindings": []}
+    merchant_path = DATA / "entities" / "merchant-shop-bindings.json"
+    merchant_bindings = json.loads(merchant_path.read_text(encoding="utf-8")) if merchant_path.is_file() else {"bindings": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -93,6 +95,35 @@ def main() -> int:
                       f"relation {rel['id']} canonicalized item missing sourceName")
     methods = Counter(r["method"] for r in rels)
     print(f"acquisition registry: {len(rels)} relations, methods={dict(methods)}")
+    purchase_relations = [rel for rel in rels if rel.get("method") == "purchase"]
+    for rel in purchase_relations:
+        check(isinstance(rel.get("lineupRow"), int), f"purchase {rel['id']} missing ShopLineupParam row")
+        seller_status = rel.get("sellerStatus")
+        if seller_status == "named":
+            binding = rel.get("merchantShopBinding") or {}
+            check(bool(binding.get("merchantName")), f"named purchase {rel['id']} missing merchant name")
+            check(bool(rel.get("endpointInstances")), f"named purchase {rel['id']} missing endpoint")
+            for endpoint in rel.get("endpointInstances", []):
+                check(endpoint.get("merchantName") == binding.get("merchantName"),
+                      f"purchase {rel['id']} endpoint seller mismatch")
+                check(endpoint.get("map"), f"named purchase {rel['id']} endpoint missing map")
+                position = endpoint.get("position")
+                check(isinstance(position, dict) and all(axis in position for axis in ("x", "y", "z")),
+                      f"named purchase {rel['id']} endpoint missing XYZ")
+        else:
+            check(rel.get("from", "").startswith("shop_context_"),
+                  f"unresolved purchase {rel['id']} must use an isolated shop context")
+    print(f"purchase endpoint layer: {len(purchase_relations)} relations; named={sum(r.get('sellerStatus') == 'named' for r in purchase_relations)}; unresolved={sum(r.get('sellerStatus') != 'named' for r in purchase_relations)}")
+
+    binding_ids = [binding.get("id") for binding in merchant_bindings.get("bindings", [])]
+    check(None not in binding_ids, "merchant shop binding missing id")
+    check(len(binding_ids) == len(set(binding_ids)), "merchant shop binding ids not unique")
+    for binding in merchant_bindings.get("bindings", []):
+        check(isinstance(binding.get("rowId"), int), "merchant binding missing rowId")
+        if binding.get("sellerStatus") == "named":
+            check(bool(binding.get("merchantName")), f"named merchant binding {binding.get('id')} missing name")
+            check(binding.get("position"), f"named merchant binding {binding.get('id')} missing position")
+    print(f"merchant shop bindings: {len(binding_ids)} bindings; named={sum(b.get('sellerStatus') == 'named' for b in merchant_bindings.get('bindings', []))}; unresolved={sum(b.get('sellerStatus') != 'named' for b in merchant_bindings.get('bindings', []))}")
     spawn_keys = set()
     spawn_count = 0
     for binding in spawns.get("bindings", []):

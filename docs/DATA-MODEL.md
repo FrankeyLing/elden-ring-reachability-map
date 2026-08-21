@@ -64,6 +64,7 @@ All files live under `data/v1/entities/`:
 | `location-catalog.json` | location instances from `WorldMapPointParam` (churches, catacombs, caves, castles, ...) |
 | `boss-rewards.json` | boss reward lots decoded from EMEVD `AwardItemLot` instructions |
 | `enemy-spawn-bindings.json` | exact `Enemy` and `DummyEnemy` instances from the copied MSB map snapshot, keyed by `NpcParam` row and retaining map-local XYZ coordinates |
+| `merchant-shop-bindings.json` | copied talk-range shop bindings: each `ShopLineupParam` row, named seller, talk id, map instance and XYZ endpoint, with unresolved seller records retained |
 | `graph-v1.json` | formal reachability graph + integrated location/item/boss nodes and relations |
 | `player-entity-index.json` | player query projection: canonical entities, acquisition relations, endpoint states and topology-anchor states; independent of route packages |
 
@@ -124,7 +125,16 @@ Enemy drop coverage is intentionally split into three independent facts:
 route node. A coordinate endpoint is searchable and displayable, but it is not
 silently promoted to a navigable graph edge. Unnamed ordinary enemies are
 retained under an explicit unresolved behavior-variation entity rather than
-being assigned an invented official name.
+
+Shop rows follow the same independent-fact rule. The raw `ShopLineupParam`
+row is not treated as a merchant identity: `merchant-shop-bindings.json`
+records every known `(row, seller, talk script, map instance)` binding. A
+single row can therefore produce several `purchase` relations, one per seller
+and physical endpoint. Named endpoints retain the copied MSB part and XYZ
+coordinates when the local snapshot matches; blank seller records and rows
+not present in the copied source become `unresolved` relations attached to an
+isolated `shop_context_<id>` entity. They remain searchable and cannot become
+formal route edges.
 
 ### 2.3 location-catalog.json
 
@@ -177,8 +187,11 @@ states remain visible data and never become fabricated navigation edges.
 
 ## 4. Remaining gaps (future increments)
 
-- Shop **merchant binding**: shop relations are bound to `shop-<id>`
-  entities, not yet to named NPC merchants.
+- Shop **topology binding**: 1,659 named purchase relations and 1,660 named
+  seller-coordinate endpoints are published from the copied talk-range/MSB
+  join; 845 unresolved purchase relations remain explicitly isolated. The
+  coordinates are not yet converted into formal route anchors or floor and
+  transition edges.
 - Enemy spawn **topology binding**: 1,215 enemy-drop relations and 29,516
   coordinate instances are available, but their map-local coordinates are not
   yet converted into formal route anchors or floor-transition edges.

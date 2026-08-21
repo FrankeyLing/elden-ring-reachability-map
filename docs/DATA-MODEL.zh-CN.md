@@ -55,6 +55,7 @@
 |---|---|
 | `entity-registry.json` | 全部所指实体（物品/武器/防具/护符/战灰/法术/敌人/NPC/商店）及其全部能指 |
 | `acquisition-registry.json` | 获取关系：掉落、拾取、商店、Boss 奖励 |
+| `merchant-shop-bindings.json` | 复制的对话脚本商店范围绑定：每个 `ShopLineupParam` 行、具名卖家、对话编号、地图实例和 XYZ 终点；未解析卖家也保留 |
 | `location-catalog.json` | 位置实例（来自 `WorldMapPointParam`：教堂、墓地、洞窟、城寨……） |
 | `boss-rewards.json` | 从 EMEVD `AwardItemLot` 指令解码出的 Boss 奖励 lot |
 | `msb-objact-catalog.json` | MSB 中的 825 个地图机关（宝箱/门/升降机/拉杆/隐藏房间） |
@@ -75,6 +76,13 @@
 
 lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 道具
 （Goods）、2 = 武器、3 = 防具、4 = 护符、5 = 战灰。
+
+商店行不能直接按 `ShopLineupParam` 的大段编号猜测商人。
+`merchant-shop-bindings.json` 逐条记录“商店行—卖家—对话脚本—地图实例”的关系；
+同一个行号由多个卖家出售时，`acquisition-registry.json` 会生成多条独立的
+`purchase` 关系。具名卖家保留复制的 MSB 部件和 XYZ 坐标；空白卖家或本地参数中
+没有对应外部行的数据，进入隔离的 `shop_context_<id>`，可以搜索但不会被冒充成
+具名商人或正式路线边。
 
 ### 2.3 location-catalog.json
 
@@ -101,8 +109,9 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 
 ## 4. 剩余缺口（后续增量）
 
-- 商店**商人绑定**：商店关系绑定到 `shop-<id>` 实体，尚未绑定到具名
-  商人 NPC。
+- 商店**拓扑绑定**：目前已发布 1,659 条具名购买关系和 1,660 个具名卖家坐标
+  终点；另有 845 条未解析购买关系被独立隔离。坐标尚未转换成正式路线锚点、楼层
+  以及升降和转场边。
 
 已关闭缺口（2026-08-20）：
 - 拾取**位置**：3,552 个 lot 绑定到 3,894 个 MSB Treasure 实例（地图局部
@@ -127,7 +136,8 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
 
 ```bash
 python scripts/build-entity-registry.py --param-dir <快照>/extracted/param-json
-python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/param-json
+python scripts/build-merchant-shop-bindings.py --source <快照>/supporting/er-archipelago-merchant-shops.tsv
+python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/param-json --merchant-shops data/v1/entities/merchant-shop-bindings.json
 python scripts/build-location-catalog.py --param-dir <快照>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
 python scripts/build-graph-integration.py

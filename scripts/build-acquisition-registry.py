@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FMG_INDEX = ROOT / "data" / "v1" / "entities" / "official-fmg-bilingual-index.json"
 ACHIEVEMENTS = ROOT / "data" / "v1" / "entities" / "achievements.json"
 DEFAULT_ENEMY_SPAWNS = ROOT / "data" / "v1" / "entities" / "enemy-spawn-bindings.json"
+DEFAULT_MERCHANT_SHOPS = ROOT / "data" / "v1" / "entities" / "merchant-shop-bindings.json"
 
 _suffix_re = re.compile(r"(_dlc0[12])?\.fmg$")
 
@@ -509,12 +510,36 @@ def build_pickups(lot_rows: list[dict], tables) -> list[dict]:
     return relations
 
 
-def build_shops(shop_rows: list[dict], tables) -> tuple[list[dict], list[dict]]:
-    """Shop relations: ShopLineupParam rows -> items with prices.
+def build_shops(
+    shop_rows: list[dict],
+    tables,
+    merchant_bindings_path: Path | None = None,
+    known_entities: list[dict] | None = None,
+) -> tuple[list[dict], list[dict], dict[str, int]]:
+    """Build one purchase relation per item row and known seller instance.
 
-    Returns (relations, shop_entities).
+    A ShopLineupParam block is not a merchant identity.  The copied merchant
+    binding table comes from talk-script shop ranges joined to physical map
+    instances, so a row sold by several merchants becomes several independent
+    relations.  Rows without a named seller stay attached to an explicit
+    unresolved shop context and remain searchable without becoming a route.
+
+    Returns ``(relations, newly_created_entities, stats)``.
     """
-    by_shop: dict[int, list[dict]] = {}
+    known_by_name = {
+        entity.get("name", {}).get("en"): entity
+        for entity in (known_entities or [])
+        if entity.get("name", {}).get("en")
+    }
+    merchant_bindings: dict[int, list[dict]] = {}
+    if merchant_bindings_path and merchant_bindings_path.is_file():
+        payload = json.loads(merchant_bindings_path.read_text(encoding="utf-8"))
+        for binding in payload.get("bindings", []):
+            row_id = binding.get("rowId")
+            if row_id is not None:
+                merchant_bindings.setdefault(int(row_id), []).append(binding)
+
+    row_items: dict[int, dict] = {}
     for r in shop_rows:
         c = r["cells"]
         etype = c.get("equipType")
@@ -533,8 +558,7 @@ def build_shops(shop_rows: list[dict], tables) -> tuple[list[dict], list[dict]]:
         en = clean_name((entry or {}).get("en"))
         if not en:
             continue
-        shop_id = r["id"] // 1000
-        by_shop.setdefault(shop_id, []).append({
+        row_items[r["id"]] = {
             "item": f"{SHOP_EQUIP_KIND.get(etype, 'item')}_{slugify(en)}",
             "name": {"en": en, "zh": clean_name((entry or {}).get("zh")) or en},
             "price": c.get("value"),
@@ -542,30 +566,166 @@ def build_shops(shop_rows: list[dict], tables) -> tuple[list[dict], list[dict]]:
             "mtrlId": c.get("mtrlId"),
             "stock": c.get("sellQuantity"),
             "lineupRow": r["id"],
-        })
+        }
     relations = []
     entities = []
-    for shop_id in sorted(by_shop):
-        entries = by_shop[shop_id]
-        relations.append({
-            "id": f"shop-{shop_id}",
-            "from": f"npc_shop_{shop_id}",
-            "method": "purchase",
-            "items": entries,
-            "evidence": [f"regulation.bin ShopLineupParam shopId={shop_id}"],
-            "verification": "local_param_verified",
-        })
-        entities.append({
-            "id": f"npc_shop_{shop_id}",
+    context_entities: dict[int, dict] = {}
+
+    def unresolved_context(shop_id: int) -> dict:
+        entity = context_entities.get(shop_id)
+        if entity:
+            return entity
+        entity = {
+            "id": f"shop_context_{shop_id}",
+            "kind": "shop_context",
+            "category": "unresolved_shop",
+            "class": None,
+            "name": {
+                "en": f"Unresolved Shop Context {shop_id}",
+                "zh": f"未解析商店上下文 {shop_id}",
+            },
+            "signifiers": [{
+                "type": "param_block",
+                "param": "ShopLineupParam",
+                "rows": [shop_id * 1000],
+            }],
+            "properties": {
+                "shopId": shop_id,
+                "identityStatus": "unresolved",
+                "topologyStatus": "not_bound",
+            },
+            "variant_count": 1,
+        }
+        context_entities[shop_id] = entity
+        entities.append(entity)
+        return entity
+
+    def seller_entity(binding: dict) -> dict:
+        name = binding.get("merchantName")
+        if name in known_by_name:
+            entity = known_by_name[name]
+            entity.setdefault("properties", {})["shopVendor"] = True
+            return entity
+        seller_id = f"shop_vendor_{slugify(name or 'unresolved_seller')}"
+        entity = {
+            "id": seller_id,
             "kind": "npc",
             "category": "merchant",
             "class": None,
-            "name": {"en": f"Shop {shop_id}", "zh": f"商店 {shop_id}"},
-            "signifiers": [{"type": "param", "param": "ShopLineupParam", "rows": [shop_id * 1000]}],
-            "properties": {"shopId": shop_id},
+            "name": {"en": name or "Unresolved seller", "zh": name or "未解析卖家"},
+            "signifiers": [{
+                "type": "external_shop_source",
+                "merchantName": name,
+                "npcParamRows": [binding["npcParamId"]] if binding.get("npcParamId") is not None else [],
+            }],
+            "properties": {
+                "identityStatus": "external_name_verified" if name else "unresolved",
+                "shopVendor": True,
+            },
             "variant_count": 1,
-        })
-    return relations, entities
+        }
+        known_by_name[name] = entity
+        entities.append(entity)
+        return entity
+
+    def endpoint_for(binding: dict) -> dict | None:
+        if not binding.get("position") or not binding.get("map"):
+            return None
+        endpoint = dict(binding)
+        endpoint["kind"] = "merchant_shop_endpoint"
+        endpoint["topologyBinding"] = {
+            "status": "coordinate_endpoint",
+            "routeNodeIds": [],
+            "semanticNodeIds": [],
+            "reason": "商店行号已绑定到卖家地图坐标，但尚未绑定正式抽象导航锚点",
+        }
+        return endpoint
+
+    mapped_rows = set()
+    named_relation_count = 0
+    unresolved_relation_count = 0
+    for row_id, item in sorted(row_items.items()):
+        bindings = merchant_bindings.get(row_id, [])
+        if not bindings:
+            context = unresolved_context(row_id // 1000)
+            relations.append({
+                "id": f"purchase-unresolved-row{row_id}",
+                "from": context["id"],
+                "method": "purchase",
+                "items": [item],
+                "lineupRow": row_id,
+                "sellerStatus": "unresolved",
+                "evidence": [
+                    f"regulation.bin ShopLineupParam row {row_id}",
+                    "no seller binding in copied talk-range shop source",
+                ],
+                "verification": "local_param_verified_seller_unresolved",
+            })
+            unresolved_relation_count += 1
+            continue
+
+        mapped_rows.add(row_id)
+        for binding in bindings:
+            endpoint = endpoint_for(binding)
+            named = binding.get("sellerStatus") == "named" and binding.get("merchantName")
+            if named:
+                seller = seller_entity(binding)
+                seller_id = seller["id"]
+                seller_slug = slugify(binding["merchantName"])
+                relation_id = (
+                    f"purchase-row{row_id}-{seller_slug}-"
+                    f"{binding.get('npcParamId') or 'unknown'}-{slugify(binding.get('map') or 'unknown')}"
+                )
+                evidence = [
+                    f"regulation.bin ShopLineupParam row {row_id}",
+                    "copied talk-range shop source named the seller and map endpoint",
+                ]
+                verification = "local_param_and_external_shop_endpoint_verified"
+            else:
+                context = unresolved_context(row_id // 1000)
+                seller_id = context["id"]
+                relation_id = (
+                    f"purchase-row{row_id}-unresolved-"
+                    f"{binding.get('talkId') or 'unknown'}-{slugify(binding.get('map') or 'unknown')}"
+                )
+                evidence = [
+                    f"regulation.bin ShopLineupParam row {row_id}",
+                    "copied talk-range source contains a seller/map candidate without a resolved seller identity",
+                ]
+                verification = "local_param_verified_seller_unresolved"
+                unresolved_relation_count += 1
+
+            relation = {
+                "id": relation_id,
+                "from": seller_id,
+                "method": "purchase",
+                "items": [item],
+                "lineupRow": row_id,
+                "sellerStatus": "named" if named else "unresolved",
+                "merchantShopBinding": binding,
+                "evidence": evidence,
+                "verification": verification,
+            }
+            if endpoint:
+                relation["endpointInstances"] = [endpoint]
+            relations.append(relation)
+            if named:
+                named_relation_count += 1
+
+    # The copied source may intentionally omit a parameter row that exists in
+    # this local regulation snapshot.  Preserve that row independently instead
+    # of dropping it or assigning it to a guessed merchant.
+    source_only_rows = set(merchant_bindings) - set(row_items)
+    stats = {
+        "purchaseRows": len(row_items),
+        "sellerMappedRows": len(mapped_rows),
+        "sellerUnresolvedRows": len(row_items) - len(mapped_rows),
+        "namedPurchaseRelations": named_relation_count,
+        "unresolvedPurchaseRelations": unresolved_relation_count,
+        "unresolvedShopContexts": len(context_entities),
+        "sourceOnlyRows": len(source_only_rows),
+    }
+    return relations, entities, stats
 
 
 # ---------------------------------------------------------------------------
@@ -649,6 +809,7 @@ def main() -> int:
     parser.add_argument("--out", type=Path,
                         default=ROOT / "data" / "v1" / "entities" / "acquisition-registry.json")
     parser.add_argument("--enemy-spawns", type=Path, default=DEFAULT_ENEMY_SPAWNS)
+    parser.add_argument("--merchant-shops", type=Path, default=DEFAULT_MERCHANT_SHOPS)
     args = parser.parse_args()
 
     print("loading FMG name tables ...")
@@ -661,7 +822,7 @@ def main() -> int:
     entities = [
         entity for entity in registry["entities"]
         if entity.get("kind") not in ("enemy", "npc")
-        and not entity.get("id", "").startswith("npc_shop_")
+        and not entity.get("id", "").startswith(("npc_shop_", "shop_context_", "shop_vendor_"))
         and not any(s.get("type") == "acquisition_name" for s in entity.get("signifiers", []))
     ]
     print(f"registry entities: {len(entities)}")
@@ -684,8 +845,10 @@ def main() -> int:
     print(f"pickup relations: {len(pickups)} (excluding {len(boss_lots)} boss reward lots)")
 
     shop_rows = param_rows(args.param_dir, "ShopLineupParam")
-    shops, shop_entities = build_shops(shop_rows, tables)
-    print(f"shop relations: {len(shops)}")
+    shops, shop_entities, shop_stats = build_shops(
+        shop_rows, tables, args.merchant_shops, entities + enemies
+    )
+    print(f"shop relations: {len(shops)}; details={shop_stats}")
 
     seen = set()
     deduped_by_key = {}
@@ -733,12 +896,14 @@ def main() -> int:
             "param_dir": str(args.param_dir),
             "entity_registry": str(args.registry),
             "enemy_spawn_bindings": str(args.enemy_spawns),
+            "merchant_shop_bindings": str(args.merchant_shops),
             "policy": "Facts derived from local regulation.bin; every item row is a signifier.",
         },
         "stats": {
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
             "dropEndpointInstances": drop_endpoint_count,
+            **{f"shop_{key}": value for key, value in shop_stats.items()},
         },
         "relations": relations,
     }

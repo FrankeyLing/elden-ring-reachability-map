@@ -54,7 +54,7 @@ def compact_acquisition(
         for key in (
             "id", "from", "method", "lot", "evidence", "verification",
             "items", "price", "costType", "stock", "lineupRow",
-            "sourceNpcParamRows",
+            "sourceNpcParamRows", "sellerStatus", "merchantShopBinding",
         )
         if key in relation
     }
@@ -279,6 +279,8 @@ def main() -> int:
                     "method": relation.get("method"),
                     "target": item_id,
                 })
+                if relation.get("method") == "purchase":
+                    source.setdefault("shopSales", []).append(compact)
 
     for relation in reinforce.get("reinforcements", []):
         source = ensure(relation["from"], source="reinforce-catalog")
@@ -332,6 +334,7 @@ def main() -> int:
         ).casefold()
         record["counts"] = {
             "acquisitions": len(record["acquisitions"]),
+            "shopSales": len(record.get("shopSales", [])),
             "reinforcementOutgoing": len(record["reinforcementOutgoing"]),
             "reinforcementIncoming": len(record["reinforcementIncoming"]),
             "topologyRelations": len(record["topology"]["relations"]),

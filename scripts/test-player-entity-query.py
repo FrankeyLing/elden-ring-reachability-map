@@ -101,6 +101,26 @@ def main() -> int:
             for item in acq.get("items", [])
         )
 
+        shop_item = query(id="item_stonesword_key")
+        assert shop_item["found"] is True
+        purchases = [
+            relation for relation in shop_item["entity"]["acquisitions"]
+            if relation.get("method") == "purchase"
+        ]
+        assert purchases, shop_item
+        assert any(
+            relation.get("merchantShopBinding", {}).get("merchantName") == "Nomadic Merchant"
+            and relation.get("endpointInstances")
+            and relation["endpointInstances"][0].get("position")
+            for relation in purchases
+        ), purchases[:3]
+
+        kale = query(q="咖列", limit=20)
+        assert any(row["id"] == "npc_merchant_kal" for row in kale["records"]), kale
+        kale_detail = query(id="npc_merchant_kal")
+        assert kale_detail["found"] is True
+        assert kale_detail["entity"]["counts"]["shopSales"] > 0, kale_detail
+
         missing = query(id="definitely_missing_entity")
         assert missing["found"] is False
         missing_topology = topology_query("definitely_missing_entity")
