@@ -35,10 +35,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--graph", type=Path, default=Path("data/v1/graph.json"))
     parser.add_argument("--mapping", type=Path, default=Path("data/v1/zh-cn/official-zh-mapping.json"))
+    parser.add_argument("--entity-registry", type=Path, default=Path("data/v1/entities/entity-registry.json"))
     args = parser.parse_args()
 
     graph = json.loads(args.graph.resolve().read_text(encoding="utf-8"))
     mapping = json.loads(args.mapping.resolve().read_text(encoding="utf-8"))
+    registry = json.loads(args.entity_registry.resolve().read_text(encoding="utf-8"))
+    registry_entities = {row["id"]: row for row in registry.get("entities", [])}
     failures = []
 
     # ---- 1. mapping entry presence + levels ----
@@ -47,6 +50,12 @@ def main() -> int:
     conditions = {c["id"]: c for c in graph["conditions"]}
     layers = {l["id"]: l for l in graph.get("layers", [])}
     epochs = {e["id"]: e for e in graph.get("worldEpochs", [])}
+    formal_node_ids = {
+        endpoint
+        for edge in edges.values()
+        for endpoint in (edge.get("from"), edge.get("to"))
+        if endpoint
+    }
 
     mapping_nodes = mapping.get("nodes", {})
     mapping_edges = mapping.get("edges", {})
@@ -55,6 +64,8 @@ def main() -> int:
     mapping_epochs = mapping.get("epochs", {})
 
     for node_id, node in nodes.items():
+        if node_id not in formal_node_ids:
+            continue
         for field in REQUIRED_NODE_FIELDS:
             entry = mapping_nodes.get(node_id, {}).get(field)
             if entry is None:
@@ -71,6 +82,36 @@ def main() -> int:
                 continue
             if entry["level"] not in ("already_zh", "uncovered") and not is_zh(entry["zh"]):
                 failures.append(f"node {node_id}.{field} level={entry['level']} has no Chinese text")
+
+    # Integrated semantic nodes are not route regions and therefore do not
+    # require region/floor mappings. They still need a canonical display name,
+    # source evidence, and an explicit evidence state. Parameter entities are
+    # cross-checked against the registry instead of being silently ignored.
+    semantic_nodes = {node_id: node for node_id, node in nodes.items() if node_id not in formal_node_ids}
+    semantic_uncovered_labels = []
+    for node_id, node in semantic_nodes.items():
+        label = str(node.get("label") or "").strip()
+        if not label or label == node_id:
+            failures.append(f"semantic node {node_id} has no canonical display label")
+        if not node.get("verificationState"):
+            failures.append(f"semantic node {node_id} missing verificationState")
+        if not node.get("sourceEvidence"):
+            failures.append(f"semantic node {node_id} missing sourceEvidence")
+        entity = registry_entities.get(node_id)
+        if entity:
+            name = entity.get("name") or {}
+            expected = name.get("zh") or name.get("en")
+            if expected and label != expected:
+                failures.append(
+                    f"semantic node {node_id} label differs from canonical registry name: "
+                    f"{label!r} != {expected!r}"
+                )
+            if not name.get("zh"):
+                semantic_uncovered_labels.append(node_id)
+        elif not is_zh(label):
+            if node.get("verificationState") != "name_grouping_heuristic":
+                failures.append(f"semantic node {node_id} has non-Chinese label without explicit gap state")
+            semantic_uncovered_labels.append(node_id)
     for edge_id, edge in edges.items():
         for field in REQUIRED_EDGE_FIELDS:
             entry = mapping_edges.get(edge_id, {}).get(field)
@@ -107,9 +148,14 @@ def main() -> int:
     ]
     print(f"uncovered node labels ({len(uncovered_labels)}): {uncovered_labels}")
     print(f"uncovered node regions ({len(uncovered_regions)}): {uncovered_regions}")
+    print(f"semantic labels without official Chinese ({len(semantic_uncovered_labels)}): {semantic_uncovered_labels[:20]}")
 
     # ---- 3. data completeness ----
     for node_id, node in nodes.items():
+        if node_id not in formal_node_ids:
+            if not str(node.get("label", "")).strip():
+                failures.append(f"semantic node {node_id} empty required field label")
+            continue
         for field in REQUIRED_NODE_FIELDS:
             if not str(node.get(field, "")).strip():
                 failures.append(f"node {node_id} empty required field {field}")
@@ -137,7 +183,10 @@ def main() -> int:
             print("  -", failure)
         return 1
 
-    print("AUDIT OK: all fields mapped (or explicitly uncovered), no empty required fields")
+    print(
+        "AUDIT OK: formal route fields mapped; semantic nodes have canonical "
+        "names/evidence; no empty required fields"
+    )
     print(json.dumps(summary, ensure_ascii=False, indent=1))
     return 0
 

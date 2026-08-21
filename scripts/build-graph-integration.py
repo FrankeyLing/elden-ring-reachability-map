@@ -78,6 +78,13 @@ def main() -> int:
 
     entities = {e["id"]: e for e in registry["entities"]}
     valid_entity_ids = set(entities)
+
+    def canonical_label(entity_id: str) -> tuple[str, bool]:
+        """Return the official localized label and whether Chinese exists."""
+        entity = entities.get(entity_id, {})
+        name = entity.get("name") or {}
+        label = name.get("zh") or name.get("en")
+        return (label or entity_id, bool(name.get("zh")))
     # Remove acquisition-generated semantic nodes that belonged to a prior
     # canonicalization pass.  Route nodes are independent and are preserved;
     # only an item node with no current canonical entity is stale data.
@@ -334,9 +341,10 @@ def main() -> int:
             for item in binding.get("items", []):
                 item_id = item["item"]
                 if item_id not in node_ids:
+                    item_label, item_has_zh = canonical_label(item_id)
                     graph["nodes"].append({
                         "id": item_id,
-                        "label": item["name"].get("zh") or item["name"].get("en"),
+                        "label": item_label,
                         "kind": "item",
                         "layer": None,
                         "region": None,
@@ -349,6 +357,8 @@ def main() -> int:
                         "sourceEvidence": [f"pickup lot {binding['lot']}"],
                         "description": f"item: {item['name'].get('en')}",
                         "entityType": "pickup_item",
+                        "officialZhAvailable": item_has_zh,
+                        "sourceVariantName": item.get("name"),
                     })
                     node_ids.add(item_id)
                     added_nodes += 1
@@ -374,24 +384,28 @@ def main() -> int:
     for rel in reinforce.get("reinforcements", []):
         from_id, to_id = rel["from"], rel["to"]
         if from_id not in node_ids:
+            from_label, from_has_zh = canonical_label(from_id)
             graph["nodes"].append({
-                "id": from_id, "label": from_id, "kind": "item",
+                "id": from_id, "label": from_label, "kind": "item",
                 "layer": None, "region": None, "floor": None, "worldEpoch": None,
                 "x": None, "y": None, "coordinateType": "none",
                 "verificationState": "local_param_verified",
                 "sourceEvidence": ["reinforce-catalog"],
                 "description": "reinforced item", "entityType": "reinforceable",
+                "officialZhAvailable": from_has_zh,
             })
             node_ids.add(from_id)
             added_nodes += 1
         if to_id not in node_ids:
+            to_label, to_has_zh = canonical_label(to_id)
             graph["nodes"].append({
-                "id": to_id, "label": to_id, "kind": "item",
+                "id": to_id, "label": to_label, "kind": "item",
                 "layer": None, "region": None, "floor": None, "worldEpoch": None,
                 "x": None, "y": None, "coordinateType": "none",
                 "verificationState": "local_param_verified",
                 "sourceEvidence": ["reinforce-catalog"],
                 "description": "reinforcement material", "entityType": "smithing_stone",
+                "officialZhAvailable": to_has_zh,
             })
             node_ids.add(to_id)
             added_nodes += 1
@@ -415,7 +429,7 @@ def main() -> int:
                 "kind": "armor_set",
                 "layer": None, "region": None, "floor": None, "worldEpoch": None,
                 "x": None, "y": None, "coordinateType": "none",
-                "verificationState": "official_names",
+                "verificationState": "name_grouping_heuristic",
                 "sourceEvidence": ["armor-set grouping by owner prefix"],
                 "description": f"armor set: {s['name']['en']}",
                 "entityType": "armor_set",
