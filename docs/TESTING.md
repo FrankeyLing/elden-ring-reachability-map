@@ -7,6 +7,14 @@
 # closure; exits with code 1 when it does not pass)
 python scripts/build-v1-graph.py
 
+# Static gates for the 2026-08-21 real-requirements contract. Beta and final
+# V1 are reported separately; any V1 coverage/topology gap exits with status 1.
+python scripts/audit-real-requirements.py --milestone beta
+python scripts/audit-real-requirements.py --milestone v1
+
+# Rebuild twice from the same pinned snapshots and compare stable projections.
+python scripts/test-reproducible-build.py
+
 # 8 E2E route regressions (real HTTP server + framework engine)
 node scripts/e2e-route-regression.mjs
 

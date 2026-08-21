@@ -5,6 +5,14 @@
 # V1.0 完整性校验（本地数据声明 → 区域可达性闭包；不通过则退出码 1）
 python scripts/build-v1-graph.py
 
+# 2026-08-21 真实需求合同静态门槛。Beta 与最终 V1 分开报告；
+# V1 存在任何覆盖、获取、终点或拓扑缺口时必须退出码 1。
+python scripts/audit-real-requirements.py --milestone beta
+python scripts/audit-real-requirements.py --milestone v1
+
+# 从同一固定快照连续完整构建两次，稳定实体/关系/数据包投影必须一致。
+python scripts/test-reproducible-build.py
+
 # 8 条 E2E 路线回归（真实 HTTP 服务 + framework 引擎）
 node scripts/e2e-route-regression.mjs
 
