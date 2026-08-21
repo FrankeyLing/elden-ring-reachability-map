@@ -23,7 +23,13 @@ The first screen loads only the package manifest, the 13 data packages and route
 - **Route preference**: balanced / fastest / low risk.
 - Click「规划可达路线」(Plan route): the right panel shows a route card — each step lists the travel mode, direction (one-way drops are never reversed), layer change, required conditions, package version and evidence level.
 
-### 2. Read the map
+### 2. Search entities and acquisition methods
+
+The independent entity search finds locations, items, weapons, armor, armor sets, enemies and friendly characters. Searching for `铃兰` or `锻造石` returns canonical entities rather than treating reinforcement rows, affinity variants or shop rows as duplicate items. The detail card lists acquisition relations, fixed pickup endpoints, reinforcement relations and topology-binding state.
+
+Acquisition data and navigation data are separate. An acquisition record without a formal topology anchor remains visible but cannot be presented as a route. Only a formal route anchor offers the action to use it as a destination.
+
+### 3. Read the map
 
 - **Default view is a region aggregate**: 122 region nodes (official Chinese names, node and grace counts) connected by dashed aggregate edges; **click a region to drill into its internal topology**, then use「← 返回全局」(back) to return.
 - **Layer tabs**: surface / underground / legacy; route nodes stay visible on every layer.
@@ -31,7 +37,7 @@ The first screen loads only the package manifest, the 13 data packages and route
 - **Zoom levels**: the far view shows only region names; zooming in reveals node labels and layer rows progressively.
 - **Package status**: the right-hand "数据包状态与覆盖声明" panel lists the load state of all 13 packages, quarantined records and connected components; a local data failure only affects its own region.
 
-### 3. Research console (development entry)
+### 4. Research console (development entry)
 
 `http://127.0.0.1:8105/research.html` offers inspection views of the local research data and evidence chains; it is not part of the player route path.
 

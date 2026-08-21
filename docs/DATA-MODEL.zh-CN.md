@@ -60,6 +60,7 @@
 | `msb-objact-catalog.json` | MSB 中的 825 个地图机关（宝箱/门/升降机/拉杆/隐藏房间） |
 | `msb-message-regions.json` | MSB 中的 50 个游戏内留言区域（含坐标） |
 | `graph-v1.json` | 正式可达性图 + 集成的 location/item/boss 节点与关系 |
+| `player-entity-index.json` | 玩家查询投影：规范实体、全部获取关系、获取终点状态与拓扑锚点状态；独立于路线数据包 |
 
 ### 2.1 entity-registry.json
 
@@ -108,8 +109,14 @@ lot 类别表（对照本地 regulation 转储验证）：`lotItemCategory` 1 = 
   坐标，`pickup-location-bindings.json`）；每个拾取点成为图节点
   （`pickup_<lot>_<map>`），与物品节点建立 `pickup_at` 关系。
 - **强化**：武器材料集（普通/失色）与官方等级→锻造石映射
-  （`reinforce-catalog.json`，13,015 条关系），以及按所有者前缀分组的
+  （`reinforce-catalog.json`，10,070 条关系），以及按所有者前缀分组的
   52 个防具套装。
+
+### 2.5 玩家查询与拓扑桥接
+
+玩家页面通过 `/api/catalog/player-entities` 查询 `player-entity-index.json`，不依赖路线数据包是否已经为该实体建立正式导航节点。因此，铃兰、锻造石、武器、防具、敌人和地点可以先独立搜索，再查看各自的获取关系。
+
+`/api/catalog/player-entity-topology?id=<实体 id>` 只返回获取终点到拓扑层的明确绑定状态：`routeable_anchor` 表示可以进入路线规划；`semantic_endpoint` 表示已有语义终点但尚未接入路线；`coordinate_endpoint` 表示已有坐标但尚未绑定抽象锚点；`not_bound` 表示仍缺少具体终点。后面三种状态仍然可搜索、可查看，但不会被伪装成导航边。
 
 已关闭缺口（2026-08-20）：灵泉（70 个，icon-83 启发式，标注
 `icon_heuristic`）、车队（5 条 MSB 巡逻路线）、谜题（20 个特殊 ObjAct
@@ -124,6 +131,7 @@ python scripts/build-acquisition-registry.py --param-dir <快照>/extracted/para
 python scripts/build-location-catalog.py --param-dir <快照>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
 python scripts/build-graph-integration.py
+python scripts/build-player-entity-index.py
 python scripts/audit-acquisition.py
 python scripts/build-packages.py --graph data/v1/graph-v1.json
 python scripts/audit-packages.py

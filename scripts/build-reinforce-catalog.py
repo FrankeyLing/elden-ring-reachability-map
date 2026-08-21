@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build reinforcement relations and armor set membership.
+"""Build weapon reinforcement relations and armor set membership.
 
 - Weapon reinforcement: materialSetId classifies weapons into normal
   (smithing stones) vs somber (somber smithing stones); the level->stone
   mapping is the official game mechanic (levels are deterministic).
-- Armor reinforcement uses normal smithing stones (ReinforceParamProtector).
+- Elden Ring armor is not upgradeable; no armor reinforcement relations are
+  generated.
 - Armor sets: armor entities sharing an owner prefix ("Alberich's ...")
   form one set with head/chest/arms/legs members.
 
@@ -26,10 +27,14 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Official ER reinforcement mechanic (level -> stone grade)
+# Official Elden Ring normal weapon mechanic (level -> stone grade).
+# Normal stones cover three consecutive levels each; +25 uses an ancient
+# dragon stone. Somber weapons cover one level per somber stone grade.
 NORMAL_LEVEL_STONES = {
-    1: 1, 2: 1, 3: 2, 4: 2, 5: 3, 6: 3, 7: 4, 8: 4,
-    9: 5, 10: 5, 11: 6, 12: 6, 13: 7, 14: 7, 15: 8, 16: 8,
+    1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 2, 7: 3, 8: 3, 9: 3,
+    10: 4, 11: 4, 12: 4, 13: 5, 14: 5, 15: 5,
+    16: 6, 17: 6, 18: 6, 19: 7, 20: 7, 21: 7,
+    22: 8, 23: 8, 24: 8,
     25: "ancient_dragon",
 }
 SOMBER_LEVEL_STONES = {
@@ -68,6 +73,8 @@ def main() -> int:
 
     # ---- 1. weapon reinforcement class -------------------------------------
     weapon_rows = param_rows(args.param_dir, "EquipParamWeapon")
+    goods_rows = param_rows(args.param_dir, "EquipParamGoods")
+    goods_by_id = {row["id"]: row for row in goods_rows}
     stone_entities = {e["id"]: e for e in entities
                       if e["category"] == "smithing_stone"}
     print("smithing stone entities:", {k: v["name"]["en"] for k, v in list(stone_entities.items())[:5]})
@@ -85,6 +92,10 @@ def main() -> int:
     somber_stone = {g: f"item_{slugify(f'Somber Smithing Stone [{g}]')}" for g in range(1, 10)}
     ancient = "item_ancient_dragon_smithing_stone"
     ancient_somber = "item_ancient_dragon_somber_smithing_stone"
+    grave_glovewort = {g: f"item_grave_glovewort_{g}" for g in range(1, 10)}
+    ghost_glovewort = {g: f"item_ghost_glovewort_{g}" for g in range(1, 10)}
+    great_grave_glovewort = "item_great_grave_glovewort"
+    great_ghost_glovewort = "item_great_ghost_glovewort"
 
     # resolve actual entity ids from the registry names
     for eid, ent in stone_entities.items():
@@ -97,6 +108,25 @@ def main() -> int:
             normal_stone[int(en[en.index("[") + 1:en.index("]")])] = eid
         elif "Ancient Dragon Smithing Stone" in en:
             ancient = eid
+
+    glovewort_entities = {
+        ent["name"]["en"]: ent["id"]
+        for ent in entities
+        if ent.get("category") == "grave_glovewort"
+    }
+    for level in range(1, 10):
+        grave_glovewort[level] = glovewort_entities.get(
+            f"Grave Glovewort [{level}]", grave_glovewort[level]
+        )
+        ghost_glovewort[level] = glovewort_entities.get(
+            f"Ghost Glovewort [{level}]", ghost_glovewort[level]
+        )
+    great_grave_glovewort = glovewort_entities.get(
+        "Great Grave Glovewort", great_grave_glovewort
+    )
+    great_ghost_glovewort = glovewort_entities.get(
+        "Great Ghost Glovewort", great_ghost_glovewort
+    )
 
     # weapon entity -> material class via signifier rows
     for ent in entities:
@@ -135,28 +165,50 @@ def main() -> int:
                              f"(EquipParamWeapon)"],
             })
 
-    # ---- 2. armor reinforcement (normal smithing stones) --------------------
+    # ---- 2. spirit ash reinforcement --------------------------------------
+    # EquipParamGoods sortGroupId 10 is ordinary spirit ash; 20/30 are
+    # renowned/special spirit ash. Both use ten reinforcement levels, but the
+    # material family differs. Rows without a reinforcement chain are not
+    # upgradeable ashes and are intentionally skipped.
+    spirit_reinforcement_count = 0
     for ent in entities:
-        if ent["kind"] != "armor":
+        if ent.get("kind") != "item" or ent.get("category") != "spirit_ash":
             continue
-        for level in range(1, 10):
-            grade = NORMAL_LEVEL_STONES.get(level)
-            if grade is None:
-                continue
-            stone_id = normal_stone.get(grade)
-            if not stone_id:
+        rows = ent.get("signifiers", [{}])[0].get("rows", [])
+        goods = goods_by_id.get(rows[0]) if rows else None
+        cells = goods.get("cells", {}) if goods else {}
+        if cells.get("reinforceGoodsId", -1) == -1:
+            continue
+        sort_group = cells.get("sortGroupId")
+        if sort_group == 10:
+            materials = grave_glovewort
+            great_material = great_grave_glovewort
+            ash_class = "grave_glovewort"
+        elif sort_group in (20, 30):
+            materials = ghost_glovewort
+            great_material = great_ghost_glovewort
+            ash_class = "ghost_glovewort"
+        else:
+            continue
+        for level in range(1, 11):
+            material = great_material if level == 10 else materials.get(level)
+            if not material:
                 continue
             reinforce_relations.append({
                 "id": f"{ent['id']}-reinforce-{level}",
                 "from": ent["id"],
                 "method": "reinforce",
-                "to": stone_id,
+                "to": material,
                 "level": level,
-                "maxLevel": 9,
-                "class": "normal",
+                "maxLevel": 10,
+                "class": ash_class,
                 "verification": "game_mechanics_official",
-                "evidence": ["ReinforceParamProtector (normal smithing stones)"],
+                "evidence": [
+                    f"EquipParamGoods row {rows[0]} sortGroupId={sort_group} "
+                    "reinforceMaterialId chain"
+                ],
             })
+            spirit_reinforcement_count += 1
 
     # ---- 3. armor sets -------------------------------------------------------
     armor_entities = [e for e in entities if e["kind"] == "armor"]
@@ -194,7 +246,9 @@ def main() -> int:
         else:
             entry["name"]["zh"] = entry["name"]["en"]
 
-    print(f"weapon reinforcement relations: {len([r for r in reinforce_relations if r['method'] == 'reinforce' and 'armor' not in r['from']])}")
+    print(f"weapon reinforcement relations: {len(reinforce_relations)}")
+    print(f"spirit ash reinforcement relations: {spirit_reinforcement_count}")
+    print("armor reinforcement relations: 0 (armor is not upgradeable in Elden Ring)")
     print(f"armor sets: {len(sets)}")
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
@@ -202,8 +256,9 @@ def main() -> int:
         "schema": "errn-reinforce-catalog@1",
         "built_at": "2026-08-20",
         "built_from": {
-            "param": ["EquipParamWeapon (materialSetId)", "ReinforceParamProtector"],
+            "param": ["EquipParamWeapon (materialSetId)", "EquipParamGoods (spirit ash reinforcement chain)"],
             "policy": "Level->stone mapping is the official ER reinforcement mechanic; "
+                      "armor reinforcement is excluded because Elden Ring armor is not upgradeable; "
                       "no quantities recorded (not present in the params).",
         },
         "stats": {

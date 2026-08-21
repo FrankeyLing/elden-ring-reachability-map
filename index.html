@@ -51,6 +51,18 @@
           <button id="plan-route" class="primary-button"><span>◎</span> 规划可达路线</button>
           <button id="reset-route" class="ghost-button">重置为默认示例</button>
 
+          <details class="entity-browser" open>
+            <summary class="advanced-settings-summary">实体与获取查询</summary>
+            <p class="entity-browser-note">搜索物品、武器、防具、敌人、地点和角色。获取关系与导航图独立显示；未锚定数据不会被隐藏。</p>
+            <div class="entity-search-field">
+              <input id="entity-search" type="search" autocomplete="off" placeholder="搜索铃兰、锻造石、武器、地点…" />
+            </div>
+            <div id="entity-results" class="entity-results">
+              <div class="entity-placeholder">输入名称开始查询。</div>
+            </div>
+            <div id="entity-detail" class="entity-detail hidden"></div>
+          </details>
+
           <details class="advanced-settings">
             <summary class="advanced-settings-summary">世界状态与通行设置</summary>
             <div class="section-line"><span>ROUTE PROFILE</span></div>

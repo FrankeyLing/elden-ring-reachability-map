@@ -64,6 +64,7 @@ All files live under `data/v1/entities/`:
 | `location-catalog.json` | location instances from `WorldMapPointParam` (churches, catacombs, caves, castles, ...) |
 | `boss-rewards.json` | boss reward lots decoded from EMEVD `AwardItemLot` instructions |
 | `graph-v1.json` | formal reachability graph + integrated location/item/boss nodes and relations |
+| `player-entity-index.json` | player query projection: canonical entities, acquisition relations, endpoint states and topology-anchor states; independent of route packages |
 
 ### 2.1 entity-registry.json
 
@@ -134,6 +135,16 @@ instructions across all 589 map event files.  Remembrance lots resolve to
 the boss via the official name mapping (`Remembrance of the Grafted` →
 `Godrick the Grafted`).
 
+### 2.5 player query and topology bridge
+
+The player page queries `player-entity-index.json` through
+`/api/catalog/player-entities`. This projection is independent from route
+packages, so an entity remains searchable while its route anchor is missing.
+`/api/catalog/player-entity-topology?id=<entity id>` reports each acquisition
+endpoint as `routeable_anchor`, `semantic_endpoint`, `coordinate_endpoint`, or
+`not_bound`. Only `routeable_anchor` is eligible for route planning; the other
+states remain visible data and never become fabricated navigation edges.
+
 ## 3. Provenance and verification
 
 - Params come from the local `regulation.bin` snapshot (decrypted with the
@@ -159,7 +170,7 @@ Closed gaps (2026-08-20):
   became a graph node (`pickup_<lot>_<map>`) with `pickup_at` relations to
   the item node.
 - **Reinforcement**: weapon material sets (normal vs somber) and the
-  official level->stone mapping (`reinforce-catalog.json`, 13,015
+  official level->stone mapping (`reinforce-catalog.json`, 10,070
   relations) plus 52 armor sets grouped by owner prefix.
 
 Closed gaps (2026-08-20): spirit springs (70, icon-83 heuristic, labelled
@@ -175,6 +186,7 @@ python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/pa
 python scripts/build-location-catalog.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
 python scripts/build-graph-integration.py
+python scripts/build-player-entity-index.py
 python scripts/audit-acquisition.py
 python scripts/build-packages.py --graph data/v1/graph-v1.json
 python scripts/audit-packages.py

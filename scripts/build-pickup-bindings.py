@@ -67,6 +67,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--msb-dir", type=Path, required=True)
     parser.add_argument("--param-dir", type=Path, required=True)
+    parser.add_argument("--acquisition", type=Path,
+                        default=ROOT / "data" / "v1" / "entities" / "acquisition-registry.json")
     parser.add_argument("--out", type=Path,
                         default=ROOT / "data" / "v1" / "entities" / "pickup-location-bindings.json")
     args = parser.parse_args()
@@ -74,6 +76,12 @@ def main() -> int:
     tables = load_name_tables()
     lot_rows = json.loads((args.param_dir / "ItemLotParam_map.json").read_text(encoding="utf-8"))["rows"]
     lot_by_id = {r["id"]: r["cells"] for r in lot_rows}
+    acquisition = json.loads(args.acquisition.read_text(encoding="utf-8"))
+    canonical_items_by_lot = {
+        relation["lot"]["rowId"]: relation.get("items", [])
+        for relation in acquisition.get("relations", [])
+        if relation.get("method") == "pickup" and relation.get("lot", {}).get("rowId") is not None
+    }
 
     bindings: dict[int, dict] = {}
     for path in sorted(glob.glob(str(args.msb_dir / "*.json"))):
@@ -128,6 +136,13 @@ def main() -> int:
                 "name": {"en": en, "zh": clean_name((nm or {}).get("zh")) or en},
                 "num": cells.get(f"lotItemNum{k:02d}"),
             })
+
+        # Acquisition normalization is the single source of truth for the
+        # canonical target id.  It folds affinity/altered signifiers and
+        # preserves their source ids, so the topology binding cannot recreate
+        # a second searchable entity for the same item.
+        if lot in canonical_items_by_lot:
+            entry["items"] = canonical_items_by_lot[lot]
 
     with_position = sum(1 for b in bindings.values() if any(p["position"] for p in b["positions"]))
     print(f"bound lots: {len(bindings)}, with positions: {with_position}, "

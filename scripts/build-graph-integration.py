@@ -76,10 +76,28 @@ def main() -> int:
     grace_positions = load_json(args.grace_positions) if args.grace_positions.exists() else {"records": []}
     reinforce = load_json(args.reinforce) if args.reinforce.exists() else {"reinforcements": [], "armor_sets": []}
 
-    node_ids = {n["id"] for n in graph["nodes"]}
-    existing_relations = {(r["id"]) for r in graph.get("relations", [])}
     entities = {e["id"]: e for e in registry["entities"]}
-    relations = list(graph.get("relations", []))
+    valid_entity_ids = set(entities)
+    # Remove acquisition-generated semantic nodes that belonged to a prior
+    # canonicalization pass.  Route nodes are independent and are preserved;
+    # only an item node with no current canonical entity is stale data.
+    graph["nodes"] = [
+        node for node in graph["nodes"]
+        if not (node.get("kind") == "item" and node.get("id") not in valid_entity_ids)
+    ]
+    node_ids = {n["id"] for n in graph["nodes"]}
+    # Remove a previously published false relation if an older build treated
+    # armor as upgradeable. Keeping this cleanup in the compiler makes the
+    # correction reproducible instead of relying on a one-off file edit.
+    generated_relation_types = {
+        "pickup_at", "pickup_lot", "sold_in", "dropped_by", "boss_located_at",
+        "reinforced_with", "set_member",
+    }
+    relations = [
+        relation for relation in graph.get("relations", [])
+        if relation.get("type") not in generated_relation_types
+    ]
+    existing_relations = {(r["id"]) for r in relations}
     added_nodes = 0
     added_relations = 0
 

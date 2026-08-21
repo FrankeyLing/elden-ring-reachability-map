@@ -11,6 +11,12 @@ node scripts/e2e-route-regression.mjs
 # 故障隔离测试：零数据/单包/坏节点/悬空边/未知条件/坏行/坏包/缺桥接/重复id/最小阻断
 node scripts/test-fault-isolation.mjs
 
+# 获取实体查询回归：铃兰/锻造石搜索、规范化、多获取关系与终点桥接
+python scripts/test-player-entity-query.py
+
+# 获取实体层故障隔离：单条坏实体记录隔离后，其余实体仍可查询
+python scripts/test-entity-layer-isolation.py
+
 # 数据包完整性审计（拆包不丢边、不悬空、不重复）
 python scripts/audit-packages.py --graph data/v1/graph-v1.json
 

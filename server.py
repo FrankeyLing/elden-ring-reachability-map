@@ -81,6 +81,7 @@ LOCAL_MSBE_LAYER_FILE = ROOT / "data" / "v1" / "entities" / "local-msbe-layer-in
 LOCAL_TOPOLOGY_FILE = ROOT / "data" / "v1" / "entities" / "local-explicit-topology.json"
 LOCAL_ABSTRACT_TOPOLOGY_FILE = ROOT / "data" / "v1" / "entities" / "local-abstract-entity-topology.json"
 LOCAL_ABSTRACT_TOPOLOGY_GRAPH_FILE = ROOT / "data" / "v1" / "entities" / "local-abstract-topology-graph.json"
+PLAYER_ENTITY_INDEX_FILE = ROOT / "data" / "v1" / "entities" / "player-entity-index.json"
 LOCAL_TRANSITION_AUDIT_FILE = ROOT / "data" / "v1" / "entities" / "local-transition-audit.json"
 LOCAL_FMG_INDEX_FILE = ROOT / "data" / "v1" / "entities" / "local-fmg-semantic-index.json"
 LOCAL_EMEVD_INDEX_FILE = ROOT / "data" / "v1" / "entities" / "local-emevd-semantic-index.json"
@@ -112,6 +113,7 @@ LOCAL_MSBE_MAP_ROOT = LOCAL_MSBE_SNAPSHOT_ROOT / "extracted" / "parsed-mapstudio
 LOCAL_EMEVD_REFERENCE_ROOT = LOCAL_MSBE_SNAPSHOT_ROOT / "extracted" / "parsed-emevd-semantic" / "references"
 LOCAL_ABSTRACT_TOPOLOGY_CACHE = None
 LOCAL_ABSTRACT_TOPOLOGY_GRAPH_CACHE = None
+PLAYER_ENTITY_INDEX_CACHE = None
 LOCAL_TRANSITION_AUDIT_CACHE = None
 LOCAL_MSBE_LAYER_CACHE = None
 LOCAL_NVA_CACHE = None
@@ -124,6 +126,41 @@ LOCAL_NATIVE_TOPOLOGY_EVIDENCE_CHAIN_CACHE = None
 LOCAL_NATIVE_TOPOLOGY_GRAPH_CACHE = None
 LOCAL_NATIVE_MSBE_MODEL_BINDINGS_CACHE = None
 LOCAL_MSBE_NATIVE_ENDPOINT_BINDINGS_CACHE = None
+
+
+def sanitize_player_entity_payload(payload):
+    """Keep valid entity records available when one record is malformed.
+
+    A broken projection record is quarantined at the entity layer. A broken
+    projection file remains a package-level failure, which is reported by the
+    endpoint instead of being confused with a valid empty result.
+    """
+    entities = []
+    quarantined = []
+    for index, entity in enumerate(payload.get("entities", [])):
+        valid = (
+            isinstance(entity, dict)
+            and isinstance(entity.get("id"), str)
+            and bool(entity.get("id"))
+            and isinstance(entity.get("name"), dict)
+            and isinstance(entity.get("aliases", []), list)
+            and isinstance(entity.get("topology", {}), dict)
+            and isinstance(entity.get("acquisitions", []), list)
+            and isinstance(entity.get("reinforcementIncoming", []), list)
+            and isinstance(entity.get("reinforcementOutgoing", []), list)
+        )
+        if valid:
+            entities.append(entity)
+        else:
+            quarantined.append({"index": index, "reason": "invalid_entity_record"})
+    sanitized = dict(payload)
+    sanitized["entities"] = entities
+    sanitized["quarantine"] = quarantined
+    stats = dict(payload.get("stats", {}))
+    stats["quarantinedEntityCount"] = len(quarantined)
+    stats["publishedEntityCount"] = len(entities)
+    sanitized["stats"] = stats
+    return sanitized
 
 
 def collection_item_evidence(record):
@@ -433,6 +470,12 @@ class AppHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/catalog/gathering":
             self.send_gathering(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/player-entities":
+            self.send_player_entities(parse_qs(parsed.query))
+            return
+        if parsed.path == "/api/catalog/player-entity-topology":
+            self.send_player_entity_topology(parse_qs(parsed.query))
             return
         if parsed.path == "/":
             self.path = "/index.html"
@@ -1713,6 +1756,164 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "note": "online gathering-node coordinates; not a proof of a walkable route or pickup availability state",
             }
         )
+
+    def load_player_entity_index(self):
+        global PLAYER_ENTITY_INDEX_CACHE
+        if PLAYER_ENTITY_INDEX_CACHE is None:
+            PLAYER_ENTITY_INDEX_CACHE = sanitize_player_entity_payload(
+                json.loads(PLAYER_ENTITY_INDEX_FILE.read_bytes())
+            )
+        return PLAYER_ENTITY_INDEX_CACHE
+
+    def send_player_entities(self, query: dict[str, list[str]]):
+        """Serve the player-facing entity/acquisition projection.
+
+        This endpoint is intentionally independent from route packages. An
+        entity can be returned with a semantic-only or unbound topology state;
+        that state is data shown to the player, not a reason to drop the entity
+        from search.
+        """
+        search = query.get("q", [""])[0].strip().casefold()
+        entity_id = query.get("id", [""])[0].strip()
+        kind = query.get("kind", [""])[0].strip().casefold()
+        category = query.get("category", [""])[0].strip().casefold()
+        try:
+            limit = min(max(int(query.get("limit", ["100"])[0]), 1), ONLINE_QUERY_MAX)
+        except ValueError:
+            limit = 100
+
+        try:
+            payload = self.load_player_entity_index()
+            entities = payload["entities"]
+            if entity_id:
+                record = next((entity for entity in entities if entity.get("id") == entity_id), None)
+                self.send_json_payload(
+                    {
+                        "schema": "elden-ring-reachability-map/player-entity-detail@1",
+                        "found": record is not None,
+                        "entity": record,
+                    }
+                )
+                return
+
+            matches = []
+            for entity in entities:
+                if kind and str(entity.get("kind", "")).casefold() != kind:
+                    continue
+                if category and str(entity.get("category", "")).casefold() != category:
+                    continue
+                search_text = " ".join(
+                    [
+                        str(entity.get("id", "")),
+                        *[str(value) for value in entity.get("name", {}).values()],
+                        *[str(value) for value in entity.get("aliases", [])],
+                        str(entity.get("category", "")),
+                        str(entity.get("kind", "")),
+                    ]
+                ).casefold()
+                if search and search not in search_text:
+                    continue
+                score = 0
+                names = [str(value).casefold() for value in entity.get("name", {}).values()]
+                if search and any(name == search for name in names):
+                    score += 10
+                if search and any(name.startswith(search) for name in names):
+                    score += 5
+                matches.append((score, entity))
+            matches.sort(key=lambda item: (-item[0], item[1].get("name", {}).get("zh", ""), item[1]["id"]))
+
+            records = []
+            for _, entity in matches[:limit]:
+                records.append(
+                    {
+                        "id": entity["id"],
+                        "kind": entity.get("kind"),
+                        "category": entity.get("category"),
+                        "name": entity.get("name"),
+                        "aliases": entity.get("aliases", [])[:8],
+                        "topologyStatus": entity.get("topology", {}).get("status", "not_bound"),
+                        "counts": entity.get("counts", {}),
+                    }
+                )
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-reachability-map/player-entity-query@1",
+                    "query": {"q": search, "id": entity_id, "kind": kind, "category": category, "limit": limit},
+                    "record_count": len(records),
+                    "total_matches": len(matches),
+                    "records": records,
+                    "stats": payload.get("stats", {}),
+                }
+            )
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
+
+    def send_player_entity_topology(self, query: dict[str, list[str]]):
+        """Expose the acquisition-to-topology bridge without fabricating edges.
+
+        Acquisition records and route records remain independently usable. The
+        response reports whether each acquisition endpoint is a formal route
+        anchor, a semantic graph endpoint, a coordinate-only endpoint, or not
+        bound. Only formal route anchors are eligible for route planning.
+        """
+        entity_id = query.get("id", [""])[0].strip()
+        try:
+            if not entity_id:
+                raise ValueError("player entity topology requires id")
+            payload = self.load_player_entity_index()
+            entity = next((row for row in payload["entities"] if row.get("id") == entity_id), None)
+            if entity is None:
+                self.send_json_payload(
+                    {
+                        "schema": "elden-ring-reachability-map/player-entity-topology@1",
+                        "found": False,
+                        "entityId": entity_id,
+                        "bindings": [],
+                        "routeNodeIds": [],
+                    }
+                )
+                return
+            bindings = []
+            route_node_ids = {
+                node.get("id")
+                for node in entity.get("topology", {}).get("graphNodes", [])
+                if node.get("routeable") and node.get("id")
+            }
+            for acquisition in entity.get("acquisitions", []):
+                binding = acquisition.get("topologyBinding") or {
+                    "status": "not_bound",
+                    "routeNodeIds": [],
+                    "semanticNodeIds": [],
+                    "endpointInstanceCount": len(acquisition.get("endpointInstances", [])),
+                    "reason": "该获取关系尚未生成拓扑绑定状态",
+                }
+                route_node_ids.update(binding.get("routeNodeIds", []))
+                bindings.append(
+                    {
+                        "relationId": acquisition.get("id"),
+                        "method": acquisition.get("method"),
+                        "binding": binding,
+                        "endpointInstances": acquisition.get("endpointInstances", []),
+                    }
+                )
+            self.send_json_payload(
+                {
+                    "schema": "elden-ring-reachability-map/player-entity-topology@1",
+                    "found": True,
+                    "entityId": entity_id,
+                    "entity": {
+                        "id": entity.get("id"),
+                        "name": entity.get("name"),
+                        "topology": entity.get("topology", {}),
+                    },
+                    "bindings": bindings,
+                    "routeNodeIds": sorted(route_node_ids),
+                    "routeReady": bool(route_node_ids),
+                    "note": "仅 routeNodeIds 中的正式导航节点可进入路线规划；其他状态只展示数据，不自动制造导航边。",
+                }
+            )
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            self.send_json_error(exc)
 
     def send_json_error(self, exc):
         body = json.dumps({"error": str(exc)}, ensure_ascii=False).encode("utf-8")

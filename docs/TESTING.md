@@ -15,6 +15,14 @@ node scripts/e2e-route-regression.mjs
 # duplicate id / minimal blocked explanation
 node scripts/test-fault-isolation.mjs
 
+# Player entity query regressions: glovewort/smithing search, canonicalization,
+# multiple acquisition relations and acquisition-to-topology bridge
+python scripts/test-player-entity-query.py
+
+# Entity-layer fault isolation: one malformed record is quarantined while the
+# remaining entity projection stays usable
+python scripts/test-entity-layer-isolation.py
+
 # Package integrity audit (split keeps every edge, no dangling/duplicates)
 python scripts/audit-packages.py --graph data/v1/graph-v1.json
 

@@ -45,19 +45,156 @@ LOT_CATEGORY_KIND = {
     1: "item", 2: "weapon", 3: "armor", 4: "accessory", 5: "ash_of_war",
 }
 
-# ShopLineupParam equipType (verified): 0=Goods, 1=Weapon, 2=Protector, 3=?,
-# 4=Accessory, 5=Gem.  Probe-based: map by table hit at build time instead.
+# ShopLineupParam equipType (verified against the local regulation dump and the
+# corresponding EquipParam tables): 0=Weapon, 1=Protector, 2=Accessory,
+# 3=Goods, 4=Gem.  Type 5 is reserved/unknown in this snapshot and is skipped
+# when no official name can be resolved.
 SHOP_EQUIP_TABLES = {
-    0: "GoodsName",
-    1: "WeaponName",
-    2: "ProtectorName",
+    0: "WeaponName",
+    1: "ProtectorName",
+    2: "AccessoryName",
     3: "GoodsName",
-    4: "AccessoryName",
+    4: "GemName",
     5: "GemName",
 }
 SHOP_EQUIP_KIND = {
-    0: "item", 1: "weapon", 2: "armor", 3: "item", 4: "accessory", 5: "ash_of_war",
+    0: "weapon", 1: "armor", 2: "accessory", 3: "item", 4: "ash_of_war", 5: "ash_of_war",
 }
+
+# Weapon affinity names are separate FMG signifiers but the entity registry
+# intentionally stores the underlying weapon once.  Acquisition rows retain
+# the original name as ``sourceName`` and point at that canonical weapon.
+WEAPON_AFFIXES = (
+    "Flame Art", "Lightning", "Sacred", "Magic", "Cold", "Poison",
+    "Blood", "Occult", "Quality", "Heavy", "Keen", "Fire", "Standard",
+)
+
+
+def slugify(text: str) -> str:
+    s = text.lower().strip()
+    s = re.sub(r"[^a-z0-9]+", "_", s)
+    return s.strip("_")
+
+
+def canonicalize_acquisition_items(relations: list[dict], entities: list[dict]) -> list[dict]:
+    """Resolve acquisition signifiers to canonical entity ids.
+
+    Loot and shop parameters may name an affinity variant, an altered armor
+    variant, or an official goods name that has no EquipParam row in this
+    snapshot.  The player must see one signified entity, while the raw
+    signifier remains auditable.  Unbound official names therefore become
+    explicit supplemental entities instead of anonymous search records.
+    """
+    entity_by_id = {e["id"]: e for e in entities}
+    by_kind_name: dict[tuple[str, str], list[str]] = {}
+    for entity in entities:
+        name = entity.get("name", {}).get("en")
+        if name:
+            by_kind_name.setdefault((entity.get("kind"), name.casefold()), []).append(entity["id"])
+
+    kind_by_prefix = {
+        "weapon": "weapon", "armor": "armor", "accessory": "accessory",
+        "ash": "ash_of_war", "ash_of_war": "ash_of_war", "item": "item",
+    }
+    supplemental: dict[str, dict] = {}
+
+    def candidates(name: str, kind: str | None) -> list[str]:
+        if not kind:
+            return []
+        return by_kind_name.get((kind, name.casefold()), [])
+
+    def resolve(raw_id: str, name: str) -> tuple[str, str | None, str | None]:
+        if raw_id in entity_by_id:
+            return raw_id, None, None
+        prefix = raw_id.split("_", 1)[0]
+        kind = kind_by_prefix.get(prefix)
+
+        # The game has one typo in the local bilingual source.  Resolve it to
+        # the official entity while retaining the source spelling below.
+        aliases = {"Glinstone Scrap": "Glintstone Scrap"}
+        normalized_name = aliases.get(name, name)
+
+        direct = candidates(normalized_name, kind)
+        if len(direct) == 1:
+            return direct[0], None, normalized_name if normalized_name != name else None
+
+        if kind == "armor" and normalized_name.endswith(" (Altered)"):
+            base_name = normalized_name[: -len(" (Altered)")]
+            direct = candidates(base_name, "armor")
+            if len(direct) == 1:
+                return direct[0], "altered", None
+
+        if kind == "weapon":
+            for affix in WEAPON_AFFIXES:
+                token = affix + " "
+                if normalized_name.startswith(token):
+                    base_name = normalized_name[len(token):]
+                    direct = candidates(base_name, "weapon")
+                    if len(direct) == 1:
+                        return direct[0], affix, None
+
+        # A category collision can make the raw prefix wrong (old shop rows
+        # are the common case).  Prefer an exact official name in the
+        # canonical item/equipment categories before creating a supplemental
+        # entity.
+        for fallback_kind in ("item", "weapon", "armor", "accessory", "ash_of_war"):
+            direct = candidates(normalized_name, fallback_kind)
+            if len(direct) == 1:
+                return direct[0], None, normalized_name if normalized_name != name else None
+
+        # Some arrows and bolts are affinity-like names whose base is present
+        # as a weapon even when the source prefix says otherwise.
+        if kind == "weapon":
+            for affix in WEAPON_AFFIXES:
+                token = affix + " "
+                if normalized_name.startswith(token):
+                    base_name = normalized_name[len(token):]
+                    for fallback_kind in ("weapon", "item"):
+                        direct = candidates(base_name, fallback_kind)
+                        if len(direct) == 1:
+                            return direct[0], affix, None
+
+        return raw_id, None, normalized_name if normalized_name != name else None
+
+    for relation in relations:
+        for item in relation.get("items", []):
+            raw_id = item.get("item")
+            name = (item.get("name") or {}).get("en")
+            if not raw_id or not name:
+                continue
+            resolved, variant, corrected_name = resolve(raw_id, name)
+            if resolved != raw_id:
+                item["sourceItemId"] = raw_id
+                item["sourceName"] = name
+                item["item"] = resolved
+                if variant:
+                    item["variant"] = variant
+                if corrected_name:
+                    item["name"] = {**item["name"], "en": corrected_name}
+                continue
+
+            if raw_id in entity_by_id:
+                continue
+            # Keep an unresolved official acquisition target searchable as a
+            # first-class data record.  It is explicitly marked unbound so a
+            # later source can enrich it without changing the framework.
+            supplemental.setdefault(raw_id, {
+                "id": raw_id,
+                "kind": kind_by_prefix.get(raw_id.split("_", 1)[0], "item"),
+                "category": "consumable" if raw_id.startswith("item_") else "unbound",
+                "class": None,
+                "name": item["name"],
+                "signifiers": [{
+                    "type": "acquisition_name",
+                    "relation": relation["id"],
+                    "rawItemId": raw_id,
+                }],
+                "properties": {"topologyStatus": "not_bound"},
+                "variant_count": 1,
+            })
+
+    entities.extend(supplemental.values())
+    return relations
 
 # Boss names from the official achievement list (category == "boss")
 BOSS_ACHIEVEMENT_NAMES = [
@@ -106,12 +243,6 @@ def name_for(tables, fmg_id: int, candidates) -> dict | None:
         if entry and clean_name(entry.get("en")):
             return entry
     return None
-
-
-def slugify(text: str) -> str:
-    s = text.lower().strip()
-    s = re.sub(r"[^a-z0-9]+", "_", s)
-    return s.strip("_")
 
 
 def param_rows(param_dir: Path, name: str) -> list[dict[str, Any]]:
@@ -321,7 +452,12 @@ def build_shops(shop_rows: list[dict], tables) -> tuple[list[dict], list[dict]]:
         fmg = SHOP_EQUIP_TABLES.get(etype)
         if fmg is None:
             continue
-        entry = name_for(tables, eid, [fmg, "GoodsName"])
+        # The category is carried by equipType.  Falling back to GoodsName
+        # when the selected FMG has no row turns stale/invalid ShopLineupParam
+        # entries into false purchases (for example an ash or a consumable
+        # masquerading as armor).  Keep only rows whose category-specific
+        # official name resolves.
+        entry = name_for(tables, eid, [fmg])
         en = clean_name((entry or {}).get("en"))
         if not en:
             continue
@@ -446,7 +582,15 @@ def main() -> int:
     tables = load_name_tables()
 
     registry = json.loads(args.registry.read_text(encoding="utf-8"))
-    entities = registry["entities"]
+    # Make repeated builds idempotent.  The previous run may already have
+    # merged generated enemy/shop/supplemental records into the registry; the
+    # canonical source pass must start from the equipment/goods entities only.
+    entities = [
+        entity for entity in registry["entities"]
+        if entity.get("kind") not in ("enemy", "npc")
+        and not entity.get("id", "").startswith("npc_shop_")
+        and not any(s.get("type") == "acquisition_name" for s in entity.get("signifiers", []))
+    ]
     print(f"registry entities: {len(entities)}")
 
     npc_rows = param_rows(args.param_dir, "NpcParam")
@@ -484,6 +628,23 @@ def main() -> int:
     boss_rewards = build_boss_reward_relations(entities + enemies, tables)
     print(f"boss reward relations: {len(boss_rewards)}")
 
+    # Named entities with no official FMG name (identified by model): the SotE
+    # Furnace Golem is a user-category boss with only a community name.
+    manual_entities = [{
+        "id": "enemy_furnace_golem",
+        "kind": "enemy",
+        "category": "furnace_golem",
+        "class": None,
+        "name": {"en": "Furnace Golem", "zh": "鐕冪倝榄斿儚"},
+        "signifiers": [{"type": "manual", "note": "no official NpcName; identified by model"}],
+        "properties": {},
+        "variant_count": 1,
+    }]
+    all_entities = entities + enemies + shop_entities + manual_entities
+    relations = drops + pickups + shops + boss_rewards
+    canonicalize_acquisition_items(relations, all_entities)
+    print(f"canonical entities after acquisition enrichment: {len(all_entities)}")
+
     payload = {
         "schema": "errn-acquisition-registry@1",
         "built_at": "2026-08-20",
@@ -496,32 +657,16 @@ def main() -> int:
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
         },
-        "relations": drops + pickups + shops + boss_rewards,
+        "relations": relations,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"wrote {args.out} ({args.out.stat().st_size / 1e6:.1f} MB)")
 
-    # merge enemy/npc entities into the entity registry
-    # Named entities with no official FMG name (identified by model): the SotE
-    # Furnace Golem is a user-category boss with only a community name.
-    MANUAL_ENTITIES = [
-        {
-            "id": "enemy_furnace_golem",
-            "kind": "enemy",
-            "category": "furnace_golem",
-            "class": None,
-            "name": {"en": "Furnace Golem", "zh": "燃炉魔像"},
-            "signifiers": [{"type": "manual", "note": "no official NpcName; identified by model"}],
-            "properties": {},
-            "variant_count": 1,
-        },
-    ]
-
-    registry["entities"] = [e for e in registry["entities"] if e["kind"] not in ("enemy", "npc")]
-    registry["entities"].extend(enemies)
-    registry["entities"].extend(shop_entities)
-    registry["entities"].extend(MANUAL_ENTITIES)
+    # Merge enemy/npc, shop, and supplemental acquisition entities into the
+    # canonical registry.  This is data enrichment; the query framework does
+    # not require every entity to have a route node.
+    registry["entities"] = all_entities
     registry["stats"]["enemy"] = len([e for e in enemies if e["kind"] == "enemy"])
     registry["stats"]["npc"] = len([e for e in enemies if e["kind"] == "npc"])
     registry["built_at"] = "2026-08-20"

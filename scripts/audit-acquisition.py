@@ -42,6 +42,12 @@ def check(cond: bool, message: str) -> None:
         problems.append(message)
 
 
+def iter_acquisition_items(relations: list[dict]):
+    for relation in relations:
+        for item in relation.get("items", []):
+            yield relation, item
+
+
 def main() -> int:
     registry = json.loads((DATA / "entities" / "entity-registry.json").read_text(encoding="utf-8"))
     acquisitions = json.loads((DATA / "entities" / "acquisition-registry.json").read_text(encoding="utf-8"))
@@ -54,6 +60,7 @@ def main() -> int:
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
     ids = [e["id"] for e in entities]
+    entity_by_id = {e["id"]: e for e in entities}
     check(len(ids) == len(set(ids)), f"entity ids not unique: {len(ids)} vs {len(set(ids))}")
     check(len(entities) > 0, "empty entity registry")
     for e in entities:
@@ -76,9 +83,12 @@ def main() -> int:
         if rel.get("from"):
             check(rel["from"] in entity_ids, f"relation {rel['id']} from {rel['from']} unresolved")
         for it in rel.get("items", []):
-            check(it.get("item") in entity_ids or it["item"].startswith(("item_", "weapon_", "armor_", "enemy_", "npc_", "accessory_", "ash_of_war_")),
+            check(it.get("item") in entity_ids,
                   f"relation {rel['id']} item {it.get('item')} unresolved")
             check(bool(it["name"].get("en")), f"relation {rel['id']} item missing name")
+            if it.get("sourceItemId"):
+                check(bool(it.get("sourceName")),
+                      f"relation {rel['id']} canonicalized item missing sourceName")
     methods = Counter(r["method"] for r in rels)
     print(f"acquisition registry: {len(rels)} relations, methods={dict(methods)}")
 
@@ -105,6 +115,18 @@ def main() -> int:
         check(rel["from"] in entity_ids, f"reinforce {rel['id']} from {rel['from']} unresolved")
         check(rel["to"] in entity_ids, f"reinforce {rel['id']} to {rel['to']} unresolved")
         check(rel["verification"] == "game_mechanics_official", f"reinforce {rel['id']} bad verification")
+        source = entity_by_id.get(rel["from"], {})
+        target = entity_by_id.get(rel["to"], {})
+        check(source.get("kind") in {"weapon", "item"},
+              f"reinforce {rel['id']} source is not a weapon or spirit ash")
+        check(source.get("kind") != "armor",
+              f"reinforce {rel['id']} incorrectly upgrades armor")
+        if source.get("kind") == "weapon":
+            check(target.get("category") == "smithing_stone",
+                  f"weapon reinforce {rel['id']} target is not a smithing stone")
+        if source.get("category") == "spirit_ash":
+            check(target.get("category") == "grave_glovewort",
+                  f"spirit ash reinforce {rel['id']} target is not glovewort")
     set_members = set()
     for s in reinforce["armor_sets"]:
         check(s["id"] not in set_members, f"armor set duplicate {s['id']}")
@@ -117,7 +139,7 @@ def main() -> int:
     # ---- 3d. pickup bindings ---------------------------------------------------
     for b in pickups["bindings"]:
         for item in b.get("items", []):
-            check(item.get("item") in entity_ids or item["item"].startswith(("item_", "weapon_", "armor_")),
+            check(item.get("item") in entity_ids,
                   f"pickup lot {b['lot']} item {item.get('item')} unresolved")
         check(b.get("positions"), f"pickup lot {b['lot']} has no positions")
     print(f"pickup bindings: {len(pickups['bindings'])} lots")

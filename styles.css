@@ -310,6 +310,42 @@ code { color: #c0b58f; font-size: 9px; }
 .swap-button { width: 100%; border: 1px dashed var(--line); background: transparent; color: #8a9089; font-size: 9px; padding: 5px 0; margin: 7px 0 10px; cursor: pointer; }
 .swap-button:hover { color: var(--gold); border-color: rgba(230, 200, 121, .5); }
 
+/* independent entity/acquisition search; it is not a route-node combobox */
+.entity-browser { border-top: 1px solid var(--line); margin-top: 13px; }
+.entity-browser .advanced-settings-summary { min-height: 34px; font-size: 10px; }
+.entity-browser-note { color: #777f7b; font-size: 9px; line-height: 1.55; margin: 1px 0 9px; }
+.entity-search-field input { width: 100%; border: 1px solid var(--line); background: #111820; color: #b9b8a9; font-size: 10px; padding: 8px 9px; }
+.entity-search-field input:focus { outline: none; border-color: rgba(230, 200, 121, .55); }
+.entity-results { max-height: 230px; overflow-y: auto; margin-top: 6px; border-top: 1px solid rgba(119, 130, 127, .14); }
+.entity-result { width: 100%; display: flex; justify-content: space-between; gap: 7px; text-align: left; border: 0; border-bottom: 1px solid rgba(119, 130, 127, .12); background: transparent; color: inherit; padding: 7px 3px; cursor: pointer; }
+.entity-result:hover { background: rgba(230, 200, 121, .08); }
+.entity-result-copy { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.entity-result-copy strong { color: #ded6bb; font-size: 10px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entity-result-copy small { color: #737b78; font-size: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entity-result-meta { color: #9a9587; font-size: 8px; text-align: right; white-space: nowrap; }
+.entity-placeholder { color: #697174; font-size: 9px; line-height: 1.6; padding: 8px 3px; }
+.entity-detail { margin-top: 8px; border-top: 1px solid var(--line); }
+.entity-detail-card { padding: 10px 2px 3px; }
+.entity-detail-head { display: flex; justify-content: space-between; gap: 8px; }
+.entity-detail-head h3 { margin: 0; color: #f0eada; font-family: Georgia, serif; font-size: 16px; font-weight: 400; }
+.entity-detail-head span { display: block; color: var(--gold); font-size: 8px; margin-top: 3px; }
+.entity-detail-close { border: 0; background: transparent; color: #7f8984; cursor: pointer; font-size: 17px; line-height: 1; padding: 0 2px; }
+.entity-detail-en { color: #727a75; font-size: 8px; margin-top: 4px; }
+.entity-detail-status { display: flex; flex-direction: column; gap: 3px; margin-top: 9px; padding: 7px 8px; border-left: 2px solid rgba(230, 200, 121, .5); background: rgba(230, 200, 121, .05); font-size: 8px; line-height: 1.5; }
+.entity-detail-status strong { color: #c9b978; font-weight: 500; }
+.entity-detail-status span { color: #7f8984; }
+.entity-detail-route-actions { display: grid; gap: 5px; margin-top: 8px; }
+.entity-route-button { border: 1px solid rgba(230, 200, 121, .42); background: rgba(230, 200, 121, .06); color: #c9b978; font-size: 8px; padding: 6px 7px; text-align: left; cursor: pointer; }
+.entity-route-button:hover { border-color: rgba(230, 200, 121, .8); background: rgba(230, 200, 121, .12); }
+.entity-detail-route-note { color: #8c777b; font-size: 8px; line-height: 1.5; margin-top: 8px; }
+.entity-detail-section { margin-top: 10px; }
+.entity-detail-section-title { color: #727a75; font-size: 8px; margin-bottom: 4px; }
+.entity-detail-row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(119, 130, 127, .12); font-size: 8px; }
+.entity-detail-row strong { color: #ded6bb; font-weight: 500; }
+.entity-detail-row span { color: #7f8984; text-align: right; }
+.entity-detail-note, .entity-detail-source { color: #7f8984; font-size: 8px; line-height: 1.6; margin-top: 8px; }
+.entity-detail-source { border-top: 1px solid rgba(119, 130, 127, .14); padding-top: 7px; }
+
 .condition-toolbar { display: flex; gap: 6px; margin-bottom: 8px; }
 .ghost-button.small { font-size: 8px; padding: 4px 7px; }
 .condition-empty { color: #7f8984; font-size: 9px; padding: 8px 0; }

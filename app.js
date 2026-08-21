@@ -23,6 +23,40 @@ const KIND_LABELS = {
   other: "其他",
 };
 
+const ENTITY_KIND_LABELS = {
+  accessory: "护符 / 饰品",
+  armor: "防具",
+  armor_set: "防具套装",
+  ash_of_war: "战灰",
+  boss: "Boss",
+  enemy: "敌人",
+  grace: "赐福",
+  item: "道具",
+  location: "地点",
+  npc: "友方角色",
+  weapon: "武器",
+  spell: "法术",
+  unknown: "待分类",
+};
+
+const ENTITY_METHOD_LABELS = {
+  pickup: "固定拾取",
+  drop: "敌人掉落",
+  drops: "Boss掉落",
+  boss_reward: "Boss奖励",
+  purchase: "商店购买",
+  quest_reward: "任务奖励",
+  exchange: "交换",
+  craft: "制作",
+};
+
+const ENTITY_BINDING_LABELS = {
+  routeable_anchor: "已绑定正式导航锚点",
+  semantic_endpoint: "已有语义终点，尚未接入路线",
+  coordinate_endpoint: "已有坐标终点，尚未绑定拓扑锚点",
+  not_bound: "尚未解析具体终点",
+};
+
 const DIRECTION_LABELS = {
   forward: "正向",
   one_way: "单向",
@@ -148,6 +182,7 @@ const state = {
   route: null,
   selectedNode: null,
   loaded: false,
+  entitySearchRequest: 0,
 };
 
 /* ---- official Chinese display helpers ---- */
@@ -254,6 +289,9 @@ const els = {
   mapTransform: document.getElementById("map-transform"),
   copyRoute: document.getElementById("copy-route"),
   coveragePanel: document.getElementById("coverage-panel"),
+  entitySearch: document.getElementById("entity-search"),
+  entityResults: document.getElementById("entity-results"),
+  entityDetail: document.getElementById("entity-detail"),
   coverageNote: document.getElementById("coverage-note"),
   engineStatus: document.getElementById("engine-status"),
   footerCoverage: document.getElementById("footer-coverage"),
@@ -375,6 +413,135 @@ function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
   }[character]));
+}
+
+function entityName(entity) {
+  return entity?.name?.zh || entity?.name?.en || entity?.id || "未命名实体";
+}
+
+function entityKindLabel(entity) {
+  return ENTITY_KIND_LABELS[entity?.kind] || entity?.category || entity?.kind || "其他";
+}
+
+function entityTopologyLabel(status) {
+  return {
+    routeable_anchor: "已有正式导航锚点",
+    semantic_graph_node: "已有语义节点，尚未成为正式路线终点",
+    not_bound: "尚未绑定拓扑锚点",
+  }[status] || "拓扑状态未知";
+}
+
+function renderEntityResults(payload) {
+  const records = payload?.records || [];
+  if (!records.length) {
+    els.entityResults.innerHTML = `<div class="entity-placeholder">没有匹配实体。</div>`;
+    return;
+  }
+  els.entityResults.innerHTML = records.map((entity) => {
+    const name = entity.name?.zh || entity.name?.en || entity.id;
+    const secondary = entity.name?.en && entity.name?.zh && entity.name.en !== entity.name.zh
+      ? ` · ${entity.name.en}` : "";
+    const counts = entity.counts || {};
+    const acquisition = Number(counts.acquisitions || 0);
+    return `<button class="entity-result" type="button" data-entity-id="${escapeHtml(entity.id)}">
+      <span class="entity-result-copy"><strong>${escapeHtml(name)}</strong><small>${escapeHtml(entityKindLabel(entity))}${escapeHtml(secondary)}</small></span>
+      <span class="entity-result-meta">${acquisition ? `${acquisition}种获取` : escapeHtml(entityTopologyLabel(entity.topologyStatus))}</span>
+    </button>`;
+  }).join("");
+  els.entityResults.querySelectorAll("[data-entity-id]").forEach((button) => {
+    button.addEventListener("click", () => loadEntityDetail(button.dataset.entityId));
+  });
+}
+
+function renderEntityDetail(payload) {
+  const entity = payload?.entity;
+  if (!payload?.found || !entity) {
+    els.entityDetail.classList.add("hidden");
+    return;
+  }
+  const name = entityName(entity);
+  const topology = entity.topology || {};
+  const acquisitions = entity.acquisitions || [];
+  const reinforcement = entity.reinforcementIncoming || [];
+  const outgoing = entity.reinforcementOutgoing || [];
+  const sources = (entity.sources || []).join("、") || "未记录";
+  const endpointCount = acquisitions.reduce((sum, relation) => sum + (relation.endpointInstances?.length || 0), 0);
+  const routeAnchorNodes = (topology.graphNodes || []).filter((node) => node.routeable && state.store.node(node.id));
+  const acquisitionHtml = acquisitions.length
+    ? acquisitions.slice(0, 40).map((relation) => {
+      const method = ENTITY_METHOD_LABELS[relation.method] || relation.method || "其他关系";
+      const endpoints = relation.endpointInstances?.length ? ` · ${relation.endpointInstances.length}个具体终点` : "";
+      const evidence = relation.verification || "证据状态未标记";
+      const binding = relation.topologyBinding || {};
+      const bindingLabel = ENTITY_BINDING_LABELS[binding.status] || "拓扑终点状态未知";
+      return `<div class="entity-detail-row"><strong>${escapeHtml(method)}</strong><span>${escapeHtml(bindingLabel)} · ${escapeHtml(evidence)}${escapeHtml(endpoints)}</span></div>`;
+    }).join("")
+    : `<div class="entity-placeholder">当前没有已登记获取关系。</div>`;
+  const reinforcementHtml = reinforcement.length || outgoing.length
+    ? `<div class="entity-detail-note">强化关系：作为材料被使用 ${reinforcement.length} 条；自身强化 ${outgoing.length} 条。</div>`
+    : "";
+  const graphNode = topology.graphNodes?.[0];
+  const topologyMeta = graphNode
+    ? `${graphNode.region || "未分区"}${graphNode.floor ? ` · ${graphNode.floor}` : ""}`
+    : "暂无正式图节点";
+  const routeActionHtml = routeAnchorNodes.length
+    ? `<div class="entity-detail-route-actions">${routeAnchorNodes.map((node) => `<button type="button" class="entity-route-button" data-route-node-id="${escapeHtml(node.id)}">以“${escapeHtml(node.label || node.id)}”作为终点规划路线</button>`).join("")}</div>`
+    : `<div class="entity-detail-route-note">获取终点尚未绑定正式导航锚点；这里不会把坐标或语义关系伪装成可规划路线。</div>`;
+  els.entityDetail.innerHTML = `<div class="entity-detail-card">
+    <div class="entity-detail-head"><div><h3>${escapeHtml(name)}</h3><span>${escapeHtml(entityKindLabel(entity))} · ${escapeHtml(entity.category || "")}</span></div><button type="button" class="entity-detail-close" aria-label="关闭">×</button></div>
+    <div class="entity-detail-en">${escapeHtml(entity.name?.en || "")}</div>
+    <div class="entity-detail-status"><strong>${escapeHtml(entityTopologyLabel(topology.status))}</strong><span>${escapeHtml(topologyMeta)}</span></div>
+    ${routeActionHtml}
+    <div class="entity-detail-section"><div class="entity-detail-section-title">获取方式 · ${acquisitions.length}条关系 · ${endpointCount}个已定位终点</div>${acquisitionHtml}</div>
+    ${reinforcementHtml}
+    <div class="entity-detail-source">来源层：${escapeHtml(sources)}</div>
+  </div>`;
+  els.entityDetail.classList.remove("hidden");
+  els.entityDetail.querySelector(".entity-detail-close")?.addEventListener("click", () => {
+    els.entityDetail.classList.add("hidden");
+  });
+  els.entityDetail.querySelectorAll("[data-route-node-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const nodeId = button.dataset.routeNodeId;
+      if (!state.store.node(nodeId)) return;
+      state.destination = nodeId;
+      state.selectedNode = nodeId;
+      els.destinationSearch.value = nodeLabel(nodeId);
+      els.destinationSearch.dataset.nodeId = nodeId;
+      planAndRender();
+    });
+  });
+}
+
+async function loadEntityDetail(entityId) {
+  try {
+    const response = await fetch(`/api/catalog/player-entities?id=${encodeURIComponent(entityId)}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    renderEntityDetail(await response.json());
+  } catch (error) {
+    els.entityDetail.innerHTML = `<div class="entity-placeholder">实体详情加载失败：${escapeHtml(error.message)}</div>`;
+    els.entityDetail.classList.remove("hidden");
+  }
+}
+
+async function searchPlayerEntities(query) {
+  const requestId = ++state.entitySearchRequest;
+  if (!query.trim()) {
+    els.entityResults.innerHTML = `<div class="entity-placeholder">输入名称开始查询。</div>`;
+    els.entityDetail.classList.add("hidden");
+    return;
+  }
+  els.entityResults.innerHTML = `<div class="entity-placeholder">查询中…</div>`;
+  try {
+    const response = await fetch(`/api/catalog/player-entities?q=${encodeURIComponent(query)}&limit=80`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    if (requestId !== state.entitySearchRequest) return;
+    renderEntityResults(payload);
+  } catch (error) {
+    if (requestId !== state.entitySearchRequest) return;
+    els.entityResults.innerHTML = `<div class="entity-placeholder">查询失败：${escapeHtml(error.message)}</div>`;
+  }
 }
 
 function text(value) {
@@ -1582,6 +1749,17 @@ function wireEvents() {
     state.destination = item.id;
     state.selectedNode = item.id;
     planAndRender();
+  });
+  let entitySearchTimer = null;
+  els.entitySearch.addEventListener("input", () => {
+    clearTimeout(entitySearchTimer);
+    entitySearchTimer = setTimeout(() => searchPlayerEntities(els.entitySearch.value), 180);
+  });
+  els.entitySearch.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      els.entitySearch.value = "";
+      searchPlayerEntities("");
+    }
   });
   els.swapRoute.addEventListener("click", () => {
     const tmp = state.origin;    state.origin = state.destination;
