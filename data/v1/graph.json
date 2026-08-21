@@ -18728,6 +18728,18 @@
       "sourceEvidence": ["eldenpedia-bolt-of-gransax-r84084"]
     },
     {
+      "id": "bolt-of-gransax-acquisition-endpoint",
+      "from": "weapon_bolt_of_gransax",
+      "to": "item_bolt_of_gransax",
+      "type": "acquisition_endpoint",
+      "routeable": false,
+      "lot": {"param": "ItemLotParam_map", "rowId": 11001040},
+      "sourceEvidence": [
+        "MSB Treasure lot 11001040 in m11_00_00_00.msb.dcx (AEG099_990_9008)",
+        "eldenpedia-bolt-of-gransax-r84084"
+      ]
+    },
+    {
       "id": "dectus-right-located-in-fort-faroth",
       "from": "item_dectus_medallion_right",
       "to": "grace_fort_faroth",

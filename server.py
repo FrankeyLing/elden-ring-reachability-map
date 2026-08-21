@@ -1871,6 +1871,8 @@ class AppHandler(SimpleHTTPRequestHandler):
                 "targetMapStatuses": target_statuses,
                 "paths": paths,
                 "abstractRouteable": bool(paths),
+                "playerRouteable": False,
+                "routeable": False,
                 "note": "这是从指定起始地图到实体精确获取地图端点的抽象拓扑证据路径；它不表示连续步行，也不会进入正式玩家路线图。",
             })
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
