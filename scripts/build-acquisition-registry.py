@@ -24,7 +24,7 @@ import copy
 import json
 import re
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -711,14 +711,17 @@ def build_pickups(
 
     Treasure events point at the first row of the same sequential-lot chain
     used for multi-item chests and corpses.  The root relation therefore keeps
-    every continuation item, while standalone rows remain independently
-    searchable until a concrete map placement is known.
+    every continuation item.  When ``chain_root_ids`` is supplied, only roots
+    proven by the copied MSB treasure binding snapshot are published as fixed
+    pickups; unrelated ItemLotParam_map rows are not pickup evidence.
     """
     lot_by_id = {r["id"]: r["cells"] for r in lot_rows}
     referenced_lot_ids = set(chain_root_ids or ())
     relations = []
     for r in lot_rows:
         root_lot_id = r["id"]
+        if chain_root_ids is not None and root_lot_id not in referenced_lot_ids:
+            continue
         chain_ids = (
             expand_enemy_lot_chain(root_lot_id, lot_by_id, referenced_lot_ids)
             if root_lot_id in referenced_lot_ids else [root_lot_id]
@@ -2274,13 +2277,79 @@ def main() -> int:
             for binding in pickup_payload.get("bindings", [])
             if binding.get("lot") is not None
         }
+    all_map_lot_relations = build_pickups(lot_map, tables)
     pickups = [
         x for x in build_pickups(lot_map, tables, pickup_root_ids)
         if x["lot"]["rowId"] not in boss_lots
     ]
+    published_pickup_rows = {
+        int(row_id)
+        for relation in pickups
+        for row_id in relation.get("sourceItemLotRows", [])
+    }
+    event_reward_payload = (
+        json.loads(args.event_rewards.read_text(encoding="utf-8"))
+        if args.event_rewards.is_file() else {"bindings": []}
+    )
+    event_bindings_by_lot: dict[int, list[str]] = defaultdict(list)
+    event_reward_rows: set[int] = set()
+    for binding in event_reward_payload.get("bindings", []):
+        row_id = (binding.get("itemLot") or {}).get("rowId")
+        if isinstance(row_id, int):
+            event_bindings_by_lot[row_id].append(binding.get("id"))
+        for value in binding.get("sourceItemLotRows", []):
+            if not isinstance(value, int):
+                continue
+            event_reward_rows.add(value)
+            if binding.get("id") not in event_bindings_by_lot[value]:
+                event_bindings_by_lot[value].append(binding.get("id"))
+    non_pickup_param_relations = [
+        relation for relation in all_map_lot_relations
+        if relation["lot"]["rowId"] not in published_pickup_rows
+        and relation["lot"]["rowId"] not in boss_lots
+    ]
+    pickup_source_exclusions = []
+    unclassified_map_lot_gaps = []
+    for relation in non_pickup_param_relations:
+        row_id = relation["lot"]["rowId"]
+        if row_id in event_reward_rows:
+            pickup_source_exclusions.append({
+                "id": f"item-lot-map-exclusion-{row_id}",
+                "method": "event_reward",
+                "status": "classified_event_award_not_fixed_pickup",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "eventRewardBindingIds": event_bindings_by_lot.get(row_id, []),
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    "local EMEVD AwardItemLot reference; published through event/quest reward relations",
+                    "no copied MSB Treasure reference for this lot root",
+                ],
+                "verification": "local_param_and_emevd_classified",
+            })
+        else:
+            unclassified_map_lot_gaps.append({
+                "id": f"item-lot-map-unclassified-{row_id}",
+                "method": "unclassified_param",
+                "status": "unreferenced_item_lot_param_map",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "itemCount": len(relation.get("items", [])),
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    "no copied MSB Treasure, EMEVD reward, or Boss reward root reference",
+                    "not published as a fixed pickup until a real acquisition mechanism is proven",
+                ],
+                "verification": "local_param_unclassified",
+            })
     pickup_endpoint_stats = attach_pickup_endpoints(pickups, args.pickup_bindings)
     pickup_gaps, pickup_gap_stats = summarize_pickup_coverage_gaps(pickups)
     print(f"pickup relations: {len(pickups)} (excluding {len(boss_lots)} boss reward lots)")
+    print(
+        "non-pickup map lots: "
+        f"event-classified={len(pickup_source_exclusions)}; "
+        f"unclassified={len(unclassified_map_lot_gaps)}"
+    )
     print(
         "pickup endpoints: "
         f"relations={pickup_endpoint_stats['endpoint_relations']}; "
@@ -2475,6 +2544,8 @@ def main() -> int:
                 "source_without_coordinates"
             ],
             "pickupMissingBindingRelationCount": pickup_endpoint_stats["missing_bindings"],
+            "pickupEventRewardExclusionCount": len(pickup_source_exclusions),
+            "unclassifiedItemLotParamMapCount": len(unclassified_map_lot_gaps),
             **{f"pickup_{key}": value for key, value in pickup_gap_stats.items()},
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
             "event_reward": len(event_rewards),
@@ -2563,8 +2634,9 @@ def main() -> int:
         },
         "coverageGaps": (
             drop_gaps + pickup_gaps + shop_gaps + online_map_gaps + online_guide_gaps
-            + online_item_map_gaps
+            + online_item_map_gaps + unclassified_map_lot_gaps
         ),
+        "sourceExclusions": pickup_source_exclusions,
         "relations": relations,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)

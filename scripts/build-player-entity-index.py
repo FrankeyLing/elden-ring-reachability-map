@@ -776,6 +776,7 @@ def main() -> int:
             if key.startswith("shop")
         },
         "coverageGapCount": len(acquisitions.get("coverageGaps", [])),
+        "sourceExclusionCount": len(acquisitions.get("sourceExclusions", [])),
     }
     stats["topologyMapBinding"] = {
         key: value
@@ -795,6 +796,7 @@ def main() -> int:
         "entityAliases": entity_aliases,
         "stats": stats,
         "coverageGaps": acquisitions.get("coverageGaps", []),
+        "sourceExclusions": acquisitions.get("sourceExclusions", []),
         "entities": sorted(records.values(), key=lambda record: (record["name"].get("zh", ""), record["id"])),
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)

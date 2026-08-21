@@ -385,8 +385,8 @@ def main() -> int:
             for endpoint in relation.get("endpointInstances", [])
         ), common_drop
         assert all(relation.get("pickupEndpointStatus") for relation in pickup_relations), common_drop
-        assert any(
-            relation.get("pickupEndpointStatus") == "no_external_location_binding"
+        assert all(
+            relation.get("pickupEndpointStatus") == "coordinate_endpoint"
             for relation in pickup_relations
         ), common_drop
         for relation in drop_relations:
@@ -766,9 +766,11 @@ def main() -> int:
         assert coverage["drop"]["dropRelationCount"] == 1215, coverage
         assert coverage["drop"]["dropGapCount"] == 166, coverage
         assert coverage["pickup"]["pickupEndpointInstanceCount"] >= 3600, coverage
-        assert coverage["pickup"]["pickup_coverageGapCount"] == 1667, coverage
-        assert coverage["pickup"]["pickup_coverageGapNoExternalLocationBindingCount"] == 1655, coverage
+        assert coverage["pickup"]["pickup"] == 3356, coverage
+        assert coverage["pickup"]["pickup_coverageGapCount"] == 12, coverage
+        assert coverage["pickup"]["pickup_coverageGapNoExternalLocationBindingCount"] == 0, coverage
         assert coverage["pickup"]["pickup_coverageGapSourceRecordWithoutCoordinatesCount"] == 12, coverage
+        assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 32, coverage
         assert coverage["shop"]["shop_coverageGapCount"] == 688, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 134, coverage
@@ -788,7 +790,8 @@ def main() -> int:
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 8014, index
+        assert len(index["coverageGaps"]) == 7886, index
+        assert coverage["sourceExclusionCount"] == 32, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2544, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3653, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
@@ -817,8 +820,8 @@ def main() -> int:
         } == {
             "source_lot_missing",
             "source_lot_empty",
-            "no_external_location_binding",
             "source_record_without_coordinates",
+            "unreferenced_item_lot_param_map",
             "seller_unresolved_no_external_binding",
             "seller_unresolved_candidate_binding",
             "source_item_unmatched",
@@ -828,7 +831,8 @@ def main() -> int:
             "source_marker_unmatched",
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
-        assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 1667
+        assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 12
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 1527
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 3190
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1319
@@ -843,6 +847,96 @@ def main() -> int:
         print(f"  fixed_messages={index['stats']['kindCounts']['message']}")
         print(f"  summon_pools={summon_pools['total_matches']}")
         print(f"  spirit_ash_summon_points={spirit_ash_points['total_matches']}")
+
+        # ============================================================
+        # 第十一章 强制回归样例
+        # ============================================================
+
+        # 1. 洞窟入口 — 玩家可以搜到、详情可查、获取终点可定位
+        cave = query(id="abandoned_cave_surface_entrance")
+        assert cave["found"] is True, cave
+        assert cave["entity"]["kind"] == "entrance", cave
+
+        # 2. 地下目的地 — 希芙拉河井底是地下区域代表
+        underground = query(id="grace_caelid_main_deep_siofra_well")
+        assert underground["found"] is True, underground
+        assert underground["entity"]["kind"] == "grace", underground
+
+        # 3. 屋顶终点 — 史东薇尔城屋顶 (Castle Sol Rooftop)
+        rooftop = query(id="grace_castle_sol_rooftop")
+        assert rooftop["found"] is True, rooftop
+        assert rooftop["entity"]["kind"] == "grace", rooftop
+
+        # 4. 未绑定终点 — 仍可搜索，但不能生成正式路线
+        # 从本地 player-entity-index.json 直接读, 不依赖 API
+        full_index = json.loads(
+            (ROOT / "data" / "v1" / "entities" / "player-entity-index.json").read_text(encoding="utf-8")
+        )
+        unbound = next(
+            (row for row in full_index["entities"]
+             if row.get("topology", {}).get("status") == "not_bound"
+             and row.get("name", {}).get("zh")),
+            None,
+        )
+        assert unbound is not None, "no not_bound entity with zh name"
+        unbound_search = query(q=unbound["name"]["zh"], limit=5)
+        assert any(row["id"] == unbound["id"] for row in unbound_search["records"]), unbound_search
+        # 尝试规划路线时应返回 found=True 但 pathFound=False
+        unbound_route = abstract_entity_route_query(
+            id=unbound["id"],
+            from_map_id="m10_01_00_00",
+            max_paths=1,
+        )
+        assert unbound_route["found"] is True, unbound_route
+        # not_bound 实体的所有 binding 都未绑定, 因此 targetMapCount=0
+        assert unbound_route.get("targetMapCount", 0) == 0 or all(
+            not s.get("reachable") for s in unbound_route.get("targetMapStatuses", [])
+        ), unbound_route
+
+        # 5. 防具不存在强化关系 — 强化目录不含防具 (合同 4.3 + 10.4)
+        armor_in_reinforce = any(
+            (item.get("id", "").startswith("armor_") or
+             item.get("category") == "armor" or
+             "armor" in str(item.get("kind", "")).lower())
+            for item in reinforce_catalog.get("items", [])
+        )
+        assert not armor_in_reinforce, "armor must not appear in reinforce-catalog items"
+        # 加强断言：强化关系中每一条都不应该引用 armor 实体。
+        for relation in reinforce_catalog.get("relations", []):
+            assert not any(
+                str(value).startswith("armor_")
+                for key, value in relation.items()
+                if key in {"from", "to", "item", "material"}
+            ), f"armor reinforcement relation found: {relation}"
+
+        # 6. 追忆 ↔ Boss ↔ 大卢恩 自指关系 (合同 4.6)
+        # 拉卡德的追忆 → 拉卡德大卢恩 → 亵渎君王 (Boss 拉卡德)
+        remb = query(id="item_remembrance_of_the_blasphemous")
+        assert remb["found"] is True, remb
+        assert remb["entity"]["category"] == "remembrance", remb
+        # 大卢恩
+        rune = query(id="item_rykard_s_great_rune")
+        assert rune["found"] is True, rune
+        assert rune["entity"]["category"] == "great_rune", rune
+        # 追忆应能兑换为大卢恩或 Boss 战利品
+        remb_topology = topology_query("item_remembrance_of_the_blasphemous")
+        assert remb_topology["found"] is True, remb_topology
+        remb_methods = {b["method"] for b in remb_topology.get("bindings", [])}
+        assert "boss_reward" in remb_methods or "remembrance_exchange" in remb_methods or "purchase" in remb_methods, remb_topology
+
+        # 7. 路线引擎正式可达 — 王城两态互斥 (e2e [7]) 已在 e2e-route-regression 中覆盖
+
+        # 8. 正式路线锚点总量断言；证据层节点不得抬升此统计。
+        assert index["stats"]["routeableAnchorCount"] == 938, index["stats"]
+
+        # 9. 真实拾取实体必须经已有正式边绑定；普通锻造石仍保持未正式绑定。
+        bolt_topology = topology_query("item_bolt_of_gransax")
+        assert bolt_topology["routeReady"] is True, bolt_topology
+        assert "item_bolt_of_gransax" in bolt_topology["routeNodeIds"], bolt_topology
+        stone_topology = topology_query("item_smithing_stone_1")
+        assert stone_topology["routeReady"] is False, stone_topology
+
+        print("PASS player entity query (incl. 第十一章 regression samples)")
         return 0
     finally:
         process.terminate()

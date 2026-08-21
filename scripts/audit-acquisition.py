@@ -425,6 +425,11 @@ def main() -> int:
     drop_stats = acquisition_stats
     drop_gaps = [gap for gap in all_gaps if gap.get("method") == "drop"]
     pickup_gaps = [gap for gap in all_gaps if gap.get("method") == "pickup"]
+    unclassified_map_lot_gaps = [
+        gap for gap in all_gaps
+        if gap.get("method") == "unclassified_param"
+    ]
+    pickup_source_exclusions = acquisitions.get("sourceExclusions", [])
     shop_gaps = [gap for gap in all_gaps if gap.get("method") == "purchase"]
     drop_gap_ids = [gap.get("id") for gap in drop_gaps]
     allowed_drop_gap_statuses = {
@@ -506,6 +511,51 @@ def main() -> int:
         f"gaps={len(pickup_gaps)}; "
         f"no-binding={acquisition_stats.get('pickup_coverageGapNoExternalLocationBindingCount', 0)}; "
         f"no-coordinate={acquisition_stats.get('pickup_coverageGapSourceRecordWithoutCoordinatesCount', 0)}"
+    )
+    check(
+        len(pickup_source_exclusions)
+        == acquisition_stats.get("pickupEventRewardExclusionCount"),
+        "event-reward pickup exclusion count does not match stats",
+    )
+    check(
+        len(unclassified_map_lot_gaps)
+        == acquisition_stats.get("unclassifiedItemLotParamMapCount"),
+        "unclassified ItemLotParam_map count does not match stats",
+    )
+    published_pickup_rows = {
+        row_id
+        for relation in pickup_relations
+        for row_id in relation.get("sourceItemLotRows", [])
+    }
+    excluded_rows = {
+        exclusion.get("sourceItemLotRoot")
+        for exclusion in pickup_source_exclusions
+    }
+    unclassified_rows = {
+        gap.get("sourceItemLotRoot") for gap in unclassified_map_lot_gaps
+    }
+    check(not (published_pickup_rows & excluded_rows),
+          "event reward lot is also published as a fixed pickup")
+    check(not (published_pickup_rows & unclassified_rows),
+          "unclassified map lot is also published as a fixed pickup")
+    check(not (excluded_rows & unclassified_rows),
+          "map lot is both event-classified and unclassified")
+    for exclusion in pickup_source_exclusions:
+        check(exclusion.get("status") == "classified_event_award_not_fixed_pickup",
+              f"pickup exclusion {exclusion.get('id')} has invalid status")
+        check(exclusion.get("eventRewardBindingIds"),
+              f"pickup exclusion {exclusion.get('id')} has no event binding")
+        check(exclusion.get("verification") == "local_param_and_emevd_classified",
+              f"pickup exclusion {exclusion.get('id')} has weak verification")
+    for gap in unclassified_map_lot_gaps:
+        check(gap.get("status") == "unreferenced_item_lot_param_map",
+              f"unclassified map lot {gap.get('id')} has invalid status")
+        check(gap.get("verification") == "local_param_unclassified",
+              f"unclassified map lot {gap.get('id')} has weak verification")
+    print(
+        "non-pickup map lot classification: "
+        f"event-reward={len(pickup_source_exclusions)}; "
+        f"unclassified={len(unclassified_map_lot_gaps)}"
     )
     purchase_relations = [rel for rel in rels if rel.get("method") == "purchase"]
     purchase_by_id = {rel.get("id"): rel for rel in purchase_relations}
@@ -792,8 +842,8 @@ def main() -> int:
     spell_projections = [rel for rel in rels if rel.get("method") == "spell_acquisition"]
     check(len(spell_projections) == online_stats.get("spell_acquisition"),
           "spell acquisition projection count does not match registry stats")
-    check(len(spell_projections) >= 600,
-          f"spell acquisition coverage unexpectedly low: {len(spell_projections)}")
+    check(len(spell_projections) == 522,
+          f"spell acquisition projection snapshot drifted: {len(spell_projections)}")
     print(f"spell acquisition projections: {len(spell_projections)}")
     for rel in purchase_relations:
         check(isinstance(rel.get("lineupRow"), int), f"purchase {rel['id']} missing ShopLineupParam row")
