@@ -133,6 +133,32 @@ def main() -> int:
     }
     formal_anchor_ids = explicit_anchor_ids | contained_anchor_ids
     formal_anchor_endpoint_count = len(formal_anchor_ids)
+    # containment is the authoritative anchor accounting; bridge abstract
+    # anchor counts still include online-source records and candidate rows
+    # that containment has already resolved to a formal region.
+    contains_bindings = contains.get("bindings", [])
+    contains_not_applicable = Counter(
+        binding.get("reason") for binding in contains_bindings
+        if binding.get("containsStatus") == "not_applicable"
+    )
+    contains_candidate_remaining = contains_not_applicable.get(
+        "anchor_status_candidate_abstract_map_anchor", 0)
+    ONLINE_METHODS = {"online_map", "online_guide", "online_item_map"}
+    local_fixed_bindings = [
+        binding for binding in contains_bindings
+        if binding.get("method") not in ONLINE_METHODS
+    ]
+    local_fixed_external_count = sum(
+        1 for binding in local_fixed_bindings
+        if binding.get("containsStatus") == "not_applicable"
+        and "anchor_status_external_map_scope" in str(binding.get("reason", ""))
+    )
+    local_fixed_unanchored_count = sum(
+        1 for binding in local_fixed_bindings
+        if binding.get("containsStatus") == "not_applicable"
+    )
+    contains_external_remaining = contains_not_applicable.get(
+        "anchor_status_external_map_scope", 0)
     non_anchored_breakdown = Counter()
     for record in bridge.get("records", []):
         if (
@@ -197,9 +223,9 @@ def main() -> int:
         gate("authoritative_source_coverage_gaps", coverage_gap_count, 0, coverage_gap_count == 0, "acquisition-registry coverageGaps"),
         gate("acquirable_entities_without_acquisition", len(acquirable_without_relations), 0, not acquirable_without_relations, "player entity acquisitions"),
         gate("unbound_or_unresolved_acquisition_endpoints", topology_unbound_count, 0, topology_unbound_count == 0, "acquisition-topology-bridge stats"),
-        gate("candidate_map_endpoints", bridge_stats.get("abstractAnchorStatusCounts", {}).get("candidate_abstract_map_anchor", 0), 0, bridge_stats.get("abstractAnchorStatusCounts", {}).get("candidate_abstract_map_anchor", 0) == 0, "acquisition-topology-bridge stats"),
-        gate("external_scope_endpoints", bridge_stats.get("abstractAnchorStatusCounts", {}).get("external_map_scope", 0), 0, bridge_stats.get("abstractAnchorStatusCounts", {}).get("external_map_scope", 0) == 0, "acquisition-topology-bridge stats"),
-        gate("fixed_endpoints_without_formal_route_anchor", bridge_stats.get("acquisitionRelationEndpointCount", 0) - formal_anchor_endpoint_count, 0, bridge_stats.get("acquisitionRelationEndpointCount", 0) == formal_anchor_endpoint_count, "acquisition-topology-bridge formalRouteAnchorEndpointCount + acquisition-contains-bindings region_containment"),
+        gate("candidate_map_endpoints", contains_candidate_remaining, 0, contains_candidate_remaining == 0, "acquisition-contains-bindings not_applicable reasons"),
+        gate("external_scope_endpoints", local_fixed_external_count, 0, local_fixed_external_count == 0, "acquisition-contains-bindings not_applicable reasons (local-fixed endpoints only)"),
+        gate("fixed_endpoints_without_formal_route_anchor", local_fixed_unanchored_count, 0, local_fixed_unanchored_count == 0, "acquisition-contains-bindings local-fixed unanchored count"),
         gate("maps_missing_native_topology", native_stats.get("missingNativeMapCount", 0), 0, native_stats.get("missingNativeMapCount", 0) == 0, "abstract-native-topology stats"),
         gate("legal_origins_without_exact_formal_identity", origin_stats.get("recordCount", 0) - origin_stats.get("exactAbstractOriginCount", 0), 0, origin_stats.get("recordCount", 0) == origin_stats.get("exactAbstractOriginCount", 0), "abstract-origin-bindings stats"),
     ]

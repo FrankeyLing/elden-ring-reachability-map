@@ -280,6 +280,47 @@ def main() -> int:
         }
 
         if status not in ("exact_abstract_map_anchor", "exact_abstract_layer_anchor"):
+            if status == "candidate_abstract_map_anchor":
+                cand_anchor = anchor
+                cand_maps = [
+                    normalize_map_id(value)
+                    for value in (cand_anchor.get("candidateMapIds") or [])
+                    if normalize_map_id(value) is not None
+                ]
+                cand_regions: dict[str, str] = {}
+                for cand in cand_maps:
+                    cand_region, _cand_evidence = resolve_region_with_evidence(
+                        cand, msbe_regions, tiles, tile_by_key, bvg
+                    )
+                    if cand_region is not None:
+                        cand_regions[cand] = cand_region
+                if cand_maps and cand_regions and len(set(cand_regions.values())) == 1:
+                    region = next(iter(cand_regions.values()))
+                    representative, canonical_zh = representative_node(region, region_zh, region_classes)
+                    if representative is not None:
+                        status_counts["region_containment"] += 1
+                        region_counts[canonical_zh] += 1
+                        bindings.append(
+                            {
+                                **base,
+                                "containsStatus": "region_containment",
+                                "containmentLevel": "region",
+                                "region": region,
+                                "canonicalZhRegion": canonical_zh,
+                                "mapId": cand_maps[0],
+                                "layerAnchor": False,
+                                "routeable": True,
+                                "isExactMapInstance": False,
+                                "sourceMapIds": cand_maps,
+                                "routeNodeIds": [representative],
+                                "regionFormalNodeCount": len(region_classes.get(canonical_zh, {}).get("nodes", [])),
+                                "evidence": [
+                                    f"all {len(cand_maps)} candidate maps resolve to the same formal region {region}",
+                                    "candidate maps: " + ",".join(cand_maps),
+                                ],
+                            }
+                        )
+                        continue
             status_counts["not_applicable:" + str(status)] += 1
             bindings.append(
                 {**base, "containsStatus": "not_applicable", "reason": "anchor_status_" + str(status)}

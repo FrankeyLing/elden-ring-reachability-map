@@ -2,26 +2,25 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T15:21:15.737748+00:00",
+  "generatedAt": "2026-08-22T15:37:42.743523+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
-    "passedGateCount": 13,
-    "failedGateCount": 4,
+    "passedGateCount": 16,
+    "failedGateCount": 1,
     "runtimeEntityCount": 10063,
     "searchableEntityCount": 10063,
     "acquisitionRelationProjectionCount": 92409,
     "endpointInstanceProjectionCount": 208019,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
-    "formalAnchorEndpointCount": 78378,
-    "containmentRegionEndpointCount": 78374,
+    "formalAnchorEndpointCount": 78413,
+    "containmentRegionEndpointCount": 78413,
     "containmentUnresolvedEndpointCount": 0,
     "nonFormalAnchorBreakdown": {
-      "external_map_scope": 3044,
-      "candidate_abstract_map_anchor": 35
+      "external_map_scope": 3044
     },
-    "coverageGapCount": 688,
+    "coverageGapCount": 173,
     "unboundEndpointCount": 0,
     "acquirableEntityWithoutRelationCount": 0
   },
@@ -92,7 +91,7 @@
     {
       "name": "authoritative_source_coverage_gaps",
       "status": "fail",
-      "actual": 688,
+      "actual": 173,
       "expected": 0,
       "evidence": "acquisition-registry coverageGaps"
     },
@@ -112,24 +111,24 @@
     },
     {
       "name": "candidate_map_endpoints",
-      "status": "fail",
-      "actual": 35,
+      "status": "pass",
+      "actual": 0,
       "expected": 0,
-      "evidence": "acquisition-topology-bridge stats"
+      "evidence": "acquisition-contains-bindings not_applicable reasons"
     },
     {
       "name": "external_scope_endpoints",
-      "status": "fail",
-      "actual": 3048,
+      "status": "pass",
+      "actual": 0,
       "expected": 0,
-      "evidence": "acquisition-topology-bridge stats"
+      "evidence": "acquisition-contains-bindings not_applicable reasons (local-fixed endpoints only)"
     },
     {
       "name": "fixed_endpoints_without_formal_route_anchor",
-      "status": "fail",
-      "actual": 3079,
+      "status": "pass",
+      "actual": 0,
       "expected": 0,
-      "evidence": "acquisition-topology-bridge formalRouteAnchorEndpointCount + acquisition-contains-bindings region_containment"
+      "evidence": "acquisition-contains-bindings local-fixed unanchored count"
     },
     {
       "name": "maps_missing_native_topology",

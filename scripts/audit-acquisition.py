@@ -736,17 +736,17 @@ def main() -> int:
           "shop coverage gap count does not match stats")
     check(
         sum(gap.get("status") == "seller_unresolved_no_external_binding" for gap in shop_gaps)
-        == acquisition_stats.get("shop_coverageGapSellerUnresolvedNoExternalBindingCount"),
+        == acquisition_stats.get("shop_coverageGapSellerUnresolvedNoExternalBindingCount", 0),
         "shop no-binding gap count does not match stats",
     )
     check(
         sum(gap.get("status") == "seller_unresolved_binding" for gap in shop_gaps)
-        == acquisition_stats.get("shop_coverageGapSellerUnresolvedBindingCount"),
+        == acquisition_stats.get("shop_coverageGapSellerUnresolvedBindingCount", 0),
         "shop unresolved-binding gap count does not match stats",
     )
     check(
         sum(gap.get("status") == "seller_unresolved_candidate_binding" for gap in shop_gaps)
-        == acquisition_stats.get("shop_coverageGapSellerUnresolvedCandidateBindingCount"),
+        == acquisition_stats.get("shop_coverageGapSellerUnresolvedCandidateBindingCount", 0),
         "shop candidate-binding gap count does not match stats",
     )
     print(

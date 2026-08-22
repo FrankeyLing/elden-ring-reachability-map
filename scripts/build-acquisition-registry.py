@@ -1224,7 +1224,17 @@ def build_shops(
 
 def summarize_shop_coverage_gaps(
     purchase_relations: list[dict],
-) -> tuple[list[dict], dict[str, int]]:
+    all_relations: list[dict] | None = None,
+) -> tuple[list[dict], dict[str, int], list[dict]]:
+    """Publish every unresolved purchase relation as an isolated repair gap.
+
+    A missing seller identity is a data-coverage problem, not permission to
+    invent a merchant.  Per contract 10.2 the authoritative acceptance
+    question is whether the item is still obtainable by another verified
+    source; unresolved seller rows whose items are covered elsewhere are
+    retained as seller-unresolved records (evidence preserved), while rows
+    whose items have no other source stay authoritative coverage gaps.
+    """
     """Publish every unresolved purchase relation as an isolated repair gap.
 
     A missing seller identity is a data-coverage problem, not permission to
@@ -1240,6 +1250,17 @@ def summarize_shop_coverage_gaps(
         for relation in purchase_relations
         if relation.get("sellerStatus") == "named"
     }
+    coverage_pool: set[str] = set()
+    for relation in (all_relations or purchase_relations):
+        if relation.get("method") == "purchase" and relation.get("sellerStatus") == "named":
+            coverage_pool.update(
+                item.get("item") for item in relation.get("items", []) if item.get("item")
+            )
+        elif relation.get("method") not in ("purchase",):
+            coverage_pool.update(
+                item.get("item") for item in relation.get("items", []) if item.get("item")
+            )
+    seller_unresolved_records: list[dict] = []
     gaps: list[dict] = []
     status_counts = Counter()
     named_sibling_count = 0
@@ -1257,6 +1278,25 @@ def summarize_shop_coverage_gaps(
         else:
             status = "seller_unresolved_binding"
         status_counts[status] += 1
+        relation_items = [
+            item.get("item") for item in relation.get("items", []) if item.get("item")
+        ]
+        if relation_items and all(item in coverage_pool for item in relation_items):
+            seller_unresolved_records.append({
+                "id": f"seller-unresolved-{relation['id']}",
+                "method": "purchase",
+                "status": status,
+                "relationId": relation["id"],
+                "lineupRow": lineup_row,
+                "shopContext": relation.get("from"),
+                "sellerStatus": relation.get("sellerStatus"),
+                "hasCandidateBinding": bool(binding),
+                "hasNamedSibling": has_named_sibling,
+                "itemCoveredElsewhere": True,
+                "evidence": list(relation.get("evidence", [])),
+                "verification": "local_param_gap_item_covered",
+            })
+            continue
         gaps.append({
             "id": f"purchase-gap-{relation['id']}",
             "method": "purchase",
@@ -1270,22 +1310,25 @@ def summarize_shop_coverage_gaps(
             "evidence": list(relation.get("evidence", [])),
             "verification": "local_param_gap",
         })
-    return gaps, {
+    stats = {
         "coverageGapCount": len(gaps),
-        "coverageGapSellerUnresolvedNoExternalBindingCount": status_counts[
-            "seller_unresolved_no_external_binding"
-        ],
-        "coverageGapSellerUnresolvedBindingCount": status_counts[
-            "seller_unresolved_binding"
-        ],
-        "coverageGapSellerUnresolvedCandidateBindingCount": status_counts[
-            "seller_unresolved_candidate_binding"
-        ],
+        "sellerUnresolvedItemCoveredElsewhereCount": len(seller_unresolved_records),
+        "sellerUnresolvedItemWithoutOtherSourceCount": len(gaps),
+        "coverageGapSellerUnresolvedNoExternalBindingCount": sum(
+            1 for gap in gaps if gap.get("status") == "seller_unresolved_no_external_binding"
+        ),
+        "coverageGapSellerUnresolvedBindingCount": sum(
+            1 for gap in gaps if gap.get("status") == "seller_unresolved_binding"
+        ),
+        "coverageGapSellerUnresolvedCandidateBindingCount": sum(
+            1 for gap in gaps if gap.get("status") == "seller_unresolved_candidate_binding"
+        ),
         "coverageGapCandidateWithNamedSiblingCount": named_sibling_count,
         "coverageGapCandidateWithoutNamedSiblingCount": status_counts[
             "seller_unresolved_binding"
         ],
     }
+    return gaps, stats, seller_unresolved_records
 
 
 def summarize_pickup_coverage_gaps(
@@ -3577,8 +3620,9 @@ def main() -> int:
         args.merchant_shops,
         entities + enemies,
     )
-    shop_gaps, shop_gap_stats = summarize_shop_coverage_gaps(shops)
-    shop_stats.update(shop_gap_stats)
+    # shop coverage split is item-level; call after the full relations union is built
+    shop_gaps, shop_gap_stats, shop_seller_unresolved_records = None, None, None
+    # shop coverage stats merged after the item-level split (below)
     print(f"shop relations: {len(shops)}; details={shop_stats}")
 
     seen = set()
@@ -3740,6 +3784,8 @@ def main() -> int:
         + special_acquisitions
         + spell_acquisition_projections
     )
+    shop_gaps, shop_gap_stats, shop_seller_unresolved_records = summarize_shop_coverage_gaps(shops, all_relations=relations)
+    shop_stats.update(shop_gap_stats)
     topology_map_index = load_map_index(args.abstract_topology_graph)
     topology_map_stats = enrich_relations(relations, topology_map_index)
     print(
@@ -3937,6 +3983,7 @@ def main() -> int:
         "onlineSourceGaps": (
             online_map_gaps + online_guide_gaps + online_item_map_gaps
         ),
+        "sellerUnresolvedRecords": shop_seller_unresolved_records,
         "verifiedNoDropFacts": no_drop_facts,
         "verifiedUnusedMapLotFacts": unclassified_map_lot_facts,
         "sourceExclusions": pickup_source_exclusions + online_item_map_exclusions,

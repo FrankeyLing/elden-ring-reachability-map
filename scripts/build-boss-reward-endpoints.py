@@ -84,7 +84,10 @@ def build(identity_path: Path, spawn_path: Path, graph_path: Path) -> dict[str, 
             endpoint["sourceEvidence"].append("copied local MSB Boss instance catalog")
         elif graph_node and graph_node.get("onlineCoordinate"):
             online = graph_node["onlineCoordinate"]
-            endpoint["map"] = online.get("map")
+            # Local source map identity is authoritative; the online grid
+            # description ("area 60 / grid 52,38") is evidence only and must
+            # not replace the map instance id used by the region chain.
+            endpoint["map"] = record.get("map") or online.get("map")
             endpoint["onlineCoordinate"] = online
         endpoints.append(endpoint)
 
