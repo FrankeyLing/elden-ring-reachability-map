@@ -925,6 +925,37 @@ def main() -> int:
         check(binding.get("taskStatus") == "unclassified",
               f"event reward {binding.get('id')} must remain explicitly unclassified")
         check(binding.get("items"), f"event reward {binding.get('id')} has no items")
+        award_source = binding.get("awardSource") or {}
+        resolution = award_source.get("resolution")
+        check(resolution in {
+            "literal_instruction_argument",
+            "initialize_event_parameter_substitution",
+        }, f"event reward {binding.get('id')} has invalid award-source resolution")
+        check(award_source.get("lotId") == (binding.get("itemLot") or {}).get("rowId"),
+              f"event reward {binding.get('id')} award-source lot mismatch")
+        if resolution == "initialize_event_parameter_substitution":
+            check(all(isinstance(award_source.get(key), int) for key in (
+                "eventId", "instructionIndex", "templateEventId",
+                "templateInstructionIndex", "parameterSourceByte",
+            )), f"event reward {binding.get('id')} has incomplete parameter-substitution provenance")
+            check(award_source.get("templateMap"),
+                  f"event reward {binding.get('id')} is missing its template map")
+    parameterized_fixture = next(
+        (
+            binding for binding in event_rewards.get("bindings", [])
+            if binding.get("id") == "event-reward-common-0-181-via-common-1100-4"
+        ),
+        None,
+    )
+    check(parameterized_fixture is not None,
+          "known common-event parameter substitution fixture is missing")
+    if parameterized_fixture:
+        check((parameterized_fixture.get("itemLot") or {}).get("rowId") == 10000,
+              "known common-event parameter substitution resolved the wrong lot")
+        check(any(
+            item.get("item") == "item_talisman_pouch"
+            for item in parameterized_fixture.get("items", [])
+        ), "known common-event parameter substitution resolved the wrong item")
     event_relations = [rel for rel in rels if rel.get("method") == "event_reward"]
     for rel in event_relations:
         binding = rel.get("eventRewardBinding") or {}

@@ -63,16 +63,46 @@ def snapshot() -> dict[str, Any]:
 def build() -> None:
     current_acquisitions = load(DATA / "entities" / "acquisition-registry.json")
     current_pickups = load(DATA / "entities" / "pickup-location-bindings.json")
+    current_event_rewards = load(DATA / "entities" / "event-reward-bindings.json")
+    current_quest_rewards = load(DATA / "entities" / "quest-reward-bindings.json")
     param_dir = current_acquisitions.get("built_from", {}).get("param_dir")
     msb_dir = current_pickups.get("built_from", {}).get("msb_dir")
+    event_sources = current_event_rewards.get("builtFrom", {})
+    quest_sources = current_quest_rewards.get("builtFrom", {})
     if not param_dir or not Path(param_dir).is_dir():
         raise RuntimeError(f"pinned parameter snapshot unavailable: {param_dir}")
     if not msb_dir or not Path(msb_dir).is_dir():
         raise RuntimeError(f"pinned parsed MapStudio snapshot unavailable: {msb_dir}")
+    required_event_sources = {
+        "parsedEmevd": event_sources.get("parsedEmevd"),
+        "semanticReferences": event_sources.get("semanticReferences"),
+        "emedf": event_sources.get("emedf"),
+        "eventFlags": event_sources.get("eventFlags"),
+    }
+    for source_name, source_path in required_event_sources.items():
+        if not source_path or not Path(source_path).exists():
+            raise RuntimeError(f"pinned event source unavailable ({source_name}): {source_path}")
+    quest_source = quest_sources.get("externalSource")
+    if not quest_source or not Path(quest_source).is_file():
+        raise RuntimeError(f"pinned quest source unavailable: {quest_source}")
     commands = [
         [sys.executable, "scripts/build-entity-registry.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-gesture-acquisition-bindings.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-tutorial-unlock-bindings.py", "--param-dir", param_dir],
+        [
+            sys.executable,
+            "scripts/build-event-reward-bindings.py",
+            "--parsed-emevd",
+            required_event_sources["parsedEmevd"],
+            "--semantic-references",
+            required_event_sources["semanticReferences"],
+            "--emedf",
+            required_event_sources["emedf"],
+            "--param-dir",
+            param_dir,
+            "--event-flags",
+            required_event_sources["eventFlags"],
+        ],
         [sys.executable, "scripts/build-equivalent-map-instances.py", "--maps-dir", msb_dir],
         [
             sys.executable,
@@ -81,6 +111,16 @@ def build() -> None:
             msb_dir,
             "--param-dir",
             param_dir,
+        ],
+        # The first acquisition pass regenerates local NPC entities used by the
+        # quest-name resolver.  Rebuild quest evidence from that registry, then
+        # rebuild acquisitions so the new quest relations enter the product.
+        [sys.executable, "scripts/build-acquisition-registry.py", "--param-dir", param_dir],
+        [
+            sys.executable,
+            "scripts/build-quest-reward-bindings.py",
+            "--quest-source",
+            quest_source,
         ],
         [sys.executable, "scripts/build-acquisition-registry.py", "--param-dir", param_dir],
         [

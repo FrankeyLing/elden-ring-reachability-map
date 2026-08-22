@@ -2,13 +2,13 @@
   "schema": "elden-ring-reachability-map/browser-player-closed-loop@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "status": "pass",
-  "generatedAt": "2026-08-22T07:20:26.7942803Z",
+  "generatedAt": "2026-08-22T07:42:03.690907Z",
   "browser": {
     "backend": "edge-extension",
     "url": "http://127.0.0.1:8129/"
   },
   "dataset": {
-    "playerEntityCount": 11228,
+    "playerEntityCount": 11223,
     "formalRouteNodeCount": 938,
     "formalRouteEdgeCount": 1601,
     "packageCount": 13

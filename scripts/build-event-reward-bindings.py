@@ -13,6 +13,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import struct
+from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -123,6 +125,40 @@ def expand_lot_chain(
     return chain
 
 
+def initialize_event_call_sites(
+    files: dict[str, dict[str, Any]],
+    template_file: str,
+    event_id: int,
+) -> list[dict[str, Any]]:
+    """Resolve exact parameter buffers supplied to one event template.
+
+    Common-function events may be called from every map through Initialize
+    Common Event. Ordinary events are file-local and use Initialize Event.
+    Keeping those scopes separate prevents same-number events in other maps
+    from being joined accidentally.
+    """
+    scopes = files.items() if template_file == "common_func" else [
+        (template_file, files[template_file])
+    ]
+    expected_opcode = (2000, 6) if template_file == "common_func" else (2000, 0)
+    calls = []
+    for caller_file, payload in scopes:
+        for caller_event in payload.get("events", []):
+            for instruction in caller_event.get("instructions", []):
+                if (instruction.get("bank"), instruction.get("id")) != expected_opcode:
+                    continue
+                raw = bytes.fromhex(str(instruction.get("args_hex") or ""))
+                if len(raw) < 8 or struct.unpack_from("<I", raw, 4)[0] != event_id:
+                    continue
+                calls.append({
+                    "callerFile": caller_file,
+                    "callerEventId": int(caller_event["id"]),
+                    "callerInstructionIndex": int(instruction["index"]),
+                    "parameterBuffer": raw[8:],
+                })
+    return calls
+
+
 def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Path, flags_path: Path) -> dict[str, Any]:
     emedf = json.loads(emedf_path.read_text(encoding="utf-8"))
     definitions: dict[tuple[int, int], dict[str, Any]] = {}
@@ -143,45 +179,107 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
     raw_awards = 0
     zero_lots = 0
     decoded_awards: list[dict[str, Any]] = []
-    for file_path in sorted(parsed_dir.glob("*.json")):
-        if file_path.name == "batch-manifest.json":
-            continue
-        file_data = json.loads(file_path.read_text(encoding="utf-8"))
+    unresolved_parameterized_awards: list[dict[str, Any]] = []
+    literal_awards = 0
+    substituted_awards = 0
+    event_files = {
+        file_path.stem: json.loads(file_path.read_text(encoding="utf-8"))
+        for file_path in sorted(parsed_dir.glob("*.json"))
+        if file_path.name != "batch-manifest.json"
+    }
+    for source_file, file_data in sorted(event_files.items()):
+        file_path = parsed_dir / f"{source_file}.json"
         map_key = Path(file_data.get("source_file", file_path.name)).name.removesuffix(".emevd.dcx")
         ref_path = semantic_dir / file_path.name
         for event in file_data.get("events", []):
+            mappings_by_instruction: dict[int, list[dict[str, Any]]] = defaultdict(list)
+            for mapping in event.get("parameters", []):
+                mappings_by_instruction[int(mapping.get("instruction_index", -1))].append(mapping)
             for instruction in event.get("instructions", []):
                 opcode = (int(instruction.get("bank", -1)), int(instruction.get("id", -1)))
                 definition = definitions.get(opcode)
                 if definition is None:
                     continue
                 raw_awards += 1
-                try:
-                    decoded = decode_args(bytes.fromhex(instruction.get("args_hex", "")), definition)
-                except (ValueError, IndexError):
-                    continue
-                lot_id = int(decoded[0]) if decoded and decoded[0] is not None else 0
-                if lot_id <= 0:
-                    zero_lots += 1
-                    continue
-                lot_table = next(
-                    (
-                        table for table in ("ItemLotParam_map", "ItemLotParam_enemy")
-                        if lot_id in lots_by_table[table]
-                    ),
-                    None,
-                )
-                if lot_table is None:
-                    continue
-                decoded_awards.append({
-                    "file_path": file_path,
-                    "map_key": map_key,
-                    "ref_path": ref_path,
-                    "event": event,
-                    "instruction": instruction,
-                    "lot_id": lot_id,
-                    "lot_table": lot_table,
-                })
+                raw = bytes.fromhex(str(instruction.get("args_hex") or ""))
+                instruction_index = int(instruction["index"])
+                mappings = [
+                    mapping for mapping in mappings_by_instruction.get(instruction_index, [])
+                    if int(mapping.get("target_start_byte", -1)) == 0
+                    and int(mapping.get("byte_count", 0)) == 4
+                ]
+                resolved_sources: list[dict[str, Any]] = []
+                if not mappings:
+                    try:
+                        decoded = decode_args(raw, definition)
+                    except (ValueError, IndexError):
+                        continue
+                    lot_id = int(decoded[0]) if decoded and decoded[0] is not None else 0
+                    if lot_id <= 0:
+                        zero_lots += 1
+                        continue
+                    literal_awards += 1
+                    resolved_sources.append({
+                        "lotId": lot_id,
+                        "map": map_key,
+                        "eventId": int(event["id"]),
+                        "instructionIndex": instruction_index,
+                        "resolution": "literal_instruction_argument",
+                    })
+                else:
+                    calls = initialize_event_call_sites(
+                        event_files, source_file, int(event["id"])
+                    )
+                    for mapping in mappings:
+                        offset = int(mapping["source_start_byte"])
+                        for call in calls:
+                            buffer = call["parameterBuffer"]
+                            if offset < 0 or offset + 4 > len(buffer):
+                                continue
+                            lot_id = struct.unpack_from("<i", buffer, offset)[0]
+                            if lot_id <= 0:
+                                continue
+                            resolved_sources.append({
+                                "lotId": lot_id,
+                                "map": call["callerFile"],
+                                "eventId": call["callerEventId"],
+                                "instructionIndex": call["callerInstructionIndex"],
+                                "templateMap": map_key,
+                                "templateEventId": int(event["id"]),
+                                "templateInstructionIndex": instruction_index,
+                                "parameterSourceByte": offset,
+                                "resolution": "initialize_event_parameter_substitution",
+                            })
+                    if not resolved_sources:
+                        unresolved_parameterized_awards.append({
+                            "file": source_file,
+                            "eventId": int(event["id"]),
+                            "instructionIndex": instruction_index,
+                            "reason": "parameterized_template_has_no_verified_call_site",
+                        })
+                for source in resolved_sources:
+                    lot_id = int(source["lotId"])
+                    lot_table = next(
+                        (
+                            table for table in ("ItemLotParam_map", "ItemLotParam_enemy")
+                            if lot_id in lots_by_table[table]
+                        ),
+                        None,
+                    )
+                    if lot_table is None:
+                        continue
+                    if source["resolution"] == "initialize_event_parameter_substitution":
+                        substituted_awards += 1
+                    decoded_awards.append({
+                        "file_path": file_path,
+                        "map_key": source["map"],
+                        "ref_path": ref_path,
+                        "event": event,
+                        "instruction": instruction,
+                        "source": source,
+                        "lot_id": lot_id,
+                        "lot_table": lot_table,
+                    })
 
     roots_by_table: dict[str, set[int]] = {
         table: {
@@ -219,12 +317,25 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
         if not items:
             continue
         flags = event_flags(award["ref_path"], int(award["event"]["id"]), flag_names)
+        source = award["source"]
+        if source["resolution"] == "literal_instruction_argument":
+            binding_id = (
+                f"event-reward-{award['map_key']}-{source['eventId']}-"
+                f"{source['instructionIndex']}"
+            )
+        else:
+            binding_id = (
+                f"event-reward-{award['map_key']}-{source['eventId']}-"
+                f"{source['instructionIndex']}-via-{source['templateMap']}-"
+                f"{source['templateEventId']}-{source['templateInstructionIndex']}"
+            )
         records.append({
-            "id": f"event-reward-{award['map_key']}-{award['event']['id']}-{award['instruction']['index']}",
+            "id": binding_id,
             "method": "event_reward",
             "map": award["map_key"],
-            "eventId": int(award["event"]["id"]),
-            "instructionIndex": int(award["instruction"]["index"]),
+            "eventId": int(source["eventId"]),
+            "instructionIndex": int(source["instructionIndex"]),
+            "awardSource": source,
             "itemLot": {"param": lot_table, "rowId": lot_id},
             "items": items,
             "sourceItemLotRows": chain_ids,
@@ -232,7 +343,11 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
             "eventFlagIds": flags["eventFlagIds"],
             "taskStatus": "unclassified",
             "evidence": [
-                f"local EMEVD {award['map_key']} event {award['event']['id']} award instruction {award['instruction']['index']}",
+                (
+                    f"local EMEVD {award['map_key']} event {source['eventId']} "
+                    f"award call {source['instructionIndex']}"
+                ),
+                source["resolution"],
                 f"local {lot_table} row {lot_id}",
                 "sequential " + lot_table + " continuation rows "
                 + ",".join(str(value) for value in chain_ids),
@@ -258,11 +373,15 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
         "stats": {
             "rawAwardInstructions": raw_awards,
             "zeroLotInstructions": zero_lots,
+            "literalAwardBindings": literal_awards,
+            "substitutedAwardBindings": substituted_awards,
+            "unresolvedParameterizedAwards": len(unresolved_parameterized_awards),
             "bindings": len(records),
             "withEventFlags": sum(bool(record["eventFlagIds"]) for record in records),
             "taskUnclassified": len(records),
         },
         "bindings": records,
+        "unresolvedParameterizedAwards": unresolved_parameterized_awards,
     }
 
 

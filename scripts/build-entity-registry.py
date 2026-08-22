@@ -764,6 +764,19 @@ EXCLUDED_CUT_GESTURE_ROWS = {
     110: "unnamed cut-content gesture with no official player-facing GoodsName",
 }
 
+# These official-name rows survive in the shipped parameter and message tables,
+# but are not obtainable in the released game.  The local parameter rows are
+# disabled and have no award, shop, drop, or pickup path; the pinned SaveForge
+# catalog independently labels the same records as cut content.  Keep the facts
+# in exclusions rather than publishing impossible player acquisition targets.
+EXCLUDED_CUT_GOODS_ROWS = {
+    3020: "Miranda's Prayer cut-content tool",
+    8147: "Asimi, Silver Tear cut quest item",
+    8192: "Asimi's Husk cut quest item",
+    8195: "Asimi, Silver Chrysalid cut quest item",
+    9304: "Fugitive Warrior's Recipe [5] cut cookbook",
+}
+
 
 def explicit_param_exclusions(
     rows: list[dict], param: str, kind: str, excluded: dict[int, str]
@@ -876,7 +889,21 @@ def main() -> int:
     )
     print(f"ash_of_war: {len(gems)} (excluded internal rows: {len(excluded_gems)})")
     goods_rows = param_rows(args.param_dir, "EquipParamGoods")
-    goods = build_goods(goods_rows, tables)
+    excluded_goods = explicit_param_exclusions(
+        goods_rows, "EquipParamGoods", "item", EXCLUDED_CUT_GOODS_ROWS
+    )
+    for exclusion in excluded_goods:
+        exclusion["evidence"].extend([
+            "no local item-lot, shop, event-award, or starting-loadout acquisition fact",
+            "pinned SaveForge catalog marks the record as cut content",
+        ])
+        exclusion["reference"] = (
+            "https://github.com/oisis/EldenRing-SaveForge/tree/v1.6.8/"
+            "backend/db/data"
+        )
+    goods = build_goods([
+        row for row in goods_rows if row["id"] not in EXCLUDED_CUT_GOODS_ROWS
+    ], tables)
     gesture_rows = param_rows(args.param_dir, "GestureParam")
     gesture_rows_by_id = {row["id"]: row for row in gesture_rows}
     excluded_gestures = [
@@ -958,10 +985,12 @@ def main() -> int:
             "excluded_internal_armor_rows": len(excluded_internal_armor),
             "excluded_internal_accessory_rows": len(excluded_accessories),
             "excluded_cut_gesture_rows": len(excluded_gestures),
+            "excluded_cut_goods_rows": len(excluded_goods),
         },
         "exclusions": (
             excluded_gems + excluded_appearance_armor + excluded_weapons
             + excluded_internal_armor + excluded_accessories + excluded_gestures
+            + excluded_goods
         ),
         "entityAliases": entity_aliases,
         "entities": entities,

@@ -50,6 +50,7 @@ def main() -> int:
     assert registry["stats"]["excluded_internal_armor_rows"] == 17, registry["stats"]
     assert registry["stats"]["excluded_internal_accessory_rows"] == 1, registry["stats"]
     assert registry["stats"]["excluded_cut_gesture_rows"] == 3, registry["stats"]
+    assert registry["stats"]["excluded_cut_goods_rows"] == 5, registry["stats"]
     exclusion_stat_total = sum(
         value
         for key, value in registry["stats"].items()
@@ -64,6 +65,22 @@ def main() -> int:
         if exclusion.get("kind") == "gesture"
     }
     assert gesture_exclusion_rows == {55, 96, 110}, gesture_exclusion_rows
+    cut_goods_rows = {
+        exclusion["row"]
+        for exclusion in registry["exclusions"]
+        if exclusion.get("param") == "EquipParamGoods"
+    }
+    assert cut_goods_rows == {3020, 8147, 8192, 8195, 9304}, cut_goods_rows
+    cut_goods_ids = {
+        "item_miranda_s_prayer",
+        "item_asimi_silver_tear",
+        "item_asimi_s_husk",
+        "item_asimi_silver_chrysalid",
+        "item_fugitive_warrior_s_recipe_5",
+    }
+    assert not cut_goods_ids.intersection(
+        entity["id"] for entity in registry["entities"]
+    ), "cut goods must remain evidence-layer exclusions, not player targets"
     assert not any(
         entity.get("kind") == "armor"
         and entity.get("properties", {}).get("protectorCategory") == 4
@@ -854,7 +871,7 @@ def main() -> int:
         assert coverage["pickup"]["pickup_coverageGapCount"] == 0, coverage
         assert coverage["pickup"]["pickup_coverageGapNoExternalLocationBindingCount"] == 0, coverage
         assert coverage["pickup"]["pickup_coverageGapSourceRecordWithoutCoordinatesCount"] == 0, coverage
-        assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 32, coverage
+        assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 823, coverage
         assert coverage["pickup"]["pickupOrphanTreasureExclusionCount"] == 12, coverage
         assert coverage["shop"]["shop_coverageGapCount"] == 688, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
@@ -863,22 +880,22 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66644,
-            "topologyMapExactMapInstanceEndpointCount": 64378,
-            "topologyMapExactLayerEndpointCount": 31805,
+            "topologyMapEndpointCount": 66646,
+            "topologyMapExactMapInstanceEndpointCount": 64380,
+            "topologyMapExactLayerEndpointCount": 31807,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 64282,
+                "exact_map_instance": 64284,
                 "exact_map_instance_alias": 96,
                 "external_map_scope": 2112,
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 7518, index
-        assert coverage["sourceExclusionCount"] == 44, coverage
+        assert len(index["coverageGaps"]) == 6727, index
+        assert coverage["sourceExclusionCount"] == 835, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
@@ -918,7 +935,7 @@ def main() -> int:
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 1527
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 736
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
