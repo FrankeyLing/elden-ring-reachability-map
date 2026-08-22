@@ -151,6 +151,8 @@ def build() -> None:
             "data/v1/entities/local-nva-coverage-audit.json",
             "--nva",
             "data/v1/entities/local-nva-navmesh-index.json",
+            "--maps-dir",
+            msb_dir,
             "--output",
             "data/v1/entities/local-map-coverage-classification.json",
         ],

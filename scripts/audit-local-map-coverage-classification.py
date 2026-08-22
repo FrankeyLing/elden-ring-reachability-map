@@ -20,7 +20,8 @@ def main() -> int:
     assert status["nva_present_map_count"] == 997
     assert status["nva_missing_map_count"] == 350
     assert status["hierarchical_parent_covered_map_count"] == 318
-    assert status["native_topology_requirement_unresolved_map_count"] == 32
+    assert status["non_navigation_content_layer_count"] == 32
+    assert status["native_topology_requirement_unresolved_map_count"] == 0
     assert status["classification_counts"] == {
         "native_nva_navmesh_backed": 846,
         "native_nva_present_without_navmesh": 151,
@@ -42,6 +43,18 @@ def main() -> int:
         and row["native_child_tile_coverage"]["inventoryChildMapIds"]
         and not row["native_child_tile_coverage"]["missingNativeChildMapIds"]
         for row in inherited
+    )
+    content_layers = [
+        record for record in records
+        if record["navigation_topology_coverage"]
+        == "not_an_independent_navigation_carrier"
+    ]
+    assert len(content_layers) == 32
+    assert all(
+        row["non_navigation_content_evidence"]["onlyNonNavigationContentRecords"]
+        and not row["non_navigation_content_evidence"]["eventTypeCounts"]
+        and row["non_navigation_content_evidence"]["routeCount"] == 0
+        for row in content_layers
     )
     assert len({record["map_id"] for record in records}) == len(records)
     assert all(record["routeable"] is False for record in records)

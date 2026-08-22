@@ -34,6 +34,12 @@ EVENT_SIGNAL_FIELDS = (
     "play_area_regions",
 )
 
+NON_NAVIGATION_PART_TYPES = {"Asset", "MapPiece"}
+NON_NAVIGATION_REGION_TYPES = {
+    "EnvironmentMapPoint", "EnvironmentMapEffectBox", "Other", "Sound",
+    "SoundRegion", "WeatherCreateAssetPoint",
+}
+
 
 def section_count(section_counts: dict[str, Any], key: str) -> int:
     value = section_counts.get(key, 0)
@@ -103,10 +109,55 @@ def native_child_tiles(
     }
 
 
+def non_navigation_content_evidence(
+    map_id: str, maps_dir: Path | None
+) -> dict[str, Any] | None:
+    """Prove that one parsed MSBE file contains no navigation-bearing record.
+
+    Asset/map-piece and environmental/audio/weather records may be loaded with
+    another map, but they do not define an independent player navigation
+    carrier. Unknown record types keep the map unresolved.
+    """
+    if maps_dir is None:
+        return None
+    path = maps_dir / f"{map_id}.json"
+    if not path.is_file():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    part_types: dict[str, int] = {}
+    region_types: dict[str, int] = {}
+    for row in payload.get("parts", []):
+        key = str(row.get("type") or "<unknown>")
+        part_types[key] = part_types.get(key, 0) + 1
+    for row in payload.get("regions", []):
+        key = str(row.get("type") or "<unknown>")
+        region_types[key] = region_types.get(key, 0) + 1
+    event_types: dict[str, int] = {}
+    for row in payload.get("events", []):
+        key = str(row.get("type") or "<unknown>")
+        event_types[key] = event_types.get(key, 0) + 1
+    routes = payload.get("routes", [])
+    route_count = len(routes) if isinstance(routes, list) else int(routes or 0)
+    allowed = (
+        set(part_types) <= NON_NAVIGATION_PART_TYPES
+        and set(region_types) <= NON_NAVIGATION_REGION_TYPES
+        and not event_types
+        and route_count == 0
+    )
+    return {
+        "sourceFile": str(path.resolve()),
+        "sourceSha256": sha256(path),
+        "partTypeCounts": dict(sorted(part_types.items())),
+        "regionTypeCounts": dict(sorted(region_types.items())),
+        "eventTypeCounts": dict(sorted(event_types.items())),
+        "routeCount": route_count,
+        "onlyNonNavigationContentRecords": allowed,
+    }
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--coverage", type=Path, required=True)
     parser.add_argument("--nva", type=Path, required=True)
+    parser.add_argument("--maps-dir", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
@@ -129,6 +180,7 @@ def main() -> int:
     ], key=lambda row: str(row.get("map_id") or ""))
     all_map_ids = {row.get("map_id") for row in coverage_records if row.get("map_id")}
     native_map_ids = set(nva_by_map)
+    maps_dir = args.maps_dir.resolve() if args.maps_dir else None
     records: list[dict[str, Any]] = []
     for coverage_record in coverage_records:
         map_id = coverage_record.get("map_id")
@@ -151,6 +203,13 @@ def main() -> int:
         inherited_native_topology = bool(
             child_coverage and child_coverage["allInventoryChildrenNative"]
         )
+        content_evidence = (
+            non_navigation_content_evidence(map_id, maps_dir)
+            if nva_record is None and not inherited_native_topology else None
+        )
+        non_navigation_content = bool(
+            content_evidence and content_evidence["onlyNonNavigationContentRecords"]
+        )
         records.append(
             {
                 "map_id": map_id,
@@ -168,6 +227,8 @@ def main() -> int:
                     if nva_record is not None
                     else "hierarchical_parent_of_native_level00_tiles"
                     if inherited_native_topology
+                    else "non_navigation_content_layer"
+                    if non_navigation_content
                     else "native_topology_requirement_unresolved"
                 ),
                 "navigation_topology_coverage": (
@@ -175,9 +236,12 @@ def main() -> int:
                     if nva_record is not None
                     else "covered_by_native_child_tiles"
                     if inherited_native_topology
+                    else "not_an_independent_navigation_carrier"
+                    if non_navigation_content
                     else "unresolved_missing_native_partition"
                 ),
                 "native_child_tile_coverage": child_coverage,
+                "non_navigation_content_evidence": content_evidence,
                 "playability_classification": "requires_independent_evidence",
                 "floor_semantics": "unresolved",
                 "routeable": False,
@@ -194,6 +258,11 @@ def main() -> int:
         "nva_missing_map_count": sum(not record["native_nva_present"] for record in records),
         "hierarchical_parent_covered_map_count": sum(
             record["navigation_topology_coverage"] == "covered_by_native_child_tiles"
+            for record in records
+        ),
+        "non_navigation_content_layer_count": sum(
+            record["navigation_topology_coverage"]
+            == "not_an_independent_navigation_carrier"
             for record in records
         ),
         "native_topology_requirement_unresolved_map_count": sum(
@@ -218,6 +287,7 @@ def main() -> int:
             "coverage_sha256": sha256(coverage_path),
             "nva": str(nva_path),
             "nva_sha256": sha256(nva_path),
+            "maps_dir": str(maps_dir) if maps_dir else None,
         },
         "model": {
             "purpose": "complete local MSBE map inventory with conservative native coverage evidence",

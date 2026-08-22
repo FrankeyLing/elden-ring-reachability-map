@@ -137,6 +137,10 @@ def main() -> int:
             coverage_record.get("navigation_topology_coverage")
             == "covered_by_native_child_tiles"
         )
+        non_navigation_content = (
+            coverage_record.get("navigation_topology_coverage")
+            == "not_an_independent_navigation_carrier"
+        )
         map_summary[map_id] = {
             "mapId": map_id,
             "nativeFile": None,
@@ -146,13 +150,15 @@ def main() -> int:
             "nativeComponentCount": 0,
             "verificationState": (
                 "native_child_tile_coverage_verified"
-                if inherited else "native_partition_missing"
+                if inherited else "local_msbe_non_navigation_content_verified"
+                if non_navigation_content else "native_partition_missing"
             ),
             "playerWalkabilityValidated": False,
             "routeable": False,
             "coverageStatus": (
                 "hierarchical_parent_covered_by_native_children"
-                if inherited else "native_partition_missing"
+                if inherited else "non_navigation_content_layer"
+                if non_navigation_content else "native_partition_missing"
             ),
             "nativeChildMapIds": (
                 (coverage_record.get("native_child_tile_coverage") or {}).get(
@@ -164,6 +170,15 @@ def main() -> int:
     unresolved_missing_map_ids = [
         map_id for map_id in missing_map_ids
         if map_summary[map_id]["coverageStatus"] == "native_partition_missing"
+    ]
+    hierarchical_parent_map_ids = [
+        map_id for map_id in missing_map_ids
+        if map_summary[map_id]["coverageStatus"]
+        == "hierarchical_parent_covered_by_native_children"
+    ]
+    non_navigation_content_map_ids = [
+        map_id for map_id in missing_map_ids
+        if map_summary[map_id]["coverageStatus"] == "non_navigation_content_layer"
     ]
 
     node_ids = {row["id"] for row in native_nodes}
@@ -196,7 +211,8 @@ def main() -> int:
             "nativeMapCount": len(native_file_map_ids),
             "nativeNodeMapCount": len(native_node_map_ids),
             "rawMissingNativeMapCount": len(missing_map_ids),
-            "hierarchicalParentCoveredMapCount": len(missing_map_ids) - len(unresolved_missing_map_ids),
+            "hierarchicalParentCoveredMapCount": len(hierarchical_parent_map_ids),
+            "nonNavigationContentLayerCount": len(non_navigation_content_map_ids),
             "missingNativeMapCount": len(unresolved_missing_map_ids),
             "nativeNodeCount": len(native_nodes),
             "connectorEdgeCount": len(connectors),
