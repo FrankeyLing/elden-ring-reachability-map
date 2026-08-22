@@ -257,6 +257,16 @@ def main() -> int:
           f"every zh-missing record carries officialZhName=False "
           f"({len(unmarked_zh)} unmarked: {unmarked_zh[:5]})")
     check(non_official_en > 0, "derived en names exist and are explicitly marked")
+    furnace = next(
+        (e for e in entities if e.get("id") == "enemy_furnace_golem"), None
+    )
+    if furnace is None:
+        check(False, "manual entity enemy_furnace_golem exists")
+    else:
+        check(
+            (furnace.get("properties") or {}).get("officialEnName") is False,
+            "manual entity enemy_furnace_golem marked non-official",
+        )
 
     print(f"\nCHAPTER 4 COVERAGE: {len(CATEGORY_TERMS) + 12} partial checks, "
           f"{len(failures)} failures")
