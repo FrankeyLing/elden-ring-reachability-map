@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "npc_map_drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest"}
+KNOWN_METHODS = {"drop", "npc_map_drop", "multiplayer_role_reward", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -179,6 +179,22 @@ def main() -> int:
               f"NPC map drop {relation['id']} must retain one exact map-lot row")
         check(bool(relation.get("from")) and bool(relation.get("items")),
               f"NPC map drop {relation['id']} has unresolved source or items")
+    role_rewards = [rel for rel in rels if rel.get("method") == "multiplayer_role_reward"]
+    check(len(role_rewards) == acquisitions.get("stats", {}).get("multiplayer_role_reward") == 15,
+          "multiplayer role reward relation coverage changed")
+    check(len({row for rel in role_rewards for row in rel.get("sourceItemLotRows", [])}) == 7,
+          "multiplayer role reward root coverage changed")
+    for relation in role_rewards:
+        check(relation.get("verification") == "local_role_param_item_lot_verified",
+              f"multiplayer role reward {relation['id']} has weak verification")
+        check(len(relation.get("sourceRoleParamRows", [])) == 1,
+              f"multiplayer role reward {relation['id']} must retain one RoleParam row")
+        check(len(relation.get("sourceItemLotRows", [])) == 1 and bool(relation.get("items")),
+              f"multiplayer role reward {relation['id']} has unresolved lot or items")
+        check(not relation.get("from") and not relation.get("endpointInstances"),
+              f"multiplayer role reward {relation['id']} invented a world-space source")
+        check(relation.get("triggerStatus") == "role_reward_trigger_not_encoded_by_this_param",
+              f"multiplayer role reward {relation['id']} overstates its trigger")
     for rel in rels:
         check(rel["method"] in KNOWN_METHODS, f"relation {rel['id']} unknown method {rel['method']}")
         if rel.get("from"):

@@ -1557,6 +1557,73 @@ def build_npc_map_drops(
     return relations
 
 
+def build_multiplayer_role_rewards(
+    role_rows: list[dict], lot_rows: list[dict], tables,
+    custom_weapons: dict[int, dict] | None = None,
+) -> list[dict]:
+    """System rewards referenced directly by RoleParam.itemlotParamId.
+
+    RoleParam proves the multiplayer role and awarded lot, but does not prove
+    a world-space endpoint or the exact match outcome that triggers payment.
+    Keep those unknowns explicit instead of turning a role into a map node.
+    """
+    lot_by_id = {row["id"]: row["cells"] for row in lot_rows}
+    relations = []
+    for row in role_rows:
+        cells = row["cells"]
+        lot_id = cells.get("itemlotParamId")
+        lot = lot_by_id.get(lot_id)
+        if not isinstance(lot_id, int) or lot_id <= 0 or not lot:
+            continue
+        items = []
+        for slot in range(1, 9):
+            item_id = lot.get(f"lotItemId{slot:02d}")
+            category = lot.get(f"lotItemCategory{slot:02d}")
+            if not isinstance(item_id, int) or item_id <= 0:
+                continue
+            resolved = resolve_lot_item(tables, category, item_id, custom_weapons)
+            if resolved:
+                items.append({
+                    **resolved, "lot": lot_id, "slot": slot,
+                    "num": lot.get(f"lotItemNum{slot:02d}"),
+                    "rate": lot.get(f"lotItemBasePoint{slot:02d}"),
+                })
+        if not items:
+            continue
+        role_name_id = cells.get("roleNameId")
+        role_name = name_for(tables, role_name_id, ("GR_MenuText",))
+        relations.append({
+            "id": f"multiplayer-role-reward-{row['id']}-lot{lot_id}",
+            "from": None,
+            "method": "multiplayer_role_reward",
+            "lot": {"param": "ItemLotParam_map", "rowId": lot_id},
+            "items": items,
+            "multiplayerRole": {
+                "roleParamRowId": row["id"],
+                "roleNameId": role_name_id,
+                "name": ({
+                    "en": clean_name((role_name or {}).get("en")),
+                    "zh": clean_name((role_name or {}).get("zh")),
+                } if role_name else None),
+                "teamType": cells.get("teamType"),
+                "phantomParamId": cells.get("phantomParamId"),
+            },
+            "sourceRoleParamRows": [row["id"]],
+            "sourceItemLotRows": [lot_id],
+            "evidence": [
+                f"regulation.bin RoleParam row {row['id']} itemlotParamId={lot_id}",
+                f"regulation.bin ItemLotParam_map row {lot_id}",
+                *(
+                    [f"official GR_MenuText FMG row {role_name_id}"]
+                    if role_name else []
+                ),
+            ],
+            "triggerStatus": "role_reward_trigger_not_encoded_by_this_param",
+            "verification": "local_role_param_item_lot_verified",
+        })
+    return relations
+
+
 def build_talk_reward_relations(talk_rewards_path: Path | None = None) -> list[dict]:
     """Expose exact Talk ESD awards without inventing an NPC or endpoint."""
     if not talk_rewards_path or not talk_rewards_path.is_file():
@@ -3078,6 +3145,17 @@ def main() -> int:
         f"NPC map-drop relations: {len(npc_map_drops)}; "
         f"classified roots={len(npc_map_drop_rows)}"
     )
+    multiplayer_role_rewards = build_multiplayer_role_rewards(
+        param_rows(args.param_dir, "RoleParam"), lot_map, tables, custom_weapons
+    )
+    multiplayer_role_reward_rows = {
+        row_id for relation in multiplayer_role_rewards
+        for row_id in relation.get("sourceItemLotRows", [])
+    }
+    print(
+        f"multiplayer role rewards: {len(multiplayer_role_rewards)}; "
+        f"classified roots={len(multiplayer_role_reward_rows)}"
+    )
     boss_lots = set()
     import glob as _glob
     for bp in _glob.glob(str(ROOT / "data" / "v1" / "entities" / "boss-rewards.json")):
@@ -3239,6 +3317,24 @@ def main() -> int:
                     "referenced by NpcParam.itemLotId_map and published as an NPC map-drop relation",
                 ],
                 "verification": "local_npc_map_item_lot_verified",
+            })
+        elif row_id in multiplayer_role_reward_rows:
+            pickup_source_exclusions.append({
+                "id": f"item-lot-map-exclusion-role-reward-{row_id}",
+                "method": "multiplayer_role_reward",
+                "status": "classified_multiplayer_role_reward_not_fixed_pickup",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "multiplayerRoleRewardRelationIds": [
+                    row["id"] for row in multiplayer_role_rewards
+                    if row_id in row.get("sourceItemLotRows", [])
+                ],
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    "referenced by RoleParam.itemlotParamId and published as a multiplayer role reward",
+                    "no world-space endpoint or exact match trigger inferred",
+                ],
+                "verification": "local_role_param_item_lot_verified",
             })
         else:
             unclassified_map_lot_gaps.append({
@@ -3433,7 +3529,7 @@ def main() -> int:
     }]
     all_entities = entities + enemies + shop_entities + manual_entities
     relations = (
-        drops + npc_map_drops + pickups + shops + boss_rewards + event_rewards + talk_rewards
+        drops + npc_map_drops + multiplayer_role_rewards + pickups + shops + boss_rewards + event_rewards + talk_rewards
         + gesture_acquisitions
         + tutorial_unlocks
         + quest_rewards + online_map_relations + online_guide_relations
@@ -3505,6 +3601,8 @@ def main() -> int:
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
             "npc_map_drop": len(npc_map_drops),
             "npcMapDropRootCount": len(npc_map_drop_rows),
+            "multiplayer_role_reward": len(multiplayer_role_rewards),
+            "multiplayerRoleRewardRootCount": len(multiplayer_role_reward_rows),
             **drop_coverage,
             "pickupBindingCount": pickup_endpoint_stats["bindings"],
             "pickupEndpointRelationCount": pickup_endpoint_stats["endpoint_relations"],

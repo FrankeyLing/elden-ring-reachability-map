@@ -1038,8 +1038,8 @@ def main() -> int:
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6535, index
-        assert coverage["sourceExclusionCount"] == 1025, coverage
+        assert len(index["coverageGaps"]) == 6528, index
+        assert coverage["sourceExclusionCount"] == 1032, coverage
         assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 127, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
@@ -1080,7 +1080,7 @@ def main() -> int:
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 544
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 537
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
@@ -1123,6 +1123,14 @@ def main() -> int:
             and acquisition.get("verification") == "local_npc_map_item_lot_verified"
             for acquisition in varre_bouquet["entity"].get("acquisitions", [])
         ), varre_bouquet
+        rune_arc = query(id="item_rune_arc")
+        assert rune_arc["found"] is True, rune_arc
+        assert any(
+            acquisition.get("method") == "multiplayer_role_reward"
+            and acquisition.get("verification") == "local_role_param_item_lot_verified"
+            and acquisition.get("topologyBinding", {}).get("status") == "not_bound"
+            for acquisition in rune_arc["entity"].get("acquisitions", [])
+        ), rune_arc
         outer_order = query(id="item_outer_order")
         assert outer_order["found"] is True, outer_order
         assert any(
