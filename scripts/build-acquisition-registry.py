@@ -40,6 +40,7 @@ DEFAULT_BOSS_ENDPOINTS = ROOT / "data" / "v1" / "entities" / "boss-reward-endpoi
 DEFAULT_EVENT_REWARDS = ROOT / "data" / "v1" / "entities" / "event-reward-bindings.json"
 DEFAULT_QUEST_REWARDS = ROOT / "data" / "v1" / "entities" / "quest-reward-bindings.json"
 DEFAULT_GESTURE_ACQUISITIONS = ROOT / "data" / "v1" / "entities" / "gesture-acquisition-bindings.json"
+DEFAULT_TUTORIAL_UNLOCKS = ROOT / "data" / "v1" / "entities" / "tutorial-unlock-bindings.json"
 DEFAULT_ONLINE_MARKERS = ROOT / "data" / "v1" / "entities" / "online-map-markers.json"
 DEFAULT_ONLINE_GUIDE_ITEMS = ROOT / "data" / "v1" / "entities" / "online-guide-items.json"
 DEFAULT_ONLINE_ITEM_MAP = ROOT / "data" / "v1" / "entities" / "online-item-map-records.json"
@@ -1406,6 +1407,38 @@ def build_gesture_acquisition_relations(
     return relations
 
 
+def build_tutorial_unlock_relations(
+    tutorial_unlocks_path: Path | None = None,
+) -> list[dict]:
+    """Expose exact local tutorial/info unlock events as independent facts."""
+    if not tutorial_unlocks_path or not tutorial_unlocks_path.is_file():
+        return []
+    payload = json.loads(tutorial_unlocks_path.read_text(encoding="utf-8"))
+    relations = []
+    for binding in payload.get("bindings", []):
+        items = [
+            {
+                key: item[key]
+                for key in ("item", "name", "sourceParam", "sourceParamId")
+                if key in item
+            }
+            for item in binding.get("items", [])
+            if item.get("item") and item.get("name", {}).get("en")
+        ]
+        if not items:
+            continue
+        relations.append({
+            "id": binding["id"],
+            "from": None,
+            "method": "tutorial_unlock",
+            "items": items,
+            "tutorialUnlockBinding": binding,
+            "evidence": binding.get("evidence", []),
+            "verification": binding.get("verification"),
+        })
+    return relations
+
+
 ONLINE_CATEGORY_FILTERS = {
     "spell": lambda entity: entity.get("kind") == "spell",
     "weapon": lambda entity: entity.get("kind") == "weapon",
@@ -2302,6 +2335,7 @@ def main() -> int:
     parser.add_argument("--event-rewards", type=Path, default=DEFAULT_EVENT_REWARDS)
     parser.add_argument("--quest-rewards", type=Path, default=DEFAULT_QUEST_REWARDS)
     parser.add_argument("--gesture-acquisitions", type=Path, default=DEFAULT_GESTURE_ACQUISITIONS)
+    parser.add_argument("--tutorial-unlocks", type=Path, default=DEFAULT_TUTORIAL_UNLOCKS)
     parser.add_argument("--online-markers", type=Path, default=DEFAULT_ONLINE_MARKERS)
     parser.add_argument("--online-guide-items", type=Path, default=DEFAULT_ONLINE_GUIDE_ITEMS)
     parser.add_argument("--online-item-map", type=Path, default=DEFAULT_ONLINE_ITEM_MAP)
@@ -2515,6 +2549,8 @@ def main() -> int:
     print(f"event reward relations: {len(event_rewards)}")
     gesture_acquisitions = build_gesture_acquisition_relations(args.gesture_acquisitions)
     print(f"gesture acquisition relations: {len(gesture_acquisitions)}")
+    tutorial_unlocks = build_tutorial_unlock_relations(args.tutorial_unlocks)
+    print(f"tutorial unlock relations: {len(tutorial_unlocks)}")
     quest_rewards, quest_endpoint_count = build_quest_reward_relations(
         args.quest_rewards, entities + enemies, args.enemy_spawns
     )
@@ -2594,6 +2630,7 @@ def main() -> int:
     all_entities = entities + enemies + shop_entities + manual_entities
     relations = (
         drops + pickups + shops + boss_rewards + event_rewards + gesture_acquisitions
+        + tutorial_unlocks
         + quest_rewards + online_map_relations + online_guide_relations
         + online_item_map_relations + online_cookbook_relations
         + spell_acquisition_projections
@@ -2624,6 +2661,7 @@ def main() -> int:
             "event_reward_bindings": str(args.event_rewards),
             "quest_reward_bindings": str(args.quest_rewards),
             "gesture_acquisition_bindings": str(args.gesture_acquisitions),
+            "tutorial_unlock_bindings": str(args.tutorial_unlocks),
             "online_map_markers": str(args.online_markers),
             "online_guide_items": str(args.online_guide_items),
             "online_item_map": str(args.online_item_map),
@@ -2671,6 +2709,7 @@ def main() -> int:
             "event_reward": len(event_rewards),
             "quest_reward": len(quest_rewards),
             "gesture_acquisition": len(gesture_acquisitions),
+            "tutorial_unlock": len(tutorial_unlocks),
             "online_map": len(online_map_relations),
             "onlineMapMarkerCount": online_map_stats["markers"],
             "onlineMapUnmatched": online_map_stats["unmatched"],

@@ -944,6 +944,13 @@ def main() -> int:
             and acquisition.get("verification") == "local_talk_esd_gesture_acquisition_verified"
             for acquisition in outer_order["entity"].get("acquisitions", [])
         ), outer_order
+        tutorial_info = query(id="item_about_fast_travel_to_sites_of_grace")
+        assert tutorial_info["found"] is True, tutorial_info
+        assert any(
+            acquisition.get("method") == "tutorial_unlock"
+            and acquisition.get("verification") == "local_emevd_tutorial_unlock_verified"
+            for acquisition in tutorial_info["entity"].get("acquisitions", [])
+        ), tutorial_info
         print("PASS player entity query")
         print(f"  glovewort_matches={glovewort['total_matches']}")
         print(f"  smithing_matches={smithing['total_matches']}")

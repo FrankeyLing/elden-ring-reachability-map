@@ -72,6 +72,7 @@ def build() -> None:
     commands = [
         [sys.executable, "scripts/build-entity-registry.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-gesture-acquisition-bindings.py", "--param-dir", param_dir],
+        [sys.executable, "scripts/build-tutorial-unlock-bindings.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-equivalent-map-instances.py", "--maps-dir", msb_dir],
         [
             sys.executable,

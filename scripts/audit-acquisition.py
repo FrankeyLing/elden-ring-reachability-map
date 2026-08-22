@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "quest_reward", "gesture_unlock", "initial_loadout", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
+KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -81,6 +81,8 @@ def main() -> int:
     quest_rewards = json.loads(quest_reward_path.read_text(encoding="utf-8")) if quest_reward_path.is_file() else {"bindings": []}
     gesture_path = DATA / "entities" / "gesture-acquisition-bindings.json"
     gesture_acquisitions = json.loads(gesture_path.read_text(encoding="utf-8")) if gesture_path.is_file() else {"bindings": []}
+    tutorial_path = DATA / "entities" / "tutorial-unlock-bindings.json"
+    tutorial_unlocks = json.loads(tutorial_path.read_text(encoding="utf-8")) if tutorial_path.is_file() else {"bindings": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -983,6 +985,39 @@ def main() -> int:
     print(
         f"gesture acquisition evidence: {len(gesture_binding_ids)} bindings; "
         f"locally-bound rows={len(gesture_rows_from_bindings)}"
+    )
+    tutorial_binding_ids = [binding.get("id") for binding in tutorial_unlocks.get("bindings", [])]
+    check(None not in tutorial_binding_ids, "tutorial unlock binding missing id")
+    check(len(tutorial_binding_ids) == len(set(tutorial_binding_ids)),
+          "tutorial unlock binding ids not unique")
+    tutorial_stats = tutorial_unlocks.get("stats", {})
+    check(tutorial_stats.get("bindingCount") == len(tutorial_binding_ids),
+          "tutorial unlock binding count mismatch")
+    check(tutorial_stats.get("tutorialEntityCount") == 48,
+          "tutorial entity identity coverage changed")
+    check(tutorial_stats.get("locallyBoundEntityCount") == 47,
+          "tutorial local event coverage changed")
+    for binding in tutorial_unlocks.get("bindings", []):
+        check(binding.get("method") == "tutorial_unlock",
+              f"tutorial unlock {binding.get('id')} bad method")
+        check(binding.get("verification") == "local_emevd_tutorial_unlock_verified",
+              f"tutorial unlock {binding.get('id')} weak verification")
+        check(binding.get("items"), f"tutorial unlock {binding.get('id')} has no item")
+        for item in binding.get("items", []):
+            check(item.get("item") in entity_ids,
+                  f"tutorial unlock {binding.get('id')} item unresolved")
+            check(item.get("sourceParam") == "TutorialParam",
+                  f"tutorial unlock {binding.get('id')} lacks TutorialParam evidence")
+            check(item.get("sourceParamId") == binding.get("tutorialParamRow"),
+                  f"tutorial unlock {binding.get('id')} row mismatch")
+    tutorial_relations = [relation for relation in rels if relation.get("method") == "tutorial_unlock"]
+    check(len(tutorial_relations) == len(tutorial_binding_ids),
+          "tutorial unlock relation projection count mismatch")
+    check(tutorial_unlocks.get("locallyUnboundEntities") == ["item_about_multiplayer"],
+          "tutorial unresolved entity set changed")
+    print(
+        f"tutorial unlock evidence: {len(tutorial_binding_ids)} bindings; "
+        f"locally-bound entities={tutorial_stats.get('locallyBoundEntityCount')}"
     )
     quest_binding_ids = [binding.get("id") for binding in quest_rewards.get("bindings", [])]
     check(None not in quest_binding_ids, "quest reward binding missing id")
