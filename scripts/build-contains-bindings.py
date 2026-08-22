@@ -36,6 +36,7 @@ DEFAULT_SNAPSHOTS = DATA / "source-snapshots"
 DEFAULT_ZH_MAPPING = DATA / "zh-cn" / "official-zh-mapping.json"
 DEFAULT_OUTPUT = ENTITIES / "acquisition-contains-bindings.json"
 MAP_ID_RE = re.compile(r"^m\d+_\d+_\d+_\d+$", re.IGNORECASE)
+PART_MAP_RE = re.compile(r"^(m\d+_\d+_\d+_\d+)(?:-|$)", re.IGNORECASE)
 KIND_PRIORITY = {
     "grace": 0,
     "entrance": 1,
@@ -287,10 +288,30 @@ def main() -> int:
         # The abstraction anchor carries the proven map identities; the
         # endpoint map field alone can miss bindings without a map at row level.
         map_candidates: list[str] = []
+        map_candidate_sources: dict[str, str] = {}
         for candidate in [map_id] + list(anchor.get("mapIds") or []):
             normalized = normalize_map_id(candidate)
             if normalized is not None and normalized not in map_candidates:
                 map_candidates.append(normalized)
+                map_candidate_sources[normalized] = "abstract endpoint map identity"
+
+        # Some acquisition records carry two deliberately different map
+        # identities: ``endpoint.map`` is the source-layer map instance, while
+        # the local endpoint part name starts with the authored native map
+        # fragment associated with that entity (for example
+        # ``m60_36_47_00-c4450_9000``).  This prefix is an endpoint-local
+        # containment witness, not a global alias and never a navigation edge;
+        # it may legitimately differ between records sharing endpoint.map.
+        # Records without a local map-shaped part remain unresolved.
+        part = str(endpoint.get("part") or "")
+        part_match = PART_MAP_RE.match(part)
+        if part_match:
+            part_map = normalize_map_id(part_match.group(1))
+            if part_map is not None and part_map not in map_candidates:
+                map_candidates.append(part_map)
+                map_candidate_sources[part_map] = (
+                    "endpoint-local Map Studio part prefix " + part_match.group(1)
+                )
         if not map_candidates:
             status_counts["missing_map_id"] += 1
             bindings.append(
@@ -306,6 +327,9 @@ def main() -> int:
                 candidate, msbe_regions, tiles, tile_by_key, bvg
             )
             if region is not None:
+                source = map_candidate_sources.get(candidate)
+                if source and candidate != map_id:
+                    candidate_evidence.insert(0, source + " -> formal region " + repr(region))
                 resolved = region
                 evidence = candidate_evidence
                 used_map = candidate
