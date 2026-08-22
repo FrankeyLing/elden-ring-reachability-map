@@ -1058,15 +1058,15 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 81457,
-            "topologyMapExactMapInstanceEndpointCount": 78378,
+            "topologyMapEndpointCount": 81459,
+            "topologyMapExactMapInstanceEndpointCount": 78380,
             "topologyMapExactLayerEndpointCount": 31968,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 3044,
             "topologyMapUnresolvedEndpointCount": 0,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 78282,
+                "exact_map_instance": 78284,
                 "exact_map_instance_alias": 96,
                 "external_map_scope": 3044,
             },
