@@ -29,6 +29,7 @@ CATEGORY_SEARCH_ALIASES = {
     "spirit_ash": ["骨灰", "Spirit Ash", "Spirit Ashes"],
     "grave_glovewort": ["铃兰", "墓地铃兰", "Grave Glovewort"],
     "ghost_glovewort": ["铃兰", "灵依墓地铃兰", "Ghost Glovewort"],
+    "note": ["情报", "便条", "文书", "纸条", "Note", "Letter", "Document"],
 }
 
 WEAPON_FAMILY_SEARCH_ALIASES = {
@@ -182,6 +183,8 @@ def main() -> int:
                 aliases.extend(["解指老妪", "指母", "finger crone", "finger maiden"])
             if any(word in en_name for word in ("Sorcerer", "Sorceress", "Miriel", "Sellen", "Thops", "Rogier")):
                 aliases.extend(["法术老师", "魔法师", "sorcery teacher"])
+            if en_name.startswith("Note:") or en_name.startswith("Letter:") or "Document" in en_name:
+                aliases.extend(["情报", "便条", "文书", "纸条", "note", "letter", "document"])
             if "Merchant" in en_name:
                 aliases.extend(["商人", "merchant"])
             if "Smithing" in en_name or "Iji" in en_name or "Hewg" in en_name:

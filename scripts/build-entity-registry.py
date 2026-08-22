@@ -482,6 +482,9 @@ def classify_goods(
     # summonable puppets) do not contain the word "Ashes" in their display
     # name and were previously misclassified by the name-only rules.
     cells = cells or {}
+    # 4.4 note/letter/deliverable documents are their own category
+    if re.search(r"^(Note:|Letter:|\[Document\]|Deliverable)", name_en):
+        return "note"
     if (
         cells.get("reinforceGoodsId", -1) != -1
         and cells.get("reinforceMaterialId") in SPIRIT_ASH_REINFORCEMENT_MATERIALS
