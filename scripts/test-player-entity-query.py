@@ -888,6 +888,28 @@ def main() -> int:
             for relation in eccentric_event_rewards
         ), eccentric_event_rewards
 
+        sword_lance = query(id="weapon_sword_lance")
+        assert sword_lance["found"] is True
+        sword_lance_exchanges = [
+            relation for relation in sword_lance["entity"]["acquisitions"]
+            if relation.get("method") == "purchase"
+            and relation.get("lineupRow") == 101932
+        ]
+        assert len(sword_lance_exchanges) == 1, sword_lance_exchanges
+        sword_lance_exchange = sword_lance_exchanges[0]
+        assert sword_lance_exchange.get("from") == "npc_finger_reader_enia", sword_lance_exchange
+        assert any(
+            item.get("sourceCustomWeaponId") == 4400039
+            and item.get("sourceParamId") == 3500000
+            and item.get("reinforcementLevel") == 0
+            for item in sword_lance_exchange.get("items", [])
+        ), sword_lance_exchange
+        assert any(
+            cost.get("item") == "item_remembrance_of_the_wild_boar_rider"
+            and cost.get("quantity") == 1
+            for cost in sword_lance_exchange.get("materialCost", [])
+        ), sword_lance_exchange
+
         whistle = query(id="item_spectral_steed_whistle")
         assert whistle["found"] is True
         whistle_rewards = [
@@ -941,18 +963,20 @@ def main() -> int:
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 134, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedBindingCount"] == 0, coverage
+        assert coverage["shop"]["shop_customWeaponPurchaseRows"] == 1, coverage
+        assert coverage["shop"]["shop_unresolvedCustomWeaponPurchaseRows"] == 0, coverage
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66646,
-            "topologyMapExactMapInstanceEndpointCount": 64380,
-            "topologyMapExactLayerEndpointCount": 31807,
+            "topologyMapEndpointCount": 66647,
+            "topologyMapExactMapInstanceEndpointCount": 64381,
+            "topologyMapExactLayerEndpointCount": 31808,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 64284,
+                "exact_map_instance": 64285,
                 "exact_map_instance_alias": 96,
                 "external_map_scope": 2112,
                 "unresolved_map_instance": 119,

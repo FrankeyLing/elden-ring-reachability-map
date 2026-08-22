@@ -74,18 +74,18 @@ FMG_TO_PARAM = {
 
 # ShopLineupParam equipType (verified against the local regulation dump and the
 # corresponding EquipParam tables): 0=Weapon, 1=Protector, 2=Accessory,
-# 3=Goods, 4=Gem.  Type 5 is reserved/unknown in this snapshot and is skipped
-# when no official name can be resolved.
+# 3=Goods, 4=Gem, 5=EquipParamCustomWeapon.  A custom-weapon row is a concrete
+# preset (base weapon + reinforcement level + attached gem); it must resolve
+# back to the canonical base weapon instead of masquerading as a Gem item.
 SHOP_EQUIP_TABLES = {
     0: "WeaponName",
     1: "ProtectorName",
     2: "AccessoryName",
     3: "GoodsName",
     4: "GemName",
-    5: "GemName",
 }
 SHOP_EQUIP_KIND = {
-    0: "weapon", 1: "armor", 2: "accessory", 3: "item", 4: "ash_of_war", 5: "ash_of_war",
+    0: "weapon", 1: "armor", 2: "accessory", 3: "item", 4: "ash_of_war",
 }
 
 # Map For Goblins carries a source item number, but its normalized record does
@@ -814,6 +814,8 @@ def build_pickups(
 def build_shops(
     shop_rows: list[dict],
     tables,
+    custom_weapon_rows: list[dict] | None = None,
+    material_rows: list[dict] | None = None,
     merchant_bindings_path: Path | None = None,
     known_entities: list[dict] | None = None,
 ) -> tuple[list[dict], list[dict], dict[str, int]]:
@@ -832,6 +834,14 @@ def build_shops(
         for entity in (known_entities or [])
         if entity.get("name", {}).get("en")
     }
+    known_by_param_row: dict[tuple[str, int], list[str]] = defaultdict(list)
+    for entity in known_entities or []:
+        for signifier in entity.get("signifiers", []):
+            param = signifier.get("param")
+            if not param:
+                continue
+            for row_id in signifier.get("rows", []):
+                known_by_param_row[(str(param), int(row_id))].append(entity["id"])
     merchant_bindings: dict[int, list[dict]] = {}
     if merchant_bindings_path and merchant_bindings_path.is_file():
         payload = json.loads(merchant_bindings_path.read_text(encoding="utf-8"))
@@ -840,6 +850,53 @@ def build_shops(
             if row_id is not None:
                 merchant_bindings.setdefault(int(row_id), []).append(binding)
 
+    custom_weapons = {
+        int(row["id"]): row["cells"] for row in (custom_weapon_rows or [])
+    }
+    material_sets = {
+        int(row["id"]): row["cells"] for row in (material_rows or [])
+    }
+
+    def material_cost(material_set_id: int) -> list[dict]:
+        cells = material_sets.get(material_set_id)
+        if not cells:
+            return []
+        category_param = {1: "EquipParamWeapon", 4: "EquipParamGoods"}
+        category_fmg = {1: "WeaponName", 4: "GoodsName"}
+        result = []
+        for index in range(1, 7):
+            suffix = f"{index:02d}"
+            item_id = int(cells.get(f"materialId{suffix}", -1))
+            quantity = int(cells.get(f"itemNum{suffix}", -1))
+            category = int(cells.get(f"materialCate{suffix}", -1))
+            param = category_param.get(category)
+            fmg = category_fmg.get(category)
+            if item_id < 0 or quantity < 0 or not param or not fmg:
+                continue
+            entry = name_for(tables, item_id, [fmg])
+            english = clean_name((entry or {}).get("en"))
+            if not english:
+                continue
+            candidates = known_by_param_row.get((param, item_id), [])
+            result.append({
+                "item": candidates[0] if len(candidates) == 1 else None,
+                "name": {
+                    "en": english,
+                    "zh": clean_name((entry or {}).get("zh")) or english,
+                },
+                "quantity": quantity,
+                "sourceParam": param,
+                "sourceParamId": item_id,
+                "sourceMaterialCategory": category,
+                "canonicalStatus": (
+                    "exact" if len(candidates) == 1
+                    else "ambiguous" if candidates else "unresolved"
+                ),
+                "candidateEntityIds": candidates,
+            })
+        return result
+    custom_weapon_row_count = 0
+    unresolved_custom_weapon_row_count = 0
     row_items: dict[int, dict] = {}
     for r in shop_rows:
         c = r["cells"]
@@ -847,9 +904,24 @@ def build_shops(
         eid = c.get("equipId")
         if not eid or eid <= 0:
             continue
-        fmg = SHOP_EQUIP_TABLES.get(etype)
-        if fmg is None:
-            continue
+        source_custom_weapon_id = None
+        custom_weapon = None
+        if etype == 5:
+            custom_weapon = custom_weapons.get(int(eid))
+            if not custom_weapon:
+                unresolved_custom_weapon_row_count += 1
+                continue
+            source_custom_weapon_id = int(eid)
+            eid = int(custom_weapon.get("baseWepId", -1))
+            fmg = "WeaponName"
+            if eid <= 0:
+                unresolved_custom_weapon_row_count += 1
+                continue
+            custom_weapon_row_count += 1
+        else:
+            fmg = SHOP_EQUIP_TABLES.get(etype)
+            if fmg is None:
+                continue
         # The category is carried by equipType.  Falling back to GoodsName
         # when the selected FMG has no row turns stale/invalid ShopLineupParam
         # entries into false purchases (for example an ash or a consumable
@@ -859,8 +931,8 @@ def build_shops(
         en = clean_name((entry or {}).get("en"))
         if not en:
             continue
-        row_items[r["id"]] = {
-            "item": f"{SHOP_EQUIP_KIND.get(etype, 'item')}_{slugify(en)}",
+        item = {
+            "item": f"{'weapon' if etype == 5 else SHOP_EQUIP_KIND.get(etype, 'item')}_{slugify(en)}",
             "name": {"en": en, "zh": clean_name((entry or {}).get("zh")) or en},
             "price": c.get("value"),
             "costType": c.get("costType"),
@@ -871,6 +943,18 @@ def build_shops(
             "sourceParamId": eid,
             "sourceEquipType": etype,
         }
+        if source_custom_weapon_id is not None and custom_weapon is not None:
+            item.update({
+                "sourceEquipId": source_custom_weapon_id,
+                "sourceCustomWeaponId": source_custom_weapon_id,
+                "reinforcementLevel": int(custom_weapon.get("reinforceLv", 0)),
+                "attachedGemId": int(custom_weapon.get("gemId", -1)),
+            })
+        material_set_id = int(c.get("mtrlId", -1))
+        costs = material_cost(material_set_id) if material_set_id >= 0 else []
+        if costs:
+            item["materialCost"] = costs
+        row_items[r["id"]] = item
     relations = []
     entities = []
     context_entities: dict[int, dict] = {}
@@ -959,6 +1043,7 @@ def build_shops(
                 "items": [item],
                 "lineupRow": row_id,
                 "sellerStatus": "unresolved",
+                **({"materialCost": item["materialCost"]} if item.get("materialCost") else {}),
                 "evidence": [
                     f"regulation.bin ShopLineupParam row {row_id}",
                     "no seller binding in copied talk-range shop source",
@@ -1015,6 +1100,7 @@ def build_shops(
                 "lineupRow": row_id,
                 "sellerStatus": "named" if named else "unresolved",
                 "merchantShopBinding": binding,
+                **({"materialCost": item["materialCost"]} if item.get("materialCost") else {}),
                 "evidence": evidence,
                 "verification": verification,
             }
@@ -1036,6 +1122,8 @@ def build_shops(
         "unresolvedPurchaseRelations": unresolved_relation_count,
         "unresolvedShopContexts": len(context_entities),
         "sourceOnlyRows": len(source_only_rows),
+        "customWeaponPurchaseRows": custom_weapon_row_count,
+        "unresolvedCustomWeaponPurchaseRows": unresolved_custom_weapon_row_count,
     }
     return relations, entities, stats
 
@@ -2993,7 +3081,12 @@ def main() -> int:
 
     shop_rows = param_rows(args.param_dir, "ShopLineupParam")
     shops, shop_entities, shop_stats = build_shops(
-        shop_rows, tables, args.merchant_shops, entities + enemies
+        shop_rows,
+        tables,
+        param_rows(args.param_dir, "EquipParamCustomWeapon"),
+        param_rows(args.param_dir, "EquipMtrlSetParam"),
+        args.merchant_shops,
+        entities + enemies,
     )
     shop_gaps, shop_gap_stats = summarize_shop_coverage_gaps(shops)
     shop_stats.update(shop_gap_stats)

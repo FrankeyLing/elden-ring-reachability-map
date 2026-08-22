@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T09:01:14.169584+00:00",
+  "generatedAt": "2026-08-22T09:16:14.009523+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
@@ -10,12 +10,12 @@
     "failedGateCount": 8,
     "runtimeEntityCount": 11223,
     "searchableEntityCount": 11223,
-    "acquisitionRelationProjectionCount": 55711,
-    "endpointInstanceProjectionCount": 171482,
+    "acquisitionRelationProjectionCount": 55712,
+    "endpointInstanceProjectionCount": 171483,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
-    "formalAnchorEndpointCount": 64056,
-    "containmentRegionEndpointCount": 64052,
+    "formalAnchorEndpointCount": 64057,
+    "containmentRegionEndpointCount": 64053,
     "containmentUnresolvedEndpointCount": 328,
     "nonFormalAnchorBreakdown": {
       "external_map_scope": 2108,
@@ -26,7 +26,7 @@
     },
     "coverageGapCount": 6601,
     "unboundEndpointCount": 4433,
-    "acquirableEntityWithoutRelationCount": 20
+    "acquirableEntityWithoutRelationCount": 19
   },
   "gates": [
     {
@@ -102,7 +102,7 @@
     {
       "name": "acquirable_entities_without_acquisition",
       "status": "fail",
-      "actual": 20,
+      "actual": 19,
       "expected": 0,
       "evidence": "player entity acquisitions"
     },
@@ -172,8 +172,7 @@
       "item_roped_freezing_pot",
       "item_roundrock",
       "weapon_dryleaf_arts",
-      "weapon_rogier_s_rapier",
-      "weapon_sword_lance"
+      "weapon_rogier_s_rapier"
     ],
     "armorReinforcementRelations": []
   },

@@ -976,6 +976,40 @@ def main() -> int:
         else:
             check(rel.get("from", "").startswith("shop_context_"),
                   f"unresolved purchase {rel['id']} must use an isolated shop context")
+    custom_weapon_purchases = [
+        (relation, item)
+        for relation in purchase_relations
+        for item in relation.get("items", [])
+        if item.get("sourceEquipType") == 5
+    ]
+    check(len(custom_weapon_purchases) == acquisition_stats.get("shop_customWeaponPurchaseRows"),
+          "custom-weapon purchase count does not match stats")
+    check(acquisition_stats.get("shop_unresolvedCustomWeaponPurchaseRows") == 0,
+          "unresolved custom-weapon shop rows remain")
+    for relation, item in custom_weapon_purchases:
+        check(str(item.get("item", "")).startswith("weapon_"),
+              f"custom weapon purchase {relation['id']} masquerades as another item kind")
+        check(item.get("sourceParam") == "EquipParamWeapon",
+              f"custom weapon purchase {relation['id']} lacks base weapon identity")
+        check(all(isinstance(item.get(key), int) for key in (
+            "sourceParamId", "sourceCustomWeaponId", "reinforcementLevel", "attachedGemId"
+        )), f"custom weapon purchase {relation['id']} lacks preset provenance")
+    sword_lance = [
+        relation for relation in purchase_relations
+        if any(item.get("item") == "weapon_sword_lance" for item in relation.get("items", []))
+    ]
+    check(len(sword_lance) == 1, "Sword Lance custom-weapon exchange fixture is missing")
+    if sword_lance:
+        relation = sword_lance[0]
+        item = next(item for item in relation["items"] if item.get("item") == "weapon_sword_lance")
+        check(item.get("sourceCustomWeaponId") == 4400039
+              and item.get("sourceParamId") == 3500000,
+              "Sword Lance fixture resolved the wrong custom/base weapon rows")
+        check(any(cost.get("item") == "item_remembrance_of_the_wild_boar_rider"
+                  and cost.get("quantity") == 1
+                  and cost.get("canonicalStatus") == "exact"
+                  for cost in relation.get("materialCost", [])),
+              "Sword Lance fixture lacks its exact remembrance cost")
     print(f"purchase endpoint layer: {len(purchase_relations)} relations; named={sum(r.get('sellerStatus') == 'named' for r in purchase_relations)}; unresolved={sum(r.get('sellerStatus') != 'named' for r in purchase_relations)}")
     event_binding_ids = [binding.get("id") for binding in event_rewards.get("bindings", [])]
     check(None not in event_binding_ids, "event reward binding missing id")

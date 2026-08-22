@@ -81,7 +81,7 @@ def compact_acquisition(
         key: relation[key]
         for key in (
             "id", "from", "method", "lot", "evidence", "verification",
-            "items", "price", "costType", "stock", "lineupRow",
+            "items", "price", "costType", "stock", "lineupRow", "materialCost",
             "sourceNpcParamRows", "sellerStatus", "merchantShopBinding",
             "sourceItemLotRows", "eventRewardBinding", "talkItemLotBinding",
             "questRewardBinding", "onlineMapMarker", "craftRecipe", "localRecipe",
