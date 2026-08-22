@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T07:57:34.213427+00:00",
+  "generatedAt": "2026-08-22T08:08:09.942345+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
@@ -10,7 +10,7 @@
     "failedGateCount": 8,
     "runtimeEntityCount": 11223,
     "searchableEntityCount": 11223,
-    "acquisitionRelationProjectionCount": 55421,
+    "acquisitionRelationProjectionCount": 55426,
     "endpointInstanceProjectionCount": 171482,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
@@ -26,7 +26,7 @@
     },
     "coverageGapCount": 6727,
     "unboundEndpointCount": 4433,
-    "acquirableEntityWithoutRelationCount": 36
+    "acquirableEntityWithoutRelationCount": 35
   },
   "gates": [
     {
@@ -102,7 +102,7 @@
     {
       "name": "acquirable_entities_without_acquisition",
       "status": "fail",
-      "actual": 36,
+      "actual": 35,
       "expected": 0,
       "evidence": "player entity acquisitions"
     },
@@ -161,7 +161,6 @@
       "item_drawstring_freezing_grease",
       "item_erdtree_codex",
       "item_erdtree_prayerbook",
-      "item_fire_pot",
       "item_forager_brood_cookbook_1",
       "item_forager_brood_cookbook_2",
       "item_forager_brood_cookbook_3",

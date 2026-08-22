@@ -339,6 +339,25 @@ def main() -> int:
             "73ae9c5c72873edab7629142a4ff5857360f8d81"
         ), dlc_craft_relation
 
+        default_craft_item = query(id="item_fire_pot")
+        assert default_craft_item["found"] is True, default_craft_item
+        default_craft_relations = [
+            relation for relation in default_craft_item["entity"]["acquisitions"]
+            if relation.get("id") == "craft-default-30100"
+        ]
+        assert len(default_craft_relations) == 1, default_craft_item
+        default_craft_relation = default_craft_relations[0]
+        assert default_craft_relation["from"] == "item_crafting_kit", default_craft_relation
+        assert default_craft_relation["craftRecipe"]["unlockType"] == "default", default_craft_relation
+        assert default_craft_relation["localRecipe"]["materialSetId"] == 301000, default_craft_relation
+        assert {
+            (ingredient["itemId"], ingredient["quantity"])
+            for ingredient in default_craft_relation["localRecipe"]["ingredients"]
+        } == {
+            ("item_mushroom", 1),
+            ("item_smoldering_butterfly", 1),
+        }, default_craft_relation
+
         mapped_alias = query(id="item_glintstone_cometshard")
         assert mapped_alias["found"] is True, mapped_alias
         assert mapped_alias["entity"]["id"] == "spell_glintstone_cometshard", mapped_alias

@@ -2204,6 +2204,202 @@ def build_online_cookbook_recipe_relations(
     return relations, stats
 
 
+DEFAULT_CRAFT_RECIPE_IDS = {30000, 30100, 30200, 30600, 30700}
+
+
+def attach_local_craft_recipes(
+    recipe_rows: list[dict],
+    material_rows: list[dict],
+    entities: list[dict],
+    online_relations: list[dict],
+) -> tuple[list[dict], dict[str, int], list[dict]]:
+    """Attach exact local recipe products and materials to craft relations.
+
+    ``ShopLineupParam_Recipe`` is the game's recipe table.  Cookbook unlock
+    identity is deliberately kept separate: the local table proves product,
+    output quantity and material set, while the pinned event-flag catalog
+    proves cookbook ownership.  The five rows labelled ``Default`` by that
+    catalog are available from the Crafting Kit and receive independent local
+    relations.  Any disagreement remains a local coverage gap and cannot
+    invalidate unrelated recipes.
+    """
+    by_param_row: dict[tuple[str, int], list[dict]] = {}
+    entity_by_id = {entity["id"]: entity for entity in entities}
+    for entity in entities:
+        for signifier in entity.get("signifiers", []):
+            if signifier.get("type") != "param":
+                continue
+            for row_id in signifier.get("rows", []):
+                by_param_row.setdefault(
+                    (str(signifier.get("param")), int(row_id)), []
+                ).append(entity)
+
+    material_by_id = {int(row["id"]): row["cells"] for row in material_rows}
+    online_by_source_id = {
+        relation.get("craftRecipe", {}).get("sourceRecipeId"): relation
+        for relation in online_relations
+    }
+    online_by_product: dict[str, list[dict]] = {}
+    for relation in online_relations:
+        product_id = relation.get("craftRecipe", {}).get("productItemId")
+        if product_id:
+            online_by_product.setdefault(product_id, []).append(relation)
+
+    stats = {
+        "local_rows": len(recipe_rows),
+        "usable_rows": 0,
+        "online_enriched": 0,
+        "default_relations": 0,
+        "unresolved_products": 0,
+        "unresolved_materials": 0,
+        "unbound_unlocks": 0,
+    }
+    default_relations: list[dict] = []
+    gaps: list[dict] = []
+
+    for row in recipe_rows:
+        recipe_id = int(row["id"])
+        cells = row["cells"]
+        material_set_id = int(cells.get("mtrlId", -1))
+        # Row 1 is a carried-over non-recipe record and has no material set.
+        if material_set_id < 0:
+            continue
+        stats["usable_rows"] += 1
+        equip_type = int(cells["equipType"])
+        fmg_table = SHOP_EQUIP_TABLES.get(equip_type)
+        param_table = FMG_TO_PARAM.get(fmg_table or "")
+        product_candidates = by_param_row.get(
+            (param_table or "", int(cells["equipId"])), []
+        )
+        if len(product_candidates) != 1:
+            stats["unresolved_products"] += 1
+            gaps.append({
+                "id": f"local-craft-product-{recipe_id}",
+                "method": "craft",
+                "status": "local_recipe_product_unresolved",
+                "sourceRecipeId": recipe_id,
+                "sourceParam": "ShopLineupParam_Recipe",
+                "sourceEquipType": equip_type,
+                "sourceEquipId": cells["equipId"],
+                "candidateEntityIds": [candidate["id"] for candidate in product_candidates],
+                "verification": "local_param_unresolved",
+            })
+            continue
+        product = product_candidates[0]
+
+        material_cells = material_by_id.get(material_set_id)
+        ingredients = []
+        unresolved_ingredients = []
+        if material_cells is None:
+            unresolved_ingredients.append({"materialSetId": material_set_id})
+        else:
+            material_param = {1: "EquipParamWeapon", 4: "EquipParamGoods"}
+            for index in range(1, 7):
+                suffix = f"{index:02d}"
+                material_id = int(material_cells.get(f"materialId{suffix}", -1))
+                quantity = int(material_cells.get(f"itemNum{suffix}", -1))
+                if material_id < 0 or quantity < 0:
+                    continue
+                category = int(material_cells.get(f"materialCate{suffix}", -1))
+                candidates = by_param_row.get(
+                    (material_param.get(category, ""), material_id), []
+                )
+                if len(candidates) == 1:
+                    ingredient = candidates[0]
+                    ingredients.append({
+                        "itemId": ingredient["id"],
+                        "canonicalName": ingredient["name"],
+                        "sourceParamId": material_id,
+                        "sourceMaterialCategory": category,
+                        "quantity": quantity,
+                        "quantityStatus": "local_param_exact",
+                    })
+                else:
+                    unresolved_ingredients.append({
+                        "sourceParamId": material_id,
+                        "sourceMaterialCategory": category,
+                        "quantity": quantity,
+                        "candidateEntityIds": [candidate["id"] for candidate in candidates],
+                    })
+        if unresolved_ingredients:
+            stats["unresolved_materials"] += len(unresolved_ingredients)
+
+        local_recipe = {
+            "sourceParam": "ShopLineupParam_Recipe",
+            "sourceRecipeId": recipe_id,
+            "sourceProductParam": param_table,
+            "sourceProductParamId": int(cells["equipId"]),
+            "productItemId": product["id"],
+            "productQuantity": int(cells.get("setNum", 1)),
+            "materialSetParam": "EquipMtrlSetParam",
+            "materialSetId": material_set_id,
+            "ingredients": ingredients,
+            "unresolvedIngredients": unresolved_ingredients,
+            "verification": (
+                "local_param_exact"
+                if not unresolved_ingredients else "local_param_partial"
+            ),
+        }
+
+        relation = online_by_source_id.get(recipe_id)
+        if relation is None:
+            product_relations = online_by_product.get(product["id"], [])
+            if len(product_relations) == 1:
+                relation = product_relations[0]
+        if relation is not None:
+            relation["localRecipe"] = local_recipe
+            relation["evidence"].extend([
+                f"regulation.bin ShopLineupParam_Recipe row {recipe_id}",
+                f"regulation.bin EquipMtrlSetParam row {material_set_id}",
+            ])
+            stats["online_enriched"] += 1
+            continue
+
+        if recipe_id in DEFAULT_CRAFT_RECIPE_IDS:
+            crafting_kit = entity_by_id["item_crafting_kit"]
+            default_relations.append({
+                "id": f"craft-default-{recipe_id}",
+                "from": crafting_kit["id"],
+                "method": "craft",
+                "items": [{
+                    "item": product["id"],
+                    "name": product["name"],
+                    "num": int(cells.get("setNum", 1)),
+                    "quantityStatus": "local_param_exact",
+                    "craftProduct": True,
+                }],
+                "craftRecipe": {
+                    "sourceRecipeId": recipe_id,
+                    "unlockType": "default",
+                    "unlockItemId": crafting_kit["id"],
+                    "productItemId": product["id"],
+                    "canonicalProductName": product["name"],
+                },
+                "localRecipe": local_recipe,
+                "evidence": [
+                    f"regulation.bin ShopLineupParam_Recipe row {recipe_id}",
+                    f"regulation.bin EquipMtrlSetParam row {material_set_id}",
+                    f"pinned Smithbox event-flag catalog recipe {recipe_id} labelled Default",
+                ],
+                "verification": "local_recipe_and_pinned_default_unlock_exact",
+            })
+            stats["default_relations"] += 1
+            continue
+
+        stats["unbound_unlocks"] += 1
+        gaps.append({
+            "id": f"local-craft-unlock-{recipe_id}",
+            "method": "craft",
+            "status": "local_recipe_unlock_unbound",
+            "sourceRecipeId": recipe_id,
+            "productItemId": product["id"],
+            "localRecipe": local_recipe,
+            "verification": "local_product_and_materials_without_unlock_identity",
+        })
+
+    return default_relations, stats, gaps
+
+
 def attach_quest_npc_endpoints(
     relations: list[dict],
     entities: list[dict],
@@ -2608,6 +2804,21 @@ def main() -> int:
         f"unmatched products={online_cookbook_stats['unmatched_products']}; "
         f"unmatched cookbooks={online_cookbook_stats['unmatched_cookbooks']}"
     )
+    local_default_craft_relations, local_recipe_stats, local_recipe_gaps = attach_local_craft_recipes(
+        param_rows(args.param_dir, "ShopLineupParam_Recipe"),
+        param_rows(args.param_dir, "EquipMtrlSetParam"),
+        entities + enemies,
+        online_cookbook_relations,
+    )
+    print(
+        "local craft recipes: "
+        f"usable={local_recipe_stats['usable_rows']}; "
+        f"online-enriched={local_recipe_stats['online_enriched']}; "
+        f"defaults={local_recipe_stats['default_relations']}; "
+        f"unbound={local_recipe_stats['unbound_unlocks']}; "
+        f"unresolved-products={local_recipe_stats['unresolved_products']}; "
+        f"unresolved-materials={local_recipe_stats['unresolved_materials']}"
+    )
 
     # Spell Goods rows are now signifiers on the canonical spell entity.
     # Parameter-row resolution below binds each source relation directly to
@@ -2633,6 +2844,7 @@ def main() -> int:
         + tutorial_unlocks
         + quest_rewards + online_map_relations + online_guide_relations
         + online_item_map_relations + online_cookbook_relations
+        + local_default_craft_relations
         + spell_acquisition_projections
     )
     topology_map_index = load_map_index(args.abstract_topology_graph)
@@ -2745,7 +2957,7 @@ def main() -> int:
             "onlineItemMapCoverageGapCount": online_item_map_stats["coverage_gap_count"],
             "onlineItemMapSourceOnlyNameCount": online_item_map_stats["source_only_name_count"],
             "onlineItemMapMatchedEntityCount": online_item_map_stats["matched_entities"],
-            "craft": len(online_cookbook_relations),
+            "craft": len(online_cookbook_relations) + len(local_default_craft_relations),
             "craftRecipeCount": online_cookbook_stats["recipes"],
             "craftMatchedProductCount": online_cookbook_stats["matched_products"],
             "craftMatchedCookbookCount": online_cookbook_stats["matched_cookbooks"],
@@ -2767,6 +2979,13 @@ def main() -> int:
             "craftUnresolvedIngredientCount": online_cookbook_stats[
                 "unresolved_ingredient_count"
             ],
+            "localCraftRecipeRowCount": local_recipe_stats["local_rows"],
+            "localCraftUsableRecipeCount": local_recipe_stats["usable_rows"],
+            "localCraftOnlineEnrichedCount": local_recipe_stats["online_enriched"],
+            "localCraftDefaultRelationCount": local_recipe_stats["default_relations"],
+            "localCraftUnboundUnlockCount": local_recipe_stats["unbound_unlocks"],
+            "localCraftUnresolvedProductCount": local_recipe_stats["unresolved_products"],
+            "localCraftUnresolvedMaterialCount": local_recipe_stats["unresolved_materials"],
             "spell_acquisition": len(spell_acquisition_projections),
             "dropEndpointInstances": drop_endpoint_count,
             "questNpcEndpointInstances": quest_endpoint_count,
@@ -2794,7 +3013,7 @@ def main() -> int:
         },
         "coverageGaps": (
             drop_gaps + pickup_gaps + shop_gaps + online_map_gaps + online_guide_gaps
-            + online_item_map_gaps + unclassified_map_lot_gaps
+            + online_item_map_gaps + local_recipe_gaps + unclassified_map_lot_gaps
         ),
         "sourceExclusions": pickup_source_exclusions,
         "relations": relations,

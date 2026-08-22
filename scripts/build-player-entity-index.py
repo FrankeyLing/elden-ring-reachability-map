@@ -84,7 +84,7 @@ def compact_acquisition(
             "items", "price", "costType", "stock", "lineupRow",
             "sourceNpcParamRows", "sellerStatus", "merchantShopBinding",
             "sourceItemLotRows", "eventRewardBinding",
-            "questRewardBinding", "onlineMapMarker", "craftRecipe",
+            "questRewardBinding", "onlineMapMarker", "craftRecipe", "localRecipe",
             "pickupLocationBinding", "pickupEndpointStatus",
         )
         if key in relation

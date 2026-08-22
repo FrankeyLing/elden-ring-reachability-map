@@ -53,7 +53,12 @@ def main() -> int:
         xml = args.paramdef_dir / f"{base}.xml"
         if not xml.exists():
             # merged variants share the base definition (e.g. ItemLotParam_map.param -> ItemLotParam.xml)
-            stripped = base.replace("_enemy", "").replace("_map", "").replace("_PC", "")
+            stripped = (
+                base.replace("_enemy", "")
+                .replace("_map", "")
+                .replace("_PC", "")
+                .replace("_Recipe", "")
+            )
             xml = args.paramdef_dir / f"{stripped}.xml"
         if not xml.exists():
             # param file name drops the Param suffix (Magic.param -> MagicParam.xml, Ceremony.param -> CeremonyParam.xml)
