@@ -38,7 +38,7 @@ _suffix_re = re.compile(r"(_dlc0[12])?\.fmg$")
 # Weapon affinity prefixes (official ER affinities) that precede the base name
 AFFIX_PREFIXES = [
     "Flame Art", "Lightning", "Sacred", "Magic", "Cold", "Poison",
-    "Blood", "Occult", "Quality", "Heavy", "Keen", "Fire", "Standard",
+    "Blood", "Bloody", "Occult", "Quality", "Heavy", "Keen", "Fire", "Standard",
 ]
 
 
@@ -176,15 +176,22 @@ def build_weapons(rows: list[dict], tables) -> list[dict]:
         base = en
         for affix in AFFIX_PREFIXES:
             token = affix + " "
-            idx = en.find(token)
-            if idx >= 0:
+            for match in re.finditer(re.escape(token), en):
+                idx = match.start()
                 candidate = en[:idx] + en[idx + len(token):]
                 if candidate in by_name and candidate != en:
                     base = candidate
                     break
+            if base != en:
+                break
         if base != en:
             target = by_name[base]
             target["signifiers"][0]["rows"].extend(ent["signifiers"][0]["rows"])
+            target["signifiers"].append({
+                "type": "official_affinity_variant_name",
+                "en": ent["name"]["en"],
+                "zh": ent["name"].get("zh"),
+            })
             target["variant_count"] += ent["variant_count"]
         else:
             merged_out[en] = ent

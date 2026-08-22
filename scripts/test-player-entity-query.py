@@ -81,7 +81,7 @@ def main() -> int:
         "melee", "bow", "crossbow", "ballista", "staff", "sacred_seal",
         "shield", "torch", "hand_to_hand", "perfume",
     }, weapon_families
-    assert sum(entity["properties"].get("weaponFamily") == "shield" for entity in weapon_entities) == 85
+    assert sum(entity["properties"].get("weaponFamily") == "shield" for entity in weapon_entities) == 79
     assert sum(entity["properties"].get("weaponFamily") == "sacred_seal" for entity in weapon_entities) == 12
     spirit_ashes = [
         entity for entity in registry["entities"]
@@ -164,10 +164,13 @@ def main() -> int:
         assert not any(row["id"].startswith("accessory_") for row in glovewort["records"])
 
         shield_query = query(q="盾牌", limit=100)
-        assert shield_query["total_matches"] >= 85, shield_query
-        assert sum(row.get("weaponFamily") == "shield" for row in shield_query["records"]) == 85
+        assert shield_query["total_matches"] >= 79, shield_query
+        assert sum(row.get("weaponFamily") == "shield" for row in shield_query["records"]) == 79
         shield_family = query(family="shield", limit=100)
-        assert shield_family["total_matches"] == 85, shield_family
+        assert shield_family["total_matches"] == 79, shield_family
+        bloody_longsword = query(q="Bloody Longsword")
+        assert bloody_longsword["total_matches"] >= 1, bloody_longsword
+        assert bloody_longsword["records"][0]["id"] == "weapon_longsword", bloody_longsword
         assert all(row.get("weaponFamily") == "shield" for row in shield_family["records"])
         seal_family = query(family="sacred_seal", limit=100)
         assert seal_family["total_matches"] == 12, seal_family

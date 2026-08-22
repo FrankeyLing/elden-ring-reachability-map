@@ -2,14 +2,14 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T07:11:24.277100+00:00",
+  "generatedAt": "2026-08-22T07:21:03.392795+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
     "passedGateCount": 9,
     "failedGateCount": 8,
-    "runtimeEntityCount": 11243,
-    "searchableEntityCount": 11243,
+    "runtimeEntityCount": 11228,
+    "searchableEntityCount": 11228,
     "acquisitionRelationProjectionCount": 54350,
     "endpointInstanceProjectionCount": 171480,
     "formalAcquisitionRouteRelationCount": 21,
@@ -26,14 +26,14 @@
     },
     "coverageGapCount": 7518,
     "unboundEndpointCount": 4433,
-    "acquirableEntityWithoutRelationCount": 97
+    "acquirableEntityWithoutRelationCount": 82
   },
   "gates": [
     {
       "name": "runtime_entity_count_matches_projection",
       "status": "pass",
-      "actual": 11243,
-      "expected": 11243,
+      "actual": 11228,
+      "expected": 11228,
       "evidence": "player-entity-index.json"
     },
     {
@@ -102,7 +102,7 @@
     {
       "name": "acquirable_entities_without_acquisition",
       "status": "fail",
-      "actual": 97,
+      "actual": 82,
       "expected": 0,
       "evidence": "player entity acquisitions"
     },
@@ -232,23 +232,8 @@
       "item_zorayas_s_letter",
       "spell_beast_claw",
       "spell_stone_of_gurranq",
-      "weapon_bloody_bastard_sword",
-      "weapon_bloody_buckler",
-      "weapon_bloody_club",
-      "weapon_bloody_highland_axe",
-      "weapon_bloody_iron_roundshield",
-      "weapon_bloody_lance",
-      "weapon_bloody_large_leather_shield",
-      "weapon_bloody_longsword",
-      "weapon_bloody_red_thorn_roundshield",
-      "weapon_bloody_rickety_shield",
-      "weapon_bloody_scimitar",
-      "weapon_bloody_spear",
-      "weapon_bloody_twinblade",
-      "weapon_carian_knight_s_bloody_shield",
       "weapon_dane_s_footwork",
       "weapon_dryleaf_arts",
-      "weapon_fire_knight_s_fire_shortsword",
       "weapon_rogier_s_rapier",
       "weapon_sword_lance"
     ],
