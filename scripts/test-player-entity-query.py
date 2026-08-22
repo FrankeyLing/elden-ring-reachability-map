@@ -42,11 +42,14 @@ def main() -> int:
     reinforce_catalog = json.loads(
         (ROOT / "data" / "v1" / "entities" / "reinforce-catalog.json").read_text(encoding="utf-8")
     )
-    assert registry["stats"]["ash_of_war"] == 118, registry["stats"]
-    assert registry["stats"]["ash_of_war_source_rows"] == 143, registry["stats"]
-    assert registry["stats"]["excluded_ash_of_war"] == 3, registry["stats"]
+    assert registry["stats"]["ash_of_war"] == 117, registry["stats"]
+    assert registry["stats"]["ash_of_war_source_rows"] == 142, registry["stats"]
+    assert registry["stats"]["excluded_ash_of_war"] == 4, registry["stats"]
     assert registry["stats"]["excluded_armor_appearance_rows"] == 41, registry["stats"]
-    assert len(registry["exclusions"]) == 44, registry["exclusions"]
+    assert registry["stats"]["excluded_internal_weapon_rows"] == 5, registry["stats"]
+    assert registry["stats"]["excluded_internal_armor_rows"] == 17, registry["stats"]
+    assert registry["stats"]["excluded_internal_accessory_rows"] == 1, registry["stats"]
+    assert len(registry["exclusions"]) == 68, registry["exclusions"]
     assert not any(
         entity.get("kind") == "armor"
         and entity.get("properties", {}).get("protectorCategory") == 4
@@ -393,7 +396,7 @@ def main() -> int:
             "锻造石": ("smithing_stone", 23),
             "石剑钥匙": ("stone_sword_key", 2),
             "地图残片": ("map_fragment", 24),
-            "战灰": ("ash_of_war", 118),
+            "战灰": ("ash_of_war", 117),
             "护符": ("accessory", 66),
             "骨灰": ("spirit_ash", 53),
             "漫步灵庙": ("enemy", 1),

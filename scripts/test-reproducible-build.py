@@ -81,6 +81,12 @@ def build() -> None:
             param_dir,
         ],
         [sys.executable, "scripts/build-acquisition-registry.py", "--param-dir", param_dir],
+        [
+            sys.executable,
+            "scripts/build-reinforce-catalog.py",
+            "--param-dir",
+            param_dir,
+        ],
         [sys.executable, "scripts/build-v1-graph.py"],
         [sys.executable, "scripts/build-graph-integration.py"],
         [sys.executable, "scripts/build-acquisition-topology-bridge.py"],

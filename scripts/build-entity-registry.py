@@ -712,7 +712,63 @@ EXCLUDED_INTERNAL_GEM_ROWS = {
     20: "EquipParamGem internal test gem row; disabled and has no player item name",
     30: "EquipParamGem internal test gem row; disabled and has no player item name",
     121: "EquipParamGem discarded internal Wicked Stance row; no official localized item name",
+    117: "EquipParamGem internal Torch Attack row; disabled, non-droppable, and uses the internal sort sentinel",
 }
+
+EXCLUDED_INTERNAL_WEAPON_ROWS = {
+    100600: "discarded Abundance and Decay Twinblade row; non-droppable and uses the internal sort sentinel",
+    100700: "discarded Abundance Twinblade row; non-droppable and uses the internal sort sentinel",
+    1100: "unarmed equipment placeholder; cannot be discarded, dropped, or deposited",
+    11000: "unarmed equipment placeholder; non-droppable and uses the internal sort sentinel",
+    110000: "unarmed equipment placeholder; uses the internal sort sentinel and has no acquisition reference",
+}
+
+EXCLUDED_INTERNAL_ARMOR_ROWS = {
+    10000: "head-slot equipment placeholder; cannot be discarded, dropped, or deposited",
+    10100: "body-slot equipment placeholder; cannot be discarded, dropped, or deposited",
+    10200: "arms-slot equipment placeholder; cannot be discarded, dropped, or deposited",
+    10300: "legs-slot equipment placeholder; cannot be discarded, dropped, or deposited",
+    610000: "discarded Ragged Hat row; non-droppable and uses the internal sort sentinel",
+    610100: "discarded Ragged Armor row; non-droppable and uses the internal sort sentinel",
+    610200: "discarded Ragged Gloves row; non-droppable and uses the internal sort sentinel",
+    610300: "discarded Ragged Loincloth row; non-droppable and uses the internal sort sentinel",
+    611000: "discarded alternate Ragged Hat row; non-droppable and uses the internal sort sentinel",
+    611100: "discarded alternate Ragged Armor row; non-droppable and uses the internal sort sentinel",
+    700000: "discarded Brave's Cord Circlet row; non-droppable and uses the internal sort sentinel",
+    920000: "discarded Grass Hair Ornament row; non-droppable and uses the internal sort sentinel",
+    1950100: "discarded Millicent's Robe row; non-droppable and uses the internal sort sentinel",
+    1950200: "discarded Millicent's Gloves row; non-droppable and uses the internal sort sentinel",
+    1950300: "discarded Millicent's Boots row; non-droppable and uses the internal sort sentinel",
+    1970100: "discarded Millicent's Tunic row; non-droppable and uses the internal sort sentinel",
+    1970200: "discarded Golden Prosthetic row; non-droppable and uses the internal sort sentinel",
+}
+
+EXCLUDED_INTERNAL_ACCESSORY_ROWS = {
+    6100: "discarded Entwining Umbilical Cord row; non-droppable and uses the internal sort sentinel",
+}
+
+
+def explicit_param_exclusions(
+    rows: list[dict], param: str, kind: str, excluded: dict[int, str]
+) -> list[dict]:
+    rows_by_id = {row["id"]: row for row in rows}
+    records = []
+    for row_id, reason in excluded.items():
+        cells = rows_by_id[row_id]["cells"]
+        records.append({
+            "kind": kind,
+            "param": param,
+            "row": row_id,
+            "reason": reason,
+            "evidence": [
+                f"disableParam_NT={cells.get('disableParam_NT')}",
+                f"isDiscard={cells.get('isDiscard')}",
+                f"isDrop={cells.get('isDrop')}",
+                f"isDeposit={cells.get('isDeposit')}",
+                f"sortId={cells.get('sortId')}",
+            ],
+        })
+    return records
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -724,8 +780,14 @@ def main() -> int:
     tables = load_name_tables()
     print("  tables:", {k: len(v) for k, v in tables.items()})
 
-    weapons = build_weapons(param_rows(args.param_dir, "EquipParamWeapon"), tables)
-    print(f"weapons: {len(weapons)}")
+    weapon_rows = param_rows(args.param_dir, "EquipParamWeapon")
+    excluded_weapons = explicit_param_exclusions(
+        weapon_rows, "EquipParamWeapon", "weapon", EXCLUDED_INTERNAL_WEAPON_ROWS
+    )
+    weapons = build_weapons([
+        row for row in weapon_rows if row["id"] not in EXCLUDED_INTERNAL_WEAPON_ROWS
+    ], tables)
+    print(f"weapons: {len(weapons)} (excluded internal rows: {len(excluded_weapons)})")
     armor_rows = param_rows(args.param_dir, "EquipParamProtector")
     appearance_rows = [
         row for row in armor_rows
@@ -751,15 +813,27 @@ def main() -> int:
         }
         for row in appearance_rows
     ]
+    excluded_internal_armor = explicit_param_exclusions(
+        armor_rows, "EquipParamProtector", "armor", EXCLUDED_INTERNAL_ARMOR_ROWS
+    )
     armors = build_armor([
         row for row in armor_rows
         if row.get("cells", {}).get("protectorCategory") != 4
+        and row["id"] not in EXCLUDED_INTERNAL_ARMOR_ROWS
     ], tables)
     print(
         f"armors: {len(armors)} "
-        f"(excluded appearance/body-type rows: {len(excluded_appearance_armor)})"
+        f"(excluded appearance/body-type rows: {len(excluded_appearance_armor)}; "
+        f"internal rows: {len(excluded_internal_armor)})"
     )
-    accessories = build_direct(param_rows(args.param_dir, "EquipParamAccessory"), tables,
+    accessory_rows = param_rows(args.param_dir, "EquipParamAccessory")
+    excluded_accessories = explicit_param_exclusions(
+        accessory_rows, "EquipParamAccessory", "accessory",
+        EXCLUDED_INTERNAL_ACCESSORY_ROWS,
+    )
+    accessories = build_direct([
+        row for row in accessory_rows if row["id"] not in EXCLUDED_INTERNAL_ACCESSORY_ROWS
+    ], tables,
                                "AccessoryName", "accessory", "accessory", "EquipParamAccessory")
     print(f"accessories: {len(accessories)}")
     gem_rows = param_rows(args.param_dir, "EquipParamGem")
@@ -839,8 +913,14 @@ def main() -> int:
             "entity_aliases": len(entity_aliases),
             "excluded_ash_of_war": len(excluded_gems),
             "excluded_armor_appearance_rows": len(excluded_appearance_armor),
+            "excluded_internal_weapon_rows": len(excluded_weapons),
+            "excluded_internal_armor_rows": len(excluded_internal_armor),
+            "excluded_internal_accessory_rows": len(excluded_accessories),
         },
-        "exclusions": excluded_gems + excluded_appearance_armor,
+        "exclusions": (
+            excluded_gems + excluded_appearance_armor + excluded_weapons
+            + excluded_internal_armor + excluded_accessories
+        ),
         "entityAliases": entity_aliases,
         "entities": entities,
     }

@@ -631,6 +631,7 @@ python scripts/audit-acquisition-topology-bridge.py --input data/v1/entities/acq
 python scripts/build-location-catalog.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-boss-rewards.py --parsed-emevd ... --emedf ... --param-dir ...
 python scripts/build-boss-reward-endpoints.py
+python scripts/build-reinforce-catalog.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-graph-integration.py
 python scripts/build-player-entity-index.py
 python scripts/audit-acquisition.py
