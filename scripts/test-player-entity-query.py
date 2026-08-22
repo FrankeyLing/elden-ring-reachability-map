@@ -283,6 +283,25 @@ def main() -> int:
         }, craft_relation
         assert craft_relation["craftRecipe"]["productQuantity"] == 10, craft_relation
 
+        dlc_craft_item = query(id="item_hefty_fire_pot")
+        assert dlc_craft_item["found"] is True, dlc_craft_item
+        dlc_craft_relations = [
+            relation for relation in dlc_craft_item["entity"]["acquisitions"]
+            if relation.get("method") == "craft"
+        ]
+        assert len(dlc_craft_relations) == 1, dlc_craft_item
+        dlc_craft_relation = dlc_craft_relations[0]
+        assert dlc_craft_relation["from"] == "item_greater_potentate_s_cookbook_1", dlc_craft_relation
+        assert dlc_craft_relation["verification"] == (
+            "online_dataset_dlc_pair_exact_unique_official_entity_match"
+        ), dlc_craft_relation
+        assert dlc_craft_relation["craftRecipe"]["ingredientsStatus"] == (
+            "not_present_in_source"
+        ), dlc_craft_relation
+        assert dlc_craft_relation["craftRecipe"]["unlockSource"]["commit"] == (
+            "73ae9c5c72873edab7629142a4ff5857360f8d81"
+        ), dlc_craft_relation
+
         mapped_spell = query(id="spell_glintstone_cometshard")["entity"]
         mapped_relations = [
             relation for relation in mapped_spell["acquisitions"]

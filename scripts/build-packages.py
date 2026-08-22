@@ -100,7 +100,7 @@ def package_for_node(node: dict) -> str:
     return "surface-main-world"
 
 
-def build_packages(graph_path: Path, out_dir: Path) -> dict:
+def build_packages(graph_path: Path, out_dir: Path, generated_at: str | None = None) -> dict:
     graph = json.loads(graph_path.read_text(encoding="utf-8"))
     nodes = graph["nodes"]
     edges = graph["edges"]
@@ -138,7 +138,7 @@ def build_packages(graph_path: Path, out_dir: Path) -> dict:
 
     # 4. write packages
     out_dir.mkdir(parents=True, exist_ok=True)
-    generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    generated_at = generated_at or datetime.now(timezone.utc).isoformat(timespec="seconds")
     source = {"file": str(graph_path), "version": graph.get("meta", {}).get("version", "unknown")}
 
     package_meta = {}
@@ -235,9 +235,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--graph", type=Path, default=Path("data/v1/graph.json"))
     parser.add_argument("--out", type=Path, default=Path("data/v1/packages"))
+    parser.add_argument(
+        "--generated-at",
+        help="fixed RFC 3339 publication timestamp for reproducible package output",
+    )
     args = parser.parse_args()
 
-    result = build_packages(args.graph.resolve(), args.out.resolve())
+    result = build_packages(args.graph.resolve(), args.out.resolve(), args.generated_at)
 
     print("== package node/edge counts ==")
     for pkg_id in PACKAGE_TITLES:

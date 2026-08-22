@@ -402,6 +402,16 @@ The source is [Smithbox](https://github.com/vawser/Smithbox), commit
 external working snapshot before normalization by
 `scripts/normalize-smithbox-cookbook-recipes.py`.
 
+The Shadow of the Erdtree extension is merged from the pinned
+[Elden-Ring-Dataset-API](https://github.com/hakkache/Elden-Ring-Dataset-API)
+snapshot at commit `73ae9c5c72873edab7629142a4ff5857360f8d81`. Its publisher states that the
+upstream dataset is CC0. `scripts/merge-dlc-cookbook-unlocks.py` reads only DLC
+cookbook/product pairs and promotes a pair only when both names resolve to one
+official local entity. The current snapshot adds 55 exact relations from 45
+DLC cookbook rows, with zero unresolved pairs. It does not infer ingredients,
+locations, quantities, or route edges. These 55 relations remain independently
+attributed and never replace the 127 Smithbox relations.
+
 ### 2.9 boss-rewards.json
 
 Decoded from EMEVD `AwardItemLot` / `Award Items (Including Clients)`
@@ -608,6 +618,7 @@ node scripts/normalize-aether-guide-items.mjs --source <external-snapshot>/items
 python scripts/normalize-mapforgoblins-item-index.py --source-dir <external-mapforgoblins-snapshot> --out data/v1/entities/online-item-map-records.json --retrieved-at 2026-08-18
 python scripts/normalize-smithbox-cookbook-recipes.py --source <external-smithbox-snapshot>/Documentation/ER/Info\ -\ Event\ Flags\ -\ Gameplay.txt --out data/v1/entities/online-cookbook-recipes.json --source-url https://github.com/vawser/Smithbox --source-commit dceac39472f5cc145d10fd9dfe28d2ea0cceb41a --retrieved-at 2026-08-21
 python scripts/enrich-smithbox-cookbook-ingredients.py --recipes data/v1/entities/online-cookbook-recipes.json --source <external-eldenpedia-snapshot>/cookbook-eldenpedia.md --entity-registry data/v1/entities/entity-registry.json --out data/v1/entities/online-cookbook-recipes.json --source-url https://eldenring.wiki.gg/wiki/Cookbook --retrieval-url https://r.jina.ai/https://eldenring.wiki.gg/wiki/Cookbook --retrieved-at 2026-08-21
+python scripts/merge-dlc-cookbook-unlocks.py --recipes data/v1/entities/online-cookbook-recipes.json --source <external-dataset-snapshot>/data/items/cookbooks.csv --entity-registry data/v1/entities/entity-registry.json --out data/v1/entities/online-cookbook-recipes.json --source-url https://github.com/hakkache/Elden-Ring-Dataset-API --source-commit 73ae9c5c72873edab7629142a4ff5857360f8d81 --retrieved-at 2026-08-22
 python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json --enemy-spawns data/v1/entities/enemy-spawn-bindings.json --merchant-shops data/v1/entities/merchant-shop-bindings.json --boss-endpoints data/v1/entities/boss-reward-endpoints.json --event-rewards data/v1/entities/event-reward-bindings.json --quest-rewards data/v1/entities/quest-reward-bindings.json --online-markers data/v1/entities/online-map-markers.json --online-guide-items data/v1/entities/online-guide-items.json --online-item-map data/v1/entities/online-item-map-records.json --online-cookbook-recipes data/v1/entities/online-cookbook-recipes.json --abstract-topology-graph data/v1/entities/local-abstract-topology-graph.json
 python scripts/build-abstract-topology-candidates.py --input data/v1/entities/local-abstract-topology-graph.json --output data/v1/entities/abstract-topology-candidates.json
 python scripts/audit-abstract-topology-candidates.py --input data/v1/entities/abstract-topology-candidates.json

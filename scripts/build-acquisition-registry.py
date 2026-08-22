@@ -1968,6 +1968,7 @@ def build_online_cookbook_recipe_relations(
 
     product_by_name = index_by_name({"item", "weapon", "armor", "accessory", "ash_of_war", "spell"})
     cookbook_by_name = index_by_name({"item"})
+    entity_by_id = {entity["id"]: entity for entity in entities}
     relations = []
     source = payload.get("source", {})
 
@@ -1984,7 +1985,38 @@ def build_online_cookbook_recipe_relations(
         product_name = str(recipe.get("productName") or "")
         cookbook_name = str(recipe.get("cookbookName") or "")
         product_candidates = product_by_name.get(product_name.casefold(), [])
+        resolved_product_id = recipe.get("resolvedProductItemId")
+        if resolved_product_id:
+            resolved_product = entity_by_id.get(resolved_product_id)
+            product_candidates = (
+                [resolved_product]
+                if resolved_product
+                and (resolved_product.get("name", {}).get("en") or "").casefold()
+                == product_name.casefold()
+                else []
+            )
+        elif len(product_candidates) > 1:
+            # Crafting creates an inventory Goods record.  If a localized name
+            # is shared with a Magic row (for example Golden Vow), the single
+            # Goods entity is the only valid product in this context.
+            goods_candidates = [
+                candidate for candidate in product_candidates
+                if candidate.get("kind") == "item"
+            ]
+            if len(goods_candidates) == 1:
+                product_candidates = goods_candidates
         cookbook_candidates_for_recipe = cookbook_candidates(cookbook_name)
+        resolved_cookbook_id = recipe.get("resolvedCookbookItemId")
+        if resolved_cookbook_id:
+            resolved_cookbook = entity_by_id.get(resolved_cookbook_id)
+            cookbook_candidates_for_recipe = (
+                [resolved_cookbook]
+                if resolved_cookbook
+                and resolved_cookbook.get("kind") == "item"
+                and (resolved_cookbook.get("name", {}).get("en") or "").casefold()
+                == cookbook_name.casefold()
+                else []
+            )
         if len(product_candidates) != 1:
             stats["ambiguous_products" if product_candidates else "unmatched_products"] += 1
             continue
@@ -1998,11 +2030,24 @@ def build_online_cookbook_recipe_relations(
         if recipe.get("ingredients"):
             stats["ingredients_present"] += 1
         source_recipe_id = recipe.get("sourceRecipeId")
-        evidence = [
-            f"Smithbox cookbook recipe {source_recipe_id} exact product-name match",
-            f"Smithbox cookbook unlock {cookbook_name} -> {product_name}",
-            f"Smithbox source commit {source.get('commit') or 'snapshot'}",
-        ]
+        unlock_source = recipe.get("unlockSource") or {}
+        if unlock_source:
+            source_label = unlock_source.get("id") or "online cookbook dataset"
+            evidence = [
+                f"{source_label} recipe {source_recipe_id} exact product-name match",
+                f"{source_label} cookbook unlock {cookbook_name} -> {product_name}",
+                f"{source_label} source commit {unlock_source.get('commit') or 'snapshot'}",
+            ]
+            verification = unlock_source.get("verification") or (
+                "online_dataset_cookbook_product_exact_unique_official_name_match"
+            )
+        else:
+            evidence = [
+                f"Smithbox cookbook recipe {source_recipe_id} exact product-name match",
+                f"Smithbox cookbook unlock {cookbook_name} -> {product_name}",
+                f"Smithbox source commit {source.get('commit') or 'snapshot'}",
+            ]
+            verification = "online_cookbook_product_exact_unique_official_name_match"
         ingredient_source = payload.get("ingredientSource")
         if recipe.get("ingredients") and ingredient_source:
             evidence.append(
@@ -2034,9 +2079,10 @@ def build_online_cookbook_recipe_relations(
                 "ingredientsStatus": recipe.get("ingredientsStatus", "not_present_in_source"),
                 "ingredientSourceLine": recipe.get("ingredientSourceLine"),
                 "ingredientSource": ingredient_source,
+                "unlockSource": unlock_source or None,
             },
             "evidence": evidence,
-            "verification": "online_cookbook_product_exact_unique_official_name_match",
+            "verification": verification,
         })
     stats["matched"] = len(relations)
     return relations, stats
@@ -2559,6 +2605,10 @@ def main() -> int:
             ),
             "online_cookbook_source": (
                 json.loads(args.online_cookbook_recipes.read_text(encoding="utf-8")).get("source", {})
+                if args.online_cookbook_recipes.is_file() else {}
+            ),
+            "online_cookbook_dlc_source": (
+                json.loads(args.online_cookbook_recipes.read_text(encoding="utf-8")).get("dlcUnlockSource", {})
                 if args.online_cookbook_recipes.is_file() else {}
             ),
             "policy": "Local parameter facts and independently sourced online coordinate endpoints remain separate evidence layers; every item row is a signifier.",

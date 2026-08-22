@@ -74,6 +74,8 @@ python scripts/build-local-grace-positions.py
 
 # 重建规范装备族与玩家查询投影
 python scripts/build-entity-registry.py --param-dir <snapshot>/extracted/param-json
+# 合并固定版本的 DLC 制作笔记关系；该命令可重复执行且不得产生重复记录
+python scripts/merge-dlc-cookbook-unlocks.py --recipes data/v1/entities/online-cookbook-recipes.json --source <external-dataset-snapshot>/data/items/cookbooks.csv --entity-registry data/v1/entities/entity-registry.json --out data/v1/entities/online-cookbook-recipes.json --source-url https://github.com/hakkache/Elden-Ring-Dataset-API --source-commit 73ae9c5c72873edab7629142a4ff5857360f8d81 --retrieved-at 2026-08-22
 python scripts/build-acquisition-registry.py --param-dir <snapshot>/extracted/param-json
 python scripts/build-player-entity-index.py
 python scripts/test-player-entity-query.py
