@@ -1026,28 +1026,27 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66810,
+            "topologyMapEndpointCount": 66735,
             "topologyMapExactMapInstanceEndpointCount": 64588,
             "topologyMapExactLayerEndpointCount": 31968,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
-            "topologyMapUnresolvedEndpointCount": 75,
+            "topologyMapUnresolvedEndpointCount": 0,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
                 "exact_map_instance": 64448,
                 "exact_map_instance_alias": 140,
                 "external_map_scope": 2112,
-                "unresolved_map_instance": 75,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6528, index
-        assert coverage["sourceExclusionCount"] == 1032, coverage
+        assert len(index["coverageGaps"]) == 6486, index
+        assert coverage["sourceExclusionCount"] == 1149, coverage
         assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 127, coverage
-        assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
-        assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
+        assert index["stats"]["sourceOnlyEntityCount"] == 2379, index["stats"]
+        assert index["stats"]["sourceOnlyAcquisitionCount"] == 3337, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
             "online_guide": 1206,
-            "online_item_map": 203,
+            "online_item_map": 189,
             "online_map": 984,
         }, index["stats"]
         assert index["stats"]["sourceOnlyOccurrenceCounts"] == {
@@ -1057,7 +1056,7 @@ def main() -> int:
         }, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCounts"] == {
             "online_guide": 1206,
-            "online_item_map": 2150,
+            "online_item_map": 2131,
             "online_map": 0,
         }, index["stats"]
         assert index["stats"]["kindCounts"]["message"] == 50, index["stats"]
@@ -1084,7 +1083,7 @@ def main() -> int:
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
         assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 537
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
-        assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
+        assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2905
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
         assert sum(gap["method"] == "online_map" for gap in index["coverageGaps"]) == 984
 

@@ -771,6 +771,27 @@ def main() -> int:
                   f"online item map ambiguous gap {gap.get('id')} has no candidates")
     check(len(online_item_map_gaps) == acquisition_stats.get("onlineItemMapCoverageGapCount"),
           "online item map gap count does not match coverage stats")
+    online_item_map_exclusions = [
+        exclusion for exclusion in acquisitions.get("sourceExclusions", [])
+        if exclusion.get("method") == "online_item_map"
+    ]
+    check(
+        len(online_item_map_exclusions)
+        == acquisition_stats.get("onlineItemMapExcludedRecordCount"),
+        "online item map exclusion count does not match stats",
+    )
+    for exclusion in online_item_map_exclusions:
+        check(
+            exclusion.get("status") in {
+                "excluded_non_vanilla_map",
+                "excluded_non_spatial_fallback_record",
+            },
+            f"online item map exclusion {exclusion.get('id')} has invalid status",
+        )
+        check(exclusion.get("sourceIndex") is not None,
+              f"online item map exclusion {exclusion.get('id')} lacks source index")
+        check(exclusion.get("evidence"),
+              f"online item map exclusion {exclusion.get('id')} lacks evidence")
     check(
         sum(gap.get("status") == "source_item_unmatched" for gap in online_item_map_gaps)
         == acquisition_stats.get("onlineItemMapUnmatchedItemOccurrenceCount"),

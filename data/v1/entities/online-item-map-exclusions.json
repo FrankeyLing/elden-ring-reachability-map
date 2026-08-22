@@ -1,0 +1,63 @@
+{
+  "schema": "errn-online-item-map-exclusions@1",
+  "policy": "These rules exclude records from the vanilla acquisition projection without deleting them from the pinned source snapshot.",
+  "mapExclusions": [
+    {
+      "mapId": "m31_08_00_00",
+      "status": "excluded_non_vanilla_map",
+      "verification": "pinned_source_commit_mod_map_and_local_vanilla_absence",
+      "evidence": [
+        "MapForGoblins commit 324a895 identifies m31_08_00_00 boss as Flamelost Knights and maps this mod dungeon to the Gelmir fragment",
+        "copied vanilla game MSB, EMEVD and NVA inventories contain no m31_08_00_00 map instance"
+      ]
+    },
+    {
+      "mapId": "m20_44_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_45_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_46_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_48_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_49_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_50_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_51_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m20_53_00_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    }
+  ]
+}

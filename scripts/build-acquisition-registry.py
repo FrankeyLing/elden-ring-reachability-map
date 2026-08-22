@@ -45,6 +45,7 @@ DEFAULT_TUTORIAL_UNLOCKS = ROOT / "data" / "v1" / "entities" / "tutorial-unlock-
 DEFAULT_ONLINE_MARKERS = ROOT / "data" / "v1" / "entities" / "online-map-markers.json"
 DEFAULT_ONLINE_GUIDE_ITEMS = ROOT / "data" / "v1" / "entities" / "online-guide-items.json"
 DEFAULT_ONLINE_ITEM_MAP = ROOT / "data" / "v1" / "entities" / "online-item-map-records.json"
+DEFAULT_ONLINE_ITEM_MAP_EXCLUSIONS = ROOT / "data" / "v1" / "entities" / "online-item-map-exclusions.json"
 DEFAULT_ONLINE_COOKBOOK_RECIPES = ROOT / "data" / "v1" / "entities" / "online-cookbook-recipes.json"
 DEFAULT_PICKUP_BINDINGS = ROOT / "data" / "v1" / "entities" / "pickup-location-bindings.json"
 DEFAULT_ABSTRACT_TOPOLOGY_GRAPH = ROOT / "data" / "v1" / "entities" / "local-abstract-topology-graph.json"
@@ -2068,7 +2069,8 @@ def build_online_guide_item_relations(
 def build_online_item_map_relations(
     item_map_path: Path | None,
     entities: list[dict],
-) -> tuple[list[dict], dict[str, int], list[dict]]:
+    exclusions_path: Path | None = None,
+) -> tuple[list[dict], dict[str, int], list[dict], list[dict]]:
     """Publish exact-name Map For Goblins item placements.
 
     This source is a coordinate catalog, not a topology source. A single
@@ -2094,9 +2096,11 @@ def build_online_item_map_relations(
         "matched_entities": 0,
         "coverage_gap_count": 0,
         "source_only_name_count": 0,
+        "excluded_record_count": 0,
+        "excluded_item_occurrence_count": 0,
     }
     if not item_map_path or not item_map_path.is_file():
-        return [], empty_stats, []
+        return [], empty_stats, [], []
     payload = json.loads(item_map_path.read_text(encoding="utf-8"))
     source = payload.get("source", {})
     by_name: dict[str, list[dict]] = {}
@@ -2115,13 +2119,37 @@ def build_online_item_map_relations(
                 by_param_row.setdefault(str(row), []).append(entity)
 
     records = payload.get("records", [])
+    exclusion_rules = {}
+    if exclusions_path and exclusions_path.is_file():
+        exclusions_payload = json.loads(exclusions_path.read_text(encoding="utf-8"))
+        exclusion_rules = {
+            str(rule["mapId"]): rule
+            for rule in exclusions_payload.get("mapExclusions", [])
+        }
     stats = dict(empty_stats)
     stats["records"] = len(records)
     relations = []
     coverage_gaps = []
+    source_exclusions = []
     matched_entity_ids: set[str] = set()
     for record in records:
         source_items = record.get("items", [])
+        exclusion_rule = exclusion_rules.get(str(record.get("map")))
+        if exclusion_rule:
+            stats["excluded_record_count"] += 1
+            stats["excluded_item_occurrence_count"] += len(source_items)
+            source_exclusions.append({
+                "id": f"online-item-map-exclusion-{record['sourceIndex']}",
+                "method": "online_item_map",
+                "status": exclusion_rule["status"],
+                "sourceIndex": record.get("sourceIndex"),
+                "sourceRecordId": record.get("sourceRecordId"),
+                "map": record.get("map"),
+                "sourceItems": copy.deepcopy(source_items),
+                "evidence": list(exclusion_rule.get("evidence") or []),
+                "verification": exclusion_rule.get("verification"),
+            })
+            continue
         stats["item_occurrences"] += len(source_items)
         resolved_items = []
         unresolved_count = 0
@@ -2303,7 +2331,7 @@ def build_online_item_map_relations(
         for gap in coverage_gaps
         if gap.get("externalSourceName")
     })
-    return relations, stats, coverage_gaps
+    return relations, stats, coverage_gaps, source_exclusions
 
 
 def build_online_cookbook_recipe_relations(
@@ -3086,6 +3114,8 @@ def main() -> int:
     parser.add_argument("--online-markers", type=Path, default=DEFAULT_ONLINE_MARKERS)
     parser.add_argument("--online-guide-items", type=Path, default=DEFAULT_ONLINE_GUIDE_ITEMS)
     parser.add_argument("--online-item-map", type=Path, default=DEFAULT_ONLINE_ITEM_MAP)
+    parser.add_argument("--online-item-map-exclusions", type=Path,
+                        default=DEFAULT_ONLINE_ITEM_MAP_EXCLUSIONS)
     parser.add_argument("--online-cookbook-recipes", type=Path, default=DEFAULT_ONLINE_COOKBOOK_RECIPES)
     parser.add_argument("--pickup-bindings", type=Path, default=DEFAULT_PICKUP_BINDINGS)
     parser.add_argument("--abstract-topology-graph", type=Path,
@@ -3462,8 +3492,8 @@ def main() -> int:
         f"gaps={len(online_guide_gaps)}"
     )
 
-    online_item_map_relations, online_item_map_stats, online_item_map_gaps = build_online_item_map_relations(
-        args.online_item_map, entities + enemies
+    online_item_map_relations, online_item_map_stats, online_item_map_gaps, online_item_map_exclusions = build_online_item_map_relations(
+        args.online_item_map, entities + enemies, args.online_item_map_exclusions
     )
     print(
         "online item map records: "
@@ -3570,6 +3600,7 @@ def main() -> int:
             "online_map_markers": str(args.online_markers),
             "online_guide_items": str(args.online_guide_items),
             "online_item_map": str(args.online_item_map),
+            "online_item_map_exclusions": str(args.online_item_map_exclusions),
             "online_cookbook_recipes": str(args.online_cookbook_recipes),
             "pickup_bindings": str(args.pickup_bindings),
             "abstract_topology_graph": str(args.abstract_topology_graph),
@@ -3659,6 +3690,10 @@ def main() -> int:
             "onlineItemMapCoverageGapCount": online_item_map_stats["coverage_gap_count"],
             "onlineItemMapSourceOnlyNameCount": online_item_map_stats["source_only_name_count"],
             "onlineItemMapMatchedEntityCount": online_item_map_stats["matched_entities"],
+            "onlineItemMapExcludedRecordCount": online_item_map_stats["excluded_record_count"],
+            "onlineItemMapExcludedItemOccurrenceCount": online_item_map_stats[
+                "excluded_item_occurrence_count"
+            ],
             "craft": len(online_cookbook_relations) + len(local_default_craft_relations),
             "craftRecipeCount": online_cookbook_stats["recipes"],
             "craftMatchedProductCount": online_cookbook_stats["matched_products"],
@@ -3723,7 +3758,7 @@ def main() -> int:
             + online_item_map_gaps + local_recipe_gaps + initial_loadout_gaps
             + unclassified_map_lot_gaps
         ),
-        "sourceExclusions": pickup_source_exclusions,
+        "sourceExclusions": pickup_source_exclusions + online_item_map_exclusions,
         "relations": relations,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
