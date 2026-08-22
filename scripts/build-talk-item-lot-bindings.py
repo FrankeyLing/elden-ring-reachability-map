@@ -215,6 +215,7 @@ def build(talk_dir: Path, param_dir: Path) -> dict[str, Any]:
         table: load_rows(param_dir, table)
         for table in ("ItemLotParam_map", "ItemLotParam_enemy")
     }
+    custom_weapons = load_rows(param_dir, "EquipParamCustomWeapon")
     grouped: dict[tuple[str, str, int], list[dict[str, Any]]] = defaultdict(list)
     syntax_count = 0
     resolved_syntax_count = 0
@@ -259,23 +260,38 @@ def build(talk_dir: Path, param_dir: Path) -> dict[str, Any]:
             for slot in range(1, 9):
                 item_id = row.get(f"lotItemId{slot:02d}")
                 category = row.get(f"lotItemCategory{slot:02d}")
-                table = LOT_CATEGORY_TABLES.get(category)
-                if not isinstance(item_id, int) or item_id <= 0 or not table:
+                custom = custom_weapons.get(item_id) if category == 6 else None
+                if custom:
+                    resolved_item_id = int(custom.get("baseWepId", -1))
+                    table = "WeaponName"
+                    kind = "weapon"
+                else:
+                    resolved_item_id = item_id
+                    table = LOT_CATEGORY_TABLES.get(category)
+                    kind = LOT_CATEGORY_KIND.get(category)
+                if not isinstance(item_id, int) or item_id <= 0 or not table or not kind:
                     continue
-                name = names.get(table, {}).get(item_id, {})
+                name = names.get(table, {}).get(resolved_item_id, {})
                 english = clean_name(name.get("en"))
                 if not english:
                     continue
-                items.append({
-                    "item": f"{LOT_CATEGORY_KIND[category]}_{slugify(english)}",
+                item = {
+                    "item": f"{kind}_{slugify(english)}",
                     "name": {"en": english, "zh": clean_name(name.get("zh")) or english},
                     "sourceParam": FMG_TO_PARAM[table],
-                    "sourceParamId": item_id,
+                    "sourceParamId": resolved_item_id,
                     "category": category,
                     "lot": chain_lot_id,
                     "slot": slot,
                     "num": row.get(f"lotItemNum{slot:02d}"),
-                })
+                }
+                if custom:
+                    item.update({
+                        "sourceCustomWeaponId": item_id,
+                        "reinforcementLevel": int(custom.get("reinforceLv", 0)),
+                        "attachedGemId": int(custom.get("gemId", -1)),
+                    })
+                items.append(item)
         if not items:
             continue
         bindings.append({

@@ -1068,6 +1068,32 @@ def main() -> int:
         if len(lot_rows) > 1:
             check(binding.get("verification") == "local_emevd_and_param_verified_sequential_lot_chain",
                   f"event reward {rel['id']} sequential chain has weak verification")
+    rogier_event = [
+        relation for relation in event_relations
+        if any(item.get("item") == "weapon_rogier_s_rapier"
+               for item in relation.get("items", []))
+    ]
+    check(any(
+        any(item.get("category") == 6
+            and item.get("sourceCustomWeaponId") == 5010
+            and item.get("sourceParamId") == 5030000
+            and item.get("reinforcementLevel") == 8
+            for item in relation.get("items", []))
+        for relation in rogier_event
+    ), "Rogier's Rapier custom-weapon event fixture is missing")
+    dryleaf_event = [
+        relation for relation in event_relations
+        if any(item.get("item") == "weapon_dryleaf_arts"
+               for item in relation.get("items", []))
+    ]
+    check(any(
+        any(item.get("category") == 6
+            and item.get("sourceCustomWeaponId") == 4401055
+            and item.get("sourceParamId") == 60500000
+            and item.get("reinforcementLevel") == 0
+            for item in relation.get("items", []))
+        for relation in dryleaf_event
+    ), "Dryleaf Arts custom-weapon event fixture is missing")
     print(f"event reward evidence: {len(event_binding_ids)} bindings; relations={len(event_relations)}; task identity intentionally unclassified")
     talk_binding_ids = [binding.get("id") for binding in talk_rewards.get("bindings", [])]
     check(None not in talk_binding_ids, "talk reward binding missing id")
@@ -1107,6 +1133,18 @@ def main() -> int:
               f"talk reward relation {relation.get('id')} binding mismatch")
         check(not relation.get("endpointInstances"),
               f"talk reward relation {relation.get('id')} invents an endpoint")
+    for relation in rels:
+        for item in relation.get("items", []):
+            category = item.get("category", item.get("sourceItemCategory"))
+            if category != 6:
+                continue
+            check(str(item.get("item", "")).startswith("weapon_"),
+                  f"custom ItemLot item in {relation.get('id')} is not a weapon")
+            check(item.get("sourceParam") == "EquipParamWeapon",
+                  f"custom ItemLot item in {relation.get('id')} lacks base weapon param")
+            check(all(isinstance(item.get(key), int) for key in (
+                "sourceParamId", "sourceCustomWeaponId", "reinforcementLevel", "attachedGemId"
+            )), f"custom ItemLot item in {relation.get('id')} lacks preset provenance")
     whistle = next((
         binding for binding in talk_rewards.get("bindings", [])
         if binding.get("id") == "talk-item-lot-m00_00_00_00-t000003000-100000"

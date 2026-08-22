@@ -72,6 +72,54 @@ FMG_TO_PARAM = {
     "GemName": "EquipParamGem",
 }
 
+
+def resolve_lot_item(
+    tables: dict,
+    category: int,
+    item_id: int,
+    custom_weapons: dict[int, dict] | None = None,
+) -> dict | None:
+    """Resolve one ItemLot slot without guessing an unknown category."""
+    if category == 6:
+        custom = (custom_weapons or {}).get(item_id)
+        if not custom:
+            return None
+        base_weapon_id = int(custom.get("baseWepId", -1))
+        entry = tables.get("WeaponName", {}).get(base_weapon_id)
+        english = clean_name((entry or {}).get("en"))
+        if base_weapon_id <= 0 or not english:
+            return None
+        return {
+            "item": f"weapon_{slugify(english)}",
+            "name": {
+                "en": english,
+                "zh": clean_name((entry or {}).get("zh")) or english,
+            },
+            "sourceParam": "EquipParamWeapon",
+            "sourceParamId": base_weapon_id,
+            "sourceCustomWeaponId": item_id,
+            "reinforcementLevel": int(custom.get("reinforceLv", 0)),
+            "attachedGemId": int(custom.get("gemId", -1)),
+            "sourceItemCategory": category,
+        }
+    fmg = LOT_CATEGORY_TABLES.get(category)
+    if not fmg:
+        return None
+    entry = tables.get(fmg, {}).get(item_id)
+    english = clean_name((entry or {}).get("en"))
+    if not english:
+        return None
+    return {
+        "item": f"{LOT_CATEGORY_KIND[category]}_{slugify(english)}",
+        "name": {
+            "en": english,
+            "zh": clean_name((entry or {}).get("zh")) or english,
+        },
+        "sourceParam": FMG_TO_PARAM[fmg],
+        "sourceParamId": item_id,
+        "sourceItemCategory": category,
+    }
+
 # ShopLineupParam equipType (verified against the local regulation dump and the
 # corresponding EquipParam tables): 0=Weapon, 1=Protector, 2=Accessory,
 # 3=Goods, 4=Gem, 5=EquipParamCustomWeapon.  A custom-weapon row is a concrete
@@ -507,7 +555,8 @@ def expand_enemy_lot_chain(
 
 
 def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
-                lot_rows: list[dict], tables) -> list[dict]:
+                lot_rows: list[dict], tables,
+                custom_weapons: dict[int, dict] | None = None) -> list[dict]:
     """Enemy drops: NpcParam root -> sequential ItemLotParam_enemy rows."""
     lot_by_id = {r["id"]: r["cells"] for r in lot_rows}
     referenced_lot_ids = {
@@ -538,21 +587,15 @@ def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
                 cat = lot.get(f"lotItemCategory{k:02d}")
                 if not iid or iid <= 0:
                     continue
-                fmg = LOT_CATEGORY_TABLES.get(cat, "GoodsName")
-                entry = tables.get(fmg, {}).get(iid)
-                en = clean_name((entry or {}).get("en"))
-                if not en:
+                resolved = resolve_lot_item(tables, cat, iid, custom_weapons)
+                if not resolved:
                     continue
                 items.append({
-                    "item": f"{LOT_CATEGORY_KIND.get(cat, 'item')}_{slugify(en)}",
-                    "name": {"en": en, "zh": clean_name((entry or {}).get("zh")) or en},
+                    **resolved,
                     "lot": chain_lot_id,
                     "slot": k,
                     "num": lot.get(f"lotItemNum{k:02d}"),
                     "rate": lot.get(f"lotItemBasePoint{k:02d}"),
-                    "sourceParam": FMG_TO_PARAM[fmg],
-                    "sourceParamId": iid,
-                    "sourceItemCategory": cat,
                 })
         if items:
             relations.append({
@@ -581,6 +624,7 @@ def summarize_enemy_drop_coverage(
     lot_rows: list[dict],
     tables,
     row_to_entity: dict[int, str],
+    custom_weapons: dict[int, dict] | None = None,
 ) -> tuple[dict[str, int], list[dict]]:
     """Report every referenced enemy-lot root, including non-item gaps.
 
@@ -648,9 +692,7 @@ def summarize_enemy_drop_coverage(
                     continue
                 raw_slots += 1
                 category = cells.get(f"lotItemCategory{slot:02d}")
-                fmg = LOT_CATEGORY_TABLES.get(category, "GoodsName")
-                entry = tables.get(fmg, {}).get(item_id)
-                if clean_name((entry or {}).get("en")):
+                if resolve_lot_item(tables, category, item_id, custom_weapons):
                     resolved_slots += 1
                 else:
                     unresolved_slots += 1
@@ -746,6 +788,7 @@ def build_pickups(
     lot_rows: list[dict],
     tables,
     chain_root_ids: set[int] | None = None,
+    custom_weapons: dict[int, dict] | None = None,
 ) -> list[dict]:
     """Map pickups: ItemLotParam_map rows -> items.
 
@@ -774,21 +817,15 @@ def build_pickups(
                 cat = lot.get(f"lotItemCategory{k:02d}")
                 if not iid or iid <= 0:
                     continue
-                fmg = LOT_CATEGORY_TABLES.get(cat, "GoodsName")
-                entry = tables.get(fmg, {}).get(iid)
-                en = clean_name((entry or {}).get("en"))
-                if not en:
+                resolved = resolve_lot_item(tables, cat, iid, custom_weapons)
+                if not resolved:
                     continue
                 items.append({
-                    "item": f"{LOT_CATEGORY_KIND.get(cat, 'item')}_{slugify(en)}",
-                    "name": {"en": en, "zh": clean_name((entry or {}).get("zh")) or en},
+                    **resolved,
                     "lot": chain_lot_id,
                     "slot": k,
                     "num": lot.get(f"lotItemNum{k:02d}"),
                     "rate": lot.get(f"lotItemBasePoint{k:02d}"),
-                    "sourceParam": FMG_TO_PARAM[fmg],
-                    "sourceParamId": iid,
-                    "sourceItemCategory": cat,
                 })
         if items:
             relations.append({
@@ -1443,7 +1480,11 @@ def build_event_reward_relations(event_rewards_path: Path | None = None) -> list
                 "num": item.get("num"),
                 **{
                     key: item[key]
-                    for key in ("lot", "slot", "category", "quantityStatus")
+                    for key in (
+                        "lot", "slot", "category", "quantityStatus",
+                        "sourceParam", "sourceParamId", "sourceCustomWeaponId",
+                        "reinforcementLevel", "attachedGemId",
+                    )
                     if key in item
                 },
             }
@@ -1476,7 +1517,8 @@ def build_talk_reward_relations(talk_rewards_path: Path | None = None) -> list[d
                 key: item[key]
                 for key in (
                     "item", "name", "num", "lot", "slot", "category",
-                    "sourceParam", "sourceParamId", "quantityStatus",
+                    "sourceParam", "sourceParamId", "sourceCustomWeaponId",
+                    "reinforcementLevel", "attachedGemId", "quantityStatus",
                 )
                 if key in item
             }
@@ -2904,13 +2946,17 @@ def main() -> int:
     print(f"registry entities: {len(entities)}")
 
     npc_rows = param_rows(args.param_dir, "NpcParam")
+    custom_weapon_rows = param_rows(args.param_dir, "EquipParamCustomWeapon")
+    custom_weapons = {
+        int(row["id"]): row["cells"] for row in custom_weapon_rows
+    }
     enemies, row_to_entity = build_enemies_npcs(npc_rows, tables)
     print(f"named enemy/npc entities: {len(enemies)}")
 
     lot_enemy = param_rows(args.param_dir, "ItemLotParam_enemy")
-    drops = build_drops(npc_rows, row_to_entity, lot_enemy, tables)
+    drops = build_drops(npc_rows, row_to_entity, lot_enemy, tables, custom_weapons)
     drop_coverage, drop_gaps = summarize_enemy_drop_coverage(
-        npc_rows, lot_enemy, tables, row_to_entity
+        npc_rows, lot_enemy, tables, row_to_entity, custom_weapons
     )
     print(f"drop relations: {len(drops)}")
     print(
@@ -2941,9 +2987,13 @@ def main() -> int:
         for exclusion in pickup_payload.get("sourceExclusions", []):
             if isinstance(exclusion.get("lot"), int):
                 orphan_treasure_exclusions_by_lot[exclusion["lot"]].append(exclusion)
-    all_map_lot_relations = build_pickups(lot_map, tables)
+    all_map_lot_relations = build_pickups(
+        lot_map, tables, custom_weapons=custom_weapons
+    )
     pickups = [
-        x for x in build_pickups(lot_map, tables, pickup_root_ids)
+        x for x in build_pickups(
+            lot_map, tables, pickup_root_ids, custom_weapons
+        )
         if x["lot"]["rowId"] not in boss_lots
     ]
     published_pickup_rows = {
@@ -3083,7 +3133,7 @@ def main() -> int:
     shops, shop_entities, shop_stats = build_shops(
         shop_rows,
         tables,
-        param_rows(args.param_dir, "EquipParamCustomWeapon"),
+        custom_weapon_rows,
         param_rows(args.param_dir, "EquipMtrlSetParam"),
         args.merchant_shops,
         entities + enemies,

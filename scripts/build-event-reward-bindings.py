@@ -37,6 +37,13 @@ LOT_CATEGORY_KIND = {
     4: "accessory",
     5: "ash_of_war",
 }
+FMG_TO_PARAM = {
+    "GoodsName": "EquipParamGoods",
+    "WeaponName": "EquipParamWeapon",
+    "ProtectorName": "EquipParamProtector",
+    "AccessoryName": "EquipParamAccessory",
+    "GemName": "EquipParamGem",
+}
 LOT_CHAIN_REFERENCE = "https://soulsmodding.wikidot.com/param:itemlotparam"
 TYPE_SIZE = {0: 1, 1: 1, 2: 2, 3: 2, 4: 4, 5: 4, 6: 8}
 
@@ -174,6 +181,7 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
     lots_by_table: dict[str, dict[int, dict]] = {}
     for table in ("ItemLotParam_map", "ItemLotParam_enemy"):
         lots_by_table[table] = load_rows(param_dir, table)
+    custom_weapons = load_rows(param_dir, "EquipParamCustomWeapon")
 
     records: list[dict[str, Any]] = []
     raw_awards = 0
@@ -301,19 +309,36 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
                 category = lot.get(f"lotItemCategory{slot:02d}")
                 if not item_id or item_id <= 0:
                     continue
-                table = LOT_CATEGORY_TABLES.get(category)
-                name_entry = tables.get(table, {}).get(item_id, {}) if table else {}
+                custom = custom_weapons.get(item_id) if category == 6 else None
+                if custom:
+                    resolved_item_id = int(custom.get("baseWepId", -1))
+                    table = "WeaponName"
+                    kind = "weapon"
+                else:
+                    resolved_item_id = item_id
+                    table = LOT_CATEGORY_TABLES.get(category)
+                    kind = LOT_CATEGORY_KIND.get(category)
+                name_entry = tables.get(table, {}).get(resolved_item_id, {}) if table else {}
                 english = clean_name(name_entry.get("en"))
-                if not english:
+                if not english or not table or not kind:
                     continue
-                items.append({
-                    "item": f"{LOT_CATEGORY_KIND.get(category, 'item')}_{re.sub(r'[^a-z0-9]+', '_', english.lower()).strip('_')}",
+                item = {
+                    "item": f"{kind}_{re.sub(r'[^a-z0-9]+', '_', english.lower()).strip('_')}",
                     "name": {"en": english, "zh": clean_name(name_entry.get("zh")) or english},
+                    "sourceParam": FMG_TO_PARAM[table],
+                    "sourceParamId": resolved_item_id,
                     "category": category,
                     "lot": chain_lot_id,
                     "slot": slot,
                     "num": lot.get(f"lotItemNum{slot:02d}"),
-                })
+                }
+                if custom:
+                    item.update({
+                        "sourceCustomWeaponId": item_id,
+                        "reinforcementLevel": int(custom.get("reinforceLv", 0)),
+                        "attachedGemId": int(custom.get("gemId", -1)),
+                    })
+                items.append(item)
         if not items:
             continue
         flags = event_flags(award["ref_path"], int(award["event"]["id"]), flag_names)

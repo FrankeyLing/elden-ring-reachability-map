@@ -904,6 +904,28 @@ def main() -> int:
             and item.get("reinforcementLevel") == 0
             for item in sword_lance_exchange.get("items", [])
         ), sword_lance_exchange
+
+        rogier_rapier = query(id="weapon_rogier_s_rapier")
+        assert rogier_rapier["found"] is True
+        assert any(
+            item.get("sourceCustomWeaponId") == 5010
+            and item.get("sourceParamId") == 5030000
+            and item.get("reinforcementLevel") == 8
+            for relation in rogier_rapier["entity"]["acquisitions"]
+            for item in relation.get("items", [])
+        ), rogier_rapier
+
+        dryleaf_arts = query(id="weapon_dryleaf_arts")
+        assert dryleaf_arts["found"] is True
+        assert any(
+            relation.get("method") == "event_reward"
+            and relation.get("eventRewardBinding", {}).get("itemLot", {}).get("rowId") == 107300
+            and any(item.get("sourceCustomWeaponId") == 4401055
+                    and item.get("sourceParamId") == 60500000
+                    and item.get("reinforcementLevel") == 0
+                    for item in relation.get("items", []))
+            for relation in dryleaf_arts["entity"]["acquisitions"]
+        ), dryleaf_arts
         assert any(
             cost.get("item") == "item_remembrance_of_the_wild_boar_rider"
             and cost.get("quantity") == 1
@@ -953,12 +975,12 @@ def main() -> int:
         assert coverage["drop"]["dropRelationCount"] == 1215, coverage
         assert coverage["drop"]["dropGapCount"] == 166, coverage
         assert coverage["pickup"]["pickupEndpointInstanceCount"] >= 3600, coverage
-        assert coverage["pickup"]["pickup"] == 3344, coverage
+        assert coverage["pickup"]["pickup"] == 3346, coverage
         assert coverage["pickup"]["pickup_coverageGapCount"] == 0, coverage
         assert coverage["pickup"]["pickup_coverageGapNoExternalLocationBindingCount"] == 0, coverage
         assert coverage["pickup"]["pickup_coverageGapSourceRecordWithoutCoordinatesCount"] == 0, coverage
-        assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 823, coverage
-        assert coverage["pickup"]["pickupOrphanTreasureExclusionCount"] == 12, coverage
+        assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 827, coverage
+        assert coverage["pickup"]["pickupOrphanTreasureExclusionCount"] == 11, coverage
         assert coverage["shop"]["shop_coverageGapCount"] == 688, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 134, coverage
@@ -968,23 +990,23 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66647,
-            "topologyMapExactMapInstanceEndpointCount": 64381,
+            "topologyMapEndpointCount": 66650,
+            "topologyMapExactMapInstanceEndpointCount": 64384,
             "topologyMapExactLayerEndpointCount": 31808,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 64285,
+                "exact_map_instance": 64288,
                 "exact_map_instance_alias": 96,
                 "external_map_scope": 2112,
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6601, index
-        assert coverage["sourceExclusionCount"] == 961, coverage
-        assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 126, coverage
+        assert len(index["coverageGaps"]) == 6595, index
+        assert coverage["sourceExclusionCount"] == 965, coverage
+        assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 127, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
@@ -1024,7 +1046,7 @@ def main() -> int:
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 610
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 604
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206

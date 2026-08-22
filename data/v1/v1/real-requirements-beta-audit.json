@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "beta",
-  "generatedAt": "2026-08-22T09:16:03.789653+00:00",
+  "generatedAt": "2026-08-22T09:32:40.590989+00:00",
   "status": "pass",
   "summary": {
     "gateCount": 9,
@@ -10,12 +10,12 @@
     "failedGateCount": 0,
     "runtimeEntityCount": 11223,
     "searchableEntityCount": 11223,
-    "acquisitionRelationProjectionCount": 55712,
-    "endpointInstanceProjectionCount": 171483,
+    "acquisitionRelationProjectionCount": 55726,
+    "endpointInstanceProjectionCount": 171489,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
-    "formalAnchorEndpointCount": 64057,
-    "containmentRegionEndpointCount": 64053,
+    "formalAnchorEndpointCount": 64060,
+    "containmentRegionEndpointCount": 64056,
     "containmentUnresolvedEndpointCount": 328,
     "nonFormalAnchorBreakdown": {
       "external_map_scope": 2108,
@@ -24,9 +24,9 @@
       "exact_abstract_map_anchor": 48,
       "candidate_abstract_map_anchor": 35
     },
-    "coverageGapCount": 6601,
+    "coverageGapCount": 6595,
     "unboundEndpointCount": 4433,
-    "acquirableEntityWithoutRelationCount": 19
+    "acquirableEntityWithoutRelationCount": 17
   },
   "gates": [
     {
@@ -114,9 +114,7 @@
       "item_phantom_great_rune",
       "item_phantom_recusant_finger",
       "item_roped_freezing_pot",
-      "item_roundrock",
-      "weapon_dryleaf_arts",
-      "weapon_rogier_s_rapier"
+      "item_roundrock"
     ],
     "armorReinforcementRelations": []
   },
