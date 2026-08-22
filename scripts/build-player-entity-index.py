@@ -227,6 +227,13 @@ def main() -> int:
         aliases.extend(WEAPON_FAMILY_SEARCH_ALIASES.get(weapon_family, []))
         if entity.get("category") == "map_fragment":
             aliases.extend(["地图碎片", "地图残片", "Map Fragment"])
+        # Manual entities are model-identified (no official NpcName/GoodsName);
+        # their names are community convention and must be marked non-official.
+        manual = any(s.get("type") == "manual" for s in entity.get("signifiers", []))
+        properties = dict(entity.get("properties") or {})
+        if manual:
+            properties.setdefault("officialEnName", False)
+            properties.setdefault("officialZhName", False)
         ensure(
             entity["id"],
             kind=entity.get("kind", "unknown"),
@@ -234,7 +241,7 @@ def main() -> int:
             name=entity.get("name"),
             source="entity-registry",
             aliases=aliases,
-            properties=entity.get("properties"),
+            properties=properties,
         )
 
     # Route packages may use a stable semantic target id that predates the
