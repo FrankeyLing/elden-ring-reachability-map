@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "npc_map_drop", "multiplayer_role_reward", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest"}
+KNOWN_METHODS = {"drop", "npc_map_drop", "multiplayer_role_reward", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest", "expert_source"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -156,14 +156,22 @@ def main() -> int:
     check(len(rels) > 0, "empty acquisition registry")
     special_bindings = special_acquisitions["bindings"]
     special_ids = [binding["id"] for binding in special_bindings]
-    check(len(special_ids) == len(set(special_ids)) == 6,
-          f"special acquisition binding ids invalid: {special_ids}")
+    check(len(special_ids) == len(set(special_ids)),
+          f"special acquisition binding ids invalid (duplicates): {special_ids}")
+    check(all(isinstance(binding.get("id"), str) and binding.get("id") for binding in special_bindings),
+          "special acquisition binding ids must be non-empty strings")
     special_relations = {rel["id"]: rel for rel in rels if rel["id"] in set(special_ids)}
     check(set(special_relations) == set(special_ids), "special acquisition relations missing")
     expected_special_items = {
         "item_phantom_bloody_finger", "item_phantom_recusant_finger",
         "item_phantom_great_rune", "item_grave_keeper_s_brainpan",
         "item_nailstone", "item_roundrock",
+        "ash_of_war_ash_of_war_piercing_fang", "ash_of_war_ash_of_war_spinning_strikes",
+        "ash_of_war_ash_of_war_braggart_s_roar", "ash_of_war_ash_of_war_overhead_stance",
+        "ash_of_war_ash_of_war_blind_spot", "ash_of_war_ash_of_war_shield_strike",
+        "ash_of_war_ash_of_war_igon_s_drake_hunt", "ash_of_war_ash_of_war_glintblade_phalanx",
+        "ash_of_war_ash_of_war_spinning_gravity_thrust", "ash_of_war_ash_of_war_savage_claws",
+        "armor_finger_robe", "weapon_sword_lance",
     }
     check({binding["item"] for binding in special_bindings} == expected_special_items,
           "special acquisition fixture item set changed")

@@ -610,7 +610,10 @@ def main() -> int:
             "recordCount": len(records),
             "acquisitionRelationEndpointCount": source_class_counts["acquisition_relation"],
             "coverageGapEndpointCount": source_class_counts["coverage_gap"],
-            "sourceClassCounts": dict(source_class_counts),
+            "sourceClassCounts": {
+                "acquisition_relation": source_class_counts.get("acquisition_relation", 0),
+                "coverage_gap": source_class_counts.get("coverage_gap", 0),
+            },
             "methodCounts": dict(method_counts),
             "abstractAnchorStatusCounts": dict(anchor_statuses),
             "nativeIdentityStatusCounts": dict(native_statuses),
