@@ -992,11 +992,70 @@ def build_shops(
     custom_weapon_row_count = 0
     unresolved_custom_weapon_row_count = 0
     row_items: dict[int, dict] = {}
+    service_menu_rows: list[dict] = []
+    test_shop_rows: list[dict] = []
+
+    def has_any_official_name(item_id: int) -> bool:
+        for table in (tables.get("GoodsName"), tables.get("WeaponName"), tables.get("ProtectorName"),
+                      tables.get("AccessoryName"), tables.get("GemName"), tables.get("MagicName"), tables.get("ArtsName")):
+            entry = table.get(item_id) if table else None
+            if entry and clean_name(entry.get("en")):
+                return True
+        return False
     for r in shop_rows:
         c = r["cells"]
         etype = c.get("equipType")
         eid = c.get("equipId")
         if not eid or eid <= 0:
+            continue
+        altered_protector = bool(
+            "(Altered)" in str(((tables.get("ProtectorName") or {}).get(eid) or {}).get("en", ""))
+        )
+        if (r["id"] // 1000) in (110, 111, 112) or altered_protector:
+            # Service-menu rows: 110xxx-112xxx (smithing/altered-armor menu)
+            # and "(Altered)" protector entries (alteration service result) --
+            # service options, not merchant item sales.  costType is NOT used
+            # globally: remembrance/exchange lines (e.g. Enia's Sword Lance
+            # exchange, row 101932) use costType 4 but are real acquisitions.
+            service_menu_rows.append({
+                "lineupRow": r["id"],
+                "equipId": eid,
+                "equipType": etype,
+                "costType": c.get("costType"),
+                "value": c.get("value"),
+                "evidence": ["shop service menu row: costType=4 value=1, or (Altered) protector entry"],
+            })
+            continue
+            # 110xxx-112xxx rows with costType 4 and value 1 are the smithing
+            # service menu (affinity/reforge, Lost Ashes of War duplication);
+            # they are service entries, not merchant item sales.
+            service_menu_rows.append({
+                "lineupRow": r["id"],
+                "equipId": eid,
+                "equipType": etype,
+                "evidence": ["shop service menu row: costType=4, value=1 (Lost Ashes of War duplication)"],
+            })
+            continue
+        if etype != 5 and not has_any_official_name(eid):
+            # Custom-weapon rows (etype 5) resolve through EquipParamCustomWeapon
+            # (base weapon name), so they are checked after the custom branch.
+            # Rows whose item has no official name in any FMG table are kept as
+            # excluded test rows (contract 10.1).
+            test_shop_rows.append({
+                "lineupRow": r["id"],
+                "equipId": eid,
+                "equipType": etype,
+                "evidence": ["ShopLineupParam test band, equipId has no official FMG name in any table"],
+            })
+            continue
+        # (110xxx-112xxx weapon/protector affinity rows are also merchant
+        # sales; no service-menu exclusion applies)
+            service_menu_rows.append({
+                "lineupRow": r["id"],
+                "equipId": eid,
+                "equipType": etype,
+                "evidence": ["ShopLineupParam service-menu band (110-112), weapon affinity row, zero price"],
+            })
             continue
         source_custom_weapon_id = None
         custom_weapon = None
@@ -1219,7 +1278,9 @@ def build_shops(
         "customWeaponPurchaseRows": custom_weapon_row_count,
         "unresolvedCustomWeaponPurchaseRows": unresolved_custom_weapon_row_count,
     }
-    return relations, entities, stats
+    stats["serviceMenuRowCount"] = len(service_menu_rows)
+    stats["testShopRowCount"] = len(test_shop_rows)
+    return relations, entities, stats, service_menu_rows, test_shop_rows
 
 
 def summarize_shop_coverage_gaps(
@@ -3612,7 +3673,7 @@ def main() -> int:
     )
 
     shop_rows = param_rows(args.param_dir, "ShopLineupParam")
-    shops, shop_entities, shop_stats = build_shops(
+    shops, shop_entities, shop_stats, service_menu_rows, test_shop_rows = build_shops(
         shop_rows,
         tables,
         custom_weapon_rows,
@@ -3984,6 +4045,8 @@ def main() -> int:
             online_map_gaps + online_guide_gaps + online_item_map_gaps
         ),
         "sellerUnresolvedRecords": shop_seller_unresolved_records,
+        "serviceMenuRecords": service_menu_rows,
+        "testShopRowRecords": test_shop_rows,
         "verifiedNoDropFacts": no_drop_facts,
         "verifiedUnusedMapLotFacts": unclassified_map_lot_facts,
         "sourceExclusions": pickup_source_exclusions + online_item_map_exclusions,

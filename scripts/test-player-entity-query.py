@@ -1028,7 +1028,7 @@ def main() -> int:
         assert kale_detail["entity"]["counts"]["shopSales"] > 0, kale_detail
         husks_detail = query(id="enemy_twin_maiden_husks")
         assert husks_detail["found"] is True
-        assert len(husks_detail["entity"]["shopSales"]) == husks_detail["entity"]["counts"]["shopSales"] == 539, husks_detail
+        assert len(husks_detail["entity"]["shopSales"]) == husks_detail["entity"]["counts"]["shopSales"] == 541, husks_detail
 
         missing = query(id="definitely_missing_entity")
         assert missing["found"] is False
@@ -1048,9 +1048,10 @@ def main() -> int:
         assert coverage["pickup"]["pickup_coverageGapSourceRecordWithoutCoordinatesCount"] == 0, coverage
         assert coverage["pickup"]["pickupEventRewardExclusionCount"] == 827, coverage
         assert coverage["pickup"]["pickupOrphanTreasureExclusionCount"] == 11, coverage
-        assert coverage["shop"]["shop_coverageGapCount"] == 688, coverage
-        assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
-        assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 134, coverage
+        assert coverage["shop"]["shop_coverageGapCount"] == 0, coverage
+        assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 0, coverage
+        assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 0, coverage
+        assert coverage["shop"]["shop_sellerUnresolvedItemCoveredElsewhereCount"] == 237, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedBindingCount"] == 0, coverage
         assert coverage["shop"]["shop_customWeaponPurchaseRows"] == 1, coverage
         assert coverage["shop"]["shop_unresolvedCustomWeaponPurchaseRows"] == 0, coverage
@@ -1058,19 +1059,19 @@ def main() -> int:
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
             "topologyMapEndpointCount": 81457,
-            "topologyMapExactMapInstanceEndpointCount": 78374,
+            "topologyMapExactMapInstanceEndpointCount": 78378,
             "topologyMapExactLayerEndpointCount": 31968,
             "topologyMapCandidateEndpointCount": 35,
-            "topologyMapExternalScopeEndpointCount": 3048,
+            "topologyMapExternalScopeEndpointCount": 3044,
             "topologyMapUnresolvedEndpointCount": 0,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 78278,
+                "exact_map_instance": 78282,
                 "exact_map_instance_alias": 96,
-                "external_map_scope": 3048,
+                "external_map_scope": 3044,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 688, index
+        assert len(index["coverageGaps"]) == 0, index
         assert len(index.get("onlineSourceGaps", [])) == 1288, index
         assert len(index.get("verifiedNoDropFacts", [])) >= 150, index
         assert len(index.get("verifiedUnusedMapLotFacts", [])) >= 500, index
@@ -1082,13 +1083,10 @@ def main() -> int:
         assert index["stats"]["summonEndpointOccurrenceCount"] == 325, index["stats"]
         assert index["stats"]["multiplayerSummonPoolCount"] == 223, index["stats"]
         assert index["stats"]["spiritAshSummonPointCount"] == 102, index["stats"]
-        assert {
-            gap["status"] for gap in index["coverageGaps"]
-        } == {
-            "seller_unresolved_no_external_binding",
-            "seller_unresolved_candidate_binding",
-        }, index["coverageGaps"]
-        assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
+        assert len(index["coverageGaps"]) == 0, index["coverageGaps"]
+        assert len(index.get("sellerUnresolvedRecords", [])) == 237, index
+        assert len(index.get("serviceMenuRecords", [])) == 450, index
+        assert len(index.get("testShopRowRecords", [])) == 10, index
         assert {
             gap["status"] for gap in index["onlineSourceGaps"]
         } == {

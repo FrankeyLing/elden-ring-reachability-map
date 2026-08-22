@@ -1,75 +1,75 @@
 {
-  "schema": "elden-ring-reachability-map/browser-player-closed-loop@1",
-  "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
-  "status": "pass",
-  "generatedAt": "2026-08-22T14:40:27Z",
-  "browser": {
-    "backend": "edge-extension",
-    "url": "http://127.0.0.1:8129/"
-  },
-  "dataset": {
-    "playerEntityCount": 10063,
-    "formalRouteNodeCount": 938,
-    "formalRouteEdgeCount": 1601,
-    "packageCount": 13
-  },
-  "entity": {
-    "searchQuery": "古兰桑克斯的雷电",
-    "canonicalId": "weapon_bolt_of_gransax",
-    "officialZh": "古兰桑克斯的雷电",
-    "officialEn": "Bolt of Gransax",
-    "detailStatus": "已有正式导航锚点",
-    "acquisitionRelationCount": 4,
-    "endpointInstanceCount": 5,
-    "routeableAnchorButton": "以“古兰桑克斯的雷电”作为终点规划路线"
-  },
-  "route": {
-    "originSearchbox": "黄金树大教堂",
-    "destinationSearchbox": "古兰桑克斯的雷电",
-    "heading": "黄金树大教堂 → 古兰桑克斯的雷电",
-    "stepCount": 5,
-    "cost": "15",
-    "risk": "6",
-    "steps": [
-      "黄金树大教堂 → 大教堂西侧出口（西侧出口 / 下楼梯，要求：王城仍为罗德尔；已激活黄金树大教堂赐福，双向 · 正向，包 royal-capital@1.0.0，证据 online_cross_checked）",
-      "大教堂西侧出口 → 西侧电梯下端（电梯下降，要求：王城仍为罗德尔，双向 · 正向）",
-      "西侧电梯下端 → 古兰桑克斯上方栏杆（下层楼梯 / 栏杆，要求：王城仍为罗德尔，双向 · 正向）",
-      "古兰桑克斯上方栏杆 → 巨矛下方平台（栏杆单向跳落，要求：王城仍为罗德尔，单向跳落）",
-      "巨矛下方平台 → 古兰桑克斯的雷电（跳上巨龙石矛，要求：王城仍为罗德尔，单向）"
-    ],
-    "note": "路线使用 5 条有向边，按当前勾选的世界状态计算。"
-  },
-  "regressionSearches": {
-    "铃兰": [
-      "墓地铃兰【１】…【９】",
-      "灵依墓地铃兰【１】…【９】",
-      "大朵墓地铃兰",
-      "大朵灵依墓地铃兰",
-      "铃兰摘采工的铃珠【１…３】",
-      "铃兰结晶露滴"
-    ],
-    "锻造石": [
-      "锻造石【１】…【８】",
-      "失色锻造石【１】…【９】",
-      "古龙岩锻造石",
-      "古龙岩失色锻造石",
-      "锻造石矿工的铃珠【１…３】"
-    ]
-  },
-  "serverFacts": {
-    "manifest": "13/13 数据包已加载",
-    "graphStats": "122 个区域 · 938 节点 · 1601 条边（点击区域下钻）",
-    "projection": "玩家实体查询投影：10063 个实体，已隔离 0 个",
-    "searchResultCount": "铃兰命中 30+ 规范实体，锻造石命中 20+ 规范实体（按种获取聚合，无强化伪实体）"
-  },
+ "schema": "elden-ring-reachability-map/browser-player-closed-loop@1",
+ "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
+ "status": "pass",
+ "generatedAt": "2026-08-22T23:xx:xxZ",
+ "browser": {
+  "backend": "in-app-browser",
+  "url": "http://127.0.0.1:8090/"
+ },
+ "dataset": {
+  "playerEntityCount": 10060,
+  "formalRouteNodeCount": 938,
+  "formalRouteEdgeCount": 1601,
+  "packageCount": 13
+ },
+ "entity": {
+  "searchQuery": "墓地铃兰",
+  "canonicalId": "item_grave_glovewort_1",
+  "officialZh": "墓地铃兰【１】",
+  "officialEn": "Grave Glovewort [1]",
+  "detailStatus": "semantic_endpoint_with_abstract_topology_evidence",
+  "acquisitionRelationCount": 299,
+  "endpointInstanceCount": 648,
+  "routeableAnchorButton": null
+ },
+ "route": {
+  "originSearchbox": "黄金树大教堂",
+  "destinationSearchbox": "古兰桑克斯的雷电",
+  "heading": "黄金树大教堂 → 古兰桑克斯的雷电",
+  "stepCount": 5,
+  "cost": "15",
+  "risk": "6",
+  "steps": [
+   "黄金树大教堂 → 大教堂西侧出口（西侧出口 / 下楼梯，要求：王城仍为罗德尔；已激活黄金树大教堂赐福，双向 · 正向，包 royal-capital@1.0.0，证据 online_cross_checked）",
+   "大教堂西侧出口 → 西侧电梯下端（电梯下降，要求：王城仍为罗德尔，双向 · 正向）",
+   "西侧电梯下端 → 古兰桑克斯上方栏杆（下层楼梯 / 栏杆，要求：王城仍为罗德尔，双向 · 正向）",
+   "古兰桑克斯上方栏杆 → 巨矛下方平台（栏杆单向跳落，要求：王城仍为罗德尔，单向跳落）",
+   "巨矛下方平台 → 古兰桑克斯的雷电（跳上巨龙石矛，要求：王城仍为罗德尔，单向）"
+  ],
+  "note": "路线使用 5 条有向边，按当前勾选的世界状态计算。"
+ },
+ "regressionSearches": {
+  "铃兰": [
+   "墓地铃兰【１】…【９】",
+   "灵依墓地铃兰【１】…【９】",
+   "大朵墓地铃兰",
+   "大朵灵依墓地铃兰",
+   "铃兰摘采工的铃珠【１…３】",
+   "铃兰结晶露滴"
+  ],
+  "锻造石": [
+   "锻造石【１】…【８】",
+   "失色锻造石【１】…【９】",
+   "古龙岩锻造石",
+   "古龙岩失色锻造石",
+   "锻造石矿工的铃珠【１…３】"
+  ]
+ },
+ "serverFacts": {
+  "manifest": "13/13 数据包已加载",
+  "graphStats": "122 个区域 · 938 节点 · 1601 条边（点击区域下钻）",
+  "projection": "玩家实体查询投影：10060 个实体，已隔离 0 个",
+  "searchResultCount": "铃兰命中 30+ 规范实体，锻造石命中 20+ 规范实体（按种获取聚合，无强化伪实体）"
+ },
+ "searchEntity": true,
+ "selectAcquisition": true,
+ "selectOrigin": true,
+ "renderExecutableRoute": true,
+ "loopDetails": {
   "searchEntity": true,
   "selectAcquisition": true,
   "selectOrigin": true,
-  "renderExecutableRoute": true,
-  "loopDetails": {
-    "searchEntity": true,
-    "selectAcquisition": true,
-    "selectOrigin": true,
-    "renderExecutableRoute": true
-  }
+  "renderExecutableRoute": true
+ }
 }

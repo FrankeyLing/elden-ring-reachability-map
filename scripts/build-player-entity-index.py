@@ -799,6 +799,9 @@ def main() -> int:
         "onlineSourceGaps": acquisitions.get("onlineSourceGaps", []),
         "verifiedNoDropFacts": acquisitions.get("verifiedNoDropFacts", []),
         "verifiedUnusedMapLotFacts": acquisitions.get("verifiedUnusedMapLotFacts", []),
+        "sellerUnresolvedRecords": acquisitions.get("sellerUnresolvedRecords", []),
+        "serviceMenuRecords": acquisitions.get("serviceMenuRecords", []),
+        "testShopRowRecords": acquisitions.get("testShopRowRecords", []),
         "sourceExclusions": acquisitions.get("sourceExclusions", []),
         "entities": sorted(records.values(), key=lambda record: (record["name"].get("zh", ""), record["id"])),
     }

@@ -2659,6 +2659,9 @@ class AppHandler(SimpleHTTPRequestHandler):
                     "onlineSourceGaps": payload.get("onlineSourceGaps", []),
                     "verifiedNoDropFacts": payload.get("verifiedNoDropFacts", []),
                     "verifiedUnusedMapLotFacts": payload.get("verifiedUnusedMapLotFacts", []),
+                    "sellerUnresolvedRecords": payload.get("sellerUnresolvedRecords", []),
+                    "serviceMenuRecords": payload.get("serviceMenuRecords", []),
+                    "testShopRowRecords": payload.get("testShopRowRecords", []),
                 }
             )
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
