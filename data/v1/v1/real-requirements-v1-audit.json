@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T17:09:42.376754+00:00",
+  "generatedAt": "2026-08-22T17:51:33.061159+00:00",
   "status": "pass",
   "summary": {
     "gateCount": 17,
