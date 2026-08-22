@@ -74,6 +74,19 @@ python scripts/build-packages.py --graph data/v1/graph-v1.json --out data/v1/pac
 # Official Chinese mapping audit (uncovered list + field completeness)
 python scripts/audit-zh-mapping.py --graph data/v1/graph-v1.json
 
+# Chapter-4 category coverage gate: every 4.x entity class has a published
+# entity, canonical examples carry official zh/en names and an acquisition
+# floor, and 5.1 non-official names are explicitly marked
+python scripts/test-chapter4-coverage.py
+
+# Live player-search gate: chapter-4 category vocabulary words must return
+# real entities from the running server (start `python server.py --port 8127`)
+python scripts/test-player-search-runtime.py --base http://127.0.0.1:8127
+
+# Abstract route sample library: diverse entities each resolve to a legal
+# abstract route or honest bound state (live server)
+python scripts/test-abstract-route-samples.py --base http://127.0.0.1:8127
+
 # Rebuild the official Chinese mapping (requires regenerating the bilingual
 # FMG index first)
 python scripts/build-official-fmg-index.py --msg-root <snapshot>/extracted/msg-all --oodle-dll <snapshot>/runtime/oo2core_6_win64.dll --output data/v1/entities/official-fmg-bilingual-index.json

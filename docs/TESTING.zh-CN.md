@@ -62,6 +62,17 @@ python scripts/build-packages.py --graph data/v1/graph-v1.json --out data/v1/pac
 # 官方中文映射审计（uncovered 清单 + 字段完整性）
 python scripts/audit-zh-mapping.py --graph data/v1/graph-v1.json
 
+# 第四章类别覆盖门禁：每个 4.x 实体类别都有已发布实体，规范样例携带官方
+# 中英文名与获取关系下限，且 5.1 非官方名称带显式标记
+python scripts/test-chapter4-coverage.py
+
+# 玩家实时搜索门禁：第四章类别词必须在运行中的服务器返回真实实体
+# （先启动 python server.py --port 8127）
+python scripts/test-player-search-runtime.py --base http://127.0.0.1:8127
+
+# 抽象路线样例库：多样实体各自解析出合法抽象路线或诚实绑定状态（实时服务器）
+python scripts/test-abstract-route-samples.py --base http://127.0.0.1:8127
+
 # 重建官方中文映射（需先重建 274MB 双语 FMG 索引）
 python scripts/build-official-fmg-index.py --msg-root <快照>/extracted/msg-all --oodle-dll <快照>/runtime/oo2core_6_win64.dll --output data/v1/entities/official-fmg-bilingual-index.json
 python scripts/build-official-zh-mapping.py --graph data/v1/graph-v1.json
