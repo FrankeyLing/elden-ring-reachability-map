@@ -2400,6 +2400,228 @@ def attach_local_craft_recipes(
     return default_relations, stats, gaps
 
 
+def build_initial_loadout_relations(
+    base_class_rows: list[dict],
+    chara_init_rows: list[dict],
+    char_make_top_rows: list[dict],
+    char_make_list_rows: list[dict],
+    entities: list[dict],
+) -> tuple[list[dict], dict[str, int], list[dict]]:
+    """Build player class and selectable-gift acquisitions from local params.
+
+    Only player-selectable rows are followed: ``BaseChrSelectMenuParam`` gives
+    the ten concrete class loadouts, and character-creation command 24 gives
+    the selectable gift table.  Arbitrary ``CharaInitParam`` rows used by
+    non-player characters are never treated as player acquisitions.
+    """
+    by_param_row: dict[tuple[str, int], list[dict]] = {}
+    for entity in entities:
+        for signifier in entity.get("signifiers", []):
+            if signifier.get("type") != "param":
+                continue
+            for row_id in signifier.get("rows", []):
+                by_param_row.setdefault(
+                    (str(signifier.get("param")), int(row_id)), []
+                ).append(entity)
+
+    chara_by_id = {int(row["id"]): row["cells"] for row in chara_init_rows}
+    class_rows = [
+        row for row in base_class_rows if 2000 <= int(row["id"]) <= 2009
+    ]
+    slot_specs = [
+        ("equip_Wep_Right", "EquipParamWeapon", None),
+        ("equip_Subwep_Right", "EquipParamWeapon", None),
+        ("equip_Wep_Left", "EquipParamWeapon", None),
+        ("equip_Subwep_Left", "EquipParamWeapon", None),
+        ("equip_Arrow", "EquipParamWeapon", None),
+        ("equip_Bolt", "EquipParamWeapon", None),
+        ("equip_SubArrow", "EquipParamWeapon", None),
+        ("equip_SubBolt", "EquipParamWeapon", None),
+        ("equip_Helm", "EquipParamProtector", None),
+        ("equip_Armer", "EquipParamProtector", None),
+        ("equip_Gaunt", "EquipParamProtector", None),
+        ("equip_Leg", "EquipParamProtector", None),
+        ("equip_Accessory01", "EquipParamAccessory", None),
+        ("equip_Accessory02", "EquipParamAccessory", None),
+        ("equip_Accessory03", "EquipParamAccessory", None),
+        ("equip_Accessory04", "EquipParamAccessory", None),
+    ]
+    slot_specs.extend(
+        (f"equip_Spell_{index:02d}", "Magic", None) for index in range(1, 8)
+    )
+    slot_specs.extend(
+        (f"item_{index:02d}", "EquipParamGoods", f"itemNum_{index:02d}")
+        for index in range(1, 11)
+    )
+    slot_specs.extend(
+        (
+            f"secondaryItem_{index:02d}",
+            "EquipParamGoods",
+            f"secondaryItemNum_{index:02d}",
+        )
+        for index in range(1, 7)
+    )
+
+    stats = {
+        "selectable_class_count": len(class_rows),
+        "class_relation_count": 0,
+        "gift_option_count": 0,
+        "gift_relation_count": 0,
+        "unresolved_slot_count": 0,
+    }
+    gaps: list[dict] = []
+    grouped: dict[str, dict] = {}
+
+    def add_slots(cells: dict, source: dict) -> None:
+        for slot, param, quantity_slot in slot_specs:
+            value = int(cells.get(slot, -1))
+            if value < 0:
+                continue
+            candidates = by_param_row.get((param, value), [])
+            if len(candidates) != 1:
+                stats["unresolved_slot_count"] += 1
+                gaps.append({
+                    "id": f"initial-loadout-slot-{source['sourceRowId']}-{slot}",
+                    "method": "initial_loadout",
+                    "status": "initial_loadout_slot_unresolved",
+                    "source": source,
+                    "sourceSlot": slot,
+                    "sourceParam": param,
+                    "sourceParamId": value,
+                    "candidateEntityIds": [candidate["id"] for candidate in candidates],
+                    "verification": "local_param_unresolved",
+                })
+                continue
+            entity = candidates[0]
+            quantity = int(cells.get(quantity_slot, 1)) if quantity_slot else 1
+            if quantity < 1:
+                quantity = 1
+            record = grouped.setdefault(entity["id"], {
+                "entity": entity,
+                "sources": [],
+                "quantity": quantity,
+            })
+            record["quantity"] = max(record["quantity"], quantity)
+            record["sources"].append({**source, "slot": slot, "quantity": quantity})
+
+    for row in class_rows:
+        cells = row["cells"]
+        loadout_id = int(cells["chrInitParam"])
+        loadout = chara_by_id.get(loadout_id)
+        if loadout is None:
+            gaps.append({
+                "id": f"initial-loadout-class-{row['id']}",
+                "method": "initial_loadout",
+                "status": "selectable_class_loadout_missing",
+                "baseChrSelectMenuRow": row["id"],
+                "charaInitParamRow": loadout_id,
+                "verification": "local_param_missing_reference",
+            })
+            continue
+        add_slots(loadout, {
+            "sourceType": "selectable_starting_class",
+            "sourceRowId": loadout_id,
+            "baseChrSelectMenuRow": int(row["id"]),
+            "originCharaInitRow": int(cells["originChrInitParam"]),
+        })
+
+    relations: list[dict] = []
+    for entity_id, record in sorted(grouped.items()):
+        entity = record["entity"]
+        relations.append({
+            "id": f"initial-loadout-class-{entity_id}",
+            "from": None,
+            "method": "initial_loadout",
+            "items": [{
+                "item": entity_id,
+                "name": entity["name"],
+                "num": record["quantity"],
+                "quantityStatus": "local_param_exact",
+            }],
+            "initialLoadoutBinding": {
+                "sourceType": "selectable_starting_class",
+                "sources": record["sources"],
+            },
+            "evidence": [
+                "local BaseChrSelectMenuParam selectable class reference",
+                "local CharaInitParam concrete loadout slots",
+            ],
+            "verification": "local_selectable_class_loadout_exact",
+        })
+    stats["class_relation_count"] = len(relations)
+
+    gift_top_rows = [
+        row for row in char_make_top_rows
+        if int(row["cells"].get("commandType", -1)) == 24
+    ]
+    if len(gift_top_rows) == 1:
+        gift_table_id = int(gift_top_rows[0]["cells"]["tableId"])
+        gift_options = [
+            row for row in char_make_list_rows
+            if gift_table_id <= int(row["id"]) < gift_table_id + 100
+        ]
+        stats["gift_option_count"] = len(gift_options)
+        for option in gift_options:
+            value = int(option["cells"]["value"])
+            gift_row_id = 2400 + value
+            gift_cells = chara_by_id.get(gift_row_id)
+            if gift_cells is None:
+                gaps.append({
+                    "id": f"initial-gift-{option['id']}",
+                    "method": "initial_loadout",
+                    "status": "selectable_gift_loadout_missing",
+                    "charMakeMenuListItemRow": option["id"],
+                    "charaInitParamRow": gift_row_id,
+                    "verification": "local_param_missing_reference",
+                })
+                continue
+            gift_grouped: dict[str, dict] = {}
+            old_grouped = grouped
+            grouped = gift_grouped
+            add_slots(gift_cells, {
+                "sourceType": "selectable_starting_gift",
+                "sourceRowId": gift_row_id,
+                "charMakeMenuTopRow": int(gift_top_rows[0]["id"]),
+                "charMakeMenuListItemRow": int(option["id"]),
+                "selectionValue": value,
+            })
+            grouped = old_grouped
+            for entity_id, record in sorted(gift_grouped.items()):
+                entity = record["entity"]
+                relations.append({
+                    "id": f"initial-loadout-gift-{option['id']}-{entity_id}",
+                    "from": None,
+                    "method": "initial_loadout",
+                    "items": [{
+                        "item": entity_id,
+                        "name": entity["name"],
+                        "num": record["quantity"],
+                        "quantityStatus": "local_param_exact",
+                    }],
+                    "initialLoadoutBinding": {
+                        "sourceType": "selectable_starting_gift",
+                        "sources": record["sources"],
+                    },
+                    "evidence": [
+                        "local CharMakeMenuTopParam gift-selection command",
+                        "local CharMakeMenuListItemParam selection value",
+                        "local CharaInitParam gift loadout slots",
+                    ],
+                    "verification": "local_selectable_starting_gift_exact",
+                })
+                stats["gift_relation_count"] += 1
+    else:
+        gaps.append({
+            "id": "initial-gift-table",
+            "method": "initial_loadout",
+            "status": "gift_selection_table_ambiguous",
+            "candidateTopRows": [row["id"] for row in gift_top_rows],
+            "verification": "local_param_unresolved",
+        })
+
+    return relations, stats, gaps
+
+
 def attach_quest_npc_endpoints(
     relations: list[dict],
     entities: list[dict],
@@ -2819,6 +3041,14 @@ def main() -> int:
         f"unresolved-products={local_recipe_stats['unresolved_products']}; "
         f"unresolved-materials={local_recipe_stats['unresolved_materials']}"
     )
+    initial_loadout_relations, initial_loadout_stats, initial_loadout_gaps = build_initial_loadout_relations(
+        param_rows(args.param_dir, "BaseChrSelectMenuParam"),
+        param_rows(args.param_dir, "CharaInitParam"),
+        param_rows(args.param_dir, "CharMakeMenuTopParam"),
+        param_rows(args.param_dir, "CharMakeMenuListItemParam"),
+        entities + enemies,
+    )
+    print(f"initial loadouts: {initial_loadout_stats}")
 
     # Spell Goods rows are now signifiers on the canonical spell entity.
     # Parameter-row resolution below binds each source relation directly to
@@ -2845,6 +3075,7 @@ def main() -> int:
         + quest_rewards + online_map_relations + online_guide_relations
         + online_item_map_relations + online_cookbook_relations
         + local_default_craft_relations
+        + initial_loadout_relations
         + spell_acquisition_projections
     )
     topology_map_index = load_map_index(args.abstract_topology_graph)
@@ -2986,6 +3217,11 @@ def main() -> int:
             "localCraftUnboundUnlockCount": local_recipe_stats["unbound_unlocks"],
             "localCraftUnresolvedProductCount": local_recipe_stats["unresolved_products"],
             "localCraftUnresolvedMaterialCount": local_recipe_stats["unresolved_materials"],
+            "initialLoadoutRelationCount": len(initial_loadout_relations),
+            **{
+                f"initialLoadout_{key}": value
+                for key, value in initial_loadout_stats.items()
+            },
             "spell_acquisition": len(spell_acquisition_projections),
             "dropEndpointInstances": drop_endpoint_count,
             "questNpcEndpointInstances": quest_endpoint_count,
@@ -3013,7 +3249,8 @@ def main() -> int:
         },
         "coverageGaps": (
             drop_gaps + pickup_gaps + shop_gaps + online_map_gaps + online_guide_gaps
-            + online_item_map_gaps + local_recipe_gaps + unclassified_map_lot_gaps
+            + online_item_map_gaps + local_recipe_gaps + initial_loadout_gaps
+            + unclassified_map_lot_gaps
         ),
         "sourceExclusions": pickup_source_exclusions,
         "relations": relations,

@@ -315,12 +315,40 @@ def main() -> int:
             check(rel.get("verification") in {
                       "online_cookbook_product_exact_unique_official_name_match",
                       "online_dataset_dlc_pair_exact_unique_official_entity_match",
+                      "local_recipe_and_pinned_default_unlock_exact",
                   },
                   f"craft relation {rel['id']} has weak verification")
             recipe = rel.get("craftRecipe") or {}
             check(isinstance(recipe.get("sourceRecipeId"), (int, str))
                   and bool(recipe.get("sourceRecipeId")),
                   f"craft relation {rel['id']} missing source recipe id")
+            if recipe.get("unlockType") == "default":
+                check(rel.get("from") == recipe.get("unlockItemId") == "item_crafting_kit",
+                      f"default craft relation {rel['id']} has invalid unlock source")
+                check(recipe.get("productItemId") == rel.get("items", [{}])[0].get("item"),
+                      f"default craft relation {rel['id']} product mismatch")
+                local_recipe = rel.get("localRecipe") or {}
+                check(local_recipe.get("verification") == "local_param_exact",
+                      f"default craft relation {rel['id']} lacks exact local recipe")
+                check(local_recipe.get("productItemId") == recipe.get("productItemId"),
+                      f"default craft relation {rel['id']} local product mismatch")
+                check(isinstance(local_recipe.get("productQuantity"), int)
+                      and local_recipe.get("productQuantity") > 0,
+                      f"default craft relation {rel['id']} has invalid product quantity")
+                local_ingredients = local_recipe.get("ingredients")
+                check(isinstance(local_ingredients, list) and local_ingredients,
+                      f"default craft relation {rel['id']} has no local ingredients")
+                for ingredient in local_ingredients or []:
+                    check(ingredient.get("itemId") in entity_ids,
+                          f"default craft relation {rel['id']} ingredient is unresolved")
+                    check(isinstance(ingredient.get("quantity"), int)
+                          and ingredient.get("quantity") > 0,
+                          f"default craft relation {rel['id']} ingredient quantity is invalid")
+                    check(ingredient.get("quantityStatus") == "local_param_exact",
+                          f"default craft relation {rel['id']} ingredient is not locally sourced")
+                check(local_recipe.get("unresolvedIngredients") == [],
+                      f"default craft relation {rel['id']} has unresolved ingredients")
+                continue
             check(rel.get("from") == recipe.get("cookbookItemId"),
                   f"craft relation {rel['id']} cookbook source mismatch")
             check(recipe.get("sourceCookbookName"),
@@ -847,9 +875,13 @@ def main() -> int:
           "craft recipe source coverage unexpectedly low")
     check(len(craft_relations) >= 120,
           f"craft relation coverage unexpectedly low: {len(craft_relations)}")
-    check(online_stats.get("craftMatchedProductCount") == len(craft_relations),
+    online_craft_relations = [
+        relation for relation in craft_relations
+        if (relation.get("craftRecipe") or {}).get("unlockType") != "default"
+    ]
+    check(online_stats.get("craftMatchedProductCount") == len(online_craft_relations),
           "craft matched product count does not match relation count")
-    check(online_stats.get("craftMatchedCookbookCount") == len(craft_relations),
+    check(online_stats.get("craftMatchedCookbookCount") == len(online_craft_relations),
           "craft matched cookbook count does not match relation count")
     check(online_stats.get("craftIngredientsPresentCount") == 124,
           "craft ingredient enrichment coverage unexpectedly changed")
@@ -863,6 +895,18 @@ def main() -> int:
           "craft resolved ingredient count unexpectedly changed")
     check(online_stats.get("craftUnresolvedIngredientCount") == 0,
           "craft unresolved ingredient count unexpectedly changed")
+    check(online_stats.get("localCraftUsableRecipeCount") == len(craft_relations),
+          "local craft recipe coverage does not match relation count")
+    check(online_stats.get("localCraftOnlineEnrichedCount") == len(online_craft_relations),
+          "local craft enrichment count does not match online relations")
+    check(online_stats.get("localCraftDefaultRelationCount") == 5,
+          "default local craft relation count unexpectedly changed")
+    check(online_stats.get("localCraftUnboundUnlockCount") == 0,
+          "local craft unlocks remain unbound")
+    check(online_stats.get("localCraftUnresolvedProductCount") == 0,
+          "local craft products remain unresolved")
+    check(online_stats.get("localCraftUnresolvedMaterialCount") == 0,
+          "local craft materials remain unresolved")
     check(online_stats.get("pickupBindingCount", 0) >= 3500,
           "pickup binding coverage unexpectedly low")
     check(online_stats.get("pickupEndpointRelationCount", 0) >= 3300,
@@ -1002,8 +1046,7 @@ def main() -> int:
                   f"gesture acquisition {binding.get('id')} row mismatch")
             gesture_rows_from_bindings.add(item.get("sourceParamId"))
     gesture_relations = [
-        relation for relation in rels
-        if relation.get("method") in {"gesture_unlock", "initial_loadout"}
+        relation for relation in rels if relation.get("gestureAcquisitionBinding")
     ]
     check(len(gesture_relations) == len(gesture_binding_ids),
           "gesture acquisition relation projection count mismatch")
@@ -1016,6 +1059,43 @@ def main() -> int:
     print(
         f"gesture acquisition evidence: {len(gesture_binding_ids)} bindings; "
         f"locally-bound rows={len(gesture_rows_from_bindings)}"
+    )
+    initial_loadout_relations = [
+        relation for relation in rels if relation.get("initialLoadoutBinding")
+    ]
+    check(len(initial_loadout_relations) == online_stats.get("initialLoadoutRelationCount"),
+          "initial loadout relation count mismatch")
+    check(online_stats.get("initialLoadout_selectable_class_count") == 10,
+          "selectable class count unexpectedly changed")
+    check(online_stats.get("initialLoadout_class_relation_count") == 69,
+          "class initial-loadout relation count unexpectedly changed")
+    check(online_stats.get("initialLoadout_gift_option_count") == 10,
+          "selectable gift option count unexpectedly changed")
+    check(online_stats.get("initialLoadout_gift_relation_count") == 9,
+          "selectable gift relation count unexpectedly changed")
+    check(online_stats.get("initialLoadout_unresolved_slot_count") == 0,
+          "initial loadout slots remain unresolved")
+    for relation in initial_loadout_relations:
+        binding = relation["initialLoadoutBinding"]
+        check(relation.get("method") == "initial_loadout",
+              f"initial loadout relation {relation['id']} has bad method")
+        check(binding.get("sourceType") in {
+            "selectable_starting_class", "selectable_starting_gift",
+        }, f"initial loadout relation {relation['id']} has invalid source type")
+        check(binding.get("sources"),
+              f"initial loadout relation {relation['id']} has no source rows")
+        check(relation.get("verification") in {
+            "local_selectable_class_loadout_exact",
+            "local_selectable_starting_gift_exact",
+        }, f"initial loadout relation {relation['id']} has weak verification")
+        check(all(item.get("item") in entity_ids for item in relation.get("items", [])),
+              f"initial loadout relation {relation['id']} has unresolved item")
+        check(not relation.get("endpointInstances"),
+              f"initial loadout relation {relation['id']} invented a map endpoint")
+    print(
+        f"initial loadout evidence: {len(initial_loadout_relations)} relations; "
+        f"classes={online_stats.get('initialLoadout_selectable_class_count')}; "
+        f"gift-options={online_stats.get('initialLoadout_gift_option_count')}"
     )
     tutorial_binding_ids = [binding.get("id") for binding in tutorial_unlocks.get("bindings", [])]
     check(None not in tutorial_binding_ids, "tutorial unlock binding missing id")

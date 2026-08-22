@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T08:08:09.942345+00:00",
+  "generatedAt": "2026-08-22T08:23:23.297002+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
@@ -10,7 +10,7 @@
     "failedGateCount": 8,
     "runtimeEntityCount": 11223,
     "searchableEntityCount": 11223,
-    "acquisitionRelationProjectionCount": 55426,
+    "acquisitionRelationProjectionCount": 55504,
     "endpointInstanceProjectionCount": 171482,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
@@ -26,7 +26,7 @@
     },
     "coverageGapCount": 6727,
     "unboundEndpointCount": 4433,
-    "acquirableEntityWithoutRelationCount": 35
+    "acquirableEntityWithoutRelationCount": 33
   },
   "gates": [
     {
@@ -102,7 +102,7 @@
     {
       "name": "acquirable_entities_without_acquisition",
       "status": "fail",
-      "actual": 35,
+      "actual": 33,
       "expected": 0,
       "evidence": "player entity acquisitions"
     },
@@ -172,9 +172,7 @@
       "item_grave_keeper_s_brainpan",
       "item_holy_water_grease",
       "item_iji_s_confession",
-      "item_lands_between_rune",
       "item_lucent_baldachin_s_blessing",
-      "item_memory_of_grace",
       "item_nailstone",
       "item_note_great_coffins",
       "item_phantom_bloody_finger",

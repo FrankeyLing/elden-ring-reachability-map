@@ -358,6 +358,27 @@ def main() -> int:
             ("item_smoldering_butterfly", 1),
         }, default_craft_relation
 
+        memory_of_grace = query(id="item_memory_of_grace")
+        assert memory_of_grace["found"] is True, memory_of_grace
+        memory_relations = [
+            relation for relation in memory_of_grace["entity"]["acquisitions"]
+            if relation.get("id") == "initial-loadout-class-item_memory_of_grace"
+        ]
+        assert len(memory_relations) == 1, memory_of_grace
+        assert memory_relations[0]["verification"] == "local_selectable_class_loadout_exact"
+        assert len(memory_relations[0]["initialLoadoutBinding"]["sources"]) == 10
+
+        lands_between_rune = query(id="item_lands_between_rune")
+        assert lands_between_rune["found"] is True, lands_between_rune
+        gift_relations = [
+            relation for relation in lands_between_rune["entity"]["acquisitions"]
+            if relation.get("id") == "initial-loadout-gift-100302-item_lands_between_rune"
+        ]
+        assert len(gift_relations) == 1, lands_between_rune
+        gift_source = gift_relations[0]["initialLoadoutBinding"]["sources"][0]
+        assert gift_source["sourceRowId"] == 2402, gift_source
+        assert gift_source["selectionValue"] == 2, gift_source
+
         mapped_alias = query(id="item_glintstone_cometshard")
         assert mapped_alias["found"] is True, mapped_alias
         assert mapped_alias["entity"]["id"] == "spell_glintstone_cometshard", mapped_alias
