@@ -492,8 +492,9 @@ function renderEntityResults(payload) {
   }
   els.entityResults.innerHTML = records.map((entity) => {
     const name = entity.name?.zh || entity.name?.en || entity.id;
+    const enOfficial = entity.properties?.officialEnName !== false;
     const secondary = entity.name?.en && entity.name?.zh && entity.name.en !== entity.name.zh
-      ? ` · ${entity.name.en}` : "";
+      ? (enOfficial ? ` · ${entity.name.en}` : " · 官方英文名缺失") : "";
     const counts = entity.counts || {};
     const acquisition = Number(counts.acquisitions || 0);
     return `<button class="entity-result" type="button" data-entity-id="${escapeHtml(entity.id)}">
@@ -513,6 +514,10 @@ function renderEntityDetail(payload) {
     return;
   }
   const name = entityName(entity);
+  const nameStatus = [
+    entity.properties?.officialZhName === false ? "无官方中文名" : null,
+    entity.properties?.officialEnName === false ? "无官方英文名" : null,
+  ].filter(Boolean).join("；");
   const topology = entity.topology || {};
   const abstractTopology = payload.abstractTopology || {};
   const abstractRouteEvidence = payload.abstractRouteEvidence || {};
@@ -652,7 +657,7 @@ function renderEntityDetail(payload) {
     : "";
   els.entityDetail.innerHTML = `<div class="entity-detail-card">
     <div class="entity-detail-head"><div><h3>${escapeHtml(name)}</h3><span>${escapeHtml(entityKindLabel(entity))} · ${escapeHtml(entity.category || "")}</span></div><button type="button" class="entity-detail-close" aria-label="关闭">×</button></div>
-    <div class="entity-detail-en">${escapeHtml(entity.name?.en || "")}</div>
+    <div class="entity-detail-en">${escapeHtml(entity.name?.en || "")}${nameStatus ? `<em class="entity-name-missing">（${escapeHtml(nameStatus)}）</em>` : ""}</div>
     <div class="entity-detail-status"><strong>${escapeHtml(entityTopologyLabel(topology.status))}</strong><span>${escapeHtml(topologyMeta)}</span></div>
     ${routeActionHtml}
     ${abstractTopologyHtml}

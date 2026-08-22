@@ -331,6 +331,7 @@ code { color: #c0b58f; font-size: 9px; }
 .entity-detail-head span { display: block; color: var(--gold); font-size: 8px; margin-top: 3px; }
 .entity-detail-close { border: 0; background: transparent; color: #7f8984; cursor: pointer; font-size: 17px; line-height: 1; padding: 0 2px; }
 .entity-detail-en { color: #727a75; font-size: 8px; margin-top: 4px; }
+.entity-name-missing { color: #b98a4a; font-style: normal; }
 .entity-detail-status { display: flex; flex-direction: column; gap: 3px; margin-top: 9px; padding: 7px 8px; border-left: 2px solid rgba(230, 200, 121, .5); background: rgba(230, 200, 121, .05); font-size: 8px; line-height: 1.5; }
 .entity-detail-status strong { color: #c9b978; font-weight: 500; }
 .entity-detail-status span { color: #7f8984; }

@@ -71,5 +71,33 @@
   "selectAcquisition": true,
   "selectOrigin": true,
   "renderExecutableRoute": true
- }
+ },
+ "extraVerifications": [
+  {
+   "label": "5.1 official-name marker rendering",
+   "searchQuery": "燃炉魔像",
+   "canonicalId": "enemy_furnace_golem",
+   "searchCardText": "燃炉魔像 敌人 · 官方英文名缺失",
+   "detailMarker": "（无官方中文名；无官方英文名）",
+   "url": "http://127.0.0.1:8127/",
+   "verifiedAt": "2026-08-22T23:xx:xxZ",
+   "method": "in-app-browser search then detail click"
+  },
+  {
+   "label": "chapter-4 category vocabulary searchable via live server",
+   "terms": [
+    "精英",
+    "入侵者",
+    "地标",
+    "联机",
+    "祷告",
+    "战灰",
+    "铃珠",
+    "漫步灵庙",
+    "燃炉魔像"
+   ],
+   "method": "scripts/test-player-search-runtime.py 43/43 PASS against the running server",
+   "verifiedAt": "2026-08-22T23:xx:xxZ"
+  }
+ ]
 }

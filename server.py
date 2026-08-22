@@ -2639,6 +2639,10 @@ class AppHandler(SimpleHTTPRequestHandler):
                         "kind": entity.get("kind"),
                         "category": entity.get("category"),
                         "weaponFamily": entity.get("properties", {}).get("weaponFamily"),
+                        "properties": {
+                            "officialEnName": entity.get("properties", {}).get("officialEnName"),
+                            "officialZhName": entity.get("properties", {}).get("officialZhName"),
+                        },
                         "name": entity.get("name"),
                         "aliases": entity.get("aliases", [])[:8],
                         "sourceOnly": bool(entity.get("properties", {}).get("sourceOnly")),
