@@ -354,6 +354,25 @@
     "private API"
    ],
    "freshness": "manual review per claim"
+  },
+  {
+   "id": "fextralife_wiki",
+   "name": "Elden Ring Wiki (fextralife.com wiki)",
+   "url": "https://eldenring.wiki.fextralife.com/",
+   "access": "public wiki pages",
+   "license": "community wiki content; factual extracts only",
+   "v1_role": [
+    "merchant_stock_cross_check",
+    "item_acquisition_reference"
+   ],
+   "import_status": "reference_only_used_2026-08-23",
+   "exclude": [
+    "expressive article text",
+    "images",
+    "walkthrough quotations"
+   ],
+   "freshness": "per-page review; used for Twin Maiden Husks stock cross-check",
+   "note": "Used as an independent second source for merchant stock (contract 7 two-source cross-check)."
   }
  ]
 }
