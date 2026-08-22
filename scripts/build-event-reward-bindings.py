@@ -84,6 +84,18 @@ def decode_args(raw: bytes, definition: dict[str, Any]) -> list[int | None]:
     return values
 
 
+def decode_direct_item_args(raw: bytes) -> tuple[int, int, int, int]:
+    """Decode 2003:43 using its verified 16-byte on-disk layout.
+
+    The EMEDF semantic type codes do not by themselves describe the padding
+    and 32-bit storage used by the final two arguments. The parsed instruction
+    bytes and Smithbox decoder both agree on B3x/i/I/I.
+    """
+    if len(raw) < 16:
+        raise ValueError("truncated direct item arguments")
+    return struct.unpack_from("<B3xiII", raw, 0)
+
+
 def load_rows(param_dir: Path, table: str) -> dict[int, dict[str, Any]]:
     rows = json.loads((param_dir / f"{table}.json").read_text(encoding="utf-8"))["rows"]
     return {int(row["id"]): row["cells"] for row in rows}
@@ -169,12 +181,17 @@ def initialize_event_call_sites(
 def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Path, flags_path: Path) -> dict[str, Any]:
     emedf = json.loads(emedf_path.read_text(encoding="utf-8"))
     definitions: dict[tuple[int, int], dict[str, Any]] = {}
+    direct_item_definition: dict[str, Any] | None = None
     for group in emedf["main_classes"]:
         for instruction in group.get("instrs", []):
             if instruction.get("name") in {"Award Item Lot", "Award Items (Including Clients)"}:
                 definitions[(int(group["index"]), int(instruction["index"]))] = instruction
+            elif instruction.get("name") == "Directly Give Player Item":
+                direct_item_definition = instruction
     if not definitions:
         raise SystemExit("award instruction definitions not found")
+    if direct_item_definition is None:
+        raise SystemExit("direct item instruction definition not found")
 
     tables = load_name_tables()
     flag_names = load_flag_names(flags_path)
@@ -190,6 +207,10 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
     unresolved_parameterized_awards: list[dict[str, Any]] = []
     literal_awards = 0
     substituted_awards = 0
+    raw_direct_item_instructions = 0
+    literal_direct_item_bindings = 0
+    substituted_direct_item_bindings = 0
+    unresolved_direct_item_instructions: list[dict[str, Any]] = []
     event_files = {
         file_path.stem: json.loads(file_path.read_text(encoding="utf-8"))
         for file_path in sorted(parsed_dir.glob("*.json"))
@@ -287,6 +308,171 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
                         "source": source,
                         "lot_id": lot_id,
                         "lot_table": lot_table,
+                    })
+
+    # Direct item grants do not reference ItemLotParam. Expand every template
+    # whose item id or backing event-flag range is parameterized at its exact
+    # Initialize Event call sites. This keeps the item fact while avoiding an
+    # invented quest/NPC identity or endpoint.
+    for source_file, file_data in sorted(event_files.items()):
+        file_path = parsed_dir / f"{source_file}.json"
+        map_key = Path(file_data.get("source_file", file_path.name)).name.removesuffix(".emevd.dcx")
+        ref_path = semantic_dir / file_path.name
+        for event in file_data.get("events", []):
+            mappings_by_instruction: dict[int, list[dict[str, Any]]] = defaultdict(list)
+            for mapping in event.get("parameters", []):
+                mappings_by_instruction[int(mapping.get("instruction_index", -1))].append(mapping)
+            for instruction in event.get("instructions", []):
+                if (int(instruction.get("bank", -1)), int(instruction.get("id", -1))) != (2003, 43):
+                    continue
+                raw_direct_item_instructions += 1
+                instruction_index = int(instruction["index"])
+                raw = bytes.fromhex(str(instruction.get("args_hex") or ""))
+                relevant_mappings = [
+                    mapping
+                    for mapping in mappings_by_instruction.get(instruction_index, [])
+                    if int(mapping.get("target_start_byte", -1)) in (4, 8)
+                    and int(mapping.get("byte_count", 0)) == 4
+                ]
+                resolved_sources: list[tuple[bytes, dict[str, Any]]] = []
+                if not relevant_mappings:
+                    resolved_sources.append((raw, {
+                        "map": map_key,
+                        "eventId": int(event["id"]),
+                        "instructionIndex": instruction_index,
+                        "resolution": "direct_literal_instruction_arguments",
+                    }))
+                else:
+                    calls = initialize_event_call_sites(event_files, source_file, int(event["id"]))
+                    for call in calls:
+                        resolved_raw = bytearray(raw)
+                        complete = True
+                        for mapping in relevant_mappings:
+                            source_offset = int(mapping["source_start_byte"])
+                            target_offset = int(mapping["target_start_byte"])
+                            buffer = call["parameterBuffer"]
+                            if source_offset < 0 or source_offset + 4 > len(buffer):
+                                complete = False
+                                break
+                            resolved_raw[target_offset:target_offset + 4] = buffer[source_offset:source_offset + 4]
+                        if not complete:
+                            continue
+                        resolved_sources.append((bytes(resolved_raw), {
+                            "map": call["callerFile"],
+                            "eventId": call["callerEventId"],
+                            "instructionIndex": call["callerInstructionIndex"],
+                            "templateMap": map_key,
+                            "templateEventId": int(event["id"]),
+                            "templateInstructionIndex": instruction_index,
+                            "resolution": "initialize_event_parameter_substitution",
+                            "parameterMappings": [
+                                {
+                                    "targetByte": int(mapping["target_start_byte"]),
+                                    "sourceByte": int(mapping["source_start_byte"]),
+                                    "byteCount": 4,
+                                }
+                                for mapping in relevant_mappings
+                            ],
+                        }))
+                    if not resolved_sources:
+                        item_id_is_parameterized = any(
+                            int(mapping["target_start_byte"]) == 4
+                            for mapping in relevant_mappings
+                        )
+                        if not item_id_is_parameterized:
+                            resolved_sources.append((raw, {
+                                "map": map_key,
+                                "eventId": int(event["id"]),
+                                "instructionIndex": instruction_index,
+                                "resolution": "direct_literal_item_parameterized_flag",
+                                "baseEventFlagStatus": "parameterized_call_site_unresolved",
+                            }))
+                        else:
+                            unresolved_direct_item_instructions.append({
+                                "file": source_file,
+                                "eventId": int(event["id"]),
+                                "instructionIndex": instruction_index,
+                                "reason": "parameterized_direct_item_template_has_no_verified_call_site",
+                            })
+                for resolved_raw, source in resolved_sources:
+                    try:
+                        decoded = decode_direct_item_args(resolved_raw)
+                    except (ValueError, IndexError, struct.error):
+                        continue
+                    item_type = int(decoded[0]) if decoded[0] is not None else -1
+                    item_id = int(decoded[1]) if decoded[1] is not None else -1
+                    base_flag = int(decoded[2]) if decoded[2] is not None else -1
+                    used_flag_bits = int(decoded[3]) if decoded[3] is not None else -1
+                    if source["resolution"] == "direct_literal_item_parameterized_flag":
+                        base_flag = -1
+                    name_entry = tables.get("GoodsName", {}).get(item_id, {})
+                    english = clean_name(name_entry.get("en"))
+                    if item_type != 3 or item_id <= 0 or not english:
+                        unresolved_direct_item_instructions.append({
+                            "file": source_file,
+                            "eventId": int(event["id"]),
+                            "instructionIndex": instruction_index,
+                            "itemType": item_type,
+                            "itemId": item_id,
+                            "reason": "direct_item_type_or_official_name_unresolved",
+                        })
+                        continue
+                    source.update({
+                        "itemType": item_type,
+                        "itemId": item_id,
+                        "baseEventFlagId": base_flag,
+                        "usedEventFlagBits": used_flag_bits,
+                    })
+                    if source["resolution"] in {
+                        "direct_literal_instruction_arguments",
+                        "direct_literal_item_parameterized_flag",
+                    }:
+                        literal_direct_item_bindings += 1
+                        binding_id = f"event-reward-direct-{map_key}-{source['eventId']}-{source['instructionIndex']}"
+                    else:
+                        substituted_direct_item_bindings += 1
+                        binding_id = (
+                            f"event-reward-direct-{source['map']}-{source['eventId']}-{source['instructionIndex']}"
+                            f"-via-{source['templateMap']}-{source['templateEventId']}-{source['templateInstructionIndex']}"
+                        )
+                    flags = event_flags(ref_path, int(event["id"]), flag_names)
+                    records.append({
+                        "id": binding_id,
+                        "method": "event_reward",
+                        "map": source["map"],
+                        "eventId": int(source["eventId"]),
+                        "instructionIndex": int(source["instructionIndex"]),
+                        "awardSource": source,
+                        "directGrant": {
+                            "instruction": "Directly Give Player Item",
+                            "itemType": item_type,
+                            "itemId": item_id,
+                            "baseEventFlagId": base_flag,
+                            "usedEventFlagBits": used_flag_bits,
+                        },
+                        "items": [{
+                            "item": f"item_{re.sub(r'[^a-z0-9]+', '_', english.lower()).strip('_')}",
+                            "name": {
+                                "en": english,
+                                "zh": clean_name(name_entry.get("zh")) or english,
+                            },
+                            "sourceParam": "EquipParamGoods",
+                            "sourceParamId": item_id,
+                            "directItemType": item_type,
+                            "num": None,
+                            "quantityStatus": "not_encoded_as_literal_quantity",
+                        }],
+                        "sourceItemLotRows": [],
+                        "eventFlags": flags["eventFlags"],
+                        "eventFlagIds": sorted(set(flags["eventFlagIds"] + ([base_flag] if base_flag >= 0 else []))),
+                        "taskStatus": "unclassified",
+                        "evidence": [
+                            f"local EMEVD {map_key} event {event['id']} direct item instruction {instruction_index}",
+                            source["resolution"],
+                            f"official EquipParamGoods/GoodsName row {item_id}",
+                            flags["evidenceStatus"],
+                        ],
+                        "verification": "local_emevd_direct_goods_verified",
                     })
 
     roots_by_table: dict[str, set[int]] = {
@@ -401,12 +587,17 @@ def build(parsed_dir: Path, semantic_dir: Path, emedf_path: Path, param_dir: Pat
             "literalAwardBindings": literal_awards,
             "substitutedAwardBindings": substituted_awards,
             "unresolvedParameterizedAwards": len(unresolved_parameterized_awards),
+            "rawDirectItemInstructions": raw_direct_item_instructions,
+            "literalDirectItemBindings": literal_direct_item_bindings,
+            "substitutedDirectItemBindings": substituted_direct_item_bindings,
+            "unresolvedDirectItemInstructions": len(unresolved_direct_item_instructions),
             "bindings": len(records),
             "withEventFlags": sum(bool(record["eventFlagIds"]) for record in records),
             "taskUnclassified": len(records),
         },
         "bindings": records,
         "unresolvedParameterizedAwards": unresolved_parameterized_awards,
+        "unresolvedDirectItemInstructions": unresolved_direct_item_instructions,
     }
 
 

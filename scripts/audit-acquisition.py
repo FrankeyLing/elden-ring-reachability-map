@@ -1022,17 +1022,45 @@ def main() -> int:
         check(binding.get("items"), f"event reward {binding.get('id')} has no items")
         award_source = binding.get("awardSource") or {}
         resolution = award_source.get("resolution")
-        check(resolution in {
-            "literal_instruction_argument",
-            "initialize_event_parameter_substitution",
-        }, f"event reward {binding.get('id')} has invalid award-source resolution")
-        check(award_source.get("lotId") == (binding.get("itemLot") or {}).get("rowId"),
-              f"event reward {binding.get('id')} award-source lot mismatch")
+        direct_grant = binding.get("directGrant") or {}
+        if direct_grant:
+            check(resolution in {
+                "direct_literal_instruction_arguments",
+                "direct_literal_item_parameterized_flag",
+                "initialize_event_parameter_substitution",
+            }, f"direct event reward {binding.get('id')} has invalid award-source resolution")
+            check(direct_grant.get("instruction") == "Directly Give Player Item",
+                  f"direct event reward {binding.get('id')} has wrong instruction identity")
+            check(direct_grant.get("itemType") == 3,
+                  f"direct event reward {binding.get('id')} is not a Goods grant")
+            check(award_source.get("itemId") == direct_grant.get("itemId"),
+                  f"direct event reward {binding.get('id')} source item mismatch")
+            check(not binding.get("sourceItemLotRows"),
+                  f"direct event reward {binding.get('id')} invents ItemLot rows")
+            check(all(item.get("sourceParam") == "EquipParamGoods"
+                      and item.get("sourceParamId") == direct_grant.get("itemId")
+                      for item in binding.get("items", [])),
+                  f"direct event reward {binding.get('id')} item provenance mismatch")
+        else:
+            check(resolution in {
+                "literal_instruction_argument",
+                "initialize_event_parameter_substitution",
+            }, f"event reward {binding.get('id')} has invalid award-source resolution")
+            check(award_source.get("lotId") == (binding.get("itemLot") or {}).get("rowId"),
+                  f"event reward {binding.get('id')} award-source lot mismatch")
         if resolution == "initialize_event_parameter_substitution":
-            check(all(isinstance(award_source.get(key), int) for key in (
+            common_keys = (
                 "eventId", "instructionIndex", "templateEventId",
-                "templateInstructionIndex", "parameterSourceByte",
-            )), f"event reward {binding.get('id')} has incomplete parameter-substitution provenance")
+                "templateInstructionIndex",
+            )
+            check(all(isinstance(award_source.get(key), int) for key in common_keys),
+                  f"event reward {binding.get('id')} has incomplete parameter-substitution provenance")
+            if direct_grant:
+                check(bool(award_source.get("parameterMappings")),
+                      f"direct event reward {binding.get('id')} lacks argument mappings")
+            else:
+                check(isinstance(award_source.get("parameterSourceByte"), int),
+                      f"event reward {binding.get('id')} lacks parameter source byte")
             check(award_source.get("templateMap"),
                   f"event reward {binding.get('id')} is missing its template map")
     parameterized_fixture = next(
@@ -1051,12 +1079,50 @@ def main() -> int:
             item.get("item") == "item_talisman_pouch"
             for item in parameterized_fixture.get("items", [])
         ), "known common-event parameter substitution resolved the wrong item")
+    direct_stats = event_rewards.get("stats", {})
+    check(direct_stats.get("rawDirectItemInstructions") == 127,
+          "direct item instruction source count drifted")
+    check(direct_stats.get("unresolvedDirectItemInstructions") == 1,
+          "direct item unresolved count drifted")
+    inverted_statue = next((
+        binding for binding in event_rewards.get("bindings", [])
+        if binding.get("id") == "event-reward-direct-m34_11_00_00-34112150-73"
+    ), None)
+    check(inverted_statue is not None, "Carian Inverted Statue direct-grant fixture is missing")
+    if inverted_statue:
+        check(inverted_statue.get("directGrant") == {
+            "instruction": "Directly Give Player Item",
+            "itemType": 3,
+            "itemId": 8111,
+            "baseEventFlagId": 34112155,
+            "usedEventFlagBits": 1,
+        }, "Carian Inverted Statue direct-grant arguments were decoded incorrectly")
+        check(any(item.get("item") == "item_carian_inverted_statue"
+                  for item in inverted_statue.get("items", [])),
+              "Carian Inverted Statue direct-grant item identity is wrong")
+    parameterized_direct = next((
+        binding for binding in event_rewards.get("bindings", [])
+        if binding.get("id") == "event-reward-direct-common-0-141-via-common-1720-14"
+    ), None)
+    check(parameterized_direct is not None,
+          "parameterized direct-item fixture is missing")
+    if parameterized_direct:
+        check((parameterized_direct.get("directGrant") or {}).get("itemId") == 9101,
+              "parameterized direct-item fixture resolved the wrong Goods row")
     event_relations = [rel for rel in rels if rel.get("method") == "event_reward"]
     for rel in event_relations:
         binding = rel.get("eventRewardBinding") or {}
         check(binding.get("id") == rel.get("id"), f"event reward relation {rel['id']} binding mismatch")
         check(binding.get("taskStatus") == "unclassified",
               f"event reward relation {rel['id']} must remain unclassified")
+        if binding.get("directGrant"):
+            check(not binding.get("itemLot"),
+                  f"direct event reward {rel['id']} invents an ItemLot binding")
+            check(not binding.get("sourceItemLotRows"),
+                  f"direct event reward {rel['id']} invents a lot chain")
+            check(binding.get("verification") == "local_emevd_direct_goods_verified",
+                  f"direct event reward {rel['id']} has weak verification")
+            continue
         root_lot = (binding.get("itemLot") or {}).get("rowId")
         lot_rows = binding.get("sourceItemLotRows") or []
         check(lot_rows and lot_rows[0] == root_lot,

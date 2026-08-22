@@ -926,6 +926,31 @@ def main() -> int:
                     for item in relation.get("items", []))
             for relation in dryleaf_arts["entity"]["acquisitions"]
         ), dryleaf_arts
+
+        inverted_statue = query(id="item_carian_inverted_statue")
+        assert inverted_statue["found"] is True
+        assert any(
+            relation.get("eventRewardBinding", {}).get("id")
+            == "event-reward-direct-m34_11_00_00-34112150-73"
+            and relation.get("eventRewardBinding", {}).get("directGrant") == {
+                "instruction": "Directly Give Player Item",
+                "itemType": 3,
+                "itemId": 8111,
+                "baseEventFlagId": 34112155,
+                "usedEventFlagBits": 1,
+            }
+            for relation in inverted_statue["entity"]["acquisitions"]
+        ), inverted_statue
+
+        direct_tutorial = query(id="item_about_sorceries_and_incantations")
+        assert direct_tutorial["found"] is True
+        assert any(
+            relation.get("eventRewardBinding", {}).get("id")
+            == "event-reward-direct-common-0-141-via-common-1720-14"
+            and relation.get("eventRewardBinding", {}).get("awardSource", {}).get("resolution")
+            == "initialize_event_parameter_substitution"
+            for relation in direct_tutorial["entity"]["acquisitions"]
+        ), direct_tutorial
         assert any(
             cost.get("item") == "item_remembrance_of_the_wild_boar_rider"
             and cost.get("quantity") == 1
@@ -990,15 +1015,15 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66650,
-            "topologyMapExactMapInstanceEndpointCount": 64384,
-            "topologyMapExactLayerEndpointCount": 31808,
+            "topologyMapEndpointCount": 66658,
+            "topologyMapExactMapInstanceEndpointCount": 64392,
+            "topologyMapExactLayerEndpointCount": 31816,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 64288,
+                "exact_map_instance": 64296,
                 "exact_map_instance_alias": 96,
                 "external_map_scope": 2112,
                 "unresolved_map_instance": 119,
