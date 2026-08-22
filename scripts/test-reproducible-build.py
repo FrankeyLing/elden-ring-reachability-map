@@ -64,10 +64,12 @@ def build() -> None:
     current_acquisitions = load(DATA / "entities" / "acquisition-registry.json")
     current_pickups = load(DATA / "entities" / "pickup-location-bindings.json")
     current_event_rewards = load(DATA / "entities" / "event-reward-bindings.json")
+    current_talk_rewards = load(DATA / "entities" / "talk-item-lot-bindings.json")
     current_quest_rewards = load(DATA / "entities" / "quest-reward-bindings.json")
     param_dir = current_acquisitions.get("built_from", {}).get("param_dir")
     msb_dir = current_pickups.get("built_from", {}).get("msb_dir")
     event_sources = current_event_rewards.get("builtFrom", {})
+    talk_sources = current_talk_rewards.get("builtFrom", {})
     quest_sources = current_quest_rewards.get("builtFrom", {})
     if not param_dir or not Path(param_dir).is_dir():
         raise RuntimeError(f"pinned parameter snapshot unavailable: {param_dir}")
@@ -82,6 +84,9 @@ def build() -> None:
     for source_name, source_path in required_event_sources.items():
         if not source_path or not Path(source_path).exists():
             raise RuntimeError(f"pinned event source unavailable ({source_name}): {source_path}")
+    talk_dir = talk_sources.get("talkEsdPython")
+    if not talk_dir or not Path(talk_dir).is_dir():
+        raise RuntimeError(f"pinned Talk ESD source unavailable: {talk_dir}")
     quest_source = quest_sources.get("externalSource")
     if not quest_source or not Path(quest_source).is_file():
         raise RuntimeError(f"pinned quest source unavailable: {quest_source}")
@@ -89,6 +94,14 @@ def build() -> None:
         [sys.executable, "scripts/build-entity-registry.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-gesture-acquisition-bindings.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-tutorial-unlock-bindings.py", "--param-dir", param_dir],
+        [
+            sys.executable,
+            "scripts/build-talk-item-lot-bindings.py",
+            "--talk-dir",
+            talk_dir,
+            "--param-dir",
+            param_dir,
+        ],
         [
             sys.executable,
             "scripts/build-event-reward-bindings.py",

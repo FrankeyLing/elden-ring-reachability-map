@@ -38,6 +38,7 @@ DEFAULT_ENEMY_SPAWNS = ROOT / "data" / "v1" / "entities" / "enemy-spawn-bindings
 DEFAULT_MERCHANT_SHOPS = ROOT / "data" / "v1" / "entities" / "merchant-shop-bindings.json"
 DEFAULT_BOSS_ENDPOINTS = ROOT / "data" / "v1" / "entities" / "boss-reward-endpoints.json"
 DEFAULT_EVENT_REWARDS = ROOT / "data" / "v1" / "entities" / "event-reward-bindings.json"
+DEFAULT_TALK_ITEM_LOTS = ROOT / "data" / "v1" / "entities" / "talk-item-lot-bindings.json"
 DEFAULT_QUEST_REWARDS = ROOT / "data" / "v1" / "entities" / "quest-reward-bindings.json"
 DEFAULT_GESTURE_ACQUISITIONS = ROOT / "data" / "v1" / "entities" / "gesture-acquisition-bindings.json"
 DEFAULT_TUTORIAL_UNLOCKS = ROOT / "data" / "v1" / "entities" / "tutorial-unlock-bindings.json"
@@ -1371,6 +1372,41 @@ def build_event_reward_relations(event_rewards_path: Path | None = None) -> list
             "eventRewardBinding": binding,
             "evidence": binding.get("evidence", []),
             "verification": binding.get("verification", "local_emevd_and_param_verified"),
+        })
+    return relations
+
+
+def build_talk_reward_relations(talk_rewards_path: Path | None = None) -> list[dict]:
+    """Expose exact Talk ESD awards without inventing an NPC or endpoint."""
+    if not talk_rewards_path or not talk_rewards_path.is_file():
+        return []
+    payload = json.loads(talk_rewards_path.read_text(encoding="utf-8"))
+    relations = []
+    for binding in payload.get("bindings", []):
+        items = [
+            {
+                key: item[key]
+                for key in (
+                    "item", "name", "num", "lot", "slot", "category",
+                    "sourceParam", "sourceParamId", "quantityStatus",
+                )
+                if key in item
+            }
+            for item in binding.get("items", [])
+            if item.get("item") and item.get("name", {}).get("en")
+        ]
+        if not items:
+            continue
+        relations.append({
+            "id": binding["id"],
+            "from": None,
+            "method": "talk_reward",
+            "items": items,
+            "talkItemLotBinding": binding,
+            "evidence": binding.get("evidence", []),
+            "verification": binding.get(
+                "verification", "local_talk_esd_and_param_verified"
+            ),
         })
     return relations
 
@@ -2751,6 +2787,7 @@ def main() -> int:
     parser.add_argument("--merchant-shops", type=Path, default=DEFAULT_MERCHANT_SHOPS)
     parser.add_argument("--boss-endpoints", type=Path, default=DEFAULT_BOSS_ENDPOINTS)
     parser.add_argument("--event-rewards", type=Path, default=DEFAULT_EVENT_REWARDS)
+    parser.add_argument("--talk-item-lots", type=Path, default=DEFAULT_TALK_ITEM_LOTS)
     parser.add_argument("--quest-rewards", type=Path, default=DEFAULT_QUEST_REWARDS)
     parser.add_argument("--gesture-acquisitions", type=Path, default=DEFAULT_GESTURE_ACQUISITIONS)
     parser.add_argument("--tutorial-unlocks", type=Path, default=DEFAULT_TUTORIAL_UNLOCKS)
@@ -2842,6 +2879,19 @@ def main() -> int:
             event_reward_rows.add(value)
             if binding.get("id") not in event_bindings_by_lot[value]:
                 event_bindings_by_lot[value].append(binding.get("id"))
+    talk_reward_payload = (
+        json.loads(args.talk_item_lots.read_text(encoding="utf-8"))
+        if args.talk_item_lots.is_file() else {"bindings": []}
+    )
+    talk_bindings_by_lot: dict[int, list[str]] = defaultdict(list)
+    talk_reward_rows: set[int] = set()
+    for binding in talk_reward_payload.get("bindings", []):
+        for value in binding.get("sourceItemLotRows", []):
+            if not isinstance(value, int):
+                continue
+            talk_reward_rows.add(value)
+            if binding.get("id") not in talk_bindings_by_lot[value]:
+                talk_bindings_by_lot[value].append(binding.get("id"))
     non_pickup_param_relations = [
         relation for relation in all_map_lot_relations
         if relation["lot"]["rowId"] not in published_pickup_rows
@@ -2850,6 +2900,7 @@ def main() -> int:
     pickup_source_exclusions = []
     orphan_treasure_exclusion_count = 0
     event_reward_exclusion_count = 0
+    talk_reward_exclusion_count = 0
     unclassified_map_lot_gaps = []
     for relation in non_pickup_param_relations:
         row_id = relation["lot"]["rowId"]
@@ -2890,6 +2941,22 @@ def main() -> int:
                 ],
                 "verification": "local_param_and_emevd_classified",
             })
+        elif row_id in talk_reward_rows:
+            talk_reward_exclusion_count += 1
+            pickup_source_exclusions.append({
+                "id": f"item-lot-map-exclusion-talk-{row_id}",
+                "method": "talk_reward",
+                "status": "classified_talk_award_not_fixed_pickup",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "talkItemLotBindingIds": talk_bindings_by_lot.get(row_id, []),
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    "local Talk ESD AwardItemLot reference; published as a talk reward",
+                    "no copied MSB Treasure reference for this lot root",
+                ],
+                "verification": "local_param_and_talk_esd_classified",
+            })
         else:
             unclassified_map_lot_gaps.append({
                 "id": f"item-lot-map-unclassified-{row_id}",
@@ -2911,6 +2978,7 @@ def main() -> int:
     print(
         "non-pickup map lots: "
         f"event-classified={event_reward_exclusion_count}; "
+        f"talk-classified={talk_reward_exclusion_count}; "
         f"orphan-treasure={orphan_treasure_exclusion_count}; "
         f"unclassified={len(unclassified_map_lot_gaps)}"
     )
@@ -2965,6 +3033,8 @@ def main() -> int:
     print(f"boss reward relations: {len(boss_rewards)}")
     event_rewards = build_event_reward_relations(args.event_rewards)
     print(f"event reward relations: {len(event_rewards)}")
+    talk_rewards = build_talk_reward_relations(args.talk_item_lots)
+    print(f"talk reward relations: {len(talk_rewards)}")
     gesture_acquisitions = build_gesture_acquisition_relations(args.gesture_acquisitions)
     print(f"gesture acquisition relations: {len(gesture_acquisitions)}")
     tutorial_unlocks = build_tutorial_unlock_relations(args.tutorial_unlocks)
@@ -3070,7 +3140,8 @@ def main() -> int:
     }]
     all_entities = entities + enemies + shop_entities + manual_entities
     relations = (
-        drops + pickups + shops + boss_rewards + event_rewards + gesture_acquisitions
+        drops + pickups + shops + boss_rewards + event_rewards + talk_rewards
+        + gesture_acquisitions
         + tutorial_unlocks
         + quest_rewards + online_map_relations + online_guide_relations
         + online_item_map_relations + online_cookbook_relations
@@ -3102,6 +3173,7 @@ def main() -> int:
             "merchant_shop_bindings": str(args.merchant_shops),
             "boss_reward_endpoints": str(args.boss_endpoints),
             "event_reward_bindings": str(args.event_rewards),
+            "talk_item_lot_bindings": str(args.talk_item_lots),
             "quest_reward_bindings": str(args.quest_rewards),
             "gesture_acquisition_bindings": str(args.gesture_acquisitions),
             "tutorial_unlock_bindings": str(args.tutorial_unlocks),
@@ -3145,11 +3217,13 @@ def main() -> int:
             ],
             "pickupMissingBindingRelationCount": pickup_endpoint_stats["missing_bindings"],
             "pickupEventRewardExclusionCount": event_reward_exclusion_count,
+            "pickupTalkRewardExclusionCount": talk_reward_exclusion_count,
             "pickupOrphanTreasureExclusionCount": orphan_treasure_exclusion_count,
             "unclassifiedItemLotParamMapCount": len(unclassified_map_lot_gaps),
             **{f"pickup_{key}": value for key, value in pickup_gap_stats.items()},
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
             "event_reward": len(event_rewards),
+            "talk_reward": len(talk_rewards),
             "quest_reward": len(quest_rewards),
             "gesture_acquisition": len(gesture_acquisitions),
             "tutorial_unlock": len(tutorial_unlocks),

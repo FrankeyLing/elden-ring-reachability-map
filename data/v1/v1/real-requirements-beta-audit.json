@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "beta",
-  "generatedAt": "2026-08-22T08:26:08.159802+00:00",
+  "generatedAt": "2026-08-22T09:00:25.573815+00:00",
   "status": "pass",
   "summary": {
     "gateCount": 9,
@@ -10,7 +10,7 @@
     "failedGateCount": 0,
     "runtimeEntityCount": 11223,
     "searchableEntityCount": 11223,
-    "acquisitionRelationProjectionCount": 55504,
+    "acquisitionRelationProjectionCount": 55711,
     "endpointInstanceProjectionCount": 171482,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
@@ -24,9 +24,9 @@
       "exact_abstract_map_anchor": 48,
       "candidate_abstract_map_anchor": 35
     },
-    "coverageGapCount": 6727,
+    "coverageGapCount": 6601,
     "unboundEndpointCount": 4433,
-    "acquirableEntityWithoutRelationCount": 33
+    "acquirableEntityWithoutRelationCount": 20
   },
   "gates": [
     {
@@ -98,20 +98,11 @@
     "missingCategories": [],
     "searchSignifierMissing": [],
     "acquirableWithoutRelations": [
-      "accessory_arsenal_charm",
       "item_about_multiplayer",
-      "item_black_syrup",
       "item_burial_crow_s_letter",
       "item_drawstring_freezing_grease",
       "item_erdtree_codex",
       "item_erdtree_prayerbook",
-      "item_forager_brood_cookbook_1",
-      "item_forager_brood_cookbook_2",
-      "item_forager_brood_cookbook_3",
-      "item_forager_brood_cookbook_4",
-      "item_forager_brood_cookbook_5",
-      "item_forager_brood_cookbook_6",
-      "item_forager_brood_cookbook_7",
       "item_golden_order_principles",
       "item_grave_keeper_s_brainpan",
       "item_holy_water_grease",
@@ -124,10 +115,6 @@
       "item_phantom_recusant_finger",
       "item_roped_freezing_pot",
       "item_roundrock",
-      "item_sellian_sealbreaker",
-      "item_spectral_steed_whistle",
-      "spell_beast_claw",
-      "spell_stone_of_gurranq",
       "weapon_dryleaf_arts",
       "weapon_rogier_s_rapier",
       "weapon_sword_lance"

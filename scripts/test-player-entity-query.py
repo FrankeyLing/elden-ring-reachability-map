@@ -888,6 +888,30 @@ def main() -> int:
             for relation in eccentric_event_rewards
         ), eccentric_event_rewards
 
+        whistle = query(id="item_spectral_steed_whistle")
+        assert whistle["found"] is True
+        whistle_rewards = [
+            relation for relation in whistle["entity"]["acquisitions"]
+            if relation.get("method") == "talk_reward"
+        ]
+        assert any(
+            relation.get("talkItemLotBinding", {}).get("talkFile") == "t000003000"
+            and relation.get("talkItemLotBinding", {}).get("itemLot", {}).get("rowId") == 100000
+            and len(relation.get("talkItemLotBinding", {}).get("callSites", [])) == 2
+            and not relation.get("endpointInstances")
+            for relation in whistle_rewards
+        ), whistle_rewards
+
+        beast_claw = query(id="spell_beast_claw")
+        stone_of_gurranq = query(id="spell_stone_of_gurranq")
+        assert beast_claw["found"] is True and stone_of_gurranq["found"] is True
+        for result in (beast_claw, stone_of_gurranq):
+            assert any(
+                relation.get("method") == "talk_reward"
+                and relation.get("talkItemLotBinding", {}).get("itemLot", {}).get("rowId") == 102310
+                for relation in result["entity"]["acquisitions"]
+            ), result
+
         kale_detail = query(id="npc_merchant_kal")
         assert kale_detail["found"] is True
         assert kale_detail["entity"]["counts"]["shopSales"] > 0, kale_detail
@@ -934,8 +958,9 @@ def main() -> int:
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6727, index
-        assert coverage["sourceExclusionCount"] == 835, coverage
+        assert len(index["coverageGaps"]) == 6601, index
+        assert coverage["sourceExclusionCount"] == 961, coverage
+        assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 126, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
@@ -975,7 +1000,7 @@ def main() -> int:
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 736
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 610
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206

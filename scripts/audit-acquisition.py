@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
+KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -77,6 +77,8 @@ def main() -> int:
     boss_endpoints = json.loads(boss_endpoint_path.read_text(encoding="utf-8")) if boss_endpoint_path.is_file() else {"endpoints": []}
     event_reward_path = DATA / "entities" / "event-reward-bindings.json"
     event_rewards = json.loads(event_reward_path.read_text(encoding="utf-8")) if event_reward_path.is_file() else {"bindings": []}
+    talk_reward_path = DATA / "entities" / "talk-item-lot-bindings.json"
+    talk_rewards = json.loads(talk_reward_path.read_text(encoding="utf-8")) if talk_reward_path.is_file() else {"bindings": []}
     quest_reward_path = DATA / "entities" / "quest-reward-bindings.json"
     quest_rewards = json.loads(quest_reward_path.read_text(encoding="utf-8")) if quest_reward_path.is_file() else {"bindings": []}
     gesture_path = DATA / "entities" / "gesture-acquisition-bindings.json"
@@ -481,6 +483,10 @@ def main() -> int:
         row for row in pickup_source_exclusions
         if row.get("status") == "classified_event_award_not_fixed_pickup"
     ]
+    talk_reward_pickup_exclusions = [
+        row for row in pickup_source_exclusions
+        if row.get("status") == "classified_talk_award_not_fixed_pickup"
+    ]
     orphan_treasure_exclusions = [
         row for row in pickup_source_exclusions
         if row.get("status") == "orphan_treasure_event_without_part"
@@ -573,6 +579,11 @@ def main() -> int:
         "event-reward pickup exclusion count does not match stats",
     )
     check(
+        len(talk_reward_pickup_exclusions)
+        == acquisition_stats.get("pickupTalkRewardExclusionCount"),
+        "talk-reward pickup exclusion count does not match stats",
+    )
+    check(
         len(orphan_treasure_exclusions)
         == acquisition_stats.get("pickupOrphanTreasureExclusionCount"),
         "orphan Treasure exclusion count does not match stats",
@@ -605,6 +616,11 @@ def main() -> int:
               f"pickup exclusion {exclusion.get('id')} has no event binding")
         check(exclusion.get("verification") == "local_param_and_emevd_classified",
               f"pickup exclusion {exclusion.get('id')} has weak verification")
+    for exclusion in talk_reward_pickup_exclusions:
+        check(exclusion.get("talkItemLotBindingIds"),
+              f"talk pickup exclusion {exclusion.get('id')} has no talk binding")
+        check(exclusion.get("verification") == "local_param_and_talk_esd_classified",
+              f"talk pickup exclusion {exclusion.get('id')} has weak verification")
     for exclusion in orphan_treasure_exclusions:
         check(exclusion.get("sourceTreasureEventIds"),
               f"orphan Treasure exclusion {exclusion.get('id')} has no event identity")
@@ -618,6 +634,7 @@ def main() -> int:
     print(
         "non-pickup map lot classification: "
         f"event-reward={len(event_reward_pickup_exclusions)}; "
+        f"talk-reward={len(talk_reward_pickup_exclusions)}; "
         f"orphan-treasure={len(orphan_treasure_exclusions)}; "
         f"unclassified={len(unclassified_map_lot_gaps)}"
     )
@@ -1018,6 +1035,69 @@ def main() -> int:
             check(binding.get("verification") == "local_emevd_and_param_verified_sequential_lot_chain",
                   f"event reward {rel['id']} sequential chain has weak verification")
     print(f"event reward evidence: {len(event_binding_ids)} bindings; relations={len(event_relations)}; task identity intentionally unclassified")
+    talk_binding_ids = [binding.get("id") for binding in talk_rewards.get("bindings", [])]
+    check(None not in talk_binding_ids, "talk reward binding missing id")
+    check(len(talk_binding_ids) == len(set(talk_binding_ids)),
+          "talk reward binding ids not unique")
+    talk_stats = talk_rewards.get("stats", {})
+    check(talk_stats.get("bindings") == len(talk_binding_ids),
+          "talk reward binding count mismatch")
+    check(talk_stats.get("parseFailures") == 0,
+          "Talk ESD parser has source failures")
+    check(talk_stats.get("resolvedAwardCallDefinitions") == talk_stats.get("syntacticAwardCalls"),
+          "Talk ESD contains an award definition with no exact resolved call site")
+    for binding in talk_rewards.get("bindings", []):
+        check(binding.get("method") == "talk_reward",
+              f"talk reward {binding.get('id')} bad method")
+        check(binding.get("taskStatus") == "npc_and_quest_unclassified",
+              f"talk reward {binding.get('id')} overstates NPC or quest identity")
+        check(binding.get("items"), f"talk reward {binding.get('id')} has no items")
+        check(binding.get("callSites"), f"talk reward {binding.get('id')} has no exact call site")
+        check(not binding.get("endpointInstances"),
+              f"talk reward {binding.get('id')} invents an endpoint")
+        lot_rows = binding.get("sourceItemLotRows") or []
+        root_lot = (binding.get("itemLot") or {}).get("rowId")
+        check(lot_rows and lot_rows[0] == root_lot,
+              f"talk reward {binding.get('id')} missing lot-chain root")
+        for item in binding.get("items", []):
+            check(item.get("sourceParam") and isinstance(item.get("sourceParamId"), int),
+                  f"talk reward {binding.get('id')} item lacks canonical signifier")
+            check(item.get("lot") in set(lot_rows),
+                  f"talk reward {binding.get('id')} item points outside lot chain")
+    talk_relations = [rel for rel in rels if rel.get("method") == "talk_reward"]
+    check(len(talk_relations) == len(talk_binding_ids),
+          "talk reward relation count mismatch")
+    for relation in talk_relations:
+        binding = relation.get("talkItemLotBinding") or {}
+        check(binding.get("id") == relation.get("id"),
+              f"talk reward relation {relation.get('id')} binding mismatch")
+        check(not relation.get("endpointInstances"),
+              f"talk reward relation {relation.get('id')} invents an endpoint")
+    whistle = next((
+        binding for binding in talk_rewards.get("bindings", [])
+        if binding.get("id") == "talk-item-lot-m00_00_00_00-t000003000-100000"
+    ), None)
+    check(whistle is not None, "Spectral Steed Whistle Talk ESD fixture is missing")
+    if whistle:
+        check(any(item.get("sourceParam") == "EquipParamGoods"
+                  and item.get("sourceParamId") == 130
+                  for item in whistle.get("items", [])),
+              "Spectral Steed Whistle fixture resolved the wrong item")
+        check(len(whistle.get("callSites", [])) == 2,
+              "Spectral Steed Whistle fixture lost a dialogue branch")
+    gurranq = [
+        relation for relation in talk_relations
+        if (relation.get("talkItemLotBinding", {}).get("itemLot") or {}).get("rowId") == 102310
+    ]
+    check(any({item.get("item") for item in relation.get("items", [])}
+              >= {"spell_beast_claw", "spell_stone_of_gurranq"}
+              for relation in gurranq),
+          "Gurranq Talk ESD fixture did not canonicalize both incantations")
+    print(
+        f"talk reward evidence: {len(talk_binding_ids)} bindings; "
+        f"relations={len(talk_relations)}; unresolved-lots={talk_stats.get('unresolvedLots', 0)}; "
+        "NPC identity and endpoints intentionally unclassified"
+    )
     gesture_binding_ids = [binding.get("id") for binding in gesture_acquisitions.get("bindings", [])]
     check(None not in gesture_binding_ids, "gesture acquisition binding missing id")
     check(len(gesture_binding_ids) == len(set(gesture_binding_ids)),

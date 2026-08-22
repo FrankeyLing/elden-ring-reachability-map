@@ -83,7 +83,7 @@ def compact_acquisition(
             "id", "from", "method", "lot", "evidence", "verification",
             "items", "price", "costType", "stock", "lineupRow",
             "sourceNpcParamRows", "sellerStatus", "merchantShopBinding",
-            "sourceItemLotRows", "eventRewardBinding",
+            "sourceItemLotRows", "eventRewardBinding", "talkItemLotBinding",
             "questRewardBinding", "onlineMapMarker", "craftRecipe", "localRecipe",
             "pickupLocationBinding", "pickupEndpointStatus", "initialLoadoutBinding",
         )
