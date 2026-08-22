@@ -2,20 +2,20 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T10:20:09.847952+00:00",
+  "generatedAt": "2026-08-22T10:35:25.500454+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
     "passedGateCount": 10,
     "failedGateCount": 7,
-    "runtimeEntityCount": 11212,
-    "searchableEntityCount": 11212,
-    "acquisitionRelationProjectionCount": 55882,
-    "endpointInstanceProjectionCount": 171497,
+    "runtimeEntityCount": 11213,
+    "searchableEntityCount": 11213,
+    "acquisitionRelationProjectionCount": 56024,
+    "endpointInstanceProjectionCount": 171649,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
-    "formalAnchorEndpointCount": 64068,
-    "containmentRegionEndpointCount": 64064,
+    "formalAnchorEndpointCount": 64220,
+    "containmentRegionEndpointCount": 64216,
     "containmentUnresolvedEndpointCount": 328,
     "nonFormalAnchorBreakdown": {
       "external_map_scope": 2108,
@@ -24,7 +24,7 @@
       "exact_abstract_map_anchor": 48,
       "candidate_abstract_map_anchor": 35
     },
-    "coverageGapCount": 6592,
+    "coverageGapCount": 6535,
     "unboundEndpointCount": 4433,
     "acquirableEntityWithoutRelationCount": 0
   },
@@ -32,8 +32,8 @@
     {
       "name": "runtime_entity_count_matches_projection",
       "status": "pass",
-      "actual": 11212,
-      "expected": 11212,
+      "actual": 11213,
+      "expected": 11213,
       "evidence": "player-entity-index.json"
     },
     {
@@ -95,7 +95,7 @@
     {
       "name": "authoritative_source_coverage_gaps",
       "status": "fail",
-      "actual": 6592,
+      "actual": 6535,
       "expected": 0,
       "evidence": "acquisition-registry coverageGaps"
     },

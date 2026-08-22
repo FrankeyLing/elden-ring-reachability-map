@@ -481,15 +481,19 @@ def build_enemies_npcs(npc_rows: list[dict], tables) -> tuple[list[dict], dict[i
             continue
         ensure(en, clean_name(entry.get("zh")), nid, None)
 
-    # pass 3: unnamed NpcParam rows that still carry a real enemy drop lot.
+    # pass 3: unnamed NpcParam rows that still carry a real enemy or map drop lot.
     # Ordinary enemies do not necessarily have an NpcName FMG entry.  Group
     # them by the stable behavior-variation identity so their drop sources are
     # retained without pretending that a guessed English name is authoritative.
     fallback_by_behavior: dict[int, dict] = {}
     for r in npc_rows:
         cells = r["cells"]
-        lot_id = cells.get("itemLotId_enemy", -1)
-        if lot_id is None or lot_id <= 0 or r["id"] in row_to_entity:
+        enemy_lot_id = cells.get("itemLotId_enemy", -1)
+        map_lot_id = cells.get("itemLotId_map", -1)
+        if (
+            (not isinstance(enemy_lot_id, int) or enemy_lot_id <= 0)
+            and (not isinstance(map_lot_id, int) or map_lot_id <= 0)
+        ) or r["id"] in row_to_entity:
             continue
         behavior_id = cells.get("behaviorVariationId") or 0
         fallback_key = behavior_id if behavior_id > 0 else r["id"]
@@ -522,7 +526,10 @@ def build_enemies_npcs(npc_rows: list[dict], tables) -> tuple[list[dict], dict[i
             entities[ent["name"]["en"]] = ent
         ent["signifiers"][0]["rows"].append(r["id"])
         ent["variant_count"] += 1
-        ent["properties"].setdefault("dropItemLotEnemy", lot_id)
+        if isinstance(enemy_lot_id, int) and enemy_lot_id > 0:
+            ent["properties"].setdefault("dropItemLotEnemy", enemy_lot_id)
+        if isinstance(map_lot_id, int) and map_lot_id > 0:
+            ent["properties"].setdefault("dropItemLotMap", map_lot_id)
         row_to_entity[r["id"]] = ent["id"]
 
     return sorted(entities.values(), key=lambda e: e["id"]), row_to_entity
@@ -1503,6 +1510,50 @@ def build_event_reward_relations(event_rewards_path: Path | None = None) -> list
             "evidence": binding.get("evidence", []),
             "verification": binding.get("verification", "local_emevd_and_param_verified"),
         })
+    return relations
+
+
+def build_npc_map_drops(
+    npc_rows: list[dict], row_to_entity: dict[int, str], lot_rows: list[dict],
+    tables, custom_weapons: dict[int, dict] | None = None,
+) -> list[dict]:
+    """Guaranteed NPC/character drops stored through NpcParam.itemLotId_map."""
+    lot_by_id = {row["id"]: row["cells"] for row in lot_rows}
+    relations = []
+    for row in npc_rows:
+        lot_id = row["cells"].get("itemLotId_map")
+        entity_id = row_to_entity.get(row["id"])
+        lot = lot_by_id.get(lot_id)
+        if not entity_id or not isinstance(lot_id, int) or lot_id <= 0 or not lot:
+            continue
+        items = []
+        for slot in range(1, 9):
+            item_id = lot.get(f"lotItemId{slot:02d}")
+            category = lot.get(f"lotItemCategory{slot:02d}")
+            if not isinstance(item_id, int) or item_id <= 0:
+                continue
+            resolved = resolve_lot_item(tables, category, item_id, custom_weapons)
+            if resolved:
+                items.append({
+                    **resolved, "lot": lot_id, "slot": slot,
+                    "num": lot.get(f"lotItemNum{slot:02d}"),
+                    "rate": lot.get(f"lotItemBasePoint{slot:02d}"),
+                })
+        if items:
+            relations.append({
+                "id": f"npc-map-drop-{row['id']}-lot{lot_id}",
+                "from": entity_id,
+                "method": "npc_map_drop",
+                "lot": {"param": "ItemLotParam_map", "rowId": lot_id},
+                "items": items,
+                "sourceNpcParamRows": [row["id"]],
+                "sourceItemLotRows": [lot_id],
+                "evidence": [
+                    f"regulation.bin NpcParam row {row['id']} itemLotId_map={lot_id}",
+                    f"regulation.bin ItemLotParam_map row {lot_id}",
+                ],
+                "verification": "local_npc_map_item_lot_verified",
+            })
     return relations
 
 
@@ -3016,6 +3067,17 @@ def main() -> int:
     )
 
     lot_map = param_rows(args.param_dir, "ItemLotParam_map")
+    npc_map_drops = build_npc_map_drops(
+        npc_rows, row_to_entity, lot_map, tables, custom_weapons
+    )
+    npc_map_drop_rows = {
+        row_id for relation in npc_map_drops
+        for row_id in relation.get("sourceItemLotRows", [])
+    }
+    print(
+        f"NPC map-drop relations: {len(npc_map_drops)}; "
+        f"classified roots={len(npc_map_drop_rows)}"
+    )
     boss_lots = set()
     import glob as _glob
     for bp in _glob.glob(str(ROOT / "data" / "v1" / "entities" / "boss-rewards.json")):
@@ -3161,6 +3223,23 @@ def main() -> int:
                 ],
                 "verification": "local_param_and_external_acquisition_evidence",
             })
+        elif row_id in npc_map_drop_rows:
+            pickup_source_exclusions.append({
+                "id": f"item-lot-map-exclusion-npc-drop-{row_id}",
+                "method": "npc_map_drop",
+                "status": "classified_npc_map_drop_not_fixed_pickup",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "npcMapDropRelationIds": [
+                    row["id"] for row in npc_map_drops
+                    if row_id in row.get("sourceItemLotRows", [])
+                ],
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    "referenced by NpcParam.itemLotId_map and published as an NPC map-drop relation",
+                ],
+                "verification": "local_npc_map_item_lot_verified",
+            })
         else:
             unclassified_map_lot_gaps.append({
                 "id": f"item-lot-map-unclassified-{row_id}",
@@ -3237,6 +3316,10 @@ def main() -> int:
     })
     drop_endpoint_count = attach_enemy_spawn_endpoints(drops, args.enemy_spawns)
     print(f"enemy spawn endpoints attached: {drop_endpoint_count}")
+    npc_map_drop_endpoint_count = attach_enemy_spawn_endpoints(
+        npc_map_drops, args.enemy_spawns
+    )
+    print(f"NPC map-drop spawn endpoints attached: {npc_map_drop_endpoint_count}")
 
     boss_rewards = build_boss_reward_relations(entities + enemies, tables, args.boss_endpoints)
     print(f"boss reward relations: {len(boss_rewards)}")
@@ -3350,7 +3433,7 @@ def main() -> int:
     }]
     all_entities = entities + enemies + shop_entities + manual_entities
     relations = (
-        drops + pickups + shops + boss_rewards + event_rewards + talk_rewards
+        drops + npc_map_drops + pickups + shops + boss_rewards + event_rewards + talk_rewards
         + gesture_acquisitions
         + tutorial_unlocks
         + quest_rewards + online_map_relations + online_guide_relations
@@ -3420,6 +3503,8 @@ def main() -> int:
         },
         "stats": {
             "drop": len(drops), "pickup": len(pickups), "shop": len(shops),
+            "npc_map_drop": len(npc_map_drops),
+            "npcMapDropRootCount": len(npc_map_drop_rows),
             **drop_coverage,
             "pickupBindingCount": pickup_endpoint_stats["bindings"],
             "pickupEndpointRelationCount": pickup_endpoint_stats["endpoint_relations"],

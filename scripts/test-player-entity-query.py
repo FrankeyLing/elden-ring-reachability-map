@@ -1024,22 +1024,22 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66658,
-            "topologyMapExactMapInstanceEndpointCount": 64392,
-            "topologyMapExactLayerEndpointCount": 31816,
+            "topologyMapEndpointCount": 66810,
+            "topologyMapExactMapInstanceEndpointCount": 64544,
+            "topologyMapExactLayerEndpointCount": 31968,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 64296,
+                "exact_map_instance": 64448,
                 "exact_map_instance_alias": 96,
                 "external_map_scope": 2112,
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6592, index
-        assert coverage["sourceExclusionCount"] == 968, coverage
+        assert len(index["coverageGaps"]) == 6535, index
+        assert coverage["sourceExclusionCount"] == 1025, coverage
         assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 127, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
@@ -1080,7 +1080,7 @@ def main() -> int:
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 601
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 544
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
@@ -1116,6 +1116,13 @@ def main() -> int:
                 acquisition.get("method") == method
                 for acquisition in special["entity"].get("acquisitions", [])
             ), special
+        varre_bouquet = query(id="weapon_varr_s_bouquet")
+        assert varre_bouquet["found"] is True, varre_bouquet
+        assert any(
+            acquisition.get("method") == "npc_map_drop"
+            and acquisition.get("verification") == "local_npc_map_item_lot_verified"
+            for acquisition in varre_bouquet["entity"].get("acquisitions", [])
+        ), varre_bouquet
         outer_order = query(id="item_outer_order")
         assert outer_order["found"] is True, outer_order
         assert any(

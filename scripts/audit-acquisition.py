@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest"}
+KNOWN_METHODS = {"drop", "npc_map_drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -165,6 +165,20 @@ def main() -> int:
             check(len(binding.get("sourceItemLotRows", [])) == 1,
                   f"harvest {binding['id']} missing exact ItemLotParam_map row")
             check(bool(binding.get("region")), f"harvest {binding['id']} missing region evidence")
+    npc_map_drops = [rel for rel in rels if rel.get("method") == "npc_map_drop"]
+    check(len(npc_map_drops) == acquisitions.get("stats", {}).get("npc_map_drop") == 142,
+          "NPC map-drop relation coverage changed")
+    check(len({row for rel in npc_map_drops for row in rel.get("sourceItemLotRows", [])}) == 59,
+          "NPC map-drop root coverage changed")
+    for relation in npc_map_drops:
+        check(relation.get("verification") == "local_npc_map_item_lot_verified",
+              f"NPC map drop {relation['id']} has weak verification")
+        check(len(relation.get("sourceNpcParamRows", [])) == 1,
+              f"NPC map drop {relation['id']} must retain one exact NpcParam source row")
+        check(len(relation.get("sourceItemLotRows", [])) == 1,
+              f"NPC map drop {relation['id']} must retain one exact map-lot row")
+        check(bool(relation.get("from")) and bool(relation.get("items")),
+              f"NPC map drop {relation['id']} has unresolved source or items")
     for rel in rels:
         check(rel["method"] in KNOWN_METHODS, f"relation {rel['id']} unknown method {rel['method']}")
         if rel.get("from"):
