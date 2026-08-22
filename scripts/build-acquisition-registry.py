@@ -3828,7 +3828,7 @@ def main() -> int:
         "kind": "enemy",
         "category": "furnace_golem",
         "class": None,
-        "name": {"en": "Furnace Golem", "zh": "鐕冪倝榄斿儚"},
+        "name": {"en": "Furnace Golem", "zh": "燃炉魔像"},
         "signifiers": [{"type": "manual", "note": "no official NpcName; identified by model"}],
         "properties": {},
         "variant_count": 1,

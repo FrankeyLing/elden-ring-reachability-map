@@ -63,6 +63,7 @@ CATEGORY_SEARCH_ALIASES = {
     "spirit_spring": ["灵泉", "Spirit Spring"],
     "caravan": ["车队", "Caravan"],
     "hidden_passage": ["暗门", "隐藏通道", "Hidden Passage"],
+    "furnace_golem": ["燃炉魔像", "炉像", "Furnace Golem"],
 }
 
 WEAPON_FAMILY_SEARCH_ALIASES = {
