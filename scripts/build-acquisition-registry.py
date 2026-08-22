@@ -539,6 +539,8 @@ def build_enemies_npcs(npc_rows: list[dict], tables) -> tuple[list[dict], dict[i
                 "properties": {
                     "identityStatus": "unresolved",
                     "behaviorVariationId": behavior_id if behavior_id > 0 else None,
+                    "officialEnName": False,
+                    "officialZhName": False,
                 },
                 "variant_count": 0,
             }
