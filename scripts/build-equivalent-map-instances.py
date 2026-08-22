@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Reproduce exact-equivalence evidence for selected parsed MapStudio pairs."""
+"""Reproduce research-only content-equivalence evidence for parsed map pairs.
+
+Matching normalized content does not establish map-instance identity, world
+state, or route interchangeability.  The output is deliberately not consumed
+as an exact topology binding.
+"""
 
 from __future__ import annotations
 
@@ -73,13 +78,17 @@ def main() -> int:
             "SHA-256 over parsed MapStudio JSON after recursively removing "
             "source_file/source_entry/map_id/mapId and replacing the pair member ids with <MAP>"
         ),
-        "groups": rows,
+        "identityPolicy": (
+            "Research-only content equivalence is not map-instance identity "
+            "and must never promote a candidate binding."
+        ),
+        "researchOnlyContentEquivalentGroups": rows,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"wrote {len(rows)} exact-equivalence groups to {args.out}")
+    print(f"wrote {len(rows)} research-only content-equivalence groups to {args.out}")
     return 0
 
 

@@ -23,6 +23,11 @@
       "role": "acquisition-relations"
     },
     {
+      "path": "data/v1/entities/acquisition-contains-bindings.json",
+      "required": true,
+      "role": "acquisition-endpoint-region-containment"
+    },
+    {
       "path": "data/v1/entities/acquisition-topology-bridge.json",
       "required": true,
       "role": "acquisition-topology-evidence"

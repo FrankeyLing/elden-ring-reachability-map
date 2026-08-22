@@ -2,7 +2,8 @@
   "schema": "elden-ring-reachability-map/equivalent-map-instances@1",
   "sourceSnapshot": "elden-ring-local-snapshot-20260818",
   "algorithm": "SHA-256 over parsed MapStudio JSON after recursively removing source_file/source_entry/map_id/mapId and replacing the pair member ids with <MAP>",
-  "groups": [
+  "identityPolicy": "Research-only content equivalence is not map-instance identity and must never promote a candidate binding.",
+  "researchOnlyContentEquivalentGroups": [
     {
       "coarseMapId": "m60_45_39",
       "mapIds": [

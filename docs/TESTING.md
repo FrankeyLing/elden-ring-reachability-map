@@ -46,6 +46,11 @@ python scripts/audit-shop-gap-catalog.py
 python scripts/build-acquisition-topology-bridge.py
 python scripts/audit-acquisition-topology-bridge.py --input data/v1/entities/acquisition-topology-bridge.json --acquisitions data/v1/entities/acquisition-registry.json
 
+# 5.5 containment isolation: proven exact map anchors are contained inside the
+# verified formal region (same resolution chain as build-v1-graph); candidates,
+# external scope and unresolved sources are never promoted
+python scripts/build-contains-bindings.py
+
 # Independent abstract map/layer route evidence graph. This never enters the
 # formal player route graph and does not perform collision or physics checks.
 python scripts/build-abstract-topology-route-graph.py

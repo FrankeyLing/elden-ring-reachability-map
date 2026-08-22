@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 ENTITIES = DATA / "entities"
 DEFAULT_BROWSER_EVIDENCE = DATA / "v1" / "browser-player-closed-loop.json"
+DEFAULT_CONTAINS = ENTITIES / "acquisition-contains-bindings.json"
 
 REQUIRED_CATEGORIES = {
     "armor", "ash_of_war", "bell_bearing", "boss", "cookbook",
@@ -55,6 +56,7 @@ def main() -> int:
     parser.add_argument("--milestone", choices=("beta", "v1"), default="v1")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--browser-evidence", type=Path, default=DEFAULT_BROWSER_EVIDENCE)
+    parser.add_argument("--contains-bindings", type=Path, default=DEFAULT_CONTAINS)
     args = parser.parse_args()
     report_path = args.report or (
         DATA / "v1" / f"real-requirements-{args.milestone}-audit.json"
@@ -63,6 +65,7 @@ def main() -> int:
     player = load(ENTITIES / "player-entity-index.json")
     acquisitions = load(ENTITIES / "acquisition-registry.json")
     bridge = load(ENTITIES / "acquisition-topology-bridge.json")
+    contains = load(args.contains_bindings) if args.contains_bindings.is_file() else {}
     native = load(ENTITIES / "abstract-native-topology.json")
     origins = load(ENTITIES / "abstract-origin-bindings.json")
     reinforce = load(ENTITIES / "reinforce-catalog.json")
@@ -112,8 +115,58 @@ def main() -> int:
     bridge_stats = bridge.get("stats", {})
     native_stats = native.get("stats", {})
     origin_stats = origins.get("stats", {})
+    contains_stats = contains.get("stats", {})
+
+    # 5.5 containment layer: an endpoint with a proven exact map identity is
+    # included inside the verified formal region; candidates, external scope,
+    # and unresolved sources are never promoted by this layer.
+    explicit_anchor_ids = {
+        record.get("id")
+        for record in bridge.get("records", [])
+        if record.get("formalRouteAnchor", {}).get("routeNodeIds")
+    }
+    contained_anchor_ids = {
+        binding.get("bridgeRecordId")
+        for binding in contains.get("bindings", [])
+        if binding.get("containsStatus") == "region_containment"
+        and binding.get("routeNodeIds")
+    }
+    formal_anchor_ids = explicit_anchor_ids | contained_anchor_ids
+    formal_anchor_endpoint_count = len(formal_anchor_ids)
+    non_anchored_breakdown = Counter()
+    for record in bridge.get("records", []):
+        if (
+            record.get("sourceClass") == "acquisition_relation"
+            and record.get("id") not in formal_anchor_ids
+        ):
+            non_anchored_breakdown[str(record.get("abstractAnchor", {}).get("status"))] += 1
     browser_evidence = (
         load(args.browser_evidence) if args.browser_evidence.is_file() else {}
+    )
+    browser_entity = next(
+        (
+            record
+            for record in records
+            if record.get("id") == browser_evidence.get("entity", {}).get("canonicalId")
+        ),
+        None,
+    )
+    browser_dataset = browser_evidence.get("dataset", {})
+    browser_entity_endpoint_count = sum(
+        len(relation.get("endpointInstances", []))
+        for relation in (browser_entity or {}).get("acquisitions", [])
+    )
+    package_manifest = load(DATA / "packages" / "manifest.json")
+    browser_dataset_matches = (
+        browser_dataset.get("playerEntityCount") == len(records)
+        and browser_dataset.get("formalRouteNodeCount") == len(incident_route_nodes)
+        and browser_dataset.get("formalRouteEdgeCount") == len(graph.get("edges", []))
+        and browser_dataset.get("packageCount") == len(package_manifest.get("packages", []))
+        and browser_entity is not None
+        and browser_evidence.get("entity", {}).get("acquisitionRelationCount")
+        == len(browser_entity.get("acquisitions", []))
+        and browser_evidence.get("entity", {}).get("endpointInstanceCount")
+        == browser_entity_endpoint_count
     )
     browser_closed_loop_passed = (
         browser_evidence.get("schema")
@@ -123,6 +176,7 @@ def main() -> int:
         and browser_evidence.get("selectAcquisition") is True
         and browser_evidence.get("selectOrigin") is True
         and browser_evidence.get("renderExecutableRoute") is True
+        and browser_dataset_matches
     )
 
     beta_gates = [
@@ -134,7 +188,7 @@ def main() -> int:
         gate("glovewort_reinforcement_relations", sum(1 for row in reinforce.get("reinforcements", []) if "glovewort" in json.dumps(row).lower()), "> 0", any("glovewort" in json.dumps(row).lower() for row in reinforce.get("reinforcements", [])), "reinforce-catalog.json"),
         gate("common_enemy_drop_relations", acquisition_stats.get("dropRelationCount", 0), "> 3", acquisition_stats.get("dropRelationCount", 0) > 3, "acquisition-registry stats"),
         gate("formal_acquisition_route_relations", formal_relation_count, "> 0", formal_relation_count > 0, "player projection relation topologyBinding"),
-        gate("browser_player_closed_loop", browser_evidence.get("status", "missing"), "pass", browser_closed_loop_passed, str(args.browser_evidence)),
+        gate("browser_player_closed_loop", browser_evidence.get("status", "missing"), "pass with matching current dataset", browser_closed_loop_passed, args.browser_evidence.relative_to(ROOT).as_posix() if args.browser_evidence.is_relative_to(ROOT) else str(args.browser_evidence)),
     ]
 
     coverage_gap_count = len(acquisitions.get("coverageGaps", []))
@@ -145,7 +199,7 @@ def main() -> int:
         gate("unbound_or_unresolved_acquisition_endpoints", topology_unbound_count, 0, topology_unbound_count == 0, "acquisition-topology-bridge stats"),
         gate("candidate_map_endpoints", bridge_stats.get("abstractAnchorStatusCounts", {}).get("candidate_abstract_map_anchor", 0), 0, bridge_stats.get("abstractAnchorStatusCounts", {}).get("candidate_abstract_map_anchor", 0) == 0, "acquisition-topology-bridge stats"),
         gate("external_scope_endpoints", bridge_stats.get("abstractAnchorStatusCounts", {}).get("external_map_scope", 0), 0, bridge_stats.get("abstractAnchorStatusCounts", {}).get("external_map_scope", 0) == 0, "acquisition-topology-bridge stats"),
-        gate("fixed_endpoints_without_formal_route_anchor", bridge_stats.get("acquisitionRelationEndpointCount", 0) - bridge_stats.get("formalRouteAnchorEndpointCount", 0), 0, bridge_stats.get("acquisitionRelationEndpointCount", 0) == bridge_stats.get("formalRouteAnchorEndpointCount", 0), "acquisition-topology-bridge formalRouteAnchorEndpointCount"),
+        gate("fixed_endpoints_without_formal_route_anchor", bridge_stats.get("acquisitionRelationEndpointCount", 0) - formal_anchor_endpoint_count, 0, bridge_stats.get("acquisitionRelationEndpointCount", 0) == formal_anchor_endpoint_count, "acquisition-topology-bridge formalRouteAnchorEndpointCount + acquisition-contains-bindings region_containment"),
         gate("maps_missing_native_topology", native_stats.get("missingNativeMapCount", 0), 0, native_stats.get("missingNativeMapCount", 0) == 0, "abstract-native-topology stats"),
         gate("legal_origins_without_exact_formal_identity", origin_stats.get("recordCount", 0) - origin_stats.get("exactAbstractOriginCount", 0), 0, origin_stats.get("recordCount", 0) == origin_stats.get("exactAbstractOriginCount", 0), "abstract-origin-bindings stats"),
     ]
@@ -168,6 +222,14 @@ def main() -> int:
             "endpointInstanceProjectionCount": endpoint_count,
             "formalAcquisitionRouteRelationCount": formal_relation_count,
             "formalRouteNodeCount": len(incident_route_nodes),
+            "formalAnchorEndpointCount": formal_anchor_endpoint_count,
+            "containmentRegionEndpointCount": len(contained_anchor_ids),
+            "containmentUnresolvedEndpointCount": contains_stats.get(
+                "containmentStatusCounts", {}
+            ).get("region_unresolved", 0),
+            "nonFormalAnchorBreakdown": dict(
+                sorted(non_anchored_breakdown.items(), key=lambda item: (-item[1], item[0]))
+            ),
             "coverageGapCount": coverage_gap_count,
             "unboundEndpointCount": topology_unbound_count,
             "acquirableEntityWithoutRelationCount": len(acquirable_without_relations),

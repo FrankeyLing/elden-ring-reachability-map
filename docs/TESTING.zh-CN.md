@@ -36,6 +36,10 @@ python scripts/audit-shop-gap-catalog.py
 python scripts/build-acquisition-topology-bridge.py
 python scripts/audit-acquisition-topology-bridge.py --input data/v1/entities/acquisition-topology-bridge.json --acquisitions data/v1/entities/acquisition-registry.json
 
+# 区域包含绑定：只有已证明的精确地图身份可以包含到正式区域；
+# 候选、外部范围和未解析终点不得升级为正式绑定
+python scripts/build-contains-bindings.py
+
 # 独立抽象地图/楼层拓扑轨迹包；不进入正式玩家路线，也不执行碰撞或物理检查
 python scripts/build-abstract-topology-route-graph.py
 python scripts/audit-abstract-topology-route-graph.py --input data/v1/entities/abstract-topology-route-graph.json

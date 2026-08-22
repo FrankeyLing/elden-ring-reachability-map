@@ -32,6 +32,7 @@ data/v1/entities/official-fmg-bilingual-index.json
 data/v1/graph-v1.json
 data/v1/entities/abstract-native-topology.json
 data/v1/entities/acquisition-registry.json
+data/v1/entities/acquisition-contains-bindings.json
 data/v1/entities/acquisition-topology-bridge.json
 data/v1/entities/enemy-spawn-bindings.json
 data/v1/entities/online-item-map-records.json

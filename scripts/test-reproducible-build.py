@@ -31,6 +31,7 @@ def snapshot() -> dict[str, Any]:
     player = load(DATA / "entities" / "player-entity-index.json")
     acquisitions = load(DATA / "entities" / "acquisition-registry.json")
     bridge = load(DATA / "entities" / "acquisition-topology-bridge.json")
+    contains = load(DATA / "entities" / "acquisition-contains-bindings.json")
     manifest = load(DATA / "packages" / "manifest.json")
     return {
         "graphNodeIds": sorted(node["id"] for node in graph.get("nodes", [])),
@@ -51,6 +52,7 @@ def snapshot() -> dict[str, Any]:
         "acquisitionSourceExclusions": acquisitions.get("sourceExclusions", []),
         "acquisitionStats": acquisitions.get("stats", {}),
         "acquisitionBridgeStats": bridge.get("stats", {}),
+        "containsBindingsStats": contains.get("stats", {}),
         "packageMembership": sorted(
             (entry["id"], entry.get("nodeCount"), entry.get("edgeCount"))
             for entry in manifest.get("packages", [])
@@ -68,6 +70,7 @@ def build() -> None:
     if not msb_dir or not Path(msb_dir).is_dir():
         raise RuntimeError(f"pinned parsed MapStudio snapshot unavailable: {msb_dir}")
     commands = [
+        [sys.executable, "scripts/build-entity-registry.py", "--param-dir", param_dir],
         [sys.executable, "scripts/build-equivalent-map-instances.py", "--maps-dir", msb_dir],
         [
             sys.executable,
@@ -89,6 +92,7 @@ def build() -> None:
             "--acquisitions",
             "data/v1/entities/acquisition-registry.json",
         ],
+        [sys.executable, "scripts/build-contains-bindings.py"],
         [sys.executable, "scripts/build-player-entity-index.py"],
         [sys.executable, "scripts/build-packages.py", "--graph", "data/v1/graph-v1.json", "--out", "data/v1/packages"],
         [sys.executable, "scripts/audit-packages.py", "--graph", "data/v1/graph-v1.json"],
@@ -106,6 +110,13 @@ def main() -> int:
     build()
     second = snapshot()
     second_digest = digest(second)
+    if first != second:
+        for key in sorted(first):
+            if first[key] != second[key]:
+                print(
+                    f"DIFF {key}: {digest(first[key])} != {digest(second[key])}",
+                    file=sys.stderr,
+                )
     assert first == second, f"non-deterministic stable projection: {first_digest} != {second_digest}"
     print("PASS reproducible two-build stable projection")
     print(f"  sha256={first_digest}")

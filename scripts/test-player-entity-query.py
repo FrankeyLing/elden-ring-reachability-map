@@ -803,16 +803,19 @@ def main() -> int:
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedNoExternalBindingCount"] == 554, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedCandidateBindingCount"] == 134, coverage
         assert coverage["shop"]["shop_coverageGapSellerUnresolvedBindingCount"] == 0, coverage
+        # Research-only content equivalence (equivalent-map-instances identityPolicy)
+        # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
             "topologyMapEndpointCount": 66893,
-            "topologyMapExactMapInstanceEndpointCount": 64775,
+            "topologyMapExactMapInstanceEndpointCount": 64738,
             "topologyMapExactLayerEndpointCount": 32231,
-            "topologyMapCandidateEndpointCount": 0,
+            "topologyMapCandidateEndpointCount": 37,
             "topologyMapExternalScopeEndpointCount": 1999,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
+                "candidate_map_instance": 37,
                 "exact_map_instance": 64584,
-                "exact_map_instance_alias": 191,
+                "exact_map_instance_alias": 154,
                 "external_map_scope": 1999,
                 "unresolved_map_instance": 119,
             },
