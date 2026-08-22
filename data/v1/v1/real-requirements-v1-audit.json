@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T10:53:10.460856+00:00",
+  "generatedAt": "2026-08-22T11:01:20.471553+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
@@ -137,7 +137,7 @@
     {
       "name": "maps_missing_native_topology",
       "status": "fail",
-      "actual": 350,
+      "actual": 32,
       "expected": 0,
       "evidence": "abstract-native-topology stats"
     },

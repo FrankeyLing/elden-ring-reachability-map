@@ -17,6 +17,7 @@ from typing import Any
 
 DEFAULT_NATIVE_INPUT = Path("data/v1/entities/local-native-topology-graph.json")
 DEFAULT_MAP_INPUT = Path("data/v1/entities/local-abstract-topology-graph.json")
+DEFAULT_COVERAGE_INPUT = Path("data/v1/entities/local-map-coverage-classification.json")
 DEFAULT_OUTPUT = Path("data/v1/entities/abstract-native-topology.json")
 
 
@@ -89,11 +90,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--native-input", type=Path, default=DEFAULT_NATIVE_INPUT)
     parser.add_argument("--map-input", type=Path, default=DEFAULT_MAP_INPUT)
+    parser.add_argument("--coverage-input", type=Path, default=DEFAULT_COVERAGE_INPUT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
     native = json.loads(args.native_input.read_text(encoding="utf-8"))
     map_graph = json.loads(args.map_input.read_text(encoding="utf-8")) if args.map_input.is_file() else {}
+    coverage = json.loads(args.coverage_input.read_text(encoding="utf-8"))
+    coverage_by_map = {
+        row["map_id"]: row for row in coverage.get("records", []) if row.get("map_id")
+    }
     native_nodes = [compact_native_node(row) for row in native.get("nodes", [])]
     connectors = [compact_connector(row) for row in native.get("connector_edges", [])]
     bindings = [compact_binding(row) for row in native.get("cross_layer_relations", [])]
@@ -126,6 +132,11 @@ def main() -> int:
             "coverageStatus": "native_partition_present",
         }
     for map_id in missing_map_ids:
+        coverage_record = coverage_by_map.get(map_id, {})
+        inherited = (
+            coverage_record.get("navigation_topology_coverage")
+            == "covered_by_native_child_tiles"
+        )
         map_summary[map_id] = {
             "mapId": map_id,
             "nativeFile": None,
@@ -133,11 +144,27 @@ def main() -> int:
             "connectorCount": 0,
             "boundaryEvidenceCount": 0,
             "nativeComponentCount": 0,
-            "verificationState": "native_partition_missing",
+            "verificationState": (
+                "native_child_tile_coverage_verified"
+                if inherited else "native_partition_missing"
+            ),
             "playerWalkabilityValidated": False,
             "routeable": False,
-            "coverageStatus": "native_partition_missing",
+            "coverageStatus": (
+                "hierarchical_parent_covered_by_native_children"
+                if inherited else "native_partition_missing"
+            ),
+            "nativeChildMapIds": (
+                (coverage_record.get("native_child_tile_coverage") or {}).get(
+                    "nativeChildMapIds", []
+                )
+            ),
         }
+
+    unresolved_missing_map_ids = [
+        map_id for map_id in missing_map_ids
+        if map_summary[map_id]["coverageStatus"] == "native_partition_missing"
+    ]
 
     node_ids = {row["id"] for row in native_nodes}
     assert all(row["from"] in node_ids and row["to"] in node_ids for row in connectors)
@@ -157,6 +184,7 @@ def main() -> int:
         "source": {
             "nativeArtifact": str(args.native_input).replace("\\", "/"),
             "mapArtifact": str(args.map_input).replace("\\", "/"),
+            "coverageArtifact": str(args.coverage_input).replace("\\", "/"),
             "nativeSchema": native.get("schema"),
         },
         "mapCoverage": [map_summary[map_id] for map_id in sorted(map_summary)],
@@ -167,7 +195,9 @@ def main() -> int:
             "mapCoverageCount": len(map_summary),
             "nativeMapCount": len(native_file_map_ids),
             "nativeNodeMapCount": len(native_node_map_ids),
-            "missingNativeMapCount": len(missing_map_ids),
+            "rawMissingNativeMapCount": len(missing_map_ids),
+            "hierarchicalParentCoveredMapCount": len(missing_map_ids) - len(unresolved_missing_map_ids),
+            "missingNativeMapCount": len(unresolved_missing_map_ids),
             "nativeNodeCount": len(native_nodes),
             "connectorEdgeCount": len(connectors),
             "bindingCount": len(bindings),

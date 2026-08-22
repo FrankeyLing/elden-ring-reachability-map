@@ -144,6 +144,17 @@ def build() -> None:
         ],
         [sys.executable, "scripts/build-v1-graph.py"],
         [sys.executable, "scripts/build-graph-integration.py"],
+        [
+            sys.executable,
+            "scripts/build-local-map-coverage-classification.py",
+            "--coverage",
+            "data/v1/entities/local-nva-coverage-audit.json",
+            "--nva",
+            "data/v1/entities/local-nva-navmesh-index.json",
+            "--output",
+            "data/v1/entities/local-map-coverage-classification.json",
+        ],
+        [sys.executable, "scripts/build-abstract-native-topology.py"],
         [sys.executable, "scripts/build-acquisition-topology-bridge.py"],
         [
             sys.executable,

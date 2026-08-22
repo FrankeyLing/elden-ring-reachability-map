@@ -25,7 +25,9 @@ def main() -> int:
     assert len(maps) == payload["stats"]["mapCoverageCount"] == 1347
     assert payload["stats"]["nativeMapCount"] == 997
     assert payload["stats"]["nativeNodeMapCount"] == 846
-    assert payload["stats"]["missingNativeMapCount"] == 350
+    assert payload["stats"]["rawMissingNativeMapCount"] == 350
+    assert payload["stats"]["hierarchicalParentCoveredMapCount"] == 318
+    assert payload["stats"]["missingNativeMapCount"] == 32
     assert len(nodes) == payload["stats"]["nativeNodeCount"] == 9480
     assert len(edges) == payload["stats"]["connectorEdgeCount"] == 5884
     assert len(bindings) == payload["stats"]["bindingCount"] == 11646

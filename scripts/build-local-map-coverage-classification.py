@@ -3,8 +3,9 @@
 
 This is a coverage/classification artifact, not a playability classifier.  It
 keeps maps without NVA in the final inventory and describes exactly which
-static MSBE/NVA signals are present.  No suffix, map-id pattern, or absence of
-NVA is interpreted as playable, cutscene, unused, or duplicate.
+static MSBE/NVA signals are present.  Hierarchical open-world parent tiles are
+also linked mechanically to their level-00 child tiles; this is a topology
+carrier relation, not a claim that the parent file is playable or unused.
 """
 
 from __future__ import annotations
@@ -61,6 +62,47 @@ def classify(capabilities: dict[str, Any], nva_record: dict[str, Any] | None) ->
     return "nva_missing_no_msbe_playability_signal", "no_nva_or_msbe_playability_signal"
 
 
+def native_child_tiles(
+    map_id: str, all_map_ids: set[str], native_map_ids: set[str]
+) -> dict[str, Any] | None:
+    """Return exact level-00 coverage for an open-world hierarchy tile.
+
+    Elden Ring's final map-id component uses its low digit as the hierarchy
+    level: level 1 covers 2x2 level-00 cells and level 2 covers 4x4 cells.
+    The high digit is retained as a content/state variant and does not alter
+    that footprint.  Only child cells present in the copied local inventory
+    participate; world-boundary cells that do not exist are not invented.
+    """
+    parts = map_id.split("_")
+    if len(parts) != 4 or parts[0] not in {"m60", "m61"}:
+        return None
+    try:
+        hierarchy_level = int(parts[3]) % 10
+        tile_x, tile_y = int(parts[1]), int(parts[2])
+    except ValueError:
+        return None
+    if hierarchy_level not in (1, 2):
+        return None
+    factor = 2 ** hierarchy_level
+    expected = {
+        f"{parts[0]}_{x:02d}_{y:02d}_00"
+        for x in range(tile_x * factor, (tile_x + 1) * factor)
+        for y in range(tile_y * factor, (tile_y + 1) * factor)
+    }
+    inventory_children = sorted(expected & all_map_ids)
+    native_children = sorted(set(inventory_children) & native_map_ids)
+    missing_children = sorted(set(inventory_children) - native_map_ids)
+    return {
+        "hierarchyLevel": hierarchy_level,
+        "coverageFactor": factor,
+        "expectedChildCellCount": len(expected),
+        "inventoryChildMapIds": inventory_children,
+        "nativeChildMapIds": native_children,
+        "missingNativeChildMapIds": missing_children,
+        "allInventoryChildrenNative": bool(inventory_children) and not missing_children,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--coverage", type=Path, required=True)
@@ -74,8 +116,7 @@ def main() -> int:
     nva = json.loads(nva_path.read_text(encoding="utf-8"))
     nva_by_map = {record.get("map_id"): record for record in nva.get("records", [])}
 
-    records: list[dict[str, Any]] = []
-    for coverage_record in sorted(coverage.get("missing_maps", []) + [
+    coverage_records = sorted(coverage.get("missing_maps", []) + [
         {
             "map_id": record.get("map_id"),
             "source_file": record.get("source_file"),
@@ -85,7 +126,11 @@ def main() -> int:
         }
         for record in nva.get("records", [])
         if record.get("map_id") not in {item.get("map_id") for item in coverage.get("missing_maps", [])}
-    ], key=lambda row: str(row.get("map_id") or "")):
+    ], key=lambda row: str(row.get("map_id") or ""))
+    all_map_ids = {row.get("map_id") for row in coverage_records if row.get("map_id")}
+    native_map_ids = set(nva_by_map)
+    records: list[dict[str, Any]] = []
+    for coverage_record in coverage_records:
         map_id = coverage_record.get("map_id")
         nva_record = nva_by_map.get(map_id)
         capabilities = dict(coverage_record.get("capabilities") or {})
@@ -99,6 +144,13 @@ def main() -> int:
                 "nva_gate_node_count": section_count(section_counts, "8"),
             }
         classification, basis = classify(capabilities, nva_record)
+        child_coverage = (
+            native_child_tiles(map_id, all_map_ids, native_map_ids)
+            if nva_record is None else None
+        )
+        inherited_native_topology = bool(
+            child_coverage and child_coverage["allInventoryChildrenNative"]
+        )
         records.append(
             {
                 "map_id": map_id,
@@ -111,6 +163,21 @@ def main() -> int:
                 "native_nva_source_sha256": nva_record.get("source_sha256") if nva_record else None,
                 "evidence_classification": classification,
                 "classification_basis": basis,
+                "navigation_topology_role": (
+                    "native_level00_carrier"
+                    if nva_record is not None
+                    else "hierarchical_parent_of_native_level00_tiles"
+                    if inherited_native_topology
+                    else "native_topology_requirement_unresolved"
+                ),
+                "navigation_topology_coverage": (
+                    "native_partition_present"
+                    if nva_record is not None
+                    else "covered_by_native_child_tiles"
+                    if inherited_native_topology
+                    else "unresolved_missing_native_partition"
+                ),
+                "native_child_tile_coverage": child_coverage,
                 "playability_classification": "requires_independent_evidence",
                 "floor_semantics": "unresolved",
                 "routeable": False,
@@ -125,6 +192,14 @@ def main() -> int:
         "map_count": len(records),
         "nva_present_map_count": sum(record["native_nva_present"] for record in records),
         "nva_missing_map_count": sum(not record["native_nva_present"] for record in records),
+        "hierarchical_parent_covered_map_count": sum(
+            record["navigation_topology_coverage"] == "covered_by_native_child_tiles"
+            for record in records
+        ),
+        "native_topology_requirement_unresolved_map_count": sum(
+            record["navigation_topology_coverage"] == "unresolved_missing_native_partition"
+            for record in records
+        ),
         "classification_counts": dict(sorted(classifications.items())),
         "all_playability_unresolved": all(
             record["playability_classification"] == "requires_independent_evidence"
@@ -149,6 +224,7 @@ def main() -> int:
             "not_a_playability_classifier": True,
             "not_a_floor_semantics_classifier": True,
             "missing_nva_is_not_interpreted": True,
+            "hierarchical_parent_coverage_is_not_playability": True,
             "routeable": False,
         },
         "status": status,
