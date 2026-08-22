@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -233,6 +234,29 @@ def main() -> int:
                    if int(e.get("counts", {}).get("acquisitions") or 0) == 0]
         check(not missing, f"category {cat} fully acquirable "
                            f"({len(in_cat)}/{len(in_cat)}; missing {missing})")
+
+    # 6. 5.1 explicit markers: derived/instance labels are not official
+    # bilingual names, and every such record must say so.
+    cjk = re.compile(r"[\u4e00-\u9fff]")
+    non_official_en = 0
+    unmarked_en = []
+    unmarked_zh = []
+    for e in entities:
+        props = e.get("properties") or {}
+        name = e.get("name") or {}
+        if cjk.search(str(name.get("en") or "")):
+            non_official_en += 1
+            if props.get("officialEnName") is not False:
+                unmarked_en.append(e["id"])
+        if not (name.get("zh") or "").strip():
+            if props.get("officialZhName") is not False:
+                unmarked_zh.append(e["id"])
+    check(not unmarked_en,
+          f"every CJK-en record carries officialEnName=False ({non_official_en} marked)")
+    check(not unmarked_zh,
+          f"every zh-missing record carries officialZhName=False "
+          f"({len(unmarked_zh)} unmarked: {unmarked_zh[:5]})")
+    check(non_official_en > 0, "derived en names exist and are explicitly marked")
 
     print(f"\nCHAPTER 4 COVERAGE: {len(CATEGORY_TERMS) + 12} partial checks, "
           f"{len(failures)} failures")

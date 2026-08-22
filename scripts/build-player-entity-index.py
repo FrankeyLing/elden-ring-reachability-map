@@ -850,6 +850,20 @@ def main() -> int:
         for key, value in acquisition_stats.items()
         if key.startswith("topologyMap")
     }
+    # 5.1 explicit markers for non-official names.  Official bilingual names
+    # come from the registry/catalog FMG tables; graph- and instance-derived
+    # labels (拾取点, gate names, summon pools, teleports, world states, ...)
+    # are display summaries that do not exist as official item names.  A
+    # missing official Chinese name is marked the same way.
+    OFFICIAL_NAME_SOURCES = {"entity-registry", "location-catalog"}
+    for record in records.values():
+        name = record.get("name") or {}
+        official = bool(set(record.get("sources", [])) & OFFICIAL_NAME_SOURCES)
+        props = record.setdefault("properties", {})
+        if not official:
+            props["officialEnName"] = False
+        if not (name.get("zh") or "").strip():
+            props["officialZhName"] = False
     payload = {
         "schema": "elden-ring-player-entity-index@1",
         "builtFrom": [
