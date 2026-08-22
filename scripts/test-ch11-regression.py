@@ -173,6 +173,18 @@ def main() -> int:
     # ---- framework/data isolation (章 6) ----------------------------------
     check(idx["stats"].get("quarantinedEntityCount", 0) >= 0, "framework: index sancity")
 
+    # ---- 14. all contract category words must be searchable ----------------
+    for word, minimum in (
+        ("漫步灵庙", 1), ("神授塔", 1), ("法师塔", 1), ("小黄金树", 1),
+        ("洞窟", 1), ("地下墓地", 1), ("教堂", 1), ("城寨", 1), ("封印监牢", 1),
+        ("传送机关", 1), ("车队", 1), ("灵泉", 1), ("谜题", 1), ("盾牌", 1),
+        ("法杖", 1), ("圣印记", 1), ("弓", 1), ("弩", 1), ("追忆", 1),
+        ("大卢恩", 1), ("骨灰", 1), ("战灰", 1), ("护符", 1), ("铃珠", 1),
+        ("锻造石", 1), ("铃兰", 1), ("死根", 1), ("记忆石", 1), ("星光碎片", 1),
+    ):
+        hit = query(q=word, limit=3)
+        check(hit["total_matches"] >= minimum, f"14. 类别词可搜「{word}」({hit['total_matches']})")
+
     failed = [label for ok, label in checks if not ok]
     print(f"\nCH11 RESULT: {len(checks) - len(failed)}/{len(checks)} passed")
     if failed:
