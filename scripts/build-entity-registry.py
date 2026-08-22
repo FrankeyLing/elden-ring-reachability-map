@@ -747,6 +747,16 @@ EXCLUDED_INTERNAL_ACCESSORY_ROWS = {
     6100: "discarded Entwining Umbilical Cord row; non-droppable and uses the internal sort sentinel",
 }
 
+# These named rows remain in GestureParam/GoodsName but have no starting
+# loadout, EMEVD Award Gesture instruction, or Talk ESD AcquireGesture call in
+# the copied game data.  The pinned SaveForge catalog independently marks both
+# as cut content and ban-risk.  They are not player-obtainable V1 entities.
+EXCLUDED_CUT_GESTURE_ROWS = {
+    55: "The Carian Oath cut-content gesture; no local acquisition instruction",
+    96: "Fetal Position cut-content gesture; no local acquisition instruction",
+    110: "unnamed cut-content gesture with no official player-facing GoodsName",
+}
+
 
 def explicit_param_exclusions(
     rows: list[dict], param: str, kind: str, excluded: dict[int, str]
@@ -860,7 +870,27 @@ def main() -> int:
     print(f"ash_of_war: {len(gems)} (excluded internal rows: {len(excluded_gems)})")
     goods_rows = param_rows(args.param_dir, "EquipParamGoods")
     goods = build_goods(goods_rows, tables)
-    gestures = param_rows(args.param_dir, "GestureParam")
+    gesture_rows = param_rows(args.param_dir, "GestureParam")
+    gesture_rows_by_id = {row["id"]: row for row in gesture_rows}
+    excluded_gestures = [
+        {
+            "kind": "gesture",
+            "param": "GestureParam",
+            "row": row_id,
+            "reason": reason,
+            "evidence": [
+                f"disableParam_NT={gesture_rows_by_id[row_id]['cells'].get('disableParam_NT')}",
+                f"itemId={gesture_rows_by_id[row_id]['cells'].get('itemId')}",
+                "no local starting-loadout, EMEVD Award Gesture, or Talk ESD AcquireGesture fact",
+                "pinned SaveForge gestures.go flags=cut_content,ban_risk",
+            ],
+            "reference": "https://github.com/oisis/EldenRing-SaveForge/blob/v1.6.8/backend/db/data/gestures.go",
+        }
+        for row_id, reason in EXCLUDED_CUT_GESTURE_ROWS.items()
+    ]
+    gestures = [
+        row for row in gesture_rows if row["id"] not in EXCLUDED_CUT_GESTURE_ROWS
+    ]
     spells = build_spells(
         param_rows(args.param_dir, "Magic"),
         tables["GoodsName"],
@@ -887,7 +917,11 @@ def main() -> int:
         existing["variant_count"] += ent["variant_count"]
     entities = sorted(by_id.values(), key=lambda e: e["id"])
     gesture_count = apply_gesture_signifiers(entities, gestures, tables)
-    print(f"gestures: {gesture_count} named canonical entities from {len(gestures)} GestureParam rows")
+    print(
+        f"gestures: {gesture_count} named canonical entities from "
+        f"{len(gestures)} eligible GestureParam rows "
+        f"(excluded cut-content rows: {len(excluded_gestures)})"
+    )
     from collections import Counter
     cats = Counter(e["category"] for e in entities)
     print("category distribution:", dict(cats))
@@ -916,10 +950,11 @@ def main() -> int:
             "excluded_internal_weapon_rows": len(excluded_weapons),
             "excluded_internal_armor_rows": len(excluded_internal_armor),
             "excluded_internal_accessory_rows": len(excluded_accessories),
+            "excluded_cut_gesture_rows": len(excluded_gestures),
         },
         "exclusions": (
             excluded_gems + excluded_appearance_armor + excluded_weapons
-            + excluded_internal_armor + excluded_accessories
+            + excluded_internal_armor + excluded_accessories + excluded_gestures
         ),
         "entityAliases": entity_aliases,
         "entities": entities,

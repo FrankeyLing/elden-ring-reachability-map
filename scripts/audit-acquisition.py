@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "quest_reward", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
+KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "quest_reward", "gesture_unlock", "initial_loadout", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -79,6 +79,8 @@ def main() -> int:
     event_rewards = json.loads(event_reward_path.read_text(encoding="utf-8")) if event_reward_path.is_file() else {"bindings": []}
     quest_reward_path = DATA / "entities" / "quest-reward-bindings.json"
     quest_rewards = json.loads(quest_reward_path.read_text(encoding="utf-8")) if quest_reward_path.is_file() else {"bindings": []}
+    gesture_path = DATA / "entities" / "gesture-acquisition-bindings.json"
+    gesture_acquisitions = json.loads(gesture_path.read_text(encoding="utf-8")) if gesture_path.is_file() else {"bindings": []}
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -939,6 +941,49 @@ def main() -> int:
             check(binding.get("verification") == "local_emevd_and_param_verified_sequential_lot_chain",
                   f"event reward {rel['id']} sequential chain has weak verification")
     print(f"event reward evidence: {len(event_binding_ids)} bindings; relations={len(event_relations)}; task identity intentionally unclassified")
+    gesture_binding_ids = [binding.get("id") for binding in gesture_acquisitions.get("bindings", [])]
+    check(None not in gesture_binding_ids, "gesture acquisition binding missing id")
+    check(len(gesture_binding_ids) == len(set(gesture_binding_ids)),
+          "gesture acquisition binding ids not unique")
+    gesture_stats = gesture_acquisitions.get("stats", {})
+    check(gesture_stats.get("bindingCount") == len(gesture_binding_ids),
+          "gesture acquisition binding count mismatch")
+    check(gesture_stats.get("gestureEntityCount") == len(gesture_entities),
+          "gesture acquisition entity count mismatch")
+    gesture_rows_from_bindings = set()
+    for binding in gesture_acquisitions.get("bindings", []):
+        check(binding.get("method") in {"gesture_unlock", "initial_loadout"},
+              f"gesture acquisition {binding.get('id')} bad method")
+        check(binding.get("verification") in {
+            "local_starting_class_param_verified",
+            "local_emevd_gesture_award_verified",
+            "local_talk_esd_gesture_acquisition_verified",
+        }, f"gesture acquisition {binding.get('id')} weak verification")
+        check(binding.get("items"), f"gesture acquisition {binding.get('id')} has no item")
+        for item in binding.get("items", []):
+            check(item.get("item") in entity_ids,
+                  f"gesture acquisition {binding.get('id')} item unresolved")
+            check(item.get("sourceParam") == "GestureParam",
+                  f"gesture acquisition {binding.get('id')} lacks GestureParam evidence")
+            check(item.get("sourceParamId") == binding.get("gestureParamRow"),
+                  f"gesture acquisition {binding.get('id')} row mismatch")
+            gesture_rows_from_bindings.add(item.get("sourceParamId"))
+    gesture_relations = [
+        relation for relation in rels
+        if relation.get("method") in {"gesture_unlock", "initial_loadout"}
+    ]
+    check(len(gesture_relations) == len(gesture_binding_ids),
+          "gesture acquisition relation projection count mismatch")
+    for relation in gesture_relations:
+        binding = relation.get("gestureAcquisitionBinding") or {}
+        check(binding.get("id") == relation.get("id"),
+              f"gesture acquisition relation {relation['id']} binding mismatch")
+    check(gesture_stats.get("locallyBoundGestureRowCount") == len(gesture_rows_from_bindings),
+          "gesture bound-row count mismatch")
+    print(
+        f"gesture acquisition evidence: {len(gesture_binding_ids)} bindings; "
+        f"locally-bound rows={len(gesture_rows_from_bindings)}"
+    )
     quest_binding_ids = [binding.get("id") for binding in quest_rewards.get("bindings", [])]
     check(None not in quest_binding_ids, "quest reward binding missing id")
     check(len(quest_binding_ids) == len(set(quest_binding_ids)), "quest reward binding ids not unique")

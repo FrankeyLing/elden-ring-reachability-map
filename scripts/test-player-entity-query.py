@@ -49,7 +49,21 @@ def main() -> int:
     assert registry["stats"]["excluded_internal_weapon_rows"] == 5, registry["stats"]
     assert registry["stats"]["excluded_internal_armor_rows"] == 17, registry["stats"]
     assert registry["stats"]["excluded_internal_accessory_rows"] == 1, registry["stats"]
-    assert len(registry["exclusions"]) == 68, registry["exclusions"]
+    assert registry["stats"]["excluded_cut_gesture_rows"] == 3, registry["stats"]
+    exclusion_stat_total = sum(
+        value
+        for key, value in registry["stats"].items()
+        if key.startswith("excluded_")
+    )
+    assert len(registry["exclusions"]) == exclusion_stat_total, (
+        len(registry["exclusions"]), exclusion_stat_total
+    )
+    gesture_exclusion_rows = {
+        exclusion["row"]
+        for exclusion in registry["exclusions"]
+        if exclusion.get("kind") == "gesture"
+    }
+    assert gesture_exclusion_rows == {55, 96, 110}, gesture_exclusion_rows
     assert not any(
         entity.get("kind") == "armor"
         and entity.get("properties", {}).get("protectorCategory") == 4
@@ -906,6 +920,30 @@ def main() -> int:
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
         assert sum(gap["method"] == "online_map" for gap in index["coverageGaps"]) == 984
+
+        # Local gesture facts are independent acquisitions.  Starting state,
+        # map event, and Talk ESD evidence must all remain queryable without a
+        # fabricated route endpoint.
+        bow = query(id="item_bow")
+        assert bow["found"] is True, bow
+        assert any(
+            acquisition.get("method") == "initial_loadout"
+            for acquisition in bow["entity"].get("acquisitions", [])
+        ), bow
+        warm_welcome = query(id="item_warm_welcome")
+        assert warm_welcome["found"] is True, warm_welcome
+        assert any(
+            acquisition.get("method") == "gesture_unlock"
+            and acquisition.get("verification") == "local_emevd_gesture_award_verified"
+            for acquisition in warm_welcome["entity"].get("acquisitions", [])
+        ), warm_welcome
+        outer_order = query(id="item_outer_order")
+        assert outer_order["found"] is True, outer_order
+        assert any(
+            acquisition.get("method") == "gesture_unlock"
+            and acquisition.get("verification") == "local_talk_esd_gesture_acquisition_verified"
+            for acquisition in outer_order["entity"].get("acquisitions", [])
+        ), outer_order
         print("PASS player entity query")
         print(f"  glovewort_matches={glovewort['total_matches']}")
         print(f"  smithing_matches={smithing['total_matches']}")
