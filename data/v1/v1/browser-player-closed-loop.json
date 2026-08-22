@@ -2,13 +2,13 @@
   "schema": "elden-ring-reachability-map/browser-player-closed-loop@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "status": "pass",
-  "generatedAt": "2026-08-22T07:42:03.690907Z",
+  "generatedAt": "2026-08-22T10:22:00Z",
   "browser": {
     "backend": "edge-extension",
     "url": "http://127.0.0.1:8129/"
   },
   "dataset": {
-    "playerEntityCount": 11223,
+    "playerEntityCount": 11212,
     "formalRouteNodeCount": 938,
     "formalRouteEdgeCount": 1601,
     "packageCount": 13
@@ -59,7 +59,7 @@
   "serverFacts": {
     "manifest": "13/13 数据包已加载",
     "graphStats": "122 个区域 · 938 节点 · 1601 条边（点击区域下钻）",
-    "projection": "玩家实体查询投影：11245 个实体，已隔离 0 个",
+    "projection": "玩家实体查询投影：11212 个实体，已隔离 0 个",
     "searchResultCount": "铃兰命中 30+ 规范实体，锻造石命中 20+ 规范实体（按种获取聚合，无强化伪实体）"
   },
   "searchEntity": true,

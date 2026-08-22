@@ -775,7 +775,29 @@ EXCLUDED_CUT_GOODS_ROWS = {
     8192: "Asimi's Husk cut quest item",
     8195: "Asimi, Silver Chrysalid cut quest item",
     9304: "Fugitive Warrior's Recipe [5] cut cookbook",
+    9195: "About Multiplayer unused information item",
+    8156: "Burial Crow's Letter cut quest item variant",
+    8181: "Burial Crow's Letter cut quest item variant",
+    1570: "Drawstring Freezing Grease unused consumable",
+    8861: "Erdtree Codex cut key item",
+    8860: "Erdtree Prayerbook cut key item",
+    8863: "Golden Order Principles cut key item",
+    3300: "Holy Water Grease unused consumable",
+    8189: "Iji's Confession cut quest item",
+    8102: "Lucent Baldachin's Blessing cut consumable",
+    8706: "Note: Great Coffins unused information item variant",
+    8756: "Note: Great Coffins unused information item variant",
+    480: "Roped Freezing Pot unused consumable",
 }
+
+SAVEFORGE_CUT_GOODS_ROWS = {3020, 8147, 8192, 8195, 9304}
+WIKIGG_CUT_GOODS_REFERENCES = {
+    9195: "https://eldenring.wiki.gg/wiki/About_Multiplayer",
+    8706: "https://eldenring.wiki.gg/wiki/Great_Coffin",
+    8756: "https://eldenring.wiki.gg/wiki/Great_Coffin",
+    480: "https://eldenring.wiki.gg/wiki/Roped_Freezing_Pot",
+}
+WIKIGG_UNUSED_CONTENT_REFERENCE = "https://eldenring.wiki.gg/wiki/Unused_Content"
 
 
 def explicit_param_exclusions(
@@ -893,14 +915,21 @@ def main() -> int:
         goods_rows, "EquipParamGoods", "item", EXCLUDED_CUT_GOODS_ROWS
     )
     for exclusion in excluded_goods:
-        exclusion["evidence"].extend([
-            "no local item-lot, shop, event-award, or starting-loadout acquisition fact",
-            "pinned SaveForge catalog marks the record as cut content",
-        ])
-        exclusion["reference"] = (
-            "https://github.com/oisis/EldenRing-SaveForge/tree/v1.6.8/"
-            "backend/db/data"
+        exclusion["evidence"].append(
+            "no local item-lot, shop, event-award, direct-grant, or starting-loadout acquisition fact"
         )
+        row_id = exclusion["row"]
+        if row_id in SAVEFORGE_CUT_GOODS_ROWS:
+            exclusion["evidence"].append("pinned SaveForge catalog marks the record as cut content")
+            exclusion["reference"] = (
+                "https://github.com/oisis/EldenRing-SaveForge/tree/v1.6.8/"
+                "backend/db/data"
+            )
+        else:
+            exclusion["evidence"].append("wiki.gg documents the named record as unused or unobtainable")
+            exclusion["reference"] = WIKIGG_CUT_GOODS_REFERENCES.get(
+                row_id, WIKIGG_UNUSED_CONTENT_REFERENCE
+            )
     goods = build_goods([
         row for row in goods_rows if row["id"] not in EXCLUDED_CUT_GOODS_ROWS
     ], tables)

@@ -50,7 +50,7 @@ def main() -> int:
     assert registry["stats"]["excluded_internal_armor_rows"] == 17, registry["stats"]
     assert registry["stats"]["excluded_internal_accessory_rows"] == 1, registry["stats"]
     assert registry["stats"]["excluded_cut_gesture_rows"] == 3, registry["stats"]
-    assert registry["stats"]["excluded_cut_goods_rows"] == 5, registry["stats"]
+    assert registry["stats"]["excluded_cut_goods_rows"] == 18, registry["stats"]
     exclusion_stat_total = sum(
         value
         for key, value in registry["stats"].items()
@@ -70,13 +70,22 @@ def main() -> int:
         for exclusion in registry["exclusions"]
         if exclusion.get("param") == "EquipParamGoods"
     }
-    assert cut_goods_rows == {3020, 8147, 8192, 8195, 9304}, cut_goods_rows
+    assert cut_goods_rows == {
+        3020, 8147, 8192, 8195, 9304, 9195, 8156, 8181, 1570,
+        8861, 8860, 8863, 3300, 8189, 8102, 8706, 8756, 480,
+    }, cut_goods_rows
     cut_goods_ids = {
         "item_miranda_s_prayer",
         "item_asimi_silver_tear",
         "item_asimi_s_husk",
         "item_asimi_silver_chrysalid",
         "item_fugitive_warrior_s_recipe_5",
+        "item_about_multiplayer", "item_burial_crow_s_letter",
+        "item_drawstring_freezing_grease", "item_erdtree_codex",
+        "item_erdtree_prayerbook", "item_golden_order_principles",
+        "item_holy_water_grease", "item_iji_s_confession",
+        "item_lucent_baldachin_s_blessing", "item_note_great_coffins",
+        "item_roped_freezing_pot",
     }
     assert not cut_goods_ids.intersection(
         entity["id"] for entity in registry["entities"]
@@ -1029,8 +1038,8 @@ def main() -> int:
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6595, index
-        assert coverage["sourceExclusionCount"] == 965, coverage
+        assert len(index["coverageGaps"]) == 6592, index
+        assert coverage["sourceExclusionCount"] == 968, coverage
         assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 127, coverage
         assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
@@ -1071,7 +1080,7 @@ def main() -> int:
         }, index["coverageGaps"]
         assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 604
+        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 601
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
         assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
         assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
@@ -1093,6 +1102,20 @@ def main() -> int:
             and acquisition.get("verification") == "local_emevd_gesture_award_verified"
             for acquisition in warm_welcome["entity"].get("acquisitions", [])
         ), warm_welcome
+        for entity_id, method in {
+            "item_phantom_bloody_finger": "session_grant",
+            "item_phantom_recusant_finger": "session_grant",
+            "item_phantom_great_rune": "session_grant",
+            "item_grave_keeper_s_brainpan": "harvest",
+            "item_nailstone": "harvest",
+            "item_roundrock": "harvest",
+        }.items():
+            special = query(id=entity_id)
+            assert special["found"] is True, special
+            assert any(
+                acquisition.get("method") == method
+                for acquisition in special["entity"].get("acquisitions", [])
+            ), special
         outer_order = query(id="item_outer_order")
         assert outer_order["found"] is True, outer_order
         assert any(

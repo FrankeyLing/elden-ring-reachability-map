@@ -48,6 +48,7 @@ DEFAULT_ONLINE_ITEM_MAP = ROOT / "data" / "v1" / "entities" / "online-item-map-r
 DEFAULT_ONLINE_COOKBOOK_RECIPES = ROOT / "data" / "v1" / "entities" / "online-cookbook-recipes.json"
 DEFAULT_PICKUP_BINDINGS = ROOT / "data" / "v1" / "entities" / "pickup-location-bindings.json"
 DEFAULT_ABSTRACT_TOPOLOGY_GRAPH = ROOT / "data" / "v1" / "entities" / "local-abstract-topology-graph.json"
+DEFAULT_SPECIAL_ACQUISITIONS = ROOT / "data" / "v1" / "entities" / "verified-special-acquisition-bindings.json"
 LOT_CHAIN_REFERENCE = "https://soulsmodding.wikidot.com/param:itemlotparam"
 
 _suffix_re = re.compile(r"(_dlc0[12])?\.fmg$")
@@ -2906,6 +2907,49 @@ def build_quest_reward_relations(
 # Main
 # ---------------------------------------------------------------------------
 
+def build_verified_special_acquisitions(path: Path, entities: list[dict]) -> tuple[list[dict], set[int]]:
+    if not path.is_file():
+        return [], set()
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    entity_by_id = {entity["id"]: entity for entity in entities}
+    relations = []
+    classified_lots: set[int] = set()
+    for binding in payload.get("bindings", []):
+        entity = entity_by_id.get(binding["item"])
+        if not entity:
+            raise ValueError(f"special acquisition item is not canonical: {binding['item']}")
+        lot_rows = [int(row) for row in binding.get("sourceItemLotRows", [])]
+        classified_lots.update(lot_rows)
+        item = {
+            "item": entity["id"],
+            "name": entity["name"],
+            "quantity": int(binding.get("quantity", 1)),
+            "sourceParam": binding["sourceParam"],
+            "sourceParamId": int(binding["sourceParamRows"][0]),
+        }
+        relation = {
+            "id": binding["id"],
+            "method": binding["method"],
+            "items": [item],
+            "sourceParamRows": binding["sourceParamRows"],
+            "sourceItemLotRows": lot_rows,
+            "specialAcquisitionBinding": binding,
+            "evidence": [
+                *[f"regulation.bin {binding['sourceParam']} row {row}" for row in binding["sourceParamRows"]],
+                *[f"regulation.bin ItemLotParam_map row {row}" for row in lot_rows],
+                binding["reference"],
+            ],
+            "verification": "local_param_and_external_acquisition_evidence",
+        }
+        if binding.get("condition"):
+            relation["conditions"] = [binding["condition"]]
+        if "temporary" in binding:
+            relation["temporary"] = bool(binding["temporary"])
+        if binding.get("region"):
+            relation["region"] = binding["region"]
+        relations.append(relation)
+    return relations, classified_lots
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--param-dir", type=Path, required=True)
@@ -2928,6 +2972,8 @@ def main() -> int:
     parser.add_argument("--pickup-bindings", type=Path, default=DEFAULT_PICKUP_BINDINGS)
     parser.add_argument("--abstract-topology-graph", type=Path,
                         default=DEFAULT_ABSTRACT_TOPOLOGY_GRAPH)
+    parser.add_argument("--verified-special-acquisitions", type=Path,
+                        default=DEFAULT_SPECIAL_ACQUISITIONS)
     args = parser.parse_args()
 
     print("loading FMG name tables ...")
@@ -3030,6 +3076,9 @@ def main() -> int:
             talk_reward_rows.add(value)
             if binding.get("id") not in talk_bindings_by_lot[value]:
                 talk_bindings_by_lot[value].append(binding.get("id"))
+    special_acquisitions, special_acquisition_rows = build_verified_special_acquisitions(
+        args.verified_special_acquisitions, entities + enemies
+    )
     non_pickup_param_relations = [
         relation for relation in all_map_lot_relations
         if relation["lot"]["rowId"] not in published_pickup_rows
@@ -3094,6 +3143,23 @@ def main() -> int:
                     "no copied MSB Treasure reference for this lot root",
                 ],
                 "verification": "local_param_and_talk_esd_classified",
+            })
+        elif row_id in special_acquisition_rows:
+            pickup_source_exclusions.append({
+                "id": f"item-lot-map-exclusion-special-{row_id}",
+                "method": "harvest",
+                "status": "classified_special_acquisition_not_positioned_pickup",
+                "sourceItemLotRoot": row_id,
+                "sourceItemLotRows": relation.get("sourceItemLotRows", []),
+                "specialAcquisitionBindingIds": [
+                    row["id"] for row in special_acquisitions
+                    if row_id in row.get("sourceItemLotRows", [])
+                ],
+                "evidence": [
+                    f"regulation.bin ItemLotParam_map row {row_id}",
+                    "published as a verified harvest relation without inventing an exact coordinate",
+                ],
+                "verification": "local_param_and_external_acquisition_evidence",
             })
         else:
             unclassified_map_lot_gaps.append({
@@ -3182,6 +3248,7 @@ def main() -> int:
     print(f"gesture acquisition relations: {len(gesture_acquisitions)}")
     tutorial_unlocks = build_tutorial_unlock_relations(args.tutorial_unlocks)
     print(f"tutorial unlock relations: {len(tutorial_unlocks)}")
+    print(f"verified special acquisition relations: {len(special_acquisitions)}")
     quest_rewards, quest_endpoint_count = build_quest_reward_relations(
         args.quest_rewards, entities + enemies, args.enemy_spawns
     )
@@ -3290,6 +3357,7 @@ def main() -> int:
         + online_item_map_relations + online_cookbook_relations
         + local_default_craft_relations
         + initial_loadout_relations
+        + special_acquisitions
         + spell_acquisition_projections
     )
     topology_map_index = load_map_index(args.abstract_topology_graph)
@@ -3326,6 +3394,7 @@ def main() -> int:
             "online_cookbook_recipes": str(args.online_cookbook_recipes),
             "pickup_bindings": str(args.pickup_bindings),
             "abstract_topology_graph": str(args.abstract_topology_graph),
+            "verified_special_acquisitions": str(args.verified_special_acquisitions),
             "item_lot_chain_reference": LOT_CHAIN_REFERENCE,
             "online_map_source": (
                 json.loads(args.online_markers.read_text(encoding="utf-8")).get("source", {})
@@ -3370,6 +3439,8 @@ def main() -> int:
             "quest_reward": len(quest_rewards),
             "gesture_acquisition": len(gesture_acquisitions),
             "tutorial_unlock": len(tutorial_unlocks),
+            "session_grant": sum(r["method"] == "session_grant" for r in special_acquisitions),
+            "harvest": sum(r["method"] == "harvest" for r in special_acquisitions),
             "online_map": len(online_map_relations),
             "onlineMapMarkerCount": online_map_stats["markers"],
             "onlineMapUnmatched": online_map_stats["unmatched"],

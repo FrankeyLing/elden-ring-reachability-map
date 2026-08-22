@@ -1,0 +1,69 @@
+{
+  "schema": "errn-verified-special-acquisition-bindings@1",
+  "policy": "Evidence-only exceptional acquisitions. Region evidence is not an exact positioned endpoint and must not be promoted to routeable topology.",
+  "bindings": [
+    {
+      "id": "session-grant-phantom-bloody-finger",
+      "method": "session_grant",
+      "item": "item_phantom_bloody_finger",
+      "sourceParam": "EquipParamGoods",
+      "sourceParamRows": [107, 113],
+      "quantity": 3,
+      "temporary": true,
+      "condition": "Automatically granted for a Bloody Finger invasion session and removed when the session ends.",
+      "reference": "https://eldenring.wiki.gg/wiki/Phantom_Recusant_Finger"
+    },
+    {
+      "id": "session-grant-phantom-recusant-finger",
+      "method": "session_grant",
+      "item": "item_phantom_recusant_finger",
+      "sourceParam": "EquipParamGoods",
+      "sourceParamRows": [114],
+      "quantity": 3,
+      "temporary": true,
+      "condition": "Automatically granted for a Recusant Finger invasion session and removed when the session ends.",
+      "reference": "https://eldenring.wiki.gg/wiki/Recusant_Finger"
+    },
+    {
+      "id": "session-grant-phantom-great-rune",
+      "method": "session_grant",
+      "item": "item_phantom_great_rune",
+      "sourceParam": "EquipParamGoods",
+      "sourceParamRows": [135],
+      "quantity": 3,
+      "temporary": true,
+      "condition": "Automatically granted during an invasion while Mohg's Great Rune is active and removed on return.",
+      "reference": "https://eldenring.wiki.gg/wiki/Mohg%27s_Great_Rune"
+    },
+    {
+      "id": "harvest-grave-keeper-s-brainpan",
+      "method": "harvest",
+      "item": "item_grave_keeper_s_brainpan",
+      "sourceParam": "EquipParamGoods",
+      "sourceParamRows": [2020018],
+      "sourceItemLotRows": [4637900],
+      "region": "Charo's Hidden Grave",
+      "reference": "https://eldenring.wiki.gg/wiki/Grave_Keeper%27s_Brainpan"
+    },
+    {
+      "id": "harvest-nailstone",
+      "method": "harvest",
+      "item": "item_nailstone",
+      "sourceParam": "EquipParamGoods",
+      "sourceParamRows": [2020033],
+      "sourceItemLotRows": [4639400],
+      "region": "Finger Ruins of Rhia and Finger Ruins of Dheo",
+      "reference": "https://eldenring.wiki.gg/wiki/Nailstone"
+    },
+    {
+      "id": "harvest-roundrock",
+      "method": "harvest",
+      "item": "item_roundrock",
+      "sourceParam": "EquipParamGoods",
+      "sourceParamRows": [2020027],
+      "sourceItemLotRows": [4638800],
+      "region": "Realm of Shadow coastlines",
+      "reference": "https://eldenring.wiki.gg/wiki/Roundrock"
+    }
+  ]
+}

@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "v1"
 
-KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft"}
+KNOWN_METHODS = {"drop", "pickup", "purchase", "boss_reward", "drops", "event_reward", "talk_reward", "quest_reward", "gesture_unlock", "initial_loadout", "tutorial_unlock", "online_map", "online_guide", "online_item_map", "spell_acquisition", "craft", "session_grant", "harvest"}
 KNOWN_MAP_BINDING_STATUSES = {
     "exact_map_instance",
     "exact_map_instance_alias",
@@ -85,6 +85,8 @@ def main() -> int:
     gesture_acquisitions = json.loads(gesture_path.read_text(encoding="utf-8")) if gesture_path.is_file() else {"bindings": []}
     tutorial_path = DATA / "entities" / "tutorial-unlock-bindings.json"
     tutorial_unlocks = json.loads(tutorial_path.read_text(encoding="utf-8")) if tutorial_path.is_file() else {"bindings": []}
+    special_path = DATA / "entities" / "verified-special-acquisition-bindings.json"
+    special_acquisitions = json.loads(special_path.read_text(encoding="utf-8"))
 
     # ---- 1. entity registry -------------------------------------------------
     entities = registry["entities"]
@@ -138,6 +140,31 @@ def main() -> int:
     rels = acquisitions["relations"]
     entity_ids = set(ids)
     check(len(rels) > 0, "empty acquisition registry")
+    special_bindings = special_acquisitions["bindings"]
+    special_ids = [binding["id"] for binding in special_bindings]
+    check(len(special_ids) == len(set(special_ids)) == 6,
+          f"special acquisition binding ids invalid: {special_ids}")
+    special_relations = {rel["id"]: rel for rel in rels if rel["id"] in set(special_ids)}
+    check(set(special_relations) == set(special_ids), "special acquisition relations missing")
+    expected_special_items = {
+        "item_phantom_bloody_finger", "item_phantom_recusant_finger",
+        "item_phantom_great_rune", "item_grave_keeper_s_brainpan",
+        "item_nailstone", "item_roundrock",
+    }
+    check({binding["item"] for binding in special_bindings} == expected_special_items,
+          "special acquisition fixture item set changed")
+    for binding in special_bindings:
+        relation = special_relations.get(binding["id"], {})
+        check(not relation.get("endpointInstances"),
+              f"special acquisition {binding['id']} invented a positioned endpoint")
+        if binding["method"] == "session_grant":
+            check(binding.get("temporary") is True and binding.get("quantity") == 3,
+                  f"session grant {binding['id']} must be temporary quantity 3")
+            check(bool(binding.get("condition")), f"session grant {binding['id']} missing condition")
+        elif binding["method"] == "harvest":
+            check(len(binding.get("sourceItemLotRows", [])) == 1,
+                  f"harvest {binding['id']} missing exact ItemLotParam_map row")
+            check(bool(binding.get("region")), f"harvest {binding['id']} missing region evidence")
     for rel in rels:
         check(rel["method"] in KNOWN_METHODS, f"relation {rel['id']} unknown method {rel['method']}")
         if rel.get("from"):
@@ -1322,7 +1349,7 @@ def main() -> int:
     tutorial_stats = tutorial_unlocks.get("stats", {})
     check(tutorial_stats.get("bindingCount") == len(tutorial_binding_ids),
           "tutorial unlock binding count mismatch")
-    check(tutorial_stats.get("tutorialEntityCount") == 48,
+    check(tutorial_stats.get("tutorialEntityCount") == 47,
           "tutorial entity identity coverage changed")
     check(tutorial_stats.get("locallyBoundEntityCount") == 47,
           "tutorial local event coverage changed")
@@ -1342,7 +1369,7 @@ def main() -> int:
     tutorial_relations = [relation for relation in rels if relation.get("method") == "tutorial_unlock"]
     check(len(tutorial_relations) == len(tutorial_binding_ids),
           "tutorial unlock relation projection count mismatch")
-    check(tutorial_unlocks.get("locallyUnboundEntities") == ["item_about_multiplayer"],
+    check(tutorial_unlocks.get("locallyUnboundEntities") == [],
           "tutorial unresolved entity set changed")
     print(
         f"tutorial unlock evidence: {len(tutorial_binding_ids)} bindings; "
