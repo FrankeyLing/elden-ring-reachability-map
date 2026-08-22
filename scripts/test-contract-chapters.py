@@ -47,7 +47,12 @@ SECTIONS = [
     ("十一 强制回归样例(13 类)", "scripts/test-ch11-regression.py",
      None, "test-ch11-regression.py must PASS"),
     ("十二 完成声明模板", "v1/release-declaration.json",
-     lambda d: d.get("runtimeEntityCount", 0) == d.get("searchableEntityCount", 0)),
+     lambda d: d.get("runtimeEntityCount", 0) == d.get("searchableEntityCount", 0)
+               and d.get("runtimeEntityCount", 0)
+               == d.get("baseGameEntityCount", 0) + d.get("dlcOnlyEntityCount", 0)
+               + d.get("dualScopeEntityCount", 0) + d.get("mapUndeterminedEntityCount", 0)
+               and d.get("dlcOnlyEntityCount", 0) > 0
+               and d.get("dualScopeEntityCount", 0) > 0),
     ("十 可复现性", "scripts/test-reproducible-build.py",
      None, "test-reproducible-build.py must PASS"),
 ]

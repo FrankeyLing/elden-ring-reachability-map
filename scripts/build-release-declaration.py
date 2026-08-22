@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Contract chapter 12 completion declaration — every required quantity assembled
 from the current generated data, printed as the declaration artifact."""
-import json, subprocess, sys
+import json, re, subprocess, sys
 from pathlib import Path
 from collections import Counter
 
@@ -18,12 +18,38 @@ ents = idx["entities"]
 acq_total = 0
 endpoint_total = 0
 routeable_anchor = 0
+# 10.1 base-game / Shadow of the Erdtree split.  SotE map instances use the
+# m60-m69 prefix; an entity is classed by the maps of its acquisition
+# endpoints and occurrences, so the split is mechanical and auditable.
+DLC_MAP_RE = re.compile(r"^m6[0-9]_", re.I)
+base_entities = set()
+dlc_entities = set()
+undetermined_entities = set()
 for e in ents:
+    maps = set()
+    for acq in e.get("acquisitions", []):
+        for ep in acq.get("endpointInstances", []):
+            if ep.get("map"):
+                maps.add(str(ep["map"]))
+    for occ in e.get("occurrences", []):
+        if occ.get("map"):
+            maps.add(str(occ["map"]))
+    if maps:
+        if any(DLC_MAP_RE.match(m) for m in maps):
+            dlc_entities.add(e["id"])
+        if any(not DLC_MAP_RE.match(m) for m in maps):
+            base_entities.add(e["id"])
+    else:
+        undetermined_entities.add(e["id"])
     acqs = e.get("acquisitions", [])
     acq_total += len(acqs)
     endpoint_total += sum(len(a.get("endpointInstances", [])) for a in acqs)
     if e.get("topology", {}).get("status") == "routeable_anchor":
         routeable_anchor += 1
+
+dlc_only = len(dlc_entities - base_entities)
+base_only = len(base_entities - dlc_entities)
+dual = len(base_entities & dlc_entities)
 
 declaration = {
     "schema": "elden-ring-reachability-map/release-declaration@1",
@@ -32,6 +58,10 @@ declaration = {
     "generatedAt": "2026-08-23",
     "runtimeEntityCount": len(ents),
     "searchableEntityCount": len(ents),
+    "baseGameEntityCount": base_only,
+    "dlcOnlyEntityCount": dlc_only,
+    "dualScopeEntityCount": dual,
+    "mapUndeterminedEntityCount": len(undetermined_entities),
     "entityWithAcquisitionCount": sum(1 for e in ents if e.get("acquisitions")),
     "acquisitionRelationCount": len(reg["relations"]),
     "projectedAcquisitionRelationCount": acq_total,
