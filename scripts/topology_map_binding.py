@@ -63,11 +63,25 @@ def load_map_index(path: Path) -> dict[str, Any]:
                 "verification_state": layer.get("verification_state"),
                 "local_game_verified": layer.get("local_game_verified"),
             }
+    aliases_path = path.with_name("map-identity-aliases.json")
+    aliases: dict[str, dict[str, Any]] = {}
+    if aliases_path.is_file():
+        alias_payload = json.loads(aliases_path.read_text(encoding="utf-8"))
+        for row in alias_payload.get("aliases", []):
+            source_id = _clean_map_token(row.get("sourceMapId"))
+            target_id = _clean_map_token(row.get("targetMapId"))
+            if source_id and target_id in maps:
+                aliases[source_id] = {
+                    "target_map_id": target_id,
+                    "verification": row.get("verification"),
+                    "evidence": list(row.get("evidence") or []),
+                }
     return {
         "available": True,
         "maps": maps,
         "layers": layers,
         "map_ids": sorted(maps),
+        "aliases": aliases,
     }
 
 
@@ -75,6 +89,9 @@ def _map_candidates(token: str, index: dict[str, Any]) -> list[str]:
     maps = index.get("maps", {})
     if token in maps:
         return [token]
+    alias = index.get("aliases", {}).get(token)
+    if alias:
+        return [alias["target_map_id"]]
     prefixed = [map_id for map_id in index.get("map_ids", []) if map_id.startswith(token + "_")]
     return sorted(prefixed)
 
@@ -95,7 +112,14 @@ def enrich_endpoint(endpoint: dict[str, Any], index: dict[str, Any]) -> dict[str
         candidates = _map_candidates(token, index)
         if len(candidates) == 1:
             map_ids = candidates
-            if candidates[0] == token:
+            alias = index.get("aliases", {}).get(token)
+            if alias:
+                map_status = "exact_map_instance_alias"
+                evidence.extend(alias.get("evidence") or [])
+                evidence.append(
+                    f"verified source map alias {token} -> {candidates[0]}"
+                )
+            elif candidates[0] == token:
                 map_status = "exact_map_instance"
             else:
                 map_status = "exact_map_instance_alias"

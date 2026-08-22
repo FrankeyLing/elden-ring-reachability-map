@@ -1,0 +1,24 @@
+{
+  "schema": "errn-map-identity-aliases@1",
+  "policy": "Aliases are data, not routing rules. Each alias must identify one exact local map instance and must not create a route edge.",
+  "aliases": [
+    {
+      "sourceMapId": "m31_90_00_00",
+      "targetMapId": "m11_10_00_00",
+      "verification": "local_msb_coordinate_identity",
+      "evidence": [
+        "34 source endpoint coordinates exactly match parts in copied local m11_10_00_00 MSB data",
+        "source records describe Roundtable Hold pickups and NPC drops"
+      ]
+    },
+    {
+      "sourceMapId": "m33_00_00_00",
+      "targetMapId": "m11_10_00_00",
+      "verification": "duplicate_source_records_and_local_msb_coordinate_identity",
+      "evidence": [
+        "all 4 source records duplicate m31_90_00_00 item and coordinate records",
+        "all 4 coordinates exactly match parts in copied local m11_10_00_00 MSB data"
+      ]
+    }
+  ]
+}

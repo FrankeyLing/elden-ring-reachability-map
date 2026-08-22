@@ -1027,17 +1027,17 @@ def main() -> int:
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
             "topologyMapEndpointCount": 66810,
-            "topologyMapExactMapInstanceEndpointCount": 64544,
+            "topologyMapExactMapInstanceEndpointCount": 64588,
             "topologyMapExactLayerEndpointCount": 31968,
             "topologyMapCandidateEndpointCount": 35,
             "topologyMapExternalScopeEndpointCount": 2112,
-            "topologyMapUnresolvedEndpointCount": 119,
+            "topologyMapUnresolvedEndpointCount": 75,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
                 "exact_map_instance": 64448,
-                "exact_map_instance_alias": 96,
+                "exact_map_instance_alias": 140,
                 "external_map_scope": 2112,
-                "unresolved_map_instance": 119,
+                "unresolved_map_instance": 75,
             },
         }, index["stats"]
         assert len(index["coverageGaps"]) == 6528, index

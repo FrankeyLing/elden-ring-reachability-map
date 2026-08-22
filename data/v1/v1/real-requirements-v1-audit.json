@@ -2,7 +2,7 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T11:24:51.587209+00:00",
+  "generatedAt": "2026-08-22T11:49:05.935907+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
@@ -14,18 +14,18 @@
     "endpointInstanceProjectionCount": 171649,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
-    "formalAnchorEndpointCount": 64220,
-    "containmentRegionEndpointCount": 64216,
+    "formalAnchorEndpointCount": 64264,
+    "containmentRegionEndpointCount": 64260,
     "containmentUnresolvedEndpointCount": 328,
     "nonFormalAnchorBreakdown": {
       "external_map_scope": 2108,
       "exact_abstract_layer_anchor": 280,
-      "unbound_map_identity": 119,
+      "unbound_map_identity": 75,
       "exact_abstract_map_anchor": 48,
       "candidate_abstract_map_anchor": 35
     },
     "coverageGapCount": 6528,
-    "unboundEndpointCount": 4433,
+    "unboundEndpointCount": 4389,
     "acquirableEntityWithoutRelationCount": 0
   },
   "gates": [
@@ -109,7 +109,7 @@
     {
       "name": "unbound_or_unresolved_acquisition_endpoints",
       "status": "fail",
-      "actual": 4433,
+      "actual": 4389,
       "expected": 0,
       "evidence": "acquisition-topology-bridge stats"
     },
@@ -130,7 +130,7 @@
     {
       "name": "fixed_endpoints_without_formal_route_anchor",
       "status": "fail",
-      "actual": 2590,
+      "actual": 2546,
       "expected": 0,
       "evidence": "acquisition-topology-bridge formalRouteAnchorEndpointCount + acquisition-contains-bindings region_containment"
     },
