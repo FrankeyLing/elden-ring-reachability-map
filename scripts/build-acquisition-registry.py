@@ -46,6 +46,7 @@ DEFAULT_ONLINE_MARKERS = ROOT / "data" / "v1" / "entities" / "online-map-markers
 DEFAULT_ONLINE_GUIDE_ITEMS = ROOT / "data" / "v1" / "entities" / "online-guide-items.json"
 DEFAULT_ONLINE_ITEM_MAP = ROOT / "data" / "v1" / "entities" / "online-item-map-records.json"
 DEFAULT_ONLINE_ITEM_MAP_EXCLUSIONS = ROOT / "data" / "v1" / "entities" / "online-item-map-exclusions.json"
+DEFAULT_ONLINE_ITEM_MAP_NATIVE_PART_OVERRIDES = ROOT / "data" / "v1" / "entities" / "online-item-map-native-part-overrides.json"
 DEFAULT_ONLINE_COOKBOOK_RECIPES = ROOT / "data" / "v1" / "entities" / "online-cookbook-recipes.json"
 DEFAULT_PICKUP_BINDINGS = ROOT / "data" / "v1" / "entities" / "pickup-location-bindings.json"
 DEFAULT_ABSTRACT_TOPOLOGY_GRAPH = ROOT / "data" / "v1" / "entities" / "local-abstract-topology-graph.json"
@@ -173,6 +174,22 @@ def slugify(text: str) -> str:
     s = text.lower().strip()
     s = re.sub(r"[^a-z0-9]+", "_", s)
     return s.strip("_")
+
+
+def load_online_item_map_native_part_overrides(path: Path | None) -> dict[int, dict[str, Any]]:
+    """Load exact source-index -> native-part evidence without guessing joins."""
+    if not path or not path.is_file():
+        return {}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    overrides: dict[int, dict[str, Any]] = {}
+    for record in payload.get("records", []):
+        source_index = int(record["sourceIndex"])
+        if source_index in overrides:
+            raise ValueError(f"duplicate native part override sourceIndex {source_index}")
+        if not record.get("map") or not record.get("part") or not record.get("localMapFile"):
+            raise ValueError(f"incomplete native part override sourceIndex {source_index}")
+        overrides[source_index] = record
+    return overrides
 
 
 def canonicalize_acquisition_items(relations: list[dict], entities: list[dict]) -> list[dict]:
@@ -2070,6 +2087,7 @@ def build_online_item_map_relations(
     item_map_path: Path | None,
     entities: list[dict],
     exclusions_path: Path | None = None,
+    native_part_overrides_path: Path | None = None,
 ) -> tuple[list[dict], dict[str, int], list[dict], list[dict]]:
     """Publish exact-name Map For Goblins item placements.
 
@@ -2098,6 +2116,7 @@ def build_online_item_map_relations(
         "source_only_name_count": 0,
         "excluded_record_count": 0,
         "excluded_item_occurrence_count": 0,
+        "native_part_override_count": 0,
     }
     if not item_map_path or not item_map_path.is_file():
         return [], empty_stats, [], []
@@ -2119,6 +2138,9 @@ def build_online_item_map_relations(
                 by_param_row.setdefault(str(row), []).append(entity)
 
     records = payload.get("records", [])
+    native_part_overrides = load_online_item_map_native_part_overrides(
+        native_part_overrides_path
+    )
     exclusion_rules = {}
     if exclusions_path and exclusions_path.is_file():
         exclusions_payload = json.loads(exclusions_path.read_text(encoding="utf-8"))
@@ -2266,6 +2288,24 @@ def build_online_item_map_relations(
                 f"Map For Goblins source commit {source.get('commit') or 'snapshot'}",
             ],
         }
+        native_part_override = native_part_overrides.get(int(record["sourceIndex"]))
+        if native_part_override:
+            if native_part_override.get("map") != record.get("map"):
+                raise ValueError(
+                    "native part override map mismatch for sourceIndex "
+                    + str(record.get("sourceIndex"))
+                )
+            endpoint["part"] = native_part_override["part"]
+            endpoint["nativePartEvidence"] = {
+                "source": "online_item_map_native_part_overrides",
+                "sourceIndex": record.get("sourceIndex"),
+                "localMapFile": native_part_override["localMapFile"],
+                "sourceKind": native_part_override.get("sourceKind"),
+            }
+            endpoint["sourceEvidence"].append(
+                "Pinned native part override verified against the copied local parsed Map Studio map"
+            )
+            stats["native_part_override_count"] += 1
         if resolved_items:
             relations.append({
                 "id": f"online-item-map-{record['sourceIndex']}",
@@ -3116,6 +3156,8 @@ def main() -> int:
     parser.add_argument("--online-item-map", type=Path, default=DEFAULT_ONLINE_ITEM_MAP)
     parser.add_argument("--online-item-map-exclusions", type=Path,
                         default=DEFAULT_ONLINE_ITEM_MAP_EXCLUSIONS)
+    parser.add_argument("--online-item-map-native-part-overrides", type=Path,
+                        default=DEFAULT_ONLINE_ITEM_MAP_NATIVE_PART_OVERRIDES)
     parser.add_argument("--online-cookbook-recipes", type=Path, default=DEFAULT_ONLINE_COOKBOOK_RECIPES)
     parser.add_argument("--pickup-bindings", type=Path, default=DEFAULT_PICKUP_BINDINGS)
     parser.add_argument("--abstract-topology-graph", type=Path,
@@ -3493,7 +3535,10 @@ def main() -> int:
     )
 
     online_item_map_relations, online_item_map_stats, online_item_map_gaps, online_item_map_exclusions = build_online_item_map_relations(
-        args.online_item_map, entities + enemies, args.online_item_map_exclusions
+        args.online_item_map,
+        entities + enemies,
+        args.online_item_map_exclusions,
+        args.online_item_map_native_part_overrides,
     )
     print(
         "online item map records: "
@@ -3601,6 +3646,7 @@ def main() -> int:
             "online_guide_items": str(args.online_guide_items),
             "online_item_map": str(args.online_item_map),
             "online_item_map_exclusions": str(args.online_item_map_exclusions),
+            "online_item_map_native_part_overrides": str(args.online_item_map_native_part_overrides),
             "online_cookbook_recipes": str(args.online_cookbook_recipes),
             "pickup_bindings": str(args.pickup_bindings),
             "abstract_topology_graph": str(args.abstract_topology_graph),
@@ -3693,6 +3739,9 @@ def main() -> int:
             "onlineItemMapExcludedRecordCount": online_item_map_stats["excluded_record_count"],
             "onlineItemMapExcludedItemOccurrenceCount": online_item_map_stats[
                 "excluded_item_occurrence_count"
+            ],
+            "onlineItemMapNativePartOverrideCount": online_item_map_stats[
+                "native_part_override_count"
             ],
             "craft": len(online_cookbook_relations) + len(local_default_craft_relations),
             "craftRecipeCount": online_cookbook_stats["recipes"],

@@ -58,6 +58,24 @@
       "status": "excluded_non_spatial_fallback_record",
       "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
       "evidence": ["source items_database marks every record from_fallback=true with zero coordinates and no part name"]
+    },
+    {
+      "mapId": "m60_43_61_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": [
+        "source items_database marks every record from_fallback=true with zero coordinates and no part name",
+        "copied vanilla parsed map contains only a dummy map piece and no positioned acquisition endpoint"
+      ]
+    },
+    {
+      "mapId": "m60_57_60_00",
+      "status": "excluded_non_spatial_fallback_record",
+      "verification": "pinned_source_commit_fallback_without_map_instance_or_coordinates",
+      "evidence": [
+        "source items_database marks every record from_fallback=true with zero coordinates and no part name",
+        "copied vanilla parsed map contains only a dummy map piece and no positioned acquisition endpoint"
+      ]
     }
   ]
 }

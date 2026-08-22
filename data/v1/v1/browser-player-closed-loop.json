@@ -8,7 +8,7 @@
     "url": "http://127.0.0.1:8129/"
   },
   "dataset": {
-    "playerEntityCount": 11199,
+    "playerEntityCount": 11195,
     "formalRouteNodeCount": 938,
     "formalRouteEdgeCount": 1601,
     "packageCount": 13

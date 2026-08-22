@@ -1,0 +1,98 @@
+{
+  "schema": "elden-ring-reachability-map/online-item-map-native-part-overrides@1",
+  "contract": "Only exact source-index joins with a native part name present in both the pinned Map For Goblins source database and the copied local parsed Map Studio map are eligible for endpoint-local containment. This never creates a navigation edge or changes the source map identity.",
+  "source": {
+    "id": "map_for_goblins",
+    "commit": "324a895ba51d6091534578c2ce194d0c6720edc2",
+    "file": "data/items_database.json",
+    "sha256": "f52887c701dc1a00178410586e425cc00fb96baa78cbad9702d312b2c144cbef"
+  },
+  "localGameSnapshot": {
+    "id": "elden-ring-20260818",
+    "parsedMapRoot": "extracted/parsed-mapstudio-all/maps",
+    "mapFiles": {
+      "m60_24_28_01": {
+        "file": "m60_24_28_01.json",
+        "sha256": "1152927f5ee963b1e5a395e8cc8cc4ae1bcd489c6e604f0115f2bfe8da010b04"
+      },
+      "m60_13_14_02": {
+        "file": "m60_13_14_02.json",
+        "sha256": "9e4e6f37df3fc5497f76d5b156d05f796a9c4f17e5c5735f60e5c7465faf8174"
+      },
+      "m61_11_11_02": {
+        "file": "m61_11_11_02.json",
+        "sha256": "cfcc47eedd70822cea6ee494ba6dafdaf2bb1e5c74eac87d8c22096b2c5ceb39"
+      },
+      "m61_12_11_02": {
+        "file": "m61_12_11_02.json",
+        "sha256": "5851bbfb41cfeeca75f2379d9362fb731e1a1e524981cfc09f169f52aecc9d5e"
+      }
+    }
+  },
+  "records": [
+    {
+      "sourceIndex": 29947,
+      "sourceRecordId": "mapforgoblins-item-29947",
+      "map": "m60_24_28_01",
+      "part": "m60_48_56_00-c4191_9000",
+      "sourceKind": "emevd",
+      "localMapFile": "m60_24_28_01.json"
+    },
+    {
+      "sourceIndex": 30029,
+      "sourceRecordId": "mapforgoblins-item-30029",
+      "map": "m60_13_14_02",
+      "part": "m60_54_56_00-c4503_9000",
+      "sourceKind": "emevd",
+      "localMapFile": "m60_13_14_02.json"
+    },
+    {
+      "sourceIndex": 30036,
+      "sourceRecordId": "mapforgoblins-item-30036",
+      "map": "m61_11_11_02",
+      "part": "m61_45_46_00-c5170_9000",
+      "sourceKind": "emevd",
+      "localMapFile": "m61_11_11_02.json"
+    },
+    {
+      "sourceIndex": 30038,
+      "sourceRecordId": "mapforgoblins-item-30038",
+      "map": "m61_11_11_02",
+      "part": "m61_45_46_00-c5170_9000",
+      "sourceKind": "emevd",
+      "localMapFile": "m61_11_11_02.json"
+    },
+    {
+      "sourceIndex": 30106,
+      "sourceRecordId": "mapforgoblins-item-30106",
+      "map": "m61_12_11_02",
+      "part": "m61_50_46_00-c5170_9000",
+      "sourceKind": "emevd",
+      "localMapFile": "m61_12_11_02.json"
+    },
+    {
+      "sourceIndex": 30108,
+      "sourceRecordId": "mapforgoblins-item-30108",
+      "map": "m61_12_11_02",
+      "part": "m61_50_46_00-c5170_9000",
+      "sourceKind": "emevd",
+      "localMapFile": "m61_12_11_02.json"
+    },
+    {
+      "sourceIndex": 30109,
+      "sourceRecordId": "mapforgoblins-item-30109",
+      "map": "m61_12_11_02",
+      "part": "m61_50_46_00-c5170_9001",
+      "sourceKind": "emevd",
+      "localMapFile": "m61_12_11_02.json"
+    },
+    {
+      "sourceIndex": 30111,
+      "sourceRecordId": "mapforgoblins-item-30111",
+      "map": "m61_12_11_02",
+      "part": "m61_50_46_00-c5170_9001",
+      "sourceKind": "emevd",
+      "localMapFile": "m61_12_11_02.json"
+    }
+  ]
+}
