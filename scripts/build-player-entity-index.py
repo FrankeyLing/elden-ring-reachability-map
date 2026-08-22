@@ -358,7 +358,7 @@ def main() -> int:
 
     source_only_entity_ids: set[str] = set()
     source_only_entity_ids_by_method: dict[str, set[str]] = defaultdict(set)
-    for gap in acquisitions.get("coverageGaps", []):
+    for gap in (acquisitions.get("coverageGaps", []) + acquisitions.get("onlineSourceGaps", [])):
         method = str(gap.get("method") or "")
         if method not in {"online_item_map", "online_guide", "online_map"}:
             continue
@@ -796,6 +796,9 @@ def main() -> int:
         "entityAliases": entity_aliases,
         "stats": stats,
         "coverageGaps": acquisitions.get("coverageGaps", []),
+        "onlineSourceGaps": acquisitions.get("onlineSourceGaps", []),
+        "verifiedNoDropFacts": acquisitions.get("verifiedNoDropFacts", []),
+        "verifiedUnusedMapLotFacts": acquisitions.get("verifiedUnusedMapLotFacts", []),
         "sourceExclusions": acquisitions.get("sourceExclusions", []),
         "entities": sorted(records.values(), key=lambda record: (record["name"].get("zh", ""), record["id"])),
     }

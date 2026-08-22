@@ -2656,6 +2656,9 @@ class AppHandler(SimpleHTTPRequestHandler):
                     "records": records,
                     "stats": payload.get("stats", {}),
                     "coverageGaps": payload.get("coverageGaps", []),
+                    "onlineSourceGaps": payload.get("onlineSourceGaps", []),
+                    "verifiedNoDropFacts": payload.get("verifiedNoDropFacts", []),
+                    "verifiedUnusedMapLotFacts": payload.get("verifiedUnusedMapLotFacts", []),
                 }
             )
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:

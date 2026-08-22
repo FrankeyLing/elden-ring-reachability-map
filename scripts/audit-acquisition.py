@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import json
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -124,7 +124,21 @@ def main() -> int:
     check(len(gesture_entities) >= 50, f"gesture entity coverage too low: {len(gesture_entities)}")
     print(f"gesture entities: {len(gesture_entities)}; GestureParam rows={len(gesture_rows)}")
     by_kind_name = Counter((e["kind"], e["name"]["en"]) for e in entities)
-    dup_names = {n: c for n, c in by_kind_name.items() if c > 1}
+    duplicate_groups = defaultdict(list)
+    for entity in entities:
+        duplicate_groups[(entity["kind"], entity["name"]["en"])].append(entity)
+    dup_names = {
+        key: len(group)
+        for key, group in duplicate_groups.items()
+        if len(group) > 1
+        and not (
+            key[0] == "grace"
+            and all(
+                entity.get("properties", {}).get("originMapId")
+                for entity in group
+            )
+        )
+    }
     check(not dup_names, f"duplicate kind+name entities: {dict(list(dup_names.items())[:8])}")
     same_name_item_spell = {
         name
@@ -525,7 +539,7 @@ def main() -> int:
     )
     drop_relations = [rel for rel in rels if rel.get("method") == "drop"]
     acquisition_stats = acquisitions.get("stats", {})
-    all_gaps = acquisitions.get("coverageGaps", [])
+    all_gaps = (acquisitions.get("coverageGaps", []) + acquisitions.get("onlineSourceGaps", []))
     all_gap_ids = [gap.get("id") for gap in all_gaps]
     check(len(all_gap_ids) == len(set(all_gap_ids)), "acquisition coverage gap ids are not unique")
     drop_stats = acquisition_stats
@@ -936,11 +950,17 @@ def main() -> int:
     online_item_map_relations = [rel for rel in rels if rel.get("method") == "online_item_map"]
     check(len(online_item_map_relations) == online_stats.get("online_item_map"),
           "online item map relation count does not match registry stats")
-    check(online_stats.get("onlineItemMapRecordCount", 0) == 31144,
-          "online item map source record coverage unexpectedly changed")
-    check(online_stats.get("onlineItemMapItemOccurrenceCount", 0) >= 40000,
+    online_item_source = acquisitions.get("built_from", {}).get("online_item_map_source", {})
+    check(online_item_source.get("profile") == "vanilla",
+          "online item map source is not the pinned vanilla profile")
+    check(str(online_item_source.get("rawDatabase", "")).replace("\\", "/").endswith(
+        "/data/vanilla/items_database.json"
+    ), "online item map raw database is not the vanilla profile database")
+    check(online_stats.get("onlineItemMapRecordCount", 0) == 42734,
+          "online item map vanilla plus gathering source record coverage unexpectedly changed")
+    check(online_stats.get("onlineItemMapItemOccurrenceCount", 0) >= 74000,
           "online item map source item coverage unexpectedly low")
-    check(online_stats.get("onlineItemMapMatchedItemOccurrenceCount", 0) >= 30000,
+    check(online_stats.get("onlineItemMapMatchedItemOccurrenceCount", 0) >= 74000,
           "online item map exact-name coverage unexpectedly low")
     check(
         online_stats.get("onlineItemMapMatchedByExactNameItemOccurrenceCount", 0)
@@ -953,7 +973,7 @@ def main() -> int:
         <= online_stats.get("onlineItemMapAmbiguousItemOccurrenceCount", 0),
         "online item map source-param ambiguity exceeds total ambiguity",
     )
-    check(len(online_item_map_relations) >= 24000,
+    check(len(online_item_map_relations) >= 26000,
           f"online item map endpoint coverage unexpectedly low: {len(online_item_map_relations)}")
     print(
         f"online item map endpoints: {len(online_item_map_relations)}; "

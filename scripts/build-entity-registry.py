@@ -720,6 +720,7 @@ EXCLUDED_INTERNAL_GEM_ROWS = {
     30: "EquipParamGem internal test gem row; disabled and has no player item name",
     121: "EquipParamGem discarded internal Wicked Stance row; no official localized item name",
     117: "EquipParamGem internal Torch Attack row; disabled, non-droppable, and uses the internal sort sentinel",
+    125: "Spinning Chain is a flail weapon skill, not an obtainable Ash of War row",
 }
 
 EXCLUDED_INTERNAL_WEAPON_ROWS = {
@@ -748,6 +749,12 @@ EXCLUDED_INTERNAL_ARMOR_ROWS = {
     1950300: "discarded Millicent's Boots row; non-droppable and uses the internal sort sentinel",
     1970100: "discarded Millicent's Tunic row; non-droppable and uses the internal sort sentinel",
     1970200: "discarded Golden Prosthetic row; non-droppable and uses the internal sort sentinel",
+    700100: "cut-content Brave's Battlewear row; non-droppable and uses the internal sort sentinel",
+    702000: "cut-content Brave's Battlewear (Altered) row; non-droppable and uses the internal sort sentinel",
+    700200: "cut-content Brave's Bracer row; non-droppable and uses the internal sort sentinel",
+    700300: "cut-content Brave's Legwraps row; non-droppable and uses the internal sort sentinel",
+    701000: "cut-content Brave's Leather Helm row; non-droppable and uses the internal sort sentinel",
+    1930300: "unused Deathbed Smalls row; non-droppable and uses the internal sort sentinel",
 }
 
 EXCLUDED_INTERNAL_ACCESSORY_ROWS = {
@@ -788,6 +795,11 @@ EXCLUDED_CUT_GOODS_ROWS = {
     8706: "Note: Great Coffins unused information item variant",
     8756: "Note: Great Coffins unused information item variant",
     480: "Roped Freezing Pot unused consumable",
+    1220: "Deathsbane Jerky unused consumable",
+    1350: "Deathsbane White Jerky unused consumable",
+    8934: "Nomadic Merchant's Bell Bearing [11] cut bell bearing",
+    9393: "Perfumer's Cookbook [13] cut cookbook",
+    2008023: "Keep Wall Key cut DLC key item",
 }
 
 SAVEFORGE_CUT_GOODS_ROWS = {3020, 8147, 8192, 8195, 9304}
@@ -796,6 +808,11 @@ WIKIGG_CUT_GOODS_REFERENCES = {
     8706: "https://eldenring.wiki.gg/wiki/Great_Coffin",
     8756: "https://eldenring.wiki.gg/wiki/Great_Coffin",
     480: "https://eldenring.wiki.gg/wiki/Roped_Freezing_Pot",
+    1220: "https://eldenring.wiki.gg/wiki/Unused_Content",
+    1350: "https://eldenring.wiki.gg/wiki/Unused_Content",
+    8934: "https://eldenring.wiki.gg/wiki/Unused_Content",
+    9393: "https://eldenring.wiki.gg/wiki/Unused_Content",
+    2008023: "https://eldenring.fandom.com/wiki/Keep_Wall_Key",
 }
 WIKIGG_UNUSED_CONTENT_REFERENCE = "https://eldenring.wiki.gg/wiki/Unused_Content"
 

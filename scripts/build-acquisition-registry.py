@@ -48,6 +48,8 @@ DEFAULT_ONLINE_ITEM_MAP = ROOT / "data" / "v1" / "entities" / "online-item-map-r
 DEFAULT_ONLINE_ITEM_MAP_EXCLUSIONS = ROOT / "data" / "v1" / "entities" / "online-item-map-exclusions.json"
 DEFAULT_ONLINE_ITEM_MAP_NATIVE_PART_OVERRIDES = ROOT / "data" / "v1" / "entities" / "online-item-map-native-part-overrides.json"
 DEFAULT_ONLINE_COOKBOOK_RECIPES = ROOT / "data" / "v1" / "entities" / "online-cookbook-recipes.json"
+DEFAULT_LOCATION_CATALOG = ROOT / "data" / "v1" / "entities" / "location-catalog.json"
+DEFAULT_ABSTRACT_ORIGINS = ROOT / "data" / "v1" / "entities" / "abstract-origin-bindings.json"
 DEFAULT_PICKUP_BINDINGS = ROOT / "data" / "v1" / "entities" / "pickup-location-bindings.json"
 DEFAULT_ABSTRACT_TOPOLOGY_GRAPH = ROOT / "data" / "v1" / "entities" / "local-abstract-topology-graph.json"
 DEFAULT_SPECIAL_ACQUISITIONS = ROOT / "data" / "v1" / "entities" / "verified-special-acquisition-bindings.json"
@@ -582,9 +584,16 @@ def expand_enemy_lot_chain(
 
 def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
                 lot_rows: list[dict], tables,
-                custom_weapons: dict[int, dict] | None = None) -> list[dict]:
-    """Enemy drops: NpcParam root -> sequential ItemLotParam_enemy rows."""
+                custom_weapons: dict[int, dict] | None = None,
+                map_lot_rows: list[dict] | None = None) -> list[dict]:
+    """Enemy drops: NpcParam root -> sequential ItemLotParam_enemy rows.
+
+    When the enemy table has no chain for the root (missing or empty row),
+    the same numeric root is checked against ItemLotParam_map — several
+    enemies (e.g. White Mask Varré) are quantified there instead.
+    """
     lot_by_id = {r["id"]: r["cells"] for r in lot_rows}
+    map_by_id = {r["id"]: r["cells"] for r in map_lot_rows or []}
     referenced_lot_ids = {
         r["cells"].get("itemLotId_enemy")
         for r in npc_rows
@@ -603,11 +612,22 @@ def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
         chain_ids = expand_enemy_lot_chain(
             lot_id, lot_by_id, referenced_lot_ids
         )
-        if not chain_ids:
-            continue
+        table_name = "ItemLotParam_enemy"
+        if not chain_ids or not any(
+            any((lot_by_id.get(cid) or {}).get(f"lotItemId{k:02d}") for k in range(1, 9))
+            for cid in chain_ids
+        ):
+            # fallback: some enemy loot chains are quantified in the map table
+            chain_ids = expand_enemy_lot_chain(lot_id, map_by_id, set())
+            table_name = "ItemLotParam_map"
+            if not chain_ids:
+                continue
+            lot_table = map_by_id
+        else:
+            lot_table = lot_by_id
         items = []
         for chain_lot_id in chain_ids:
-            lot = lot_by_id[chain_lot_id]
+            lot = lot_table[chain_lot_id]
             for k in range(1, 9):
                 iid = lot.get(f"lotItemId{k:02d}")
                 cat = lot.get(f"lotItemCategory{k:02d}")
@@ -628,7 +648,7 @@ def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
                 "id": f"drop-{rid}-lot{lot_id}",
                 "from": eid,
                 "method": "drop",
-                "lot": {"param": "ItemLotParam_enemy", "rowId": lot_id},
+                "lot": {"param": table_name, "rowId": lot_id},
                 "items": items,
                 "sourceNpcParamRows": [rid],
                 "sourceItemLotRows": chain_ids,
@@ -651,7 +671,8 @@ def summarize_enemy_drop_coverage(
     tables,
     row_to_entity: dict[int, str],
     custom_weapons: dict[int, dict] | None = None,
-) -> tuple[dict[str, int], list[dict]]:
+    map_lot_rows: list[dict] | None = None,
+) -> tuple[dict[str, int], list[dict], list[dict]]:
     """Report every referenced enemy-lot root, including non-item gaps.
 
     A missing or empty ItemLotParam row is not an acquisition relation because
@@ -660,6 +681,8 @@ def summarize_enemy_drop_coverage(
     """
 
     lot_by_id = {row["id"]: row["cells"] for row in lot_rows}
+    map_lot_by_id = {row["id"]: row["cells"] for row in map_lot_rows or []}
+    no_drop_facts: list[dict] = []
     referenced_lot_ids = {
         row["cells"].get("itemLotId_enemy")
         for row in npc_rows
@@ -691,19 +714,25 @@ def summarize_enemy_drop_coverage(
             for row_id in source_rows
             if row_id in row_to_entity
         })
+        chain_ids_from = "ItemLotParam_enemy"
+        if not chain_ids:
+            # cross-table fallback: some enemy loot roots live in the map table
+            chain_ids = expand_enemy_lot_chain(root, map_lot_by_id, set())
+            chain_ids_from = "ItemLotParam_map"
         if not chain_ids:
             missing_roots += 1
-            gaps.append({
-                "id": f"enemy-drop-gap-lot{root}",
+            no_drop_facts.append({
+                "id": f"verified-no-drop-{root}",
                 "method": "drop",
-                "status": "source_lot_missing",
+                "status": "verified_no_drop",
                 "sourceItemLotRoot": root,
                 "sourceNpcParamRows": source_rows,
                 "sourceEntityIds": source_entities,
                 "evidence": [
-                    f"NpcParam itemLotId_enemy references missing ItemLotParam_enemy row {root}",
+                    f"NpcParam itemLotId_enemy references row {root}, absent from both "
+                    "ItemLotParam_enemy and ItemLotParam_map",
                 ],
-                "verification": "local_param_gap",
+                "verification": "local_param_verified_no_drop",
             })
             continue
 
@@ -711,7 +740,7 @@ def summarize_enemy_drop_coverage(
         resolved_slots = 0
         unresolved_slots = 0
         for chain_id in chain_ids:
-            cells = lot_by_id[chain_id]
+            cells = (lot_by_id if chain_ids_from == "ItemLotParam_enemy" else map_lot_by_id)[chain_id]
             for slot in range(1, 9):
                 item_id = cells.get(f"lotItemId{slot:02d}")
                 if not isinstance(item_id, int) or item_id <= 0:
@@ -752,18 +781,19 @@ def summarize_enemy_drop_coverage(
             })
         elif not raw_slots:
             empty_roots += 1
-            gaps.append({
-                "id": f"enemy-drop-gap-lot{root}",
+            no_drop_facts.append({
+                "id": f"verified-no-drop-{root}",
                 "method": "drop",
-                "status": "source_lot_empty",
+                "status": "verified_no_drop",
                 "sourceItemLotRoot": root,
                 "sourceItemLotRows": chain_ids,
+                "sourceItemLotTable": chain_ids_from,
                 "sourceNpcParamRows": source_rows,
                 "sourceEntityIds": source_entities,
                 "evidence": [
-                    f"ItemLotParam_enemy chain {','.join(str(value) for value in chain_ids)} has no item slot",
+                    f"{chain_ids_from} chain {','.join(str(value) for value in chain_ids)} has no item slot",
                 ],
-                "verification": "local_param_gap",
+                "verification": "local_param_verified_no_drop",
             })
 
     stats = {
@@ -780,8 +810,9 @@ def summarize_enemy_drop_coverage(
         "dropResolvedItemSlotCount": resolved_item_slots,
         "dropUnresolvedItemSlotCount": unresolved_name_slots,
         "dropGapCount": len(gaps),
+        "verifiedNoDropCount": len(no_drop_facts),
     }
-    return stats, gaps
+    return stats, gaps, no_drop_facts
 
 
 def attach_enemy_spawn_endpoints(relations: list[dict], spawn_path: Path) -> int:
@@ -1743,6 +1774,14 @@ def build_tutorial_unlock_relations(
 
 
 ONLINE_CATEGORY_FILTERS = {
+    # These three categories are world-entity occurrence markers, not item
+    # acquisition rows.  They are still valid targets for the same exact-name
+    # endpoint layer, so they must be matched against the canonical NPC/enemy
+    # and location catalogs instead of becoming source-only gaps.
+    "npc": lambda entity: entity.get("kind") in {"npc", "enemy"},
+    "boss": lambda entity: entity.get("kind") in {"npc", "enemy"},
+    "region": lambda entity: entity.get("kind") == "location",
+    "grace": lambda entity: entity.get("kind") == "grace",
     "spell": lambda entity: entity.get("kind") == "spell",
     "weapon": lambda entity: entity.get("kind") == "weapon",
     "armor": lambda entity: entity.get("kind") == "armor",
@@ -1762,6 +1801,7 @@ ONLINE_CATEGORY_FILTERS = {
 def build_online_map_relations(
     online_markers_path: Path | None,
     entities: list[dict],
+    location_entities: list[dict] | None = None,
 ) -> tuple[list[dict], dict[str, int], list[dict]]:
     """Publish exact-name online map markers as coordinate-only endpoints.
 
@@ -1777,7 +1817,7 @@ def build_online_map_relations(
     payload = json.loads(online_markers_path.read_text(encoding="utf-8"))
     source = payload.get("source", {})
     by_name: dict[str, list[dict]] = {}
-    for entity in entities:
+    for entity in [*entities, *(location_entities or [])]:
         name = entity.get("name", {}).get("en")
         if name:
             by_name.setdefault(name.casefold(), []).append(entity)
@@ -1799,6 +1839,33 @@ def build_online_map_relations(
             for entity in by_name.get(str(marker.get("name", "")).casefold(), [])
             if predicate and predicate(entity)
         ]
+        if marker.get("category") == "grace" and len(candidates) > 1:
+            # Same-name graces exist across world-state variants and regions.
+            # Use only source-declared map/region scope to disambiguate; do
+            # not use pixel distance or infer a route edge from the marker.
+            master = str(marker.get("master") or "").casefold()
+            scoped = [
+                entity for entity in candidates
+                if str(entity.get("properties", {}).get("originMapId") or "")
+                .casefold().startswith(master)
+            ]
+            if scoped:
+                candidates = scoped
+            description = str(marker.get("description") or "").casefold()
+            regional = [
+                entity for entity in candidates
+                if description
+                and str(entity.get("properties", {}).get("region") or "")
+                .casefold() == description
+            ]
+            if len(regional) != 1 and description:
+                region_slug = re.sub(r"[^a-z0-9]+", "_", description).strip("_")
+                regional = [
+                    entity for entity in candidates
+                    if region_slug and region_slug in entity.get("id", "").casefold()
+                ]
+            if regional:
+                candidates = regional
         if len(candidates) != 1:
             status = "source_marker_unmatched" if not candidates else "source_marker_ambiguous"
             stats["unmatched" if not candidates else "ambiguous"] += 1
@@ -2122,6 +2189,11 @@ def build_online_item_map_relations(
         return [], empty_stats, [], []
     payload = json.loads(item_map_path.read_text(encoding="utf-8"))
     source = payload.get("source", {})
+    source_profile = source.get("profile")
+    if source_profile and source_profile != "vanilla":
+        raise ValueError(
+            "online item map source profile is not vanilla: " + str(source_profile)
+        )
     by_name: dict[str, list[dict]] = {}
     by_param_row: dict[str, list[dict]] = {}
     allowed_kinds = {"item", "weapon", "armor", "accessory", "ash_of_war", "spell"}
@@ -2272,6 +2344,7 @@ def build_online_item_map_relations(
             "sourceRecordId": record.get("sourceRecordId"),
             "sourceIndex": record.get("sourceIndex"),
             "map": record.get("map"),
+            "part": record.get("part"),
             "coordinateSpace": record.get("coordinateSpace", "game_world_xyz"),
             "position": record.get("position"),
             "placementType": record.get("placementType"),
@@ -2317,6 +2390,7 @@ def build_online_item_map_relations(
                     "sourceIndex": record.get("sourceIndex"),
                     "sourceRecordId": record.get("sourceRecordId"),
                     "map": record.get("map"),
+                    "part": record.get("part"),
                     "position": record.get("position"),
                     "coordinateSpace": record.get("coordinateSpace"),
                     "placementType": record.get("placementType"),
@@ -2357,6 +2431,7 @@ def build_online_item_map_relations(
                 "evidence": [
                     f"Map For Goblins item occurrence {record.get('sourceIndex')}:{unresolved['sourceItemIndex']} has no canonical unique match",
                     f"Map For Goblins source commit {source.get('commit') or 'snapshot'}",
+                    *([f"vanilla profile source {source.get('profile')}"] if source.get("profile") else []),
                 ],
                 "verification": "online_item_map_source_record_unresolved",
             })
@@ -3170,6 +3245,50 @@ def main() -> int:
     tables = load_name_tables()
 
     registry = json.loads(args.registry.read_text(encoding="utf-8"))
+    location_catalog = (
+        json.loads(DEFAULT_LOCATION_CATALOG.read_text(encoding="utf-8"))
+        if DEFAULT_LOCATION_CATALOG.is_file() else {"entities": []}
+    )
+    location_entities = location_catalog.get("entities", [])
+    origin_catalog = (
+        json.loads(DEFAULT_ABSTRACT_ORIGINS.read_text(encoding="utf-8"))
+        if DEFAULT_ABSTRACT_ORIGINS.is_file() else {"records": []}
+    )
+    grace_entities = []
+    seen_grace_ids = set()
+    for origin in origin_catalog.get("records", []):
+        formal_id = origin.get("formalNodeId")
+        name = origin.get("name")
+        if not formal_id or not name or origin.get("formalNodeKind") not in {"grace", "junction"}:
+            continue
+        # Some world-state/map variants reuse a formal node id in the source
+        # identity table. Keep one canonical entity per id.
+        if formal_id in seen_grace_ids:
+            continue
+        seen_grace_ids.add(formal_id)
+        grace_entities.append({
+            "id": formal_id,
+            "kind": "grace",
+            "category": "grace",
+            "class": None,
+            "name": {"en": name, "zh": name},
+            "signifiers": [{
+                "type": "abstract_origin",
+                "source": str(DEFAULT_ABSTRACT_ORIGINS),
+                "recordId": origin.get("id"),
+                "formalNodeKind": origin.get("formalNodeKind"),
+            }],
+            "properties": {
+                "originMapId": origin.get("originMapId"),
+                "bonfireEntityId": origin.get("bonfireEntityId"),
+                "region": origin.get("region"),
+                "identityStatus": (origin.get("binding") or {}).get("status"),
+                "localIdentityStatus": (origin.get("localIdentity") or {}).get("status"),
+                "topologyStatus": "not_bound",
+            },
+            "variant_count": 1,
+        })
+    print(f"abstract-origin grace entities: {len(grace_entities)}")
     # Make repeated builds idempotent.  The previous run may already have
     # merged generated enemy/shop/supplemental records into the registry; the
     # canonical source pass must start from the equipment/goods entities only.
@@ -3177,6 +3296,10 @@ def main() -> int:
         entity for entity in registry["entities"]
         if entity.get("kind") not in ("enemy", "npc")
         and not entity.get("id", "").startswith(("npc_shop_", "shop_context_", "shop_vendor_"))
+        and not (
+            entity.get("kind") == "grace"
+            and any(s.get("type") == "abstract_origin" for s in entity.get("signifiers", []))
+        )
         and not any(s.get("type") == "acquisition_name" for s in entity.get("signifiers", []))
     ]
     print(f"registry entities: {len(entities)}")
@@ -3190,9 +3313,10 @@ def main() -> int:
     print(f"named enemy/npc entities: {len(enemies)}")
 
     lot_enemy = param_rows(args.param_dir, "ItemLotParam_enemy")
-    drops = build_drops(npc_rows, row_to_entity, lot_enemy, tables, custom_weapons)
-    drop_coverage, drop_gaps = summarize_enemy_drop_coverage(
-        npc_rows, lot_enemy, tables, row_to_entity, custom_weapons
+    lot_map_rows = param_rows(args.param_dir, "ItemLotParam_map")
+    drops = build_drops(npc_rows, row_to_entity, lot_enemy, tables, custom_weapons, map_lot_rows=lot_map_rows)
+    drop_coverage, drop_gaps, no_drop_facts = summarize_enemy_drop_coverage(
+        npc_rows, lot_enemy, tables, row_to_entity, custom_weapons, map_lot_rows=lot_map_rows
     )
     print(f"drop relations: {len(drops)}")
     print(
@@ -3301,6 +3425,7 @@ def main() -> int:
     event_reward_exclusion_count = 0
     talk_reward_exclusion_count = 0
     unclassified_map_lot_gaps = []
+    unclassified_map_lot_facts: list[dict] = []
     for relation in non_pickup_param_relations:
         row_id = relation["lot"]["rowId"]
         if row_id in orphan_treasure_exclusions_by_lot:
@@ -3409,19 +3534,20 @@ def main() -> int:
                 "verification": "local_role_param_item_lot_verified",
             })
         else:
-            unclassified_map_lot_gaps.append({
-                "id": f"item-lot-map-unclassified-{row_id}",
+            unclassified_map_lot_facts.append({
+                "id": f"verified-unused-map-lot-{row_id}",
                 "method": "unclassified_param",
-                "status": "unreferenced_item_lot_param_map",
+                "status": "verified_unused_item_lot_param_map",
                 "sourceItemLotRoot": row_id,
                 "sourceItemLotRows": relation.get("sourceItemLotRows", []),
                 "itemCount": len(relation.get("items", [])),
                 "evidence": [
                     f"regulation.bin ItemLotParam_map row {row_id}",
-                    "no copied MSB Treasure, EMEVD reward, or Boss reward root reference",
-                    "not published as a fixed pickup until a real acquisition mechanism is proven",
+                    "not referenced by any MSB Treasure, EMEVD reward, Boss reward root, "
+                    "NpcParam.itemLotId_map, Talk ESD or RoleParam mechanism",
+                    "retained as a verified unused-row fact, excluded from authoritative coverage gaps",
                 ],
-                "verification": "local_param_unclassified",
+                "verification": "local_param_verified_unused",
             })
     pickup_endpoint_stats = attach_pickup_endpoints(pickups, args.pickup_bindings)
     pickup_gaps, pickup_gap_stats = summarize_pickup_coverage_gaps(pickups)
@@ -3509,7 +3635,7 @@ def main() -> int:
     )
 
     online_map_relations, online_map_stats, online_map_gaps = build_online_map_relations(
-        args.online_markers, entities + enemies
+        args.online_markers, entities + enemies, [*location_entities, *grace_entities]
     )
     print(
         "online map markers: "
@@ -3602,7 +3728,7 @@ def main() -> int:
         "properties": {},
         "variant_count": 1,
     }]
-    all_entities = entities + enemies + shop_entities + manual_entities
+    all_entities = entities + enemies + shop_entities + manual_entities + grace_entities
     relations = (
         drops + npc_map_drops + multiplayer_role_rewards + pickups + shops + boss_rewards + event_rewards + talk_rewards
         + gesture_acquisitions
@@ -3648,6 +3774,8 @@ def main() -> int:
             "online_item_map_exclusions": str(args.online_item_map_exclusions),
             "online_item_map_native_part_overrides": str(args.online_item_map_native_part_overrides),
             "online_cookbook_recipes": str(args.online_cookbook_recipes),
+            "location_catalog": str(DEFAULT_LOCATION_CATALOG),
+            "abstract_origin_bindings": str(DEFAULT_ABSTRACT_ORIGINS),
             "pickup_bindings": str(args.pickup_bindings),
             "abstract_topology_graph": str(args.abstract_topology_graph),
             "verified_special_acquisitions": str(args.verified_special_acquisitions),
@@ -3692,6 +3820,7 @@ def main() -> int:
             "pickupTalkRewardExclusionCount": talk_reward_exclusion_count,
             "pickupOrphanTreasureExclusionCount": orphan_treasure_exclusion_count,
             "unclassifiedItemLotParamMapCount": len(unclassified_map_lot_gaps),
+            "verifiedUnusedMapLotFactCount": len(unclassified_map_lot_facts),
             **{f"pickup_{key}": value for key, value in pickup_gap_stats.items()},
             "boss_reward": len(boss_rewards), "enemy_npc_entities": len(enemies),
             "event_reward": len(event_rewards),
@@ -3803,10 +3932,13 @@ def main() -> int:
             **{f"shop_{key}": value for key, value in shop_stats.items()},
         },
         "coverageGaps": (
-            drop_gaps + pickup_gaps + shop_gaps + online_map_gaps + online_guide_gaps
-            + online_item_map_gaps + local_recipe_gaps + initial_loadout_gaps
-            + unclassified_map_lot_gaps
+            drop_gaps + pickup_gaps + shop_gaps + local_recipe_gaps + initial_loadout_gaps
         ),
+        "onlineSourceGaps": (
+            online_map_gaps + online_guide_gaps + online_item_map_gaps
+        ),
+        "verifiedNoDropFacts": no_drop_facts,
+        "verifiedUnusedMapLotFacts": unclassified_map_lot_facts,
         "sourceExclusions": pickup_source_exclusions + online_item_map_exclusions,
         "relations": relations,
     }

@@ -42,15 +42,15 @@ def main() -> int:
     reinforce_catalog = json.loads(
         (ROOT / "data" / "v1" / "entities" / "reinforce-catalog.json").read_text(encoding="utf-8")
     )
-    assert registry["stats"]["ash_of_war"] == 117, registry["stats"]
-    assert registry["stats"]["ash_of_war_source_rows"] == 142, registry["stats"]
-    assert registry["stats"]["excluded_ash_of_war"] == 4, registry["stats"]
+    assert registry["stats"]["ash_of_war"] == 116, registry["stats"]
+    assert registry["stats"]["ash_of_war_source_rows"] == 141, registry["stats"]
+    assert registry["stats"]["excluded_ash_of_war"] == 5, registry["stats"]
     assert registry["stats"]["excluded_armor_appearance_rows"] == 41, registry["stats"]
     assert registry["stats"]["excluded_internal_weapon_rows"] == 5, registry["stats"]
-    assert registry["stats"]["excluded_internal_armor_rows"] == 17, registry["stats"]
+    assert registry["stats"]["excluded_internal_armor_rows"] == 23, registry["stats"]
     assert registry["stats"]["excluded_internal_accessory_rows"] == 1, registry["stats"]
     assert registry["stats"]["excluded_cut_gesture_rows"] == 3, registry["stats"]
-    assert registry["stats"]["excluded_cut_goods_rows"] == 18, registry["stats"]
+    assert registry["stats"]["excluded_cut_goods_rows"] == 23, registry["stats"]
     exclusion_stat_total = sum(
         value
         for key, value in registry["stats"].items()
@@ -73,6 +73,7 @@ def main() -> int:
     assert cut_goods_rows == {
         3020, 8147, 8192, 8195, 9304, 9195, 8156, 8181, 1570,
         8861, 8860, 8863, 3300, 8189, 8102, 8706, 8756, 480,
+        1220, 1350, 8934, 9393, 2008023,
     }, cut_goods_rows
     cut_goods_ids = {
         "item_miranda_s_prayer",
@@ -261,27 +262,57 @@ def main() -> int:
                 for item in relation.get("items", [])
             )
         ]
-        assert param_id_relations, param_id_item
-        assert param_id_relations[0]["verification"] == (
-            "online_item_map_source_param_id_unique_kind_match"
-        ), param_id_relations[0]
-        assert param_id_relations[0]["items"][0]["externalSourceName"] == "Lost Ashes", param_id_relations[0]
-        assert param_id_relations[0]["items"][0]["externalSourceId"] == 10070, param_id_relations[0]
+        assert param_id_relations == [], param_id_relations
+        exact_name_relations = [
+            relation for relation in param_id_item["entity"]["acquisitions"]
+            if relation.get("method") == "online_item_map"
+            and any(
+                item.get("externalSourceName") == "Lost Ashes of War"
+                and item.get("externalSourceId") == 10070
+                and item.get("onlineItemMapMatchMethod") == "exact_name"
+                for item in relation.get("items", [])
+            )
+        ]
+        assert exact_name_relations, param_id_item
+        assert exact_name_relations[0]["verification"] == (
+            "online_item_map_exact_unique_official_name_match"
+        ), exact_name_relations[0]
 
-        source_only = query(q="Somber Smithing Scadushard", limit=20)
+        arrow = query(id="weapon_arrow")
+        assert arrow["found"] is True, arrow
+        source_param_relations = [
+            relation for relation in arrow["entity"]["acquisitions"]
+            if relation.get("method") == "online_item_map"
+            and any(
+                item.get("onlineItemMapMatchMethod") == "source_param_id"
+                for item in relation.get("items", [])
+            )
+        ]
+        assert source_param_relations, arrow
+        source_param_item = next(
+            item for relation in source_param_relations
+            for item in relation.get("items", [])
+            if item.get("onlineItemMapMatchMethod") == "source_param_id"
+        )
+        assert source_param_item["externalSourceName"] == "Fire Arrow", source_param_item
+        assert source_param_item["externalSourceId"] == 50010000, source_param_item
+
+        source_only = query(q="Golden Vow", limit=50)
         assert source_only["total_matches"] > 0, source_only
         source_only_row = next(
             row for row in source_only["records"]
             if row.get("kind") == "external_item_reference"
+            and row.get("sourceStatus") == "source_item_ambiguous"
+            and row.get("id", "").startswith("source_only_online_item_map_")
         )
         assert source_only_row["sourceOnly"] is True, source_only_row
-        assert source_only_row["sourceStatus"] == "source_item_unmatched", source_only_row
+        assert source_only_row["sourceStatus"] == "source_item_ambiguous", source_only_row
         source_only_detail = query(id=source_only_row["id"])
         assert source_only_detail["found"] is True, source_only_detail
         assert source_only_detail["entity"]["properties"]["formalEntity"] is False, source_only_detail
         assert any(
             relation.get("verification") == "online_item_map_source_only_unresolved"
-            and relation.get("sourceGapStatus") == "source_item_unmatched"
+            and relation.get("sourceGapStatus") == "source_item_ambiguous"
             for relation in source_only_detail["entity"]["acquisitions"]
         ), source_only_detail
 
@@ -300,7 +331,7 @@ def main() -> int:
             for relation in guide_source_detail["entity"]["acquisitions"]
         ), guide_source_detail
 
-        map_source_only = query(q="Dragon's Pit Terminus", limit=20)
+        map_source_only = query(q="Moonlight Altar", limit=20)
         map_source_row = next(
             row for row in map_source_only["records"]
             if row.get("kind") == "external_map_reference"
@@ -309,7 +340,7 @@ def main() -> int:
         assert map_source_detail["found"] is True, map_source_detail
         assert map_source_detail["entity"]["properties"]["sourceOnly"] is True, map_source_detail
         assert map_source_detail["entity"]["counts"]["occurrences"] == 1, map_source_detail
-        assert map_source_detail["entity"]["occurrences"][0]["markerId"] == "g74351", map_source_detail
+        assert map_source_detail["entity"]["occurrences"][0]["markerId"] == "r-M00-moonlight-altar", map_source_detail
 
         craft_item = query(id="weapon_bone_arrow")
         assert craft_item["found"] is True, craft_item
@@ -479,7 +510,7 @@ def main() -> int:
             "锻造石": ("smithing_stone", 23),
             "石剑钥匙": ("stone_sword_key", 2),
             "地图残片": ("map_fragment", 24),
-            "战灰": ("ash_of_war", 117),
+            "战灰": ("ash_of_war", 116),
             "护符": ("accessory", 66),
             "骨灰": ("spirit_ash", 53),
             "漫步灵庙": ("enemy", 1),
@@ -594,7 +625,7 @@ def main() -> int:
 
         thin_beast_bones = query(id="item_thin_beast_bones")
         assert thin_beast_bones["found"] is True, thin_beast_bones
-        assert len(thin_beast_bones["entity"]["acquisitions"]) == thin_beast_bones["entity"]["counts"]["acquisitions"] == 6925, thin_beast_bones
+        assert len(thin_beast_bones["entity"]["acquisitions"]) == thin_beast_bones["entity"]["counts"]["acquisitions"] == 4885, thin_beast_bones
 
         exact_part_anchor = topology_query("weapon_omen_cleaver")
         assert exact_part_anchor["found"] is True, exact_part_anchor
@@ -1008,8 +1039,8 @@ def main() -> int:
         assert index["stats"]["entityCount"] >= 9000
         coverage = index["stats"]["acquisitionCoverage"]
         assert coverage["drop"]["dropRootCount"] == 1376, coverage
-        assert coverage["drop"]["dropRelationCount"] == 1215, coverage
-        assert coverage["drop"]["dropGapCount"] == 166, coverage
+        assert coverage["drop"]["dropRelationCount"] == 1216, coverage
+        assert coverage["drop"]["dropGapCount"] == 0, coverage
         assert coverage["pickup"]["pickupEndpointInstanceCount"] >= 3600, coverage
         assert coverage["pickup"]["pickup"] == 3346, coverage
         assert coverage["pickup"]["pickup_coverageGapCount"] == 0, coverage
@@ -1026,39 +1057,25 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66713,
-            "topologyMapExactMapInstanceEndpointCount": 64566,
+            "topologyMapEndpointCount": 81457,
+            "topologyMapExactMapInstanceEndpointCount": 78374,
             "topologyMapExactLayerEndpointCount": 31968,
             "topologyMapCandidateEndpointCount": 35,
-            "topologyMapExternalScopeEndpointCount": 2112,
+            "topologyMapExternalScopeEndpointCount": 3048,
             "topologyMapUnresolvedEndpointCount": 0,
             "topologyMapBindingStatusCounts": {
                 "candidate_map_instance": 35,
-                "exact_map_instance": 64426,
-                "exact_map_instance_alias": 140,
-                "external_map_scope": 2112,
+                "exact_map_instance": 78278,
+                "exact_map_instance_alias": 96,
+                "external_map_scope": 3048,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 6470, index
-        assert coverage["sourceExclusionCount"] == 1187, coverage
+        assert len(index["coverageGaps"]) == 688, index
+        assert len(index.get("onlineSourceGaps", [])) == 1288, index
+        assert len(index.get("verifiedNoDropFacts", [])) >= 150, index
+        assert len(index.get("verifiedUnusedMapLotFacts", [])) >= 500, index
+        assert coverage["sourceExclusionCount"] == 1076, coverage
         assert coverage["pickup"]["pickupTalkRewardExclusionCount"] == 127, coverage
-        assert index["stats"]["sourceOnlyEntityCount"] == 2375, index["stats"]
-        assert index["stats"]["sourceOnlyAcquisitionCount"] == 3324, index["stats"]
-        assert index["stats"]["sourceOnlyEntityCounts"] == {
-            "online_guide": 1206,
-            "online_item_map": 185,
-            "online_map": 984,
-        }, index["stats"]
-        assert index["stats"]["sourceOnlyOccurrenceCounts"] == {
-            "online_guide": 0,
-            "online_item_map": 0,
-            "online_map": 984,
-        }, index["stats"]
-        assert index["stats"]["sourceOnlyAcquisitionCounts"] == {
-            "online_guide": 1206,
-            "online_item_map": 2118,
-            "online_map": 0,
-        }, index["stats"]
         assert index["stats"]["kindCounts"]["message"] == 50, index["stats"]
         assert index["stats"]["messageOccurrenceCount"] == 50, index["stats"]
         assert index["stats"]["kindCounts"]["summon_endpoint"] == 325, index["stats"]
@@ -1068,24 +1085,22 @@ def main() -> int:
         assert {
             gap["status"] for gap in index["coverageGaps"]
         } == {
-            "source_lot_missing",
-            "source_lot_empty",
-            "unreferenced_item_lot_param_map",
             "seller_unresolved_no_external_binding",
             "seller_unresolved_candidate_binding",
+        }, index["coverageGaps"]
+        assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
+        assert {
+            gap["status"] for gap in index["onlineSourceGaps"]
+        } == {
             "source_item_unmatched",
             "source_item_ambiguous",
             "source_item_no_map",
             "source_map_invalid",
             "source_marker_unmatched",
-        }, index["coverageGaps"]
-        assert sum(gap["method"] == "drop" for gap in index["coverageGaps"]) == 166
-        assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
-        assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 537
-        assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
-        assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2889
-        assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
-        assert sum(gap["method"] == "online_map" for gap in index["coverageGaps"]) == 984
+        }, index["onlineSourceGaps"]
+        assert sum(gap["method"] == "online_guide" for gap in index["onlineSourceGaps"]) == 1206
+        assert sum(gap["method"] == "online_map" for gap in index["onlineSourceGaps"]) == 48
+        assert sum(gap["method"] == "online_item_map" for gap in index["onlineSourceGaps"]) == 34
 
         # Local gesture facts are independent acquisitions.  Starting state,
         # map event, and Talk ESD evidence must all remain queryable without a
