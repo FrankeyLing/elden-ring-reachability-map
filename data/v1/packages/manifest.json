@@ -519,7 +519,7 @@
   ],
   "bridgePackageId": "bridge",
   "coverage": {
-    "formalNodeCount": 6668,
+    "formalNodeCount": 6669,
     "formalRouteEdgeCount": 1601,
     "conditionCount": 177,
     "packageCount": 13,

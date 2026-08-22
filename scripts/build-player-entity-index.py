@@ -115,7 +115,7 @@ def main() -> int:
     )
 
     records: dict[str, dict[str, Any]] = {}
-    entity_aliases: dict[str, str] = {}
+    entity_aliases: dict[str, str] = dict(registry.get("entityAliases", {}))
 
     def ensure(
         entity_id: str,

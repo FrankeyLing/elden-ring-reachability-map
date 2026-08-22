@@ -118,6 +118,14 @@ def main() -> int:
     by_kind_name = Counter((e["kind"], e["name"]["en"]) for e in entities)
     dup_names = {n: c for n, c in by_kind_name.items() if c > 1}
     check(not dup_names, f"duplicate kind+name entities: {dict(list(dup_names.items())[:8])}")
+    same_name_item_spell = {
+        name
+        for name in {e["name"]["en"] for e in entities}
+        if {e["kind"] for e in entities if e["name"]["en"] == name}
+        >= {"item", "spell"}
+    }
+    check(same_name_item_spell == {"Golden Vow"},
+          f"unexpected same-name item/spell entities: {sorted(same_name_item_spell)}")
     print(f"entity registry: {len(entities)} entities, {len(set(ids))} unique ids")
 
     # ---- 2. acquisition registry -------------------------------------------
@@ -300,10 +308,14 @@ def main() -> int:
                 check(not endpoints,
                       f"pickup relation {rel['id']} has endpoints despite missing coordinates")
         if rel.get("method") == "craft":
-            check(rel.get("verification") == "online_cookbook_product_exact_unique_official_name_match",
+            check(rel.get("verification") in {
+                      "online_cookbook_product_exact_unique_official_name_match",
+                      "online_dataset_dlc_pair_exact_unique_official_entity_match",
+                  },
                   f"craft relation {rel['id']} has weak verification")
             recipe = rel.get("craftRecipe") or {}
-            check(isinstance(recipe.get("sourceRecipeId"), int),
+            check(isinstance(recipe.get("sourceRecipeId"), (int, str))
+                  and bool(recipe.get("sourceRecipeId")),
                   f"craft relation {rel['id']} missing source recipe id")
             check(rel.get("from") == recipe.get("cookbookItemId"),
                   f"craft relation {rel['id']} cookbook source mismatch")
@@ -354,16 +366,6 @@ def main() -> int:
                 if ingredients_status == "present_exact_unique_entity_match":
                     check(all(ingredient.get("itemId") for ingredient in ingredients),
                           f"craft relation {rel['id']} claims exact ingredients with unresolved item")
-        if rel.get("method") == "spell_acquisition":
-            check(rel.get("verification") == "official_magic_goods_linked_acquisition",
-                  f"spell acquisition {rel['id']} has weak verification")
-            for item in rel.get("items", []):
-                check(item.get("item", "").startswith("spell_"),
-                      f"spell acquisition {rel['id']} target is not a spell")
-                check(item.get("sourceItemId", "").startswith("item_"),
-                      f"spell acquisition {rel['id']} missing Goods source")
-                check(item.get("sourceName", {}).get("en") == item.get("name", {}).get("en"),
-                      f"spell acquisition {rel['id']} name link is not exact")
         if rel.get("method") == "drop":
             root_lot = (rel.get("lot") or {}).get("rowId")
             lot_rows = rel.get("sourceItemLotRows") or []
@@ -872,8 +874,25 @@ def main() -> int:
     spell_projections = [rel for rel in rels if rel.get("method") == "spell_acquisition"]
     check(len(spell_projections) == online_stats.get("spell_acquisition"),
           "spell acquisition projection count does not match registry stats")
-    check(len(spell_projections) == 522,
-          f"spell acquisition projection snapshot drifted: {len(spell_projections)}")
+    check(len(spell_projections) == 0,
+          f"name-only spell acquisition projections remain: {len(spell_projections)}")
+    aliases = registry.get("entityAliases", {})
+    check(registry.get("stats", {}).get("spell_goods_signifiers_merged") == 213,
+          "spell Goods signifier merge count drifted")
+    check(len(aliases) == registry.get("stats", {}).get("entity_aliases") == 212,
+          "spell Goods alias count drifted")
+    for source_id, target_id in aliases.items():
+        check(source_id not in entity_ids, f"merged alias source remains canonical: {source_id}")
+        check(target_id in entity_ids, f"merged alias target is missing: {target_id}")
+        check(entity_by_id[target_id].get("kind") == "spell",
+              f"merged alias target is not a spell: {target_id}")
+    golden_item = entity_by_id.get("item_golden_vow", {})
+    golden_spell = entity_by_id.get("spell_golden_vow", {})
+    check(golden_item and golden_spell, "Golden Vow item/spell split is missing")
+    check(next(s for s in golden_item["signifiers"] if s.get("param") == "EquipParamGoods")["rows"] == [2003170],
+          "Golden Vow consumable has incorrect Goods signifier")
+    check(next(s for s in golden_spell["signifiers"] if s.get("param") == "EquipParamGoods")["rows"] == [6600],
+          "Golden Vow spell has incorrect Goods signifier")
     print(f"spell acquisition projections: {len(spell_projections)}")
     for rel in purchase_relations:
         check(isinstance(rel.get("lineupRow"), int), f"purchase {rel['id']} missing ShopLineupParam row")
@@ -1135,7 +1154,10 @@ def main() -> int:
     # ---- 3d. pickup bindings ---------------------------------------------------
     for b in pickups["bindings"]:
         for item in b.get("items", []):
-            check(item.get("item") in entity_ids,
+            canonical_item_id = registry.get("entityAliases", {}).get(
+                item.get("item"), item.get("item")
+            )
+            check(canonical_item_id in entity_ids,
                   f"pickup lot {b['lot']} item {item.get('item')} unresolved")
         check(b.get("positions"), f"pickup lot {b['lot']} has no positions")
     print(f"pickup bindings: {len(pickups['bindings'])} lots")

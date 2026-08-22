@@ -314,6 +314,102 @@ def build_spells(magic_rows: list[dict], goods_names, goods_rows: dict[int, dict
     return sorted(entities, key=lambda e: e["id"])
 
 
+def merge_spell_goods_signifiers(
+    goods: list[dict], spells: list[dict], goods_rows_by_id: dict[int, dict]
+) -> tuple[list[dict], dict[str, str], int]:
+    """Merge the Goods learning row into its one canonical spell entity.
+
+    A learnable spell has a Magic row and a same-id Goods row.  They are two
+    engine signifiers for one player-facing spell, not two obtainable things.
+    A same-name Goods row with another id remains independent; Golden Vow is
+    the concrete case where the DLC consumable must not be merged into the
+    base-game incantation.
+    """
+    goods_by_name: dict[str, list[tuple[int, dict]]] = {}
+    for index, entity in enumerate(goods):
+        name = (entity.get("name", {}).get("en") or "").casefold()
+        if name:
+            goods_by_name.setdefault(name, []).append((index, entity))
+    aliases: dict[str, str] = {}
+    merged_signifiers = 0
+    consumed_goods_indexes: set[int] = set()
+
+    for spell in spells:
+        name_key = (spell.get("name", {}).get("en") or "").casefold()
+        magic_rows = {
+            int(row_id)
+            for signifier in spell.get("signifiers", [])
+            if signifier.get("param") == "Magic"
+            for row_id in signifier.get("rows", [])
+        }
+        candidate = None
+        for goods_index, goods_entity in goods_by_name.get(name_key, []):
+            goods_signifier = next(
+                (
+                    signifier
+                    for signifier in goods_entity.get("signifiers", [])
+                    if signifier.get("param") == "EquipParamGoods"
+                ),
+                None,
+            )
+            if goods_signifier and magic_rows & {
+                int(row_id) for row_id in goods_signifier.get("rows", [])
+            }:
+                candidate = (goods_index, goods_entity, goods_signifier)
+                break
+        if not candidate:
+            continue
+        goods_index, goods_entity, goods_signifier = candidate
+        goods_rows = {int(row_id) for row_id in goods_signifier.get("rows", [])}
+        linked_rows = sorted(goods_rows & magic_rows)
+        if not linked_rows:
+            continue
+
+        spell.setdefault("signifiers", []).append({
+            "type": "param",
+            "param": "EquipParamGoods",
+            "rows": linked_rows,
+            "role": "spell_learning_inventory_signifier",
+        })
+        spell.setdefault("properties", {})["goodsLearningRowIds"] = linked_rows
+        spell["properties"]["canonicalEntityRole"] = "learnable_spell"
+        merged_signifiers += 1
+
+        remaining_rows = sorted(goods_rows - set(linked_rows))
+        if remaining_rows:
+            # The same display name denotes a separate inventory product too.
+            # Retain only its non-spell Goods rows on the item entity.
+            goods_signifier["rows"] = remaining_rows
+            goods_entity["variant_count"] = len(remaining_rows)
+            remaining_cells = goods_rows_by_id[remaining_rows[0]]["cells"]
+            goods_entity["properties"] = {
+                "goodsType": remaining_cells.get("goodsType"),
+                "basicPrice": remaining_cells.get("basicPrice"),
+                "sortId": remaining_cells.get("sortId"),
+            }
+            goods_entity.setdefault("properties", {})["sameNameSpellEntityId"] = spell["id"]
+            spell["properties"]["sameNameInventoryEntityId"] = goods_entity["id"]
+        else:
+            consumed_goods_indexes.add(goods_index)
+            spell.setdefault("properties", {})["legacyGoodsEntityId"] = goods_entity["id"]
+
+    retained_goods = [
+        entity for index, entity in enumerate(goods)
+        if index not in consumed_goods_indexes
+    ]
+    retained_ids = {entity["id"] for entity in retained_goods}
+    for index in consumed_goods_indexes:
+        source_id = goods[index]["id"]
+        if source_id not in retained_ids:
+            spell_id = f"spell_{slugify(goods[index]['name']['en'])}"
+            aliases[source_id] = spell_id
+        else:
+            spell_id = f"spell_{slugify(goods[index]['name']['en'])}"
+            spell = next(entity for entity in spells if entity["id"] == spell_id)
+            spell.get("properties", {}).pop("legacyGoodsEntityId", None)
+    return retained_goods, dict(sorted(aliases.items())), merged_signifiers
+
+
 # ---------------------------------------------------------------------------
 # Goods classification (user categories)
 # ---------------------------------------------------------------------------
@@ -690,14 +786,20 @@ def main() -> int:
     print(f"ash_of_war: {len(gems)} (excluded internal rows: {len(excluded_gems)})")
     goods_rows = param_rows(args.param_dir, "EquipParamGoods")
     goods = build_goods(goods_rows, tables)
-    print(f"items: {len(goods)}")
     gestures = param_rows(args.param_dir, "GestureParam")
     spells = build_spells(
         param_rows(args.param_dir, "Magic"),
         tables["GoodsName"],
         {row["id"]: row for row in goods_rows},
     )
-    print(f"spells: {len(spells)}")
+    goods, entity_aliases, merged_spell_goods = merge_spell_goods_signifiers(
+        goods, spells, {row["id"]: row for row in goods_rows}
+    )
+    print(
+        f"items: {len(goods)}; spells: {len(spells)}; "
+        f"merged spell Goods signifiers: {merged_spell_goods}; "
+        f"compatibility aliases: {len(entity_aliases)}"
+    )
 
     entities = weapons + armors + accessories + gems + goods + spells
     # merge duplicates (e.g. two Gem rows resolving to the same name id)
@@ -730,12 +832,16 @@ def main() -> int:
             "weapon": len(weapons), "armor": len(armors), "accessory": len(accessories),
             "ash_of_war": sum(entity["category"] == "ash_of_war" for entity in entities),
             "ash_of_war_source_rows": len(gems),
-            "spell": len(spells), "item": len(goods),
+            "spell": sum(entity["kind"] == "spell" for entity in entities),
+            "item": sum(entity["kind"] == "item" for entity in entities),
             "gesture": gesture_count,
+            "spell_goods_signifiers_merged": merged_spell_goods,
+            "entity_aliases": len(entity_aliases),
             "excluded_ash_of_war": len(excluded_gems),
             "excluded_armor_appearance_rows": len(excluded_appearance_armor),
         },
         "exclusions": excluded_gems + excluded_appearance_armor,
+        "entityAliases": entity_aliases,
         "entities": entities,
     }
     args.out.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

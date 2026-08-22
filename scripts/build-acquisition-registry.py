@@ -61,6 +61,13 @@ LOT_CATEGORY_TABLES = {
 LOT_CATEGORY_KIND = {
     1: "item", 2: "weapon", 3: "armor", 4: "accessory", 5: "ash_of_war",
 }
+FMG_TO_PARAM = {
+    "GoodsName": "EquipParamGoods",
+    "WeaponName": "EquipParamWeapon",
+    "ProtectorName": "EquipParamProtector",
+    "AccessoryName": "EquipParamAccessory",
+    "GemName": "EquipParamGem",
+}
 
 # ShopLineupParam equipType (verified against the local regulation dump and the
 # corresponding EquipParam tables): 0=Weapon, 1=Protector, 2=Accessory,
@@ -126,10 +133,17 @@ def canonicalize_acquisition_items(relations: list[dict], entities: list[dict]) 
     """
     entity_by_id = {e["id"]: e for e in entities}
     by_kind_name: dict[tuple[str, str], list[str]] = {}
+    by_param_row: dict[tuple[str, int], list[str]] = {}
     for entity in entities:
         name = entity.get("name", {}).get("en")
         if name:
             by_kind_name.setdefault((entity.get("kind"), name.casefold()), []).append(entity["id"])
+        for signifier in entity.get("signifiers", []):
+            param = signifier.get("param")
+            if not param:
+                continue
+            for row_id in signifier.get("rows", []):
+                by_param_row.setdefault((str(param), int(row_id)), []).append(entity["id"])
 
     kind_by_prefix = {
         "weapon": "weapon", "armor": "armor", "accessory": "accessory",
@@ -142,7 +156,27 @@ def canonicalize_acquisition_items(relations: list[dict], entities: list[dict]) 
             return []
         return by_kind_name.get((kind, name.casefold()), [])
 
-    def resolve(raw_id: str, name: str) -> tuple[str, str | None, str | None]:
+    def resolve(item: dict) -> tuple[str, str | None, str | None]:
+        raw_id = item["item"]
+        name = (item.get("name") or {}).get("en") or ""
+        source_param = item.get("sourceParam")
+        source_param_id = item.get("sourceParamId")
+        if source_param and isinstance(source_param_id, int):
+            param_candidates = by_param_row.get((str(source_param), source_param_id), [])
+            if len(param_candidates) == 1:
+                target_id = param_candidates[0]
+                target = entity_by_id[target_id]
+                target_name = (target.get("name") or {}).get("en") or ""
+                if target.get("kind") == "weapon":
+                    for affix in WEAPON_AFFIXES:
+                        if name == f"{affix} {target_name}":
+                            return target_id, affix, None
+                if target.get("kind") == "armor" and name == f"{target_name} (Altered)":
+                    return target_id, "altered", None
+                level_match = re.fullmatch(rf"{re.escape(target_name)} \+(\d+)", name)
+                if level_match:
+                    return target_id, f"reinforcement_level_{level_match.group(1)}", None
+                return target_id, None, None
         if raw_id in entity_by_id:
             return raw_id, None, None
         prefix = raw_id.split("_", 1)[0]
@@ -187,7 +221,7 @@ def canonicalize_acquisition_items(relations: list[dict], entities: list[dict]) 
         # are the common case).  Prefer an exact official name in the
         # canonical item/equipment categories before creating a supplemental
         # entity.
-        for fallback_kind in ("item", "weapon", "armor", "accessory", "ash_of_war"):
+        for fallback_kind in ("item", "weapon", "armor", "accessory", "ash_of_war", "spell"):
             direct = candidates(normalized_name, fallback_kind)
             if len(direct) == 1:
                 return direct[0], None, normalized_name if normalized_name != name else None
@@ -212,7 +246,7 @@ def canonicalize_acquisition_items(relations: list[dict], entities: list[dict]) 
             name = (item.get("name") or {}).get("en")
             if not raw_id or not name:
                 continue
-            resolved, variant, corrected_name = resolve(raw_id, name)
+            resolved, variant, corrected_name = resolve(item)
             if resolved != raw_id:
                 item["sourceItemId"] = raw_id
                 item["sourceName"] = name
@@ -513,6 +547,9 @@ def build_drops(npc_rows: list[dict], row_to_entity: dict[int, str],
                     "slot": k,
                     "num": lot.get(f"lotItemNum{k:02d}"),
                     "rate": lot.get(f"lotItemBasePoint{k:02d}"),
+                    "sourceParam": FMG_TO_PARAM[fmg],
+                    "sourceParamId": iid,
+                    "sourceItemCategory": cat,
                 })
         if items:
             relations.append({
@@ -746,6 +783,9 @@ def build_pickups(
                     "slot": k,
                     "num": lot.get(f"lotItemNum{k:02d}"),
                     "rate": lot.get(f"lotItemBasePoint{k:02d}"),
+                    "sourceParam": FMG_TO_PARAM[fmg],
+                    "sourceParamId": iid,
+                    "sourceItemCategory": cat,
                 })
         if items:
             relations.append({
@@ -824,6 +864,9 @@ def build_shops(
             "mtrlId": c.get("mtrlId"),
             "stock": c.get("sellQuantity"),
             "lineupRow": r["id"],
+            "sourceParam": FMG_TO_PARAM[fmg],
+            "sourceParamId": eid,
+            "sourceEquipType": etype,
         }
     relations = []
     entities = []
@@ -1742,11 +1785,18 @@ def build_online_item_map_relations(
                 expected_kinds = ONLINE_ITEM_MAP_EXPECTED_KINDS.get(
                     str(source_item.get("broadCategory") or "").casefold()
                 )
-                param_candidates = [
-                    candidate
-                    for candidate in by_param_row.get(str(source_item.get("sourceItemId")), [])
-                    if expected_kinds and candidate.get("kind") in expected_kinds
-                ]
+                all_param_candidates = by_param_row.get(
+                    str(source_item.get("sourceItemId")), []
+                )
+                param_candidates = (
+                    all_param_candidates
+                    if len(all_param_candidates) == 1
+                    else [
+                        candidate
+                        for candidate in all_param_candidates
+                        if expected_kinds and candidate.get("kind") in expected_kinds
+                    ]
+                )
                 if len(param_candidates) == 1:
                     candidates = param_candidates
                     match_method = "source_param_id"
@@ -2086,53 +2136,6 @@ def build_online_cookbook_recipe_relations(
         })
     stats["matched"] = len(relations)
     return relations, stats
-
-
-def build_spell_acquisition_projections(
-    relations: list[dict],
-    entities: list[dict],
-) -> list[dict]:
-    """Project Goods acquisition facts onto the linked Magic entity.
-
-    The game stores a learnable spell as a Goods inventory row and a matching
-    Magic row. They are two official signifiers of one learnable thing, so a
-    spell search must expose the same purchase/pickup evidence without making
-    the user search an implementation-only Goods record.
-    """
-    spell_by_name = {
-        entity.get("name", {}).get("en", "").casefold(): entity
-        for entity in entities
-        if entity.get("kind") == "spell" and entity.get("name", {}).get("en")
-    }
-    goods_by_name = {
-        entity.get("name", {}).get("en", "").casefold(): entity
-        for entity in entities
-        if entity.get("id", "").startswith("item_")
-        and entity.get("name", {}).get("en")
-    }
-    projections = []
-    for relation in relations:
-        for item in relation.get("items", []):
-            goods = goods_by_name.get((item.get("name", {}).get("en") or "").casefold())
-            spell = spell_by_name.get((item.get("name", {}).get("en") or "").casefold())
-            if not goods or not spell or item.get("item") != goods.get("id"):
-                continue
-            projected = copy.deepcopy(relation)
-            projected["id"] = f"spell-acquisition-{relation['id']}-{spell['id']}"
-            projected["method"] = "spell_acquisition"
-            projected["items"] = [{
-                **copy.deepcopy(item),
-                "item": spell["id"],
-                "sourceItemId": goods["id"],
-                "sourceName": goods["name"],
-            }]
-            projected["evidence"] = [
-                *relation.get("evidence", []),
-                "official Magic and Goods entries share the same English name",
-            ]
-            projected["verification"] = "official_magic_goods_linked_acquisition"
-            projections.append(projected)
-    return projections
 
 
 def attach_quest_npc_endpoints(
@@ -2534,11 +2537,11 @@ def main() -> int:
         f"unmatched cookbooks={online_cookbook_stats['unmatched_cookbooks']}"
     )
 
-    spell_acquisition_projections = build_spell_acquisition_projections(
-        drops + pickups + shops + event_rewards + quest_rewards,
-        entities + enemies,
-    )
-    print(f"spell acquisition projections: {len(spell_acquisition_projections)}")
+    # Spell Goods rows are now signifiers on the canonical spell entity.
+    # Parameter-row resolution below binds each source relation directly to
+    # that entity, so name-only duplicate projections are intentionally zero.
+    spell_acquisition_projections: list[dict] = []
+    print("spell acquisition projections: 0 (canonical signifier merge)")
 
     # Named entities with no official FMG name (identified by model): the SotE
     # Furnace Golem is a user-category boss with only a community name.

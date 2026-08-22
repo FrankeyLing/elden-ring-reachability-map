@@ -2,38 +2,38 @@
   "schema": "elden-ring-reachability-map/real-requirements-audit@1",
   "contract": ".local-plans/2026-08-21-real-requirements-execution-and-acceptance.md",
   "milestone": "v1",
-  "generatedAt": "2026-08-22T05:22:08.271966+00:00",
+  "generatedAt": "2026-08-22T06:16:22.408694+00:00",
   "status": "fail",
   "summary": {
     "gateCount": 17,
     "passedGateCount": 9,
     "failedGateCount": 8,
-    "runtimeEntityCount": 11629,
-    "searchableEntityCount": 11629,
-    "acquisitionRelationProjectionCount": 54651,
-    "endpointInstanceProjectionCount": 172031,
+    "runtimeEntityCount": 11266,
+    "searchableEntityCount": 11266,
+    "acquisitionRelationProjectionCount": 54188,
+    "endpointInstanceProjectionCount": 171480,
     "formalAcquisitionRouteRelationCount": 21,
     "formalRouteNodeCount": 938,
-    "formalAnchorEndpointCount": 64416,
-    "containmentRegionEndpointCount": 64412,
-    "containmentUnresolvedEndpointCount": 326,
+    "formalAnchorEndpointCount": 64054,
+    "containmentRegionEndpointCount": 64050,
+    "containmentUnresolvedEndpointCount": 328,
     "nonFormalAnchorBreakdown": {
-      "external_map_scope": 1995,
+      "external_map_scope": 2108,
       "exact_abstract_layer_anchor": 280,
       "unbound_map_identity": 119,
-      "exact_abstract_map_anchor": 46,
-      "candidate_abstract_map_anchor": 37
+      "exact_abstract_map_anchor": 48,
+      "candidate_abstract_map_anchor": 35
     },
-    "coverageGapCount": 7874,
-    "unboundEndpointCount": 4789,
-    "acquirableEntityWithoutRelationCount": 249
+    "coverageGapCount": 7518,
+    "unboundEndpointCount": 4433,
+    "acquirableEntityWithoutRelationCount": 201
   },
   "gates": [
     {
       "name": "runtime_entity_count_matches_projection",
       "status": "pass",
-      "actual": 11629,
-      "expected": 11629,
+      "actual": 11266,
+      "expected": 11266,
       "evidence": "player-entity-index.json"
     },
     {
@@ -95,42 +95,42 @@
     {
       "name": "authoritative_source_coverage_gaps",
       "status": "fail",
-      "actual": 7874,
+      "actual": 7518,
       "expected": 0,
       "evidence": "acquisition-registry coverageGaps"
     },
     {
       "name": "acquirable_entities_without_acquisition",
       "status": "fail",
-      "actual": 249,
+      "actual": 201,
       "expected": 0,
       "evidence": "player entity acquisitions"
     },
     {
       "name": "unbound_or_unresolved_acquisition_endpoints",
       "status": "fail",
-      "actual": 4789,
+      "actual": 4433,
       "expected": 0,
       "evidence": "acquisition-topology-bridge stats"
     },
     {
       "name": "candidate_map_endpoints",
       "status": "fail",
-      "actual": 37,
+      "actual": 35,
       "expected": 0,
       "evidence": "acquisition-topology-bridge stats"
     },
     {
       "name": "external_scope_endpoints",
       "status": "fail",
-      "actual": 1999,
+      "actual": 2112,
       "expected": 0,
       "evidence": "acquisition-topology-bridge stats"
     },
     {
       "name": "fixed_endpoints_without_formal_route_anchor",
       "status": "fail",
-      "actual": 2477,
+      "actual": 2590,
       "expected": 0,
       "evidence": "acquisition-topology-bridge formalRouteAnchorEndpointCount + acquisition-contains-bindings region_containment"
     },
@@ -162,7 +162,6 @@
       "armor_braided_arm_wraps",
       "armor_braided_cord_robe",
       "armor_brave_s_cord_circlet",
-      "armor_caterpillar_mask",
       "armor_fia_s_hood",
       "armor_gold_bracelets",
       "armor_gold_waistwrap",
@@ -240,9 +239,7 @@
       "item_asimi_s_husk",
       "item_asimi_silver_chrysalid",
       "item_asimi_silver_tear",
-      "item_aspects_of_the_crucible_thorns",
       "item_balled_up",
-      "item_barrier_of_gold",
       "item_beckon",
       "item_black_syrup",
       "item_bow",
@@ -250,10 +247,13 @@
       "item_by_my_sword",
       "item_casual_greeting",
       "item_champion_s_song_painting",
-      "item_cherishing_fingers",
-      "item_comet_azur",
       "item_cross_map",
-      "item_crossed_legs"
+      "item_crossed_legs",
+      "item_dejection",
+      "item_domain_of_dragons_painting",
+      "item_dozing_cross_legged",
+      "item_dragonscale_flesh",
+      "item_drawstring_freezing_grease"
     ],
     "armorReinforcementRelations": []
   },

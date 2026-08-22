@@ -302,17 +302,35 @@ def main() -> int:
             "73ae9c5c72873edab7629142a4ff5857360f8d81"
         ), dlc_craft_relation
 
-        mapped_spell = query(id="spell_glintstone_cometshard")["entity"]
-        mapped_relations = [
-            relation for relation in mapped_spell["acquisitions"]
-            if relation.get("method") == "spell_acquisition"
-        ]
-        assert mapped_relations, mapped_spell
+        mapped_alias = query(id="item_glintstone_cometshard")
+        assert mapped_alias["found"] is True, mapped_alias
+        assert mapped_alias["entity"]["id"] == "spell_glintstone_cometshard", mapped_alias
+        mapped_spell = mapped_alias["entity"]
+        assert mapped_spell["acquisitions"], mapped_spell
+        assert not any(
+            relation.get("method") == "spell_acquisition"
+            for relation in mapped_spell["acquisitions"]
+        ), mapped_spell
         assert all(
-            item.get("sourceItemId") == "item_glintstone_cometshard"
-            for relation in mapped_relations
+            item.get("item") == "spell_glintstone_cometshard"
+            for relation in mapped_spell["acquisitions"]
             for item in relation.get("items", [])
         ), mapped_spell
+
+        golden_vow_item = query(id="item_golden_vow")["entity"]
+        golden_vow_spell = query(id="spell_golden_vow")["entity"]
+        assert golden_vow_item["id"] != golden_vow_spell["id"]
+        assert any(
+            item.get("sourceParam") == "EquipParamGoods"
+            and item.get("sourceParamId") == 2003170
+            for relation in golden_vow_item["acquisitions"]
+            for item in relation.get("items", [])
+        ), golden_vow_item
+        assert not any(
+            item.get("sourceParamId") == 2003170
+            for relation in golden_vow_spell["acquisitions"]
+            for item in relation.get("items", [])
+        ), golden_vow_spell
 
         gestures = query(q="表情动作", limit=100)
         assert gestures["total_matches"] >= 50, gestures
@@ -825,27 +843,27 @@ def main() -> int:
         # Research-only content equivalence (equivalent-map-instances identityPolicy)
         # must not promote a map-instance binding: those endpoints stay candidate.
         assert index["stats"]["topologyMapBinding"] == {
-            "topologyMapEndpointCount": 66893,
-            "topologyMapExactMapInstanceEndpointCount": 64738,
-            "topologyMapExactLayerEndpointCount": 32231,
-            "topologyMapCandidateEndpointCount": 37,
-            "topologyMapExternalScopeEndpointCount": 1999,
+            "topologyMapEndpointCount": 66644,
+            "topologyMapExactMapInstanceEndpointCount": 64378,
+            "topologyMapExactLayerEndpointCount": 31805,
+            "topologyMapCandidateEndpointCount": 35,
+            "topologyMapExternalScopeEndpointCount": 2112,
             "topologyMapUnresolvedEndpointCount": 119,
             "topologyMapBindingStatusCounts": {
-                "candidate_map_instance": 37,
-                "exact_map_instance": 64584,
-                "exact_map_instance_alias": 154,
-                "external_map_scope": 1999,
+                "candidate_map_instance": 35,
+                "exact_map_instance": 64282,
+                "exact_map_instance_alias": 96,
+                "external_map_scope": 2112,
                 "unresolved_map_instance": 119,
             },
         }, index["stats"]
-        assert len(index["coverageGaps"]) == 7874, index
+        assert len(index["coverageGaps"]) == 7518, index
         assert coverage["sourceExclusionCount"] == 44, coverage
-        assert index["stats"]["sourceOnlyEntityCount"] == 2544, index["stats"]
-        assert index["stats"]["sourceOnlyAcquisitionCount"] == 3653, index["stats"]
+        assert index["stats"]["sourceOnlyEntityCount"] == 2393, index["stats"]
+        assert index["stats"]["sourceOnlyAcquisitionCount"] == 3356, index["stats"]
         assert index["stats"]["sourceOnlyEntityCounts"] == {
-            "online_guide": 1319,
-            "online_item_map": 241,
+            "online_guide": 1206,
+            "online_item_map": 203,
             "online_map": 984,
         }, index["stats"]
         assert index["stats"]["sourceOnlyOccurrenceCounts"] == {
@@ -854,8 +872,8 @@ def main() -> int:
             "online_map": 984,
         }, index["stats"]
         assert index["stats"]["sourceOnlyAcquisitionCounts"] == {
-            "online_guide": 1319,
-            "online_item_map": 2334,
+            "online_guide": 1206,
+            "online_item_map": 2150,
             "online_map": 0,
         }, index["stats"]
         assert index["stats"]["kindCounts"]["message"] == 50, index["stats"]
@@ -882,8 +900,8 @@ def main() -> int:
         assert sum(gap["method"] == "pickup" for gap in index["coverageGaps"]) == 0
         assert sum(gap["method"] == "unclassified_param" for gap in index["coverageGaps"]) == 1527
         assert sum(gap["method"] == "purchase" for gap in index["coverageGaps"]) == 688
-        assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 3190
-        assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1319
+        assert sum(gap["method"] == "online_item_map" for gap in index["coverageGaps"]) == 2947
+        assert sum(gap["method"] == "online_guide" for gap in index["coverageGaps"]) == 1206
         assert sum(gap["method"] == "online_map" for gap in index["coverageGaps"]) == 984
         print("PASS player entity query")
         print(f"  glovewort_matches={glovewort['total_matches']}")

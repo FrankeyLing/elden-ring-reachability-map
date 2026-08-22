@@ -160,9 +160,11 @@ map-instance match and preserves the source `mapStudioLayer` identity. A
 candidate or unresolved result is retained as evidence and cannot enter route
 planning. This layer provides map/layer containment without coordinate-nearest
 matching, collision simulation, or fabricated navigation edges.
-`spell_acquisition` projects a Goods acquisition fact onto the same-name
-official `Magic` entity; it keeps the Goods id in `sourceItemId` and requires
-an exact English-name match.
+Learnable spells are one canonical entity with both a `Magic` row and the
+same-id `EquipParamGoods` learning row as signifiers. Acquisition facts bind
+directly by parameter table and row id; no same-name acquisition projection is
+generated. A same-name Goods row with a different row id remains an independent
+inventory entity, as with the Golden Vow incantation and DLC consumable.
 `craft` represents a cookbook event-flag unlock of a recipe product. Its
 `from` field is the canonical cookbook item and its `items` field contains the
 canonical craft product. This is an acquisition dependency, not a walkable
@@ -318,10 +320,10 @@ snapshot, 877 of 1,861 markers are published; the remaining 984 markers are
 explicit `coverageGaps` and searchable `external_map_reference` records with
 `sourceOnly=true`, rather than guessed entities or route nodes.
 
-The compiler also publishes 683 `spell_acquisition` projections so a spell
-detail page exposes local purchase/pickup evidence that is stored in the game's
-Goods inventory rows. This is an explicit identity bridge, not a second route
-graph and not an inferred spell location.
+The compiler merges 213 Goods learning records into their canonical spell
+entities and retains 212 compatibility aliases for former item ids. Direct
+parameter-row binding exposes purchase and pickup evidence on the spell without
+duplicating relations or confusing a same-name independent inventory product.
 
 ### 2.6 online-guide-items.json
 
