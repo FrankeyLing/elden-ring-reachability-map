@@ -359,6 +359,8 @@ python scripts/build-local-map-coverage-classification.py --coverage data/v1/ent
 python scripts/audit-local-map-coverage-classification.py --input data/v1/entities/local-map-coverage-classification.json
 python scripts/build-abstract-native-topology.py --native-input data/v1/entities/local-native-topology-graph.json --map-input data/v1/entities/local-abstract-topology-graph.json --coverage-input data/v1/entities/local-map-coverage-classification.json --output data/v1/entities/abstract-native-topology.json
 python scripts/audit-abstract-native-topology.py --input data/v1/entities/abstract-native-topology.json
+python scripts/build-abstract-origin-bindings.py
+python scripts/audit-abstract-origin-bindings.py
 python scripts/build-acquisition-topology-bridge.py
 python scripts/audit-acquisition-topology-bridge.py --input data/v1/entities/acquisition-topology-bridge.json --acquisitions data/v1/entities/acquisition-registry.json
 python scripts/build-location-catalog.py --param-dir <快照>/extracted/param-json

@@ -157,6 +157,8 @@ def build() -> None:
             "data/v1/entities/local-map-coverage-classification.json",
         ],
         [sys.executable, "scripts/build-abstract-native-topology.py"],
+        [sys.executable, "scripts/build-abstract-origin-bindings.py"],
+        [sys.executable, "scripts/audit-abstract-origin-bindings.py"],
         [sys.executable, "scripts/build-acquisition-topology-bridge.py"],
         [
             sys.executable,

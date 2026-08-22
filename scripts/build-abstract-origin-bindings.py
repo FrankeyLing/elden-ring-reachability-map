@@ -27,6 +27,7 @@ DEFAULT_FORMAL_GRAPH = ROOT / "data" / "v1" / "graph-v1.json"
 DEFAULT_ABSTRACT_GRAPH = ROOT / "data" / "v1" / "entities" / "abstract-topology-route-graph.json"
 DEFAULT_OUTPUT = ROOT / "data" / "v1" / "entities" / "abstract-origin-bindings.json"
 MAP_PATTERN = re.compile(r"m\d+_\d+_\d+_\d+", re.IGNORECASE)
+ONLINE_GRID_PATTERN = re.compile(r"area\s+(\d+)\s*/\s*grid\s+(\d+)\s*,\s*(\d+)", re.IGNORECASE)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -62,6 +63,31 @@ def formal_nodes(graph: dict[str, Any]) -> dict[str, dict[str, Any]]:
     }
 
 
+def normalized_name(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", value.lower())
+
+
+def map_contains_online_grid(map_id: str, node: dict[str, Any]) -> bool:
+    parts = map_id.split("_")
+    match = ONLINE_GRID_PATTERN.fullmatch(
+        str((node.get("onlineCoordinate") or {}).get("map") or "")
+    )
+    if len(parts) != 4 or not match:
+        return False
+    area, grid_x, grid_y = map(int, match.groups())
+    if parts[0] != f"m{area}":
+        return False
+    suffix = int(parts[3])
+    level = suffix % 10
+    if level not in (0, 1, 2):
+        return False
+    factor = 2 ** level
+    return (
+        int(parts[1]) * factor <= grid_x < (int(parts[1]) + 1) * factor
+        and int(parts[2]) * factor <= grid_y < (int(parts[2]) + 1) * factor
+    )
+
+
 def build(
     compass_records: list[dict[str, Any]],
     snapshot_paths: list[Path],
@@ -72,6 +98,11 @@ def build(
     source_paths: dict[str, Path],
 ) -> dict[str, Any]:
     formal_by_id = formal_nodes(formal_graph)
+    formal_graces_by_name: dict[str, list[str]] = {}
+    for node_id, node in formal_by_id.items():
+        if node.get("kind") != "grace" or not node.get("label"):
+            continue
+        formal_graces_by_name.setdefault(normalized_name(str(node["label"])), []).append(node_id)
     manual_by_key = {
         (str(row["name"]), str(row["map"])): row
         for row in manual_bindings.get("records", [])
@@ -105,16 +136,42 @@ def build(
             if formal_node_id not in formal_by_id:
                 binding_status = "invalid_manual_formal_identity"
         elif len(candidates) == 1:
-            formal_node_id = candidates[0]
-            binding_status = "candidate_name_map_identity"
+            candidate = formal_by_id.get(candidates[0], {})
+            if (
+                candidate.get("kind") == "grace"
+                and normalized_name(str(candidate.get("label") or ""))
+                == normalized_name(name)
+            ):
+                formal_node_id = candidates[0]
+                binding_status = "exact_unique_formal_grace_name_identity"
+            else:
+                formal_node_id = candidates[0]
+                binding_status = "candidate_name_map_identity"
         elif candidates:
-            binding_status = "ambiguous_name_map_identity"
+            map_candidates = [
+                candidate_id for candidate_id in candidates
+                if map_contains_online_grid(map_id, formal_by_id.get(candidate_id, {}))
+            ]
+            if len(map_candidates) == 1:
+                formal_node_id = map_candidates[0]
+                binding_status = "exact_name_and_map_grid_identity"
+            else:
+                binding_status = "ambiguous_name_map_identity"
         else:
-            binding_status = "unbound_formal_identity"
+            derived = formal_graces_by_name.get(normalized_name(name), [])
+            if len(derived) == 1:
+                formal_node_id = derived[0]
+                binding_status = "exact_unique_formal_grace_name_identity"
+            else:
+                binding_status = "unbound_formal_identity"
         if map_id not in abstract_map_ids:
             binding_status = f"{binding_status}_map_not_in_abstract_graph"
         exact = (
-            binding_status == "exact_manual_formal_identity"
+            binding_status in {
+                "exact_manual_formal_identity",
+                "exact_unique_formal_grace_name_identity",
+                "exact_name_and_map_grid_identity",
+            }
             and local_status == "exact_local_grace_identity"
             and map_id in abstract_map_ids
         )
@@ -138,6 +195,10 @@ def build(
                     "bindingBasis": (
                         "manual_name_region_map_binding"
                         if manual
+                        else "exact_formal_grace_name_plus_hierarchical_map_grid"
+                        if binding_status == "exact_name_and_map_grid_identity"
+                        else "unique_exact_formal_grace_name"
+                        if binding_status == "exact_unique_formal_grace_name_identity"
                         else "unique_source_formal_candidate_by_name"
                         if len(candidates) == 1
                         else "multiple_source_formal_candidates_by_name"
@@ -172,7 +233,7 @@ def build(
         "model": {
             "originMeaning": "a formal grace node or a retained source identity candidate",
             "mapMeaning": "the exact source map identity associated with the grace record",
-            "exactMeaning": "manual formal identity plus exact copied local grace identity and abstract map identity",
+            "exactMeaning": "exact formal grace identity plus exact copied local grace identity and abstract map identity; ambiguity requires hierarchical map-grid disambiguation",
             "candidateMeaning": "source name/map candidate retained for audit but not accepted as an exact origin",
             "edgeMeaning": "none; this package does not create traversal edges",
             "continuousPhysics": False,
@@ -210,8 +271,8 @@ def build(
             "allRouteableFalse": all(not row["routeable"] for row in records),
         },
         "notes": [
-            "Only exact_manual_formal_identity records are abstract origin anchors.",
-            "Name-only candidates and ambiguous names remain searchable evidence and cannot start a formal route.",
+            "Manual identities, globally unique exact formal grace names, and exact hierarchical map-grid disambiguations are abstract origin anchors.",
+            "Ambiguous names without a unique map-grid match remain searchable evidence and cannot start a formal route.",
             "The local grace identity is joined by exact map id plus bonfire entity id; no coordinate proximity is used.",
             "No record in this package creates or reverses a traversal edge.",
         ],

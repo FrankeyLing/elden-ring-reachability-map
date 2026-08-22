@@ -732,16 +732,18 @@ def main() -> int:
         assert node_origin_route["fromMapId"] == "m11_00_00_00", node_origin_route
         assert node_origin_route["pathFound"] is True, node_origin_route
         assert node_origin_route["paths"][0]["targetMapId"] == "m11_10_00_00", node_origin_route
-        candidate_node_origin = abstract_entity_route_query(
+        unique_name_node_origin = abstract_entity_route_query(
             id="item_smithing_stone_1",
             from_node_id="grace_limgrave_stormhill_castleward_tunnel",
             target_map_id="m10_00_00_00",
         )
-        assert candidate_node_origin["found"] is True, candidate_node_origin
-        assert candidate_node_origin["pathFound"] is False, candidate_node_origin
-        assert candidate_node_origin["reason"] == "origin_node_not_exactly_bound_to_one_abstract_map", candidate_node_origin
-        assert candidate_node_origin["originResolution"]["status"] == "candidate_origin_identity", candidate_node_origin
-        assert candidate_node_origin["playerRouteable"] is False, candidate_node_origin
+        assert unique_name_node_origin["found"] is True, unique_name_node_origin
+        assert unique_name_node_origin["pathFound"] is True, unique_name_node_origin
+        assert unique_name_node_origin["originResolution"]["status"] == "exact_formal_node_to_abstract_map", unique_name_node_origin
+        assert unique_name_node_origin["originResolution"]["formalNodeId"] == "grace_limgrave_stormhill_castleward_tunnel", unique_name_node_origin
+        assert unique_name_node_origin["fromMapId"] == "m10_00_00_00", unique_name_node_origin
+        assert unique_name_node_origin["paths"][0]["edges"] == [], unique_name_node_origin
+        assert unique_name_node_origin["playerRouteable"] is False, unique_name_node_origin
         entity_route_summary = abstract_entity_route_query(
             id="item_thin_beast_bones",
             from_map_id="m10_00_00_00",

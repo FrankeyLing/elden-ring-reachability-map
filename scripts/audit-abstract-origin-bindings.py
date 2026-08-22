@@ -34,7 +34,11 @@ def main() -> int:
         assert row["playerRouteable"] is False and row["routeable"] is False, row
         assert row["localIdentity"]["status"] == "exact_local_grace_identity", row
         status = row["binding"]["status"]
-        if status == "exact_manual_formal_identity":
+        if status in {
+            "exact_manual_formal_identity",
+            "exact_unique_formal_grace_name_identity",
+            "exact_name_and_map_grid_identity",
+        }:
             assert row["formalNodeId"] in formal_ids, row
             assert row["abstractOriginRouteable"] is True, row
         else:
@@ -47,6 +51,12 @@ def main() -> int:
     assert stats["exactAbstractOriginCount"] == sum(
         row["abstractOriginRouteable"] for row in records
     )
+    assert stats["exactAbstractOriginCount"] == stats["recordCount"] == 419
+    assert counts == Counter({
+        "exact_unique_formal_grace_name_identity": 378,
+        "exact_manual_formal_identity": 39,
+        "exact_name_and_map_grid_identity": 2,
+    })
     assert stats["allPlayerRouteableFalse"] is True
     assert stats["allRouteableFalse"] is True
     print("ABSTRACT ORIGIN BINDINGS AUDIT: PASS")
