@@ -30,6 +30,39 @@ CATEGORY_SEARCH_ALIASES = {
     "grave_glovewort": ["铃兰", "墓地铃兰", "Grave Glovewort"],
     "ghost_glovewort": ["铃兰", "灵依墓地铃兰", "Ghost Glovewort"],
     "note": ["情报", "便条", "文书", "纸条", "Note", "Letter", "Document"],
+    # Chapter-4 category vocabulary: official names often omit the category
+    # word, so the category words themselves must stay searchable (contract
+    # 5.x "可搜索" and stage-two category queries).
+    "landmark": ["地标", "Landmark"],
+    "multiplayer_item": ["联机", "联机道具", "multiplayer"],
+    "elite": ["精英", "精英敌人", "Elite"],
+    "invader": ["入侵者", "红灵", "Invader"],
+    "incantation": ["祷告", "祈祷", "Incantation"],
+    "sorcery": ["魔法", "Sorcery"],
+    "sorcery_and_incantation": ["魔法", "祷告", "咒术"],
+    "ash_of_war": ["战灰", "Ash of War"],
+    "accessory": ["护符", "Talisman", "Accessory"],
+    "bell_bearing": ["铃珠", "Bell Bearing"],
+    "cookbook": ["制作笔记", "制作书", "Cookbook"],
+    "tool": ["工具", "Tool"],
+    "painting": ["绘画", "Painting"],
+    "gesture": ["表情", "动作", "表情动作", "Gesture"],
+    "remembrance": ["追忆", "Remembrance"],
+    "great_rune": ["大卢恩", "Great Rune"],
+    "key_item": ["钥匙", "Key Item"],
+    "stone_sword_key": ["石剑钥匙", "Stone Sword Key"],
+    "jar": ["壶", "龟裂壶", "Pot"],
+    "crystal_tear": ["露滴", "Tear"],
+    "golden_rune": ["黄金卢恩", "Golden Rune"],
+    "hero_rune": ["英雄卢恩", "Hero's Rune"],
+    "consumable": ["消耗品", "消耗道具", "Consumable"],
+    "puzzle": ["谜题", "Puzzle"],
+    "fixed_message": ["留言", "固定留言", "fixed message"],
+    "teleport": ["传送", "传送机关", "teleport"],
+    "mausoleum": ["灵庙", "漫游灵庙", "漫步灵庙", "Mausoleum"],
+    "spirit_spring": ["灵泉", "Spirit Spring"],
+    "caravan": ["车队", "Caravan"],
+    "hidden_passage": ["暗门", "隐藏通道", "Hidden Passage"],
 }
 
 WEAPON_FAMILY_SEARCH_ALIASES = {
@@ -236,7 +269,7 @@ def main() -> int:
                 aliases=[
                     value for signifier in entity.get("signifiers", [])
                     for value in signifier.values() if isinstance(value, str)
-                ],
+                ] + CATEGORY_SEARCH_ALIASES.get(entity.get("category"), []),
                 properties=entity.get("properties"),
                 verification=entity.get("verification"),
             )
@@ -511,6 +544,19 @@ def main() -> int:
         incident_edges[edge["from"]] += 1
         incident_edges[edge["to"]] += 1
 
+    # Canonical names win over route-graph labels: registry, catalogs and the
+    # reinforcement catalog carry the official bilingual names; the graph loop
+    # below is the first place some ids appear (armor sets, teleports, ...),
+    # so gather the preferred names before it can create a label-only record.
+    preferred_names: dict[str, dict[str, str]] = {}
+    for entity in registry.get("entities", []):
+        preferred_names.setdefault(entity["id"], entity.get("name"))
+    for catalog in (locations, gaps):
+        for entity in catalog.get("entities", []):
+            preferred_names.setdefault(entity["id"], entity.get("name"))
+    for armor_set in reinforce.get("armor_sets", []):
+        preferred_names.setdefault(armor_set["id"], armor_set.get("name"))
+
     graph_relations_by_lot: dict[str, list[dict[str, Any]]] = defaultdict(list)
     graph_relations_by_source: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for relation in graph.get("relations", []):
@@ -523,11 +569,16 @@ def main() -> int:
 
     for node in graph["nodes"]:
         record_id = entity_aliases.get(node["id"], node["id"])
+        # Route-graph labels are display shorthand for entities also defined
+        # by the canonical registry/catalog.  Preferred canonical names win
+        # (5.1 official bilingual names); the graph label remains an alias.
+        record_name = preferred_names.get(record_id) \
+            or ({"en": node.get("label") or node["id"]})
         record = ensure(
             record_id,
             kind=node.get("kind", "other"),
             category=node.get("entityType") or node.get("kind", "other"),
-            name={"en": node.get("label") or node["id"]},
+            name=record_name,
             source="graph-v1",
             aliases=[node.get("label"), node.get("region"), node.get("floor")],
         )
